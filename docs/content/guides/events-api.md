@@ -6,45 +6,45 @@ lang: en
 
 The [Events API](https://docs.slack.dev/apis/events-api/) is a streamlined way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
 
-### Slack App Configuration
+### Slack app configuration
 
-To enable Events API, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Event Subscriptions** on the left pane. There are a few things to do on the page.
+To enable the Events API, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Event Subscriptions** on the left pane. There are a few things to do on the page.
 
 * Turn on **Enable Events**
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events` (this step is not required for Socket Mode apps)
 * Add subscriptions to bot events
   * Click **Subscribe to bot events**
   * Click **Add Bot User Event** button
-  * Choose events to subscribe
+  * Choose events to subscribe to
 * Click the **Save Changes** button at the bottom for sure
 
-### What Your Bolt App Does
+### What your Bolt app does
 
-All you need to do to handle Events API requests are:
+To handle Events API requests, do the following:
 
 1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `type` in `event` is the one you'd like to handle
-1. Whatever you want to do with the event data
-1. Respond to the Slack API server with 200 OK as an acknowledgment
+1. Code the desired logic you want to do with the event data
+1. Respond to the Slack API server with `200 OK` as an acknowledgment
 
-Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the Slack Platform may retry after a while.
+Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the Slack Platform may retry.
 
 ---
 ## Examples
 
-:::tip 
+:::tip[Tip]
 
 If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
 
 :::
 
-Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle are:
 
 * Specify [the Java class](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/sdkLatestVersion/slack-api-model-sdkLatestVersion-javadoc.jar/!/com/slack/api/model/event/Event.html) corresponding to `event.type` (and also `event.subtype` [when necessary](https://docs.slack.dev/reference/events/message)) to handle
-* Whatever you want to do with the event data
+* Code the desired logic you want to do with the event data
 * Call `ack()` as an acknowledgment
 
-In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user at the conversation the event happened, call [**chat.postMessage**](https://docs.slack.dev/reference/methods/chat.postmessage) method or other similar ones with `channel` in the event payload.
+In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user in the conversation where the event happened, call the [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage) method with `channel` in the event payload.
 
 ```java
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -65,7 +65,7 @@ app.event(ReactionAddedEvent.class, (payload, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.event(ReactionAddedEvent::class.java) { payload, ctx ->
@@ -139,9 +139,9 @@ app.message(":wave:", (payload, ctx) -> {
 });
 ```
 
-### Under the Hood
+## Under the hood
 
-If you hope to understand what is actually happening with the above code, reading  the following (a bit pseudo) code may be helpful.
+If you hope to understand what is happening with the above code, reading the following (a bit pseudo) code may be helpful.
 
 ```java
 import java.util.Map;

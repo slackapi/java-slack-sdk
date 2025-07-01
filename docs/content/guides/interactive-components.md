@@ -4,45 +4,45 @@ lang: en
 
 # Interactive Components
 
-[Interactive components](https://docs.slack.dev/block-kit/#making-things-interactive) are a subset of [Block Kit](https://docs.slack.dev/block-kit/) elements that add interactivity to various [surfaces](https://docs.slack.dev/surfaces/). Interactions on blocks may happen not only in messages but also on [Modals](/guides/modals), and [Home tabs](/guides/app-home).
+[Interactive components](https://docs.slack.dev/block-kit/#making-things-interactive) are a subset of [Block Kit](https://docs.slack.dev/block-kit/) elements that add interactivity to various [surfaces](https://docs.slack.dev/surfaces/). Interactions on blocks may happen in messages, [modals](/guides/modals), and [Home tabs](/guides/app-home).
 
-Reading [Composing Messages](/guides/composing-messages) is helpful to learn how to build [Block Kit](https://docs.slack.dev/surfaces/) messages with this SDK.
+See [Composing messages](/guides/composing-messages) to learn how to build [Block Kit](https://docs.slack.dev/surfaces/) messages with this SDK.
 
-### Slack App Configuration
+### Slack app configuration
 
-To enable Interactive Components, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
+To enable interactive components, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
 
 * Turn on the feature
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events` (this step is not required for Socket Mode apps)
-* Click the **Save Changes** button at the bottom for sure
+* Click the **Save Changes** button at the bottom
 
-### What Your Bolt App Does
+### What your bolt app does
 
-All your app needs to do to handle Slack requests by user interactions are:
+To handle Slack requests by user interactions:
 
 1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `action_id` in a block is the one you'd like to handle
 1. Build a reply message or surface to interact with the user further
-1. Respond to the Slack API server with 200 OK as an acknowledgment
+1. Respond to the Slack API server with `200 OK` as an acknowledgment
 
 Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack. For some of the requests including external selects, having valid parameters to the method may be required.
 
 ---
 ## Examples
 
-:::tip 
+:::tip[Tip] 
 
-If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
 
 :::
 
-Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle are:
 
 * Specify the `action_id` to handle (by either of the exact name or regular expression)
 * Build a reply message or surface to interact with the user further
 * Call `ack()` as an acknowledgment
 
-The request payloads have `response_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+The request payloads have a `response_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
 Let's say, a message has a simple `"actions"`-typed block that has a button.
 
@@ -131,7 +131,7 @@ app.blockAction("topics-action", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option
@@ -156,9 +156,9 @@ app.blockAction("topics-action") { req, ctx ->
 }
 ```
 
-### Under the Hood
+## Under the Hood
 
-If you hope to understand what is actually happening with the above code, reading the following (a bit pseudo) code may be helpful.
+If you hope to understand what is happening with the above code, reading the following (a bit pseudo) code may be helpful.
 
 ```java
 import java.util.Map;

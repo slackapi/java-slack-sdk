@@ -13,7 +13,7 @@ If you're not yet familiar with Slack app development in general, we recommend r
 
 The `App` class is a place to write only essential parts of your Slack app without being bothered by trifles.
 
-The code configuring an `App` instance mainly consists of the ways to respond to incoming events from Slack such as user actions, command invocations, requests to load options in select menus, and any events you subscribe to in the Events API.
+The code configuring an `App` instance mainly consists of the ways to respond to incoming events from Slack such as user actions, command invocations, requests to load options in select menus, and any events you subscribe to in the [Events API](https://docs.slack.dev/apis/events-api).
 
 ```java
 import com.slack.api.bolt.App;
@@ -25,7 +25,7 @@ app.command("/echo", (req, ctx) -> {
 ```
 
 ---
-## Dispatching Events
+## Dispatching events
 
 Here is the list of the available methods to dispatch events.
 
@@ -38,7 +38,7 @@ Here is the list of the available methods to dispatch events.
 |`app.dialogCancellation`|callback_id `String` \| `Pattern`|Dialogs: Responds to the events where users close dialogs by clicking Cancel buttons.|
 |`app.dialogSubmission`|callback_id: `String` \| `Pattern`|Dialogs: Responds to data submissions in dialogs.|
 |`app.dialogSuggestion`|callback_id: `String` \| `Pattern`|Dialogs: Responds to requests to load options for `"external"` typed select menus in dialogs.|
-|`app.event`|event type: `Class\<Event\>`|[Events API](/guides/events-api): Responds to any kinds of bot/user events you subscribe.|
+|`app.event`|event type: `Class\<Event\>`|[Events API](/guides/events-api): Responds to any of bot/user events you subscribe to.|
 | `app.function` | callback_id: `String` \| `Pattern` | [Custom steps](/guides/custom-steps): Defines a function that can be used as a custom step in [Workflow Builder](https://slack.com/help/articles/360035692513-Guide-to-Slack-Workflow-Builder).
 |`app.globalShortcut`|callback_id: `String` \| `Pattern`|[Shortcuts](/guides/shortcuts): Responds to global shortcut invocations.|
 |`app.message`|keyword: `String` \| `Pattern`|[Events API](/guides/events-api): Responds to messages posted by a user only when the text in messages matches the given keyword or regular expressions.|
@@ -47,9 +47,9 @@ Here is the list of the available methods to dispatch events.
 |`app.viewSubmission`|callback_id: `String` \| `Pattern`|[Modals](/guides/modals): Responds to data submissions in modals.|
 
 ---
-## Development Guides by Feature
+## Development guides by feature
 
-On these guide pages, you'll find a more concrete example code for each.
+On these guide pages, you'll find example code for each.
 
 * [Slash Commands](/guides/slash-commands)
 * [Interactive Components](/guides/interactive-components)
@@ -60,7 +60,7 @@ On these guide pages, you'll find a more concrete example code for each.
 * [App Distribution (OAuth Flow)](/guides/app-distribution)
 
 ---
-## Acknowledge Incoming Requests
+## Acknowledge incoming requests
 
 Actions, commands, and options events must always be acknowledged using the `ack()` method. All such utility methods are available as the instance methods of a `Context` object.
 
@@ -130,7 +130,7 @@ app.globalShortcut("callback-id", (req, ctx) -> {
 If you want to take full control of the `ExecutorService` to use, you don't need to use `app.executorService()`. You can go with the preferable way to manage asynchronous code execution for your app.
 
 ---
-## Respond to User Actions
+## Respond to user actions
 
 Are you already familiar with `response_url`? If not, we recommend reading [this guide](https://docs.slack.dev/interactivity/handling-user-interaction) first.
 
@@ -152,9 +152,9 @@ app.command("/hello", (req, ctx) -> {
 ```
 
 ---
-## Use Web APIs / Reply using say utility
+## Use Web APIs / reply using `say` utility
 
-When you need to call some Slack Web APIs in Bolt apps, use `ctx.client()` for it. The `MethodsClient` created by the method already holds a valid bot token. So, you don't need to give a token to it. Just calling a method with parameters as below works for you.
+Use `ctx.client()` to call Slack Web API methods in Bolt apps. The `MethodsClient` created by the method already holds a valid bot token, so there is no need to provide a token to it. Simply call the method with parameters as below.
 
 ```java
 app.command("/hello", (req, ctx) -> {
@@ -167,7 +167,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-For [chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage) API calls with the given channel ID, using `say()` utility is much simpler. If your slash command needs to be available anywhere, using `ctx.respond` would be more robust as `say()` method does not work for the conversations where the app's bot user is not a member of (e.g., a person's own DM).
+For [chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage) API calls with the given channel ID, using the `say()` utility is simpler. However, if your slash command needs to be available anywhere, using `ctx.respond` would be more robust, as the `say()` method does not work for conversations where the app's bot user is not a member (e.g., a person's own DM).
 
 ```java
 app.command("/hello", (req, ctx) -> {
@@ -206,7 +206,7 @@ app.command("/my-search", (req, ctx) -> {
 ```
 
 ---
-## Use Logger
+## Use logger
 
 You can access [SLF4J](http://www.slf4j.org/) logger in `Context` objects.
 
@@ -284,17 +284,17 @@ if (debugMode != null && debugMode.equals("1")) { // enable only when SLACK_APP_
 }
 ```
 
-The middleware transforms an unsuccessful response such as 404 Not Found to a 200 OK response with an ephemeral message that tells useful information for debugging.
+The middleware transforms an unsuccessful response such as `404 Not Found` to a `200 OK` response with an ephemeral message that tells useful information for debugging.
 
 ![Bolt middleware ](/img/bolt-middleware.png)
 
-#### Order of Execution in Middleware List
+#### Order of execution in middleware list
 
 A set of the built-in middleware precedes your custom middleware. So, if the app detects something in built-in ones and stops calling `chain.next(req)`, succeeding ones won't be executed.
 
 The most common would be the case where a request has been denied by `RequestVerification` middleware. After the denial, any middleware won't be executed, so that the above middleware also doesn't work for the case.
 
-#### Customize the Built-in Middleware List
+#### Customize the built-in middleware list
 
 Bolt turns the following middleware on by default:
 
@@ -317,10 +317,10 @@ appConfig.setRequestVerificationEnabled(false); // the default is true
 App app = new App(appConfig);
 ```
 
-Make sure if it's safe enough when you turn a built-in middleware off. **We strongly recommend using `RequestVerification` for better security**. If you have a proxy that verifies request signature in front of the Bolt app, it's totally fine to disable `RequestVerification` to avoid duplication of work. Don't turn it off just for easiness of development.
+Make sure it's safe enough when you turn a built-in middleware off. **We strongly recommend using `RequestVerification` for better security**. If you have a proxy that verifies a request signature in front of the Bolt app, you may disable `RequestVerification` to avoid duplication of work. Don't turn it off just for ease of development.
 
 ---
-## Supported Web Frameworks
+## Supported web frameworks
 
 Refer to the [supported web frameworks page](/guides/supported-web-frameworks) for more details.
 

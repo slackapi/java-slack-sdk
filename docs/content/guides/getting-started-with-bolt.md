@@ -5,9 +5,9 @@ title: Getting Started
 
 # Getting Started with Bolt for Java {#getting-started}
 
-**Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features.
+**Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps using modern platform features.
 
-This guide explains how to start your first-ever Bolt app.
+This guide explains how to start your first Bolt app.
 
 If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs](https://docs.slack.dev).
 
@@ -18,7 +18,7 @@ Let's start building a Slack app using Bolt! This guide includes instructions on
 
 ### Using Maven {#maven}
 
-After you [create your Maven project](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), you need to add the `bolt` dependency to your `pom.xml` file. The `bolt` dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), or any others on top of Servlet environment, the `bolt-servlet` library is required for your app. Adding only `bolt-servlet` also works for you.
+After you [create your Maven project](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), you need to add the `bolt` dependency to your `pom.xml` file. The `bolt` dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), or any others on top of the Servlet environment, the `bolt-servlet` library is required for your app. Adding only `bolt-servlet` also works.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -173,7 +173,7 @@ dependencies {
 
 **Using `build.gradle`**
 
-The following build settings should be working as-is. Put it in the root directory of your project.
+The following build settings should work as-is. Put it in the root directory of your project.
 
 <Tabs groupId="socket-or-http">
 <TabItem value="socket-mode" label="Socket Mode">
@@ -228,12 +228,10 @@ run {
 
 **Using `src/main/java/hello/MyApp.java`**
 
-Coding with this framework is much simpler than you think.
-
 <Tabs groupId="socket-or-http">
 <TabItem value="socket-mode" label="Socket Mode">
 
-Only single source code is required to run your first-ever Bolt app. All you need to do is define the main method that starts `SocketModeApp`.
+Only single source code is required to run your first Bolt app. All you need to do is define the main method that starts `SocketModeApp`.
 
 ```java
 package hello;
@@ -256,7 +254,7 @@ public class MyApp {
 }
 ```
 
-If you go with JDK 10+, thanks to [Local Variable Type Inference](https://developer.oracle.com/java/jdk-10-local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
+If you go with JDK 10+, thanks to [Local Variable Type Inference](https://docs.oracle.com/en/java/javase/21/language/local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
 
 ```groovy
 java {
@@ -278,7 +276,7 @@ new SocketModeApp(app).start();
 </TabItem>
 <TabItem value="http" label="HTTP">
 
-Only single source code is required to run your first-ever Bolt app. All you need to do is define the main method that starts `SlackAppServer`. Your server with the default configuration will listen to the 3000 port but it's configurable. Check other constructors of the class to customize the behavior.
+Only single source code is required to run your first Bolt app. All you need to do is define the main method that starts `SlackAppServer`. Your server with the default configuration will listen to the 3000 port but it's configurable. Check other constructors of the class to customize the behavior.
 
 ```java
 package hello;
@@ -302,7 +300,7 @@ public class MyApp {
 }
 ```
 
-If you go with JDK 10+, thanks to [Local Variable Type Inference](https://developer.oracle.com/java/jdk-10-local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
+If you go with JDK 10+, thanks to [Local Variable Type Inference](https://docs.oracle.com/en/java/javase/21/language/local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
 
 ```groovy
 java {
@@ -327,12 +325,12 @@ server.start();
 
 ### Environment variables {#env-variables}
 
-The default constructor expects the following two env variables exist when starting the app.
+The default constructor expects the following two environment variables to exist when starting the app.
 
 |Env Variable|Description|
 |-|-|
-|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, you need to install your Slack App that has a bot user to your development workspace. Visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](https://docs.slack.dev/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/guides/app-distribution) for further information instead.|
-|`SLACK_SIGNING_SECRET`|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [the document](https://docs.slack.dev/authentication/verifying-requests-from-slack) for further information.|
+|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, install your Slack app that has a bot user to your development workspace. Visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](https://docs.slack.dev/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/guides/app-distribution) for further information.|
+|`SLACK_SIGNING_SECRET`|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [Verifying requests from Slack](https://docs.slack.dev/authentication/verifying-requests-from-slack) for more information.|
 
 If you prefer configuring an `App` in a different way, write some code to initialize `AppConfig` on your own.
 
@@ -355,7 +353,7 @@ gradle run
 mvn compile exec:java -Dexec.mainClass="hello.MyApp"
 ```
 
-You will see the message saying "**⚡️ Bolt app is running!**" in stdout.
+You will see the message saying "**⚡️ Bolt app is running!**" in `stdout`.
 
 If you get stuck, go through the following checklist:
 
@@ -382,14 +380,14 @@ If you get stuck, go through the following checklist:
 </TabItem>
 </Tabs>
 
-### Enabling the `/hello` Command {#hello}
+### Enabling the `/hello` command {#hello}
 
 Your app is up now! However, the slash command `/hello` in the code is still unavailable. To enable it, follow the steps below:
 
 <Tabs groupId="socket-or-http">
 <TabItem value="socket-mode" label="Socket Mode">
 
-* Visit [Slack App configuration pages](https://api.slack.com/apps)
+* Visit [Slack app settings pages](https://api.slack.com/apps)
 * Choose your app
 * Go to **Settings** > **Socket Mode** on the left pane
   * Turn on **Enable Socket Mode**
@@ -403,10 +401,10 @@ Your app is up now! However, the slash command `/hello` in the code is still una
 </TabItem>
 <TabItem value="http" label="HTTP">
 
-* Configure a way to allow Slack API server to access your Bolt app
+* Configure a way to allow the Slack API server to access your Bolt app
   * A well-known way is to use [ngrok](https://ngrok.com/) - install it and run `ngrok http 3000` on another terminal
-* Configure & Reinstall the Slack App
-  * Visit [Slack App configuration pages](https://api.slack.com/apps)
+* Configure & Reinstall the Slack app
+  * Visit [Slack app settings pages](https://api.slack.com/apps)
   * Choose your app, go to **Features** > **Slash Commands** on the left pane
   * Click **Create New Command** button
   * Input the command information on the dialog:
@@ -423,11 +421,11 @@ Now you can hit the `/hello` command in your development workspace. If your app 
 
 ### What about Spring Boot? {#spring-boot}
 
-As [Spring Boot](https://spring.io/projects/spring-boot) is one of the most popular web frameworks in the Java world, you may be curious about the possibility to let this Bolt live together with it.
+As [Spring Boot](https://spring.io/projects/spring-boot) is one of the most popular web frameworks in the Java world, you may be curious about the possibility to let this Bolt app live together with it.
 
-Rest assured about it! It's quick and easy to _inject_ Bolt into Spring Boot apps.
+Rest assured, we can _inject_ Bolt into Spring Boot apps.
 
-All you need to do is add `implementation("com.slack.api:bolt:sdkLatestVersion")` to `dependencies` in `build.gradle` and write a few lines of code.
+Add `implementation("com.slack.api:bolt:sdkLatestVersion")` to `dependencies` in `build.gradle` and write a few lines of code.
 
 ```java
 @Configuration
@@ -448,12 +446,12 @@ public class SlackAppController extends SlackAppServlet {
 }
 ```
 
-Check [the detailed guide here](/guides/supported-web-frameworks) for further information.
+Check [the detailed guide here](/guides/supported-web-frameworks) for more information.
 
 ---
 ## Getting started with Kotlin {#getting-started-in-kotlin}
 
-For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great option for writing Bolt apps. In this section, you'll learn how to set up a Kotlin project for Bolt apps.
+For code simplicity, [Kotlin](https://kotlinlang.org/) is a great option for writing Bolt apps. In this section, you'll learn how to set up a Kotlin project for Bolt apps.
 
 **Using `build.gradle`**
 
@@ -515,7 +513,7 @@ If you're already familiar with Kotlin and prefer the Gradle Kotlin DSL, of cour
 
 **Using `src/main/kotlin/MyApp.kt`**
 
-Here is a minimum source file that just starts a Bolt app on your local machine.
+Here is a minimum source file that starts a Bolt app on your local machine.
 
 <Tabs groupId="socket-or-http">
 <TabItem value="socket-mode" label="Socket Mode">
@@ -555,7 +553,7 @@ fun main() {
 
 ### Running your Kotlin app {#run-kotlin}
 
-If all items from the checklist are ✅, bootstrapping your first-ever Kotlin-flavored Bolt app will succeed:
+If all items from the checklist are ✅, bootstrapping your first Kotlin-flavored Bolt app will succeed:
 
 ```bash
 # Visit https://api.slack.com/apps to know these
@@ -566,9 +564,9 @@ export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
 gradle run
 ```
 
-From here, all you need to do is write code and restart the app. Enjoy Bolt app development in Kotlin! 👋
+From here, you're ready to write code and restart the app. Enjoy Bolt app development in Kotlin! 👋
 
-:::tip 
+:::tip[Tip]
 
 We strongly recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) here even if you don't prefer using IDEs. The IDE is the smoothest way to try Kotlin application development.
 
@@ -579,7 +577,7 @@ We strongly recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) her
 
 Read the [Bolt Basics](/guides/bolt-basics) page for further information.
 
-If you want to know ways to run Bolt app with Spring Boot, Micronaut, Quarkus, or Helidon SE, refer to the [Supported Web Frameworks](/guides/supported-web-frameworks) page.
+If you want to know ways to run a Bolt app with Spring Boot, Micronaut, Quarkus, or Helidon SE, refer to the [Supported Web Frameworks](/guides/supported-web-frameworks) page.
 
 Also, many examples are available in the GitHub repository.
 

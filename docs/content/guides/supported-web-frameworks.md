@@ -4,14 +4,12 @@ lang: en
 
 # Supported Web Frameworks
 
-Bolt for Java doesn't depend on any specific environments and frameworks.
-
-It works on Servlet containers out-of-the-box. So, developers can run Bolt apps with most Web frameworks on the JVM. `SlackAppServlet` is a simple Servlet that receives HTTP requests coming to `POST /slack/events` URI and properly dispatches each request to corresponding handlers in a Bolt app.
+Bolt for Java doesn't depend on any specific environments or frameworks. It works on Servlet containers out-of-the-box. Developers can run Bolt apps with most web frameworks on the JVM. `SlackAppServlet` is a simple Servlet that receives HTTP requests coming to the `POST /slack/events` URI and properly dispatches each request to corresponding handlers in a Bolt app.
 
 Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronaut.io/) and [Helidon](https://helidon.io/) is feasible if there is an adapter that transforms its specific HTTP interpretation to Bolt interfaces.
 
 ---
-## Supported Frameworks
+## Supported frameworks
 
 Below are some minimum working examples for the following popular frameworks.
 
@@ -23,13 +21,16 @@ Below are some minimum working examples for the following popular frameworks.
 ---
 ## Spring Boot
 
-[Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular Web framework in Java. Enabling `SlackAppServlet` in your Spring Boot application is the easiest way to run Bolt apps with the framework. Let's look at a tiny Gradle project. **Please note that Bolt properly works with Spring Boot 2.2 or newer versions.**
-Also, when you add Spring Boot extensions such as Spring Security, the app may not work well with Bolt.
-In that case, please consider splitting the app into a few and make the Bolt app as simple as possible.
+[Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular web framework in Java. Bolt properly works with Spring Boot 2.2 or newer versions. Enabling `SlackAppServlet` in your Spring Boot application is the easiest way to run Bolt apps with the framework. 
+
+When you add Spring Boot extensions such as Spring Security, the app may not work well with Bolt.
+In that case, consider splitting the app into a few and make the Bolt app as simple as possible.
+
+Let's look at a tiny Gradle project. 
 
 ### `build.gradle`
 
-Let's start with putting `build.gradle` file in the root directory of your project. Here is a simple project setting with Spring Boot 3. As you see, this is just a simple and straight-forward Spring Boot app configuration.
+Let's start with putting `build.gradle` file in the root directory of your project. Here is a project setting with Spring Boot 3. 
 
 ```groovy
 plugins {
@@ -49,7 +50,7 @@ dependencies {
 }
 ```
 
-If you have a certain reason to continue using Spring Boot 2 series, the build settings can be as below instead:
+If you have a certain reason to continue using Spring Boot 2 series, the build settings are below:
 
 ```groovy
 plugins {
@@ -70,9 +71,9 @@ dependencies {
 }
 ```
 
-### src/main/java/hello/SlackApp.java
+### `src/main/java/hello/SlackApp.java`
 
-This is an essential part of this application. All the logic to handle Slack events should be here. In this `@Configuration` class, you can also inject service classes and whatever into Bolt's **App** by taking full advantage of the Spring DI container.
+This is an essential part of this application. All the logic to handle Slack events should be here. In this `@Configuration` class, you can also inject service classes into Bolt's `App` by taking full advantage of the Spring DI container.
 
 ```java
 package hello;
@@ -120,7 +121,7 @@ public class SlackAppController extends SlackAppServlet {
 
 ### `src/main/java/hello/Application.java`
 
-This is also a boilerplate code. It just enables Spring's component scan and bootstraps a Spring Boot application.
+This is also a boilerplate code. It enables Spring's component scan and bootstraps a Spring Boot application.
 
 ```java
 package hello;
@@ -138,7 +139,7 @@ public class Application {
 }
 ```
 
-If your app is going to have its own `ServletContextListener`, placing the above Servlet class in a dedicated package plus passing the package name to scan as the `@ServletComponentScan`'s argument would be recommended. Refer to [#947](https://github.com/slackapi/java-slack-sdk/issues/947) for more details.
+If your app is going to have its own `ServletContextListener`, we recommend placing the above Servlet class in a dedicated package and passing the package name to scan as the `@ServletComponentScan`'s argument. Refer to [#947](https://github.com/slackapi/java-slack-sdk/issues/947) for more details.
 
 ### `src/main/resources/application.yml`
 
@@ -151,7 +152,7 @@ server:
   port: 3000
 ```
 
-### Boot the Bolt App
+### Boot the Bolt app
 
 That's all set! It's time to hit `gradle bootRun` to boot the app.
 
@@ -192,7 +193,7 @@ ngrok http 3000 --subdomain {your-favorite-one}
 ---
 ## Micronaut
 
-If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add `bolt-micronaut`, NOT `bolt-jetty`. As the `bolt` dependency will be automatically resolved as the `bolt-micronaut`'s dependency, you don't need to add it. That's the same for Gradle projects.
+If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add `bolt-micronaut`, NOT `bolt-jetty`. The `bolt` dependency will be automatically resolved as the `bolt-micronaut`'s dependency, so you don't need to add it. The same is true for Gradle projects.
 
 ```xml
 <!-- Compatible with Micronaut compatibleMicronautVersion -->
@@ -221,7 +222,7 @@ public class Application {
 
 ### `src/main/java/hello/AppFactory.java`
 
-The simplest way would be to have some code that initializes the **App** instance in a factory class. Micronaut scans the classes with DI related annotations and uses them when injecting components for you.
+The simplest way is to have some code that initializes the **App** instance in a factory class. Micronaut scans the classes with DI-related annotations and uses them when injecting components for you.
 
 ```java
 package hello;
@@ -262,7 +263,7 @@ micronaut:
     port: 3000
 ```
 
-### Start the Micronaut App
+### Start the Micronaut app
 
 That's all set! It's time to hit `mvn run` to boot the app.
 
@@ -273,17 +274,17 @@ That's all set! It's time to hit `mvn run` to boot the app.
 ---
 ## Quarkus Undertow
 
-[Quarkus](https://quarkus.io/) is a Web application framework that supports packaging for GraalVM and HotSpot. In this section, I'll explain how to configure SlackAppServlet with the framework.
+[Quarkus](https://quarkus.io/) is a web application framework that supports packaging for GraalVM and HotSpot. In this section, I'll explain how to configure SlackAppServlet with the framework.
 
 You can generate a blank project from [code.quarkus.io](https://code.quarkus.io/). For simple Bolt apps, we recommend using **Undertow Servlet** in the **Web** component section. Nothing else is required. Just click **Generate your application** button and download the generated zip file.
 
 Also, if you don't have additional endpoints using RESTEasy, you can safely remove `quarkus-resteasy` (a dependency included by default).
 
-### Build Settings
+### Build settings
 
 The following build setting files work as-is. Place either `pom.xml` (for Maven) or `build.gradle` + `settings.gradle` (for Gradle) in the root directory of your project.
 
-#### Maven - pom.xml
+#### Maven - `pom.xml`
 
 The following settings are compatible with both of JDK 8 and 11. If you prefer using Java 11 features, set `11` to `maven.compiler.source` and `maven.compiler.target`,
 
@@ -496,7 +497,7 @@ class Components {
 
 ### `src/main/resources/application.properties`
 
-The default port Quarkus uses is 8080. You can change the port by having the following config. Enabling Bolt's debug logging would be greatly helpful for learning how it works and debugging some unintended behaviors.
+The default port Quarkus uses is 8080. You can change the port by having the following config. Enabling Bolt's debug logging is helpful for learning how it works and debugging unintended behaviors.
 
 ```
 quarkus.http.port=3000
@@ -505,7 +506,7 @@ quarkus.log.category."com.slack.api".level=DEBUG
 quarkus.package.type=uber-jar
 ```
 
-### Run the App
+### Run the app
 
 That’s all set! It’s time to run the app in development mode.
 
@@ -518,7 +519,7 @@ That’s all set! It’s time to run the app in development mode.
 ./gradlew quarkusDev
 ```
 
-If your Quarkus project is correctly configured, the stdout should look like this.
+If your Quarkus project is correctly configured, the `stdout` should look like this.
 
 ```
 [INFO] --- quarkus-maven-plugin:quarkusVersion:dev (default-cli) @ code-with-quarkus ---
@@ -549,7 +550,7 @@ INFO  [io.quarkus] (vert.x-worker-thread-0) Installed features: [cdi, servlet]
 INFO  [io.qua.dev] (vert.x-worker-thread-0) Hot replace total time: 0.232s 
 ```
 
-To build a runnable jar file for production deployment, you can run either `./mvnw package` or `./gradlew package` (or `./gradlew build -Dquarkus.package.type=uber-jar`).
+To build a runnable `jar` file for production deployment, you can run either `./mvnw package` or `./gradlew package` (or `./gradlew build -Dquarkus.package.type=uber-jar`).
 
 ---
 ## Helidon SE
@@ -567,9 +568,9 @@ mvn archetype:generate \
   -Dpackage=hello
 ```
 
-### pom.xml
+### `pom.xml`
 
-The only thing you need to do with the build settings is adding `bolt-helidon` dependency and your favorite [SLF4J](http://www.slf4j.org/) implementation.
+The only thing you need to do with the build settings is add the `bolt-helidon` dependency and your favorite [SLF4J](http://www.slf4j.org/) implementation.
 
 ```xml
 <dependency>
@@ -594,7 +595,7 @@ The only thing you need to do with the build settings is adding `bolt-helidon` d
 
 ### `src/main/java/hello/Main.java`
 
-`bolt-helidon` is as handy as `bolt-jetty`. All developers need to do is define a main method that initializes **App**s and starts an HTTP server.
+`bolt-helidon` is as handy as `bolt-jetty`. All you need to do is define a main method that initializes `App` and starts an HTTP server.
 
 ```java
 package hello;
@@ -645,7 +646,7 @@ bolt:
 
 ### `src/main/resources/logback.xml`
 
-If you use logback library as the SLF4J logger implementation, a simple `logback.xml` would be like blow.
+If you use logback library as the SLF4J logger implementation, a simple `logback.xml` looks like this:
 
 ```xml
 <configuration>
@@ -662,15 +663,15 @@ If you use logback library as the SLF4J logger implementation, a simple `logback
 </configuration>
 ```
 
-### Run the App
+### Run the app
 
-The recommended way to start your app is either to use the [Helidon CLI](https://helidon.io/docs/latest/#/about/05_cli)'s dev mode 
+We recommend starting your app either using the [Helidon CLI](https://helidon.io/docs/latest/#/about/05_cli)'s dev mode 
 
 ```bash
 helidon dev
 ```
 
-or to build and run your app every time you've applied changes to it.
+or building and running your app every time you've applied changes to it.
 
 ```bash
 mvn exec:java -Dexec.mainClass="hello.Main"
@@ -678,7 +679,7 @@ mvn exec:java -Dexec.mainClass="hello.Main"
 mvn package && java -jar target/helidon-se-bolt-app.jar
 ```
 
-If the project is correctly configured, the stdout should look like this.
+If the project is correctly configured, the `stdout` should look like this.
 
 ```bash
 [main] io.helidon.webserver.NettyWebServer Version: helidonVersion
