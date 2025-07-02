@@ -154,7 +154,7 @@ app.command("/hello", (req, ctx) -> {
 ---
 ## Use Web APIs / reply using `say` utility
 
-Use `ctx.client()` to call Slack Web API methods in Bolt apps. The `MethodsClient` created by the method already holds a valid bot token, so there is no need to provide a token to it. Simply call the method with parameters as below.
+Use `ctx.client()` to call Slack Web API methods in Bolt apps. The `MethodsClient` created by the method already holds a valid bot token, so there is no need to provide a token to it. Call the method with parameters as below.
 
 ```java
 app.command("/hello", (req, ctx) -> {

@@ -19,9 +19,9 @@ Bolt for Java automatically includes support for [org-wide installations](https:
 
 ### What your Bolt app does
 
-To properly handle the OAuth Flow:
+To properly handle the OAuth flow:
 
-* Provide an endpoint starting the OAuth flow by redirecting installers to Slack's `authorize` endpoint with sufficient parameters
+* Provide an endpoint starting the OAuth flow by redirecting installers to the `authorize` endpoint with sufficient parameters
   * Generate a `state` parameter value to verify afterwards
   * Append `client_id`, `scope`, `user_scope` (only for v2), and `state` to the URL
 * Provide an endpoint to handle user redirection from Slack

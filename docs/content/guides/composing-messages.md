@@ -29,7 +29,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 );
 ```
 
-As you see, using `text` is fairly simple: give a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://docs.slack.dev/messaging/formatting-message-text) for understanding the markup language.
+Use `text` by providing a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://docs.slack.dev/messaging/formatting-message-text) for understanding the markup language.
 
 ---
 ## Building blocks for rich message layouts
@@ -67,7 +67,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 );
 ```
 
-You build a message for incoming webhooks and `response_url` calls this way too.
+You can build a message for incoming webhooks and `response_url` calls this way too.
 
 ---
 ## Block Kit Kotlin DSL

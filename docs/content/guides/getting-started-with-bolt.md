@@ -231,7 +231,7 @@ run {
 <Tabs groupId="socket-or-http">
 <TabItem value="socket-mode" label="Socket Mode">
 
-Only single source code is required to run your first Bolt app. All you need to do is define the main method that starts `SocketModeApp`.
+Only single source code is required to run your first Bolt app. You'll need to define the main method that starts `SocketModeApp`.
 
 ```java
 package hello;
@@ -254,7 +254,7 @@ public class MyApp {
 }
 ```
 
-If you go with JDK 10+, thanks to [Local Variable Type Inference](https://docs.oracle.com/en/java/javase/21/language/local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
+If you go with JDK 10+, thanks to [Local Variable Type Inference](https://docs.oracle.com/en/java/javase/21/language/local-variable-type-inference.html), you can write more concise code. To do so, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below, configuring the same on your IDE.
 
 ```groovy
 java {
@@ -276,7 +276,7 @@ new SocketModeApp(app).start();
 </TabItem>
 <TabItem value="http" label="HTTP">
 
-Only single source code is required to run your first Bolt app. All you need to do is define the main method that starts `SlackAppServer`. Your server with the default configuration will listen to the 3000 port but it's configurable. Check other constructors of the class to customize the behavior.
+Only single source code is required to run your first Bolt app. You'll need to define the main method that starts `SlackAppServer`. Your server with the default configuration will listen to the 3000 port but it's configurable. Check other constructors of the class to customize the behavior.
 
 ```java
 package hello;
@@ -300,7 +300,7 @@ public class MyApp {
 }
 ```
 
-If you go with JDK 10+, thanks to [Local Variable Type Inference](https://docs.oracle.com/en/java/javase/21/language/local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
+If you go with JDK 10+, thanks to [Local Variable Type Inference](https://docs.oracle.com/en/java/javase/21/language/local-variable-type-inference.html), you can write more concise code. To do so, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below, configuring the same on your IDE.
 
 ```groovy
 java {
@@ -423,7 +423,7 @@ Now you can hit the `/hello` command in your development workspace. If your app 
 
 As [Spring Boot](https://spring.io/projects/spring-boot) is one of the most popular web frameworks in the Java world, you may be curious about the possibility to let this Bolt app live together with it.
 
-Rest assured, we can _inject_ Bolt into Spring Boot apps.
+Don't worry, we can _inject_ Bolt into Spring Boot apps.
 
 Add `implementation("com.slack.api:bolt:sdkLatestVersion")` to `dependencies` in `build.gradle` and write a few lines of code.
 

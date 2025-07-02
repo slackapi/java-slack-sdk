@@ -78,7 +78,7 @@ Refer to the [Javadoc](https://oss.sonatype.org/service/local/repositories/relea
 
 The Audit Logs API methods conform to Slack's [rate limits](https://docs.slack.dev/apis/web-api/rate-limits) and all methods are rated Tier 3. This allows for up to 50 calls per minute, with an allowance for sporadic bursts. Refer to [the API documentation](https://docs.slack.dev/admins/audit-logs-api) for more details.
 
-The async client, `AsyncAuditClient`, has great consideration for rate limits. The async client internally has its queue systems to avoid burst traffics as much as possible while `AuditClient`, the synchronous client, always blindly sends requests. Both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack platform and estimate the remaining amount to call.
+The async client, `AsyncAuditClient`, takes rate limits into consideration. The async client internally has its queue systems to avoid burst traffics as much as possible while `AuditClient`, the synchronous client, always blindly sends requests. Both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack platform and estimate the remaining amount to call.
 
 The default implementation of the datastore is an in-memory one using the JVM heap memory. The default `SlackConfig` enables the in-memory one. 
 

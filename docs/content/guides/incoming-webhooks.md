@@ -4,7 +4,7 @@ lang: en
 
 # Incoming webhooks
 
-[Incoming webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) are a simple way to post messages from apps into Slack. Creating an incoming webhook gives you a unique URL to which you send a JSON payload with the message and some options.
+[Incoming webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) are a straightforward way to post messages from apps into Slack. Creating an incoming webhook gives you a unique URL to which you send a JSON payload with the message and some options.
 
 ### Slack app configuration
 
