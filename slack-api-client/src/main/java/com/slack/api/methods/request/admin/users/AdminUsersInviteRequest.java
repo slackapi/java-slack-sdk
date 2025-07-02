@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.users.invite
+ * https://docs.slack.dev/reference/methods/admin.users.invite
  */
 @Data
 @Builder

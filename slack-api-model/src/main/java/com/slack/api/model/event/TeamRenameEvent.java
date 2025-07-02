@@ -8,7 +8,7 @@ import lombok.Data;
  * Clients can use this to update the display of the workspace name as soon as it changes.
  * If they don't the client will receive the new name the next time it calls rtm.start.
  * <p>
- * https://api.slack.com/events/team_rename
+ * https://docs.slack.dev/reference/events/team_rename
  */
 @Data
 public class TeamRenameEvent implements Event {

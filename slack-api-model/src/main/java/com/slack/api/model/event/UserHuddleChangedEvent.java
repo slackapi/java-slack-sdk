@@ -8,7 +8,7 @@ import lombok.Data;
  * The event is identical to the existing user_change event. Both user_change and user_huddle_changed are dispatched
  * at the exact same time. Use the users.profile.set method to update user profile data.
  * <p>
- * https://api.slack.com/events/user_huddle_changed
+ * https://docs.slack.dev/reference/events/user_huddle_changed
  */
 @Data
 public class UserHuddleChangedEvent implements Event {

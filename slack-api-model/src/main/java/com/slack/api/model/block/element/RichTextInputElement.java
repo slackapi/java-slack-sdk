@@ -6,7 +6,7 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#rich_text_input
+ * https://docs.slack.dev/reference/block-kit/block-elements/rich-text-input-element
  */
 @Data
 @Builder

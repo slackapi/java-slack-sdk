@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/files.list
+ * https://docs.slack.dev/reference/methods/files.list
  */
 @Data
 @Builder
@@ -57,7 +57,7 @@ public class FilesListRequest implements SlackApiRequest {
     private Integer page;
 
     /**
-     * https://api.slack.com/changelog/2019-03-wild-west-for-files-no-more
+     * https://docs.slack.dev/changelog/2019-03-wild-west-for-files-no-more
      * <p>
      * In order to gather information on tombstoned files in Free workspaces,
      * so that you can delete or revoke them, pass the show_files_hidden_by_limit parameter.

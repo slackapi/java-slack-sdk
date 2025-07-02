@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/views.publish
+ * https://docs.slack.dev/reference/methods/views.publish
  */
 @Data
 @Builder

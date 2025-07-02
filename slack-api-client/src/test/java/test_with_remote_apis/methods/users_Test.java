@@ -466,7 +466,7 @@ public class users_Test {
             for (User user : users.getMembers()) {
                 UsersInfoResponse userInfo = client.usersInfo(r -> r.user(user.getId()).includeLocale(true)).get();
                 assertThat(userInfo.getError(), is(nullValue()));
-                // Requires https://api.slack.com/scopes/users:read.email
+                // Requires https://docs.slack.dev/reference/scopes/users.read.email
                 String email = userInfo.getUser().getProfile().getEmail();
                 if (email != null) {
                     UsersLookupByEmailResponse lookupByEmail = client.usersLookupByEmail(r -> r.email(email)).get();

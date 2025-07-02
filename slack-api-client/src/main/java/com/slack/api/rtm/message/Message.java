@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message
+ * https://docs.slack.dev/reference/events/message
  */
 @Data
 @Builder

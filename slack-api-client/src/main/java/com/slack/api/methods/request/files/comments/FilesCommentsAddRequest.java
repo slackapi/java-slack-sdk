@@ -5,9 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * No longer supported - https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+ * No longer supported - https://docs.slack.dev/changelog/2018-05-file-threads-soon-tread
  */
-@Deprecated // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+@Deprecated // https://docs.slack.dev/changelog/2018-05-file-threads-soon-tread
 @Data
 @Builder
 public class FilesCommentsAddRequest implements SlackApiRequest {

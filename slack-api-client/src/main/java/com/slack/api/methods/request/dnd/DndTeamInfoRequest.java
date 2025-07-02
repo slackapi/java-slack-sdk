@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/dnd.teamInfo
+ * https://docs.slack.dev/reference/methods/dnd.teamInfo
  */
 @Data
 @Builder

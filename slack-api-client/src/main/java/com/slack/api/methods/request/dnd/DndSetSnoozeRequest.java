@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/dnd.setSnooze
+ * https://docs.slack.dev/reference/methods/dnd.setSnooze
  */
 @Data
 @Builder

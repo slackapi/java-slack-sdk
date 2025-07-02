@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/reference/messaging/composition-objects#option
+ * https://docs.slack.dev/messaging/migrating-outmoded-message-compositions-to-blocks
  */
 @Data
 @Builder
@@ -38,7 +38,7 @@ public class OptionObject {
     /**
      * A URL to load in the user's browser when the option is clicked.
      * The url attribute is only available in overflow menus.
-     * https://api.slack.com/reference/block-kit/block-elements#overflow
+     * https://docs.slack.dev/reference/block-kit/block-elements/overflow-menu-element
      * <p>
      * Maximum length for this field is 3000 characters.
      * If you're using url, you'll still receive an interaction payload and will need to send an acknowledgement response.

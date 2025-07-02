@@ -25,7 +25,7 @@ lang: ja
 1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `type` が `"block_actions"` かつ `action_id` が処理対象か確認
 1. [views.* API](https://docs.slack.dev/reference/methods/views.update) を使って[書き換えたり、上に新しく追加したり](https://docs.slack.dev/surfaces/modals)する and/or 必要に応じて送信された情報を [private_metadata](https://docs.slack.dev/surfaces/modals#private_metadata) に保持
-1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
+1. 受け取ったことを伝えるために Slack API へ `200 OK` 応答
 
 #### `"view_submission"` リクエスト
 
@@ -35,7 +35,7 @@ lang: ja
 1. リクエストボディをパースして `type` が `"view_submission"` かつ `callback_id` が処理対象かを確認
 1. `view.state.values` からフォーム送信された情報を抽出
 1. 入力バリデーション、データベースへの保存、外部サービスとの連携など任意の処理
-1. 以下のいずれかによって受け取ったことを伝えるために Slack API へ 200 OK 応答:
+1. 以下のいずれかによって受け取ったことを伝えるために Slack API へ `200 OK` 応答:
   * 空のボディで応答してモーダルを閉じる
   * `response_action` (可能な値は `"errors"`, `"update"`, `"push"`, `"clear"`) を指定して応答する
 
@@ -46,7 +46,7 @@ lang: ja
 1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `type` が `"view_closed"` かつ `callback_id` が処理対象かを確認
 1. 任意のこのタイミングでやるべきこと
-1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
+1. 受け取ったことを伝えるために Slack API へ `200 OK` 応答
 
 ### モーダル開発 Tips
 

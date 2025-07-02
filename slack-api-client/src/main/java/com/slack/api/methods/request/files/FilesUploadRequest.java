@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/files.upload
+ * https://docs.slack.dev/reference/methods/files.upload
  */
 @Data
 @Builder
@@ -31,7 +31,7 @@ public class FilesUploadRequest implements SlackApiRequest {
     private String content;
 
     /**
-     * A [file type](https://api.slack.com/types/file#file_types) identifier.
+     * A [file type](https://docs.slack.dev/reference/objects/file-object#types) identifier.
      */
     private String filetype;
 

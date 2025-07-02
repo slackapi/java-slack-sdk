@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/message/channel_purpose
+ * https://docs.slack.dev/reference/events/message/channel_purpose
  */
 @Data
 public class MessageChannelPurposeEvent implements Event {

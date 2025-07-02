@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/workflows.stepFailed
+ * https://docs.slack.dev/legacy/legacy-steps-from-apps
  */
 @Data
 @Builder

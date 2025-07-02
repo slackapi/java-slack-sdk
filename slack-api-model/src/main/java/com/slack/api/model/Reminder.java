@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/reminders.add
+ * https://docs.slack.dev/reference/methods/reminders.add
  */
 @Data
 @Builder

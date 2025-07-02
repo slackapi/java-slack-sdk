@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/files.getUploadURLExternal
+ * https://docs.slack.dev/reference/methods/files.getUploadURLExternal
  */
 @Data
 @Builder

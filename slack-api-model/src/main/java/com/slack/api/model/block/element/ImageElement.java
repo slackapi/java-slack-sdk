@@ -5,7 +5,7 @@ import com.slack.api.model.block.composition.SlackFileObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#image
+ * https://docs.slack.dev/reference/block-kit/block-elements/image-element
  */
 @Data
 @Builder

@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/message/channel_leave
+ * https://docs.slack.dev/reference/events/message/channel_leave
  */
 @Data
 public class MessageChannelLeaveEvent implements Event {

@@ -13,7 +13,7 @@ package com.slack.api.methods;
  * AuthTestResponse response = Slack.getInstance().methods().authTest(req -> req.token("your-token"));
  * </code>
  * <p>
- * Refer to https://api.slack.com/methods for the API details.
+ * Refer to https://docs.slack.dev/reference/methods for the API details.
  */
 public interface SlackApiRequest {
 

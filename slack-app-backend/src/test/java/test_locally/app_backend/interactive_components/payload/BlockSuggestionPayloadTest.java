@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BlockSuggestionPayloadTest {
 
-    // https://api.slack.com/messaging/interactivity/enabling
+    // https://docs.slack.dev/messaging/creating-interactive-messages
     String json = "{\n" +
             "  \"type\": \"block_suggestion\",\n" +
             "  \"user\": {\n" +

@@ -7,7 +7,7 @@ import lombok.Data;
  * (and unfurled with the help of the link_shared event),
  * this event is sent if the user rejects the Call.
  * <p>
- * https://api.slack.com/events/call_rejected
+ * https://docs.slack.dev/reference/events/call_rejected
  */
 @Data
 public class CallRejectedEvent implements Event {

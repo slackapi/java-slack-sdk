@@ -12,7 +12,7 @@ import java.util.List;
  * The channel_created event is sent to all connections for a workspace when a new channel is created.
  * Clients can use this to update their local cache of non-joined channels.
  * <p>
- * https://api.slack.com/events/channel_created
+ * https://docs.slack.dev/reference/events/channel_created
  */
 @Data
 public class ChannelCreatedEvent implements Event {

@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/reference/block-kit/blocks#video
+ * https://docs.slack.dev/reference/block-kit/blocks/video-block
  */
 @Data
 @Builder
@@ -34,7 +34,7 @@ public class VideoBlock implements LayoutBlock {
 
     /**
      * The URL to be embedded. Must match any existing unfurl domains within the app and point to an HTTPS URL.
-     * https://api.slack.com/reference/messaging/link-unfurling#configuring_domains
+     * https://docs.slack.dev/messaging/unfurling-links-in-messages
      */
     private String videoUrl;
 

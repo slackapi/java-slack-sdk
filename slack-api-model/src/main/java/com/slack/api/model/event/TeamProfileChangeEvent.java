@@ -10,7 +10,7 @@ import java.util.List;
  * Only the modified field definitions are included in the payload.
  * Where appropriate, clients should update to reflect new changes immediately.
  * <p>
- * https://api.slack.com/events/team_profile_change
+ * https://docs.slack.dev/reference/events/team_profile_change
  */
 @Data
 public class TeamProfileChangeEvent implements Event {

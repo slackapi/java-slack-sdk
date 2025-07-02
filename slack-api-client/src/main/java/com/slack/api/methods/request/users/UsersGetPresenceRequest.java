@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/users.getPresence
+ * https://docs.slack.dev/reference/methods/users.getPresence
  */
 @Data
 @Builder

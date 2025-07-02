@@ -4,17 +4,17 @@ lang: en
 
 # Real Time Messaging (RTM)
 
-:::danger
+:::danger[Deprecated API]
 
-RTM is a deprecated feature and is no longer available for modern scoped apps.
+The RTM API is a deprecated feature and is no longer available for modern scoped apps.
 
-We recommend using the [Events API](/guides/events-api) and [Web API](/guides/web-api-basics) instead. If you need to use RTM (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
+We recommend using the [Events API](/guides/events-api) and [Web API](/guides/web-api-basics) instead. If you need to use the RTM API (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
 
 :::
 
 ## Prerequisites
 
-[The Real Time Messaging API](https://docs.slack.dev/legacy/legacy-rtm-api) is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users.
+The [Real Time Messaging API](https://docs.slack.dev/legacy/legacy-rtm-api) is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users.
 
 To use the RTM Client, in addition to the `slack-api-client` library, `javax.websocket-api` and `tyrus-standalone-client (1.x)` are required. Here is a minimum Maven settings file.
 
@@ -48,7 +48,7 @@ To use the RTM Client, in addition to the `slack-api-client` library, `javax.web
 ```
 
 ---
-## Subscribing Slack Events Over WebSocket
+## Subscribing to Slack events over WebSocket
 
 Here is a minimum working example demonstrating how event handlers work.
 

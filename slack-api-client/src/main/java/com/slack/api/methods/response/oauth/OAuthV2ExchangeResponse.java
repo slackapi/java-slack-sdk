@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/oauth.v2.exchange
+ * https://docs.slack.dev/reference/methods/oauth.v2.exchange
  */
 @Data
 public class OAuthV2ExchangeResponse implements SlackApiTextResponse {

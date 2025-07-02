@@ -9,7 +9,7 @@ import java.util.List;
  * the permissions you recently requested with apps.permissions.users.request.
  * Now you can work on their behalf!
  * <p>
- * https://api.slack.com/events/user_resource_granted
+ * https://docs.slack.dev/changelog/2021-01-workspace-apps-retiring-the-platform-graveyard-in-aug-2021
  */
 @Data
 public class UserResourceGrantedEvent implements Event {

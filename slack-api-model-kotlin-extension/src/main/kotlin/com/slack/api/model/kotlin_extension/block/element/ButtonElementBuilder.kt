@@ -23,7 +23,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
      * of the action. Should be unique among all other action_ids used elsewhere by your app. Maximum length for this
      * field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -34,7 +34,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
      *
      * Defines the button's text. Maximum length for the text in this field is 75 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun text(text: String, emoji: Boolean? = null) {
         this.text = PlainTextObject(text, emoji)
@@ -45,7 +45,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
      * characters. If you're using url, you'll still receive an interaction payload and will need to send an
      * acknowledgement response.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun url(text: String) {
         url = text
@@ -54,7 +54,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
     /**
      * The value to send along with the interaction payload. Maximum length for this field is 2000 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun value(text: String) {
         value = text
@@ -65,7 +65,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
      *
      * This implementation uses a type safe enum value for the button style.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun style(style: ButtonStyle) {
         this.style = style.value
@@ -77,7 +77,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
      * This implementation uses a string for the button style. This might be used if new button styles are introduced
      * and the enum is insufficient.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun style(style: String) {
         this.style = style
@@ -86,7 +86,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
     /**
      * A confirm object that defines an optional confirmation dialog after the button is clicked.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
@@ -97,7 +97,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
      * This label will be read out by screen readers instead of the button text object.
      * Maximum length for this field is 75 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun accessibilityLabel(accessibilityLabel: String) {
         this.accessibilityLabel = accessibilityLabel

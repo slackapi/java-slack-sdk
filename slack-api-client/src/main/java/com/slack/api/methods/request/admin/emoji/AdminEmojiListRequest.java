@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.emoji.list
+ * https://docs.slack.dev/reference/methods/admin.emoji.list
  */
 @Data
 @Builder

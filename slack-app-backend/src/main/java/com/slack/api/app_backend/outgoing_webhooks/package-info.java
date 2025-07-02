@@ -1,4 +1,4 @@
 /**
- * Outgoing Webhooks - https://api.slack.com/legacy/custom-integrations/outgoing-webhooks
+ * Outgoing Webhooks - https://docs.slack.dev/legacy/legacy-custom-integrations/legacy-custom-integrations-outgoing-webhooks
  */
 package com.slack.api.app_backend.outgoing_webhooks;

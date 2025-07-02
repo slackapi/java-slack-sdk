@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.teams.settings.setName
+ * https://docs.slack.dev/reference/methods/admin.teams.settings.setName
  */
 @Data
 @Builder

@@ -6,7 +6,7 @@ import lombok.Data;
  * The channel_marked event is sent to all open connections for a user
  * when that user moves the read cursor in a channel by calling the channels.mark API method.
  * <p>
- * https://api.slack.com/events/channel_marked
+ * https://docs.slack.dev/reference/events/channel_marked
  */
 @Data
 public class ChannelMarkedEvent implements Event {

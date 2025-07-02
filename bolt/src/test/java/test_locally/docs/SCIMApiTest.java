@@ -50,7 +50,7 @@ public class SCIMApiTest {
 
             String userName = "Kaz";
             // Run a filter query for user search
-            // https://api.slack.com/scim#filter
+            // https://docs.slack.dev/reference/scim-api#filter
             UsersSearchResponse searchResp = slack.scim(token).searchUsers(req -> req
                     .count(1)
                     .filter("userName eq \"" + userName + "\"")

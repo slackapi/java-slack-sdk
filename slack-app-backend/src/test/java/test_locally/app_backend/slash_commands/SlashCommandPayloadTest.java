@@ -14,7 +14,7 @@ public class SlashCommandPayloadTest {
 
     SlashCommandPayloadParser parser = new SlashCommandPayloadParser();
 
-    // https://api.slack.com/interactivity/slash-commands#app_command_handling
+    // https://docs.slack.dev/interactivity/implementing-slash-commands
     String body1 = "token=gIkuvaNzQIHg97ATvDxqgjtO" +
             "&team_id=T0001" +
             "&team_domain=example" +

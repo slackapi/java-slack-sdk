@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.conversations.bulkMove
+ * https://docs.slack.dev/reference/methods/admin.conversations.bulkMove
  */
 @Data
 @Builder

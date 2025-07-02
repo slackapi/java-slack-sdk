@@ -7,7 +7,7 @@ import lombok.Data;
  * When clients receive this message they should reload chat history for the private channel
  * if they have any cached messages before latest.
  * <p>
- * https://api.slack.com/events/group_history_changed
+ * https://docs.slack.dev/reference/events/group_history_changed
  */
 @Data
 public class GroupHistoryChangedEvent implements Event {

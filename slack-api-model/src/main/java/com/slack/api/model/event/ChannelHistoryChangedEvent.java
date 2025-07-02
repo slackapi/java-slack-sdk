@@ -8,7 +8,7 @@ import lombok.Data;
  * <p>
  * This message is most often triggered as the result of a channel data import by a workspace administrator.
  * <p>
- * https://api.slack.com/events/channel_history_changed
+ * https://docs.slack.dev/reference/events/channel_history_changed
  */
 @Data
 public class ChannelHistoryChangedEvent implements Event {

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.apps.approved.list
+ * https://docs.slack.dev/reference/methods/admin.apps.approved.list
  */
 @Data
 @Builder

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/conversations.close
+ * https://docs.slack.dev/reference/methods/conversations.close
  */
 @Data
 @Builder

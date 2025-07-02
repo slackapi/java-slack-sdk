@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * A file was shared into a channel
- * https://api.slack.com/events/message/file_share
+ * https://docs.slack.dev/reference/events/message/file_share
  */
 @Data
 public class MessageFileShareEvent implements Event {

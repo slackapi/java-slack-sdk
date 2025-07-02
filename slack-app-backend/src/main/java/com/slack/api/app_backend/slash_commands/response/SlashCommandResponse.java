@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/docs/interactive-message-field-guide
+ * https://docs.slack.dev/messaging/creating-interactive-messages
  */
 @Data
 @Builder

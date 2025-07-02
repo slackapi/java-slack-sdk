@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/app_uninstalled_team
+ * https://docs.slack.dev/reference/events/app_uninstalled_team
  */
 @Data
 public class AppUninstalledTeamEvent implements Event {

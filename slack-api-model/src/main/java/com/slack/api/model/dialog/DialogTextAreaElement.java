@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Represents a <a href="https://api.slack.com/dialogs#textarea_elements">textarea</a>
+ * Represents a <a href="https://docs.slack.dev/legacy/legacy-dialogs#textarea_elements">textarea</a>
  * dialog element<p>
  * <p>
  * A {@code textarea} is a multi-line plain text editing control. You've likely encountered
@@ -32,7 +32,7 @@ public class DialogTextAreaElement implements DialogElement {
     /**
      * Type of element.  For a textarea, the type is always {@code textarea} . It's required.
      *
-     * @see <a href="https://api.slack.com/dialogs#elements">Dialog form elements</a>
+     * @see <a href="https://docs.slack.dev/legacy/legacy-dialogs#elements">Dialog form elements</a>
      */
     private final String type = "textarea";
 

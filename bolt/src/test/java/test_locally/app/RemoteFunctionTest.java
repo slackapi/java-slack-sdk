@@ -492,7 +492,7 @@ public class RemoteFunctionTest {
 
     @Test
     public void compileDocumentExamples() {
-        // https://api.slack.com/automation/functions/custom-bolt
+        // https://docs.slack.dev/workflows/workflow-steps
         App app = buildApp();
 
         app.function("sample_function", (req, ctx) -> {

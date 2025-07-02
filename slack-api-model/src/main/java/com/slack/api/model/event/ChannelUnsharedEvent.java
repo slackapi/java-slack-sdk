@@ -6,7 +6,7 @@ import lombok.Data;
  * The channel_unshared event is sent to all event subscriptions
  * when an external workspace has been removed from an existing shared channel.
  * <p>
- * https://api.slack.com/events/channel_unshared
+ * https://docs.slack.dev/reference/events/channel_unshared
  */
 @Data
 public class ChannelUnsharedEvent implements Event {

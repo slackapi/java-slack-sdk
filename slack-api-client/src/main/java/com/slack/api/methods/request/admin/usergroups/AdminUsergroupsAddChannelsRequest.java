@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.usergroups.addChannels
+ * https://docs.slack.dev/reference/methods/admin.usergroups.addChannels
  */
 @Data
 @Builder

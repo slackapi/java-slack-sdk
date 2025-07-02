@@ -8,7 +8,7 @@ import lombok.Data;
  * <p>
  * This event is not available to bot user subscriptions in the Events API.
  * <p>
- * https://api.slack.com/events/subteam_self_removed
+ * https://docs.slack.dev/reference/events/subteam_self_removed
  */
 @Data
 public class SubteamSelfRemovedEvent implements Event {

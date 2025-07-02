@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/files.sharedPublicURL
+ * https://docs.slack.dev/reference/methods/files.sharedPublicURL
  */
 @Data
 @Builder

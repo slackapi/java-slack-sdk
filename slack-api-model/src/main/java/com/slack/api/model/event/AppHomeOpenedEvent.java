@@ -19,7 +19,7 @@ import lombok.Data;
  * <p>
  * app_home_opened events are just like other message events sent over the Events API, but their type indicates app_home_opened.
  * <p>
- * https://api.slack.com/events/app_home_opened
+ * https://docs.slack.dev/reference/events/app_home_opened
  */
 @Data
 public class AppHomeOpenedEvent implements Event {

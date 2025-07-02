@@ -28,7 +28,7 @@ class SectionBlockBuilder private constructor(
      * 	this field is 255 characters. block_id should be unique for each message and each iteration of a message.
      * 	If a message is updated, use a new block_id.
      *
-     * 	@see <a href="https://api.slack.com/reference/block-kit/blocks#section">Section Block Documentation</a>
+     * 	@see <a href="https://docs.slack.dev/reference/block-kit/blocks/section-block">Section Block Documentation</a>
      */
     fun blockId(id: String) {
         blockId = id
@@ -39,7 +39,7 @@ class SectionBlockBuilder private constructor(
      * allows for 2 columns of side-by-side text. Maximum number of items is 10. Maximum length for the text in each
      * item is 2000 characters.
      *
-     * 	@see <a href="https://api.slack.com/reference/block-kit/blocks#section">Section Block Documentation</a>
+     * 	@see <a href="https://docs.slack.dev/reference/block-kit/blocks/section-block">Section Block Documentation</a>
      */
     fun fields(builder: TextObjectDsl.() -> Unit) {
         fields = MultiTextObjectContainer().apply(builder).underlying
@@ -49,7 +49,7 @@ class SectionBlockBuilder private constructor(
      * One of the available element objects.
      *
      * 	@see BlockElementDsl for the available accessories that can be constructed
-     * 	@see <a href="https://api.slack.com/reference/block-kit/blocks#section">Section Block Documentation</a>
+     * 	@see <a href="https://docs.slack.dev/reference/block-kit/blocks/section-block">Section Block Documentation</a>
      */
     fun accessory(builder: BlockElementDsl.() -> Unit) {
         accessoryContainer.apply(builder)

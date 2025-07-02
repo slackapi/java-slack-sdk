@@ -4,7 +4,7 @@ import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#datetimepicker
+ * https://docs.slack.dev/reference/block-kit/block-elements/date-picker-element
  */
 @Data
 @Builder

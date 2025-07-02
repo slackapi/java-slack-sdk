@@ -6,7 +6,7 @@ import lombok.Data;
  * When a private channel is renamed, the group_rename event is sent to all connections for members of a private channel.
  * Clients can use this to update their local list of private channels.
  * <p>
- * https://api.slack.com/events/group_rename
+ * https://docs.slack.dev/reference/events/group_rename
  */
 @Data
 public class GroupRenameEvent implements Event {

@@ -19,7 +19,7 @@ import java.util.Map;
  *   }
  * }
  * </pre>
- * https://api.slack.com/reference/workflows/workflow_step#input
+ * https://docs.slack.dev/legacy/legacy-steps-from-apps/legacy-steps-from-apps-workflow_step-object
  */
 @Data
 @Builder

@@ -24,7 +24,7 @@ import java.util.Map;
  * Real Time Messaging (RTM) API
  * <p>
  *
- * @see <a href="https://api.slack.com/rtm">RTM API</a>
+ * @see <a href="https://docs.slack.dev/legacy/legacy-rtm-api">RTM API</a>
  */
 @ClientEndpoint
 @Slf4j
@@ -125,7 +125,7 @@ public class RTMClient implements Closeable {
     /**
      * Re-connects to a new wss endpoint and starts a new WebSocket session.
      * This method calls rtm.connect API. Please be aware of the rate limit.
-     * https://api.slack.com/docs/rate-limits#rtm
+     * https://docs.slack.dev/apis/web-api/rate-limits#rtm
      */
     public void reconnect() throws IOException, SlackApiException, URISyntaxException, DeploymentException {
         // Call rtm.connect again to refresh wss URL

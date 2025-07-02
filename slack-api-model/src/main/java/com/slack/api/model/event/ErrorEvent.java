@@ -16,7 +16,7 @@ import lombok.Data;
  * }
  * </pre>
  * <p>
- * https://api.slack.com/rtm
+ * https://docs.slack.dev/legacy/legacy-rtm-api
  */
 @Data
 public class ErrorEvent implements Event {

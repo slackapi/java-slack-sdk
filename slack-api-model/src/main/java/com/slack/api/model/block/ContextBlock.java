@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/messaging/blocks#context
+ * https://docs.slack.dev/reference/block-kit/blocks/context-block
  */
 @Data
 @Builder

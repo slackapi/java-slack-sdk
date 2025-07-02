@@ -18,7 +18,7 @@ public class BlockActionPayloadTest {
     }
     static final Gson GSON = GsonFactory.createSnakeCase(TEST_CONFIG);
 
-    // https://api.slack.com/messaging/interactivity/enabling
+    // https://docs.slack.dev/messaging/creating-interactive-messages
     String json = "{\n" +
             "  \"type\": \"block_actions\",\n" +
             "  \"team\": { \n" +

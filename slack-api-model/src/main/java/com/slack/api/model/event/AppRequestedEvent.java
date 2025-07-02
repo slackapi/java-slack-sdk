@@ -4,7 +4,7 @@ import com.slack.api.model.admin.AppRequest;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/app_requested
+ * https://docs.slack.dev/reference/events/app_requested
  */
 @Data
 public class AppRequestedEvent implements Event {

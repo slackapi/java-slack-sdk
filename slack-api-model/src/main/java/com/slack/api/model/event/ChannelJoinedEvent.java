@@ -9,7 +9,7 @@ import lombok.Data;
  * <p>
  * Of course, there's also the fresher, more dependable member_joined_channel. This changelog entry clears it all up.
  * <p>
- * https://api.slack.com/events/channel_joined
+ * https://docs.slack.dev/reference/events/channel_joined
  */
 @Data
 public class ChannelJoinedEvent implements Event {

@@ -8,7 +8,7 @@ import lombok.Data;
  * The event is identical to the existing user_change event. Both user_change and user_status_changed are dispatched
  * at the exact same time. Use the users.profile.set method to update user profile data.
  * <p>
- * https://api.slack.com/events/user_status_changed
+ * https://docs.slack.dev/reference/events/user_change
  */
 @Data
 public class UserStatusChangedEvent implements Event {

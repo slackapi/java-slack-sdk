@@ -14,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PayloadTypeDetectorTest {
 
-    // https://api.slack.com/interactive-messages
+    // https://docs.slack.dev/messaging/creating-interactive-messages
     String attachmentActionPayload = "{\n" +
             "  \"type\": \"interactive_message\",\n" +
             "  \"actions\": [\n" +
@@ -84,7 +84,7 @@ public class PayloadTypeDetectorTest {
         assertThat(type, is("interactive_message"));
     }
 
-    // https://api.slack.com/messaging/interactivity/enabling
+    // https://docs.slack.dev/messaging/creating-interactive-messages
     String blockActionJson = "{\n" +
             "  \"type\": \"block_actions\",\n" +
             "  \"team\": { \n" +

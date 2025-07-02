@@ -18,7 +18,7 @@ class ContextBlockBuilder private constructor(
      * interaction payload to identify the source of the action. If not specified, a block_id will be generated.
      * Maximum length for this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#context">Context block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/context-block">Context block documentation</a>
      */
     fun blockId(id: String) {
         blockId = id
@@ -28,7 +28,7 @@ class ContextBlockBuilder private constructor(
      * An array of image elements and text objects. Maximum number of items is 10.
      *
      * @see BlockElementDsl for the set of supported interactive element objects
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#context">Context block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/context-block">Context block documentation</a>
      */
     fun elements(builder: ContextBlockElementDsl.() -> Unit) {
         this.elementsContainer.apply(builder)

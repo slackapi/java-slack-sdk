@@ -1,4 +1,4 @@
 /**
- * OAuth flow - https://api.slack.com/authentication/oauth-v2
+ * OAuth flow - https://docs.slack.dev/authentication/installing-with-oauth
  */
 package com.slack.api.app_backend.oauth;

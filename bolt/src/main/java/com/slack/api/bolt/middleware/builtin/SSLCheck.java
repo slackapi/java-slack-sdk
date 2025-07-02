@@ -23,7 +23,7 @@ public class SSLCheck implements Middleware {
     @Override
     public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
         if (req.getRequestType() == RequestType.SSLCheck) {
-            // https://api.slack.com/interactivity/slash-commands
+            // https://docs.slack.dev/interactivity/implementing-slash-commands
             // If public distribution is active for your app,
             // Slack will occasionally send your command's request URL a simple POST request
             // to verify the server's SSL certificate.

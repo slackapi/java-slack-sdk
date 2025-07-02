@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 
 /**
- * @see <a href="https://api.slack.com/block-kit/surfaces/modals">Modals</a>
+ * @see <a href="https://docs.slack.dev/surfaces/modals">Modals</a>
  */
 @Data
 @Builder

@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * A workflow that contains a step supported by your app was deleted
  * <p>
- * https://api.slack.com/events/workflow_deleted
+ * https://docs.slack.dev/reference/events/workflow_deleted
  */
 @Data
 public class WorkflowDeletedEvent implements Event {

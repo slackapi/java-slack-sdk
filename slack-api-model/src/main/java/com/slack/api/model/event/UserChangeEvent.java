@@ -9,7 +9,7 @@ import lombok.Data;
  * <p>
  * Use the users.profile.set method to update user profile data.
  * <p>
- * https://api.slack.com/events/user_change
+ * https://docs.slack.dev/reference/events/user_change
  */
 @Data
 public class UserChangeEvent implements Event {

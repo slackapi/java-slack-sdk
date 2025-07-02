@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/reference/workflows/workflow_step_edit
- * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ * https://docs.slack.dev/legacy/legacy-steps-from-apps/legacy-steps-from-apps-workflow_step_edit-payload
+ * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
  */
 @Data
 @Builder

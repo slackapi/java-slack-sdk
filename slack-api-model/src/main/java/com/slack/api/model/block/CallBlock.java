@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/reference/messaging/blocks#call
+ * https://docs.slack.dev/reference/block-kit/blocks
  */
 @Data
 @Builder

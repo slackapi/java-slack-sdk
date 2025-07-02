@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/team.preferences.list
+ * https://docs.slack.dev/reference/methods/team.preferences.list
  */
 @Data
 @Builder

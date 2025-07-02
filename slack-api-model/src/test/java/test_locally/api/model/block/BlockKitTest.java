@@ -171,7 +171,7 @@ public class BlockKitTest {
 
     @Test
     public void parseRichTextOnes() {
-        // https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
+        // https://docs.slack.dev/changelog/2019/09/01/what-they-see-is-what-you-get-and-more-and-less
         String json = "{\n" +
                 "  \"client_msg_id\": \"70c82df9-9db9-48b0-bf4e-9c43db3ed097\",\n" +
                 "  \"type\": \"message\",\n" +
@@ -269,7 +269,7 @@ public class BlockKitTest {
 
     @Test
     public void parseRichTextOnes2() {
-        // https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
+        // https://docs.slack.dev/changelog/2019/09/01/what-they-see-is-what-you-get-and-more-and-less
         String json = "{\n" +
                 "  \"client_msg_id\": \"0e7bdef4-27a9-4bfa-bf16-c65683ff382b\",\n" +
                 "  \"type\": \"message\",\n" +
@@ -343,7 +343,7 @@ public class BlockKitTest {
 
     @Test
     public void parseRichTextOnes3() {
-        // https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
+        // https://docs.slack.dev/changelog/2019/09/01/what-they-see-is-what-you-get-and-more-and-less
         String json = "{\n" +
                 "  \"client_msg_id\": \"0e7bdef4-27a9-4bfa-bf16-c65683ff382b\",\n" +
                 "  \"type\": \"message\",\n" +
@@ -1489,7 +1489,7 @@ public class BlockKitTest {
 
     @Test
     public void timePickerElement() {
-        // https://api.slack.com/reference/block-kit/block-elements#timepicker
+        // https://docs.slack.dev/reference/block-kit/block-elements/time-picker-element
         String json = "{\n" +
                 "  \"type\": \"section\",\n" +
                 "  \"block_id\": \"section1234\",\n" +
@@ -1575,7 +1575,7 @@ public class BlockKitTest {
 
     @Test
     public void parseVideoBlocks() {
-        // https://api.slack.com/reference/block-kit/blocks#video
+        // https://docs.slack.dev/reference/block-kit/blocks/video-block
         String json = "{\n" +
                 "  \"blocks\": [\n" +
                 "    {\n" +
@@ -1611,7 +1611,7 @@ public class BlockKitTest {
 
     @Test
     public void parseLinkTriggerMessages() {
-        // https://api.slack.com/future
+        // https://tools.slack.dev/deno-slack-sdk/
         String json = "{\n" +
                 "  \"client_msg_id\": \"xxx\",\n" +
                 "  \"type\": \"message\",\n" +

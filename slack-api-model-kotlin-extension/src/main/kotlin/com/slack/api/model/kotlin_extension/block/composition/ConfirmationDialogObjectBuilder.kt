@@ -26,7 +26,7 @@ class ConfirmationDialogObjectBuilder private constructor(
      *
      * Defines the dialog's title. Maximum length for this field is 100 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#confirm">Confirmation dialog object documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/confirmation-dialog-object">Confirmation dialog object documentation</a>
      */
     fun title(text: String, emoji: Boolean? = null) {
         title = PlainTextObject(text, emoji)
@@ -37,7 +37,7 @@ class ConfirmationDialogObjectBuilder private constructor(
      *
      * The text of the button that confirms the action. Maximum length for the text in this field is 30 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#confirm">Confirmation dialog object documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/confirmation-dialog-object">Confirmation dialog object documentation</a>
      */
     fun confirm(text: String, emoji: Boolean? = null) {
         confirm = PlainTextObject(text, emoji)
@@ -48,7 +48,7 @@ class ConfirmationDialogObjectBuilder private constructor(
      *
      * The text of the button that cancels the action. Maximum length for the text in this field is 30 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#confirm">Confirmation dialog object documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/confirmation-dialog-object">Confirmation dialog object documentation</a>
      */
     fun deny(text: String, emoji: Boolean? = null) {
         deny = PlainTextObject(text, emoji)
@@ -62,7 +62,7 @@ class ConfirmationDialogObjectBuilder private constructor(
      *
      * This implementation uses a typed enum to fill the style field.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#confirm">Confirmation dialog object documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/confirmation-dialog-object">Confirmation dialog object documentation</a>
      */
     fun style(style: ButtonStyle) {
         this.style = style.value
@@ -77,7 +77,7 @@ class ConfirmationDialogObjectBuilder private constructor(
      * This implementation uses a string to fill the style field. This may be preferable if a new button style is
      * introduced and the [ButtonStyle] enum is insufficient.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#confirm">Confirmation dialog object documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/confirmation-dialog-object">Confirmation dialog object documentation</a>
      */
     fun style(style: String) {
         this.style = style

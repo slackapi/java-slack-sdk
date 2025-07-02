@@ -17,18 +17,18 @@ public class Action {
     /**
      * Represents the type of action (e.g. Message button or message menu)
      *
-     * @see <a href="https://api.slack.com/interactive-messages#interaction_types">Interaction Types</a>
+     * @see <a href="https://docs.slack.dev/interactivity">Interaction Types</a>
      */
     public enum Type {
 
         /**
-         * @see <a href="https://api.slack.com/docs/message-buttons">Message button</a>
+         * @see <a href="https://docs.slack.dev/legacy/legacy-messaging/legacy-message-buttons">Message button</a>
          */
         @SerializedName("button")
         BUTTON("button"),
 
         /**
-         * @see <a href="https://api.slack.com/docs/message-menus">Message menus</a>
+         * @see <a href="https://docs.slack.dev/legacy/legacy-messaging/legacy-adding-menus-to-messages">Message menus</a>
          */
         @SerializedName("select")
         SELECT("select");

@@ -4,7 +4,7 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.*;
 
 /**
- * https://api.slack.com/methods/chat.deleteScheduledMessage
+ * https://docs.slack.dev/reference/methods/chat.deleteScheduledMessage
  */
 @Data
 @Builder

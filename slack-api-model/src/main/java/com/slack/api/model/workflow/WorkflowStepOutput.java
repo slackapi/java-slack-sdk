@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
  * }
  * </pre>
  * <p>
- * https://api.slack.com/reference/workflows/workflow_step#output
+ * https://docs.slack.dev/legacy/legacy-steps-from-apps/legacy-steps-from-apps-workflow_step-object
  */
 @Data
 @Builder

@@ -9,7 +9,7 @@ import java.util.List;
  * when the email domain settings for a workspace change.
  * Most clients can ignore this event.
  * <p>
- * https://api.slack.com/events/emoji_changed
+ * https://docs.slack.dev/reference/events/emoji_changed
  */
 @Data
 public class EmojiChangedEvent implements Event {

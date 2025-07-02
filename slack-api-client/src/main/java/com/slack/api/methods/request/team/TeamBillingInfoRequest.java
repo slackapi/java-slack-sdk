@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/team.billingInfo
+ * https://docs.slack.dev/reference/methods/team.billing.info
  */
 @Data
 @Builder

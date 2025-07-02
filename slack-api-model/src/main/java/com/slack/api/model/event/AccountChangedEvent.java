@@ -9,7 +9,7 @@ import lombok.Data;
  * to maintain a list of logged-in accounts.
  * Other clients should ignore this event.
  * <p>
- * https://api.slack.com/events/accounts_changed
+ * https://docs.slack.dev/reference/events/accounts_changed
  */
 @Data
 public class AccountChangedEvent implements Event {

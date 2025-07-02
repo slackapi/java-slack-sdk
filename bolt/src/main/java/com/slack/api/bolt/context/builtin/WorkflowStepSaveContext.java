@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * workflow_step_save type request's context.
- * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
  */
 @Getter
 @Setter

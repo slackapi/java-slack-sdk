@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/events/user_typing
+ * https://docs.slack.dev/reference/events/user_typing
  */
 @Data
 @Builder

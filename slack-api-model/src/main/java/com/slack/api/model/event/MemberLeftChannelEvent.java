@@ -22,7 +22,7 @@ import lombok.Data;
  * Which events your app will receive depends on the scopes and their context.
  * For instance, you'll only receive member_left_channel events for private channels if your app has the groups:read permission.
  * <p>
- * https://api.slack.com/events/member_left_channel
+ * https://docs.slack.dev/reference/events/member_left_channel
  */
 @Data
 public class MemberLeftChannelEvent implements Event {

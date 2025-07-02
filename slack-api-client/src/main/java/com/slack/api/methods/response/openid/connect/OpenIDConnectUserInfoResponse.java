@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/openid.connect.userInfo
+ * https://docs.slack.dev/reference/methods/openid.connect.userInfo
  */
 @Data
 public class OpenIDConnectUserInfoResponse implements SlackApiTextResponse {

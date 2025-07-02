@@ -9,7 +9,7 @@ import lombok.Data;
  * clients don't need to do anything special with this event. It is sent for the benefit of our web client,
  * which needs to reload when the domain changes.
  * <p>
- * https://api.slack.com/events/team_domain_change
+ * https://docs.slack.dev/reference/events/team_domain_change
  */
 @Data
 public class TeamDomainChangeEvent implements Event {

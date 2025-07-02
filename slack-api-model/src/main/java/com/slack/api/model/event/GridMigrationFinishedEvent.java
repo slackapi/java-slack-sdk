@@ -13,7 +13,7 @@ import lombok.Data;
  * It's best to cease API and platform operations for a workspace during migration.
  * While duration varies workspace-to-workspace, expect an extended period of unavailability.
  * <p>
- * https://api.slack.com/events/grid_migration_finished
+ * https://docs.slack.dev/reference/events/grid_migration_finished
  */
 @Data
 public class GridMigrationFinishedEvent implements Event {

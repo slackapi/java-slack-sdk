@@ -29,7 +29,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
      *
      * The placeholder text shown on the menu. Maximum length for the text in this field is 150 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#static_multi_select">Static select element documentation</a>
      */
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)
@@ -40,7 +40,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
      * interaction payload to identify the source of the action. Should be unique among all other action_ids used
      * elsewhere by your app. Maximum length for this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#static_multi_select">Static select element documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -50,7 +50,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
      * An array of option objects. Maximum number of options is 100. If option_groups is specified, this field should
      * not be.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#static_multi_select">Static select element documentation</a>
      */
     fun options(builder: OptionObjectDsl.() -> Unit) {
         options = MultiOptionContainer().apply(builder).underlying
@@ -60,7 +60,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
      * An array of option group objects. Maximum number of option groups is 100. If options is specified, this field
      * should not be.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#static_multi_select">Static select element documentation</a>
      */
     fun optionGroups(builder: OptionGroupObjectDsl.() -> Unit) {
         optionGroups = MultiOptionGroupObjectContainer().apply(builder).underlying
@@ -70,7 +70,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
      * A single option that exactly matches one of the options within options or option_groups. This option will be
      * selected when the menu initially loads.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#static_multi_select">Static select element documentation</a>
      */
     fun initialOption(builder: OptionObjectBuilder.() -> Unit) {
         initialOption = OptionObjectBuilder().apply(builder).build()
@@ -79,7 +79,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
     /**
      * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#static_multi_select">Static select element documentation</a>
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
@@ -89,7 +89,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#static_multi_select">Static select element documentation</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad

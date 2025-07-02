@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.users.session.resetBulk
+ * https://docs.slack.dev/reference/methods/admin.users.session.resetBulk
  */
 @Data
 @Builder

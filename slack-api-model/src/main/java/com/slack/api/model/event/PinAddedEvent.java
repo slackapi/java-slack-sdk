@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * When an item is pinned in a channel, the pin_added event is sent to all members of that channel.
  * <p>
- * https://api.slack.com/events/pin_added
+ * https://docs.slack.dev/reference/events/pin_added
  */
 @Data
 public class PinAddedEvent implements Event {

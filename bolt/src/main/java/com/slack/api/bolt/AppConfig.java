@@ -91,7 +91,7 @@ public class AppConfig {
     @Builder.Default
     private String verificationToken = System.getenv(EnvVariableName.SLACK_VERIFICATION_TOKEN);
 
-    // https://api.slack.com/docs/oauth
+    // https://docs.slack.dev/authentication/installing-with-oauth
 
     public boolean isDistributedApp() {
         return clientId != null && clientSecret != null;
@@ -195,7 +195,7 @@ public class AppConfig {
     private long authTestCacheExpirationMillis = 600_000L;
 
     @Builder.Default
-    // https://api.slack.com/authentication/migration
+    // https://docs.slack.dev/legacy/legacy-app-migration/migrating-classic-apps
     private boolean classicAppPermissionsEnabled = false;
 
     /**
@@ -368,7 +368,7 @@ public class AppConfig {
 
     /**
      * Automatically acknowledge message events that have subtype if true.
-     * Find the list of available subtypes at https://api.slack.com/events/message#subtypes
+     * Find the list of available subtypes at https://docs.slack.dev/reference/events/message#subtypes
      */
     @Builder.Default
     private boolean subtypedMessageEventsAutoAckEnabled = false;

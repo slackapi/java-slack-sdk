@@ -23,7 +23,7 @@ class ImageBlockBuilder : Builder<ImageBlock> {
      * payload to identify the source of the action. If not specified, a block_id will be generated. Maximum length for
      * this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#image">Image block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/image-block">Image block documentation</a>
      */
     fun blockId(id: String) {
         blockId = id
@@ -33,7 +33,7 @@ class ImageBlockBuilder : Builder<ImageBlock> {
      * An optional title for the image in the form of a text object. Maximum length for the text in this field is 2000
      * characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#image">Image block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/image-block">Image block documentation</a>
      */
     fun title(text: String, emoji: Boolean? = null) {
         title = PlainTextObject(text, emoji)
@@ -42,7 +42,7 @@ class ImageBlockBuilder : Builder<ImageBlock> {
     /**
      * Text that should be rendered in the event the image fails to load.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#image">Image block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/image-block">Image block documentation</a>
      */
     fun fallback(text: String) {
         fallback = text
@@ -51,7 +51,7 @@ class ImageBlockBuilder : Builder<ImageBlock> {
     /**
      * The URL of the image to be displayed. Maximum length for this field is 3000 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#image">Image block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/image-block">Image block documentation</a>
      */
     fun imageUrl(url: String) {
         imageUrl = url
@@ -81,7 +81,7 @@ class ImageBlockBuilder : Builder<ImageBlock> {
     /**
      * A plain-text summary of the image. This should not contain any markup. Maximum length for this field is 2000 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#image">Image block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/image-block">Image block documentation</a>
      */
     fun altText(text: String) {
         altText = text

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/users.profile.get
+ * https://docs.slack.dev/reference/methods/users.profile.get
  */
 @Data
 @Builder

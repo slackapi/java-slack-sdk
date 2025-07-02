@@ -61,8 +61,8 @@ const sidebars = {
       type: 'category',
       label: 'Java Slack SDK Guides',
       items: [
-        'guides/web-api-basics',
         'guides/web-api-client-setup',
+        'guides/web-api-basics',
         'guides/composing-messages',
         'guides/incoming-webhooks',
         'guides/rtm',

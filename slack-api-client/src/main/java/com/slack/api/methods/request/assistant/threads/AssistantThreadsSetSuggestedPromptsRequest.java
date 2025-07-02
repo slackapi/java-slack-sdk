@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/assistant.threads.setSuggestedPrompts
+ * https://docs.slack.dev/reference/methods/assistant.threads.setSuggestedPrompts
  */
 @Data
 @Builder

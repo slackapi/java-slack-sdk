@@ -13,9 +13,9 @@ import lombok.Data;
  * Unlike file_comment_added and file_comment_edited the comment property only contains the ID of the deleted comment,
  * not the full comment object.
  * <p>
- * https://api.slack.com/events/file_comment_deleted
+ * https://docs.slack.dev/reference/events/file_comment_deleted
  */
-@Deprecated // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+@Deprecated // https://docs.slack.dev/changelog/2018-05-file-threads-soon-tread
 @Data
 public class FileCommentDeletedEvent implements Event {
 

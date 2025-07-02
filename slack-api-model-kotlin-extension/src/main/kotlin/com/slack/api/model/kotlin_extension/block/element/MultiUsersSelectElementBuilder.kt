@@ -21,7 +21,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
      *
      * The placeholder text shown on the menu. Maximum length for the text in this field is 150 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#users_multi_select">Multi users select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#users_multi_select">Multi users select element documentation</a>
      */
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)
@@ -32,7 +32,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
      * interaction payload to identify the source of the action. Should be unique among all other action_ids used
      * elsewhere by your app. Maximum length for this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#users_multi_select">Multi users select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#users_multi_select">Multi users select element documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -41,7 +41,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
     /**
      * An array of user IDs of any valid users to be pre-selected when the menu loads.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#users_multi_select">Multi users select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#users_multi_select">Multi users select element documentation</a>
      */
     fun initialUsers(vararg users: String) {
         initialUsers = users.toList()
@@ -50,7 +50,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
     /**
      * A confirm object that defines an optional confirmation dialog that appears before the multi-select choices are submitted.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#users_multi_select">Multi users select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#users_multi_select">Multi users select element documentation</a>
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
@@ -59,7 +59,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
     /**
      * Specifies the maximum number of items that can be selected in the menu. Minimum number is 1.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#users_multi_select">Multi users select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#users_multi_select">Multi users select element documentation</a>
      */
     fun maxSelectedItems(max: Int) {
         maxSelectedItems = max
@@ -69,7 +69,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#users_multi_select">Multi users select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#users_multi_select">Multi users select element documentation</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad

@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#overflow
+ * https://docs.slack.dev/reference/block-kit/block-elements/overflow-menu-element
  */
 @Data
 @Builder

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/canvases.sections.lookup
+ * https://docs.slack.dev/reference/methods/canvases.sections.lookup
  */
 @Data
 @Builder

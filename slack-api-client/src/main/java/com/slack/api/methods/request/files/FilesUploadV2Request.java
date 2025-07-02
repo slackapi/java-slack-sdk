@@ -14,9 +14,9 @@ import java.util.List;
  * To mitigate the confusion among existing users of files.upload API,
  * this method internally performs a few HTTP requests.
  * <p>
- * - step1: https://api.slack.com/methods/files.getUploadURLExternal (per file)
+ * - step1: https://docs.slack.dev/reference/methods/files.getUploadURLExternal (per file)
  * - step2: POST requests to upload_url (per file)
- * - step3: https://api.slack.com/methods/files.completeUploadExternal (only once)
+ * - step3: https://docs.slack.dev/reference/methods/files.completeUploadExternal (only once)
  * <p>
  * Although most of the parameters are compatible, there are few difference.
  * Unlike files.upload API, this new way allows developers to upload multiple files at a time.

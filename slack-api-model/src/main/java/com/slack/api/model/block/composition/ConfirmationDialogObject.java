@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/reference/messaging/composition-objects#confirm
+ * https://docs.slack.dev/messaging/migrating-outmoded-message-compositions-to-blocks
  */
 @Data
 @Builder

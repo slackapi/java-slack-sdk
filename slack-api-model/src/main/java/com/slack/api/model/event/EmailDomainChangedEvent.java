@@ -7,7 +7,7 @@ import lombok.Data;
  * when the email domain settings for a workspace change.
  * Most clients can ignore this event.
  * <p>
- * https://api.slack.com/events/email_domain_changed
+ * https://docs.slack.dev/reference/events/email_domain_changed
  */
 @Data
 public class EmailDomainChangedEvent implements Event {

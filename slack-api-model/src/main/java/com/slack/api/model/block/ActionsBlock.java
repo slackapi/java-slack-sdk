@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/messaging/blocks#actions
+ * https://docs.slack.dev/reference/block-kit/blocks/actions-block
  */
 @Data
 @Builder

@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/message/channel_convert_to_public
+ * https://docs.slack.dev/reference/events/message/channel_convert_to_public
  */
 @Data
 public class MessageChannelConvertToPublicEvent implements Event {

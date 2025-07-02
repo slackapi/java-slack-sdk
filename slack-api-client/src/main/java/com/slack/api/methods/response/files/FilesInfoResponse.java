@@ -29,7 +29,7 @@ public class FilesInfoResponse implements SlackApiTextResponse {
     private boolean truncated;
     private Boolean contentHighlightHtmlTruncated;
 
-    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+    // https://docs.slack.dev/changelog/2018-05-file-threads-soon-tread
     @Deprecated
     private List<FileComment> comments;
     @Deprecated

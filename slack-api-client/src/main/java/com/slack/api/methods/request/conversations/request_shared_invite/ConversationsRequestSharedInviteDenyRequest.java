@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/conversations.requestSharedInvite.deny
+ * https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.deny
  */
 @Data
 @Builder

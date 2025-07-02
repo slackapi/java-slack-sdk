@@ -9,7 +9,7 @@ import lombok.Data;
  * The other APIs required to support slash command metadata are currently unstable.
  * Until they are released other clients should ignore this event.
  * <p>
- * https://api.slack.com/events/commands_changed
+ * https://docs.slack.dev/reference/events/commands_changed
  */
 @Data
 public class CommandsChangedEvent implements Event {

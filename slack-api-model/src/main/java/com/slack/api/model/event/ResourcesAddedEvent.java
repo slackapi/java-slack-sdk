@@ -10,7 +10,7 @@ import java.util.List;
  * <p>
  * See Permissions API for further detail.
  * <p>
- * https://api.slack.com/events/resources_added
+ * https://docs.slack.dev/changelog/2021-01-workspace-apps-retiring-the-platform-graveyard-in-aug-2021
  */
 @Data
 public class ResourcesAddedEvent implements Event {

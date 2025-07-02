@@ -1,4 +1,4 @@
 /**
- * Interactive Components - https://api.slack.com/interactivity/components
+ * Interactive Components - https://docs.slack.dev/interactivity
  */
 package com.slack.api.app_backend.interactive_components;

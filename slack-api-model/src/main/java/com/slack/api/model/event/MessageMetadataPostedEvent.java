@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * https://api.slack.com/events/message_metadata_posted
+ * https://docs.slack.dev/reference/events/message_metadata_posted
  */
 @Data
 public class MessageMetadataPostedEvent implements Event {

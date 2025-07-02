@@ -16,7 +16,7 @@ import java.io.IOException;
  * It's also possible to write your own apps
  * and scripts using the SCIM API to programmatically manage the members of your workspace.
  *
- * @see <a href="https://api.slack.com/scim">Slack SCIM API</a>
+ * @see <a href="https://docs.slack.dev/reference/scim-api">Slack SCIM API</a>
  */
 public interface SCIMClient {
 

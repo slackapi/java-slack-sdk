@@ -30,7 +30,7 @@ Bolt アプリがショートカットへの応答のためにやらなければ
 1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `callback_id` が処理対象か確認
 1. 返信メッセージを組み立てるなどメインの処理を実行
-1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
+1. 受け取ったことを伝えるために Slack API へ `200 OK` 応答
 
 ### コード例
 

@@ -11,7 +11,7 @@ import java.util.List;
  * <p>
  * Unlike subteam_updated, this only shows the delta of added or removed members and does not include a snapshot of the User Group.
  * <p>
- * https://api.slack.com/events/subteam_members_changed
+ * https://docs.slack.dev/reference/events/subteam_members_changed
  */
 @Data
 public class SubteamMembersChangedEvent implements Event {

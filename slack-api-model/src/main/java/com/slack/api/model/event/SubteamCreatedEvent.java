@@ -9,7 +9,7 @@ import java.util.List;
  * The subteam_created event is sent to all connections for a workspace when a new User Group is created.
  * Clients can use this to update their local list of User Groups and group members.
  * <p>
- * https://api.slack.com/events/subteam_created
+ * https://docs.slack.dev/reference/events/subteam_created
  */
 @Data
 public class SubteamCreatedEvent implements Event {

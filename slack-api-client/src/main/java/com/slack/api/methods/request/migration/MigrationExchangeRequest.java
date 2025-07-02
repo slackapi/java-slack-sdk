@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * For Enterprise Grid workspaces, map local user IDs to global user IDs.
  * <p>
- * https://api.slack.com/methods/migration.exchange
+ * https://docs.slack.dev/reference/methods/migration.exchange
  */
 @Data
 @Builder

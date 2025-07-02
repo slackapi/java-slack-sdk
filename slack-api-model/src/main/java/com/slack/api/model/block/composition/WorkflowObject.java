@@ -5,7 +5,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/block-kit/composition-objects#workflow
+ * https://docs.slack.dev/reference/block-kit/composition-objects/workflow-object
  */
 @Data
 @Builder

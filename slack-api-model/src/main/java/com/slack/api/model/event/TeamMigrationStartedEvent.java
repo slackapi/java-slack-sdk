@@ -16,7 +16,7 @@ import lombok.Data;
  * If this happens you should wait a few seconds and try again.
  * If the error continues you should wait longer before retrying, and so on.
  * <p>
- * https://api.slack.com/events/team_migration_started
+ * https://docs.slack.dev/reference/events/team_migration_started
  */
 @Data
 public class TeamMigrationStartedEvent implements Event {

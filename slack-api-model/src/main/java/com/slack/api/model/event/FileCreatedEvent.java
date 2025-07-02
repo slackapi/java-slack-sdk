@@ -10,7 +10,7 @@ import lombok.Data;
  * When a file is shared with other members of the workspace (which can happen at upload time)
  * a file_shared event will also be sent.
  * <p>
- * https://api.slack.com/events/file_created
+ * https://docs.slack.dev/reference/events/file_created
  */
 @Data
 public class FileCreatedEvent implements Event {

@@ -7,8 +7,8 @@ import lombok.Data;
 /**
  * A workflow step supported by your app was removed from a workflow
  * <p>
- * https://api.slack.com/events/workflow_step_deleted
- * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ * https://docs.slack.dev/reference/events/workflow_step_deleted
+ * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
  */
 @Data
 @Deprecated

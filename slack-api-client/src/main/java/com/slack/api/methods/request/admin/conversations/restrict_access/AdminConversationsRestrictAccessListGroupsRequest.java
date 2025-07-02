@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.conversations.restrictAccess.listGroups
+ * https://docs.slack.dev/reference/methods/admin.conversations.restrictAccess.listGroups
  */
 @Data
 @Builder

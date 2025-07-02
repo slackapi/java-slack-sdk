@@ -6,7 +6,7 @@ lang: en
 
 [Sign in with Slack](https://docs.slack.dev/authentication/sign-in-with-slack/) helps users log into your service using their Slack profile. The platform feature was recently upgraded to be compatible with the standard [OpenID Connect](https://openid.net/connect/) specification. With Bolt for Java v1.10 or higher, implementing the auth flow is much easier.
 
-## Slack App Configuration
+## Slack app configuration
 
 When you create a new Slack app, set the following user scopes:
 
@@ -22,22 +22,22 @@ oauth_config:
 ```
 
 
-## Slack Config for Your OpenID Connect App
+## Slack configuration for your OpenID Connect app
 
-Here is the list of the necessary configurations for serving your OpenID Connect app built with Bolt. If you prefer using other env variable names or other solutions to load this information, implement your own way to load **AppConfig** instead.
+Here is the list of the necessary configurations for serving your OpenID Connect app built with Bolt. If you prefer using other environment variable names or other solutions to load this information, implement your own way to load **AppConfig** instead.
 
 |Env Variable Name|Description (Where to find the value)|
 |-|-|
-|**SLACK_CLIENT_ID**|**Client ID** (Find at **Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_CLIENT_SECRET**|**Client Secret** (Find at **Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_REDIRECT_URI**|**Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
-|**SLACK_USER_SCOPES**|**Command-separated list of user scopes**: `scope` parameter that will be appended to `https://slack.com/openid/connect/authorize` as a query parameter. The possible values are `openid`, `email`, and `profile`|
-|**SLACK_INSTALL_PATH**|**Starting point of OpenID Connect flow**: This endpoint redirects users to the Slack OpenID Connect endpoint with required query parameters such as `client_id`, `scope`, `state`, and `nonce` (optional).|
-|**SLACK_REDIRECT_URI_PATH**|**Path for OpenID Connect Redirect URI**: This endpoint handles callback requests after the Slack's OpenID Connect confirmation. The path must be consistent with **SLACK_REDIRECT_URI** value.|
+|`SLACK_CLIENT_ID`|Client ID (Find at **Settings** > **Basic Information** > **App Credentials**)|
+|`SLACK_CLIENT_SECRET`|Client Secret (Find at **Settings** > **Basic Information** > **App Credentials**)|
+|`SLACK_REDIRECT_URI`|Redirect URI (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
+|`SLACK_USER_SCOPES`|Comma-separated list of user scopes**: `scope` parameter that will be appended to `https://slack.com/openid/connect/authorize` as a query parameter. The possible values are `openid`, `email`, and `profile`|
+|`SLACK_INSTALL_PATH`|Starting point of OpenID Connect flow; this endpoint redirects users to the Slack OpenID Connect endpoint with required query parameters such as `client_id`, `scope`, `state`, and `nonce` (optional).|
+|`SLACK_REDIRECT_URI_PATH`|Path for OpenID Connect redirect URI; this endpoint handles callback requests after the Slack's OpenID Connect confirmation. The path must be consistent with `SLACK_REDIRECT_URI` value.|
 
 ## Examples
 
-Check [the Servlet app example](https://github.com/slackapi/java-slack-sdk/blob/main/bolt-servlet/src/test/java/samples/OpenIDConnectSample.java) to learn how to implement your Web app that handles the OpenID Connect flow with end-users. 
+Check [the Servlet app example](https://github.com/slackapi/java-slack-sdk/blob/main/bolt-servlet/src/test/java/samples/OpenIDConnectSample.java) to learn how to implement your web app that handles the OpenID Connect flow with end-users. 
 
 ```java
 import java.util.*;

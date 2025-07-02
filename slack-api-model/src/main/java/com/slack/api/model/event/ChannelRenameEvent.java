@@ -6,7 +6,7 @@ import lombok.Data;
  * The channel_rename event is sent to all connections for a workspace when a channel is renamed.
  * Clients can use this to update their local list of channels.
  * <p>
- * https://api.slack.com/events/channel_rename
+ * https://docs.slack.dev/reference/events/channel_rename
  */
 @Data
 public class ChannelRenameEvent implements Event {

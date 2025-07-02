@@ -9,7 +9,7 @@ import lombok.Data;
  * but the client should show no changes based on this, just update its internal list of IM channels.
  * Usually this event is followed by an im_open event.
  * <p>
- * https://api.slack.com/events/im_created
+ * https://docs.slack.dev/reference/events/im_created
  */
 @Data
 public class ImCreatedEvent implements Event {

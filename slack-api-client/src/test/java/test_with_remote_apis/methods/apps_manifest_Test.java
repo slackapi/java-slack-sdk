@@ -49,7 +49,7 @@ public class apps_manifest_Test {
 
     @Test
     public void manifestOperations() throws IOException, SlackApiException {
-        // To grab your first refresh token, visit https://api.slack.com/reference/manifests#config-tokens
+        // To grab your first refresh token, visit https://docs.slack.dev/app-manifests/configuring-apps-with-app-manifests#config-tokens
         // Create a new directory slack-api-client/tmp/ and place your JSON data as {team_id}-{user_id}.json (e.g., T03E94MJU-U03E94MK0.json)
         // The content should be something like this:
         // {"access_token": "xoxe.xoxp-1-....","refresh_token": "xoxe-1-...","team_id": "T03E94MJU","user_id": "U03E94MK0","expire_at": 1699361653}
@@ -125,7 +125,7 @@ public class apps_manifest_Test {
 
     @Test
     public void automationPlatform() throws IOException, SlackApiException {
-        // To grab your first refresh token, visit https://api.slack.com/reference/manifests#config-tokens
+        // To grab your first refresh token, visit https://docs.slack.dev/app-manifests/configuring-apps-with-app-manifests#config-tokens
         // Create a new directory slack-api-client/tmp/ and place your JSON data as {team_id}-{user_id}.json (e.g., T03E94MJU-U03E94MK0.json)
         // The content should be something like this:
         // {"access_token": "xoxe.xoxp-1-....","refresh_token": "xoxe-1-...","team_id": "T03E94MJU","user_id": "U03E94MK0","expire_at": 1699361653}

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Represents a type of conversation such as a public channel or IM.
  *
- * @see <a href="https://api.slack.com/methods/conversations.list">Conversations.list API</a>
+ * @see <a href="https://docs.slack.dev/reference/methods/conversations.list">Conversations.list API</a>
  */
 public enum ConversationType {
     @SerializedName("public_channel") PUBLIC_CHANNEL("public_channel"),

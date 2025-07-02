@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * - https://api.slack.com/methods/oauth.v2.exchange
- * - https://api.slack.com/authentication/rotation
+ * - https://docs.slack.dev/reference/methods/oauth.v2.exchange
+ * - https://docs.slack.dev/authentication/using-token-rotation
  */
 @Data
 @Builder

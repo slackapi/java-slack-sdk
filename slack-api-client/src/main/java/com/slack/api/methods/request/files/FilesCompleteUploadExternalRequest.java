@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/files.completeUploadExternal
+ * https://docs.slack.dev/reference/methods/files.completeUploadExternal
  */
 @Data
 @Builder

@@ -38,7 +38,7 @@ fun main() {
     }
 
     val oauthConfig = ResourceLoader.loadAppConfig()
-    // https://api.slack.com/authentication/migration
+    // https://docs.slack.dev/legacy/legacy-app-migration/migrating-classic-apps
     oauthConfig.isClassicAppPermissionsEnabled = true
     val oauthApp = App(oauthConfig).asOAuthApp(true)
 

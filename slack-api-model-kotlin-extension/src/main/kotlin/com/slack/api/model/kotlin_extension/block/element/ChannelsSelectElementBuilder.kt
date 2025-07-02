@@ -22,7 +22,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
      *
      * The placeholder text shown on the menu. Maximum length for the text in this field is 150 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_select">Channels select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select">Channels select element documentation</a>
      */
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)
@@ -33,7 +33,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
      * interaction payload to identify the source of the action. Should be unique among all other action_ids used
      * elsewhere by your app. Maximum length for this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_select">Channels select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select">Channels select element documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -42,7 +42,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
     /**
      * The ID of any valid public channel to be pre-selected when the menu loads.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_select">Channels select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select">Channels select element documentation</a>
      */
     fun initialChannel(channel: String) {
         initialChannel = channel
@@ -55,7 +55,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
      * response_url can be used for message responses. The target channel for the message will be determined by the
      * value of this select menu.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_select">Channels select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select">Channels select element documentation</a>
      */
     fun responseUrlEnabled(enabled: Boolean) {
         responseUrlEnabled = enabled
@@ -64,7 +64,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
     /**
      * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_select">Channels select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select">Channels select element documentation</a>
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
@@ -74,7 +74,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_select">Channels select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select">Channels select element documentation</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad

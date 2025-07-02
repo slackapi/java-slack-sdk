@@ -4,16 +4,16 @@ lang: en
 
 # SCIM API
 
-[SCIM API](https://docs.slack.dev/admins/scim-api) is a set of APIs for provisioning and managing user accounts and groups. SCIM is used by Single Sign-On (SSO) services and identity providers to manage people across a variety of tools, including Slack.
+The [SCIM API](https://docs.slack.dev/admins/scim-api) is used for provisioning and managing user accounts and groups. SCIM is used by Single Sign-On (SSO) services and identity providers to manage people across a variety of tools, including Slack.
 
 [SCIM (System for Cross-domain Identity Management)](http://www.simplecloud.info/) is supported by myriad services. It behaves slightly differently than other Slack APIs.
 
-Refer to [the API document](https://docs.slack.dev/admins/scim-api) for more details.
+Refer to [the API documentation](https://docs.slack.dev/admins/scim-api) for more details.
 
 ---
-## Call SCIM API in Java
-
-It's straight-forward to call SCIM API using `slack-api-client` library. As with other API clients, creating an API client by invoking a **Slack** object's method.
+## Call the SCIM API in Java
+ 
+ You can call the SCIM API using the `slack-api-client` library. Create an API client by invoking a Slack object's method.
 
 ```java
 import com.slack.api.Slack;
@@ -24,9 +24,9 @@ String token = System.getenv("SLACK_ADMIN_ACCESS_TOKN"); // `admin` scope requir
 SCIMClient scim = slack.scim(token);
 ```
 
-The `SCIMClient` supports all the available endpoints in SCIM APIs. Check [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/scim/SCIMClient.html) for the entire list of them. On this page, let me share a few code snippets demonstrating how to use SCIM APIs in Java.
+The `SCIMClient` supports all the available endpoints in the SCIM API. Check [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/scim/SCIMClient.html) for the entire list of them. On this page, we share a few code snippets demonstrating how to use the SCIM API in Java.
 
-### Manage Users
+### Manage users
 
 The following pieces of Java code demonstrate how to manage users.
 
@@ -68,9 +68,9 @@ UsersSearchResponse searchResp = slack.scim(token).searchUsers(req -> req
 UsersDeleteResponse deletion = slack.scim(token).deleteUser(req -> req.id(userId));
 ```
 
-### Manage Groups
+### Manage groups
 
-The following pieces of Java code demonstrate how to manage Groups.
+The following pieces of Java code demonstrate how to manage groups.
 
 ```java
 import com.slack.api.scim.request.*;
@@ -101,9 +101,9 @@ slack.scim(token).patchGroup(req -> req.id(group.getId()).group(op));
 slack.scim(token).updateGroup(req -> req.id(groupId).group(group));
 ```
 
-### Handle Errors
+### Handle errors
 
-`SCIMClient` methods may throw `SCIMApiException` when receiving an unsuccessful response from SCIM API.
+The `SCIMClient` methods may throw a `SCIMApiException` when receiving an unsuccessful response from the SCIM API.
 
 ```java
 // Handling an error
@@ -120,17 +120,17 @@ try {
 ```
 
 ---
-## Rate Limits
+## Rate limits
 
-Slack uses rate limits for the SCIM API to help provide a predictably pleasant experience. Please note: unlike many of the other Slack API rate limits, the limits below apply to all SCIM apps in an org, not on a per-app basis. Refer to [the API document](https://docs.slack.dev/admins/scim-api#limitations) for more details.
+Slack uses rate limits for the SCIM API to help provide a predictably pleasant experience. Unlike many of the other Slack API rate limits, the limits below apply to all SCIM apps in an org, not on a per-app basis. Refer to [the API documentation](https://docs.slack.dev/admins/scim-api#limitations) for more details.
 
-`AsyncSCIMClient`, the async client, has great consideration for Rate Limits.
+The async client, `AsyncSCIMClient`, has great consideration for rate limits.
 
-The async client internally has its queue systems to avoid burst traffics as much as possible while `SCIMClient`, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
+The async client internally has its queue systems to avoid burst traffic as much as possible while `SCIMClient`, the synchronous client, always blindly sends requests. Both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack platform and estimate the remaining amount to call.
 
-The default implementation of the datastore is in-memory one using the JVM heap memory. The default **SlackConfig** enables the in-memory one. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
+The default implementation of the datastore is an in-memory one using the JVM heap memory. The default `SlackConfig` enables the in-memory one. 
 
-`AsyncSCIMClient` considers the metrics data very well. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period.
+The `AsyncSCIMClient` considers the metrics data. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period of time.
 
 ```java
 import com.slack.api.Slack;

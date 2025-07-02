@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/app_rate_limited
+ * https://docs.slack.dev/reference/events/app_rate_limited
  */
 @Data
 public class AppRateLimitedEvent implements Event {

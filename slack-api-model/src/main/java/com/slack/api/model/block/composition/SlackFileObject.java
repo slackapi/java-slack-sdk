@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
  * If both are provided then the payload will be rejected.
  * Currently only png, jpg, jpeg, and gif Slack image files are supported.
  * <p>
- * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#slack_file">document</a>
+ * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/slack-file-object">document</a>
  */
 @Data
 @Builder

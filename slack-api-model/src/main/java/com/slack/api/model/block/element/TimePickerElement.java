@@ -5,7 +5,7 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#timepicker
+ * https://docs.slack.dev/reference/block-kit/block-elements/time-picker-element
  */
 @Data
 @Builder

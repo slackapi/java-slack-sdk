@@ -7,7 +7,7 @@ import lombok.Data;
  * <p>
  * This event is not available to bot user subscriptions in the Events API.
  * <p>
- * https://api.slack.com/events/dnd_updated
+ * https://docs.slack.dev/reference/events/dnd_updated
  */
 @Data
 public class DndUpdatedEvent implements Event {

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/apps.event.authorizations.list
+ * https://docs.slack.dev/reference/methods/apps.event.authorizations.list
  */
 @Data
 @Builder
@@ -16,7 +16,7 @@ public class AppsEventAuthorizationsListRequest implements SlackApiRequest {
     /**
      * You'll receive an event_context identifying an event in each event payload sent to your app.
      * <p>
-     * https://api.slack.com/events-api#begin
+     * https://docs.slack.dev/apis/events-api
      */
     private String eventContext;
 

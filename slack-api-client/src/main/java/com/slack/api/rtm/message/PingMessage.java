@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 
 /**
- * https://api.slack.com/rtm#ping_and_pong
+ * https://docs.slack.dev/legacy/legacy-rtm-api#ping-pong
  */
 @Data
 @Builder

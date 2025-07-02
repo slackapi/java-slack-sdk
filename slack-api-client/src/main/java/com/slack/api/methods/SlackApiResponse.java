@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * The marker interface for Slack Web API responses.
  * <p>
- * Refer to https://api.slack.com/methods for the API details.
+ * Refer to https://docs.slack.dev/reference/methods for the API details.
  */
 public interface SlackApiResponse {
 

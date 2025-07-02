@@ -18,7 +18,7 @@ import java.util.List;
  * Each key contains an array of user IDs, not the actual token strings representing your revoked tokens.
  * To use this event most effectively, store your tokens alongside user IDs and team IDs.
  * <p>
- * https://api.slack.com/events/tokens_revoked
+ * https://docs.slack.dev/reference/events/tokens_revoked
  */
 @Data
 public class TokensRevokedEvent implements Event {

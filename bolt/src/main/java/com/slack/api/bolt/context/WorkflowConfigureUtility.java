@@ -11,7 +11,7 @@ import java.util.List;
 import static com.slack.api.model.view.Views.view;
 
 /**
- * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
  */
 @Deprecated
 public interface WorkflowConfigureUtility {

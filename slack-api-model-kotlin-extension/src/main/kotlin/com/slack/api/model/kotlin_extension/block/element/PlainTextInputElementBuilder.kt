@@ -23,7 +23,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
      * view_submission payload to identify the value of the input element. Should be unique among all other action_ids
      * used elsewhere by your app. Maximum length for this field is 255 characters.*
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/plain-text-input-element">Plain text input documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -34,7 +34,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
      *
      * The placeholder text shown in the plain-text input. Maximum length for the text in this field is 150 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/plain-text-input-element">Plain text input documentation</a>
      */
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)
@@ -43,7 +43,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
     /**
      * The initial value in the plain-text input when it is loaded.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/plain-text-input-element">Plain text input documentation</a>
      */
     fun initialValue(value: String) {
         initialValue = value
@@ -52,7 +52,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
     /**
      * Indicates whether the input will be a single line (false) or a larger textarea (true). Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/plain-text-input-element">Plain text input documentation</a>
      */
     fun multiline(isMultiline: Boolean) {
         multiline = isMultiline
@@ -61,7 +61,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
     /**
      * The minimum length of input that the user must provide. If the user provides less, they will receive an error. Maximum value is 3000.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/plain-text-input-element">Plain text input documentation</a>
      */
     fun minLength(length: Int) {
         minLength = length
@@ -70,7 +70,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
     /**
      * The maximum length of input that the user can provide. If the user provides more, they will receive an error.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/plain-text-input-element">Plain text input documentation</a>
      */
     fun maxLength(length: Int) {
         maxLength = length
@@ -79,7 +79,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
     /**
      * Determines when a plain-text input element will return a block_actions interaction payload.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config">The document</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/dispatch-action-configuration-object">The document</a>
      */
     fun dispatchActionConfig(builder: DispatchActionConfigBuilder.() -> Unit) {
         dispatchActionConfig = DispatchActionConfigBuilder().apply(builder).build()
@@ -89,7 +89,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config">The document</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/dispatch-action-configuration-object">The document</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad

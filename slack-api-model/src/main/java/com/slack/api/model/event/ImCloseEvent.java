@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * The im_close event is sent to all connections for a user when a direct message channel is closed by that user.
  * <p>
- * https://api.slack.com/events/im_close
+ * https://docs.slack.dev/reference/events/im_close
  */
 @Data
 public class ImCloseEvent implements Event {

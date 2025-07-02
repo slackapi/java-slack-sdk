@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/future
+ * https://tools.slack.dev/deno-slack-sdk/
  */
 @Data
 @Builder

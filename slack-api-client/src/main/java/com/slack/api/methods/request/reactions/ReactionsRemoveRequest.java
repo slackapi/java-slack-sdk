@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/reactions.remove
+ * https://docs.slack.dev/reference/methods/reactions.remove
  */
 @Data
 @Builder

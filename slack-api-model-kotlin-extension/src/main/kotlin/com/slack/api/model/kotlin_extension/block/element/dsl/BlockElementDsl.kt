@@ -13,8 +13,8 @@ interface BlockElementDsl : BlockElementInputDsl {
      * An interactive component that inserts a button. The button can be a trigger for anything from opening a
      * simple link to starting a complex workflow.
      *
-     * @see <a href="https://api.slack.com/interactivity/handling">Enabling interactivity guide</a>
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     * @see <a href="https://docs.slack.dev/interactivity">Enabling interactivity guide</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
      */
     fun button(builder: ButtonElementBuilder.() -> Unit)
 
@@ -23,7 +23,7 @@ interface BlockElementDsl : BlockElementInputDsl {
      * Interactive component - but interactions with workflow button elements will not send block_actions events,
      * since these are used to start new workflow runs.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#workflow_button">Documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Documentation</a>
      */
     fun workflowButton(builder: WorkflowButtonElementBuilder.() -> Unit)
 
@@ -36,8 +36,8 @@ interface BlockElementDsl : BlockElementInputDsl {
      * visually important actions after a row of buttons. You can also specify simple URL links as overflow menu
      * options, instead of actions.
      *
-     * @see <a href="https://api.slack.com/interactivity/handling">Enabling interactivity guide</a>
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#overflow">Overflow menu element documentation</a>
+     * @see <a href="https://docs.slack.dev/interactivity/handling-user-interaction">Enabling interactivity guide</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/overflow-menu-element">Overflow menu element documentation</a>
      */
     fun overflowMenu(builder: OverflowMenuElementBuilder.() -> Unit)
 
@@ -45,7 +45,7 @@ interface BlockElementDsl : BlockElementInputDsl {
      * An element to insert an image as part of a larger block of content. If you want a block with only an image in
      * it, you're looking for the image block.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#image">Image element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/image-element">Image element documentation</a>
      */
     fun image(
         imageUrl: String? = null,

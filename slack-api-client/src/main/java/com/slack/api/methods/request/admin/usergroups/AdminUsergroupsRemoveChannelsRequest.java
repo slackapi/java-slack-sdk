@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.usergroups.removeChannels
+ * https://docs.slack.dev/reference/methods/admin.usergroups.removeChannels
  */
 @Data
 @Builder

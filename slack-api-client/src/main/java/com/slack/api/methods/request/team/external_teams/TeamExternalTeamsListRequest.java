@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/team.externalTeams.list
+ * https://docs.slack.dev/reference/methods/team.externalTeams.list
  */
 @Data
 @Builder

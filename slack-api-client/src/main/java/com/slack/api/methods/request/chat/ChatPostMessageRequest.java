@@ -9,7 +9,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/chat.postMessage
+ * https://docs.slack.dev/reference/methods/chat.postMessage
  */
 @Data
 @Builder

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config
+ * https://docs.slack.dev/reference/block-kit/composition-objects/dispatch-action-configuration-object
  */
 @Data
 @Builder

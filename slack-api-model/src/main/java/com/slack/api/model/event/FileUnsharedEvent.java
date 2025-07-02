@@ -8,7 +8,7 @@ import lombok.Data;
  * The file property includes the file ID, as well as a top-level file_id.
  * To obtain additional information about the unshared file, use the files.info API method.
  * <p>
- * https://api.slack.com/events/file_unshared
+ * https://docs.slack.dev/reference/events/file_unshared
  */
 @Data
 public class FileUnsharedEvent implements Event {

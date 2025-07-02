@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.workflows.unpublish
+ * https://docs.slack.dev/reference/methods/admin.workflows.unpublish
  */
 @Data
 @Builder

@@ -5,7 +5,7 @@ import com.slack.api.model.block.composition.WorkflowObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#workflow_button
+ * https://docs.slack.dev/reference/block-kit/block-elements/workflow-button-element
  */
 @Data
 @Builder

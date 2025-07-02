@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/calls.participants.add
+ * https://docs.slack.dev/reference/methods/calls.participants.add
  */
 @Data
 @Builder

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Represents a <a href="https://api.slack.com/dialogs#text_elements">text</a>
+ * Represents a <a href="https://docs.slack.dev/legacy/legacy-dialogs#text_elements">text</a>
  * dialog element<p>
  * <p>
  * {@code Text} elements are single-line plain text fields.
@@ -31,7 +31,7 @@ public class DialogTextElement implements DialogElement {
      * Type of element.  For a text element, the type is always
      * {@code text} . It's required.
      *
-     * @see <a href="https://api.slack.com/dialogs#elements">Dialog form elements</a>
+     * @see <a href="https://docs.slack.dev/legacy/legacy-dialogs#elements">Dialog form elements</a>
      */
     private final String type = "text";
 

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/conversations.open
+ * https://docs.slack.dev/reference/methods/conversations.open
  */
 @Data
 @Builder

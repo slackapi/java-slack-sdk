@@ -23,7 +23,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
      * view_submission payload to identify the value of the input element. Should be unique among all other action_ids
      * used elsewhere by your app. Maximum Value for this field is 255 characters.*
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#number">Number input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/number-input-element">Number input documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -34,7 +34,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
      *
      * The placeholder text shown in the plain-text input. Maximum Value for the text in this field is 150 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#number">Number input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/number-input-element">Number input documentation</a>
      */
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)
@@ -43,7 +43,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
     /**
      * The initial value in the plain-text input when it is loaded.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#number">Number input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/number-input-element">Number input documentation</a>
      */
     fun initialValue(value: String) {
         initialValue = value
@@ -52,7 +52,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
     /**
      * The minimum Value of input that the user must provide. If the user provides less, they will receive an error. Maximum value is 3000.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#number">Number input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/number-input-element">Number input documentation</a>
      */
     fun minValue(Value: String) {
         minValue = Value
@@ -61,7 +61,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
     /**
      * The maximum Value of input that the user can provide. If the user provides more, they will receive an error.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#number">Number input documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/number-input-element">Number input documentation</a>
      */
     fun maxValue(Value: String) {
         maxValue = Value
@@ -70,7 +70,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
     /**
      * Determines when a plain-text input element will return a block_actions interaction payload.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config">The document</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/dispatch-action-configuration-object">The document</a>
      */
     fun dispatchActionConfig(builder: DispatchActionConfigBuilder.() -> Unit) {
         dispatchActionConfig = DispatchActionConfigBuilder().apply(builder).build()
@@ -80,7 +80,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config">The document</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/dispatch-action-configuration-object">The document</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad
@@ -90,7 +90,7 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config">The document</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/dispatch-action-configuration-object">The document</a>
      */
     fun isDecimalAllowed(isDecimalAllowed: Boolean) {
         _isDecimalAllowed = isDecimalAllowed

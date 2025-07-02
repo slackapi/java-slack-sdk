@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * We send this event when a user removes an existing grant for your workspace app.
  * <p>
- * https://api.slack.com/events/user_resource_removed
+ * https://docs.slack.dev/changelog/2021-01-workspace-apps-retiring-the-platform-graveyard-in-aug-2021
  */
 @Data
 public class UserResourceRemovedEvent implements Event {

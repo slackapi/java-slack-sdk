@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
 
 /**
- * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
  */
 @Slf4j
 @Getter

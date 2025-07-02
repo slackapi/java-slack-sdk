@@ -16,7 +16,7 @@ import java.util.List;
  * <p>
  * This event type may also arise when a subteam has been disabled.
  * <p>
- * https://api.slack.com/events/subteam_updated
+ * https://docs.slack.dev/reference/events/subteam_updated
  */
 @Data
 public class SubteamUpdatedEvent implements Event {

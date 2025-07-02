@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/canvases.create
+ * https://docs.slack.dev/reference/methods/canvases.create
  */
 @Data
 @Builder

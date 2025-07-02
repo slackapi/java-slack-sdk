@@ -11,7 +11,7 @@ import lombok.Data;
  * The example above details the complete Events API payload, including the event wrapper.
  * The team_id indicates which workspace uninstalled the Slack app identified by api_app_id.
  * <p>
- * https://api.slack.com/events/app_uninstalled
+ * https://docs.slack.dev/reference/events/app_uninstalled
  */
 @Data
 public class AppUninstalledEvent implements Event {

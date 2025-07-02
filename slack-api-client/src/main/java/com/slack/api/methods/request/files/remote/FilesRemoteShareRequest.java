@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/files.remote.share
+ * https://docs.slack.dev/reference/methods/files.remote.share
  */
 @Data
 @Builder

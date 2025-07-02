@@ -12,7 +12,7 @@ public class ViewTest {
 
     @Test
     public void deserialize_open() {
-        // https://api.slack.com/methods/views.open
+        // https://docs.slack.dev/reference/methods/views.open
         String json = "{\n" +
                 "    \"id\": \"VMHU10V25\",\n" +
                 "    \"team_id\": \"T8N4K1JN\",\n" +
@@ -61,7 +61,7 @@ public class ViewTest {
 
     @Test
     public void deserialize_push() {
-        // https://api.slack.com/methods/views.push
+        // https://docs.slack.dev/reference/methods/views.push
         String json = "{\n" +
                 "    \"id\": \"VNM522E2U\",\n" +
                 "    \"team_id\": \"T9M4RL1JM\",\n" +
@@ -116,7 +116,7 @@ public class ViewTest {
 
     @Test
     public void deserialize_update() {
-        // https://api.slack.com/methods/views.update
+        // https://docs.slack.dev/reference/methods/views.update
         String json = "{\n" +
                 "    \"id\": \"VNM522E2U\",\n" +
                 "    \"team_id\": \"T9M4RL1JM\",\n" +

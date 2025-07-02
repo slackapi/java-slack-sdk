@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/conversations.join
+ * https://docs.slack.dev/reference/methods/conversations.join
  */
 @Data
 @Builder

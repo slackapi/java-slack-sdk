@@ -4,7 +4,7 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.*;
 
 /**
- * https://api.slack.com/methods/chat.delete
+ * https://docs.slack.dev/reference/methods/chat.delete
  */
 @Data
 @Builder

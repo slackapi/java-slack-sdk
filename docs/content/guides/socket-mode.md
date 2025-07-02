@@ -4,11 +4,11 @@ lang: en
 
 # Socket Mode
 
-With [Socket Mode](https://docs.slack.dev/apis/events-api/using-socket-mode), instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, `bolt-socket-mode`, a Bolt framework extension for building Socket Mode enabled apps, is available since version 1.5.
+With [Socket Mode](https://docs.slack.dev/apis/events-api/using-socket-mode), instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, `bolt-socket-mode`, a Bolt framework extension for building Socket Mode-enabled apps, is available since version 1.5.
 
-## Slack App Configuration
+## Slack app configuration
 
-To enable Socket Mode, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** on the left pane. There are a few things to do on the page.
+To enable Socket Mode, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** on the left pane. There are a few things to do on the page.
 
 * Go to **Settings** > **Basic Information**
   * Add a new **App-Level Token** with the [`connections:write`](https://docs.slack.dev/reference/scopes/connections.write) scope
@@ -18,9 +18,9 @@ To enable Socket Mode, visit the [Slack App configuration page](http://api.slack
 * Configure the features (without setting Request URLs)
 * Install the app to receive bot/user tokens (bot: `xoxb-`, user: `xoxp-`)
 
-## Project Setup
+## Project setup
 
-To manage the Socket Mode connections, in addition to the `bolt-socket-mode` library, `javax.websocket-api` and `tyrus-standalone-client (1.x)` are required. Here is a minimum Maven settings file. Although we recommend using the Bolt framework for building interactive Slack apps, you can use only the underlying Socket Mode client in `slack-api-client` library along with the WebSocket libraries.
+To manage the Socket Mode connections, in addition to the `bolt-socket-mode` library, `javax.websocket-api` and `tyrus-standalone-client (1.x)` are required. Although we recommend using the Bolt framework for building interactive Slack apps, you can use only the underlying Socket Mode client in `slack-api-client` library along with the WebSocket libraries. Here is a minimum Maven settings file. 
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -51,7 +51,7 @@ To manage the Socket Mode connections, in addition to the `bolt-socket-mode` lib
 </project>
 ```
 
-If you prefer using Jakarta EE compatible one, the dependencies would be:
+If you prefer using Jakarta EE compatible one, the dependencies are:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -90,7 +90,7 @@ If you prefer using Jakarta EE compatible one, the dependencies would be:
 | [Tyrus Standalone Client 2.x](https://github.com/eclipse-ee4j/tyrus)           |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
 | [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)                |[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
 
-To switch the underlying implementation, you can pass a `SocketModeClient.Backend.*` to either `SocketModeClient` in `slack-api-client` or `SocketModeApp` in `bolt-socket-mode`. If your own one implements `SocketModeClient` interface, you can just instantiate the class.
+To switch the underlying implementation, you can pass a `SocketModeClient.Backend.*` to either `SocketModeClient` in `slack-api-client` or `SocketModeApp` in `bolt-socket-mode`. If your own implements `SocketModeClient` interface, you can simply instantiate the class.
 
 ```java
 String appToken = "xapp-";
@@ -103,7 +103,7 @@ SocketModeApp socketModeApp = new SocketModeApp(
 socketModeApp.start();
 ```
 
-Needless to say, don't forget adding the required WebSocket library as well. In the case of the above example, you need to add ``org.java-websocket:Java-WebSocket`` in addition to this SDK libraries.
+Don't forget to add the required WebSocket library. In the case of the above example, you need to add ``org.java-websocket:Java-WebSocket`` in addition to the SDK libraries.
 
 ---
 ## Examples
@@ -128,7 +128,7 @@ app.event(AppMentionEvent.class, (req, ctx) -> {
 });
 ```
 
-The `SocketModeApp` class in **bolt-socket-mode** library is an adapter module for Socket Mode communications.
+The `SocketModeApp` class in `bolt-socket-mode` library is an adapter module for Socket Mode communications.
 
 ```java
 import com.slack.api.bolt.socket_mode.SocketModeApp;
@@ -147,7 +147,7 @@ SocketModeApp socketModeApp = new SocketModeApp(appToken, app);
 socketModeApp.start();
 ```
 
-If your app is a distributed app, you can run a Web application for OAuth flow along with Socket Mode this way. In the following example, a single Java process manages both Socket Mode connections and the Web app for OAuth flow. If you want to separate them, it is also possible to do so as long as the two apps use the same `InstallationStore` to store/lookup installation data.
+If your app is a distributed app, you can run a web application for OAuth flow along with Socket Mode this way. In the following example, a single Java process manages both Socket Mode connections and the web app for OAuth flow. If you want to separate them, it is also possible to do so as long as the two apps use the same `InstallationStore` to store/lookup installation data.
 
 ```java
 import com.slack.api.bolt.App;
@@ -199,9 +199,9 @@ oauthSever.start();
 // Access the OAuth URL - https://{your public domain}/slack/install
 ```
 
-### Under the Hood
+## Under the hood
 
-If you hope to understand what is actually happening with the above code, running only `SocketModeClient` and checking its debug level logs may be helpful for it. As this is an example that uses the primitive module, you need to check an envelope's type and parse its payload.
+If you hope to understand what is happening with the above code, running only `SocketModeClient` and checking its debug-level logs may be helpful. As this is an example that uses the primitive module, you need to check an envelope's type and parse its payload.
 
 ```java
 import com.slack.api.Slack;

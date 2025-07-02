@@ -9,7 +9,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#multi_select
+ * https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element
  */
 @Data
 @Builder

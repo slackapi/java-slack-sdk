@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/reference/messaging/blocks#divider
+ * https://docs.slack.dev/reference/block-kit/blocks/divider-block
  */
 @Data
 @Builder

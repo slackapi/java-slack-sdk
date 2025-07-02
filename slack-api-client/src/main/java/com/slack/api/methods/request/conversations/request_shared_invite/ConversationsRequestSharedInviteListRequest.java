@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/conversations.requestSharedInvite.list
+ * https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.list
  */
 @Data
 @Builder

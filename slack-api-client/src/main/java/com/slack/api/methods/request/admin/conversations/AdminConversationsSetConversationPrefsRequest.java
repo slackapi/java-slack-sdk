@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * https://api.slack.com/methods/admin.conversations.setConversationPrefs
+ * https://docs.slack.dev/reference/methods/admin.conversations.setConversationPrefs
  */
 @Data
 @Builder

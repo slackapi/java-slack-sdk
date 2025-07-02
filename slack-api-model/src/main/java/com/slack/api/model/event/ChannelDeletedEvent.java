@@ -6,7 +6,7 @@ import lombok.Data;
  * The channel_deleted event is sent to all connections for a workspace when a channel is deleted.
  * Clients can use this to update their local cache of non-joined channels.
  * <p>
- * https://api.slack.com/events/channel_deleted
+ * https://docs.slack.dev/reference/events/channel_deleted
  */
 @Data
 public class ChannelDeletedEvent implements Event {

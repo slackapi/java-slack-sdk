@@ -14,7 +14,7 @@ import java.util.List;
  * Rather than remaining mostly static, interactive messages evolve over time.
  * <p>
  *
- * @see <a href="https://api.slack.com/interactive-messages">Interactive messages</a>
+ * @see <a href="https://docs.slack.dev/messaging/creating-interactive-messages">Interactive messages</a>
  */
 @Data
 @Builder
