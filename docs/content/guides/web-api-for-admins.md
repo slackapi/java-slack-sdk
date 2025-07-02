@@ -4,7 +4,7 @@ lang: en
 
 # Web API for Org Admins
 
-The method names of a portion of [API Methods](https://docs.slack.dev/reference/methods) start with `admin.`. These APIs are not available for all developers. They are intended to be used by [Enterprise Grid](https://docs.slack.dev/enterprise-grid/) organization administrators. 
+The method names of a portion of [API methods](https://docs.slack.dev/reference/methods) start with `admin.`. These APIs are not available for all developers. They are intended to be used by [Enterprise Grid](https://docs.slack.dev/enterprise-grid/) organization administrators. 
 
 ---
 ## Call the Web API for org admins

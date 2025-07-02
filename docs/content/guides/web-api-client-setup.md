@@ -176,7 +176,7 @@ In summary, the things you've done here are:
 ---
 ## Build from source
 
-You may want to build the latest revision on your own. In the case of building from source, exeute the following  commands in your terminal.
+You may want to build the latest revision on your own. In the case of building from source, execute the following  commands in your terminal.
 
 ```bash
 git clone git@github.com:slackapi/java-slack-sdk.git

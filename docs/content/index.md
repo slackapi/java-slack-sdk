@@ -5,7 +5,7 @@ The Java Slack SDK supports the Slack platform in a Java idiomatic way. Develope
 
 Within these docs, there are two different modules:
 
-* [Bolt for Java Guides](/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write Slack apps in Java.
+* [Bolt for Java Guides](/guides/getting-started-with-bolt), which is a framework with a simplified API that helps write Slack apps in Java.
 * [Java SDK Guides](/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java using the Slack API client.
 
 ## Requirements

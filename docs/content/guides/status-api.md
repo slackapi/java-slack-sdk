@@ -39,7 +39,7 @@ class Note {
 ---
 ## Call current status API in Java
 
-As with other API clients, you can call `Slack`'s method `status()` to create an API client and then call `current()` to perform an HTTP request.
+As with other API clients, you can call the Slack `status()` method to create an API client and then call `current()` to perform an HTTP request.
 
 ```java
 import com.slack.api.Slack;

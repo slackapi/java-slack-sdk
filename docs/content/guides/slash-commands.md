@@ -91,7 +91,7 @@ To learn how to build [Block Kit](https://docs.slack.dev/block-kit/) messages wi
 
 ## Under the hood
 
-If you hope to understand what is happening with the above code, reading the following (a bit pseudo) code may be helpful.
+If you hope to understand what is happening with the above code, reading the following (pseudo) code may be helpful.
 
 ```java
 import java.util.Map;
