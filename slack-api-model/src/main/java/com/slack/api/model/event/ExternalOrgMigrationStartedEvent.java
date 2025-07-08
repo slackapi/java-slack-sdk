@@ -9,7 +9,7 @@ import lombok.Data;
  * <p>
  * The date_started indicates the time the external workspace started to migrate.
  * <p>
- * https://api.slack.com/events/external_org_migration_started
+ * https://docs.slack.dev/reference/events/external_org_migration_started
  */
 @Data
 public class ExternalOrgMigrationStartedEvent implements Event {

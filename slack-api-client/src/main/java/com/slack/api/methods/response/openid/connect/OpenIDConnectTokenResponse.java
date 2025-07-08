@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/openid.connect.token
+ * https://docs.slack.dev/reference/methods/openid.connect.token
  */
 @Data
 public class OpenIDConnectTokenResponse implements SlackApiTextResponse {

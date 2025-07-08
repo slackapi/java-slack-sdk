@@ -14,7 +14,7 @@ import java.util.List;
  * <p>
  * See the stars.list method for details of the structure of the item property.
  * <p>
- * https://api.slack.com/events/star_added
+ * https://docs.slack.dev/reference/events/star_added
  */
 @Data
 public class StarAddedEvent implements Event {

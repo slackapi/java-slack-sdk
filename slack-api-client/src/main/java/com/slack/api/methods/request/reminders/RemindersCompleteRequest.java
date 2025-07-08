@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/reminders.complete
+ * https://docs.slack.dev/reference/methods/reminders.complete
  */
 @Data
 @Builder

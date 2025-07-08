@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.apps.clearResolution
+ * https://docs.slack.dev/reference/methods/admin.apps.clearResolution
  */
 @Data
 @Builder

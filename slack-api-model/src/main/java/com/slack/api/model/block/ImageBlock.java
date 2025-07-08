@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/reference/messaging/blocks#image
+ * https://docs.slack.dev/reference/block-kit/blocks/image-block
  */
 @Data
 @Builder

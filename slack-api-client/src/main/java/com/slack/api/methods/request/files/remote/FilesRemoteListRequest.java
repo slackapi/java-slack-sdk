@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/files.remote.list
+ * https://docs.slack.dev/reference/methods/files.remote.list
  */
 @Data
 @Builder

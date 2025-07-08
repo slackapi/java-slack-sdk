@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AttachmentActionPayloadTest {
 
-    // https://api.slack.com/interactive-messages
+    // https://docs.slack.dev/messaging/creating-interactive-messages
     String json = "{\n" +
             "  \"type\": \"interactive_message\",\n" +
             "  \"actions\": [\n" +

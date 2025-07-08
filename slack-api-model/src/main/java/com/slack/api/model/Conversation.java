@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Represents a <a href="https://api.slack.com/types/conversation">conversation</a>
+ * Represents a <a href="https://docs.slack.dev/reference/objects/conversation-object">conversation</a>
  * as used with the {@code conversations} API
  *
- * @see <a href="https://api.slack.com/docs/conversations-api">Conversations API</a>
+ * @see <a href="https://docs.slack.dev/apis/web-api/using-the-conversations-api">Conversations API</a>
  */
 @Data
 @Builder

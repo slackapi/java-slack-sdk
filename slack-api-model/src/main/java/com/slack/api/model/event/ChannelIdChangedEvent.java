@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/channel_id_changed
+ * https://docs.slack.dev/reference/events/channel_id_changed
  */
 @Data
 public class ChannelIdChangedEvent implements Event {

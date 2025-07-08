@@ -8,7 +8,7 @@ import lombok.Data;
  * <p>
  * These bulk changes may be the result of data importation or bulk action taken by an administrator.
  * <p>
- * https://api.slack.com/events/im_history_changed
+ * https://docs.slack.dev/reference/events/im_history_changed
  */
 @Data
 public class ImHistoryChangedEvent implements Event {

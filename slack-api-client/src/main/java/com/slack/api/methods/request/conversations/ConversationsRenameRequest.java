@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/conversations.rename
+ * https://docs.slack.dev/reference/methods/conversations.rename
  */
 @Data
 @Builder

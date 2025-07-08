@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
+ * https://docs.slack.dev/reference/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
  */
 @Data
 @Builder

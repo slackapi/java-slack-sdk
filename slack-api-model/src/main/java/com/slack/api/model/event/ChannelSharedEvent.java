@@ -7,7 +7,7 @@ import lombok.Data;
  * when a new shared channel is created or a channel is converted into a shared channel.
  * It's also triggered when an external workspace is added to an existing shared channel.
  * <p>
- * https://api.slack.com/events/channel_shared
+ * https://docs.slack.dev/reference/events/channel_shared
  */
 @Data
 public class ChannelSharedEvent implements Event {

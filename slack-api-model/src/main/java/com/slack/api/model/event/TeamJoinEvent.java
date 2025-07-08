@@ -7,7 +7,7 @@ import lombok.Data;
  * The team_join event is sent to all connections for a workspace when a new member joins.
  * Clients can use this to update their local cache of members.
  * <p>
- * https://api.slack.com/events/team_join
+ * https://docs.slack.dev/reference/events/team_join
  */
 @Data
 public class TeamJoinEvent implements Event {

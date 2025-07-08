@@ -5,7 +5,7 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#channel_select
+ * https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select
  */
 @Data
 @Builder

@@ -58,7 +58,7 @@ public class Message {
     // field exists only if the message was edited
     private Edited edited;
 
-    // https://api.slack.com/docs/message-link-unfurling
+    // https://docs.slack.dev/messaging/unfurling-links-in-messages
     private boolean unfurlLinks;
     private boolean unfurlMedia;
 
@@ -67,7 +67,7 @@ public class Message {
     @SerializedName("is_locked")
     private boolean locked;
 
-    // https://api.slack.com/messaging/retrieving#threading
+    // https://docs.slack.dev/messaging/retrieving-messages#threading
     // Parent messages in a thread will no longer explicitly list their replies.
     // Instead of a large replies array containing threaded message replies,
     // we'll provide a lighter-weight list of reply_users,
@@ -125,7 +125,7 @@ public class Message {
         private BotProfile botProfile;
         private Edited edited;
 
-        // https://api.slack.com/messaging/retrieving#threading
+        // https://docs.slack.dev/messaging/retrieving-messages#threading
         // Parent messages in a thread will no longer explicitly list their replies.
         // Instead of a large replies array containing threaded message replies,
         // we'll provide a lighter-weight list of reply_users,

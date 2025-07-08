@@ -58,7 +58,7 @@ public class LinkSharedEventTest {
 
     @Test
     public void newUnfurls_2021_08() {
-        // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+        // https://docs.slack.dev/changelog/2021-08-changes-to-unfurls
         String json = "{\n" +
                 "    \"type\": \"link_shared\",\n" +
                 "    \"channel\": \"COMPOSER\",\n" +

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.users.unsupportedVersions.export
+ * https://docs.slack.dev/reference/methods/admin.users.unsupportedVersions.export
  */
 @Data
 @Builder

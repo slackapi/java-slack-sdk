@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/chat.unfurl
+ * https://docs.slack.dev/reference/methods/chat.unfurl
  */
 @Data
 @Builder
@@ -69,13 +69,13 @@ public class ChatUnfurlRequest implements SlackApiRequest {
      */
     private String channel;
 
-    // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+    // https://docs.slack.dev/changelog/2021-08-changes-to-unfurls
     private String unfurlId;
 
-    // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+    // https://docs.slack.dev/changelog/2021-08-changes-to-unfurls
     private String source;
 
-    // https://api.slack.com/docs/message-link-unfurling#unfurls_parameter
+    // https://docs.slack.dev/messaging/unfurling-links-in-messages
     @Data
     @Builder
     @NoArgsConstructor
@@ -84,7 +84,7 @@ public class ChatUnfurlRequest implements SlackApiRequest {
 
         private String text;
 
-        // attachments: https://api.slack.com/docs/message-attachments
+        // attachments: https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments#guidelines
         private String callbackId;
         private String attachmentType;
         private String fallback;
@@ -99,9 +99,9 @@ public class ChatUnfurlRequest implements SlackApiRequest {
         private List<Action> actions;
         private List<Field> fields;
 
-        // blocks: https://api.slack.com/reference/block-kit/blocks
+        // blocks: https://docs.slack.dev/reference/block-kit/blocks
         private List<LayoutBlock> blocks;
-        // preview: https://api.slack.com/methods/chat.unfurl#markdown
+        // preview: https://docs.slack.dev/reference/methods/chat.unfurl
         private UnfurlDetailPreview preview;
     }
 

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/files.revokePublicURL
+ * https://docs.slack.dev/reference/methods/files.revokePublicURL
  */
 @Data
 @Builder

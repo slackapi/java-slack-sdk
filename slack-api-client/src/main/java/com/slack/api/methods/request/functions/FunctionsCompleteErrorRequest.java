@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/functions.completeError
+ * https://docs.slack.dev/reference/methods/functions.completeError
  */
 @Data
 @Builder

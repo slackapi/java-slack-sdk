@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.apps.config.lookup
+ * https://docs.slack.dev/reference/methods/admin.apps.config.lookup
  */
 @Data
 @Builder

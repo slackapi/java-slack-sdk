@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/messaging/blocks#section
+ * https://docs.slack.dev/reference/block-kit/blocks/section-block
  */
 @Data
 @Builder

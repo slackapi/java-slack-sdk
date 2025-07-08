@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/events/workflow_step_execute
+ * https://docs.slack.dev/reference/events/workflow_step_execute
  */
 @Data
 public class WorkflowStepExecution {

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.conversations.search
+ * https://docs.slack.dev/reference/methods/admin.conversations.search
  */
 @Data
 @Builder
@@ -38,7 +38,7 @@ public class AdminConversationsSearchRequest implements SlackApiRequest {
      * The type of channel to include or exclude in the search.
      * For example private will search private channels, while private_exclude will exclude them.
      * For a full list of types, check the Types section.
-     * https://api.slack.com/methods/admin.conversations.search#types
+     * https://docs.slack.dev/reference/methods/admin.conversations.search#types
      */
     private List<String> searchChannelTypes;
 

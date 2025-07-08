@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * The user_typing event is sent to all members of a channel when a user is typing a message in that channel.
  * <p>
- * https://api.slack.com/events/user_typing
+ * https://docs.slack.dev/reference/events/user_typing
  */
 @Data
 public class UserTypingEvent implements Event {

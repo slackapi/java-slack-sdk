@@ -20,7 +20,7 @@ class OptionGroupObjectBuilder private constructor(
      *
      * The label shown above this group of options. Maximum length for the text in this field is 75 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#option_group">Option group object documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/option-group-object">Option group object documentation</a>
      */
     fun label(text: String, emoji: Boolean? = null) {
         label = PlainTextObject(text, emoji)
@@ -29,7 +29,7 @@ class OptionGroupObjectBuilder private constructor(
     /**
      * An array of option objects that belong to this specific group. Maximum of 100 items.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#option_group">Option group object documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/option-group-object">Option group object documentation</a>
      */
     fun options(builder: OptionObjectDsl.() -> Unit) {
         this.optionContainer.apply(builder)

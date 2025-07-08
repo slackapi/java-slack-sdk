@@ -5,7 +5,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#file_input
+ * https://docs.slack.dev/reference/block-kit/block-elements/file-input-element
  */
 @Data
 @Builder

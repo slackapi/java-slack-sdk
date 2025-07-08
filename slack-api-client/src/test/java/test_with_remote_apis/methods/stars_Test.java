@@ -42,7 +42,7 @@ public class stars_Test {
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
-    @Ignore // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Ignore // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     public void list() throws IOException, SlackApiException {
         StarsListResponse response = slack.methods().starsList(r -> r.token(userToken));
         assertThat(response.getError(), is(nullValue()));
@@ -51,7 +51,7 @@ public class stars_Test {
     }
 
     @Test
-    @Ignore // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Ignore // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     public void list_async() throws Exception {
         StarsListResponse response = slack.methodsAsync().starsList(r -> r.token(userToken)).get();
         assertThat(response.getError(), is(nullValue()));
@@ -60,7 +60,7 @@ public class stars_Test {
     }
 
     @Test
-    @Ignore // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Ignore // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     public void add() throws IOException, SlackApiException {
         List<Conversation> channels = slack.methods().conversationsList(r -> r.token(userToken)).getChannels();
         List<String> channelIds = new ArrayList<>();

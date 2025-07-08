@@ -25,7 +25,7 @@ import java.util.List;
  * whether the app is explicitly mentioned or otherwise.
  * Subscribe to message.im events to receive messages directed to your bot user in direct message conversations.
  * <p>
- * https://api.slack.com/events/app_mention
+ * https://docs.slack.dev/reference/events/app_mention
  */
 @Data
 public class AppMentionEvent implements Event {

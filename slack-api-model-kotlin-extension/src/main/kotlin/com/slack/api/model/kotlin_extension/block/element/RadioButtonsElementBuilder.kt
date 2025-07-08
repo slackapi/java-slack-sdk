@@ -23,7 +23,7 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
      * receive an interaction payload to identify the source of the action. Should be unique among all other
      * action_ids used elsewhere by your app. Maximum length for this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#radio">Radio buttons element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/radio-button-group-element">Radio buttons element documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -32,7 +32,7 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
     /**
      * An array of option objects.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#radio">Radio buttons element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/radio-button-group-element">Radio buttons element documentation</a>
      */
     fun options(builder: OptionObjectDsl.() -> Unit) {
         options = MultiOptionContainer().apply(builder).underlying
@@ -42,7 +42,7 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
      * An option object that exactly matches one of the options within options. This option will be selected when the
      * radio button group initially loads.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#radio">Radio buttons element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/radio-button-group-element">Radio buttons element documentation</a>
      */
     fun initialOption(builder: OptionObjectBuilder.() -> Unit) {
         initialOption = OptionObjectBuilder().apply(builder).build()
@@ -52,7 +52,7 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
      * A confirm object that defines an optional confirmation dialog that appears after clicking one of the radio
      * buttons in this element.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#radio">Radio buttons element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/radio-button-group-element">Radio buttons element documentation</a>
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
@@ -62,7 +62,7 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#radio">Radio buttons element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/radio-button-group-element">Radio buttons element documentation</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad

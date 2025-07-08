@@ -141,7 +141,7 @@ public class ApiTest {
             assertThat(readResp.getUserName(), is(creation.getUserName()));
 
             try {
-                // https://api.slack.com/scim#filter
+                // https://docs.slack.dev/reference/scim-api#filter
                 // filter query matching the created data
                 String userName = creation.getUserName();
                 UsersSearchResponse searchResp = slack.scim2(orgAdminToken).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));
@@ -212,7 +212,7 @@ public class ApiTest {
             assertThat(readResp.getSlackGuest().getExpiration(), is(notNullValue()));
 
             try {
-                // https://api.slack.com/scim#filter
+                // https://docs.slack.dev/reference/scim-api#filter
                 // filter query matching the created data
                 String userName = creation.getUserName();
                 UsersSearchResponse searchResp = slack.scim2(orgAdminToken).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));

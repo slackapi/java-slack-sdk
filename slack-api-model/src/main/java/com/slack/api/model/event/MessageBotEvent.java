@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message/bot_message
+ * https://docs.slack.dev/reference/events/message/bot_message
  */
 @Data
 public class MessageBotEvent implements Event {

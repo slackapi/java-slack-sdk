@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/dialog.open
+ * https://docs.slack.dev/reference/methods/dialog.open
  */
 @Data
 @Builder
@@ -33,7 +33,7 @@ public class DialogOpenRequest implements SlackApiRequest {
      * As apps can only open a dialog in response to such a user action, the
      * {@code trigger_id} is a required parameter.
      *
-     * @see <a href="https://api.slack.com/dialogs#implementation">Implementing dialogs</a>
+     * @see <a href="https://docs.slack.dev/legacy/legacy-dialogs#implementation">Implementing dialogs</a>
      */
     private String triggerId;
 }

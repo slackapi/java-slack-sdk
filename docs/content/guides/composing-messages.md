@@ -4,12 +4,12 @@ lang: en
 
 # Composing Messages
 
-This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage) API yet, read [the web api basics page](/guides/web-api-basics) before trying the samples here.
+This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with the [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage) API method yet, read [the Web API basics page](/guides/web-api-basics) before trying the samples here.
 
-Also, before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](https://docs.slack.dev/messaging/) for more information.
+Before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](https://docs.slack.dev/messaging/) for more information.
 
 ---
-## Text Formatting
+## Text formatting
 
 Composing a text message is the simplest way to post a message to Slack conversations.
 
@@ -29,14 +29,14 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 );
 ```
 
-As you see, using `text` is fairly simple. The only thing to know is to give a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://docs.slack.dev/messaging/formatting-message-text) for understanding the markup language.
+Use `text` by providing a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://docs.slack.dev/messaging/formatting-message-text) for understanding the markup language.
 
 ---
-## Building Blocks for Rich Message Layouts
+## Building blocks for rich message layouts
 
 [Block Kit](https://docs.slack.dev/block-kit/) is a UI framework for Slack apps that offers a balance of control and flexibility when building experiences in messages and other [surfaces](https://docs.slack.dev/surfaces/).
 
-It may not be so easy to compose a large JSON data structure in Java code. So, we offer setter methods like `blocksAsString(String)` that accept a whole `blocks` part as a single string value. Such method is supposed to be used with loaded external file data or outcomes by template engines.
+It may not be easy to compose a large JSON data structure in Java code, so we offer setter methods like `blocksAsString(String)` that accept a `blocks` argument as a single string value. This method is intended to be used with loaded external file data or outcomes by template engines.
 
 ```java
 ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
@@ -67,7 +67,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 );
 ```
 
-You can use this way also for building a message for Incoming Webhooks and `response_url` calls.
+You can build a message for incoming webhooks and `response_url` calls this way too.
 
 ---
 ## Block Kit Kotlin DSL
@@ -108,12 +108,12 @@ val response = slack.methods(token).chatPostMessage { req -> req
 
 ### Installation
 
-You can add the Block Kit Kotlin DSL via 2 artifacts:
+Add the Block Kit Kotlin DSL via 2 artifacts:
 
 |artifactId|Description|
 |---|---|
-|[**com.slack.api:slack-api-model-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/sdkLatestVersion/slack-api-model-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The **slack-api-model** Kotlin extension, which adds the Kotlin DSL itself as well as the standalone `withBlocks { }` builder and `View.ViewBuilder`'s `.blocks { }` extension function.|
-|[**com.slack.api:slack-api-client-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/sdkLatestVersion/slack-api-client-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The **slack-api-client** Kotlin extension, which adds the `.blocks { }` extension function to `MethodsClient`'s request object builders for seamless use of the DSL with the Java builders such as **ChatPostEphemeralRequestBuilder**, **ChatPostMessageRequestBuilder**, **ChatScheduleMessageRequestBuilder**, and **ChatUpdateRequestBuilder**.|
+|[`com.slack.api:slack-api-model-kotlin-extension`](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/sdkLatestVersion/slack-api-model-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The `slack-api-model` Kotlin extension, which adds the Kotlin DSL itself as well as the standalone `withBlocks { }` builder and `View.ViewBuilder`'s `.blocks { }` extension function.|
+|[`com.slack.api:slack-api-client-kotlin-extension`](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/sdkLatestVersion/slack-api-client-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The `slack-api-client` Kotlin extension, which adds the `.blocks { }` extension function to `MethodsClient`'s request object builders for seamless use of the DSL with the Java builders such as `ChatPostEphemeralRequestBuilder`, `ChatPostMessageRequestBuilder`, `ChatScheduleMessageRequestBuilder`, and `ChatUpdateRequestBuilder`.|
 
 #### Adding via Gradle
 
@@ -137,9 +137,9 @@ dependencies {
 
 Below are some code snippets demonstrating how to use this DSL.
 
-#### Standalone `withBlocks { }` builder which comes with the model extension
+#### Standalone `withBlocks { }` builder
 
-You can create lists of blocks outside of the **slack-api-client** Kotlin extension functions with the `withBlocks { }` builder.
+This comes with the model extension. You can create lists of blocks outside of the `slack-api-client` Kotlin extension functions with the `withBlocks { }` builder.
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.block.withBlocks
@@ -151,11 +151,11 @@ val blocks = withBlocks {
 }
 ```
 
-#### Type safe enums for inputs which require specific string inputs
+#### Type safe enums for inputs
 
-Type-safe enums are available for properties of some block elements which require specific input strings. 
+This requires specific string inputs. Type-safe enums are available for properties of some block elements which require specific input strings. 
 
-With this, you get the benefit of verifying your inputs are correct at compile time, and you gain access to Kotlin enum features such as being able to iterate over or retrieve all possible values for these inputs. Versions of these inputs which accept strings are also available, if you prefer.
+With this, you get the benefit of verifying that your inputs are correct at compile time, and you gain access to Kotlin enum features such as being able to iterate over or retrieve all possible values for these inputs. Versions of these inputs which accept strings are also available, if you prefer.
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.block.element.ButtonStyle
@@ -189,7 +189,7 @@ val blocks = withBlocks {
 
 #### Write DSL extension functions for message templating
 
-Because it is a Kotlin DSL, you benefit from Kotlin language features while you are constructing your messages, one of which being able to create extension functions which reproduce common Block Kit structures. This makes your code less repetitive and easier to read. You also benefit from being able to use conditionals and loops as you construct your blocks.
+Because it is a Kotlin DSL, you benefit from Kotlin language features while you are constructing your messages, one of which is being able to create extension functions which reproduce common Block Kit structures. This makes your code less repetitive and easier to read. You also benefit from being able to use conditionals and loops as you construct your blocks.
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.block.ActionsBlockBuilder

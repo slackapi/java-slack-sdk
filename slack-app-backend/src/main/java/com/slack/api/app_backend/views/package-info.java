@@ -1,4 +1,4 @@
 /**
- * Modals / Home tabs - https://api.slack.com/surfaces
+ * Modals / Home tabs - https://docs.slack.dev/surfaces
  */
 package com.slack.api.app_backend.views;

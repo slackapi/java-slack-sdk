@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.barriers.delete
+ * https://docs.slack.dev/reference/methods/admin.barriers.delete
  */
 @Data
 @Builder

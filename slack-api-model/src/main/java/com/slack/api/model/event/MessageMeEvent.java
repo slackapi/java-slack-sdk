@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message/me_message
+ * https://docs.slack.dev/reference/events/message/me_message
  */
 @Data
 public class MessageMeEvent implements Event {

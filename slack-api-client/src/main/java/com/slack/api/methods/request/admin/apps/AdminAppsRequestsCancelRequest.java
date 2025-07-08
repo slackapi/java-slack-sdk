@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.apps.requests.cancel
+ * https://docs.slack.dev/reference/methods/admin.apps.requests.cancel
  */
 @Data
 @Builder

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/auth.test
+ * https://docs.slack.dev/reference/methods/auth.test
  */
 @Data
 @Builder

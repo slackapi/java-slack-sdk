@@ -11,7 +11,7 @@ import lombok.Data;
  * <p>
  * The date_finished indicates the time the external workspace finished to migrate.
  * <p>
- * https://api.slack.com/events/external_org_migration_finished
+ * https://docs.slack.dev/reference/events/external_org_migration_finished
  */
 @Data
 public class ExternalOrgMigrationFinishedEvent implements Event {

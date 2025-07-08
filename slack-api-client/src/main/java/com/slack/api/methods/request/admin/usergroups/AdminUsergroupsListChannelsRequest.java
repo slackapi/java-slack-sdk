@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.usergroups.listChannels
+ * https://docs.slack.dev/reference/methods/admin.usergroups.listChannels
  */
 @Data
 @Builder

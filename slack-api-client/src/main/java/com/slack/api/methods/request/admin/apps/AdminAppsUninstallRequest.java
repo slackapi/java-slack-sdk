@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Uninstall an app from one or many workspaces, or an entire enterprise organization.
  * <p>
- * https://api.slack.com/methods/admin.apps.uninstall
+ * https://docs.slack.dev/reference/methods/admin.apps.uninstall
  */
 @Data
 @Builder

@@ -2,20 +2,20 @@
 lang: en
 ---
 
-# Incoming Webhooks
+# Incoming webhooks
 
-[Incoming Webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) is a simple way to post messages from apps into Slack. Creating an Incoming Webhook gives you a unique URL to which you send a JSON payload with the message and some options.
+[Incoming webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) are a straightforward way to post messages from apps into Slack. Creating an incoming webhook gives you a unique URL to which you send a JSON payload with the message and some options.
 
-### Slack App Configuration
+### Slack app configuration
 
-To enable this feature, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Incoming Webhooks** on the left pane, and then turn on **Activate Incoming Webhooks**.
+To enable this feature, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Incoming Webhooks** on the left pane, and then turn on **Activate Incoming Webhooks**.
 
-Then, install the app to your development workspace. Each time your app is installed, a new Webhook URL will be generated.
+Then, install the app to your development workspace. Each time your app is installed, a new webhook URL will be generated.
 
 ---
-## How To Use 
+## How to use 
 
-Here is a **curl** command example demonstrating how to send a message via an Incoming Webhooks URL.
+Here is a curl command example demonstrating how to send a message via an incoming webhook URL.
 
 ```bash
 curl -X POST \
@@ -24,15 +24,15 @@ curl -X POST \
   https://hooks.slack.com/services/T1234567/AAAAAAAA/ZZZZZZ
 ```
 
-Also with **Slack SDK for Java**, sending messages via Incoming Webhooks is still simple and handy. There are two ways to send a payload.
+There are two ways to send a payload via incoming webhook with the Slack SDK for Java.
 
 ### Build a string payload
 
-A primitive way is to build a payload as a single string. This method is nearly the same as running **curl** command.
+A primitive way is to build a payload as a single string. This method is nearly the same as running a curl command.
 
-:::tip 
+:::tip[Tip]
 
-As with tokens, we don't recommend embedding a webhook URL in your source code. Consider using env variables or some more secure ways to store those.
+As with tokens, we don't recommend embedding a webhook URL in your source code. Consider using environment variables or some other secure way to store them.
 
 :::
 
@@ -49,17 +49,17 @@ WebhookResponse response = slack.send(webhookUrl, payload);
 System.out.println(response); // WebhookResponse(code=200, message=OK, body=ok)
 ```
 
-If the URL is invalid or no longer available, you'll receive other responses as below.
+If the URL is invalid or no longer available, you'll receive responses as below.
 
 ```
 WebhookResponse(code=404, message=Not Found, body=no_team)
 ```
 
-In any case, the response consists of its HTTP status code/message and a simple plain text body telling an error code. The **send** method may throw a **java.io.IOException** when having connectivity issues.
+The response consists of its HTTP status code/message and a simple plain text body telling an error code. The `send` method may throw a `java.io.IOException` when having connectivity issues.
 
-### Send using a Payload object
+### Send using a payload object
 
-Another way is to build a Java object representing a webhook payload.
+Another way to send a payload is to build a Java object representing a webhook payload.
 
 ```java
 import com.slack.api.Slack;
@@ -83,7 +83,7 @@ import static com.slack.api.webhook.WebhookPayloads.*;
 WebhookResponse response = slack.send(webhookUrl, payload(p -> p.text("Hello, World!")));
 ```
 
-As we learned at [Composing Messages](/guides/composing-messages), using static methods for building blocks would be greatly useful.
+As we learned in [Composing Messages](/guides/composing-messages), using static methods for building blocks is useful.
 
 ```java
 import static com.slack.api.webhook.WebhookPayloads.*;

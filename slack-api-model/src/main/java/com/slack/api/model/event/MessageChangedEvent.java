@@ -11,7 +11,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message/message_changed
+ * https://docs.slack.dev/reference/events/message/message_changed
  */
 @Data
 public class MessageChangedEvent implements Event {

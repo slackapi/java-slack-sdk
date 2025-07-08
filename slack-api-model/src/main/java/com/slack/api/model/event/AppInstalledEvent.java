@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/app_installed
+ * https://docs.slack.dev/reference/events/app_installed
  */
 @Data
 public class AppInstalledEvent implements Event {

@@ -8,9 +8,9 @@ lang: en
 
 Responding to slash command invocations is a common use case. Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
-## Slack App Configuration
+## Slack app configuration
 
-To enable slash commands, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Slash Commands** on the left pane. There are a few things to there on the page.
+To enable slash commands, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Slash Commands** on the left pane. There are a few things to do there on the page.
 
 * Click **Create New Command** button
 * Input the command information on the dialog:
@@ -19,21 +19,21 @@ To enable slash commands, visit the [Slack App configuration page](http://api.sl
   * **Short Description**: whatever you like
 * Click **Save** Button
 
-## What Your Bolt App Does
+## What your Bolt app does
 
-All your app needs to do to handle slash command requests are:
+To handle slash command requests:
 
 1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `command` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
-1. Respond to the Slack API server with 200 OK as an acknowledgment
+1. Respond to the Slack API server with `200 OK` as an acknowledgment
 
 If the response body is empty, the response will be recognized as just an acknowledgment. No message will be posted to the channel.
 
 ---
 ## Examples
 
-:::tip
+:::tip[Tip]
 
 If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
 
@@ -45,9 +45,9 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 * Build a reply message or do whatever you want to do
 * Call `ack()` as an acknowledgment
 
-Slash command request payloads have `response_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+Slash command request payloads have a `response_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). If you post a message using a `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
-Here is a tiny example demonstrating how to handle slash command requests in a Bolt app.
+Here is an example demonstrating how to handle slash command requests in a Bolt app.
 
 ```java
 app.command("/echo", (req, ctx) -> {
@@ -59,7 +59,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
-Here is the example to use `response_url` for posting a message. It's also fine to asynchronously run `ctx.respond` after the acknowledgment.
+Here is an example to use a `response_url` for posting a message. You can also asynchronously run `ctx.respond` after the acknowledgment.
 
 ```java
 app.command("/echo", (req, ctx) -> {
@@ -69,7 +69,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
+The same code in Kotlin looks like this. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.command("/echo") { req, ctx ->
@@ -89,9 +89,9 @@ app.command("/echo") { req, ctx ->
 
 To learn how to build [Block Kit](https://docs.slack.dev/block-kit/) messages with this SDK, consult [Composing Messages](/guides/composing-messages).
 
-### Under the Hood
+## Under the hood
 
-If you hope to understand what is actually happening with the above code, reading the following (a bit pseudo) code may be helpful.
+If you hope to understand what is happening with the above code, reading the following (pseudo) code may be helpful.
 
 ```java
 import java.util.Map;

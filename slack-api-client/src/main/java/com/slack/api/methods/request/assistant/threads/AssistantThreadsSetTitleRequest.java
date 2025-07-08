@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/assistant.threads.setTitle
+ * https://docs.slack.dev/reference/methods/assistant.threads.setTitle
  */
 @Data
 @Builder

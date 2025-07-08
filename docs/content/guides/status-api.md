@@ -4,7 +4,7 @@ lang: en
 
 # Status API
 
-[The Slack Status API](https://docs.slack.dev/reference/slack-status-api/) describes the health of the Slack product. When there's an incident, outage, or maintenance, the Slack Status API reflects all the information we have on the issue, including which features of Slack are affected and detailed updates over time.
+The Slack [Status API](https://docs.slack.dev/reference/slack-status-api/) describes the health of the Slack product. When there's an incident, outage, or maintenance, the Slack Status API reflects all the information we have on the issue, including which features of Slack are affected and detailed updates over time.
 
 ## Status API in Java
 
@@ -37,9 +37,9 @@ class Note {
 ```
 
 ---
-## Call Current Status API in Java
+## Call current status API in Java
 
-As with other API clients, you can call **Slack**'s method `status()` to create an API client and then call `current()` to perform an HTTP request.
+As with other API clients, you can call the Slack `status()` method to create an API client and then call `current()` to perform an HTTP request.
 
 ```java
 import com.slack.api.Slack;
@@ -50,7 +50,7 @@ CurrentStatus status = slack.status().current();
 ```
 
 ---
-## Call History API in Java
+## Call history API in Java
 
 Similarly to `current()` above, `history()` performs an HTTP request.
 

@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * Manages nonce parameters for Slack OpenID Connect flow.
  *
- * @see <a href="https://api.slack.com/authentication/sign-in-with-slack">Sign in with Slack</a>
+ * @see <a href="https://docs.slack.dev/authentication/sign-in-with-slack">Sign in with Slack</a>
  */
 public interface OpenIDConnectNonceService extends Service {
 

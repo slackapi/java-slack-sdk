@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/usergroups.create
+ * https://docs.slack.dev/reference/methods/usergroups.create
  */
 @Data
 @Builder

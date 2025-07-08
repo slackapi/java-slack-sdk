@@ -6,7 +6,7 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#number
+ * https://docs.slack.dev/reference/block-kit/block-elements/number-input-element
  */
 @Data
 @Builder

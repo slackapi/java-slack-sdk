@@ -8,7 +8,7 @@ import lombok.Data;
  * This method uninstalls an app. Unlike auth.revoke, which revokes a single token,
  * this method revokes all tokens associated with a single installation of an app.
  * <p>
- * https://api.slack.com/methods/apps.uninstall
+ * https://docs.slack.dev/reference/methods/apps.uninstall
  */
 @Data
 @Builder

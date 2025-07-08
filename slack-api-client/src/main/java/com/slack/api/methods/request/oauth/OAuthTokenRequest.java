@@ -7,8 +7,7 @@ import lombok.Data;
 /**
  * Exchanges a temporary OAuth verifier code for a workspace token.
  * <p>
- * - https://api.slack.com/methods/oauth.token
- * - https://api.slack.com/docs/oauth
+ * - https://docs.slack.dev/authentication/installing-with-oauth
  */
 @Data
 @Builder

@@ -9,9 +9,9 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/incoming-webhooks
+ * https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks
  * <p>
- * Implementation of <a href="https://api.slack.com/reference/messaging/payload">Incoming Webhook Payloads</a>
+ * Implementation of <a href="https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks">Incoming Webhook Payloads</a>
  */
 @Data
 @Builder
@@ -70,7 +70,7 @@ public class Payload {
 
     /**
      * An array of {@link LayoutBlock layout blocks} in the same format as described in the
-     * <a href="https://api.slack.com/messaging/composing/layouts#getting-started">layout block guide</a>.
+     * <a href="https://docs.slack.dev/messaging">layout block guide</a>.
      */
     private List<LayoutBlock> blocks;
 
@@ -90,7 +90,7 @@ public class Payload {
     private Boolean unfurlMedia;
 
     /**
-     * https://api.slack.com/metadata
+     * https://docs.slack.dev/messaging/message-metadata
      */
     private Message.Metadata metadata;
 }

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.workflows.collaborators.add
+ * https://docs.slack.dev/reference/methods/admin.workflows.collaborators.add
  */
 @Data
 @Builder

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * The thread_ts field only appears when the link was shared within a message thread.
  * <p>
- * https://api.slack.com/events/link_shared
+ * https://docs.slack.dev/reference/events/link_shared
  */
 @Data
 public class LinkSharedEvent implements Event {
@@ -24,9 +24,9 @@ public class LinkSharedEvent implements Event {
     @SerializedName("is_bot_user_member")
     private boolean botUserMember;
 
-    // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+    // https://docs.slack.dev/changelog/2021-08-changes-to-unfurls
     private String unfurlId;
-    // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+    // https://docs.slack.dev/changelog/2021-08-changes-to-unfurls
     private String source; // "composer" / "conversations_history"
 
     private String eventTs;

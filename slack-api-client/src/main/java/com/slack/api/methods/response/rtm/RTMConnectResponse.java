@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @see <a href="https://api.slack.com/methods/rtm.connect">rtm.connect</a>
+ * @see <a href="https://docs.slack.dev/reference/methods/rtm.connect">rtm.connect</a>
  */
 @Data
 public class RTMConnectResponse implements SlackApiTextResponse {

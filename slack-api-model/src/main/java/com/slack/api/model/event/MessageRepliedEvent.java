@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message/message_replied
+ * https://docs.slack.dev/reference/events/message/message_replied
  */
 @Data
 public class MessageRepliedEvent implements Event {

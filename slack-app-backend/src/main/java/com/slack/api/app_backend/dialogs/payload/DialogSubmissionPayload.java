@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 
 /**
- * @see <a href="https://api.slack.com/dialogs">Dialogs</a>
+ * @see <a href="https://docs.slack.dev/legacy/legacy-dialogs">Dialogs</a>
  */
 @Data
 @Builder

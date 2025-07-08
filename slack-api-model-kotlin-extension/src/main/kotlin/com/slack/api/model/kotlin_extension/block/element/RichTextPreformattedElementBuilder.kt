@@ -17,7 +17,7 @@ class RichTextPreformattedElementBuilder private constructor(
     /**
      * An array of rich text elements.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_preformatted">Rich text preformatted element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block#rich_text_preformatted">Rich text preformatted element documentation</a>
      */
     fun elements(builder: RichTextObjectDsl.() -> Unit) {
         elementsContainer.apply(builder)
@@ -26,7 +26,7 @@ class RichTextPreformattedElementBuilder private constructor(
     /**
      * Number of pixels of border thickness.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_preformatted">Rich text preformatted element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block#rich_text_preformatted">Rich text preformatted element documentation</a>
      */
     fun border(border: Int) {
         this.border = border

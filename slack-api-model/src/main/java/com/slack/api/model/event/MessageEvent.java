@@ -17,7 +17,7 @@ import java.util.List;
  * - They are returned via calls to channels.history, im.history or groups.history
  * - They are returned as latest property on channel, group and im objects.
  * <p>
- * https://api.slack.com/events/message
+ * https://docs.slack.dev/reference/events/message
  */
 @Data
 public class MessageEvent implements Event {

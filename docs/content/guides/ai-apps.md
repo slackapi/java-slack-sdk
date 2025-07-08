@@ -13,14 +13,14 @@ AI apps comprise a new messaging experience for Slack. If you're unfamiliar with
 
 ## Configuring your app to support AI apps features {#configuring-your-app}
 
-1. Within [App Settings](https://api.slack.com/apps), enable the **Agents & AI Apps** feature.
+1. Within [app settings](https://api.slack.com/apps), enable the **Agents & AI Apps** feature.
 
-2. Within the App Settings **OAuth & Permissions** page, add the following scopes: 
+2. Within the app settings **OAuth & Permissions** page, add the following scopes: 
   * [`assistant:write`](https://docs.slack.dev/reference/scopes/assistant.write)
   * [`chat:write`](https://docs.slack.dev/reference/scopes/chat.write)
   * [`im:history`](https://docs.slack.dev/reference/scopes/im.history)
 
-3. Within the App Settings **Event Subscriptions** page, subscribe to the following events: 
+3. Within the app settings **Event Subscriptions** page, subscribe to the following events: 
   * [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started)
   * [`assistant_thread_context_changed`](https://docs.slack.dev/reference/events/assistant_thread_context_changed)
   * [`message.im`](https://docs.slack.dev/reference/events/message.im)
@@ -75,7 +75,7 @@ While the `assistant_thread_started` and `assistant_thread_context_changed` even
 
 If you do provide your own `threadContextService` property, it must feature `get` and `save` methods.
 
-:::tip
+:::tip[Tip]
 Be sure to give the [AI apps reference docs](/reference#agents--assistants) a look!
 :::
 
@@ -83,7 +83,7 @@ Be sure to give the [AI apps reference docs](/reference#agents--assistants) a lo
 
 When the user opens a new thread with your AI app, the [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started) event will be sent to your app.
 
-:::tip
+:::tip[Tip]
 When a user opens a thread with your app while in a channel, the channel info is stored as the thread's `AssistantThreadContext` data. You can grab that info by using the `context.getThreadContext()` utility, as subsequent user message event payloads won't include the channel info.
 :::
 

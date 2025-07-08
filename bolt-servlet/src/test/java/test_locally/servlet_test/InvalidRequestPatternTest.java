@@ -36,7 +36,7 @@ public class InvalidRequestPatternTest {
 
     @Before
     public void setUp() {
-        // https://api.slack.com/docs/verifying-requests-from-slack
+        // https://docs.slack.dev/authentication/verifying-requests-from-slack
         String signingSecret = appConfig.getSigningSecret();
         if (signingSecret == null || signingSecret.trim().isEmpty()) {
             // This is just a random value to avoid SlackSignature.Generator's initialization error.

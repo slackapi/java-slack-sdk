@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Represents a surface in Slack (Modals, Home tabs)
  *
- * @see <a href="https://api.slack.com/surfaces">Slack Surfaces</a>
+ * @see <a href="https://docs.slack.dev/surfaces">Slack Surfaces</a>
  */
 @Data
 @Builder

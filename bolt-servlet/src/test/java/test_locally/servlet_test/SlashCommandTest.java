@@ -93,7 +93,7 @@ public class SlashCommandTest {
         ServletTester tester = TestUtils.getServletTester(webApp);
         HttpTester.Request request = TestUtils.prepareRequest();
 
-        // https://api.slack.com/slash-commands
+        // https://docs.slack.dev/interactivity/implementing-slash-commands
         request.setContent("token=gIkuvaNzQIHg97ATvDxqgjtO" +
                 "&team_id=T0001" +
                 "&team_domain=example" +
@@ -121,7 +121,7 @@ public class SlashCommandTest {
         ServletTester tester = TestUtils.getServletTester(webApp);
         HttpTester.Request request = TestUtils.prepareRequest();
 
-        // https://api.slack.com/slash-commands
+        // https://docs.slack.dev/interactivity/implementing-slash-commands
         request.setContent("token=gIkuvaNzQIHg97ATvDxqgjtO" +
                 "&team_id=T0001" +
                 "&team_domain=example" +

@@ -11,7 +11,7 @@ import lombok.Data;
  * <p>
  * In addition to this message, all existing members of the channel will receive a channel_leave message event.
  * <p>
- * https://api.slack.com/events/channel_left
+ * https://docs.slack.dev/reference/events/channel_left
  */
 @Data
 public class ChannelLeftEvent implements Event {

@@ -19,7 +19,7 @@ import java.io.IOException;
  * <p>
  * You can also use this API to write your own applications to see how members of your organization are using Slack.
  *
- * @see <a href="https://api.slack.com/admins/audit-logs">Slack Audit Logs API</a>
+ * @see <a href="https://docs.slack.dev/admins/audit-logs-api">Slack Audit Logs API</a>
  */
 public interface AuditClient {
 

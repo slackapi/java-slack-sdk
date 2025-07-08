@@ -15,7 +15,7 @@ import lombok.Data;
  * The item field is a brief reference to what the reaction was attached to.
  * The above example describes a reaction being removed from a message.
  * <p>
- * https://api.slack.com/events/reaction_removed
+ * https://docs.slack.dev/reference/events/reaction_removed
  */
 @Data
 public class ReactionRemovedEvent implements Event {

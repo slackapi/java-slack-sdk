@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/reactions.get
+ * https://docs.slack.dev/reference/methods/reactions.get
  */
 @Data
 @Builder

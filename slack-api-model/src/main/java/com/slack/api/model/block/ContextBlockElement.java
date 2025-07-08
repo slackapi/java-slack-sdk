@@ -9,7 +9,7 @@ import com.slack.api.model.block.element.ImageElement;
  * {@link ImageElement} and {@link TextObject} elements.
  * <p>
  * Slack Block Kit Reference: <a href=
- * "https://api.slack.com/reference/messaging/blocks#context">Context
+ * "https://docs.slack.dev/reference/block-kit/blocks/context-block">Context
  * Block's elements</a>
  */
 public interface ContextBlockElement {

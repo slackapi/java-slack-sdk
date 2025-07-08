@@ -14,7 +14,7 @@ import lombok.Data;
  * <p>
  * The item field is a brief reference to what was reacted to. The above example describes a reaction to a message.
  * <p>
- * https://api.slack.com/events/reaction_added
+ * https://docs.slack.dev/reference/events/reaction_added
  */
 @Data
 public class ReactionAddedEvent implements Event {

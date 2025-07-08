@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 import java.util.Map;
 
-@Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
+@Deprecated // https://docs.slack.dev/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
 @Data
 public class GroupsHistoryResponse implements SlackApiTextResponse {
 

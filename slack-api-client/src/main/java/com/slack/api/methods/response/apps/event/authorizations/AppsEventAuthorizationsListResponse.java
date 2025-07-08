@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/apps.event.authorizations.list
- * https://api.slack.com/changelog/2020-09-15-events-api-truncate-authed-users
+ * https://docs.slack.dev/reference/methods/apps.event.authorizations.list
+ * https://docs.slack.dev/changelog/2020-09-15-events-api-truncate-authed-users
  */
 @Data
 public class AppsEventAuthorizationsListResponse implements SlackApiTextResponse {

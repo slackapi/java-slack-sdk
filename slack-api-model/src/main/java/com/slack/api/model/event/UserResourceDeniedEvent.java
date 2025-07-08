@@ -8,7 +8,7 @@ import java.util.List;
  * We send this event when a user declines to grant your workspace app
  * the permissions you recently requested with apps.permissions.users.request.
  * <p>
- * https://api.slack.com/events/user_resource_denied
+ * https://docs.slack.dev/changelog/2021-01-workspace-apps-retiring-the-platform-graveyard-in-aug-2021
  */
 @Data
 public class UserResourceDeniedEvent implements Event {

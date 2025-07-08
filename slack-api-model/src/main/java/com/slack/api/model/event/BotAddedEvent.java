@@ -9,7 +9,7 @@ import lombok.Data;
  * <p>
  * If the bot belongs to a Slack app, the event will also include an app_id pointing to its parent app.
  * <p>
- * https://api.slack.com/events/bot_added
+ * https://docs.slack.dev/reference/events/bot_added
  */
 @Data
 public class BotAddedEvent implements Event {

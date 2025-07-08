@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/users.lookupByEmail
+ * https://docs.slack.dev/reference/methods/users.lookupByEmail
  */
 @Data
 @Builder

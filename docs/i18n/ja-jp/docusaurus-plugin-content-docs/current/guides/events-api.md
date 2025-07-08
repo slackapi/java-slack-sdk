@@ -26,7 +26,7 @@ Bolt アプリがイベントへの応答のためにやらなければならな
 1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `event` の中の `type` が処理対象か確認
 1. イベントデータを使った任意の処理
-1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
+1. 受け取ったことを伝えるために Slack API へ `200 OK` 応答
 
 Bolt アプリは Slack API サーバーからのリクエストに対して 3 秒以内に `ack()` メソッドで応答する必要があります。3 秒以内に応答しなかった場合、Slack API は一定時間経過後にリトライします。
 

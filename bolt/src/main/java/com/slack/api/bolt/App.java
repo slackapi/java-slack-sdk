@@ -102,7 +102,7 @@ public class App {
 
         // request verification
         if (config.isRequestVerificationEnabled()) {
-            // https://api.slack.com/docs/verifying-requests-from-slack
+            // https://docs.slack.dev/authentication/verifying-requests-from-slack
             String signingSecret = config.getSigningSecret();
             if (signingSecret == null || signingSecret.trim().isEmpty()) {
                 // This is just a random value to avoid SlackSignature.Generator's initialization error.
@@ -161,7 +161,7 @@ public class App {
 
     // -------------------------------------
     // Slash Commands
-    // https://api.slack.com/interactivity/slash-commands
+    // https://docs.slack.dev/interactivity/implementing-slash-commands
     // -------------------------------------
 
     /**
@@ -171,7 +171,7 @@ public class App {
 
     // -------------------------------------
     // Events API
-    // https://api.slack.com/events-api
+    // https://docs.slack.dev/apis/events-api
     // -------------------------------------
 
     /**
@@ -188,7 +188,7 @@ public class App {
 
     // -------------------------------------
     // Block Kit
-    // https://api.slack.com/block-kit
+    // https://docs.slack.dev/block-kit
     // -------------------------------------
 
     /**
@@ -202,7 +202,7 @@ public class App {
 
     // -------------------------------------
     // Modal Views
-    // https://api.slack.com/surfaces/modals/using
+    // https://docs.slack.dev/surfaces/modals
     // -------------------------------------
 
     /**
@@ -216,7 +216,7 @@ public class App {
 
     // -------------------------------------
     // Shortcuts
-    // https://api.slack.com/interactivity
+    // https://docs.slack.dev/interactivity/implementing-shortcuts
     // -------------------------------------
 
     /**
@@ -231,7 +231,7 @@ public class App {
 
     // -------------------------------------
     // Workflow Steps
-    // https://api.slack.com/workflows/steps
+    // https://docs.slack.dev/legacy/legacy-steps-from-apps
     // -------------------------------------
 
     /**
@@ -243,7 +243,7 @@ public class App {
 
     // -------------------------------------
     // Attachments
-    // https://api.slack.com/messaging/composing/layouts#attachments
+    // https://docs.slack.dev/legacy/legacy-dialogs
     // -------------------------------------
 
     /**
@@ -253,7 +253,7 @@ public class App {
 
     // -------------------------------------
     // Dialogs
-    // https://api.slack.com/dialogs
+    // https://docs.slack.dev/legacy/legacy-dialogs
     // -------------------------------------
 
     /**
@@ -357,7 +357,7 @@ public class App {
         AppConfig config = config();
         if (config.getClientId() == null) {
             log.warn("To enable th Slack OAuth flow, set config#clientId and so on properly. " +
-                    "Refer to https://api.slack.com/authentication for more information.");
+                    "Refer to https://docs.slack.dev/authentication for more information.");
             return null;
         }
         if (config.isStateValidationEnabled() && state == null) {
@@ -366,7 +366,7 @@ public class App {
         }
         if (config.isOpenIDConnectEnabled() && config.getUserScope() == null) {
             log.warn("For OpenID Connect authorization, set config#userScope properly. " +
-                    "Refer to https://api.slack.com/authentication/sign-in-with-slack for more information.");
+                    "Refer to https://docs.slack.dev/authentication/sign-in-with-slack for more information.");
             return null;
         }
         if (config.isOpenIDConnectEnabled() && config.getScope() != null) {
@@ -378,7 +378,7 @@ public class App {
         String redirectUriParam = redirectUriQueryParam(appConfig);
 
         if (config.isClassicAppPermissionsEnabled()) {
-            // https://api.slack.com/authentication/migration
+            // https://docs.slack.dev/legacy/legacy-app-migration/migrating-classic-apps
             return "https://slack.com/oauth/authorize" +
                     "?client_id=" + config.getClientId() +
                     "&scope=" + scope +
@@ -622,7 +622,7 @@ public class App {
 
     // -------------
     // Events API
-    // https://api.slack.com/events-api
+    // https://docs.slack.dev/apis/events-api
 
     public <E extends Event> App event(
             Class<E> eventClass, BoltEventHandler<E> handler) {
@@ -706,7 +706,7 @@ public class App {
 
     // -------------
     // Slash Commands
-    // https://api.slack.com/interactivity/slash-commands
+    // https://docs.slack.dev/interactivity/implementing-slash-commands
 
     public App command(String command, SlashCommandHandler handler) {
         return command(Pattern.compile("^" + Pattern.quote(command) + "$"), handler);
@@ -722,7 +722,7 @@ public class App {
 
     // -------------
     // Block Kit
-    // https://api.slack.com/block-kit
+    // https://docs.slack.dev/block-kit
 
     public App blockAction(String actionId, BlockActionHandler handler) {
         return blockAction(Pattern.compile("^" + Pattern.quote(actionId) + "$"), handler);
@@ -750,8 +750,8 @@ public class App {
 
     // -------------
     // Shortcuts
-    // https://api.slack.com/interactivity
-    // https://api.slack.com/interactivity/actions
+    // https://docs.slack.dev/interactivity
+    // https://docs.slack.dev/interactivity/implementing-shortcuts
 
     public App globalShortcut(String callbackId, GlobalShortcutHandler handler) {
         return globalShortcut(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
@@ -779,7 +779,7 @@ public class App {
 
     // -------------
     // Modal Views
-    // https://api.slack.com/surfaces/modals/using
+    // https://docs.slack.dev/surfaces/modals
 
     public App viewSubmission(String callbackId, ViewSubmissionHandler handler) {
         return viewSubmission(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
@@ -807,10 +807,10 @@ public class App {
 
     // -------------
     // Workflows: Steps from Apps
-    // https://api.slack.com/workflows/steps
+    // https://docs.slack.dev/legacy/legacy-steps-from-apps
 
     /**
-     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
      */
     @Deprecated
     public App step(WorkflowStep step) {
@@ -818,7 +818,7 @@ public class App {
     }
 
     /**
-     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
      */
     @Deprecated
     public App workflowStepEdit(String callbackId, WorkflowStepEditHandler handler) {
@@ -826,7 +826,7 @@ public class App {
     }
 
     /**
-     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
      */
     @Deprecated
     public App workflowStepEdit(Pattern callbackId, WorkflowStepEditHandler handler) {
@@ -838,7 +838,7 @@ public class App {
     }
 
     /**
-     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
      */
     @Deprecated
     public App workflowStepSave(String callbackId, WorkflowStepSaveHandler handler) {
@@ -846,7 +846,7 @@ public class App {
     }
 
     /**
-     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
      */
     @Deprecated
     public App workflowStepSave(Pattern callbackId, WorkflowStepSaveHandler handler) {
@@ -858,7 +858,7 @@ public class App {
     }
 
     /**
-     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
      */
     @Deprecated
     public App workflowStepExecute(String pattern, WorkflowStepExecuteHandler handler) {
@@ -866,7 +866,7 @@ public class App {
     }
 
     /**
-     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     * @deprecated Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
      */
     @Deprecated
     public App workflowStepExecute(Pattern pattern, WorkflowStepExecuteHandler handler) {
@@ -879,7 +879,7 @@ public class App {
 
     // -------------
     // Attachments
-    // https://api.slack.com/messaging/composing/layouts#attachments
+    // https://docs.slack.dev/messaging/formatting-message-text#building-attachments
 
     public App attachmentAction(String callbackId, AttachmentActionHandler handler) {
         return attachmentAction(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
@@ -895,7 +895,7 @@ public class App {
 
     // -------------
     // Dialogs
-    // https://api.slack.com/dialogs
+    // https://docs.slack.dev/legacy/legacy-dialogs
 
     public App dialogSubmission(String callbackId, DialogSubmissionHandler handler) {
         return dialogSubmission(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
@@ -1221,7 +1221,7 @@ public class App {
                     break;
                 }
                 case UrlVerification: {
-                    // https://api.slack.com/events/url_verification
+                    // https://docs.slack.dev/reference/events/url_verification
                     return Response.builder()
                             .statusCode(200)
                             .contentType("text/plain")

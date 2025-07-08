@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 import java.util.Map;
 
-// See https://api.slack.com/methods/admin.apps.activities.list
+// See https://docs.slack.dev/reference/methods/admin.apps.activities.list
 @Data
 public class AppActivity {
     private String enterpriseId;

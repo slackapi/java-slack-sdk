@@ -8,7 +8,7 @@ import java.util.List;
  * The inner event describes an array of scopes you requested but were denied access to.
  * It includes a trigger_id you may use with dialog.open or Permissions API requests.
  * <p>
- * https://api.slack.com/events/scope_denied
+ * https://docs.slack.dev/changelog/2021-01-workspace-apps-retiring-the-platform-graveyard-in-aug-2021
  */
 @Data
 public class ScopeDeniedEvent implements Event {

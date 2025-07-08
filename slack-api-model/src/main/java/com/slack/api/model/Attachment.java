@@ -9,7 +9,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/docs/message-attachments
+ * https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments
  */
 @Data
 @Builder
@@ -73,7 +73,7 @@ public class Attachment {
 
     // -----------------------------------------
     // Attributes for reply_broadcast message (showing a posted message as an attachment)
-    // https://api.slack.com/events/message/reply_broadcast
+    // https://docs.slack.dev/reference/events/message/reply_broadcast
 
     // "from_url": "https://lost-generation-authors.slack.com/archives/general/p1482960137003543",
     private String fromUrl;
@@ -190,7 +190,7 @@ public class Attachment {
      * The content will automatically collapse if it contains 700+ characters or 5+ linebreaks,
      * and will display a "Show more..." link to expand the content.
      * <p>
-     * https://api.slack.com/docs/message-attachments#message_formatting
+     * https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments
      */
     private String text;
 
@@ -270,7 +270,7 @@ public class Attachment {
 
     /**
      * By default,
-     * <a href="https://api.slack.com/docs/message-formatting#message_formatting">message text
+     * <a href="https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments">message text
      * in attachments</a> are not formatted. To enable formatting on attachment fields, add the
      * name of the field (as defined in the API) in this list.
      */

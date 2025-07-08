@@ -15,7 +15,7 @@ import static com.slack.api.methods.MethodsRateLimitTier.*;
 /**
  * The comprehensive list of Slack Web API rate limits.
  *
- * @see <a href="https://api.slack.com/docs/rate-limits">api.slack.com document</a>
+ * @see <a href="https://docs.slack.dev/apis/web-api/rate-limits">api.slack.com document</a>
  */
 @Slf4j
 public class MethodsRateLimits {

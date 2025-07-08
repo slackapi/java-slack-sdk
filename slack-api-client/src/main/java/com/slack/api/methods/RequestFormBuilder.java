@@ -3006,7 +3006,7 @@ public class RequestFormBuilder {
             "The top-level `text` argument is missing in the request payload for a {} call - It's a best practice to always provide a `text` argument when posting a message. The `text` is used in places where the content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.";
 
     private static final String FALLBACK_WARN_MESSAGE_TEMPLATE =
-            "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://api.slack.com/reference/messaging/attachments#legacy_fields for more details).";
+            "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments#legacy_fields for more details).";
 
     private static final String GSON_ANONYM_INNER_CLASS_INIT_OUTPUT = "null";
 
