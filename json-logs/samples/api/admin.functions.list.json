@@ -41,7 +41,11 @@
       "form_enabled": false,
       "date_released": 12345,
       "category_id": "A00000000",
-      "category_label": ""
+      "category_label": "",
+      "product_level_availability": {
+        "is_available": false,
+        "available_to": ""
+      }
     }
   ]
 }

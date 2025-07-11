@@ -164,6 +164,12 @@ public class Actions {
         public static final String pref_enterprise_search_connectors_changed = "pref.enterprise_search_connectors_changed";
         public static final String pref_enterprise_search_enabled_changed = "pref.enterprise_search_enabled_changed";
         public static final String pref_slack_ai_allow_translations_changed = "pref.slack_ai_allow_translations_changed";
+        public static final String pref_private_record_channel_retention_duration_changed = "pref.private_record_channel_retention_duration_changed";
+        public static final String pref_private_record_channel_retention_changed = "pref.private_record_channel_retention_changed";
+        public static final String pref_private_record_channel_redaction_duration_changed = "pref.private_record_channel_redaction_duration_changed";
+        public static final String pref_public_record_channel_retention_duration_changed = "pref.public_record_channel_retention_duration_changed";
+        public static final String pref_public_record_channel_retention_changed = "pref.public_record_channel_retention_changed";
+        public static final String pref_public_record_channel_redaction_duration_changed = "pref.public_record_channel_redaction_duration_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";

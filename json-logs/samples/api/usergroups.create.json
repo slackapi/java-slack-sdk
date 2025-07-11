@@ -28,7 +28,8 @@
     "users": [
       ""
     ],
-    "is_section": false
+    "is_section": false,
+    "is_idp_group": false
   },
   "error": "",
   "needed": "",

@@ -281,5 +281,6 @@ public class MatchedItem {
     private List<LayoutBlock> titleBlocks;
     private Double canvasReadtime;
     private String canvasCreatorId;
+    private String altTxt;
 
 }
