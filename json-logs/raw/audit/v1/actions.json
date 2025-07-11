@@ -257,7 +257,13 @@
       "search_query_audit_logs_export_completed",
       "search_query_audit_logs_export_downloaded",
       "search_query_audit_logs_export_deleted",
-      "audit_logs_ai_summary_generated"
+      "audit_logs_ai_summary_generated",
+      "pref.private_record_channel_retention_duration_changed",
+      "pref.private_record_channel_retention_changed",
+      "pref.private_record_channel_redaction_duration_changed",
+      "pref.public_record_channel_retention_duration_changed",
+      "pref.public_record_channel_retention_changed",
+      "pref.public_record_channel_redaction_duration_changed"
     ],
     "user": [
       "custom_tos_accepted",

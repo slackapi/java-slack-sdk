@@ -31,6 +31,8 @@ public class Usergroup {
     private String handle;
     @SerializedName("is_external")
     private boolean external;
+    @SerializedName("is_idp_group")
+    private boolean idpGroup;
     private boolean autoProvision;
     private Integer dateCreate;
     private Integer dateUpdate;

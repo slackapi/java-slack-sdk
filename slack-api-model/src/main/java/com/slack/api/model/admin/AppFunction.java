@@ -21,6 +21,7 @@ public class AppFunction {
     private Boolean formEnabled;
     private String categoryId;
     private String categoryLabel;
+    private ProductLevelAvailability productLevelAvailability;
 
     @Data
     public static class InputParameter {
@@ -38,5 +39,11 @@ public class AppFunction {
         private String title;
         private String description;
         private Boolean isRequired;
+    }
+
+    @Data
+    public static class ProductLevelAvailability {
+        private Boolean isAvailable;
+        private String availableTo;  // "std" etc.
     }
 }
