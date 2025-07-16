@@ -11,34 +11,34 @@
       "type": "category",
       "label": "Bolt for Java Guides",
       "items": [
-        "/java-slack-sdk/guides/getting-started-with-bolt",
-        "/java-slack-sdk/guides/bolt-basics",
-        "/java-slack-sdk/guides/supported-web-frameworks",
-        "/java-slack-sdk/guides/socket-mode",
-        "/java-slack-sdk/guides/events-api",
+        "java-slack-sdk/guides/getting-started-with-bolt",
+        "java-slack-sdk/guides/bolt-basics",
+        "java-slack-sdk/guides/supported-web-frameworks",
+        "java-slack-sdk/guides/socket-mode",
+        "java-slack-sdk/guides/events-api",
         {
           "type": "category",
           "label": "App UI & Interactivity",
-          "items": ["/java-slack-sdk/guides/interactive-components", "/java-slack-sdk/guides/modals", "/java-slack-sdk/guides/app-home"]
+          "items": ["java-slack-sdk/guides/interactive-components", "java-slack-sdk/guides/modals", "java-slack-sdk/guides/app-home"]
         },
-        "/java-slack-sdk/guides/ai-apps",
-        "/java-slack-sdk/guides/custom-steps",
-        "/java-slack-sdk/guides/shortcuts",
-        "/java-slack-sdk/guides/slash-commands",
+        "java-slack-sdk/guides/ai-apps",
+        "java-slack-sdk/guides/custom-steps",
+        "java-slack-sdk/guides/shortcuts",
+        "java-slack-sdk/guides/slash-commands",
         {
           "type": "category",
           "label": "Authorization & Security",
-          "items": ["/java-slack-sdk/guides/app-distribution", "/java-slack-sdk/guides/sign-in-with-slack"]
+          "items": ["java-slack-sdk/guides/app-distribution", "java-slack-sdk/guides/sign-in-with-slack"]
         },
         {
           "type": "category",
           "label": "Admin Tools",
-          "items": ["/java-slack-sdk/guides/web-api-for-admins", "/java-slack-sdk/guides/scim-api", "/java-slack-sdk/guides/audit-logs-api", "/java-slack-sdk/guides/status-api"]
+          "items": ["java-slack-sdk/guides/web-api-for-admins", "java-slack-sdk/guides/scim-api", "java-slack-sdk/guides/audit-logs-api", "java-slack-sdk/guides/status-api"]
         },
         {
           "type": "category",
           "label": "Legacy",
-          "items": ["/java-slack-sdk/guides/steps-from-apps"]
+          "items": ["java-slack-sdk/guides/steps-from-apps"]
         }
       ]
     },
@@ -47,11 +47,11 @@
       "type": "category",
       "label": "Java Slack SDK Guides",
       "items": [
-        "/java-slack-sdk/guides/web-api-client-setup",
-        "/java-slack-sdk/guides/web-api-basics",
-        "/java-slack-sdk/guides/composing-messages",
-        "/java-slack-sdk/guides/incoming-webhooks",
-        "/java-slack-sdk/guides/rtm"
+        "java-slack-sdk/guides/web-api-client-setup",
+        "java-slack-sdk/guides/web-api-basics",
+        "java-slack-sdk/guides/composing-messages",
+        "java-slack-sdk/guides/incoming-webhooks",
+        "java-slack-sdk/guides/rtm"
       ]
     },
     {"type": "html", "value": "<hr>"},
