@@ -1,5 +1,5 @@
 ---
-title: AI in apps
+title: Using AI in apps
 lang: en
 ---
 
@@ -81,7 +81,7 @@ Be sure to give the [reference docs](/reference#agents--assistants) a look!
 
 ## Handling a new thread {#handling-a-new-thread}
 
-When the user opens a new thread with your AI feature-enabled app, the [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started) event will be sent to your app.
+When the user opens a new thread with your AI-enabled app, the [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started) event will be sent to your app.
 
 :::tip[Tip]
 When a user opens a thread with your app while in a channel, the channel info is stored as the thread's `AssistantThreadContext` data. You can grab that info by using the `context.getThreadContext()` utility, as subsequent user message event payloads won't include the channel info.
