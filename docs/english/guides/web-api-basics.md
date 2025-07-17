@@ -76,7 +76,7 @@ ChatPostMessageResponse response = methods.chatPostMessage(request);
 
 If everything goes well, you will see a message like this in the `#random` channel in your workspace.
 
-![Web API Hello World Message](/java-slack-sdk/img/java-slack-sdk/web-api-basics-hello-world.png)
+![Web API Hello World Message](/img/java-slack-sdk/web-api-basics-hello-world.png)
 
 To understand what is happening here, take a look at a `curl` command example that is equivalent to the above Java code. 
 

@@ -285,7 +285,7 @@ if (debugMode != null && debugMode.equals("1")) { // SLACK_APP_DEBUG_MODE=1 と�
 
 このミドルウェアは `404 Not Found` として応答しようとしていたエラーのレスポンスを、デバッグに有用な情報を含めたそのユーザーにだけ見えるメッセージを投稿する `200 OK` の応答に変えています。
 
-![Bolt middleware ](/java-slack-sdk/img/java-slack-sdk/bolt-middleware.png)
+![Bolt middleware ](/img/java-slack-sdk/bolt-middleware.png)
 
 #### ミドルウェアの実行順序
 
