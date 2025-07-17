@@ -9,7 +9,7 @@ title: Getting Started
 
 This guide explains how to start your first Bolt app.
 
-If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs](https://docs.slack.dev).
+If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs]().
 
 ---
 ## Setting up your project {#project-setup}
@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="socket-or-http">
 <TabItem value="socket-mode" label="Socket Mode">
 
-To enable [Socket Mode](https://docs.slack.dev/apis/events-api/using-socket-mode), the `bolt-socket-mode` library and its provided-scope dependencies are also required for your app.
+To enable [Socket Mode](/apis/events-api/using-socket-mode), the `bolt-socket-mode` library and its provided-scope dependencies are also required for your app.
 
 ```xml
 <dependency>
@@ -159,7 +159,7 @@ dependencies {
 
 **Using `bolt-socket-mode`**
 
-`bolt-socket-mode` is a handy way to start your [Socket Mode](https://docs.slack.dev/apis/events-api/using-socket-mode) app. It allows developers to build a Slack app backend service by writing only a main method initializes `App` and establishes a WebSocket connection to the Socket Mode servers.
+`bolt-socket-mode` is a handy way to start your [Socket Mode](/apis/events-api/using-socket-mode) app. It allows developers to build a Slack app backend service by writing only a main method initializes `App` and establishes a WebSocket connection to the Socket Mode servers.
 
 </TabItem>
 <TabItem value="http" label="HTTP">
@@ -329,8 +329,8 @@ The default constructor expects the following two environment variables to exist
 
 |Env Variable|Description|
 |-|-|
-|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, install your Slack app that has a bot user to your development workspace. Visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](https://docs.slack.dev/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/guides/app-distribution) for further information.|
-|`SLACK_SIGNING_SECRET`|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [Verifying requests from Slack](https://docs.slack.dev/authentication/verifying-requests-from-slack) for more information.|
+|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, install your Slack app that has a bot user to your development workspace. Visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/java-slack-sdk/guides/app-distribution) for further information.|
+|`SLACK_SIGNING_SECRET`|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [Verifying requests from Slack](/authentication/verifying-requests-from-slack) for more information.|
 
 If you prefer configuring an `App` in a different way, write some code to initialize `AppConfig` on your own.
 
@@ -364,8 +364,8 @@ If you get stuck, go through the following checklist:
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
 * ✅ `build.gradle` has `bolt-socket-mode` and `tyrus-standalone-client` in the dependencies and valid application plugin settings
 * ✅ `src/main/java/hello/MyApp.java` with a class having its main method
-* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`commands`](https://docs.slack.dev/reference/scopes/commands) bot scope, add **an app-level token with `connections:write` scope**, and install the app to your development workspace
-* ✅ Copy [**Bot User OAuth Access Token**](https://docs.slack.dev/authentication/tokens#bot) and [**App-Level Token**](https://docs.slack.dev/authentication/tokens#app-level) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
+* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`commands`](/reference/scopes/commands) bot scope, add **an app-level token with `connections:write` scope**, and install the app to your development workspace
+* ✅ Copy [**Bot User OAuth Access Token**](/authentication/tokens#bot) and [**App-Level Token**](/authentication/tokens#app-level) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
 
 </TabItem>
 <TabItem value="http" label="HTTP">
@@ -374,8 +374,8 @@ If you get stuck, go through the following checklist:
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
 * ✅ `build.gradle` has `bolt-jetty` dependency and valid application plugin settings
 * ✅ `src/main/java/hello/MyApp.java` with a class having its main method
-* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](https://docs.slack.dev/reference/scopes/app_mentions.read) bot scope, install the app to your development workspace
-* ✅ Copy [**Bot User OAuth Access Token**](https://docs.slack.dev/authentication/tokens#bot) and [**Signing Secret**](https://docs.slack.dev/authentication/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
+* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope, install the app to your development workspace
+* ✅ Copy [**Bot User OAuth Access Token**](/authentication/tokens#bot) and [**Signing Secret**](/authentication/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
 
 </TabItem>
 </Tabs>
@@ -446,7 +446,7 @@ public class SlackAppController extends SlackAppServlet {
 }
 ```
 
-Check [the detailed guide here](/guides/supported-web-frameworks) for more information.
+Check [the detailed guide here](/java-slack-sdk/guides/supported-web-frameworks) for more information.
 
 ---
 ## Getting started with Kotlin {#getting-started-in-kotlin}
@@ -575,9 +575,9 @@ We strongly recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) her
 ---
 ## Next steps {#next-steps}
 
-Read the [Bolt Basics](/guides/bolt-basics) page for further information.
+Read the [Bolt Basics](/java-slack-sdk/guides/bolt-basics) page for further information.
 
-If you want to know ways to run a Bolt app with Spring Boot, Micronaut, Quarkus, or Helidon SE, refer to the [Supported Web Frameworks](/guides/supported-web-frameworks) page.
+If you want to know ways to run a Bolt app with Spring Boot, Micronaut, Quarkus, or Helidon SE, refer to the [Supported Web Frameworks](/java-slack-sdk/guides/supported-web-frameworks) page.
 
 Also, many examples are available in the GitHub repository.
 

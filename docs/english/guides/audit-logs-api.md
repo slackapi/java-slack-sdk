@@ -4,11 +4,11 @@ lang: en
 
 # Audit Logs API
 
-The [Audit Logs API](https://api.lack.com/docs/audit-logs-api) is used for monitoring what is happening in your [Enterprise Grid](https://docs.slack.dev/enterprise-grid/) organization.
+The [Audit Logs API](https://api.lack.com/docs/audit-logs-api) is used for monitoring what is happening in your [Enterprise Grid](/enterprise-grid/) organization.
 
 The Audit Logs API can be used by security information and event management (SIEM) tools to provide an analysis of how your Slack organization is being accessed. You can also use this API to write your own applications to see how members of your organization are using Slack.
 
-Follow the instructions in [the API documentation](https://docs.slack.dev/admins/audit-logs-api) to get a valid token for using the Audit Logs API. Your Slack app used for accessing the Audit Logs API needs to be installed at the org level on the Enterprise Grid organization, not an individual workspace within the organization.
+Follow the instructions in [the API documentation](/admins/audit-logs-api) to get a valid token for using the Audit Logs API. Your Slack app used for accessing the Audit Logs API needs to be installed at the org level on the Enterprise Grid organization, not an individual workspace within the organization.
 
 ---
 ## Call the Audit Logs API in Java
@@ -76,7 +76,7 @@ Refer to the [Javadoc](https://oss.sonatype.org/service/local/repositories/relea
 ---
 ## Rate limits
 
-The Audit Logs API methods conform to Slack's [rate limits](https://docs.slack.dev/apis/web-api/rate-limits) and all methods are rated Tier 3. This allows for up to 50 calls per minute, with an allowance for sporadic bursts. Refer to [the API documentation](https://docs.slack.dev/admins/audit-logs-api) for more details.
+The Audit Logs API methods conform to Slack's [rate limits](/apis/web-api/rate-limits) and all methods are rated Tier 3. This allows for up to 50 calls per minute, with an allowance for sporadic bursts. Refer to [the API documentation](/admins/audit-logs-api) for more details.
 
 The async client, `AsyncAuditClient`, takes rate limits into consideration. The async client internally has its queue systems to avoid burst traffics as much as possible while `AuditClient`, the synchronous client, always blindly sends requests. Both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack platform and estimate the remaining amount to call.
 

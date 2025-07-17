@@ -4,10 +4,10 @@ lang: ja
 
 # アプリの配布 (OAuth)
 
-新しく作られた Slack アプリは、はじめは開発用ワークスペース（Development Workspace）にだけインストールすることができます。OAuth Redirect URL を設定して [App Distribution](https://docs.slack.dev/distribution/) を有効にすると、そのアプリは他のどのワークスペースにもインストールできるようになります。
+新しく作られた Slack アプリは、はじめは開発用ワークスペース（Development Workspace）にだけインストールすることができます。OAuth Redirect URL を設定して [App Distribution](/distribution/) を有効にすると、そのアプリは他のどのワークスペースにもインストールできるようになります。
 
-* 「[Installing with OAuth（英語）](https://docs.slack.dev/authentication/installing-with-oauth)」
-* 「[Distributing Slack Apps（英語）](https://docs.slack.dev/distribution/)」
+* 「[Installing with OAuth（英語）](/authentication/installing-with-oauth)」
+* 「[Distributing Slack Apps（英語）](/distribution/)」
 
 ### Slack アプリの設定
 
@@ -15,7 +15,7 @@ lang: ja
 
 **Redirect URL** については Bolt for Java では `https://{あなたのドメイン}/slack/oauth/callback` のような URL で応答します。この URL を変更する方法などはこのページのあとのセクションの一覧を参照してください。
 
-Bolt for Java は、バージョン 1.4.0 から自動的に [OrG 全体へのインストール機能](https://docs.slack.dev/enterprise-grid/)に対応しています。OrG 全体へのインストールは、Slack アプリ管理画面の **Org Level Apps** にある設定から有効にしてください。
+Bolt for Java は、バージョン 1.4.0 から自動的に [OrG 全体へのインストール機能](/enterprise-grid/)に対応しています。OrG 全体へのインストールは、Slack アプリ管理画面の **Org Level Apps** にある設定から有効にしてください。
 
 ### Bolt アプリがやること
 
@@ -26,7 +26,7 @@ Bolt アプリが OAuth フローをハンドルするためにやらなけれ�
   * `client_id`, `scope`, `user_scope` (v2 のみ), `state` パラメーターを URL に付加する
 * Slack からリダイレクトされてきたユーザーリクエストを処理するエンドポイントを提供する
   * `state` パラメーターが正当かを検証する
-  * [oauth.v2.access](https://docs.slack.dev/reference/methods/oauth.v2.access) (レガシーアプリの場合は [oauth.access](https://docs.slack.dev/reference/methods/oauth.access)) API メソッドを呼び出してトークンを発行し、それを保存することでインストールを完了させる
+  * [oauth.v2.access](/reference/methods/oauth.v2.access) (レガシーアプリの場合は [oauth.access](/reference/methods/oauth.access)) API メソッドを呼び出してトークンを発行し、それを保存することでインストールを完了させる
 * インストールを実行したユーザーを誘導する完了・エラーページを用意する
   * これらの URL は通常別のどこかであることが多いが、Bolt アプリがそれをサーブすることも可能
 
@@ -146,23 +146,23 @@ SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
 server.start(); // http://localhost:3000
 ```
 
-もし[トークンローテーション](https://docs.slack.dev/authentication/using-token-rotation)を有効にしたいという場合は、あなたの `InstallationService` がトークンローテーション互換である必要があります。詳細は [v1.9.0 のリリースノート（英語）](https://github.com/slackapi/java-slack-sdk/releases/tag/v1.9.0)を参考にしてください。
+もし[トークンローテーション](/authentication/using-token-rotation)を有効にしたいという場合は、あなたの `InstallationService` がトークンローテーション互換である必要があります。詳細は [v1.9.0 のリリースノート（英語）](https://github.com/slackapi/java-slack-sdk/releases/tag/v1.9.0)を参考にしてください。
 
 ### Granular Permission Apps と Classic Apps
 
 Slack アプリインストールには、二つの OAuth フローがあります。V2（ちょっと紛らわしいですが OAuth のバージョンではなく Slack OAuth フローのバージョンです）の OAuth フローでの Slack アプリは（特にボットユーザーの権限に関して）旧来に比べてより詳細な必要最小限の権限だけをリクエストできるようになりました。二つのやり方の違いは `v2` を Authorization URL やトークンを発行する API メソッドの URL に含んでいることと、API レスポンスのデータ構造に若干の変更が加わっていることです。
 
-#### [V2 OAuth 2.0 フロー](https://docs.slack.dev/authentication/installing-with-oauth) (デフォルト)
+#### [V2 OAuth 2.0 フロー](/authentication/installing-with-oauth) (デフォルト)
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/v2/authorize`|
-|トークン発行の API メソッド|[`oauth.v2.access`](https://docs.slack.dev/reference/methods/oauth.v2.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
+|トークン発行の API メソッド|[`oauth.v2.access`](/reference/methods/oauth.v2.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
 
-#### [Classic OAuth フロー](https://docs.slack.dev/authentication/installing-with-oauth)
+#### [Classic OAuth フロー](/authentication/installing-with-oauth)
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/authorize`|
-|トークン発行の API メソッド|[`oauth.access`](https://docs.slack.dev/reference/methods/oauth.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
+|トークン発行の API メソッド|[`oauth.access`](/reference/methods/oauth.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
 
 デフォルトでは Classic OAuth ではなく V2 の OAuth フローが有効になっています。Classic OAuth に対応させるためには **AppConfig** の setter メソッドで `classicAppPermissionsEnabled` を true に設定します。
 
@@ -253,7 +253,7 @@ public class SlackApp {
 
 #### 組み込みの tokens_revoked / app_uninstalled イベントハンドラーを利用する
 
-あなたの顧客やエンドユーザーのデータを安全に管理するために [tokens_revoked](https://docs.slack.dev/reference/events/tokens_revoked) と [app_uninstalled](https://docs.slack.dev/reference/events/app_uninstalled) というイベントを適切にハンドリングすることは非常に重要です。Bolt for Java は、これらのイベントのための組み込みのハンドラーを提供しており、それは `InstallationService` が提供するデータ削除系メソッドとシームレスに連携します。
+あなたの顧客やエンドユーザーのデータを安全に管理するために [tokens_revoked](/reference/events/tokens_revoked) と [app_uninstalled](/reference/events/app_uninstalled) というイベントを適切にハンドリングすることは非常に重要です。Bolt for Java は、これらのイベントのための組み込みのハンドラーを提供しており、それは `InstallationService` が提供するデータ削除系メソッドとシームレスに連携します。
 
 ```java
 App app = new App();

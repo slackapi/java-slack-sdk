@@ -8,13 +8,13 @@ lang: en
 
 Steps from Apps is a deprecated feature.
 
-Steps from Apps are different than, and not interchangeable with, Slack automation workflows. We encourage those who are currently publishing steps from apps to consider the new [Slack automation features](https://docs.slack.dev/workflows/), such as [custom steps for Bolt](https://docs.slack.dev/workflows/workflow-steps).
+Steps from Apps are different than, and not interchangeable with, Slack automation workflows. We encourage those who are currently publishing steps from apps to consider the new [Slack automation features](/workflows/), such as [custom steps for Bolt](/workflows/workflow-steps).
 
-Please [read the Slack API changelog entry](https://docs.slack.dev/changelog/2023-08-workflow-steps-from-apps-step-back) for more information.
+Please [read the Slack API changelog entry](/changelog/2023-08-workflow-steps-from-apps-step-back) for more information.
 
 :::
 
-Steps from Apps allow your app to create and process steps that users can add using [Workflow Builder](https://docs.slack.dev/workflows/workflow-builder).
+Steps from Apps allow your app to create and process steps that users can add using [Workflow Builder](/workflows/workflow-builder).
 
 A step is made up of three distinct user events:
 
@@ -24,7 +24,7 @@ A step is made up of three distinct user events:
 
 All three events must be handled for a workflow step to function. 
 
-Read more about steps from apps in the [API documentation](https://docs.slack.dev/legacy/legacy-steps-from-apps/).
+Read more about steps from apps in the [API documentation](/legacy/legacy-steps-from-apps/).
 
 ### Slack app configuration
 
@@ -33,7 +33,7 @@ To enable Steps from Apps, visit the [Slack app settings page](http://api.slack.
 * Turn on the feature (**Turn on workflow steps**)
 * Click the **Add Step** button and set the name and Callback ID
 
-Also, your app requires the **Interactivity**. Go to [Interactive Components](/guides/interactive-components) and set the Request URL to receive events from Slack.
+Also, your app requires the **Interactivity**. Go to [Interactive Components](/java-slack-sdk/guides/interactive-components) and set the Request URL to receive events from Slack.
 
 ---
 ## Creating Steps from Apps
@@ -66,13 +66,13 @@ app.step(step);
 ---
 ## Adding or editing Steps from Apps
 
-When a builder adds (or later edits) your step in their workflow, your app will receive a [`workflow_step_edit`](https://docs.slack.dev/legacy/legacy-steps-from-apps/legacy-steps-from-apps-workflow_step_edit-payload) event. The `edit` callback in your `WorkflowStep` configuration will be run when this event is received.
+When a builder adds (or later edits) your step in their workflow, your app will receive a [`workflow_step_edit`](/legacy/legacy-steps-from-apps/legacy-steps-from-apps-workflow_step_edit-payload) event. The `edit` callback in your `WorkflowStep` configuration will be run when this event is received.
 
-Whether a builder is adding or editing a step, you need to send them a [Step from App settings modal](https://docs.slack.dev/legacy/legacy-steps-from-apps/legacy-steps-from-apps-configuration-view-object). This modal is where step-specific settings are chosen, and it has more restrictions than typical modals—most notably, it cannot include `title`, `submit`, or `close` properties. By default, the configuration modal's `callback_id` will be the same as the workflow step.
+Whether a builder is adding or editing a step, you need to send them a [Step from App settings modal](/legacy/legacy-steps-from-apps/legacy-steps-from-apps-configuration-view-object). This modal is where step-specific settings are chosen, and it has more restrictions than typical modals—most notably, it cannot include `title`, `submit`, or `close` properties. By default, the configuration modal's `callback_id` will be the same as the workflow step.
 
 Within the `edit` callback, the `configure()` utility can be used to easily open your step's configuration modal by passing in an object with your view's `blocks`. To disable saving the configuration before certain conditions are met, pass in `submit_disabled` with a value of `true`.
 
-To learn more about opening configuration modals, [read the documentation](https://docs.slack.dev/legacy/legacy-steps-from-apps/).
+To learn more about opening configuration modals, [read the documentation](/legacy/legacy-steps-from-apps/).
 
 ```java
 import static com.slack.api.model.block.Blocks.*;
@@ -121,7 +121,7 @@ Within the `save` callback, the `update()` method can be used to save the builde
 * `stepName` overrides the default step name
 * `stepImageUrl` overrides the default step image
 
-To learn more about how to structure these parameters, [read the documentation](https://docs.slack.dev/legacy/legacy-steps-from-apps/).
+To learn more about how to structure these parameters, [read the documentation](/legacy/legacy-steps-from-apps/).
 
 ```java
 import java.util.*;
@@ -158,7 +158,7 @@ app.step(step);
 ---
 ## Executing Steps from Apps
 
-When your workflow step is executed by an end user, your app will receive a [`workflow_step_execute`](https://docs.slack.dev/reference/events/workflow_step_execute) event. The `execute` callback in your `WorkflowStep` configuration will be run when this event is received.
+When your workflow step is executed by an end user, your app will receive a [`workflow_step_execute`](/reference/events/workflow_step_execute) event. The `execute` callback in your `WorkflowStep` configuration will be run when this event is received.
 
 Using the `inputs` from the `save` callback, this is where you can make third-party API calls, save information to a database, update the user's Home tab, or decide the outputs that will be available to subsequent steps from apps by mapping values to the `outputs` object.
 

@@ -4,9 +4,9 @@ lang: en
 
 # Interactive Components
 
-[Interactive components](https://docs.slack.dev/block-kit/#making-things-interactive) are a subset of [Block Kit](https://docs.slack.dev/block-kit/) elements that add interactivity to various [surfaces](https://docs.slack.dev/surfaces/). Interactions on blocks may happen in messages, [modals](/guides/modals), and [Home tabs](/guides/app-home).
+[Interactive components](/block-kit/#making-things-interactive) are a subset of [Block Kit](/block-kit/) elements that add interactivity to various [surfaces](/surfaces/). Interactions on blocks may happen in messages, [modals](/java-slack-sdk/guides/modals), and [Home tabs](/java-slack-sdk/guides/app-home).
 
-See [Composing messages](/guides/composing-messages) to learn how to build [Block Kit](https://docs.slack.dev/surfaces/) messages with this SDK.
+See [Composing messages](/java-slack-sdk/guides/composing-messages) to learn how to build [Block Kit](/surfaces/) messages with this SDK.
 
 ### Slack app configuration
 
@@ -20,7 +20,7 @@ To enable interactive components, visit the [Slack app settings page](http://api
 
 To handle Slack requests by user interactions:
 
-1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
+1. [Verify requests](/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `action_id` in a block is the one you'd like to handle
 1. Build a reply message or surface to interact with the user further
 1. Respond to the Slack API server with `200 OK` as an acknowledgment
@@ -32,7 +32,7 @@ Your app has to respond to the request within 3 seconds by `ack()` method. Other
 
 :::tip[Tip] 
 
-If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 :::
 
@@ -84,7 +84,7 @@ app.blockAction("button-action") { req, ctx ->
 }
 ```
 
-Here is another example. This is a [select menu using external data source](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select).
+Here is another example. This is a [select menu using external data source](/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select).
 
 ```javascript
 {
@@ -131,7 +131,7 @@ app.blockAction("topics-action", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option
@@ -173,7 +173,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
-  // https://docs.slack.dev/authentication/verifying-requests-from-slack
+  // /authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

@@ -4,7 +4,7 @@ lang: en
 
 # Slash Commands
 
-[Slash Commands](https://docs.slack.dev/interactivity/implementing-slash-commands) allow users to invoke your app from the message composer box.
+[Slash Commands](/interactivity/implementing-slash-commands) allow users to invoke your app from the message composer box.
 
 Responding to slash command invocations is a common use case. Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
@@ -23,7 +23,7 @@ To enable slash commands, visit the [Slack app settings page](http://api.slack.c
 
 To handle slash command requests:
 
-1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
+1. [Verify requests](/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `command` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
 1. Respond to the Slack API server with `200 OK` as an acknowledgment
@@ -35,7 +35,7 @@ If the response body is empty, the response will be recognized as just an acknow
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 ::::
 
@@ -69,7 +69,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks like this. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin looks like this. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.command("/echo") { req, ctx ->
@@ -87,7 +87,7 @@ app.command("/echo") { req, ctx ->
 }
 ```
 
-To learn how to build [Block Kit](https://docs.slack.dev/block-kit/) messages with this SDK, consult [Composing Messages](/guides/composing-messages).
+To learn how to build [Block Kit](/block-kit/) messages with this SDK, consult [Composing Messages](/java-slack-sdk/guides/composing-messages).
 
 ## Under the hood
 
@@ -102,7 +102,7 @@ import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
-  // https://docs.slack.dev/authentication/verifying-requests-from-slack
+  // /authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

@@ -8,7 +8,7 @@ lang: ja
 
 **slack-api-client** は、シンプル、簡単、柔軟に設定可能な Slack API クライアント実装を提供します。
 
-このページにあるサンプルを試す前に、Java プロジェクトを設定しておく必要があります。もしまだでしたら「[API クライアントのセットアップ](/guides/web-api-client-setup)」にある手順に従ってください。
+このページにあるサンプルを試す前に、Java プロジェクトを設定しておく必要があります。もしまだでしたら「[API クライアントのセットアップ](/java-slack-sdk/guides/web-api-client-setup)」にある手順に従ってください。
 
 ---
 ## Slack オブジェクトの初期化
@@ -27,22 +27,22 @@ Slack slack = Slack.getInstance();
 
 |メソッド|戻り値の型|説明|
 |-|-|-|
-|**Slack#methods(String)**|**com.slack.api.methods.MethodsClient**|[API メソッド](https://docs.slack.dev/reference/methods)クライアント|
-|**Slack#methodsAsync(String)**|**com.slack.api.methods.AsyncMethodsClient**|[Rate Limits](https://docs.slack.dev/apis/web-api/rate-limits) を十分に考慮した [API メソッド](https://docs.slack.dev/reference/methods)非同期クライアント|
-|**Slack#socketMode(String)**|**com.slack.api.socket_mode.SocketModeClient**|[ソケットモード](https://docs.slack.dev/apis/events-api/using-socket-mode) の WebSocket クライアント|
-|**Slack#rtm(String)**|**com.slack.api.rtm.RTMClient**|[Real Time Messaging (RTM) API](https://docs.slack.dev/legacy/legacy-rtm-api) の WebSocket クライアント|
-|**Slack#scim(String)**|**com.slack.api.scim.SCIMClient**|[SCIM API](https://docs.slack.dev/admins/scim-api) クライアント|
-|**Slack#audit(String)**|**com.slack.api.audit.AuditClient**|[Audit Logs API](https://docs.slack.dev/admins/audit-logs-api) クライアント|
-|**Slack#status()**|**com.slack.api.status.v2.StatusClient**|[Slack Status API](https://docs.slack.dev/reference/slack-status-api) クライアント|
+|**Slack#methods(String)**|**com.slack.api.methods.MethodsClient**|[API メソッド](/reference/methods)クライアント|
+|**Slack#methodsAsync(String)**|**com.slack.api.methods.AsyncMethodsClient**|[Rate Limits](/apis/web-api/rate-limits) を十分に考慮した [API メソッド](/reference/methods)非同期クライアント|
+|**Slack#socketMode(String)**|**com.slack.api.socket_mode.SocketModeClient**|[ソケットモード](/apis/events-api/using-socket-mode) の WebSocket クライアント|
+|**Slack#rtm(String)**|**com.slack.api.rtm.RTMClient**|[Real Time Messaging (RTM) API](/legacy/legacy-rtm-api) の WebSocket クライアント|
+|**Slack#scim(String)**|**com.slack.api.scim.SCIMClient**|[SCIM API](/admins/scim-api) クライアント|
+|**Slack#audit(String)**|**com.slack.api.audit.AuditClient**|[Audit Logs API](/admins/audit-logs-api) クライアント|
+|**Slack#status()**|**com.slack.api.status.v2.StatusClient**|[Slack Status API](/reference/slack-status-api) クライアント|
 
-[Incoming Webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) の解説をお探しですか？もちろん、サポートされています！[こちらのガイド](/guides/incoming-webhooks)を参考にしてください。
+[Incoming Webhooks](/messaging/sending-messages-using-incoming-webhooks) の解説をお探しですか？もちろん、サポートされています！[こちらのガイド](/java-slack-sdk/guides/incoming-webhooks)を参考にしてください。
 
 ---
 ## API メソッドを実行
 
-最も人気のある Slack の API メソッドは [**chat.postMessage**](https://docs.slack.dev/reference/methods/chat.postmessage) という API で、これはチャンネルなどにメッセージを投稿するために使用されます。
+最も人気のある Slack の API メソッドは [**chat.postMessage**](/reference/methods/chat.postmessage) という API で、これはチャンネルなどにメッセージを投稿するために使用されます。
 
-[**chat.postMessage**](https://docs.slack.dev/reference/methods/chat.postmessage) のような API メソッドを実行するには **MethodsClient** をトークンを与えて初期化する必要があります。トークンは `xoxb-` （ボットトークン）や `xoxp-` （ユーザートークン）で始まる文字列です。これらのトークンは Slack アプリがインストールされたそれぞれのワークスペース毎に払い出されるものです。とりあえず始めるにあたっては、[Slack アプリの管理画面](https://api.slack.com/apps) から開発用ワークスペース（Development Workspace）のトークンを簡単に発行することができます。
+[**chat.postMessage**](/reference/methods/chat.postmessage) のような API メソッドを実行するには **MethodsClient** をトークンを与えて初期化する必要があります。トークンは `xoxb-` （ボットトークン）や `xoxp-` （ユーザートークン）で始まる文字列です。これらのトークンは Slack アプリがインストールされたそれぞれのワークスペース毎に払い出されるものです。とりあえず始めるにあたっては、[Slack アプリの管理画面](https://api.slack.com/apps) から開発用ワークスペース（Development Workspace）のトークンを簡単に発行することができます。
 
 **注**: トークンをソースコードにハードコードすることは望ましくありません。意図しない流出を防ぐために、環境変数やそれに類するより安全な方法でトークンを保持することを強くおすすめします。
 
@@ -70,7 +70,7 @@ ChatPostMessageResponse response = methods.chatPostMessage(request);
 
 うまくいっていれば Slack ワークスペースの **#random** チャンネルで以下のようなメッセージが投稿されていることを確認できるはずです。
 
-![Web API Hello World Message](/img/java-slack-sdk/web-api-basics-hello-world.png)
+![Web API Hello World Message](/java-slack-sdk/img/java-slack-sdk/web-api-basics-hello-world.png)
 
 ここで実際に何が行われたかをよりクリアに理解するために、上の Java コードと等価な **curl** コマンドの例を見てみましょう。Slack の Web API のコンセプトはとても素直なものなので、与えられたパラメーターがどのように実際の HTTP リクエストで送られるかを容易に理解していただけるかと思います。
 
@@ -128,11 +128,11 @@ val response = slack.methods(token).chatPostMessage { it
 }
 ```
 
-さらに、リッチなメッセージを構築するためのより Kotlin ネイティブなやり方として [Block Kit Kotlin DSL](/guides/composing-messages#block-kit-kotlin-dsl) もチェックしてみてください。
+さらに、リッチなメッセージを構築するためのより Kotlin ネイティブなやり方として [Block Kit Kotlin DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) もチェックしてみてください。
 
 ### レスポンスの扱い
 
-Slack Web API のレスポンス形式にまだ馴染みがなければ「[Evaluating responses（英語）](https://docs.slack.dev/apis/web-api/#responses)」を読んでみてください。すべての Web API レスポンスは JSON オブジェクトを持ち、そのトップレベルに真偽型の `"ok"` というリクエストの成功・失敗を伝えるためのプロパティがあります。
+Slack Web API のレスポンス形式にまだ馴染みがなければ「[Evaluating responses（英語）](/apis/web-api/#responses)」を読んでみてください。すべての Web API レスポンスは JSON オブジェクトを持ち、そのトップレベルに真偽型の `"ok"` というリクエストの成功・失敗を伝えるためのプロパティがあります。
 
 ```json
 {
@@ -165,11 +165,11 @@ if (response.isOk()) {
 
 API メソッドを呼び出すとき、様々な理由からエラーが発生することがあります。
 
-1. 成功のレスポンスを受け取っても、そのレスポンスボディの `"ok"` プロパティが **false** で `"error"` プロパティが `channel_not_found` のような値で設定されていることがあります。このエラーコードの意味・理由は [API メソッドのドキュメント](https://docs.slack.dev/reference/methods)で確認できます。
+1. 成功のレスポンスを受け取っても、そのレスポンスボディの `"ok"` プロパティが **false** で `"error"` プロパティが `channel_not_found` のような値で設定されていることがあります。このエラーコードの意味・理由は [API メソッドのドキュメント](/reference/methods)で確認できます。
 2. ネットワーク・Slack API サーバーとの接続の問題で **java.io.IOException** が throw されることがあります。
 3. Slack API サーバーから 20x 以外の HTTP ステータスで応答された場合に **com.slack.api.methods.SlackApiException** が throw されることがあります。
 
-**1.** のパターンをどう処理するかを理解するには、[このドキュメント（英語）](https://docs.slack.dev/apis/web-api/#responses)を参考にしてください。
+**1.** のパターンをどう処理するかを理解するには、[このドキュメント（英語）](/apis/web-api/#responses)を参考にしてください。
 
 **2.** と **3.** のパターンでは **MethodsClient** は 2 種類の例外を throw する可能性があります。この API クライアントを利用するアプリケーション側で、これらの例外を catch して適切に処理する必要があります。
 
@@ -203,7 +203,7 @@ try {
 ---
 ## 他の API メソッド
 
-Slack Web API は [180 以上の API メソッド](https://docs.slack.dev/reference/methods)を提供しています。他の API メソッドを使うやり方もほぼ同じです。**MethodsClient** のメソッドを正しいトークンと必要なパラメータを指定して呼び出します。
+Slack Web API は [180 以上の API メソッド](/reference/methods)を提供しています。他の API メソッドを使うやり方もほぼ同じです。**MethodsClient** のメソッドを正しいトークンと必要なパラメータを指定して呼び出します。
 
 この SDK でサポートされている Java メソッドの一覧にアクセスするには [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/methods/MethodsClient.html) を参照するとよいでしょう。
 
@@ -239,7 +239,7 @@ AwesomeMethodResponse response = slack.methods().postFormWithTokenAndParseRespon
 ---
 ## Rate Limits
 
-Slack プラットフォームの機能・API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](https://docs.slack.dev/apis/web-api/rate-limits) に依拠しています。この制限は **"per app per workspace"**（Slack アプリ毎、かつ、それがインストールされたワークスペース毎）で適用されます。それぞれの API は、どれくらいの頻度で呼び出せるかを規定する "Tier" が設定されています。**slack-api-client** はこの Tier の完全なサポートを提供しており、**AsyncMethodsClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
+Slack プラットフォームの機能・API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](/apis/web-api/rate-limits) に依拠しています。この制限は **"per app per workspace"**（Slack アプリ毎、かつ、それがインストールされたワークスペース毎）で適用されます。それぞれの API は、どれくらいの頻度で呼び出せるかを規定する "Tier" が設定されています。**slack-api-client** はこの Tier の完全なサポートを提供しており、**AsyncMethodsClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
 
 非同期クライアントは、可能な限りバーストリクエストを発生させないために、内部にキューの仕組みを持っています。一方、**MethodsClient** （同期クライアント）はそのような考慮はなく、常に即時でリクエストを送信します。幸いにもこれらの同期・非同期クライアントは協調して **MetricsDatastore** 内のメトリクスを更新します。これにより、非同期クライアントは、今どれくらいのトラフックを Slack プラットフォームに送っているかを正確に把握し、残っている呼び出し量を推測することができます。
 
@@ -369,7 +369,7 @@ Slack slack = Slack.getInstance(config);
 
 ソケットモードを使った Slack アプリは、イベント API やインタラクティブコンポーネントを HTTP リクエスト URL を公開することなく、利用できるようになります。
 
-詳細は [Bolt のドキュメントの "Bolt がやっていること" というセクション](/guides/socket-mode)を参考にしてください。
+詳細は [Bolt のドキュメントの "Bolt がやっていること" というセクション](/java-slack-sdk/guides/socket-mode)を参考にしてください。
 
 ---
 ## Real Time Messaging (RTM)
@@ -378,28 +378,28 @@ Slack slack = Slack.getInstance(config);
 
 Real Time Messaging API は Slack からリアルタイムでイベントを受信したり、ユーザとしてメッセージを送信するための WebSocket ベースの API です。単に "RTM API" と呼ばれることもあります。
 
-詳細は「[Real Time Messaging (RTM)](/guides/rtm)」を参考にしてください。
+詳細は「[Real Time Messaging (RTM)](/java-slack-sdk/guides/rtm)」を参考にしてください。
 
 ---
 ## SCIM API
 
 SCIM API は、ユーザアカウントやグループのプロビジョニングのための API 群です。SCIM は、Slack を含む複数のサービス・ツールを横断してユーザアカウントの管理を行うために Single Sign-on (SSO) サービスや ID プロバイダーによって利用されます。
 
-詳細は「[SCIM API](/guides/scim-api)」を参考にしてください。
+詳細は「[SCIM API](/java-slack-sdk/guides/scim-api)」を参考にしてください。
 
 ---
 ## Audit Logs API
 
 Audit Logs API は Enterprise Grid の OrG 内で発生したイベントをモニタリングするための API 群です。
 
-詳細は「[Audit Logs API](/guides/audit-logs-api)」を参考にしてください。
+詳細は「[Audit Logs API](/java-slack-sdk/guides/audit-logs-api)」を参考にしてください。
 
 ---
 ## ステータス API
 
 ステータス API は、Slack サービスの稼働状態の情報を提供する API です。何らかの障害、サービス停止、メンテナンスが発生した場合、影響のある Slack の機能、時系列での詳細なアップデートなど、発生している問題に関する全ての情報が反映されます。
 
-詳細は「[ステータス API](/guides/status-api)」を参考にしてください。
+詳細は「[ステータス API](/java-slack-sdk/guides/status-api)」を参考にしてください。
 
 ---
 ## API クライアントのカスタマイズ

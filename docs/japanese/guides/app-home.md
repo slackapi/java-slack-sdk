@@ -4,7 +4,7 @@ lang: ja
 
 # Home タブ
 
-[App Home](https://docs.slack.dev/surfaces/app-home) は、Slack の中でもユーザーにとってプライベートな、アプリと 1 対 1 で共有しているスペースです。各アプリの App Home は複数のタブを持つことができ、アプリのボットユーザーとの会話の履歴である Messages タブ、アプリによってユーザーひとりひとりにそれぞれ個別にカスタマイズされている Home タブがあります。
+[App Home](/surfaces/app-home) は、Slack の中でもユーザーにとってプライベートな、アプリと 1 対 1 で共有しているスペースです。各アプリの App Home は複数のタブを持つことができ、アプリのボットユーザーとの会話の履歴である Messages タブ、アプリによってユーザーひとりひとりにそれぞれ個別にカスタマイズされている Home タブがあります。
 
 ### Slack アプリの設定
 
@@ -24,17 +24,17 @@ Home タブを有効にするには [Slack アプリ管理画面](http://api.sla
 
 Bolt アプリが Home タブの提供のためにやらなければならないことは以下の通りです。
 
-1. ユーザごとに Home タブを更新するために [**views.publish**](https://docs.slack.dev/reference/methods/views.publish) API メソッドを呼び出す
+1. ユーザごとに Home タブを更新するために [**views.publish**](/reference/methods/views.publish) API メソッドを呼び出す
 2. Home タブ上で発生したユーザーインタラクション (`"block_actions"`, `"block_suggestion"`) をハンドリング
 
-よくある手法としては [`"app_home_opened"`](https://docs.slack.dev/reference/events/app_home_opened) のイベントを使って [**views.publish**](https://docs.slack.dev/reference/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
+よくある手法としては [`"app_home_opened"`](/reference/events/app_home_opened) のイベントを使って [**views.publish**](/reference/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
 
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/java-slack-sdk/guides/getting-started-with-bolt)」を読んでください。
 
-以下のコードは、ユーザーが App Home にアクセスして [`"app_home_opened"` イベント](https://docs.slack.dev/reference/events/app_home_opened)が発火したときに [**views.publish**](https://docs.slack.dev/reference/methods/views.publish) API メソッドによって Home タブを更新しています。[**views.publish**](https://docs.slack.dev/reference/methods/views.publish) の呼び出しが成功すれば、即座に Home タブの変更が反映されます。
+以下のコードは、ユーザーが App Home にアクセスして [`"app_home_opened"` イベント](/reference/events/app_home_opened)が発火したときに [**views.publish**](/reference/methods/views.publish) API メソッドによって Home タブを更新しています。[**views.publish**](/reference/methods/views.publish) の呼び出しが成功すれば、即座に Home タブの変更が反映されます。
 
 ```java
 import com.slack.api.methods.response.views.ViewsPublishResponse;
@@ -46,7 +46,7 @@ import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.*;
 import static com.slack.api.model.view.Views.*;
 
-// https://docs.slack.dev/reference/events/app_home_opened
+// /reference/events/app_home_opened
 app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
   // Home タブの view を構成
   ZonedDateTime now = ZonedDateTime.now();
@@ -74,7 +74,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 // static imports
@@ -85,7 +85,7 @@ import com.slack.api.model.view.Views.*
 import com.slack.api.model.event.AppHomeOpenedEvent
 import java.time.ZonedDateTime
 
-// https://docs.slack.dev/reference/events/app_home_opened
+// /reference/events/app_home_opened
 app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
   // Home タブの view を構成
   val now = ZonedDateTime.now()
@@ -106,7 +106,7 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
 }
 ```
 
-また、 Kotlin で開発しているなら、上記の例を [Block Kit Kotlin DSL](/guides/composing-messages#block-kit-kotlin-dsl) を使って以下のように実装することもできます。
+また、 Kotlin で開発しているなら、上記の例を [Block Kit Kotlin DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) を使って以下のように実装することもできます。
 
 ```kotlin
 // これらの import が必要です
@@ -128,4 +128,4 @@ val appHomeView = view { it
 
 ### Bolt がやっていること
 
-「[イベント API](/guides/events-api)」の同項目を参照してください。
+「[イベント API](/java-slack-sdk/guides/events-api)」の同項目を参照してください。

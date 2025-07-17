@@ -4,7 +4,7 @@ lang: en
 
 # Status API
 
-The Slack [Status API](https://docs.slack.dev/reference/slack-status-api/) describes the health of the Slack product. When there's an incident, outage, or maintenance, the Slack Status API reflects all the information we have on the issue, including which features of Slack are affected and detailed updates over time.
+The Slack [Status API](/reference/slack-status-api/) describes the health of the Slack product. When there's an incident, outage, or maintenance, the Slack Status API reflects all the information we have on the issue, including which features of Slack are affected and detailed updates over time.
 
 ## Status API in Java
 

@@ -4,7 +4,7 @@ lang: en
 
 # Modals
 
-[Modals](https://docs.slack.dev/surfaces/modals) are a focused surface to collect data from users or display dynamic and interactive information. To users, modals appear as focused surfaces inside of Slack enabling brief, yet deep interactions with apps. Modals can be assembled using the visual and interactive components found in [Block Kit](https://docs.slack.dev/block-kit/).
+[Modals](/surfaces/modals) are a focused surface to collect data from users or display dynamic and interactive information. To users, modals appear as focused surfaces inside of Slack enabling brief, yet deep interactions with apps. Modals can be assembled using the visual and interactive components found in [Block Kit](/block-kit/).
 
 ## Slack app configuration
 
@@ -20,18 +20,18 @@ There are three patterns to handle on modals. As always, your app has to respond
 
 ### `block_actions` requests
 
-When someone uses an [interactive component](https://docs.slack.dev/block-kit/#making-things-interactive) in your app's modal views, the app will receive a `block_actions` [payload](https://docs.slack.dev/reference/interaction-payloads/block_actions-payload). To handle the `block_actions` request:
+When someone uses an [interactive component](/block-kit/#making-things-interactive) in your app's modal views, the app will receive a `block_actions` [payload](/reference/interaction-payloads/block_actions-payload). To handle the `block_actions` request:
 
-1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
+1. [Verify requests](/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body, and check if the `type` is `block_actions` and the `action_id` in a block is the one you'd like to handle
-1. [Modify/push a view via API](https://docs.slack.dev/surfaces/modals#interactions) and/or update the modal to hold the sent data as [`private_metadata`](https://docs.slack.dev/surfaces/modals#private_metadata)
+1. [Modify/push a view via API](/surfaces/modals#interactions) and/or update the modal to hold the sent data as [`private_metadata`](/surfaces/modals#private_metadata)
 1. Respond to the Slack API server with `200 OK` as an acknowledgment
 
 ### `view_submission` requests
 
-When a modal view is submitted, you'll receive a `view_submission` [payload](https://docs.slack.dev/reference/interaction-payloads/view-interactions-payload#view_submission). To handle the `view_submission` request:
+When a modal view is submitted, you'll receive a `view_submission` [payload](/reference/interaction-payloads/view-interactions-payload#view_submission). To handle the `view_submission` request:
 
-1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
+1. [Verify requests](/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body, and check if the `type` is `view_submission` and the `callback_id` is the one you'd like to handle
 1. Extract the form data from `view.state.values`
 1. Do whatever logic you'd like, such as input validations, storing the values in a database, talking to external services, etc.
@@ -41,9 +41,9 @@ When a modal view is submitted, you'll receive a `view_submission` [payload](htt
 
 ### `view_closed` requests (only when `notify_on_close` is `true`)
 
-Your app can optionally receive `view_closed` [payloads](https://docs.slack.dev/reference/interaction-payloads/view-interactions-payload#view_closed) whenever a user clicks on the cancel or x buttons. These buttons are standard, not blocks, in all app modals. To receive the `view_closed` payload when this happens, set `notify_on_close` to `true` when creating a view with [views.open](https://docs.slack.dev/reference/methods/views.open) and [views.push](https://docs.slack.dev/reference/methods/views.push) methods.
+Your app can optionally receive `view_closed` [payloads](/reference/interaction-payloads/view-interactions-payload#view_closed) whenever a user clicks on the cancel or x buttons. These buttons are standard, not blocks, in all app modals. To receive the `view_closed` payload when this happens, set `notify_on_close` to `true` when creating a view with [views.open](/reference/methods/views.open) and [views.push](/reference/methods/views.push) methods.
 To handle the `"view_closed"` request:
-1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
+1. [Verify requests](/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body, and check if the `type` is `view_closed` and the `callback_id` is the one you'd like to handle
 1. Handle whatever logic you'd like to do at the timing
 1. Respond with `200 OK` as the acknowledgment
@@ -57,7 +57,7 @@ In general, there are a few things to know when working with modals:
 * Use `callback_id` to identify a modal, a pair of `block_id` and `action_id` to identify each input in `view.state.values`
 * Use the `view.private_metadata` property to hold the internal state and/or `block_actions` results on the modal
 * Respond to `view_submission` requests with `response_action` to determine the next state of a modal
-* The [`views.update`](https://docs.slack.dev/reference/methods/views.update) and [`views.push`](https://docs.slack.dev/reference/methods/views.push) API methods should be used when receiving `block_actions` requests in modals, NOT for `view_submission` requests
+* The [`views.update`](/reference/methods/views.update) and [`views.push`](/reference/methods/views.push) API methods should be used when receiving `block_actions` requests in modals, NOT for `view_submission` requests
 
 ---
 
@@ -65,7 +65,7 @@ In general, there are a few things to know when working with modals:
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 :::
 
@@ -183,7 +183,7 @@ app.command("/meeting", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin is below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin is below. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.command("/meeting") { req, ctx ->
@@ -227,7 +227,7 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
-Alternatively, you can use the [Block Kit DSL](/guides/composing-messages#block-kit-kotlin-dsl) in conjunction with the Java Builder to construct your view. The Java example above would look like this in Kotlin:
+Alternatively, you can use the [Block Kit DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) in conjunction with the Java Builder to construct your view. The Java example above would look like this in Kotlin:
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.view.blocks
@@ -281,7 +281,7 @@ fun buildView(): View {
 
 ### `block_actions` requests
 
-`block_actions` handle [interactive components](/guides/interactive-components) essentially the same way; the only difference is that a payload coming from a modal has `view` and also its `private_metadata`.
+`block_actions` handle [interactive components](/java-slack-sdk/guides/interactive-components) essentially the same way; the only difference is that a payload coming from a modal has `view` and also its `private_metadata`.
 
 ```java
 import com.google.gson.Gson;
@@ -421,9 +421,9 @@ ctx.ack { it.responseAction("push").view(newViewInStack) }
 
 `view_submission` payloads don't have a `response_url` by default. However, if you have an `input` block asking users for a channel to post a message, payloads may provide `response_urls` (`List<ResponseUrl> responseUrls` in Java).
 
-To enable this, set the block element type as either [`channels_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element/#channel_multi_select) or [`conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element/#conversation_multi_select) and add `"response_url_enabled": true`. Refer to [the API documentation](https://docs.slack.dev/surfaces/modals#modal_response_url) for details.
+To enable this, set the block element type as either [`channels_select`](/reference/block-kit/block-elements/multi-select-menu-element/#channel_multi_select) or [`conversations_select`](/reference/block-kit/block-elements/multi-select-menu-element/#conversation_multi_select) and add `"response_url_enabled": true`. Refer to [the API documentation](/surfaces/modals#modal_response_url) for details.
 
-Also, if you want to automatically set the channel that a user is viewing when opening a modal to`initial_conversation(s)`, turn `default_to_current_conversation` on in the [`conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element/#conversation_multi_select) / [`multi_conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element) elements.
+Also, if you want to automatically set the channel that a user is viewing when opening a modal to`initial_conversation(s)`, turn `default_to_current_conversation` on in the [`conversations_select`](/reference/block-kit/block-elements/multi-select-menu-element/#conversation_multi_select) / [`multi_conversations_select`](/reference/block-kit/block-elements/multi-select-menu-element) elements.
 
 ```java
 import static com.slack.api.model.block.Blocks.*;
@@ -493,7 +493,7 @@ import com.slack.api.util.json.GsonFactory;
 
 PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 1. Verify requests from Slack
-  // https://docs.slack.dev/authentication/verifying-requests-from-slack
+  // /authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

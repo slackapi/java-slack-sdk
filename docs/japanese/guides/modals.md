@@ -4,11 +4,11 @@ lang: ja
 
 # モーダル
 
-[モーダル](https://docs.slack.dev/surfaces/modals)は、ユーザからデータを収集したり、動的でインタラクティブな表示を見せることに特化したインターフェースです。モーダルは Slack 内でユーザがアプリとの端的でありながらも深いインタラクションを行うことができるインターフェースです。モーダルは [Block Kit](https://docs.slack.dev/block-kit/) の視覚的でインタラクティブなコンポーネントを使って構成されます。
+[モーダル](/surfaces/modals)は、ユーザからデータを収集したり、動的でインタラクティブな表示を見せることに特化したインターフェースです。モーダルは Slack 内でユーザがアプリとの端的でありながらも深いインタラクションを行うことができるインターフェースです。モーダルは [Block Kit](/block-kit/) の視覚的でインタラクティブなコンポーネントを使って構成されます。
 
 ### Slack アプリの設定
 
-モーダルを使うための最初のステップは、[インタラクティブコンポーネント](/guides/interactive-components)を有効にすることです。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactivity & Shortcuts** へ遷移します。このページで以下の設定を行います。
+モーダルを使うための最初のステップは、[インタラクティブコンポーネント](/java-slack-sdk/guides/interactive-components)を有効にすることです。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactivity & Shortcuts** へ遷移します。このページで以下の設定を行います。
 
 * **Interactivity** を Off から On にする
 * `https://{あなたのドメイン}/slack/events` を **Request URL** に設定 (ソケットモードの場合、この手順は不要です)
@@ -20,18 +20,18 @@ lang: ja
 
 #### `"block_actions"` リクエスト
 
-ユーザーがモーダル内の[インタラクティブなコンポーネント](https://docs.slack.dev/block-kit/#making-things-interactive)を使用して何かアクションを起こしたとき、アプリは [`"block_actions"` という type のペイロード](https://docs.slack.dev/reference/interaction-payloads/block_actions-payload)を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
+ユーザーがモーダル内の[インタラクティブなコンポーネント](/block-kit/#making-things-interactive)を使用して何かアクションを起こしたとき、アプリは [`"block_actions"` という type のペイロード](/reference/interaction-payloads/block_actions-payload)を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `type` が `"block_actions"` かつ `action_id` が処理対象か確認
-1. [views.* API](https://docs.slack.dev/reference/methods/views.update) を使って[書き換えたり、上に新しく追加したり](https://docs.slack.dev/surfaces/modals)する and/or 必要に応じて送信された情報を [private_metadata](https://docs.slack.dev/surfaces/modals#private_metadata) に保持
+1. [views.* API](/reference/methods/views.update) を使って[書き換えたり、上に新しく追加したり](/surfaces/modals)する and/or 必要に応じて送信された情報を [private_metadata](/surfaces/modals#private_metadata) に保持
 1. 受け取ったことを伝えるために Slack API へ `200 OK` 応答
 
 #### `"view_submission"` リクエスト
 
-ユーザーがモーダル最下部の Submit ボタンを押してフォームの送信を行ったとき、[`"view_submission"` という type のペイロード](https://docs.slack.dev/reference/interaction-payloads/view-interactions-payload#view_submission)を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
+ユーザーがモーダル最下部の Submit ボタンを押してフォームの送信を行ったとき、[`"view_submission"` という type のペイロード](/reference/interaction-payloads/view-interactions-payload#view_submission)を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `type` が `"view_submission"` かつ `callback_id` が処理対象かを確認
 1. `view.state.values` からフォーム送信された情報を抽出
 1. 入力バリデーション、データベースへの保存、外部サービスとの連携など任意の処理
@@ -41,9 +41,9 @@ lang: ja
 
 #### `"view_closed"` リクエスト (`notify_on_close` が `true` のときのみ)
 
-ユーザーがモーダルの Cancel ボタンや x ボタンを押したとき、[`"view_closed"` という type のペイロード](https://docs.slack.dev/reference/interaction-payloads/view-interactions-payload#view_closed) を受信する場合があります。これらのボタンは blocks ではなく、標準で配置されているものです。このリクエストを受信するためには [views.open](https://docs.slack.dev/reference/methods/views.open) や [views.push](https://docs.slack.dev/reference/methods/views.push) の API メソッドでモーダルを生成したときに `notify_on_close` を `true` に設定しておく必要があります。このリクエストを処理するためにやらなければならないことは以下の通りです。
+ユーザーがモーダルの Cancel ボタンや x ボタンを押したとき、[`"view_closed"` という type のペイロード](/reference/interaction-payloads/view-interactions-payload#view_closed) を受信する場合があります。これらのボタンは blocks ではなく、標準で配置されているものです。このリクエストを受信するためには [views.open](/reference/methods/views.open) や [views.push](/reference/methods/views.push) の API メソッドでモーダルを生成したときに `notify_on_close` を `true` に設定しておく必要があります。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `type` が `"view_closed"` かつ `callback_id` が処理対象かを確認
 1. 任意のこのタイミングでやるべきこと
 1. 受け取ったことを伝えるために Slack API へ `200 OK` 応答
@@ -58,12 +58,12 @@ lang: ja
 * モーダルを特定するには `callback_id` を使用し、`view.states` 内で入力値を特定するには `block_id` と `action_id` のペアを使用します
 * モーダルの内部状態や `"block_actions"` での入力結果は `view.private_metadata` に保持することができます
 * `"view_submission"` のリクエストは、その応答 (= `ack()`) で `response_action` を指定することでモーダルの次の状態を指示します
-* [views.update](https://docs.slack.dev/reference/methods/views.update)、[views.push](https://docs.slack.dev/reference/methods/views.push) API メソッドはモーダル内での `"block_actions"` リクエストを受信したときに使用するものであり、`"view_submission"` 時にモーダルを操作するための API ではありません
+* [views.update](/reference/methods/views.update)、[views.push](/reference/methods/views.push) API メソッドはモーダル内での `"block_actions"` リクエストを受信したときに使用するものであり、`"view_submission"` 時にモーダルを操作するための API ではありません
 
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/java-slack-sdk/guides/getting-started-with-bolt)」を読んでください。
 
 まずはモーダルを新しく開くところから始めましょう。ここでは以下のようなモーダルを開いてみることにします。
 
@@ -180,7 +180,7 @@ app.command("/meeting", (req, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.command("/meeting") { req, ctx ->
@@ -224,7 +224,7 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
-また、[Block Kit DSL](/guides/composing-messages#block-kit-kotlin-dsl) を Java のビルダーと連携させて利用することもできます。上記の Java のコード例は Kotlin ではこのようになります。
+また、[Block Kit DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) を Java のビルダーと連携させて利用することもできます。上記の Java のコード例は Kotlin ではこのようになります。
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.view.blocks
@@ -278,7 +278,7 @@ fun buildView(): View {
 
 ### `"block_actions"` リクエスト
 
-基本的には「[インタラクティブコンポーネント](/guides/interactive-components)」で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
+基本的には「[インタラクティブコンポーネント](/java-slack-sdk/guides/interactive-components)」で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
 
 ```java
 import com.google.gson.Gson;
@@ -431,9 +431,9 @@ ctx.ackWithPush(newViewInStack)
 
 `view_submission` のペイロードはデフォルトでは `response_url` を含んでいません。しかし、モーダルがユーザーにメッセージを投稿するためのチャンネルを入力するよう求める `input` タイプのブロックを含む場合、ペイロード内の `response_urls` (Java では `List<ResponseUrl> responseUrls` となります) として URL を受け取ることができます。
 
-これを有効にするためには [`channels_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select) もしくは [`conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#conversation_multi_select) のタイプのブロックエレメントを配置し、さらにその属性として `"response_url_enabled": true` を追加してください。より詳細な情報は [API ドキュメント（英語）](https://docs.slack.dev/surfaces/modals#modal_response_url)を参照してください。
+これを有効にするためには [`channels_select`](/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select) もしくは [`conversations_select`](/reference/block-kit/block-elements/multi-select-menu-element#conversation_multi_select) のタイプのブロックエレメントを配置し、さらにその属性として `"response_url_enabled": true` を追加してください。より詳細な情報は [API ドキュメント（英語）](/surfaces/modals#modal_response_url)を参照してください。
 
-また、ユーザーがモーダルを開いたときに見ていたチャンネルや DM を `initial_conversation(s)` として自動的に反映したい場合は [`conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#conversation_multi_select) / [`multi_conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element) エレメントの `default_to_current_conversation` を有効にしてください。
+また、ユーザーがモーダルを開いたときに見ていたチャンネルや DM を `initial_conversation(s)` として自動的に反映したい場合は [`conversations_select`](/reference/block-kit/block-elements/multi-select-menu-element#conversation_multi_select) / [`multi_conversations_select`](/reference/block-kit/block-elements/multi-select-menu-element) エレメントの `default_to_current_conversation` を有効にしてください。
 
 ```java
 import static com.slack.api.model.block.Blocks.*;
@@ -502,7 +502,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Slack API からのリクエストを検証
-  // https://docs.slack.dev/authentication/verifying-requests-from-slack
+  // /authentication/verifying-requests-from-slack
   // "X-Slack-Signature" header, "X-Slack-Request-Timestamp" ヘッダーとリクエストボディを検証
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

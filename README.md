@@ -6,14 +6,14 @@
 
 Within the SDK, there are two different modules:
 
-* [**Bolt for Java**](https://tools.slack.dev/java-slack-sdk/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write modern Slack apps in Java.
-* [**Slack API Client**](https://tools.slack.dev/java-slack-sdk/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java.
+* [**Bolt for Java**](/java-slack-sdk/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write modern Slack apps in Java.
+* [**Slack API Client**](/java-slack-sdk/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java.
 
 If what you want to do is call Slack APIs in your existing services, we recommend using only the **Slack API Client**. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
 
 ## Bolt for Java
 
-**Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features. Refer to [Getting Started with Bolt](https://tools.slack.dev/java-slack-sdk/guides/getting-started-with-bolt) for detailed instructions.
+**Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features. Refer to [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) for detailed instructions.
 
 ```java
 package hello;
@@ -36,7 +36,7 @@ public class MyApp {
 }
 ```
 
-For Socket Mode enabled apps, [Getting Started with Bolt (Socket Mode)](https://tools.slack.dev/java-slack-sdk/guides/getting-started-with-bolt-socket-mode) is available.
+For Socket Mode enabled apps, [Getting Started with Bolt (Socket Mode)](/java-slack-sdk/guides/getting-started-with-bolt-socket-mode) is available.
 
 ```java
 package hello;
@@ -61,7 +61,7 @@ public class MyApp {
 
 ## Slack API Client
 
-**slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs. Refer to [API Client Basics](https://tools.slack.dev/java-slack-sdk/guides/web-api-basics) for details.
+**slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs. Refer to [API Client Basics](/java-slack-sdk/guides/web-api-basics) for details.
 
 ```java
 import com.slack.api.Slack;
@@ -86,7 +86,7 @@ All released versions are available on the Maven Central repositories. The lates
 | groupId:artifactId                                                                                                                       | Description                                                                                                                                                          |
 |------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**com.slack.api:bolt**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt)                                               | Bolt is a framework that offers an abstraction layer to build Slack apps safely and quickly. The most commonly used Servlet environment is supported out-of-the-box. |
-| [**com.slack.api:bolt-socket-mode**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-socket-mode)                       | This module offers a handy way to run Bolt apps through [Socket Mode](https://docs.slack.dev/apis/events-api/using-socket-mode) connections.                                                           |
+| [**com.slack.api:bolt-socket-mode**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-socket-mode)                       | This module offers a handy way to run Bolt apps through [Socket Mode](/apis/events-api/using-socket-mode) connections.                                                           |
 | [**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty)                                   | This module offers a handy way to run Bolt apps on the [Java EE compatible Jetty HTTP server (9.x)](https://www.eclipse.org/jetty/).                                 |
 | [**com.slack.api:bolt-jakarta-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jakarta-jetty)                   | This module offers a handy way to run Bolt apps on the [Jakarta EE compatible Jetty HTTP server](https://www.eclipse.org/jetty/).                                    |
 | [**com.slack.api:bolt-aws-lambda**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-aws-lambda)                         | This module offers a handy way to run Bolt apps on AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/).                |
@@ -100,7 +100,7 @@ All released versions are available on the Maven Central repositories. The lates
 
 |groupId:artifactId|Description|
 |---|---|
-|[**com.slack.api:slack-api-model**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model)|This is a collection of the classes representing the [Slack core objects](https://docs.slack.dev/reference/objects) such as conversations, messages, users, blocks, and surfaces. As this is an essential part of the SDK, all other modules depend on this.|
+|[**com.slack.api:slack-api-model**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model)|This is a collection of the classes representing the [Slack core objects](/reference/objects) such as conversations, messages, users, blocks, and surfaces. As this is an essential part of the SDK, all other modules depend on this.|
 |[**com.slack.api:slack-api-model-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension)|This contains the Block Kit Kotlin DSL builder, which allows you to define block kit structures via a Kotlin-native DSL.|
 |[**com.slack.api:slack-api-client**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client)|This is a collection of the Slack API clients. The supported are Basic API Methods, Socket Mode, RTM (Real Time Messaging) API, SCIM API, Audit Logs API, and Status API.|
 |[**com.slack.api:slack-api-client-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension)|This contains extension methods for various slack client message builders so you can seamlessly use the Block Kit Kotlin DSL directly on the Java message builders.|

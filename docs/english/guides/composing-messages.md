@@ -4,9 +4,9 @@ lang: en
 
 # Composing Messages
 
-This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with the [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage) API method yet, read [the Web API basics page](/guides/web-api-basics) before trying the samples here.
+This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with the [`chat.postMessage`](/reference/methods/chat.postmessage) API method yet, read [the Web API basics page](/java-slack-sdk/guides/web-api-basics) before trying the samples here.
 
-Before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](https://docs.slack.dev/messaging/) for more information.
+Before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](/messaging/) for more information.
 
 ---
 ## Text formatting
@@ -29,12 +29,12 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 );
 ```
 
-Use `text` by providing a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://docs.slack.dev/messaging/formatting-message-text) for understanding the markup language.
+Use `text` by providing a string value with a valid format. Consult [Basic formatting with `mrkdwn`](/messaging/formatting-message-text) for understanding the markup language.
 
 ---
 ## Building blocks for rich message layouts
 
-[Block Kit](https://docs.slack.dev/block-kit/) is a UI framework for Slack apps that offers a balance of control and flexibility when building experiences in messages and other [surfaces](https://docs.slack.dev/surfaces/).
+[Block Kit](/block-kit/) is a UI framework for Slack apps that offers a balance of control and flexibility when building experiences in messages and other [surfaces](/surfaces/).
 
 It may not be easy to compose a large JSON data structure in Java code, so we offer setter methods like `blocksAsString(String)` that accept a `blocks` argument as a single string value. This method is intended to be used with loaded external file data or outcomes by template engines.
 

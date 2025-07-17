@@ -4,11 +4,11 @@ lang: ja
 
 # SCIM API
 
-[SCIM API](https://docs.slack.dev/admins/scim-api) は、ユーザアカウントやグループのプロビジョニングのための API 群です。SCIM は、Slack を含む複数のサービス・ツールを横断してユーザアカウントの管理を行うために Single Sign-on (SSO) サービスや ID プロバイダーによって利用されます。
+[SCIM API](/admins/scim-api) は、ユーザアカウントやグループのプロビジョニングのための API 群です。SCIM は、Slack を含む複数のサービス・ツールを横断してユーザアカウントの管理を行うために Single Sign-on (SSO) サービスや ID プロバイダーによって利用されます。
 
 [SCIM (System for Cross-domain Identity Management)](http://www.simplecloud.info/) は、数多くのサービスでサポートされている仕様です。それに準拠するこの API は他の Slack API とは若干異なるふるまいをします。
 
-詳細は「[SCIM API（英語）](https://docs.slack.dev/admins/scim-api)」を確認してください。
+詳細は「[SCIM API（英語）](/admins/scim-api)」を確認してください。
 
 ---
 ## SCIM API を Java で使う
@@ -58,7 +58,7 @@ newUser.getName().setFamilyName("Sera");
 UsersCreateResponse creation = slack.scim(token).createUser(req -> req.user(newUser));
 
 // ユーザー検索でフィルター条件を持つクエリを実行
-// https://docs.slack.dev/admins/scim-api
+// /admins/scim-api
 UsersSearchResponse searchResp = slack.scim(token).searchUsers(req -> req
   .count(1)
   .filter("userName eq \"" + userName + "\"")
@@ -122,7 +122,7 @@ try {
 ---
 ## Rate Limits
 
-Slack の SCIM API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](https://docs.slack.dev/apis/web-api/rate-limits) に依拠しています。この制限は他の Slack API の制限とは異なり、アプリ単位ではなく、一つの OrG に設定されている全ての SCIM API 利用アプリ全体に対して適用されることにご注意ください。詳細は [API ドキュメント](https://docs.slack.dev/admins/scim-api#limitations)を参考にしてください。
+Slack の SCIM API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](/apis/web-api/rate-limits) に依拠しています。この制限は他の Slack API の制限とは異なり、アプリ単位ではなく、一つの OrG に設定されている全ての SCIM API 利用アプリ全体に対して適用されることにご注意ください。詳細は [API ドキュメント](/admins/scim-api#limitations)を参考にしてください。
 
 **AsyncSCIMClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
 

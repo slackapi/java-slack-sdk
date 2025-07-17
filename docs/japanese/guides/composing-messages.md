@@ -4,9 +4,9 @@ lang: ja
 
 # メッセージの組み立て方
 
-このセクションでは **slack-api-client** を使って Slack メッセージを組み立てる方法を解説します。もし、まだ [**chat.postMessage**](https://docs.slack.dev/reference/methods/chat.postmessage) API を使ったことがなければ、このページのサンプルを試す前にまず[こちらのページ](/guides/web-api-basics)を読んでください。
+このセクションでは **slack-api-client** を使って Slack メッセージを組み立てる方法を解説します。もし、まだ [**chat.postMessage**](/reference/methods/chat.postmessage) API を使ったことがなければ、このページのサンプルを試す前にまず[こちらのページ](/java-slack-sdk/guides/web-api-basics)を読んでください。
 
-また、Java でのコーディングに入る前に「[An overview of message composition（英語）](https://docs.slack.dev/messaging/)」を一読して、Slack メッセージの組み立て方について理解を深めることをおすすめします。
+また、Java でのコーディングに入る前に「[An overview of message composition（英語）](/messaging/)」を一読して、Slack メッセージの組み立て方について理解を深めることをおすすめします。
 
 ---
 ## テキストの整形
@@ -29,12 +29,12 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 );
 ```
 
-見ての通り、`text` を使うのはとてもシンプルです。知らなければならないことは、正しい形式の文字列を指定する方法だけです。Slack でのマークアップ方式については「[Basic formatting with `mrkdwn`（英語）](https://docs.slack.dev/messaging/formatting-message-text)」を参照してください。
+見ての通り、`text` を使うのはとてもシンプルです。知らなければならないことは、正しい形式の文字列を指定する方法だけです。Slack でのマークアップ方式については「[Basic formatting with `mrkdwn`（英語）](/messaging/formatting-message-text)」を参照してください。
 
 ---
 ## Block を使ったリッチなレイアウト
 
-[Block Kit](https://docs.slack.dev/block-kit/) は、メッセージやその他の[サーフェスエリア](https://docs.slack.dev/surfaces/)で利用することができる Slack アプリのための UI フレームワークです。Block Kit は優れたバランスで UI の制御と柔軟性を提供します。
+[Block Kit](/block-kit/) は、メッセージやその他の[サーフェスエリア](/surfaces/)で利用することができる Slack アプリのための UI フレームワークです。Block Kit は優れたバランスで UI の制御と柔軟性を提供します。
 
 特に大きな JSON データ構造になると、それを Java コード内で構築することがやりやすくない場合もあります。そのため、このライブラリでは `blocks` 全体を一つの文字列として渡すことができる `blocksAsString(String)` のようなメソッドも提供しています。このようなメソッドは外部ファイルからの読み込みやテンプレートエンジンとの併用を想定しています。
 

@@ -4,9 +4,9 @@ lang: ja
 
 # インタラクティブコンポーネント
 
-[インタラクティブコンポーネント](https://docs.slack.dev/block-kit/#making-things-interactive)は、様々な[サーフェスエリア](https://docs.slack.dev/surfaces/)にインタラクティビティをもたらす [Block Kit](https://docs.slack.dev/block-kit/) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル](/guides/modals) や [Home タブ](/guides/app-home) でも発生します。
+[インタラクティブコンポーネント](/block-kit/#making-things-interactive)は、様々な[サーフェスエリア](/surfaces/)にインタラクティビティをもたらす [Block Kit](/block-kit/) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル](/java-slack-sdk/guides/modals) や [Home タブ](/java-slack-sdk/guides/app-home) でも発生します。
 
-この SDK で [Block Kit](https://docs.slack.dev/block-kit/) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/composing-messages)」を参考にしてください。
+この SDK で [Block Kit](/block-kit/) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/java-slack-sdk/guides/composing-messages)」を参考にしてください。
 
 ### Slack アプリの設定
 
@@ -20,7 +20,7 @@ lang: ja
 
 Bolt アプリがユーザーインタラクションへの応答のためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `action_id` が処理対象か確認
 1. ユーザとの次のインタラクションのためのメッセージやその他のインターフェースを構築
 1. 受け取ったことを伝えるために Slack API へ `200 OK` 応答
@@ -30,7 +30,7 @@ Bolt アプリは Slack API サーバーからのリクエストに対して 3 �
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/java-slack-sdk/guides/getting-started-with-bolt)」を読んでください。
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
@@ -68,7 +68,7 @@ app.blockAction("button-action", (req, ctx) -> {
 });
 ```
 
-Kotlin でのサンプルコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin でのサンプルコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.blockAction("button-action") { req, ctx ->
@@ -80,7 +80,7 @@ app.blockAction("button-action") { req, ctx ->
 }
 ```
 
-次は[外部データソース（external data source）を使ったセレクトメニュー](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select)の例です。
+次は[外部データソース（external data source）を使ったセレクトメニュー](/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select)の例です。
 
 ```javascript
 {
@@ -127,7 +127,7 @@ app.blockAction("topics-action", (req, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option
@@ -169,7 +169,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Slack からのリクエストを検証
-  // https://docs.slack.dev/authentication/verifying-requests-from-slack
+  // /authentication/verifying-requests-from-slack
   // "X-Slack-Signature" header, "X-Slack-Request-Timestamp" ヘッダーとリクエストボディを検証
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

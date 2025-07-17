@@ -4,7 +4,7 @@ lang: en
 
 # Events
 
-The [Events API](https://docs.slack.dev/apis/events-api/) is a streamlined way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
+The [Events API](/apis/events-api/) is a streamlined way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
 
 ### Slack app configuration
 
@@ -22,7 +22,7 @@ To enable the Events API, visit the [Slack app settings page](http://api.slack.c
 
 To handle Events API requests, do the following:
 
-1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
+1. [Verify requests](/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `type` in `event` is the one you'd like to handle
 1. Code the desired logic you want to do with the event data
 1. Respond to the Slack API server with `200 OK` as an acknowledgment
@@ -34,17 +34,17 @@ Your app has to respond to the request within 3 seconds by `ack()` method. Other
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 :::
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle are:
 
-* Specify [the Java class](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/sdkLatestVersion/slack-api-model-sdkLatestVersion-javadoc.jar/!/com/slack/api/model/event/Event.html) corresponding to `event.type` (and also `event.subtype` [when necessary](https://docs.slack.dev/reference/events/message)) to handle
+* Specify [the Java class](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/sdkLatestVersion/slack-api-model-sdkLatestVersion-javadoc.jar/!/com/slack/api/model/event/Event.html) corresponding to `event.type` (and also `event.subtype` [when necessary](/reference/events/message)) to handle
 * Code the desired logic you want to do with the event data
 * Call `ack()` as an acknowledgment
 
-In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user in the conversation where the event happened, call the [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage) method with `channel` in the event payload.
+In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user in the conversation where the event happened, call the [`chat.postMessage`](/reference/methods/chat.postmessage) method with `channel` in the event payload.
 
 ```java
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -65,7 +65,7 @@ app.event(ReactionAddedEvent.class, (payload, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.event(ReactionAddedEvent::class.java) { payload, ctx ->
@@ -154,7 +154,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
-  // https://docs.slack.dev/authentication/verifying-requests-from-slack
+  // /authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

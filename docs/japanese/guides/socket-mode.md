@@ -4,14 +4,14 @@ lang: ja
 
 # ソケットモード
 
-[ソケットモード](https://docs.slack.dev/apis/events-api/using-socket-mode)では、Slack からのペイロードを受け付ける Web エンドポイントを提供するサーバーを構築する代わりに Slack と WebSocket のコネクション経由でやりとりすることができるようになります。この SDK では、バージョン 1.5 から提供されている **bolt-socket-mode** という Bolt の拡張を利用することで、ソケットモードを有効にしたアプリを開発することができます。
+[ソケットモード](/apis/events-api/using-socket-mode)では、Slack からのペイロードを受け付ける Web エンドポイントを提供するサーバーを構築する代わりに Slack と WebSocket のコネクション経由でやりとりすることができるようになります。この SDK では、バージョン 1.5 から提供されている **bolt-socket-mode** という Bolt の拡張を利用することで、ソケットモードを有効にしたアプリを開発することができます。
 
 ### Slack アプリの設定
 
 ソケットモードを有効にするには、[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Settings** へ遷移します。この画面でいくつかやることがあります。
 
 * **Settings** > **Basic Information** へ遷移
-  * **App-Level Token** に [`connections:write`](https://docs.slack.dev/reference/scopes/connections.write) スコープが付与されたものを一つ追加
+  * **App-Level Token** に [`connections:write`](/reference/scopes/connections.write) スコープが付与されたものを一つ追加
   * この `xapp-` から始まるトークンの値を取得してアプリで利用
 * **Settings** > **Socket Mode** へ遷移
   * **Enable Socket Mode** を Off から On にする
