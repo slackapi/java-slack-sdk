@@ -6,7 +6,7 @@ lang: en
 
 **Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features.
 
-If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs]().
+If you're not yet familiar with Slack app development in general, we recommend starting with the [API docs](/).
 
 ---
 ## Start with the App class

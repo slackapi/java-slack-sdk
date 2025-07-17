@@ -9,7 +9,7 @@ title: Getting Started
 
 This guide explains how to start your first Bolt app.
 
-If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs]().
+If you're not yet familiar with Slack app development in general, we recommend reading the [API docs](/).
 
 ---
 ## Setting up your project {#project-setup}
