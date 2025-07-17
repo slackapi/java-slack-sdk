@@ -1,5 +1,5 @@
 ---
-title: AI Apps
+title: AI in apps
 lang: en
 ---
 
@@ -9,9 +9,9 @@ If you don't have a paid workspace for development, you can join the [Developer 
 
 :::
 
-AI apps comprise a new messaging experience for Slack. If you're unfamiliar with using AI apps within Slack, you'll want to read the [API documentation on the subject](https://docs.slack.dev/ai/). Then come back here to implement them with Bolt!
+The Agents & AI Apps feature comprises a unique messaging experience for Slack. If you're unfamiliar with using the Agents & AI Apps feature within Slack, you'll want to read the [API documentation on the subject](https://docs.slack.dev/ai/). Then come back here to implement them with Bolt!
 
-## Configuring your app to support AI apps features {#configuring-your-app}
+## Configuring your app to support platform AI features {#configuring-your-app}
 
 1. Within [app settings](https://api.slack.com/apps), enable the **Agents & AI Apps** feature.
 
@@ -27,7 +27,7 @@ AI apps comprise a new messaging experience for Slack. If you're unfamiliar with
 
 ## The `Assistant` class instance {#assistant-class}
 
-The [`Assistant`](/reference#the-assistantconfig-configuration-object) class can be used to handle the incoming events expected from a user interacting with an AI app in Slack. A typical flow would look like:
+The [`Assistant`](/reference#the-assistantconfig-configuration-object) class can be used to handle the incoming events expected from a user interacting with an app in Slack that has the Agents & AI Apps feature enabled. A typical flow would look like:
 
 1. [The user starts a thread](#handling-a-new-thread). The `Assistant` class handles the incoming [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started) event.
 2. [The thread context may change at any point](#handling-thread-context-changes). The `Assistant` class can handle any incoming [`assistant_thread_context_changed`](https://docs.slack.dev/reference/events/assistant_thread_context_changed) events. The class also provides a default `context` store to keep track of thread context changes as the user moves through Slack.
@@ -76,18 +76,18 @@ While the `assistant_thread_started` and `assistant_thread_context_changed` even
 If you do provide your own `threadContextService` property, it must feature `get` and `save` methods.
 
 :::tip[Tip]
-Be sure to give the [AI apps reference docs](/reference#agents--assistants) a look!
+Be sure to give the [reference docs](/reference#agents--assistants) a look!
 :::
 
 ## Handling a new thread {#handling-a-new-thread}
 
-When the user opens a new thread with your AI app, the [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started) event will be sent to your app.
+When the user opens a new thread with your AI feature-enabled app, the [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started) event will be sent to your app.
 
 :::tip[Tip]
 When a user opens a thread with your app while in a channel, the channel info is stored as the thread's `AssistantThreadContext` data. You can grab that info by using the `context.getThreadContext()` utility, as subsequent user message event payloads won't include the channel info.
 :::
 
-### Block Kit interactions in the AI app thread {#block-kit-interactions}
+### Block Kit interactions in the app thread {#block-kit-interactions}
 
 For advanced use cases, Block Kit buttons may be used instead of suggested prompts, as well as the sending of messages with structured [metadata](https://docs.slack.dev/messaging/message-metadata/) to trigger subsequent interactions with the user.
 
@@ -181,7 +181,7 @@ If you use the built-in `Assistant` middleware without any custom configuration,
 
 As long as you use the built-in approach, you don't need to store the context data within a datastore. The downside of this default behavior is the overhead of additional calls to the Slack API. These calls include those to `conversations.history`, which are used to look up the stored message metadata that contains the thread context (via `context.getThreadContextService().findCurrentContext(channelId, threadTs)`).
 
-If you prefer storing this data elsewhere, you can pass your own custom `AssistantThreadContextService` implementation to the `Assistant` constructor. We provide `DefaultAssistantThreadContextService`, which is a reference implementation that uses the AI app thread message metadata. You can use this for production apps, but if you want to use a different datastore for it, you can implement your own class that inherits `AssistantThreadContextService` interface.
+If you prefer storing this data elsewhere, you can pass your own custom `AssistantThreadContextService` implementation to the `Assistant` constructor. We provide `DefaultAssistantThreadContextService`, which is a reference implementation that uses the app thread message metadata. You can use this for production apps, but if you want to use a different datastore for it, you can implement your own class that inherits `AssistantThreadContextService` interface.
 
 ```java
 Assistant assistant = new Assistant(new YourOwnAssistantThreadContextService());
