@@ -167,7 +167,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-For [chat.postMessage](/reference/methods/chat.postmessage) API calls with the given channel ID, using the `say()` utility is simpler. However, if your slash command needs to be available anywhere, using `ctx.respond` would be more robust, as the `say()` method does not work for conversations where the app's bot user is not a member (e.g., a person's own DM).
+For [chat.postMessage](/reference/methods/chat.postMessage) API calls with the given channel ID, using the `say()` utility is simpler. However, if your slash command needs to be available anywhere, using `ctx.respond` would be more robust, as the `say()` method does not work for conversations where the app's bot user is not a member (e.g., a person's own DM).
 
 ```java
 app.command("/hello", (req, ctx) -> {

@@ -44,7 +44,7 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 * Code the desired logic you want to do with the event data
 * Call `ack()` as an acknowledgment
 
-In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user in the conversation where the event happened, call the [`chat.postMessage`](/reference/methods/chat.postmessage) method with `channel` in the event payload.
+In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user in the conversation where the event happened, call the [`chat.postMessage`](/reference/methods/chat.postMessage) method with `channel` in the event payload.
 
 ```java
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;

@@ -42,9 +42,9 @@ Are you looking for the [Incoming Webhooks](/messaging/sending-messages-using-in
 ---
 ## Call a method
 
-The most popular Slack Web API method is the [`chat.postMessage`](/reference/methods/chat.postmessage) method, and it's used to send a message to a conversation.
+The most popular Slack Web API method is the [`chat.postMessage`](/reference/methods/chat.postMessage) method, and it's used to send a message to a conversation.
 
-To call a Web API method such as [`chat.postMessage`](/reference/methods/chat.postmessage), a `MethodsClient` instance needs to be initialized with a token. A token begins with `xoxb-` (bot token) or `xoxp-` (user token). You get them from each workspace that an app has been installed on. [The Slack app settings pages](https://api.slack.com/apps) help you get your first token for your development workspace.
+To call a Web API method such as [`chat.postMessage`](/reference/methods/chat.postMessage), a `MethodsClient` instance needs to be initialized with a token. A token begins with `xoxb-` (bot token) or `xoxp-` (user token). You get them from each workspace that an app has been installed on. [The Slack app settings pages](https://api.slack.com/apps) help you get your first token for your development workspace.
 
 :::warning[Do not hard code token values]
 

@@ -4,7 +4,7 @@ lang: en
 
 # Composing Messages
 
-This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with the [`chat.postMessage`](/reference/methods/chat.postmessage) API method yet, read [the Web API basics page](/java-slack-sdk/guides/web-api-basics) before trying the samples here.
+This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with the [`chat.postMessage`](/reference/methods/chat.postMessage) API method yet, read [the Web API basics page](/java-slack-sdk/guides/web-api-basics) before trying the samples here.
 
 Before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](/messaging/) for more information.
 

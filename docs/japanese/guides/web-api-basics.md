@@ -40,9 +40,9 @@ Slack slack = Slack.getInstance();
 ---
 ## API メソッドを実行
 
-最も人気のある Slack の API メソッドは [**chat.postMessage**](/reference/methods/chat.postmessage) という API で、これはチャンネルなどにメッセージを投稿するために使用されます。
+最も人気のある Slack の API メソッドは [**chat.postMessage**](/reference/methods/chat.postMessage) という API で、これはチャンネルなどにメッセージを投稿するために使用されます。
 
-[**chat.postMessage**](/reference/methods/chat.postmessage) のような API メソッドを実行するには **MethodsClient** をトークンを与えて初期化する必要があります。トークンは `xoxb-` （ボットトークン）や `xoxp-` （ユーザートークン）で始まる文字列です。これらのトークンは Slack アプリがインストールされたそれぞれのワークスペース毎に払い出されるものです。とりあえず始めるにあたっては、[Slack アプリの管理画面](https://api.slack.com/apps) から開発用ワークスペース（Development Workspace）のトークンを簡単に発行することができます。
+[**chat.postMessage**](/reference/methods/chat.postMessage) のような API メソッドを実行するには **MethodsClient** をトークンを与えて初期化する必要があります。トークンは `xoxb-` （ボットトークン）や `xoxp-` （ユーザートークン）で始まる文字列です。これらのトークンは Slack アプリがインストールされたそれぞれのワークスペース毎に払い出されるものです。とりあえず始めるにあたっては、[Slack アプリの管理画面](https://api.slack.com/apps) から開発用ワークスペース（Development Workspace）のトークンを簡単に発行することができます。
 
 **注**: トークンをソースコードにハードコードすることは望ましくありません。意図しない流出を防ぐために、環境変数やそれに類するより安全な方法でトークンを保持することを強くおすすめします。
 

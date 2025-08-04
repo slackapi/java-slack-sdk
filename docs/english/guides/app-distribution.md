@@ -4,10 +4,10 @@ lang: en
 
 # App Distribution (OAuth)
 
-A newly created Slack app can only be installed in its development workspace in the beginning. By setting an OAuth Redirect URL and enabling [App Distribution](/distribution/), the app becomes to be ready for installation in other workspaces.
+A newly created Slack app can only be installed in its development workspace in the beginning. By setting an OAuth Redirect URL and enabling [App Distribution](/app-management/distribution), the app becomes to be ready for installation in other workspaces.
 
 * [Installing with OAuth](/authentication/installing-with-oauth)
-* [Distributing Slack apps](/distribution/)
+* [Distributing Slack apps](/app-management/distribution)
 
 ### Slack app configuration
 

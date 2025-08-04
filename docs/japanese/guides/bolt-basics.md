@@ -167,7 +167,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-ちなみにペイロードに含まれているチャンネル ID を用いた [**chat.postMessage**](/reference/methods/chat.postmessage) API の呼び出しに限っては `say()` というユーティリティメソッドを使えば、より簡単になります。もし、あらゆる場所でこのスラッシュコマンドを使えるようにしたい場合は `ctx.respond` を使う方が安全でしょう。`say()` は、あなたのアプリのボットユーザーがメンバーではない会話（例：個人の DM）では使用することができないためです。
+ちなみにペイロードに含まれているチャンネル ID を用いた [**chat.postMessage**](/reference/methods/chat.postMessage) API の呼び出しに限っては `say()` というユーティリティメソッドを使えば、より簡単になります。もし、あらゆる場所でこのスラッシュコマンドを使えるようにしたい場合は `ctx.respond` を使う方が安全でしょう。`say()` は、あなたのアプリのボットユーザーがメンバーではない会話（例：個人の DM）では使用することができないためです。
 
 ```java
 app.command("/hello", (req, ctx) -> {

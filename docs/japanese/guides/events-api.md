@@ -41,7 +41,7 @@ Bolt は Slack アプリに必要な共通処理の多くを巻き取ります�
 * イベントデータを使った任意の処理
 * 受け取ったことを伝えるために `ack()`
 
-このリクエストは、ユーザーインタラクションからの直接の呼び出しではないので、ペイロードには `response_url` は含まれていません。また、同じ理由から `ctx.ack()` を使ってチャンネルにメッセージを投稿することもできません。もし、対象のイベントがユーザーインタラクションによるもので、そのユーザーへの返信として投稿したい場合は、イベントのペイロードに含まれている `channel` を使って [**chat.postMessage**](/reference/methods/chat.postmessage) API メソッドや類する API を実行してください。
+このリクエストは、ユーザーインタラクションからの直接の呼び出しではないので、ペイロードには `response_url` は含まれていません。また、同じ理由から `ctx.ack()` を使ってチャンネルにメッセージを投稿することもできません。もし、対象のイベントがユーザーインタラクションによるもので、そのユーザーへの返信として投稿したい場合は、イベントのペイロードに含まれている `channel` を使って [**chat.postMessage**](/reference/methods/chat.postMessage) API メソッドや類する API を実行してください。
 
 ```java
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
