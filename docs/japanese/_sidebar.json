@@ -1,12 +1,12 @@
 [
 	{
 		"type": "category",
-		"label": "ja-jp/java Slack SDK",
+		"label": "Java Slack SDK",
 		"items": [
 			"ja-jp/java-slack-sdk/index",
 			{
 				"type": "category",
-				"label": "Bolt for Java Guides",
+				"label": "Bolt for Java",
 				"collapsed": false,
 				"items": [
 					"ja-jp/java-slack-sdk/guides/getting-started-with-bolt",
@@ -50,11 +50,18 @@
 					}
 				]
 			},
+			{
+				"type": "category",
+				"label": "Slack API クライアント",
+				"collapsed": false,
+				"items": [
 			"ja-jp/java-slack-sdk/guides/web-api-client-setup",
 			"ja-jp/java-slack-sdk/guides/web-api-basics",
 			"ja-jp/java-slack-sdk/guides/composing-messages",
 			"ja-jp/java-slack-sdk/guides/incoming-webhooks",
-			"ja-jp/java-slack-sdk/guides/rtm",
+			"ja-jp/java-slack-sdk/guides/rtm"
+				]
+			},
 			"ja-jp/java-slack-sdk/reference"
 		]
 	}
