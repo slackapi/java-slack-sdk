@@ -3,50 +3,50 @@
 		"type": "category",
 		"label": "Java Slack SDK",
 		"items": [
-			"ja-jp/java-slack-sdk/index",
+			"java-slack-sdk/ja-jp/index",
 			{
 				"type": "category",
 				"label": "Bolt for Java",
 				"collapsed": false,
 				"items": [
-					"ja-jp/java-slack-sdk/guides/getting-started-with-bolt",
-					"ja-jp/java-slack-sdk/guides/bolt-basics",
-					"ja-jp/java-slack-sdk/guides/supported-web-frameworks",
-					"ja-jp/java-slack-sdk/guides/socket-mode",
-					"ja-jp/java-slack-sdk/guides/events-api",
+					"java-slack-sdk/ja-jp/getting-started-with-bolt",
+					"java-slack-sdk/ja-jp/bolt-basics",
+					"java-slack-sdk/ja-jp/supported-web-frameworks",
+					"java-slack-sdk/ja-jp/socket-mode",
+					"java-slack-sdk/ja-jp/events-api",
 					{
 						"type": "category",
 						"label": "インタラクティビティ & ショートカット",
 						"items": [
-							"ja-jp/java-slack-sdk/guides/interactive-components",
-							"ja-jp/java-slack-sdk/guides/modals",
-							"ja-jp/java-slack-sdk/guides/app-home"
+							"java-slack-sdk/ja-jp/interactive-components",
+							"java-slack-sdk/ja-jp/modals",
+							"java-slack-sdk/ja-jp/app-home"
 						]
 					},
-					"ja-jp/java-slack-sdk/guides/shortcuts",
-					"ja-jp/java-slack-sdk/guides/slash-commands",
+					"java-slack-sdk/ja-jp/shortcuts",
+					"java-slack-sdk/ja-jp/slash-commands",
 					{
 						"type": "category",
 						"label": "認可 & セキュリティ",
 						"items": [
-							"ja-jp/java-slack-sdk/guides/app-distribution",
-							"ja-jp/java-slack-sdk/guides/sign-in-with-slack"
+							"java-slack-sdk/ja-jp/app-distribution",
+							"java-slack-sdk/ja-jp/sign-in-with-slack"
 						]
 					},
 					{
 						"type": "category",
 						"label": "Admin Tools",
 						"items": [
-							"ja-jp/java-slack-sdk/guides/web-api-for-admins",
-							"ja-jp/java-slack-sdk/guides/scim-api",
-							"ja-jp/java-slack-sdk/guides/audit-logs-api",
-							"ja-jp/java-slack-sdk/guides/status-api"
+							"java-slack-sdk/ja-jp/web-api-for-admins",
+							"java-slack-sdk/ja-jp/scim-api",
+							"java-slack-sdk/ja-jp/audit-logs-api",
+							"java-slack-sdk/ja-jp/status-api"
 						]
 					},
 					{
 						"type": "category",
 						"label": "レガシー（非推奨）",
-						"items": ["ja-jp/java-slack-sdk/guides/steps-from-apps"]
+						"items": ["java-slack-sdk/ja-jp/steps-from-apps"]
 					}
 				]
 			},
@@ -55,14 +55,14 @@
 				"label": "Slack API クライアント",
 				"collapsed": false,
 				"items": [
-			"ja-jp/java-slack-sdk/guides/web-api-client-setup",
-			"ja-jp/java-slack-sdk/guides/web-api-basics",
-			"ja-jp/java-slack-sdk/guides/composing-messages",
-			"ja-jp/java-slack-sdk/guides/incoming-webhooks",
-			"ja-jp/java-slack-sdk/guides/rtm"
+					"java-slack-sdk/ja-jp/web-api-client-setup",
+					"java-slack-sdk/ja-jp/web-api-basics",
+					"java-slack-sdk/ja-jp/composing-messages",
+					"java-slack-sdk/ja-jp/incoming-webhooks",
+					"java-slack-sdk/ja-jp/rtm"
 				]
 			},
-			"ja-jp/java-slack-sdk/reference"
+			"java-slack-sdk/ja-jp/reference"
 		]
 	}
 ]
