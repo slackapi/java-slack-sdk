@@ -1,9 +1,3 @@
----
-layout: ja
-title: "基本的な Web API の利用"
-lang: ja
----
-
 # API クライアントの基本
 
 **slack-api-client** は、シンプル、簡単、柔軟に設定可能な Slack API クライアント実装を提供します。

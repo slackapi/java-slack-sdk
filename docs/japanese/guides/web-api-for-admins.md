@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # OrG 管理者向け API
 
 Slack の [API メソッド](/reference/methods) のうち、一部のメソッド名は **`admin.`** から始まっています。ご存知かもしれませんが、これらの API は全ての開発者向けのものではありません。これらは [Enterprise Grid](/enterprise-grid/) の [OrG](https://slack.com/intl/ja-jp/help/articles/360004150931) 管理者が利用するための API 群です。

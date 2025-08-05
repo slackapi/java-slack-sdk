@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # Real Time Messaging (RTM)
 
 [Real Time Messaging API](/legacy/legacy-rtm-api) は Slack からリアルタイムでイベントを受信したり、ユーザとしてメッセージを送信するための WebSocket ベースの API です。単に "RTM API” と呼ばれることもあります。

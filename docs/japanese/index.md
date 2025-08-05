@@ -1,8 +1,4 @@
----
-lang: ja
----
-
-# Slack SDK for Java
+# Java Slack SDK
 
 **Slack SDK for Java** は Java らしいアプローチで全ての Slack プラットフォームの公開機能をサポートする公式 SDK です。この SDK は全て Java で書かれており、開発者はこの SDK を Java だけでなく Kotlin、Groovy、Scala といった JVM 言語でも利用できます。
 

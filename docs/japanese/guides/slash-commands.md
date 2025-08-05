@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # スラッシュコマンド
 
 [スラッシュコマンド](/interactivity/implementing-slash-commands) は、メッセージ投稿フォームからアプリの機能を呼び出すことができる機能です。

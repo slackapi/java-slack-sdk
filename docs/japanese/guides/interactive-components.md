@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # インタラクティブコンポーネント
 
 [インタラクティブコンポーネント](/block-kit/#making-things-interactive)は、様々な[サーフェスエリア](/surfaces/)にインタラクティビティをもたらす [Block Kit](/block-kit/) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル](/java-slack-sdk/guides/modals) や [Home タブ](/java-slack-sdk/guides/app-home) でも発生します。

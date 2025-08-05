@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # SCIM API
 
 [SCIM API](/admins/scim-api) は、ユーザアカウントやグループのプロビジョニングのための API 群です。SCIM は、Slack を含む複数のサービス・ツールを横断してユーザアカウントの管理を行うために Single Sign-on (SSO) サービスや ID プロバイダーによって利用されます。

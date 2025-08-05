@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # Audit Logs API
 
 [Audit Logs API](/admins/audit-logs-api) は [Enterprise Grid](/enterprise-grid/) の [OrG](https://slack.com/intl/ja-jp/help/articles/360004150931) 内で発生したイベントをモニタリングするための API 群です。

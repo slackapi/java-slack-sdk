@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # メッセージの組み立て方
 
 このセクションでは **slack-api-client** を使って Slack メッセージを組み立てる方法を解説します。もし、まだ [**chat.postMessage**](/reference/methods/chat.postMessage) API を使ったことがなければ、このページのサンプルを試す前にまず[こちらのページ](/java-slack-sdk/guides/web-api-basics)を読んでください。

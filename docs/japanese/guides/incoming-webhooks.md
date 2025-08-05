@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # Incoming Webhooks
 
 [Incoming Webhooks](/messaging/sending-messages-using-incoming-webhooks) は他のアプリから Slack にメッセージを投稿するためのとてもシンプルな方法です。Incoming Webhook を作成すると、メッセージとその他のオプションを含む JSON ペイロードを送るための一意な URL が払い出されます。

@@ -1,7 +1,3 @@
----
-lang: ja
----
-
 # Slack でログインする (OpenID Connect)
 
 [Slack でログインする (Sign in with Slack)](/authentication/sign-in-with-slack/)という機能は、ユーザーが Slack アカウントを使って他のサービスにログインすることに役立ちます。このプラットフォーム機能は、標準の [OpenID Connect](https://openid.net/connect/) の仕様と互換性を持つように最近アップグレードされました。Bolt for Java の 1.10 以上のバージョンであれば、この認証フローを非常に簡単に実装することができます。

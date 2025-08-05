@@ -1,0 +1,61 @@
+[
+	{
+		"type": "category",
+		"label": "ja-jp/java Slack SDK",
+		"items": [
+			"ja-jp/java-slack-sdk/index",
+			{
+				"type": "category",
+				"label": "Bolt for Java Guides",
+				"collapsed": false,
+				"items": [
+					"ja-jp/java-slack-sdk/guides/getting-started-with-bolt",
+					"ja-jp/java-slack-sdk/guides/bolt-basics",
+					"ja-jp/java-slack-sdk/guides/supported-web-frameworks",
+					"ja-jp/java-slack-sdk/guides/socket-mode",
+					"ja-jp/java-slack-sdk/guides/events-api",
+					{
+						"type": "category",
+						"label": "インタラクティビティ & ショートカット",
+						"items": [
+							"ja-jp/java-slack-sdk/guides/interactive-components",
+							"ja-jp/java-slack-sdk/guides/modals",
+							"ja-jp/java-slack-sdk/guides/app-home"
+						]
+					},
+					"ja-jp/java-slack-sdk/guides/shortcuts",
+					"ja-jp/java-slack-sdk/guides/slash-commands",
+					{
+						"type": "category",
+						"label": "認可 & セキュリティ",
+						"items": [
+							"ja-jp/java-slack-sdk/guides/app-distribution",
+							"ja-jp/java-slack-sdk/guides/sign-in-with-slack"
+						]
+					},
+					{
+						"type": "category",
+						"label": "Admin Tools",
+						"items": [
+							"ja-jp/java-slack-sdk/guides/web-api-for-admins",
+							"ja-jp/java-slack-sdk/guides/scim-api",
+							"ja-jp/java-slack-sdk/guides/audit-logs-api",
+							"ja-jp/java-slack-sdk/guides/status-api"
+						]
+					},
+					{
+						"type": "category",
+						"label": "レガシー（非推奨）",
+						"items": ["ja-jp/java-slack-sdk/guides/steps-from-apps"]
+					}
+				]
+			},
+			"ja-jp/java-slack-sdk/guides/web-api-client-setup",
+			"ja-jp/java-slack-sdk/guides/web-api-basics",
+			"ja-jp/java-slack-sdk/guides/composing-messages",
+			"ja-jp/java-slack-sdk/guides/incoming-webhooks",
+			"ja-jp/java-slack-sdk/guides/rtm",
+			"ja-jp/java-slack-sdk/reference"
+		]
+	}
+]
