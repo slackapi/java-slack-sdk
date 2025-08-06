@@ -194,9 +194,9 @@ When the user messages your app, the [`message.im`](/reference/events/message.im
 Messages sent to the app do not contain a [subtype](/reference/events/message) and must be deduced based on their shape and any provided [message metadata](/messaging/message-metadata/).
 
 There are three utilities that are particularly useful in curating the user experience:
-* [`say`](/tools/bolt-python/reference/#slack_bolt.Say)
-* [`setTitle`](/tools/bolt-python/reference/#slack_bolt.SetTitle)
-* [`setStatus`](/tools/bolt-python/reference/#slack_bolt.SetStatus)
+* [`say`](https://docs.slack.dev/tools/bolt-python/reference/#slack_bolt.Say)
+* [`setTitle`](https://docs.slack.dev/tools/bolt-python/reference/#slack_bolt.SetTitle)
+* [`setStatus`](https://docs.slack.dev/tools/bolt-python/reference/#slack_bolt.SetStatus)
 
 ## Full example: Assistant Simple App {#full-example}
 
