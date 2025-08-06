@@ -4,9 +4,7 @@ lang: en
 
 # Steps from Apps
 
-:::danger
-
-Steps from Apps is a deprecated feature.
+:::danger[Steps from Apps is a deprecated feature.]
 
 Steps from Apps are different than, and not interchangeable with, Slack automation workflows. We encourage those who are currently publishing steps from apps to consider the new [Slack automation features](/workflows/), such as [custom steps for Bolt](/workflows/workflow-steps).
 
