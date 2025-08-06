@@ -34,7 +34,7 @@ Most commonly, [`app_home_opened`](/reference/events/app_home_opened) events wou
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt), first.
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/tools/java-slack-sdk/guides/getting-started-with-bolt), first.
 
 :::
 
@@ -78,7 +78,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
 });
 ```
 
-It looks like this in Kotlin. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+It looks like this in Kotlin. (New to Kotlin? [Getting Started in Kotlin](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 // static imports
@@ -110,7 +110,7 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
 }
 ```
 
-You can also build the view in the above example with the [Block Kit Kotlin DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) like so:
+You can also build the view in the above example with the [Block Kit Kotlin DSL](/tools/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) like so:
 
 ```kotlin
 // These imports are necessary for this code
@@ -132,4 +132,4 @@ val appHomeView = view { it
 
 ## Under the hood
 
-Refer to [the Events API guide](/java-slack-sdk/guides/events-api).
+Refer to [the Events API guide](/tools/java-slack-sdk/guides/events-api).

@@ -83,7 +83,7 @@ import static com.slack.api.webhook.WebhookPayloads.*;
 WebhookResponse response = slack.send(webhookUrl, payload(p -> p.text("Hello, World!")));
 ```
 
-As we learned in [Composing Messages](/java-slack-sdk/guides/composing-messages), using static methods for building blocks is useful.
+As we learned in [Composing Messages](/tools/java-slack-sdk/guides/composing-messages), using static methods for building blocks is useful.
 
 ```java
 import static com.slack.api.webhook.WebhookPayloads.*;

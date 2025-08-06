@@ -150,7 +150,7 @@ server.start();
 
 |環境変数名|説明|
 |-|-|
-|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します（「Please add at least one feature or permission scope to install your app.」というメッセージが表示されている場合は　[`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope を追加してください）。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)](/java-slack-sdk/guides/app-distribution)」を参考にしてください。|
+|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します（「Please add at least one feature or permission scope to install your app.」というメッセージが表示されている場合は　[`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope を追加してください）。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)](/tools/java-slack-sdk/guides/app-distribution)」を参考にしてください。|
 |**SLACK_SIGNING_SECRET**|この秘密の値は Slack プラットフォームとだけ共有する情報です。これは Slack アプリが受けたリクエストが本当に Slack API サーバーからのリクエストであるかを検証するために使用します。Slack アプリは公開されたエンドポイントを持つため、リクエストの検証はセキュリティのために重要です。この値は [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Basic Information** へ遷移して **App Credentials** > **Signing Secret** の情報を表示させると確認できます。より詳細な情報は「[Verifying requests from Slack（英語）](/authentication/verifying-requests-from-slack)」を参考にしてください。|
 
 なお、**App** を別の方法（例: 規定の環境変数名を使わない）で初期化したい場合は **AppConfig** を自前で初期化するコードを書いてください。
@@ -232,7 +232,7 @@ public class SlackAppController extends SlackAppServlet {
 ```
 
 
-より詳細な情報は[こちらのガイド](/java-slack-sdk/guides/supported-web-frameworks)を参考にしてください。
+より詳細な情報は[こちらのガイド](/tools/java-slack-sdk/guides/supported-web-frameworks)を参考にしてください。
 
 ---
 ## Kotlin での設定
@@ -315,9 +315,9 @@ gradle run
 ---
 ## 次のステップ
 
-「[Bolt の概要](/java-slack-sdk/guides/bolt-basics)」を読んでさらに理解を深めてください。
+「[Bolt の概要](/tools/java-slack-sdk/guides/bolt-basics)」を読んでさらに理解を深めてください。
 
-Spring Boot や Micronaut、Quarkus、Helidon SE で動かす方法を知りたければ「[対応 Web フレームワーク](/java-slack-sdk/guides/supported-web-frameworks)」を参考にしてください。
+Spring Boot や Micronaut、Quarkus、Helidon SE で動かす方法を知りたければ「[対応 Web フレームワーク](/tools/java-slack-sdk/guides/supported-web-frameworks)」を参考にしてください。
 
 また、以下のように、多くのサンプル例がプロジェクトの GitHub リポジトリ内にあるので、あわせて参考にしてみてください。
 

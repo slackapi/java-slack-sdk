@@ -27,15 +27,15 @@ app.command("/echo", (req, ctx) -> {
 
 |メソッド|ディスパッチの条件 (値: 型)|説明|
 |-|-|-|
-|**app.event**|イベントデータ型: **Class\<Event\>**|[**イベント API**](/java-slack-sdk/guides/events-api): 購読しているあらゆる bot/user events に応答します。|
-|**app.message**|キーワード: **String** \| **Pattern**|[**イベント API**](/java-slack-sdk/guides/events-api): ユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
-|**app.command**|コマンド名: **String** \| **Pattern**|[**スラッシュコマンド**](/java-slack-sdk/guides/slash-commands): スラッシュコマンドの実行に応答します。|
-|**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/java-slack-sdk/guides/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのサーフェスエリア（メッセージ、モーダル、Home タブ）で発火します。|
-|**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/java-slack-sdk/guides/interactive-components): **blocks** 内の external data source を使ったセレクトメニュー内でユーザーが `min_query_length` 以上の長さのキーワードを入力したときに表示する選択肢を応答します。|
-|**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**モーダル**](/java-slack-sdk/guides/modals): Submit ボタンクリックによるデータ送信に応答します。|
-|**app.viewClosed**|callback_id: **String** \| **Pattern**|[**モーダル**](/java-slack-sdk/guides/modals): ユーザーがモーダルを閉じたときのイベントに応答します。そのモーダルを open/push したときに `notify_on_close` が `true` に設定されている必要があります。|
-|**app.globalShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/java-slack-sdk/guides/shortcuts): ショートカット実行に応答します。|
-|**app.messageShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/java-slack-sdk/guides/shortcuts): メッセージメニューのショートカット実行に応答します。|
+|**app.event**|イベントデータ型: **Class\<Event\>**|[**イベント API**](/tools/java-slack-sdk/guides/events-api): 購読しているあらゆる bot/user events に応答します。|
+|**app.message**|キーワード: **String** \| **Pattern**|[**イベント API**](/tools/java-slack-sdk/guides/events-api): ユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
+|**app.command**|コマンド名: **String** \| **Pattern**|[**スラッシュコマンド**](/tools/java-slack-sdk/guides/slash-commands): スラッシュコマンドの実行に応答します。|
+|**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/tools/java-slack-sdk/guides/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのサーフェスエリア（メッセージ、モーダル、Home タブ）で発火します。|
+|**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/tools/java-slack-sdk/guides/interactive-components): **blocks** 内の external data source を使ったセレクトメニュー内でユーザーが `min_query_length` 以上の長さのキーワードを入力したときに表示する選択肢を応答します。|
+|**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**モーダル**](/tools/java-slack-sdk/guides/modals): Submit ボタンクリックによるデータ送信に応答します。|
+|**app.viewClosed**|callback_id: **String** \| **Pattern**|[**モーダル**](/tools/java-slack-sdk/guides/modals): ユーザーがモーダルを閉じたときのイベントに応答します。そのモーダルを open/push したときに `notify_on_close` が `true` に設定されている必要があります。|
+|**app.globalShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/tools/java-slack-sdk/guides/shortcuts): ショートカット実行に応答します。|
+|**app.messageShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/tools/java-slack-sdk/guides/shortcuts): メッセージメニューのショートカット実行に応答します。|
 |**app.dialogSubmission**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログでのデータ送信に応答します。|
 |**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログ内での `"external"` type に設定されたセレクトメニューの選択肢読み込みのリクエストに応答します。|
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**ダイアログ**: ダイアログが閉じたときのイベントに応答します。|
@@ -46,13 +46,13 @@ app.command("/echo", (req, ctx) -> {
 
 以下のガイドページで、それぞれの機能について具体的なコード例を見つけることができます。
 
-* [**スラッシュコマンド**](/java-slack-sdk/guides/slash-commands)
-* [**インタラクティブコンポーネント**](/java-slack-sdk/guides/interactive-components)
-* [**モーダル**](/java-slack-sdk/guides/modals)
-* [**ショートカット**](/java-slack-sdk/guides/shortcuts)
-* [**Home タブ**](/java-slack-sdk/guides/app-home)
-* [**イベント API**](/java-slack-sdk/guides/events-api)
-* [**アプリの配布 (OAuth Flow)**](/java-slack-sdk/guides/app-distribution)
+* [**スラッシュコマンド**](/tools/java-slack-sdk/guides/slash-commands)
+* [**インタラクティブコンポーネント**](/tools/java-slack-sdk/guides/interactive-components)
+* [**モーダル**](/tools/java-slack-sdk/guides/modals)
+* [**ショートカット**](/tools/java-slack-sdk/guides/shortcuts)
+* [**Home タブ**](/tools/java-slack-sdk/guides/app-home)
+* [**イベント API**](/tools/java-slack-sdk/guides/events-api)
+* [**アプリの配布 (OAuth Flow)**](/tools/java-slack-sdk/guides/app-distribution)
 
 ---
 ## リクエストを ack する
@@ -317,7 +317,7 @@ App app = new App(appConfig);
 ---
 ## 対応している Web フレームワーク
 
-[こちらのページ](/java-slack-sdk/guides/supported-web-frameworks)を参考にしてください。
+[こちらのページ](/tools/java-slack-sdk/guides/supported-web-frameworks)を参考にしてください。
 
 ---
 ## デプロイ

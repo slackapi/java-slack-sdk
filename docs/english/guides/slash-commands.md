@@ -35,7 +35,7 @@ If the response body is empty, the response will be recognized as just an acknow
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/tools/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 ::::
 
@@ -69,7 +69,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks like this. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin looks like this. (New to Kotlin? [Getting Started in Kotlin](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.command("/echo") { req, ctx ->
@@ -87,7 +87,7 @@ app.command("/echo") { req, ctx ->
 }
 ```
 
-To learn how to build [Block Kit](/block-kit/) messages with this SDK, consult [Composing Messages](/java-slack-sdk/guides/composing-messages).
+To learn how to build [Block Kit](/block-kit/) messages with this SDK, consult [Composing Messages](/tools/java-slack-sdk/guides/composing-messages).
 
 ## Under the hood
 

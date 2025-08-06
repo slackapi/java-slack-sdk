@@ -33,7 +33,7 @@ To enable Steps from Apps, visit the [Slack app settings page](http://api.slack.
 * Turn on the feature (**Turn on workflow steps**)
 * Click the **Add Step** button and set the name and Callback ID
 
-Also, your app requires the **Interactivity**. Go to [Interactive Components](/java-slack-sdk/guides/interactive-components) and set the Request URL to receive events from Slack.
+Also, your app requires the **Interactivity**. Go to [Interactive Components](/tools/java-slack-sdk/guides/interactive-components) and set the Request URL to receive events from Slack.
 
 ---
 ## Creating Steps from Apps

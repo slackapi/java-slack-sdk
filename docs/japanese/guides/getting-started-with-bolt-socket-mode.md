@@ -162,7 +162,7 @@ new SocketModeApp(app).start();
 
 |環境変数名|説明|
 |-|-|
-|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します（「Please add at least one feature or permission scope to install your app.」というメッセージが表示されている場合は　[`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope を追加してください）。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)](/java-slack-sdk/guides/app-distribution)」を参考にしてください。|
+|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します（「Please add at least one feature or permission scope to install your app.」というメッセージが表示されている場合は　[`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope を追加してください）。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)](/tools/java-slack-sdk/guides/app-distribution)」を参考にしてください。|
 |**SLACK_APP_TOKEN**|この Slack アプリの有効なアプリレベルトークン（形式は `xapp-` から始まります）です。トークンを発行するには、[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Basic Information** > **App-Level Tokens** へ移動し、`connections:write` というスコープにしたトークンを作成します。|
 
 なお、**App** を別の方法（例: 規定の環境変数名を使わない）で初期化したい場合は **AppConfig** を自前で初期化するコードを書いてください。
@@ -290,4 +290,4 @@ gradle run
 ---
 ## 次のステップ
 
-「[Bolt の概要](/java-slack-sdk/guides/bolt-basics)」を読んでさらに理解を深めてください。
+「[Bolt の概要](/tools/java-slack-sdk/guides/bolt-basics)」を読んでさらに理解を深めてください。

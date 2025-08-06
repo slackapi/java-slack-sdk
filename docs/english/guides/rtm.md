@@ -8,7 +8,7 @@ lang: en
 
 The RTM API is a deprecated feature and is no longer available for modern scoped apps.
 
-We recommend using the [Events API](/java-slack-sdk/guides/events-api) and [Web API](/java-slack-sdk/guides/web-api-basics) instead. If you need to use the RTM API (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
+We recommend using the [Events API](/tools/java-slack-sdk/guides/events-api) and [Web API](/tools/java-slack-sdk/guides/web-api-basics) instead. If you need to use the RTM API (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
 
 :::
 

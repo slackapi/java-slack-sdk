@@ -34,7 +34,7 @@ Your app has to respond to the request within 3 seconds by `ack()` method. Other
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/tools/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 :::
 
@@ -65,7 +65,7 @@ app.event(ReactionAddedEvent.class, (payload, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.event(ReactionAddedEvent::class.java) { payload, ctx ->

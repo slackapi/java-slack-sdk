@@ -39,7 +39,7 @@ To handle shortcut requests:
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/tools/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 :::
 
@@ -92,7 +92,7 @@ View buildView(Message message) { return null; }
 View buildView() { return null; }
 ```
 
-The following snippets written in Kotlin. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The following snippets written in Kotlin. (New to Kotlin? [Getting Started in Kotlin](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 // Handles global shortcut requests

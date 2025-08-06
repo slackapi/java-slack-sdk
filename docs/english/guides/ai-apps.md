@@ -27,7 +27,7 @@ The Agents & AI Apps feature comprises a unique messaging experience for Slack. 
 
 ## The `Assistant` class instance {#assistant-class}
 
-The [`Assistant`](/java-slack-sdk/reference#the-assistantconfig-configuration-object) class can be used to handle the incoming events expected from a user interacting with an app in Slack that has the Agents & AI Apps feature enabled. A typical flow would look like:
+The [`Assistant`](/tools/java-slack-sdk/reference#the-assistantconfig-configuration-object) class can be used to handle the incoming events expected from a user interacting with an app in Slack that has the Agents & AI Apps feature enabled. A typical flow would look like:
 
 1. [The user starts a thread](#handling-a-new-thread). The `Assistant` class handles the incoming [`assistant_thread_started`](/reference/events/assistant_thread_started) event.
 2. [The thread context may change at any point](#handling-thread-context-changes). The `Assistant` class can handle any incoming [`assistant_thread_context_changed`](/reference/events/assistant_thread_context_changed) events. The class also provides a default `context` store to keep track of thread context changes as the user moves through Slack.
@@ -76,7 +76,7 @@ While the `assistant_thread_started` and `assistant_thread_context_changed` even
 If you do provide your own `threadContextService` property, it must feature `get` and `save` methods.
 
 :::tip[Tip]
-Be sure to give the [reference docs](/java-slack-sdk/reference#agents--assistants) a look!
+Be sure to give the [reference docs](/tools/java-slack-sdk/reference#agents--assistants) a look!
 :::
 
 ## Handling a new thread {#handling-a-new-thread}

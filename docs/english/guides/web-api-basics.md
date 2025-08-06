@@ -6,7 +6,7 @@ lang: en
 
 The `slack-api-client` contains flexibly configurable HTTP clients for making requests to Slack APIs.
 
-Before trying the samples on this page, you need to set up your Java project first. If you haven't done this yet, check the [API Client Installation](/java-slack-sdk/guides/web-api-client-setup) guide and follow the instructions there.
+Before trying the samples on this page, you need to set up your Java project first. If you haven't done this yet, check the [API Client Installation](/tools/java-slack-sdk/guides/web-api-client-setup) guide and follow the instructions there.
 
 ---
 ## Initialize `Slack` object
@@ -35,7 +35,7 @@ Here is the list of the methods in a `Slack` object to create an API client.
 
 :::tip[Tip]
 
-Are you looking for the [Incoming Webhooks](/messaging/sending-messages-using-incoming-webhooks)? Of course, it's also supported! Check [this guide](/java-slack-sdk/guides/incoming-webhooks) for it.
+Are you looking for the [Incoming Webhooks](/messaging/sending-messages-using-incoming-webhooks)? Of course, it's also supported! Check [this guide](/tools/java-slack-sdk/guides/incoming-webhooks) for it.
 
 :::
 
@@ -132,7 +132,7 @@ val response = slack.methods(token).chatPostMessage { it
 }
 ```
 
-In addition, you can check out the [Block Kit Kotlin DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) for a Kotlin-native way of constructing rich messages.
+In addition, you can check out the [Block Kit Kotlin DSL](/tools/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) for a Kotlin-native way of constructing rich messages.
 
 ### Handle responses
 
@@ -385,28 +385,28 @@ The RTM API is only recommended if your app has unique restrictions, like needin
 
 The Real Time Messaging API is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users. It’s sometimes referred to just as the "RTM API”.
 
-Refer to [Real Time Messaging (RTM)](/java-slack-sdk/guides/rtm) for details.
+Refer to [Real Time Messaging (RTM)](/tools/java-slack-sdk/guides/rtm) for details.
 
 ---
 ## SCIM API
 
 The SCIM API is used for provisioning and managing user accounts and groups. The SCIM API is used by Single Sign-On (SSO) services and identity providers to manage people across a variety of tools, including Slack.
 
-Refer to [SCIM API](/java-slack-sdk/guides/scim-api) for details.
+Refer to [SCIM API](/tools/java-slack-sdk/guides/scim-api) for details.
 
 ---
 ## Audit Logs API
 
 The Audit Logs API is used for monitoring what’s happening in your Enterprise Grid organization.
 
-Refer to [Audit Logs API](/java-slack-sdk/guides/audit-logs-api) for details.
+Refer to [Audit Logs API](/tools/java-slack-sdk/guides/audit-logs-api) for details.
 
 ---
 ## Slack Status API
 
 The Slack Status API describes the health of the Slack product. When there’s an incident, outage, or maintenance, the Slack Status API reflects all of the information we have on the issue, including which features of Slack are affected and detailed updates over time.
 
-Refer to [Status API](/java-slack-sdk/guides/status-api) for details.
+Refer to [Status API](/tools/java-slack-sdk/guides/status-api) for details.
 
 ---
 ## Customize your Slack API clients

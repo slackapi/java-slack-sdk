@@ -75,7 +75,7 @@ import static com.slack.api.webhook.WebhookPayloads.*;
 WebhookResponse response = slack.send(webhookUrl, payload(p -> p.text(":candy: はい、アメちゃん！")));
 ```
 
-「[メッセージの組み立て方](/java-slack-sdk/guides/composing-messages)」で見たように static メソッドを使うと blocks の構成に非常に便利です。
+「[メッセージの組み立て方](/tools/java-slack-sdk/guides/composing-messages)」で見たように static メソッドを使うと blocks の構成に非常に便利です。
 
 ```java
 import static com.slack.api.webhook.WebhookPayloads.*;

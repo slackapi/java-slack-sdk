@@ -65,7 +65,7 @@ In general, there are a few things to know when working with modals:
 
 :::tip[Tip]
 
-If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/tools/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 :::
 
@@ -183,7 +183,7 @@ app.command("/meeting", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin is below. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin is below. (New to Kotlin? [Getting Started in Kotlin](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 app.command("/meeting") { req, ctx ->
@@ -227,7 +227,7 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
-Alternatively, you can use the [Block Kit DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) in conjunction with the Java Builder to construct your view. The Java example above would look like this in Kotlin:
+Alternatively, you can use the [Block Kit DSL](/tools/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) in conjunction with the Java Builder to construct your view. The Java example above would look like this in Kotlin:
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.view.blocks
@@ -281,7 +281,7 @@ fun buildView(): View {
 
 ### `block_actions` requests
 
-`block_actions` handle [interactive components](/java-slack-sdk/guides/interactive-components) essentially the same way; the only difference is that a payload coming from a modal has `view` and also its `private_metadata`.
+`block_actions` handle [interactive components](/tools/java-slack-sdk/guides/interactive-components) essentially the same way; the only difference is that a payload coming from a modal has `view` and also its `private_metadata`.
 
 ```java
 import com.google.gson.Gson;

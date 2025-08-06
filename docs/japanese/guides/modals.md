@@ -4,7 +4,7 @@
 
 ### Slack アプリの設定
 
-モーダルを使うための最初のステップは、[インタラクティブコンポーネント](/java-slack-sdk/guides/interactive-components)を有効にすることです。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactivity & Shortcuts** へ遷移します。このページで以下の設定を行います。
+モーダルを使うための最初のステップは、[インタラクティブコンポーネント](/tools/java-slack-sdk/guides/interactive-components)を有効にすることです。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactivity & Shortcuts** へ遷移します。このページで以下の設定を行います。
 
 * **Interactivity** を Off から On にする
 * `https://{あなたのドメイン}/slack/events` を **Request URL** に設定 (ソケットモードの場合、この手順は不要です)
@@ -59,7 +59,7 @@
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/java-slack-sdk/guides/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/tools/java-slack-sdk/guides/getting-started-with-bolt)」を読んでください。
 
 まずはモーダルを新しく開くところから始めましょう。ここでは以下のようなモーダルを開いてみることにします。
 
@@ -176,7 +176,7 @@ app.command("/meeting", (req, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.command("/meeting") { req, ctx ->
@@ -220,7 +220,7 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
-また、[Block Kit DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) を Java のビルダーと連携させて利用することもできます。上記の Java のコード例は Kotlin ではこのようになります。
+また、[Block Kit DSL](/tools/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) を Java のビルダーと連携させて利用することもできます。上記の Java のコード例は Kotlin ではこのようになります。
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.view.blocks
@@ -274,7 +274,7 @@ fun buildView(): View {
 
 ### `"block_actions"` リクエスト
 
-基本的には「[インタラクティブコンポーネント](/java-slack-sdk/guides/interactive-components)」で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
+基本的には「[インタラクティブコンポーネント](/tools/java-slack-sdk/guides/interactive-components)」で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
 
 ```java
 import com.google.gson.Gson;

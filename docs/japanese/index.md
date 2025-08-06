@@ -4,8 +4,8 @@
 
 この SDK は大きく分けて主に二種類のモジュールを提供しています。
 
-* [**Bolt️ for Java**](/java-slack-sdk/guides/bolt-basics) は、最新の Slack アプリをシンプルな API を用いて簡単に開発するためのフレームワークです
-* [**Slack API クライアント**](/java-slack-sdk/guides/web-api-basics) は、より柔軟に Slack アプリを開発したい場合にこれだけを組み込んで使用することができます
+* [**Bolt️ for Java**](/tools/java-slack-sdk/guides/bolt-basics) は、最新の Slack アプリをシンプルな API を用いて簡単に開発するためのフレームワークです
+* [**Slack API クライアント**](/tools/java-slack-sdk/guides/web-api-basics) は、より柔軟に Slack アプリを開発したい場合にこれだけを組み込んで使用することができます
 
 ## <!--Requirements--> 動作条件
 

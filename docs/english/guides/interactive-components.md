@@ -4,9 +4,9 @@ lang: en
 
 # Interactive Components
 
-[Interactive components](/block-kit/#making-things-interactive) are a subset of [Block Kit](/block-kit/) elements that add interactivity to various [surfaces](/surfaces/). Interactions on blocks may happen in messages, [modals](/java-slack-sdk/guides/modals), and [Home tabs](/java-slack-sdk/guides/app-home).
+[Interactive components](/block-kit/#making-things-interactive) are a subset of [Block Kit](/block-kit/) elements that add interactivity to various [surfaces](/surfaces/). Interactions on blocks may happen in messages, [modals](/tools/java-slack-sdk/guides/modals), and [Home tabs](/tools/java-slack-sdk/guides/app-home).
 
-See [Composing messages](/java-slack-sdk/guides/composing-messages) to learn how to build [Block Kit](/surfaces/) messages with this SDK.
+See [Composing messages](/tools/java-slack-sdk/guides/composing-messages) to learn how to build [Block Kit](/surfaces/) messages with this SDK.
 
 ### Slack app configuration
 
@@ -32,7 +32,7 @@ Your app has to respond to the request within 3 seconds by `ack()` method. Other
 
 :::tip[Tip] 
 
-If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/java-slack-sdk/guides/getting-started-with-bolt) first.
+If you're a beginner to using Bolt for Slack app development, consult [Getting Started with Bolt](/tools/java-slack-sdk/guides/getting-started-with-bolt) first.
 
 :::
 
@@ -131,7 +131,7 @@ app.blockAction("topics-action", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful.)
 
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option

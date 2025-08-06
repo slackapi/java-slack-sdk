@@ -329,7 +329,7 @@ The default constructor expects the following two environment variables to exist
 
 |Env Variable|Description|
 |-|-|
-|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, install your Slack app that has a bot user to your development workspace. Visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/java-slack-sdk/guides/app-distribution) for further information.|
+|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, install your Slack app that has a bot user to your development workspace. Visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/tools/java-slack-sdk/guides/app-distribution) for further information.|
 |`SLACK_SIGNING_SECRET`|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [Verifying requests from Slack](/authentication/verifying-requests-from-slack) for more information.|
 
 If you prefer configuring an `App` in a different way, write some code to initialize `AppConfig` on your own.
@@ -446,7 +446,7 @@ public class SlackAppController extends SlackAppServlet {
 }
 ```
 
-Check [the detailed guide here](/java-slack-sdk/guides/supported-web-frameworks) for more information.
+Check [the detailed guide here](/tools/java-slack-sdk/guides/supported-web-frameworks) for more information.
 
 ---
 ## Getting started with Kotlin {#getting-started-in-kotlin}
@@ -575,9 +575,9 @@ We strongly recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) her
 ---
 ## Next steps {#next-steps}
 
-Read the [Bolt Basics](/java-slack-sdk/guides/bolt-basics) page for further information.
+Read the [Bolt Basics](/tools/java-slack-sdk/guides/bolt-basics) page for further information.
 
-If you want to know ways to run a Bolt app with Spring Boot, Micronaut, Quarkus, or Helidon SE, refer to the [Supported Web Frameworks](/java-slack-sdk/guides/supported-web-frameworks) page.
+If you want to know ways to run a Bolt app with Spring Boot, Micronaut, Quarkus, or Helidon SE, refer to the [Supported Web Frameworks](/tools/java-slack-sdk/guides/supported-web-frameworks) page.
 
 Also, many examples are available in the GitHub repository.
 

@@ -28,7 +28,7 @@ Bolt アプリが Home タブの提供のためにやらなければならない
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/java-slack-sdk/guides/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/tools/java-slack-sdk/guides/getting-started-with-bolt)」を読んでください。
 
 以下のコードは、ユーザーが App Home にアクセスして [`"app_home_opened"` イベント](/reference/events/app_home_opened)が発火したときに [**views.publish**](/reference/methods/views.publish) API メソッドによって Home タブを更新しています。[**views.publish**](/reference/methods/views.publish) の呼び出しが成功すれば、即座に Home タブの変更が反映されます。
 
@@ -70,7 +70,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/tools/java-slack-sdk/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 // static imports
@@ -102,7 +102,7 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
 }
 ```
 
-また、 Kotlin で開発しているなら、上記の例を [Block Kit Kotlin DSL](/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) を使って以下のように実装することもできます。
+また、 Kotlin で開発しているなら、上記の例を [Block Kit Kotlin DSL](/tools/java-slack-sdk/guides/composing-messages#block-kit-kotlin-dsl) を使って以下のように実装することもできます。
 
 ```kotlin
 // これらの import が必要です
@@ -124,4 +124,4 @@ val appHomeView = view { it
 
 ### Bolt がやっていること
 
-「[イベント API](/java-slack-sdk/guides/events-api)」の同項目を参照してください。
+「[イベント API](/tools/java-slack-sdk/guides/events-api)」の同項目を参照してください。
