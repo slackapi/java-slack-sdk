@@ -387,6 +387,8 @@ public class File {
     private boolean restrictedSharingEnabled;
     private boolean canvasPrintingEnabled;
 
+    private boolean isAiSuggested;
+
     // ---------------------------------------
     // file comments
     // https://docs.slack.dev/changelog/2018-05-file-threads-soon-tread
