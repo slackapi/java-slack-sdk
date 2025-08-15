@@ -170,6 +170,7 @@ public class Actions {
         public static final String pref_public_record_channel_retention_duration_changed = "pref.public_record_channel_retention_duration_changed";
         public static final String pref_public_record_channel_retention_changed = "pref.public_record_channel_retention_changed";
         public static final String pref_public_record_channel_redaction_duration_changed = "pref.public_record_channel_redaction_duration_changed";
+        public static final String pref_enterprise_search_connectors_config_changed = "pref.enterprise_search_connectors_config_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -462,6 +463,14 @@ public class Actions {
         public static final String app_manifest_created = "app_manifest_created";
         public static final String app_manifest_updated = "app_manifest_updated";
         public static final String admin_app_config_updated = "admin_app_config_updated";
+        public static final String app_flows_execute_slack_action = "app_flows_execute_slack_action";
+        public static final String agentforce_agent_activated = "agentforce_agent_activated";
+        public static final String agentforce_agent_deactivated = "agentforce_agent_deactivated";
+        public static final String agentforce_agent_slack_connection_removed = "agentforce_agent_slack_connection_removed";
+        public static final String agentforce_agent_slack_connection_added = "agentforce_agent_slack_connection_added";
+        public static final String agentforce_agent_actions_updated = "agentforce_agent_actions_updated";
+        public static final String agentforce_agent_metadata_updated = "agentforce_agent_metadata_updated";
+        public static final String agentforce_agent_slack_deleted = "agentforce_agent_slack_deleted";
     }
 
     public static class Message {
@@ -577,6 +586,7 @@ public class Actions {
         public static final String usergroup_updated = "usergroup_updated";
         public static final String usergroup_update_enqueued = "usergroup_update_enqueued";
         public static final String usergroup_section_updated = "usergroup_section_updated";
+        public static final String user_add_to_usergroup_failed = "user_add_to_usergroup_failed";
     }
 
     public static class AccountTypeRole {

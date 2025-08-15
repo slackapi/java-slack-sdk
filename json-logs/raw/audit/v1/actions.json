@@ -263,7 +263,8 @@
       "pref.private_record_channel_redaction_duration_changed",
       "pref.public_record_channel_retention_duration_changed",
       "pref.public_record_channel_retention_changed",
-      "pref.public_record_channel_redaction_duration_changed"
+      "pref.public_record_channel_redaction_duration_changed",
+      "pref.enterprise_search_connectors_config_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -434,7 +435,15 @@
       "app_deployed",
       "app_manifest_created",
       "app_manifest_updated",
-      "admin_app_config_updated"
+      "admin_app_config_updated",
+      "app_flows_execute_slack_action",
+      "agentforce_agent_activated",
+      "agentforce_agent_deactivated",
+      "agentforce_agent_slack_connection_removed",
+      "agentforce_agent_slack_connection_added",
+      "agentforce_agent_actions_updated",
+      "agentforce_agent_metadata_updated",
+      "agentforce_agent_slack_deleted"
     ],
     "workflow_builder": [
       "workflow_created",
@@ -509,7 +518,8 @@
       "usergroup_remove_from_team_enqueued",
       "usergroup_updated",
       "usergroup_update_enqueued",
-      "usergroup_section_updated"
+      "usergroup_section_updated",
+      "user_add_to_usergroup_failed"
     ],
     "role": [
       "role_assigned",

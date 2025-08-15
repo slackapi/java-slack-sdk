@@ -28,7 +28,9 @@
       "U00000000"
     ],
     "channel_count": 12345,
-    "is_section": false
+    "is_section": false,
+    "is_idp_group": false,
+    "is_visible": false
   },
   "error": "",
   "needed": "",

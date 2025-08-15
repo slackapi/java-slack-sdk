@@ -22,6 +22,7 @@ public class ConversationProperties {
     private List<Tab> tabs;
     private List<Tabz> tabz;
     private MeetingNotes meetingNotes;
+    private Boolean isDormant;
 
     @Data
     @Builder

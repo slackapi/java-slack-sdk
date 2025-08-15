@@ -62,8 +62,7 @@
             ""
           ],
           "user": [
-            "W00000000",
-            "U00000000"
+            "W00000000"
           ]
         },
         "threads_restricted_to": {
@@ -106,7 +105,8 @@
         ],
         "meeting_notes": {
           "file_id": "F00000000"
-        }
+        },
+        "is_dormant": false
       }
     }
   ],
