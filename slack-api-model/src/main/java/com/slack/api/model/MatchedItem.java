@@ -35,6 +35,7 @@ public class MatchedItem {
 
     private String plainText;
     private String previewPlainText;
+    private Map<String, Object> dbMessage;
 
     private Map<String, String> headers;
 
@@ -282,5 +283,8 @@ public class MatchedItem {
     private Double canvasReadtime;
     private String canvasCreatorId;
     private String altTxt;
+
+    @SerializedName("is_ai_suggested")
+    private Boolean aiSuggested;
 
 }

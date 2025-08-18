@@ -45,6 +45,8 @@ public class Usergroup {
     private List<String> users;
     private Integer userCount;
     private Integer channelCount;
+    @SerializedName("is_visible")
+    private boolean visible;
 
     @Data
     public static class Prefs {
