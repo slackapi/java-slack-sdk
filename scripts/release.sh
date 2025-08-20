@@ -28,6 +28,5 @@ else
     deploy \
     -P production-releases \
     -D maven.test.skip=true \
-    ${exclusion} \
-    nexus-staging:release
+    ${exclusion}
 fi

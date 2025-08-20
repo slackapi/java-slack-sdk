@@ -89,8 +89,8 @@ Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/
 * Make sure the account you are using has the permission to make releases [under com.slack groupId](https://central.sonatype.com/publishing/com.slack/users)
 
 Place `$HOME/.m2/settings.xml` with your Sonatype account information. 
-* Generate user token: https://central.sonatype.org/publish/generate-token/
-* Set the user token id/password: https://central.sonatype.org/publish/publish-manual/#signing-components
+* Generate user token: https://central.sonatype.org/publish/generate-portal-token/
+* Set the user token id/password: https://central.sonatype.org/publish/publish-portal-maven/#credentials
 
 ```xml
 <settings>
@@ -99,12 +99,7 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
     <server>
       <username>${your-username}</username>
       <password>${your-password}</password>
-      <id>sonatype-nexus-staging</id>
-    </server>
-    <server>
-      <username>${your-username}</username>
-      <password>${your-password}</password>
-      <id>sonatype-nexus-snapshots</id>
+      <id>central</id>
     </server>
   </servers>
   <pluginGroups>
