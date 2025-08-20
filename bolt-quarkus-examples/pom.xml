@@ -6,8 +6,11 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.45.4-SNAPSHOT</version>
+        <version>1.45.4</version>
     </parent>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>${project.url}</url>
 
     <properties>
         <!-- Quarkus 1.7+ requires Java 11+ -->
@@ -24,7 +27,7 @@
     </properties>
 
     <artifactId>bolt-quarkus-examples</artifactId>
-    <version>1.45.4-SNAPSHOT</version>
+    <version>1.45.4</version>
     <packaging>jar</packaging>
 
     <dependencyManagement>

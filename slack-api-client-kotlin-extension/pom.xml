@@ -5,12 +5,15 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.45.4-SNAPSHOT</version>
+        <version>1.45.4</version>
     </parent>
 
     <artifactId>slack-api-client-kotlin-extension</artifactId>
-    <version>1.45.4-SNAPSHOT</version>
+    <version>1.45.4</version>
     <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>${project.url}</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

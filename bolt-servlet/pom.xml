@@ -6,8 +6,11 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.45.4-SNAPSHOT</version>
+        <version>1.45.4</version>
     </parent>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>${project.url}</url>
 
     <properties>
         <!-- TODO: Upgrade to 11.x in the next major version - v2 -->
@@ -15,7 +18,7 @@
     </properties>
 
     <artifactId>bolt-servlet</artifactId>
-    <version>1.45.4-SNAPSHOT</version>
+    <version>1.45.4</version>
     <packaging>jar</packaging>
 
     <dependencies>

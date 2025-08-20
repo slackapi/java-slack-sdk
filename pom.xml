@@ -5,11 +5,11 @@
 
     <groupId>com.slack.api</groupId>
     <artifactId>slack-sdk-parent</artifactId>
-    <version>1.45.4-SNAPSHOT</version>
+    <version>1.45.4</version>
     <packaging>pom</packaging>
 
     <name>Java Slack SDK Project</name>
-    <url>https://github.com/slackapi/java-slack-sdk</url>
+    <url>${project.url}</url>
 
     <modules>
         <module>slack-api-client</module>
@@ -42,6 +42,7 @@
     </parent>
 
     <properties>
+        <project.url>https://github.com/slackapi/java-slack-sdk</project.url>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
