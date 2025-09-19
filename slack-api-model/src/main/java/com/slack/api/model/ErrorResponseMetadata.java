@@ -8,4 +8,5 @@ import java.util.List;
 public class ErrorResponseMetadata {
 
     private List<String> messages;
+    private List<String> warnings;
 }

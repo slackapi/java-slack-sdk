@@ -29,4 +29,6 @@ public class ChatPostMessageResponse implements SlackApiTextResponse {
     private String channel;
     private String ts;
     private Message message;
+
+    private String callstack;
 }

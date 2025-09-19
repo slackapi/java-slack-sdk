@@ -235,8 +235,12 @@ public class Message {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Metadata {
+        // Event metadata
         private String eventType;
         private Map<String, Object> eventPayload;
+
+        // Work object metadata
+        private EntityMetadata[] entities;
     }
 
     private Room room; // Huddle

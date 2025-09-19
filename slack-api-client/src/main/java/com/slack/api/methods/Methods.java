@@ -216,7 +216,7 @@ public class Methods {
     public static final String ADMIN_WORKFLOWS_COLLABORATORS_REMOVE = "admin.workflows.collaborators.remove";
     public static final String ADMIN_WORKFLOWS_PERMISSIONS_LOOKUP = "admin.workflows.permissions.lookup";
     public static final String ADMIN_WORKFLOWS_SEARCH = "admin.workflows.search";
-    public static final String ADMIN_WORKFLOWS_UNPUBLISH =  "admin.workflows.unpublish";
+    public static final String ADMIN_WORKFLOWS_UNPUBLISH = "admin.workflows.unpublish";
 
     // ------------------------------
     // api
@@ -247,7 +247,6 @@ public class Methods {
     public static final String APPS_MANIFEST_VALIDATE = "apps.manifest.validate";
     public static final String TOOLING_TOKENS_ROTATE = "tooling.tokens.rotate";
 
-
     // ------------------------------
     // apps.event.authorizations
     // ------------------------------
@@ -261,7 +260,8 @@ public class Methods {
     // Developer preview has ended
     // This feature was exclusive to our workspace apps developer preview.
     // The preview has now ended, but fan-favorite features such as token rotation
-    // and the Conversations API will become available to classic Slack apps over the coming months.
+    // and the Conversations API will become available to classic Slack apps over
+    // the coming months.
 
     @Deprecated
     public static final String APPS_PERMISSIONS_INFO = "apps.permissions.info";
@@ -452,6 +452,12 @@ public class Methods {
     // ------------------------------
 
     public static final String EMOJI_LIST = "emoji.list";
+
+    // ------------------------------
+    // entity
+    // ------------------------------
+
+    public static final String ENTITY_PRESENT_DETAILS = "entity.presentDetails";
 
     // ------------------------------
     // files.comments
@@ -725,4 +731,10 @@ public class Methods {
     public static final String WORKFLOWS_STEP_COMPLETED = "workflows.stepCompleted";
     public static final String WORKFLOWS_STEP_FAILED = "workflows.stepFailed";
     public static final String WORKFLOWS_UPDATE_STEP = "workflows.updateStep";
+
+    // ------------------------------
+    // work object entities
+    // ------------------------------
+
+    public static final String ENTITY_PRESENT_DETAILSs = "entity.presentDetails";
 }

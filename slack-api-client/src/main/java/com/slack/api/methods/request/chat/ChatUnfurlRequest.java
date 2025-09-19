@@ -3,6 +3,7 @@ package com.slack.api.methods.request.chat;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.Action;
 import com.slack.api.model.Field;
+import com.slack.api.model.EntityMetadata;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.AllArgsConstructor;
@@ -74,6 +75,17 @@ public class ChatUnfurlRequest implements SlackApiRequest {
 
     // https://docs.slack.dev/changelog/2021-08-changes-to-unfurls
     private String source;
+
+    private String rawMetadata;
+    private UnfurlMetadata metadata;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UnfurlMetadata {
+        private EntityMetadata[] entities;
+    }
 
     // https://docs.slack.dev/messaging/unfurling-links-in-messages
     @Data

@@ -76,6 +76,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.remote.*;
 import com.slack.api.methods.request.functions.FunctionsCompleteErrorRequest;
@@ -197,6 +198,7 @@ import com.slack.api.methods.response.conversations.request_shared_invite.Conver
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.remote.*;
 import com.slack.api.methods.response.functions.FunctionsCompleteErrorResponse;
@@ -244,6 +246,7 @@ import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -1564,5 +1567,13 @@ public interface AsyncMethodsClient {
     CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(WorkflowsUpdateStepRequest req);
 
     CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req);
+
+    // ------------------------------
+    // work object entities
+    // ------------------------------
+
+    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req);
+    
+    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req);
 
 }

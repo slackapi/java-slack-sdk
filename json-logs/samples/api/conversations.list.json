@@ -115,5 +115,7 @@
   },
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "arg": "",
+  "callstack": ""
 }

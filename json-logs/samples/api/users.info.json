@@ -79,7 +79,12 @@
     "who_can_share_contact_card": "",
     "is_workflow_bot": false,
     "is_invited_user": false,
-    "is_connector_bot": false
+    "is_connector_bot": false,
+    "teams": [
+      "T00000000"
+    ],
+    "enterprise_id": "E00000000",
+    "enterprise_name": ""
   },
   "error": "",
   "needed": "",
