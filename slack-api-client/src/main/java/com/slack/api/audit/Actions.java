@@ -276,6 +276,7 @@ public class Actions {
         public static final String search_query_audit_logs_export_downloaded = "search_query_audit_logs_export_downloaded";
         public static final String search_query_audit_logs_export_deleted = "search_query_audit_logs_export_deleted";
         public static final String audit_logs_ai_summary_generated = "audit_logs_ai_summary_generated";
+        public static final String search_query_audit_logs_max_rows_failure = "search_query_audit_logs_max_rows_failure";
     }
 
     public static class User {
@@ -336,6 +337,8 @@ public class Actions {
         public static final String app_agentforce_session_created_from_prompt_link = "app_agentforce_session_created_from_prompt_link";
         public static final String app_agentforce_execute_slack_action = "app_agentforce_execute_slack_action";
         public static final String user_anomaly_event_reponse_allowlist_changed = "user_anomaly_event_reponse_allowlist_changed";
+        public static final String org_owner_created = "org_owner_created";
+        public static final String slackbot_ai_shareable_prompt_created = "slackbot_ai_shareable_prompt_created";
     }
 
     public static class File {
@@ -426,6 +429,11 @@ public class Actions {
         public static final String featured_workflow_added = "featured_workflow_added";
         public static final String featured_workflow_removed = "featured_workflow_removed";
         public static final String channel_huddle_properties_updated = "channel_huddle_properties_updated";
+        public static final String channel_detail_flagged = "channel_detail_flagged";
+        public static final String channel_detail_flag_assignment = "channel_detail_flag_assignment";
+        public static final String channel_detail_flag_unassignment = "channel_detail_flag_unassignment";
+        public static final String channel_detail_flag_moderated = "channel_detail_flag_moderated";
+        public static final String channel_detail_flag_dismissed = "channel_detail_flag_dismissed";
     }
 
     public static class App {
@@ -587,6 +595,7 @@ public class Actions {
         public static final String usergroup_update_enqueued = "usergroup_update_enqueued";
         public static final String usergroup_section_updated = "usergroup_section_updated";
         public static final String user_add_to_usergroup_failed = "user_add_to_usergroup_failed";
+        public static final String usergroup_anomaly_event_response_allowlist_changed = "usergroup_anomaly_event_response_allowlist_changed";
     }
 
     public static class AccountTypeRole {
@@ -618,6 +627,7 @@ public class Actions {
         public static final String workflow_trigger_permission_set = "workflow_trigger_permission_set";
         public static final String workflow_trigger_permission_added = "workflow_trigger_permission_added";
         public static final String workflow_trigger_permission_removed = "workflow_trigger_permission_removed";
+        public static final String workflow_trigger_suspicious_keyword = "workflow_trigger_suspicious_keyword";
     }
 
     public static class Canvas {
@@ -650,6 +660,7 @@ public class Actions {
         public static final String canvas_restricted_sharing_disabled = "canvas_restricted_sharing_disabled";
         public static final String canvas_converted_to_standalone = "canvas_converted_to_standalone";
         public static final String canvas_quip_migration_undone = "canvas_quip_migration_undone";
+        public static final String slack_ai_canvas_content_generated = "slack_ai_canvas_content_generated";
     }
 
     public static class Function {
