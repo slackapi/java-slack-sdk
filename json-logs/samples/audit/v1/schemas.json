@@ -83,7 +83,11 @@
         "name": "",
         "updated_by": "",
         "step_configuration": "",
-        "template_id": ""
+        "template_id": "",
+        "suspicious_keywords": "",
+        "trigger_name": "",
+        "trigger_channels": "",
+        "trigger_configuration": ""
       },
       "template": {
         "id": "",
