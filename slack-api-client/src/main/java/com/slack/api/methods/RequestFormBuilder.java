@@ -1927,6 +1927,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(ConversationsCanvasesCreateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("title", req.getTitle(), form);
         if (req.getDocumentContent() != null) {
             setIfNotNull("document_content", GSON.toJson(req.getDocumentContent()), form);
         } else if (req.getMarkdown() != null) {

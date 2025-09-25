@@ -19,6 +19,8 @@ public class ConversationsCanvasesCreateRequest implements SlackApiRequest {
 
     private String channelId;
 
+    private String title;
+
     private String markdown;
     private CanvasDocumentContent documentContent;
 }
