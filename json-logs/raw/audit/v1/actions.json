@@ -264,7 +264,8 @@
       "pref.public_record_channel_retention_duration_changed",
       "pref.public_record_channel_retention_changed",
       "pref.public_record_channel_redaction_duration_changed",
-      "pref.enterprise_search_connectors_config_changed"
+      "pref.enterprise_search_connectors_config_changed",
+      "search_query_audit_logs_max_rows_failure"
     ],
     "user": [
       "custom_tos_accepted",
@@ -320,7 +321,9 @@
       "app_agentforce_shareable_prompt_created",
       "app_agentforce_session_created_from_prompt_link",
       "app_agentforce_execute_slack_action",
-      "user_anomaly_event_reponse_allowlist_changed"
+      "user_anomaly_event_reponse_allowlist_changed",
+      "org_owner_created",
+      "slackbot_ai_shareable_prompt_created"
     ],
     "file": [
       "file_downloaded",
@@ -402,7 +405,12 @@
       "record_channel_channel_type_conversion",
       "featured_workflow_added",
       "featured_workflow_removed",
-      "channel_huddle_properties_updated"
+      "channel_huddle_properties_updated",
+      "channel_detail_flagged",
+      "channel_detail_flag_assignment",
+      "channel_detail_flag_unassignment",
+      "channel_detail_flag_moderated",
+      "channel_detail_flag_dismissed"
     ],
     "app": [
       "app_installed",
@@ -519,7 +527,8 @@
       "usergroup_updated",
       "usergroup_update_enqueued",
       "usergroup_section_updated",
-      "user_add_to_usergroup_failed"
+      "user_add_to_usergroup_failed",
+      "usergroup_anomaly_event_response_allowlist_changed"
     ],
     "role": [
       "role_assigned",
@@ -545,7 +554,8 @@
       "workflow_v2_published",
       "workflow_trigger_permission_set",
       "workflow_trigger_permission_added",
-      "workflow_trigger_permission_removed"
+      "workflow_trigger_permission_removed",
+      "workflow_trigger_suspicious_keyword"
     ],
     "canvas": [
       "canvas_access_added",
@@ -573,7 +583,8 @@
       "canvas_restricted_sharing_enabled",
       "canvas_restricted_sharing_disabled",
       "canvas_converted_to_standalone",
-      "canvas_quip_migration_undone"
+      "canvas_quip_migration_undone",
+      "slack_ai_canvas_content_generated"
     ],
     "function": [
       "function_distribution_permission_added",

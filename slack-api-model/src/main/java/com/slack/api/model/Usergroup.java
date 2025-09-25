@@ -47,6 +47,12 @@ public class Usergroup {
     private Integer channelCount;
     @SerializedName("is_visible")
     private boolean visible;
+    @SerializedName("is_editing_restricted")
+    private boolean editingRestricted;
+    @SerializedName("is_membership_locked")
+    private boolean membershipLocked;
+    @SerializedName("is_org_level")
+    private boolean orgLevel;
 
     @Data
     public static class Prefs {

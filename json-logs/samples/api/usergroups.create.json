@@ -30,7 +30,10 @@
     ],
     "is_section": false,
     "is_idp_group": false,
-    "is_visible": false
+    "is_visible": false,
+    "is_editing_restricted": false,
+    "is_membership_locked": false,
+    "is_org_level": false
   },
   "error": "",
   "needed": "",
