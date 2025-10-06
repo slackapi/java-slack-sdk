@@ -17,7 +17,7 @@
     <url>${project.url}</url>
 
     <properties>
-        <commons-text.version>1.13.0</commons-text.version>
+        <commons-text.version>1.14.0</commons-text.version>
     </properties>
 
     <dependencies>
