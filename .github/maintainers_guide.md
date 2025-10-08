@@ -10,7 +10,7 @@ Maintaining this project requires installing [OpenJDK](https://openjdk.java.net/
 
 ### Testing
 
-This project has tests for individual packages inside of each's respective `src/test/java` directory. All the tests under `test_locally` package are executed in every single GitHub Actions CI build as below.
+This project has tests for individual packages inside each's respective `src/test/java` directory. All the tests under `test_locally` package are executed in every single GitHub Actions CI build as below.
 
 ```bash
 ./scripts/run_no_prep_tests.sh
@@ -109,7 +109,28 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
 </settings>
 ```
 
-#### Operations
+#### Snapshot Release
+
+Snapshot releases are intended for developers to make pre-release versions of their projects available for testing.
+To learn more about snapshot releases in maven central repository check out [publish-portal-snapshots](https://central.sonatype.org/publish/publish-portal-snapshots/)
+
+* From the upstream repository
+* Preparation
+  * `git switch main && git pull origin main`
+  * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions
+* Set a new version
+  * It is **critical** that the version ends with `-SNAPSHOT`. This is how [central-publishing-maven-plugin](https://central.sonatype.org/publish/publish-portal-snapshots/#publishing-with-the-central-publishing-maven-plugin) automatically recognizes snapshot releases and uploads them the right location.
+  * If you don't have `gnu-sed`, check out [Prerequisites](#prerequisites)
+  * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0-SNAPSHOT`)
+* Ship the libraries
+  * Switch to **JDK 17** to publish all modules (on macOS, you can run `export JAVA_HOME=$(/usr/libexec/java_home -v 17)` for it)
+  * Run `scripts/release.sh` (it takes a bit long)
+  * (If you encounter an error, log in https://oss.sonatype.org/ to check detailed information)
+* No need to create a GitHub Release, since this is intended for developers to make pre-release versions of their projects.
+* `-SNAPSHOT` versions are intended to be overwritten.
+  * This enables developers to work with the latest version of a library without needing to update their dependencies repeatedly.
+
+#### Stable Release
 
 * From the upstream repository
 * Preparation
