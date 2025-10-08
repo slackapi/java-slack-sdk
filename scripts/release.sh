@@ -31,7 +31,7 @@ else
     echo "Release cancelled by user!"
     exit 0
   fi
-  echo "Confirmed. Proceeding with the official release."
+  echo "Confirmed. Proceeding with the stable release."
 
   profile=production-releases
   mvn clean \
