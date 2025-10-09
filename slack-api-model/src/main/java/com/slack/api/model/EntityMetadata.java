@@ -236,9 +236,6 @@ public class EntityMetadata {
         public static class FullSizePreview {
             private Boolean isSupported;
             private String previewUrl;
-            private Boolean isAnimated;
-            private String width;
-            private String height;
             private String mime_type;
             private Error error;
 

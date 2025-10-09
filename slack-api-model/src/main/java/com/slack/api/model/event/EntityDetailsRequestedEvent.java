@@ -16,8 +16,8 @@ public class EntityDetailsRequestedEvent implements Event {
     private Link link;
     private String entityUrl;
     private String appUnfurlUrl;
-    private String trigger_id;
-    private ExternalRef external_ref;
+    private String triggerId;
+    private ExternalRef externalRef;
     private String channel;
     private String messageTs;
     // The thread_ts field only appears when the link was shared within a message thread.
