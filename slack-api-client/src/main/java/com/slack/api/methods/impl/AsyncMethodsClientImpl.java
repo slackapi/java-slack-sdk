@@ -23,6 +23,7 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.admin.functions.AdminFunctionsListRequest;
 import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsLookupRequest;
 import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsSetRequest;
@@ -144,6 +145,7 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
+import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
 import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsLookupResponse;
 import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsSetResponse;
@@ -2871,6 +2873,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req) {
         return workflowsUpdateStep(req.configure(WorkflowsUpdateStepRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req) {
+        return executor.execute(ENTITY_PRESENT_DETAILS, toMap(req), () -> methods.entityPresentDetails(req));
+    }
+
+    @Override
+    public CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req) {
+        return entityPresentDetails(req.configure(EntityPresentDetailsRequest.builder()).build());
     }
 
 }

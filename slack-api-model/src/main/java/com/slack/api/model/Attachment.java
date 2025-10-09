@@ -357,6 +357,7 @@ public class Attachment {
     private String mimetype;
     private String url;
     private AttachmentMetadata metadata;
+    private Object workObjectEntity;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)

@@ -1,15 +1,11 @@
 {
   "ok": false,
+  "warning": "",
   "error": "",
   "needed": "",
   "provided": "",
-  "callstack": "",
-  "warning": "",
   "response_metadata": {
     "messages": [
-      ""
-    ],
-    "warnings": [
       ""
     ]
   }
