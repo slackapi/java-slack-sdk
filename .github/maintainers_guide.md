@@ -76,9 +76,33 @@ By installing App(2) and App(3), you get the followings. Set them as env variabl
 |SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID|A shared channel's ID `SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN` can manage.|
 |SLACK_SDK_TEST_EMAIL_ADDRESS|An email address to invite.|
 
+### Installing JAR files locally for development
+
+To use the JAR files from each subproject in your local development environment, you can install them to your local Maven repository:
+
+1. Build and install all modules locally:
+    * Run `scripts/install_local.sh`
+    * Note: This command skips running unit tests for faster installation
+2. Use in your project:
+   Once installed locally, you can reference these artifacts in your project's `pom.xml`:
+
+   ```xml
+   <dependency>
+       <groupId>com.slack.api</groupId>
+       <artifactId>bolt</artifactId>
+       <version>1.0.1-SNAPSHOT</version>
+   </dependency>
+   
+   <dependency>
+       <groupId>com.slack.api</groupId>
+       <artifactId>slack-api-client</artifactId>
+       <version>1.0.1-SNAPSHOT</version>
+   </dependency>
+   ```
+
 ### Generating Documentation
 
-Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/README.md) for details on editing documentation. 
+Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/README.md) for details on editing documentation.
 
 ### Releasing
 
@@ -88,7 +112,7 @@ Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/
 * Make sure you've set up your key https://central.sonatype.org/publish/requirements/gpg/
 * Make sure the account you are using has the permission to make releases [under com.slack groupId](https://central.sonatype.com/publishing/com.slack/users)
 
-Place `$HOME/.m2/settings.xml` with your Sonatype account information. 
+Place `$HOME/.m2/settings.xml` with your Sonatype account information.
 * Generate user token: https://central.sonatype.org/publish/generate-portal-token/
 * Set the user token id/password: https://central.sonatype.org/publish/publish-portal-maven/#credentials
 
@@ -96,11 +120,16 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
 <settings>
   <localRepository>/${your-home-dir}/.m2/repository</localRepository>
   <servers>
-    <server>
-      <username>${your-username}</username>
-      <password>${your-password}</password>
-      <id>central</id>
-    </server>
+      <server>
+          <id>central</id>
+          <username>${your-username}</username>
+          <password>${your-password}</password>
+      </server>
+      <server>
+          <id>central-snapshots</id>
+          <username>${your-username}</username>
+          <password>${your-password}</password>
+      </server>
   </servers>
   <pluginGroups>
     <pluginGroup>org.apache.maven.plugins</pluginGroup>
@@ -116,7 +145,7 @@ To learn more about snapshot releases in maven central repository check out [pub
 
 * From the upstream repository
 * Preparation
-  * `git switch main && git pull origin main`
+  * `git switch main && git pull origin main` (or the branch you want to release from)
   * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions
 * Set a new version
   * It is **critical** that the version ends with `-SNAPSHOT`. This is how [central-publishing-maven-plugin](https://central.sonatype.org/publish/publish-portal-snapshots/#publishing-with-the-central-publishing-maven-plugin) automatically recognizes snapshot releases and uploads them the right location.
