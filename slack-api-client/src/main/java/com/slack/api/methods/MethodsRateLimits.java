@@ -15,7 +15,7 @@ import static com.slack.api.methods.MethodsRateLimitTier.*;
 /**
  * The comprehensive list of Slack Web API rate limits.
  *
- * @see <a href="https://docs.slack.dev/apis/web-api/rate-limits">api.slack.com document</a>
+ * @see <a href="https://docs.slack.dev/apis/web-api/rate-limits">API reference</a>
  */
 @Slf4j
 public class MethodsRateLimits {
@@ -257,6 +257,7 @@ public class MethodsRateLimits {
         setRateLimitTier(CANVASES_SECTIONS_LOOKUP, Tier3);
         setRateLimitTier(CONVERSATIONS_CANVASES_CREATE, Tier2);
 
+        setRateLimitTier(CHAT_APPEND_STREAM, Tier4);
         setRateLimitTier(CHAT_DELETE, Tier3);
         setRateLimitTier(CHAT_DELETE_SCHEDULED_MESSAGE, Tier3);
         setRateLimitTier(CHAT_GET_PERMALINK, SpecialTier_chat_getPermalink);
@@ -264,6 +265,8 @@ public class MethodsRateLimits {
         setRateLimitTier(CHAT_POST_EPHEMERAL, Tier4);
         setRateLimitTier(CHAT_POST_MESSAGE, SpecialTier_chat_postMessage);
         setRateLimitTier(CHAT_SCHEDULE_MESSAGE, Tier3);
+        setRateLimitTier(CHAT_START_STREAM, Tier2);
+        setRateLimitTier(CHAT_STOP_STREAM, Tier2);
         setRateLimitTier(CHAT_UNFURL, Tier3);
         setRateLimitTier(CHAT_UPDATE, Tier3);
         setRateLimitTier(CHAT_SCHEDULED_MESSAGES_LIST, Tier3);

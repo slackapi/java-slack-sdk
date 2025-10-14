@@ -34,4 +34,6 @@ public class MessageBotEvent implements Event {
 
     private String eventTs;
     private String channelType; // app_home, channel, group, im, mpim
+
+    private String streamingState;
 }
