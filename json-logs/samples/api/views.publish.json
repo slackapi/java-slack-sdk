@@ -3959,7 +3959,16 @@
     "previous_view_id": "",
     "app_id": "",
     "app_installed_team_id": "",
-    "bot_id": ""
+    "bot_id": "",
+    "entity_url": "",
+    "external_ref": {
+      "id": "",
+      "type": ""
+    },
+    "app_unfurl_url": "",
+    "message_ts": "",
+    "thread_ts": "",
+    "channel": ""
   },
   "response_metadata": {
     "messages": [
