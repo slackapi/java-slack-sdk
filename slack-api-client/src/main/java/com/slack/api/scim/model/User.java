@@ -169,6 +169,17 @@ public class User {
          * possible values: ISO 8601 date time string (e.g., "2020-11-30T23:59:59Z")
          */
         private String expiration;
+
+        private List<Channel> channels;
+
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class Channel {
+            private String value;
+            private String display;
+        }
     }
 
 }

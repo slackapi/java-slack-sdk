@@ -82,17 +82,19 @@
       },
       "groups": [
         {
-          "value": "S00000000",
-          "display": ""
-        },
-        {
           "value": "",
           "display": ""
         }
       ],
       "urn:ietf:params:scim:schemas:extension:slack:guest:2.0:User": {
         "type": "",
-        "expiration": ""
+        "expiration": "",
+        "channels": [
+          {
+            "value": "C00000000",
+            "display": ""
+          }
+        ]
       }
     }
   ],

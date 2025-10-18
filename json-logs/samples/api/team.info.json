@@ -24,7 +24,14 @@
     "discoverable": "",
     "avatar_base_url": "https://www.example.com/",
     "lob_sales_home_enabled": false,
-    "is_sfdc_auto_slack": false
+    "is_sfdc_auto_slack": false,
+    "sso_provider": {
+      "type": "",
+      "name": "",
+      "label": ""
+    },
+    "pay_prod_cur": "",
+    "locale": ""
   },
   "error": "",
   "needed": "",
