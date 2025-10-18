@@ -40,6 +40,10 @@
       ],
       "photos": [
         {
+          "value": "https://www.example.com/",
+          "type": ""
+        },
+        {
           "value": "",
           "type": ""
         }
@@ -91,7 +95,13 @@
       },
       "urn:scim:schemas:extension:slack:guest:1.0": {
         "type": "",
-        "expiration": ""
+        "expiration": "",
+        "channels": [
+          {
+            "value": "C00000000",
+            "display": ""
+          }
+        ]
       }
     }
   ],
