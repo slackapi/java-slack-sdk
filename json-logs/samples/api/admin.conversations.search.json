@@ -105,6 +105,11 @@
               "shared_ts": "0000000000.000000"
             },
             "is_disabled": false
+          },
+          {
+            "type": "",
+            "label": "",
+            "id": ""
           }
         ],
         "tabz": [
@@ -117,6 +122,9 @@
               "shared_ts": "0000000000.000000"
             },
             "is_disabled": false
+          },
+          {
+            "type": ""
           }
         ],
         "meeting_notes": {

@@ -86,7 +86,8 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           }
@@ -98,7 +99,8 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           }
@@ -106,7 +108,14 @@
         "meeting_notes": {
           "file_id": "F00000000"
         },
-        "is_dormant": false
+        "is_dormant": false,
+        "use_case": "",
+        "channel_workflows": [
+          {
+            "workflow_trigger_id": "",
+            "title": ""
+          }
+        ]
       }
     }
   ],
