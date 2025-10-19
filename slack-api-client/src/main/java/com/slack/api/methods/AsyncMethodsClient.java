@@ -246,7 +246,6 @@ import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -1147,6 +1146,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<EmojiListResponse> emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req);
 
     // ------------------------------
+    // entity
+    // ------------------------------
+
+    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req);
+
+    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req);
+
+    // ------------------------------
     // files
     // ------------------------------
 
@@ -1567,13 +1574,5 @@ public interface AsyncMethodsClient {
     CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(WorkflowsUpdateStepRequest req);
 
     CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req);
-
-    // ------------------------------
-    // work object entities
-    // ------------------------------
-
-    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req);
-    
-    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req);
 
 }

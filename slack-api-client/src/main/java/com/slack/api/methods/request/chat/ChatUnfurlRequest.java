@@ -76,7 +76,11 @@ public class ChatUnfurlRequest implements SlackApiRequest {
     // https://docs.slack.dev/changelog/2021-08-changes-to-unfurls
     private String source;
 
+    /**
+     * JSON object with an entities field providing an array of work object entities.
+     */
     private String rawMetadata;
+
     private UnfurlMetadata metadata;
 
     @Data

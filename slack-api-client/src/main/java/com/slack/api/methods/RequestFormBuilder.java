@@ -2013,6 +2013,29 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(EntityPresentDetailsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+
+        if (req.getRawMetadata() != null) {
+            setIfNotNull("metadata", req.getRawMetadata(), form);
+        } else if (req.getMetadata() != null) {
+            EntityMetadata metadata = req.getMetadata();
+            metadata = prepareEntityMetadata(metadata);
+            String json = GSON.toJson(metadata, EntityMetadata.class);
+            setIfNotNull("metadata", json, form);
+        }
+
+        setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
+
+        setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
+
+        setIfNotNull("error", req.getError(), form);
+
+        return form;
+    }
+
     public static FormBody.Builder toForm(FilesDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("file", req.getFile(), form);
@@ -3026,29 +3049,6 @@ public class RequestFormBuilder {
                     getJsonWithGsonAnonymInnerClassHandling(req.getOutputs()),
                     form);
         }
-        return form;
-    }
-
-    public static FormBody.Builder toForm(EntityPresentDetailsRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-
-        setIfNotNull("trigger_id", req.getTriggerId(), form);
-
-        if (req.getRawMetadata() != null) {
-            setIfNotNull("metadata", req.getRawMetadata(), form);
-        } else if (req.getMetadata() != null) {
-            EntityMetadata metadata = req.getMetadata();
-            metadata = prepareEntityMetadata(metadata);
-            String json = GSON.toJson(metadata, EntityMetadata.class);
-            setIfNotNull("metadata", json, form);
-        }
-
-        setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
-
-        setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
-
-        setIfNotNull("error", req.getError(), form);
-
         return form;
     }
 

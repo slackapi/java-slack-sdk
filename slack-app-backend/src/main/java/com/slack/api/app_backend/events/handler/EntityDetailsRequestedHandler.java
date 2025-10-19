@@ -1,4 +1,3 @@
-
 package com.slack.api.app_backend.events.handler;
 
 import com.slack.api.app_backend.events.EventHandler;

@@ -1874,6 +1874,17 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
+    // entity
+    // ------------------------------
+
+    EntityPresentDetailsResponse entityPresentDetails(EntityPresentDetailsRequest req)
+            throws IOException, SlackApiException;
+
+    EntityPresentDetailsResponse entityPresentDetails(
+            RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
     // files
     // ------------------------------
 
@@ -2725,14 +2736,4 @@ public interface MethodsClient {
             RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req)
             throws IOException, SlackApiException;
 
-    // ------------------------------
-    // work object entities
-    // ------------------------------
-
-    EntityPresentDetailsResponse entityPresentDetails(EntityPresentDetailsRequest req)
-            throws IOException, SlackApiException;
-
-    EntityPresentDetailsResponse entityPresentDetails(
-            RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req)
-            throws IOException, SlackApiException;
 }

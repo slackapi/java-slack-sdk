@@ -2311,6 +2311,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public EntityPresentDetailsResponse entityPresentDetails(EntityPresentDetailsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ENTITY_PRESENT_DETAILS, getToken(req), EntityPresentDetailsResponse.class);
+    }
+
+    @Override
+    public EntityPresentDetailsResponse entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req) throws IOException, SlackApiException {
+        return entityPresentDetails(req.configure(EntityPresentDetailsRequest.builder()).build());
+    }
+
+    @Override
     public FilesDeleteResponse filesDelete(FilesDeleteRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.FILES_DELETE, getToken(req), FilesDeleteResponse.class);
     }
@@ -3566,16 +3576,6 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public WorkflowsUpdateStepResponse workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req) throws IOException, SlackApiException {
         return workflowsUpdateStep(req.configure(WorkflowsUpdateStepRequest.builder()).build());
-    }
-
-    @Override
-    public EntityPresentDetailsResponse entityPresentDetails(EntityPresentDetailsRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.ENTITY_PRESENT_DETAILSs, getToken(req), EntityPresentDetailsResponse.class);
-    }
-
-    @Override
-    public EntityPresentDetailsResponse entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req) throws IOException, SlackApiException {
-        return entityPresentDetails(req.configure(EntityPresentDetailsRequest.builder()).build());
     }
 
     // ----------------------------------------------

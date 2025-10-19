@@ -1,6 +1,8 @@
 package com.slack.api.methods.response.chat;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.ResponseMetadata;
+
 import lombok.Data;
 
 import java.util.List;
@@ -16,5 +18,5 @@ public class ChatUnfurlResponse implements SlackApiTextResponse {
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
     private String callstack;
-    private Object response_metadata;
+    private ResponseMetadata responseMetadata;
 }

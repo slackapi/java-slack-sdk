@@ -731,10 +731,4 @@ public class Methods {
     public static final String WORKFLOWS_STEP_COMPLETED = "workflows.stepCompleted";
     public static final String WORKFLOWS_STEP_FAILED = "workflows.stepFailed";
     public static final String WORKFLOWS_UPDATE_STEP = "workflows.updateStep";
-
-    // ------------------------------
-    // work object entities
-    // ------------------------------
-
-    public static final String ENTITY_PRESENT_DETAILSs = "entity.presentDetails";
 }

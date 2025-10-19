@@ -2050,6 +2050,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req) {
+        return executor.execute(ENTITY_PRESENT_DETAILS, toMap(req), () -> methods.entityPresentDetails(req));
+    }
+
+    @Override
+    public CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req) {
+        return entityPresentDetails(req.configure(EntityPresentDetailsRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<FilesDeleteResponse> filesDelete(FilesDeleteRequest req) {
         return executor.execute(FILES_DELETE, toMap(req), () -> methods.filesDelete(req));
     }
@@ -2873,16 +2883,6 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req) {
         return workflowsUpdateStep(req.configure(WorkflowsUpdateStepRequest.builder()).build());
-    }
-
-    @Override
-    public CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req) {
-        return executor.execute(ENTITY_PRESENT_DETAILS, toMap(req), () -> methods.entityPresentDetails(req));
-    }
-
-    @Override
-    public CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req) {
-        return entityPresentDetails(req.configure(EntityPresentDetailsRequest.builder()).build());
     }
 
 }
