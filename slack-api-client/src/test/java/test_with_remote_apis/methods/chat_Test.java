@@ -5,6 +5,7 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.ConversationsHistoryResponse;
@@ -798,6 +799,36 @@ public class chat_Test {
         ChatScheduledMessagesListResponse after = slack.methods(botToken).chatScheduledMessagesList(r -> r.limit(100));
         assertNull(after.getError());
         assertTrue(after.getScheduledMessages().size() - before.getScheduledMessages().size() == 2);
+    }
+
+    @Test
+    public void streamMessages() throws IOException, SlackApiException {
+        AuthTestResponse auth = slack.methods(botToken).authTest(req -> req);
+        assertThat(auth.getError(), is(nullValue()));
+        loadRandomChannelId();
+        String userId = findUser();
+        ChatPostMessageResponse topMessage = slack.methods(botToken).chatPostMessage(req -> req
+                .channel(randomChannelId)
+                .text("Get ready to stream a response in thread!"));
+        assertThat(topMessage.getError(), is(nullValue()));
+        ChatStartStreamResponse streamer = slack.methods(botToken).chatStartStream(r -> r
+                .channel(randomChannelId)
+                .threadTs(topMessage.getTs())
+                .recipientUserId(userId)
+                .recipientTeamId(auth.getTeamId()));
+        assertThat(streamer.isOk(), is(true));
+        assertThat(streamer.getError(), is(nullValue()));
+        ChatAppendStreamResponse appends = slack.methods(botToken).chatAppendStream(r -> r
+                .channel(randomChannelId)
+                .ts(streamer.getTs())
+                .markdownText("hello"));
+        assertThat(appends.isOk(), is(true));
+        assertThat(appends.getError(), is(nullValue()));
+        ChatStopStreamResponse stops = slack.methods(botToken).chatStopStream(r -> r
+                .channel(randomChannelId)
+                .ts(streamer.getTs()));
+        assertThat(stops.isOk(), is(true));
+        assertThat(stops.getError(), is(nullValue()));
     }
 
     // https://github.com/slackapi/java-slack-sdk/issues/415

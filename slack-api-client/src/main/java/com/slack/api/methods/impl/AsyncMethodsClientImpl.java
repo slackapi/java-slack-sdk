@@ -1595,13 +1595,13 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
-    public CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(ChatGetPermalinkRequest req) {
-        return executor.execute(CHAT_GET_PERMALINK, toMap(req), () -> methods.chatGetPermalink(req));
+    public CompletableFuture<ChatAppendStreamResponse> chatAppendStream(ChatAppendStreamRequest req) {
+        return executor.execute(CHAT_APPEND_STREAM, toMap(req), () -> methods.chatAppendStream(req));
     }
 
     @Override
-    public CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) {
-        return chatGetPermalink(req.configure(ChatGetPermalinkRequest.builder()).build());
+    public CompletableFuture<ChatAppendStreamResponse> chatAppendStream(RequestConfigurator<ChatAppendStreamRequest.ChatAppendStreamRequestBuilder> req) {
+        return chatAppendStream(req.configure(ChatAppendStreamRequest.builder()).build());
     }
 
     @Override
@@ -1622,6 +1622,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ChatDeleteScheduledMessageResponse> chatDeleteScheduledMessage(RequestConfigurator<ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) {
         return chatDeleteScheduledMessage(req.configure(ChatDeleteScheduledMessageRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(ChatGetPermalinkRequest req) {
+        return executor.execute(CHAT_GET_PERMALINK, toMap(req), () -> methods.chatGetPermalink(req));
+    }
+
+    @Override
+    public CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) {
+        return chatGetPermalink(req.configure(ChatGetPermalinkRequest.builder()).build());
     }
 
     @Override
@@ -1665,6 +1675,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ChatScheduleMessageResponse> chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) {
         return chatScheduleMessage(req.configure(ChatScheduleMessageRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ChatStartStreamResponse> chatStartStream(ChatStartStreamRequest req) {
+        return executor.execute(CHAT_START_STREAM, toMap(req), () -> methods.chatStartStream(req));
+    }
+
+    @Override
+    public CompletableFuture<ChatStartStreamResponse> chatStartStream(RequestConfigurator<ChatStartStreamRequest.ChatStartStreamRequestBuilder> req) {
+        return chatStartStream(req.configure(ChatStartStreamRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ChatStopStreamResponse> chatStopStream(ChatStopStreamRequest req) {
+        return executor.execute(CHAT_STOP_STREAM, toMap(req), () -> methods.chatStopStream(req));
+    }
+
+    @Override
+    public CompletableFuture<ChatStopStreamResponse> chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req) {
+        return chatStopStream(req.configure(ChatStopStreamRequest.builder()).build());
     }
 
     @Override

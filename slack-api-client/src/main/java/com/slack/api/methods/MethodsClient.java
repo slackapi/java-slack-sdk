@@ -1225,6 +1225,10 @@ public interface MethodsClient {
     // chat
     // ------------------------------
 
+    ChatAppendStreamResponse chatAppendStream(ChatAppendStreamRequest req) throws IOException, SlackApiException;
+
+    ChatAppendStreamResponse chatAppendStream(RequestConfigurator<ChatAppendStreamRequest.ChatAppendStreamRequestBuilder> req) throws IOException, SlackApiException;
+
     ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException;
 
     ChatGetPermalinkResponse chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException;
@@ -1252,6 +1256,14 @@ public interface MethodsClient {
     ChatScheduleMessageResponse chatScheduleMessage(ChatScheduleMessageRequest req) throws IOException, SlackApiException;
 
     ChatScheduleMessageResponse chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException;
+
+    ChatStartStreamResponse chatStartStream(ChatStartStreamRequest req) throws IOException, SlackApiException;
+
+    ChatStartStreamResponse chatStartStream(RequestConfigurator<ChatStartStreamRequest.ChatStartStreamRequestBuilder> req) throws IOException, SlackApiException;
+
+    ChatStopStreamResponse chatStopStream(ChatStopStreamRequest req) throws IOException, SlackApiException;
+
+    ChatStopStreamResponse chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
 

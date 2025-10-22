@@ -253,4 +253,6 @@ public class Message {
     }
 
     private AssistantAppThread assistantAppThread;
+
+    private String streamingState;
 }

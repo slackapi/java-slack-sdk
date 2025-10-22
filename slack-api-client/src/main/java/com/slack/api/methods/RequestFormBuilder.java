@@ -1447,10 +1447,11 @@ public class RequestFormBuilder {
         return form;
     }
 
-    public static FormBody.Builder toForm(ChatGetPermalinkRequest req) {
+    public static FormBody.Builder toForm(ChatAppendStreamRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
-        setIfNotNull("message_ts", req.getMessageTs(), form);
+        setIfNotNull("ts", req.getTs(), form);
+        setIfNotNull("markdown_text", req.getMarkdownText(), form);
         return form;
     }
 
@@ -1467,6 +1468,13 @@ public class RequestFormBuilder {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("scheduled_message_id", req.getScheduledMessageId(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ChatGetPermalinkRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("message_ts", req.getMessageTs(), form);
         return form;
     }
 
@@ -1616,6 +1624,40 @@ public class RequestFormBuilder {
         setIfNotNull("icon_emoji", req.getIconEmoji(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
         setIfNotNull("reply_broadcast", req.isReplyBroadcast(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ChatStartStreamRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("markdown_text", req.getMarkdownText(), form);
+        setIfNotNull("recipient_user_id", req.getRecipientUserId(), form);
+        setIfNotNull("recipient_team_id", req.getRecipientTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ChatStopStreamRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("ts", req.getTs(), form);
+        setIfNotNull("markdown_text", req.getMarkdownText(), form);
+
+        if (req.getMetadataAsString() != null) {
+            form.add("metadata", req.getMetadataAsString());
+        } else if (req.getMetadata() != null) {
+            String json = GSON.toJson(req.getMetadata());
+            form.add("metadata", json);
+        }
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
+            form.add("blocks", json);
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
         return form;
     }
 
