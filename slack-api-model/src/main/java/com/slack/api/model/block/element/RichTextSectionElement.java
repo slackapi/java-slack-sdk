@@ -162,6 +162,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private boolean strike;
         private boolean highlight;
         private boolean clientHighlight;
+        private boolean underline;
         private boolean unlink;
         private boolean code;
     }
@@ -176,6 +177,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private boolean strike;
         private boolean highlight;
         private boolean clientHighlight;
+        private boolean underline;
         private boolean unlink;
     }
 

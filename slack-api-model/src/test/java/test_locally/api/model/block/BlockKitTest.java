@@ -265,6 +265,7 @@ public class BlockKitTest {
         assertThat(text.getStyle().isBold(), is(true));
         assertThat(text.getStyle().isItalic(), is(false));
         assertThat(text.getStyle().isStrike(), is(false));
+        assertThat(text.getStyle().isUnderline(), is(false));
     }
 
     @Test
@@ -615,6 +616,56 @@ public class BlockKitTest {
         // verify if Gson can parse the JSON data
         Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
         assertThat(view.getBlocks().size(), is(1));
+    }
+
+    @Test
+    public void parseRichTextOnes5() {
+        // https://docs.slack.dev/changelog/2019/09/01/what-they-see-is-what-you-get-and-more-and-less
+        String json = "{\n" +
+                "  \"user\": \"U111\",\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"ts\": \"1761165621.982069\",\n" +
+                "  \"client_msg_id\": \"d0b7fc31-7456-4e54-9094-b5b1833fca8c\",\n" +
+                "  \"text\": \"this is underline\",\n" +
+                "  \"team\": \"T111\",\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\":\"rich_text\",\n" +
+                "      \"block_id\":\"sfvOa\",\n" +
+                "      \"elements\":[\n" +
+                "        {\n" +
+                "          \"type\":\"rich_text_section\",\n" +
+                "          \"elements\":[\n" +
+                "            {\n" +
+                "              \"type\":\"text\",\n" +
+                "              \"text\":\"this is underline\",\n" +
+                "              \"style\":{\n" +
+                "                \"underline\":true\n" +
+                "              }\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(view.getBlocks().size(), is(1));
+
+        RichTextBlock richTextBlock = (RichTextBlock) view.getBlocks().get(0);
+        assertThat(richTextBlock.getElements().size(), is(1));
+
+        RichTextSectionElement richTextSection = (RichTextSectionElement) richTextBlock.getElements().get(0);
+        assertThat(richTextSection.getElements().size(), is(1));
+
+        RichTextSectionElement.Text text = (RichTextSectionElement.Text) richTextSection.getElements().get(0);
+        assertThat(text.getType(), is("text"));
+        assertThat(text.getText(), is("this is underline"));
+        assertThat(text.getStyle().isBold(), is(false));
+        assertThat(text.getStyle().isItalic(), is(false));
+        assertThat(text.getStyle().isStrike(), is(false));
+        assertThat(text.getStyle().isUnderline(), is(true));
     }
 
     @Test
