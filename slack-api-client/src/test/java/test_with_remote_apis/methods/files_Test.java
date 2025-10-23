@@ -66,7 +66,7 @@ public class files_Test {
     void loadGeneralChannelId() throws IOException, SlackApiException {
         if (generalChannelId == null) {
             ConversationsListResponse channelsListResponse =
-                    slack.methods().conversationsList(r -> r.token(botToken).excludeArchived(true).limit(100));
+                    slack.methods().conversationsList(r -> r.token(botToken).excludeArchived(true).limit(200));
             assertThat(channelsListResponse.getError(), is(nullValue()));
             for (Conversation channel : channelsListResponse.getChannels()) {
                 if (channel.getName().equals("general")) {
