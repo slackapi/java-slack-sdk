@@ -102,6 +102,9 @@
             "display": ""
           }
         ]
+      },
+      "urn:scim:schemas:extension:slack:profile:1.0": {
+        "startDate": ""
       }
     }
   ],
