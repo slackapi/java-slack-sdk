@@ -378,6 +378,7 @@ public class Methods {
     // chat
     // ------------------------------
 
+    public static final String CHAT_APPEND_STREAM = "chat.appendStream";
     public static final String CHAT_DELETE = "chat.delete";
     public static final String CHAT_DELETE_SCHEDULED_MESSAGE = "chat.deleteScheduledMessage";
     public static final String CHAT_GET_PERMALINK = "chat.getPermalink";
@@ -385,6 +386,8 @@ public class Methods {
     public static final String CHAT_POST_EPHEMERAL = "chat.postEphemeral";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
     public static final String CHAT_SCHEDULE_MESSAGE = "chat.scheduleMessage";
+    public static final String CHAT_START_STREAM = "chat.startStream";
+    public static final String CHAT_STOP_STREAM = "chat.stopStream";
     public static final String CHAT_UNFURL = "chat.unfurl";
     public static final String CHAT_UPDATE = "chat.update";
 

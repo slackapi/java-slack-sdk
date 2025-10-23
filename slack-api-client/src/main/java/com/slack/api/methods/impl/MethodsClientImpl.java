@@ -1834,13 +1834,13 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_GET_PERMALINK, getToken(req), ChatGetPermalinkResponse.class);
+    public ChatAppendStreamResponse chatAppendStream(ChatAppendStreamRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_APPEND_STREAM, getToken(req), ChatAppendStreamResponse.class);
     }
 
     @Override
-    public ChatGetPermalinkResponse chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException {
-        return chatGetPermalink(req.configure(ChatGetPermalinkRequest.builder()).build());
+    public ChatAppendStreamResponse chatAppendStream(RequestConfigurator<ChatAppendStreamRequest.ChatAppendStreamRequestBuilder> req) throws IOException, SlackApiException {
+        return chatAppendStream(req.configure(ChatAppendStreamRequest.builder()).build());
     }
 
     @Override
@@ -1862,6 +1862,17 @@ public class MethodsClientImpl implements MethodsClient {
     public ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(RequestConfigurator<ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) throws IOException, SlackApiException {
         return chatDeleteScheduledMessage(req.configure(ChatDeleteScheduledMessageRequest.builder()).build());
     }
+
+    @Override
+    public ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_GET_PERMALINK, getToken(req), ChatGetPermalinkResponse.class);
+    }
+
+    @Override
+    public ChatGetPermalinkResponse chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException {
+        return chatGetPermalink(req.configure(ChatGetPermalinkRequest.builder()).build());
+    }
+
 
     @Override
     public ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException {
@@ -1901,6 +1912,26 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ChatScheduleMessageResponse chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException {
         return chatScheduleMessage(req.configure(ChatScheduleMessageRequest.builder()).build());
+    }
+
+    @Override
+    public ChatStartStreamResponse chatStartStream(ChatStartStreamRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_START_STREAM, getToken(req), ChatStartStreamResponse.class);
+    }
+
+    @Override
+    public ChatStartStreamResponse chatStartStream(RequestConfigurator<ChatStartStreamRequest.ChatStartStreamRequestBuilder> req) throws IOException, SlackApiException {
+        return chatStartStream(req.configure(ChatStartStreamRequest.builder()).build());
+    }
+
+    @Override
+    public ChatStopStreamResponse chatStopStream(ChatStopStreamRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_STOP_STREAM, getToken(req), ChatStopStreamResponse.class);
+    }
+
+    @Override
+    public ChatStopStreamResponse chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req) throws IOException, SlackApiException {
+        return chatStopStream(req.configure(ChatStopStreamRequest.builder()).build());
     }
 
     @Override

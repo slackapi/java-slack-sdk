@@ -941,6 +941,10 @@ public interface AsyncMethodsClient {
     // chat
     // ------------------------------
 
+    CompletableFuture<ChatAppendStreamResponse> chatAppendStream(ChatAppendStreamRequest req);
+
+    CompletableFuture<ChatAppendStreamResponse> chatAppendStream(RequestConfigurator<ChatAppendStreamRequest.ChatAppendStreamRequestBuilder> req);
+
     CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(ChatGetPermalinkRequest req);
 
     CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req);
@@ -968,6 +972,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<ChatScheduleMessageResponse> chatScheduleMessage(ChatScheduleMessageRequest req);
 
     CompletableFuture<ChatScheduleMessageResponse> chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req);
+
+    CompletableFuture<ChatStartStreamResponse> chatStartStream(ChatStartStreamRequest req);
+
+    CompletableFuture<ChatStartStreamResponse> chatStartStream(RequestConfigurator<ChatStartStreamRequest.ChatStartStreamRequestBuilder> req);
+
+    CompletableFuture<ChatStopStreamResponse> chatStopStream(ChatStopStreamRequest req);
+
+    CompletableFuture<ChatStopStreamResponse> chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req);
 
     CompletableFuture<ChatUpdateResponse> chatUpdate(ChatUpdateRequest req);
 

@@ -21,7 +21,7 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private String token;
 
     /**
-     * aSet your bot's user name.
+     * Set your bot's user name.
      * Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below.
      */
     private String username;

@@ -1,24 +1,22 @@
-package com.slack.api.methods.response.conversations;
+package com.slack.api.methods.response.chat;
 
 import com.slack.api.methods.SlackApiTextResponse;
-import com.slack.api.model.Conversation;
-import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
 
 @Data
-public class ConversationsListResponse implements SlackApiTextResponse {
+public class ChatAppendStreamResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;
     private String error;
-    private String arg;
     private String needed;
     private String provided;
+    private String deprecatedArgument;
     private transient Map<String, List<String>> httpResponseHeaders;
 
-    private List<Conversation> channels;
-    private ResponseMetadata responseMetadata;
+    private String channel;
+    private String ts;
 }

@@ -34,13 +34,15 @@ public class User {
 
     /**
      * is_restricted indicates the user is a multichannel guest.
-     * see also: https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack
+     * see also:
+     * https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack
      */
     @SerializedName("is_restricted")
     private boolean restricted;
     /**
      * is_ultra_restricted indicates they are a single channel guest.
-     * see also: https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack
+     * see also:
+     * https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack
      */
     @SerializedName("is_ultra_restricted")
     private boolean ultraRestricted;
@@ -65,6 +67,9 @@ public class User {
     @SerializedName("is_workflow_bot")
     private boolean workflowBot;
     private String whoCanShareContactCard; // "EVERYONE"
+    private List<String> teams;
+    private String enterpriseId;
+    private String enterpriseName;
 
     @Data
     public static class Profile {
