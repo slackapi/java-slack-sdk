@@ -630,17 +630,17 @@ public class BlockKitTest {
                 "  \"team\": \"T111\",\n" +
                 "  \"blocks\": [\n" +
                 "    {\n" +
-                "      \"type\":\"rich_text\",\n" +
-                "      \"block_id\":\"sfvOa\",\n" +
-                "      \"elements\":[\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"sfvOa\",\n" +
+                "      \"elements\": [\n" +
                 "        {\n" +
-                "          \"type\":\"rich_text_section\",\n" +
-                "          \"elements\":[\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
                 "            {\n" +
-                "              \"type\":\"text\",\n" +
-                "              \"text\":\"this is underline\",\n" +
-                "              \"style\":{\n" +
-                "                \"underline\":true\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"this is underline\",\n" +
+                "              \"style\": {\n" +
+                "                \"underline\" :true\n" +
                 "              }\n" +
                 "            }\n" +
                 "          ]\n" +
