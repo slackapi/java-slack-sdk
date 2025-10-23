@@ -34,7 +34,7 @@ public class ModelsTest {
         assertNotNull(user.getSlackGuest().getType());
 
         String json = GsonFactory.createCamelCase(SlackConfig.DEFAULT).toJson(user);
-        String expectedJson = "{\"schemas\":[\"urn:scim:schemas:core:1.0\",\"urn:scim:schemas:extension:enterprise:1.0\",\"urn:scim:schemas:extension:slack:guest:1.0\"],\"id\":\"W1234567890\",\"urn:scim:schemas:extension:enterprise:1.0\":{\"employeeNumber\":\"123-456\",\"organization\":\"PDE\",\"division\":\"Product\",\"department\":\"Product\"},\"urn:scim:schemas:extension:slack:guest:1.0\":{\"type\":\"multi\",\"expiration\":\"2020-11-30T23:59:59Z\"}}";
+        String expectedJson = "{\"schemas\":[\"urn:scim:schemas:core:1.0\",\"urn:scim:schemas:extension:enterprise:1.0\",\"urn:scim:schemas:extension:slack:guest:1.0\",\"urn:scim:schemas:extension:slack:profile:1.0\"],\"id\":\"W1234567890\",\"urn:scim:schemas:extension:enterprise:1.0\":{\"employeeNumber\":\"123-456\",\"organization\":\"PDE\",\"division\":\"Product\",\"department\":\"Product\"},\"urn:scim:schemas:extension:slack:guest:1.0\":{\"type\":\"multi\",\"expiration\":\"2020-11-30T23:59:59Z\"}}";
         assertEquals(expectedJson, json);
     }
 }
