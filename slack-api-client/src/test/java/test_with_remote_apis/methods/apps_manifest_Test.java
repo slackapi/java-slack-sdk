@@ -47,6 +47,7 @@ public class apps_manifest_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
+    @Ignore // TODO: Setup tmp token file
     @Test
     public void manifestOperations() throws IOException, SlackApiException {
         // To grab your first refresh token, visit https://docs.slack.dev/app-manifests/configuring-apps-with-app-manifests#config-tokens
@@ -123,6 +124,7 @@ public class apps_manifest_Test {
         }
     }
 
+    @Ignore // TODO: Setup tmp token file
     @Test
     public void automationPlatform() throws IOException, SlackApiException {
         // To grab your first refresh token, visit https://docs.slack.dev/app-manifests/configuring-apps-with-app-manifests#config-tokens
