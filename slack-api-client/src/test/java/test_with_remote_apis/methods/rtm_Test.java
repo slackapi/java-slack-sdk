@@ -305,6 +305,7 @@ public class rtm_Test {
     }
 
 
+    @Ignore // "inactive_app"
     @Test
     public void ping_pong() throws Exception {
 
