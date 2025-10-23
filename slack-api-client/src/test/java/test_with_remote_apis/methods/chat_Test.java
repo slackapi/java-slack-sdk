@@ -897,6 +897,7 @@ public class chat_Test {
     }
 
     // https://github.com/slackapi/java-slack-sdk/issues/647
+    @Ignore // "method_deprecated"
     @Test
     public void share_message_with_files_issue_647() throws Exception {
         loadRandomChannelId();
