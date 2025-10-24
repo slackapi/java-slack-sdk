@@ -238,6 +238,16 @@ public class Message {
         // Event metadata
         private String eventType;
         private Map<String, Object> eventPayload;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class EventAndEntityMetadata {
+        // Event metadata
+        private String eventType;
+        private Map<String, Object> eventPayload;
 
         // Work object metadata
         private EntityMetadata[] entities;

@@ -1601,18 +1601,26 @@ public class RequestFormBuilder {
         if (req.getMetadataAsString() != null) {
             form.add("metadata", req.getMetadataAsString());
         } else if (req.getMetadata() != null) {
-            Message.Metadata metadata = req.getMetadata();
-            if (req.getMetadata().getEntities() == null) {
+            String json = GSON.toJson(req.getMetadata());
+            form.add("metadata", json);
+        }
+
+        if (req.getEventAndEntityMetadataAsString() != null) {
+            form.add("metadata", req.getEventAndEntityMetadataAsString());
+        } else if (req.getEventAndEntityMetadata() != null) {
+            Message.EventAndEntityMetadata metadata = req.getEventAndEntityMetadata();
+            if (metadata.getEntities() == null) {
                 String json = GSON.toJson(metadata);
                 form.add("metadata", json);
             } else {
                 EntityMetadata[] entities = metadata.getEntities();
                 entities = prepareEntities(metadata.getEntities());
                 metadata.setEntities(entities);
-                String json = GSON.toJson(req.getMetadata());
+                String json = GSON.toJson(metadata);
                 form.add("metadata", json);
             }
         }
+        
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {

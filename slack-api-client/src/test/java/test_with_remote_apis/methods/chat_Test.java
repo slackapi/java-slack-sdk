@@ -947,7 +947,7 @@ public class chat_Test {
                                 .entityPayload(payload)
                                 .build();
                 EntityMetadata[] entities = { entity };
-                Message.Metadata metadata = Message.Metadata.builder().entities(entities).build();
+                Message.EventAndEntityMetadata metadata = Message.EventAndEntityMetadata.builder().entities(entities).build();
 
                 // Post the message
 
@@ -955,7 +955,7 @@ public class chat_Test {
                                 .token(botToken)
                                 .channel(randomChannelId)
                                 .text("I have important information to share :wave:")
-                                .metadata(metadata)
+                                .eventAndEntityMetadata(metadata)
                                 .build());
                 assertThat(postResponse.getError(), is(nullValue()));
 
