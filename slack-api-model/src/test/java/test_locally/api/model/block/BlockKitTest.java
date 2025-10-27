@@ -654,7 +654,7 @@ public class BlockKitTest {
                 "              \"type\": \"text\",\n" +
                 "              \"text\": \"this is underline\",\n" +
                 "              \"style\": {\n" +
-                "                \"underline\" :true\n" +
+                "                \"underline\": true\n" +
                 "              }\n" +
                 "            }\n" +
                 "          ]\n" +
