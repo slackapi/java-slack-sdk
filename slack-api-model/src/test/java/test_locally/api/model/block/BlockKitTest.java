@@ -56,6 +56,20 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseMarkdownBlock() {
+        String blocks = "[{\n" +
+                "  \"type\": \"markdown\",\n" +
+                "  \"text\": \"**this is bold**\"\n" +
+                "}]";
+        String json = "{blocks: " + blocks + "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+        MarkdownBlock markdownBlock = (MarkdownBlock) message.getBlocks().get(0);
+        assertThat(markdownBlock.getText(), is("**this is bold**"));
+    }
+
+    @Test
     public void parseMultiSelectOnes() {
         String blocks = "[\n" +
                 "    {\n" +
