@@ -87,6 +87,11 @@ public class BlocksTest {
     }
 
     @Test
+    public void testMarkdown() {
+        assertThat(markdown(h -> h.text("**this is bold**")), is(notNullValue()));
+    }
+
+    @Test
     public void testRichText() {
         assertThat(richText(i -> i
                 .blockId("block-id")
