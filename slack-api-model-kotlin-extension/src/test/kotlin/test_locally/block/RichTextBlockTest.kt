@@ -382,6 +382,7 @@ class RichTextBlockTest {
 										"strike": false,
 										"highlight": false,
 										"client_highlight": true,
+										"underline": false,
 										"unlink": false
 									}
 								}
@@ -474,6 +475,7 @@ class RichTextBlockTest {
 								"strike": true,
 								"highlight": false,
 								"client_highlight": true,
+								"underline": false,
 								"unlink": false,
 								"code": true
 							}
