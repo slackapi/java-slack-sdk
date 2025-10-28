@@ -15,15 +15,17 @@ The Agents & AI Apps feature comprises a unique messaging experience for Slack. 
 
 1. Within [app settings](https://api.slack.com/apps), enable the **Agents & AI Apps** feature.
 
-2. Within the app settings **OAuth & Permissions** page, add the following scopes: 
-  * [`assistant:write`](/reference/scopes/assistant.write)
-  * [`chat:write`](/reference/scopes/chat.write)
-  * [`im:history`](/reference/scopes/im.history)
+2. Within the app settings **OAuth & Permissions** page, add the following scopes:
 
-3. Within the app settings **Event Subscriptions** page, subscribe to the following events: 
-  * [`assistant_thread_started`](/reference/events/assistant_thread_started)
-  * [`assistant_thread_context_changed`](/reference/events/assistant_thread_context_changed)
-  * [`message.im`](/reference/events/message.im)
+- [`assistant:write`](/reference/scopes/assistant.write)
+- [`chat:write`](/reference/scopes/chat.write)
+- [`im:history`](/reference/scopes/im.history)
+
+3. Within the app settings **Event Subscriptions** page, subscribe to the following events:
+
+- [`assistant_thread_started`](/reference/events/assistant_thread_started)
+- [`assistant_thread_context_changed`](/reference/events/assistant_thread_context_changed)
+- [`message.im`](/reference/events/message.im)
 
 ## The `Assistant` class instance {#assistant-class}
 
@@ -31,7 +33,7 @@ The [`Assistant`](/tools/java-slack-sdk/reference#the-assistantconfig-configurat
 
 1. [The user starts a thread](#handling-a-new-thread). The `Assistant` class handles the incoming [`assistant_thread_started`](/reference/events/assistant_thread_started) event.
 2. [The thread context may change at any point](#handling-thread-context-changes). The `Assistant` class can handle any incoming [`assistant_thread_context_changed`](/reference/events/assistant_thread_context_changed) events. The class also provides a default `context` store to keep track of thread context changes as the user moves through Slack.
-3. [The user responds](#handling-user-response). The `Assistant` class handles the incoming [`message.im`](/reference/events/message.im) event. 
+3. [The user responds](#handling-user-response). The `Assistant` class handles the incoming [`message.im`](/reference/events/message.im) event.
 
 ```java
 App app = new App();
@@ -52,9 +54,9 @@ assistant.userMessage((req, ctx) -> {
   try {
     ctx.setStatus("is typing...");
     Thread.sleep(500L);
-    if (ctx.getThreadContext() != null) {
+    if (ctx.getThreadContext() != null && ctx.getThreadContext().getChannelId() != null) {
       String contextChannel = ctx.getThreadContext().getChannelId();
-      ctx.say(r -> r.text("I am ware of the channel context: <#" + contextChannel + ">"));
+      ctx.say(r -> r.text("I am aware of the channel context: <#" + contextChannel + ">"));
     } else {
       ctx.say(r -> r.text("Here you are!"));
     }
@@ -108,7 +110,7 @@ assistant.threadStarted((req, ctx) -> {
     ctx.say(r -> r
       .text("Hi, how can I help you today?")
       .blocks(Arrays.asList(
-        section(s -> s.text(plainText("Hi, how I can I help you today?"))),
+        section(s -> s.text(plainText("Hi, how can I help you today?"))),
         actions(a -> a.elements(Collections.singletonList(
           button(b -> b.actionId("assistant-generate-numbers").text(plainText("Generate numbers")))
         )))
@@ -175,9 +177,9 @@ app.assistant(assistant);
 
 ## Handling thread context changes {#handling-thread-context-changes}
 
-When the user switches channels, the [`assistant_thread_context_changed`](/reference/events/assistant_thread_context_changed) event will be sent to your app. 
+When the user switches channels, the [`assistant_thread_context_changed`](/reference/events/assistant_thread_context_changed) event will be sent to your app.
 
-If you use the built-in `Assistant` middleware without any custom configuration, the updated context data is automatically saved as [message metadata](/messaging/message-metadata/) of the first reply from the assistant bot. 
+If you use the built-in `Assistant` middleware without any custom configuration, the updated context data is automatically saved as [message metadata](/messaging/message-metadata/) of the first reply from the assistant bot.
 
 As long as you use the built-in approach, you don't need to store the context data within a datastore. The downside of this default behavior is the overhead of additional calls to the Slack API. These calls include those to `conversations.history`, which are used to look up the stored message metadata that contains the thread context (via `context.getThreadContextService().findCurrentContext(channelId, threadTs)`).
 
@@ -194,9 +196,10 @@ When the user messages your app, the [`message.im`](/reference/events/message.im
 Messages sent to the app do not contain a [subtype](/reference/events/message) and must be deduced based on their shape and any provided [message metadata](/messaging/message-metadata/).
 
 There are three utilities that are particularly useful in curating the user experience:
-* [`say`](https://docs.slack.dev/tools/bolt-python/reference/#slack_bolt.Say)
-* [`setTitle`](https://docs.slack.dev/tools/bolt-python/reference/#slack_bolt.SetTitle)
-* [`setStatus`](https://docs.slack.dev/tools/bolt-python/reference/#slack_bolt.SetStatus)
+
+- [`say`](<https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt/sdkLatestVersion/bolt-sdkLatestVersion-javadoc.jar/!/com/slack/api/bolt/context/builtin/EventContext.html#say(com.slack.api.bolt.util.BuilderConfigurator)>)
+- [`setTitle`](<https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt/sdkLatestVersion/bolt-sdkLatestVersion-javadoc.jar/!/com/slack/api/bolt/context/builtin/EventContext.html#setTitle(com.slack.api.RequestConfigurator)>)
+- [`setStatus`](<https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt/sdkLatestVersion/bolt-sdkLatestVersion-javadoc.jar/!/com/slack/api/bolt/context/builtin/EventContext.html#setStatus(com.slack.api.RequestConfigurator)>)
 
 ## Full example: Assistant Simple App {#full-example}
 
@@ -214,6 +217,7 @@ import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.model.event.MessageEvent;
 
 import java.util.Collections;
+import java.util.List;
 
 public class AssistantSimpleApp {
 
@@ -242,9 +246,9 @@ public class AssistantSimpleApp {
                 // ctx.setStatus(r -> r.status("is typing...")); works too
                 ctx.setStatus("is typing...");
                 Thread.sleep(500L);
-                if (ctx.getThreadContext() != null) {
+                if (ctx.getThreadContext() != null && ctx.getThreadContext().getChannelId() != null) {
                     String contextChannel = ctx.getThreadContext().getChannelId();
-                    ctx.say("I am ware of the channel context: <#" + contextChannel + ">");
+                    ctx.say("I am aware of the channel context: <#" + contextChannel + ">");
                 } else {
                     ctx.say("Here you are!");
                 }
@@ -260,9 +264,9 @@ public class AssistantSimpleApp {
 
         assistant.userMessageWithFiles((req, ctx) -> {
             try {
-                ctx.setStatus("is analyzing the files...");
+                ctx.setStatus("is downloading the files...");
                 Thread.sleep(500L);
-                ctx.setStatus("is still checking the files...");
+                ctx.setStatus("is analyzing the files...", List.of("Reading bytes...", "Confirming hashes..."));
                 Thread.sleep(500L);
                 ctx.say("Your files do not have any issues!");
             } catch (Exception e) {
@@ -282,7 +286,7 @@ public class AssistantSimpleApp {
         });
 
         app.event(AppMentionEvent.class, (req, ctx) -> {
-            ctx.say("You can help you at our 1:1 DM!");
+            ctx.say("I can help you at our 1:1 DM!");
             return ctx.ack();
         });
 
