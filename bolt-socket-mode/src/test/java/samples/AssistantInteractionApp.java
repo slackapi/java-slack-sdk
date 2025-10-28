@@ -35,7 +35,7 @@ public class AssistantInteractionApp {
                 ctx.say(r -> r
                         .text("Hi, how can I help you today?")
                         .blocks(Arrays.asList(
-                                section(s -> s.text(plainText("Hi, how I can I help you today?"))),
+                                section(s -> s.text(plainText("Hi, how can I help you today?"))),
                                 actions(a -> a.elements(Collections.singletonList(
                                         button(b -> b.actionId("assistant-generate-numbers").text(plainText("Generate numbers")))
                                 )))
@@ -105,7 +105,7 @@ public class AssistantInteractionApp {
         });
 
         app.event(AppMentionEvent.class, (req, ctx) -> {
-            ctx.say("You can help you at our 1:1 DM!");
+            ctx.say("I can help you at our 1:1 DM!");
             return ctx.ack();
         });
 

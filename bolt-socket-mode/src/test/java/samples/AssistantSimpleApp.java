@@ -9,6 +9,7 @@ import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.model.event.MessageEvent;
 
 import java.util.Collections;
+import java.util.List;
 
 public class AssistantSimpleApp {
 
@@ -37,9 +38,9 @@ public class AssistantSimpleApp {
                 // ctx.setStatus(r -> r.status("is typing...")); works too
                 ctx.setStatus("is typing...");
                 Thread.sleep(500L);
-                if (ctx.getThreadContext() != null) {
+                if (ctx.getThreadContext() != null && ctx.getThreadContext().getChannelId() != null) {
                     String contextChannel = ctx.getThreadContext().getChannelId();
-                    ctx.say("I am ware of the channel context: <#" + contextChannel + ">");
+                    ctx.say("I am aware of the channel context: <#" + contextChannel + ">");
                 } else {
                     ctx.say("Here you are!");
                 }
@@ -55,9 +56,9 @@ public class AssistantSimpleApp {
 
         assistant.userMessageWithFiles((req, ctx) -> {
             try {
-                ctx.setStatus("is analyzing the files...");
+                ctx.setStatus("is downloading the files...");
                 Thread.sleep(500L);
-                ctx.setStatus("is still checking the files...");
+                ctx.setStatus("is analyzing the files...", List.of("Reading bytes...", "Confirming hashes..."));
                 Thread.sleep(500L);
                 ctx.say("Your files do not have any issues!");
             } catch (Exception e) {
@@ -77,7 +78,7 @@ public class AssistantSimpleApp {
         });
 
         app.event(AppMentionEvent.class, (req, ctx) -> {
-            ctx.say("You can help you at our 1:1 DM!");
+            ctx.say("I can help you at our 1:1 DM!");
             return ctx.ack();
         });
 

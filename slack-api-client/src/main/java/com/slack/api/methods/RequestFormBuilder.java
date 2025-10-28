@@ -1133,6 +1133,9 @@ public class RequestFormBuilder {
         setIfNotNull("channel_id", req.getChannelId(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
         setIfNotNull("status", req.getStatus(), form);
+        if (req.getLoadingMessages() != null) {
+            setIfNotNull("loading_messages", req.getLoadingMessages().stream().collect(joining(",")), form);
+        }
         return form;
     }
 

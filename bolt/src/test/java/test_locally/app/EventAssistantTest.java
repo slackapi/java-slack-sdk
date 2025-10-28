@@ -56,6 +56,10 @@ public class EventAssistantTest {
                 ctx.setTitle("title");
                 ctx.setTitle(r -> r.title("title"));
                 ctx.setStatus("is typing...");
+                ctx.setStatus(
+                    "is typing...",
+                    List.of("Teaching hamsters...", "Untangling cables...")
+                );
                 ctx.setStatus(r -> r.status("is typing..."));
                 ctx.setSuggestedPrompts(new ArrayList<>());
                 ctx.setSuggestedPrompts(r -> r.prompts(new ArrayList<>()));
