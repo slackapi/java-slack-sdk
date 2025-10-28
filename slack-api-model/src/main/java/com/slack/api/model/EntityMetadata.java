@@ -2,6 +2,9 @@ package com.slack.api.model;
 
 import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.composition.TextObject;
+
 import lombok.*;
 
 @Data
@@ -286,8 +289,8 @@ public class EntityMetadata {
         @AllArgsConstructor
         public static class Edit {
             private Boolean enabled;
-            private PlainText placeholder;
-            private PlainText hint;
+            private PlainTextObject placeholder;
+            private PlainTextObject hint;
             private Boolean optional;
             private Select select;
             private Number number;
@@ -300,7 +303,7 @@ public class EntityMetadata {
             public static class Select {
                 private String currentValue;
                 private String[] currentValues;
-                private Object[] staticOptions;
+                private TextObject[] staticOptions;
                 private Boolean fetchOptionsDynamically;
                 private Integer minQueryLength;
             }
@@ -322,16 +325,6 @@ public class EntityMetadata {
             public static class Text {
                 private Integer minLength;
                 private Integer maxLength;
-            }
-
-            @Data
-            @Builder
-            @NoArgsConstructor
-            @AllArgsConstructor
-            public static class PlainText {
-                private String type;
-                private String text;
-                private Boolean emoji;
             }
         }
 
