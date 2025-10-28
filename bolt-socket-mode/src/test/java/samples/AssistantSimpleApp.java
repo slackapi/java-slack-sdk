@@ -8,8 +8,8 @@ import com.slack.api.model.assistant.SuggestedPrompt;
 import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.model.event.MessageEvent;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class AssistantSimpleApp {
 
@@ -58,7 +58,7 @@ public class AssistantSimpleApp {
             try {
                 ctx.setStatus("is downloading the files...");
                 Thread.sleep(500L);
-                ctx.setStatus("is analyzing the files...", List.of("Reading bytes...", "Confirming hashes..."));
+                ctx.setStatus("is analyzing the files...", Arrays.asList("Reading bytes...", "Confirming hashes..."));
                 Thread.sleep(500L);
                 ctx.say("Your files do not have any issues!");
             } catch (Exception e) {
