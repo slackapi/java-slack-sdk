@@ -55,7 +55,7 @@ public class AssistantInteractionApp {
                             .channel(req.getPayload().getChannel().getId())
                             .threadTs(req.getPayload().getMessage().getThreadTs())
                             .text("OK, I will generate numbers for you!")
-                            .metadata(Message.Metadata.builder().eventType("assistant-generate-numbers").eventPayload(eventPayload).build())
+                            .metadata(new Message.Metadata("assistant-generate-numbers", eventPayload))
                     );
                 } catch (Exception e) {
                     ctx.logger.error("Failed to post a bot message: {e}", e);
