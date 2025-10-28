@@ -494,12 +494,11 @@ public class chat_Test {
                                 .inclusive(true));
                 assertThat(history.getError(), is(nullValue()));
 
-                // Verify that the work object attachment was added
+                // Verify that an attachment was added
                 List<Attachment> attachments = history.getMessages().get(0).getAttachments();
                 assertThat(attachments, is(not(nullValue())));
                 assertThat(attachments.get(0), is(not(nullValue())));
-                Object workObjectAttachment = attachments.get(0).getWorkObjectEntity();
-                assertThat(workObjectAttachment, is(not(nullValue())));
+                assertThat(attachments.get(0).getAppUnfurlUrl(), is(appUnfurlURL));
         }
 
         // NOTE: You need to add "myappdomain.com" at
@@ -571,12 +570,11 @@ public class chat_Test {
                                 .inclusive(true));
                 assertThat(history.getError(), is(nullValue()));
 
-                // Verify that the work object attachment was added
+                // Verify that an attachment was added
                 List<Attachment> attachments = history.getMessages().get(0).getAttachments();
                 assertThat(attachments, is(not(nullValue())));
                 assertThat(attachments.get(0), is(not(nullValue())));
-                Object workObjectAttachment = attachments.get(0).getWorkObjectEntity();
-                assertThat(workObjectAttachment, is(not(nullValue())));
+                assertThat(attachments.get(0).getAppUnfurlUrl(), is(appUnfurlURL));
         }
 
         // NOTE: You need to add "youtube.com" at
@@ -896,12 +894,11 @@ public class chat_Test {
                                 .build());
                 assertThat(postResponse.getError(), is(nullValue()));
 
-                // Verify that the work object attachment was added
+                // Verify that an attachment was added
                 List<Attachment> attachments = postResponse.getMessage().getAttachments();
                 assertThat(attachments, is(not(nullValue())));
                 assertThat(attachments.get(0), is(not(nullValue())));
-                Object workObjectAttachment = attachments.get(0).getWorkObjectEntity();
-                assertThat(workObjectAttachment, is(not(nullValue())));
+                assertThat(attachments.get(0).getFromUrl(), is("https://myappdomain.com/admin/slack/workobject/94/change/"));
 
                 // Verify if the message can be parsed by the JSON parser
                 String ts = postResponse.getTs();
@@ -959,12 +956,10 @@ public class chat_Test {
                                 .build());
                 assertThat(postResponse.getError(), is(nullValue()));
 
-                // Verify that the work object attachment was added
                 List<Attachment> attachments = postResponse.getMessage().getAttachments();
                 assertThat(attachments, is(not(nullValue())));
                 assertThat(attachments.get(0), is(not(nullValue())));
-                Object workObjectAttachment = attachments.get(0).getWorkObjectEntity();
-                assertThat(workObjectAttachment, is(not(nullValue())));
+                assertThat(attachments.get(0).getFromUrl(), is("https://myappdomain.com/admin/slack/workobject/94/change/"));
 
                 // Verify if the message can be parsed by the JSON parser
                 String ts = postResponse.getTs();
