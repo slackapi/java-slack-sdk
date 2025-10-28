@@ -533,9 +533,15 @@ public class chat_Test {
                 EntityPayload.Timestamp dateCreated = EntityPayload.Timestamp.builder().value(1756166400).build();
                 FileFields fields = FileFields.builder().createdBy(createdBy).dateCreated(dateCreated).build();
 
+                EntityPayload.StringField[] stringArray = {
+                                EntityPayload.StringField.builder().value("Hello").tagColor("red").build(),
+                                EntityPayload.StringField.builder().value("World").tagColor("green").build() };
                 EntityPayload.CustomField[] customFields = {
                                 EntityPayload.CustomField.builder().type("string").key("hello_world").label("Message")
-                                                .value("Hello World").build() };
+                                                .value("Hello World").build(),
+                                EntityPayload.CustomField.builder().type("array").key("array_field")
+                                                .label("Array Field").itemType("string")
+                                                .value(stringArray).build() };
                 EntityPayload payload = EntityPayload.builder()
                                 .attributes(attributes)
                                 .fileFields(fields)
@@ -898,7 +904,8 @@ public class chat_Test {
                 List<Attachment> attachments = postResponse.getMessage().getAttachments();
                 assertThat(attachments, is(not(nullValue())));
                 assertThat(attachments.get(0), is(not(nullValue())));
-                assertThat(attachments.get(0).getFromUrl(), is("https://myappdomain.com/admin/slack/workobject/94/change/"));
+                assertThat(attachments.get(0).getFromUrl(),
+                                is("https://myappdomain.com/admin/slack/workobject/94/change/"));
 
                 // Verify if the message can be parsed by the JSON parser
                 String ts = postResponse.getTs();
@@ -944,7 +951,8 @@ public class chat_Test {
                                 .entityPayload(payload)
                                 .build();
                 EntityMetadata[] entities = { entity };
-                Message.EventAndEntityMetadata metadata = Message.EventAndEntityMetadata.builder().entities(entities).build();
+                Message.EventAndEntityMetadata metadata = Message.EventAndEntityMetadata.builder().entities(entities)
+                                .build();
 
                 // Post the message
 
@@ -959,7 +967,8 @@ public class chat_Test {
                 List<Attachment> attachments = postResponse.getMessage().getAttachments();
                 assertThat(attachments, is(not(nullValue())));
                 assertThat(attachments.get(0), is(not(nullValue())));
-                assertThat(attachments.get(0).getFromUrl(), is("https://myappdomain.com/admin/slack/workobject/94/change/"));
+                assertThat(attachments.get(0).getFromUrl(),
+                                is("https://myappdomain.com/admin/slack/workobject/94/change/"));
 
                 // Verify if the message can be parsed by the JSON parser
                 String ts = postResponse.getTs();
