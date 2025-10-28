@@ -6,8 +6,8 @@ import com.slack.api.bolt.socket_mode.SocketModeApp;
 import com.slack.api.model.assistant.SuggestedPrompt;
 import com.slack.api.model.event.*;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class AssistantEventListenerApp {
 
@@ -104,7 +104,7 @@ public class AssistantEventListenerApp {
                                 .channelId(channelId)
                                 .threadTs(threadTs)
                                 .status("is analyzing the files...")
-                                .loadingMessages(List.of("Reading bytes...", "Confirming hashes..."))
+                                .loadingMessages(Arrays.asList("Reading bytes...", "Confirming hashes..."))
                         );
                         Thread.sleep(500L);
                         ctx.client().chatPostMessage(r -> r
