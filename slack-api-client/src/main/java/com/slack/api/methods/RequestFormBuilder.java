@@ -1603,9 +1603,7 @@ public class RequestFormBuilder {
         } else if (req.getMetadata() != null) {
             String json = GSON.toJson(req.getMetadata());
             form.add("metadata", json);
-        }
-
-        if (req.getEventAndEntityMetadataAsString() != null) {
+        } else if (req.getEventAndEntityMetadataAsString() != null) {
             form.add("metadata", req.getEventAndEntityMetadataAsString());
         } else if (req.getEventAndEntityMetadata() != null) {
             Message.EventAndEntityMetadata metadata = req.getEventAndEntityMetadata();
@@ -1619,6 +1617,21 @@ public class RequestFormBuilder {
                 String json = GSON.toJson(metadata);
                 form.add("metadata", json);
             }
+        }
+
+        // Output warnings related to the metadata property
+        Boolean eventMetadataSet = req.getMetadata() != null || req.getMetadataAsString() != null;
+        Boolean eventEntityMetadataSet = req.getEventAndEntityMetadata() != null
+                || req.getEventAndEntityMetadataAsString() != null;
+        if (eventMetadataSet && eventEntityMetadataSet) {
+            log.warn("When both Metadata and EventAndEntityMetadata properties are set, only Metadata will be used.");
+        }
+        if (req.getMetadata() != null && req.getMetadataAsString() != null) {
+            log.warn("When both metadata and metadataAsString are set, only metadataAsString will be used.");
+        }
+        if (req.getEventAndEntityMetadata() != null && req.getEventAndEntityMetadataAsString() != null) {
+            log.warn(
+                    "When both eventAndEntityMetadata and eventAndEntityMetadataAsString are set, only eventAndEntityMetadataAsString will be used.");
         }
 
         if (req.getBlocksAsString() != null) {
@@ -1729,12 +1742,17 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("channel", req.getChannel(), form);
+
         if (req.getRawUnfurls() != null) {
             setIfNotNull("unfurls", req.getRawUnfurls(), form);
         } else if (req.getUnfurls() != null) {
             String json = getJsonWithGsonAnonymInnerClassHandling(req.getUnfurls());
             setIfNotNull("unfurls", json, form);
         }
+        if (req.getRawUnfurls() != null && req.getUnfurls() != null) {
+            log.warn("When both unfurls and rawUnfurls are set, only rawUnfurls will be used.");
+        }
+
         if (req.getRawMetadata() != null) {
             setIfNotNull("metadata", req.getRawMetadata(), form);
         } else if (req.getMetadata() != null) {
@@ -1746,6 +1764,10 @@ public class RequestFormBuilder {
             String json = GSON.toJson(metadata, ChatUnfurlRequest.UnfurlMetadata.class);
             setIfNotNull("metadata", json, form);
         }
+        if (req.getRawMetadata() != null && req.getMetadata() != null) {
+            log.warn("When both metadata and rawMetadata are set, only rawMetadata will be used.");
+        }
+
         setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
         setIfNotNull("user_auth_message", req.getUserAuthMessage(), form);
         if (req.getRawUserAuthBlocks() != null) {
