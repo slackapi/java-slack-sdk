@@ -1245,6 +1245,74 @@ public class BlockKitTest {
         assertThat(block, is(notNullValue()));
     }
 
+    @Test
+    public void parseContextActionsBlock() {
+            String json = "{\n" +
+            "      \"type\": \"context_actions\",\n" +
+            "      \"elements\": [\n" +
+            "        {\n" +
+            "          \"type\": \"feedback_buttons\",\n" +
+            "          \"action_id\": \"feedback\",\n" +
+            "          \"positive_button\": {\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Good Response\",\n" +
+            "              \"emoji\": true\n" +
+            "            },\n" +
+            "            \"accessibility_label\": \"Submit positive feedback on this response\",\n" +
+            "            \"value\": \"good-feedback\"\n" +
+            "          },\n" +
+            "          \"negative_button\": {\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Bad Response\",\n" +
+            "              \"emoji\": true\n" +
+            "            },\n" +
+            "            \"accessibility_label\": \"Submit negative feedback on this response\",\n" +
+            "            \"value\": \"bad-feedback\"\n" +
+            "          }\n" +
+            "        },\n" +
+            "        {\n" +
+            "          \"type\": \"icon_button\",\n" +
+            "          \"icon\": \"trash\",\n" +
+            "          \"text\": {\n" +
+            "            \"type\": \"plain_text\",\n" +
+            "            \"text\": \"Remove\"\n" +
+            "          },\n" +
+            "          \"confirm\": {\n" +
+            "            \"title\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Oops\"\n" +
+            "            },\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"This response might've been just alright...\"\n" +
+            "            },\n" +
+            "            \"style\": \"danger\"\n" +
+            "          },\n" +
+            "          \"visible_to_user_ids\": [\"USLACKBOT\", \"U0123456789\"]\n" +
+            "        }\n" +
+            "      ]\n" +
+            "}";
+        ContextActionsBlock block = GsonFactory.createSnakeCase().fromJson(json, ContextActionsBlock.class);
+        assertNotNull(block);
+        assertEquals("context_actions", block.getType());
+        assertEquals(2, block.getElements().size());
+        FeedbackButtonsElement buttons = (FeedbackButtonsElement) block.getElements().get(0);
+        assertEquals("feedback", buttons.getActionId());
+        assertEquals("good-feedback", buttons.getPositiveButton().getValue());
+        assertEquals("bad-feedback", buttons.getNegativeButton().getValue());
+        assertEquals("Good Response", buttons.getPositiveButton().getText().getText());
+        assertEquals("Bad Response", buttons.getNegativeButton().getText().getText());
+        IconButtonElement iconButton = (IconButtonElement) block.getElements().get(1);
+        assertEquals("trash", iconButton.getIcon());
+        assertEquals("Remove", iconButton.getText().getText());
+        assertEquals("Oops", iconButton.getConfirm().getTitle().getText());
+        assertEquals("This response might've been just alright...", iconButton.getConfirm().getText().getText());
+        assertEquals("danger", iconButton.getConfirm().getStyle());
+        assertEquals(Arrays.asList("USLACKBOT", "U0123456789"), iconButton.getVisibleToUserIds());
+    }
+
     String richTextSkinTone = "{ \"blocks\": [\n" +
             "  {\n" +
             "    \"type\": \"rich_text\",\n" +
