@@ -826,7 +826,42 @@ public class chat_Test {
         assertThat(appends.getError(), is(nullValue()));
         ChatStopStreamResponse stops = slack.methods(botToken).chatStopStream(r -> r
                 .channel(randomChannelId)
-                .ts(streamer.getTs()));
+                .ts(streamer.getTs())
+                .blocks(
+                    asBlocks(
+                        contextActions(c -> c.
+                            elements(
+                                asContextActionsElements(
+                                    feedbackButtons(b -> b
+                                        .positiveButton(
+                                            feedbackButton(a -> a
+                                                .text(plainText(":+1:"))
+                                                .value("+1")
+                                            )
+                                        )
+                                        .negativeButton(
+                                            feedbackButton(a -> a
+                                                .text(plainText(":-1:"))
+                                                .value("-1")
+                                            )
+                                        )
+                                    ),
+                                    iconButton(b -> b
+                                        .icon("trash")
+                                        .text(plainText("Remove"))
+                                        .confirm(
+                                            confirmationDialog(d -> d
+                                                .title(plainText("Oops"))
+                                                .text(plainText("This response might've been just alright..."))
+                                                .style("danger")
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ));
         assertThat(stops.isOk(), is(true));
         assertThat(stops.getError(), is(nullValue()));
     }

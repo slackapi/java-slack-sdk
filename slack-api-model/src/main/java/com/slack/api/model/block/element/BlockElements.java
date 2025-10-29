@@ -2,6 +2,7 @@ package com.slack.api.model.block.element;
 
 import com.slack.api.model.ModelConfigurator;
 import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.ContextActionsBlockElement;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,10 @@ public class BlockElements {
     }
 
     public static List<ContextBlockElement> asContextElements(ContextBlockElement... elements) {
+        return Arrays.asList(elements);
+    }
+
+    public static List<ContextActionsBlockElement> asContextActionsElements(ContextActionsBlockElement... elements) {
         return Arrays.asList(elements);
     }
 
@@ -91,6 +96,18 @@ public class BlockElements {
 
     public static DatetimePickerElement datetimePicker(ModelConfigurator<DatetimePickerElement.DatetimePickerElementBuilder> configurator) {
         return configurator.configure(DatetimePickerElement.builder()).build();
+    }
+
+    // FeedbackButtonsElement
+
+    public static FeedbackButtonsElement feedbackButtons(ModelConfigurator<FeedbackButtonsElement.FeedbackButtonsElementBuilder> configurator) {
+        return configurator.configure(FeedbackButtonsElement.builder()).build();
+    }
+
+    // IconButtonElement
+
+    public static IconButtonElement iconButton(ModelConfigurator<IconButtonElement.IconButtonElementBuilder> configurator) {
+        return configurator.configure(IconButtonElement.builder()).build();
     }
 
     // ImageElement
