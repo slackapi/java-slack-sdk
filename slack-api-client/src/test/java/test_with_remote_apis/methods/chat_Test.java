@@ -34,6 +34,8 @@ import java.util.concurrent.ExecutionException;
 import static com.slack.api.model.Attachments.asAttachments;
 import static com.slack.api.model.Attachments.attachment;
 import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.confirmationDialog;
+import static com.slack.api.model.block.composition.BlockCompositions.feedbackButton;
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.*;
@@ -829,18 +831,18 @@ public class chat_Test {
                 .ts(streamer.getTs())
                 .blocks(
                     asBlocks(
-                        contextActions(c -> c.
+                        contextActions(a -> a.
                             elements(
                                 asContextActionsElements(
                                     feedbackButtons(b -> b
                                         .positiveButton(
-                                            feedbackButton(a -> a
+                                            feedbackButton(c -> c
                                                 .text(plainText(":+1:"))
                                                 .value("+1")
                                             )
                                         )
                                         .negativeButton(
-                                            feedbackButton(a -> a
+                                            feedbackButton(c -> c
                                                 .text(plainText(":-1:"))
                                                 .value("-1")
                                             )
@@ -850,7 +852,7 @@ public class chat_Test {
                                         .icon("trash")
                                         .text(plainText("Remove"))
                                         .confirm(
-                                            confirmationDialog(d -> d
+                                            confirmationDialog(c -> c
                                                 .title(plainText("Oops"))
                                                 .text(plainText("This response might've been just alright..."))
                                                 .style("danger")
