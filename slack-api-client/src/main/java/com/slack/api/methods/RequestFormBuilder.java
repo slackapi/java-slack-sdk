@@ -1,6 +1,7 @@
 package com.slack.api.methods;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
@@ -74,6 +75,7 @@ import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
 import com.slack.api.methods.request.channels.*;
 import com.slack.api.methods.request.chat.*;
+import com.slack.api.methods.request.chat.ChatUnfurlRequest.UnfurlMetadata;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
 import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
@@ -83,6 +85,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
@@ -136,6 +139,9 @@ import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
 import com.slack.api.model.canvas.CanvasDocumentContent;
+import com.slack.api.model.EntityMetadata;
+import com.slack.api.model.EntityMetadata.EntityPayload;
+import com.slack.api.model.Message;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -367,7 +373,8 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(AdminBarriersCreateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         if (req.getBarrieredFromUsergroupIds() != null) {
-            setIfNotNull("barriered_from_usergroup_ids", req.getBarrieredFromUsergroupIds().stream().collect(joining(",")), form);
+            setIfNotNull("barriered_from_usergroup_ids",
+                    req.getBarrieredFromUsergroupIds().stream().collect(joining(",")), form);
         }
         setIfNotNull("primary_usergroup_id", req.getPrimaryUsergroupId(), form);
         if (req.getRestrictedSubjects() != null) {
@@ -393,7 +400,8 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("barrier_id", req.getBarrierId(), form);
         if (req.getBarrieredFromUsergroupIds() != null) {
-            setIfNotNull("barriered_from_usergroup_ids", req.getBarrieredFromUsergroupIds().stream().collect(joining(",")), form);
+            setIfNotNull("barriered_from_usergroup_ids",
+                    req.getBarrieredFromUsergroupIds().stream().collect(joining(",")), form);
         }
         setIfNotNull("primary_usergroup_id", req.getPrimaryUsergroupId(), form);
         if (req.getRestrictedSubjects() != null) {
@@ -686,7 +694,6 @@ public class RequestFormBuilder {
         }
         return form;
     }
-
 
     public static FormBody.Builder toForm(AdminFunctionsPermissionsSetRequest req) {
         FormBody.Builder form = new FormBody.Builder();
@@ -1491,8 +1498,7 @@ public class RequestFormBuilder {
                 "chat.scheduleMessage",
                 req.getText(),
                 req.getAttachments(),
-                req.getAttachmentsAsString()
-        );
+                req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("post_at", req.getPostAt(), form);
@@ -1546,8 +1552,7 @@ public class RequestFormBuilder {
                 "chat.postEphemeral",
                 req.getText(),
                 req.getAttachments(),
-                req.getAttachmentsAsString()
-        );
+                req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("text", req.getText(), form);
@@ -1584,8 +1589,7 @@ public class RequestFormBuilder {
                 "chat.postMessage",
                 req.getText(),
                 req.getAttachments(),
-                req.getAttachmentsAsString()
-        );
+                req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
@@ -1599,7 +1603,37 @@ public class RequestFormBuilder {
         } else if (req.getMetadata() != null) {
             String json = GSON.toJson(req.getMetadata());
             form.add("metadata", json);
+        } else if (req.getEventAndEntityMetadataAsString() != null) {
+            form.add("metadata", req.getEventAndEntityMetadataAsString());
+        } else if (req.getEventAndEntityMetadata() != null) {
+            Message.EventAndEntityMetadata metadata = req.getEventAndEntityMetadata();
+            if (metadata.getEntities() == null) {
+                String json = GSON.toJson(metadata);
+                form.add("metadata", json);
+            } else {
+                EntityMetadata[] entities = metadata.getEntities();
+                entities = setEntityMetadataFieldsPropertyForEntities(metadata.getEntities());
+                metadata.setEntities(entities);
+                String json = GSON.toJson(metadata);
+                form.add("metadata", json);
+            }
         }
+
+        // Output warnings related to the metadata property
+        Boolean eventMetadataSet = req.getMetadata() != null || req.getMetadataAsString() != null;
+        Boolean eventEntityMetadataSet = req.getEventAndEntityMetadata() != null
+                || req.getEventAndEntityMetadataAsString() != null;
+        if (eventMetadataSet && eventEntityMetadataSet) {
+            log.warn("When both Metadata and EventAndEntityMetadata properties are set, only Metadata will be used.");
+        }
+        if (req.getMetadata() != null && req.getMetadataAsString() != null) {
+            log.warn("When both metadata and metadataAsString are set, only metadataAsString will be used.");
+        }
+        if (req.getEventAndEntityMetadata() != null && req.getEventAndEntityMetadataAsString() != null) {
+            log.warn(
+                    "When both eventAndEntityMetadata and eventAndEntityMetadataAsString are set, only eventAndEntityMetadataAsString will be used.");
+        }
+
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
@@ -1666,8 +1700,7 @@ public class RequestFormBuilder {
                 "chat.update",
                 req.getText(),
                 req.getAttachments(),
-                req.getAttachmentsAsString()
-        );
+                req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("channel", req.getChannel(), form);
@@ -1709,12 +1742,32 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("channel", req.getChannel(), form);
+
         if (req.getRawUnfurls() != null) {
             setIfNotNull("unfurls", req.getRawUnfurls(), form);
         } else if (req.getUnfurls() != null) {
             String json = getJsonWithGsonAnonymInnerClassHandling(req.getUnfurls());
             setIfNotNull("unfurls", json, form);
         }
+        if (req.getRawUnfurls() != null && req.getUnfurls() != null) {
+            log.warn("When both unfurls and rawUnfurls are set, only rawUnfurls will be used.");
+        }
+
+        if (req.getRawMetadata() != null) {
+            setIfNotNull("metadata", req.getRawMetadata(), form);
+        } else if (req.getMetadata() != null) {
+            ChatUnfurlRequest.UnfurlMetadata metadata = req.getMetadata();
+
+            EntityMetadata[] entities = setEntityMetadataFieldsPropertyForEntities(metadata.getEntities());
+            metadata.setEntities(entities);
+
+            String json = GSON.toJson(metadata, ChatUnfurlRequest.UnfurlMetadata.class);
+            setIfNotNull("metadata", json, form);
+        }
+        if (req.getRawMetadata() != null && req.getMetadata() != null) {
+            log.warn("When both metadata and rawMetadata are set, only rawMetadata will be used.");
+        }
+
         setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
         setIfNotNull("user_auth_message", req.getUserAuthMessage(), form);
         if (req.getRawUserAuthBlocks() != null) {
@@ -2032,6 +2085,29 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(EntityPresentDetailsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+
+        if (req.getRawMetadata() != null) {
+            setIfNotNull("metadata", req.getRawMetadata(), form);
+        } else if (req.getMetadata() != null) {
+            EntityMetadata metadata = req.getMetadata();
+            metadata = setEntityMetadataFieldsPropertyForEntity(metadata);
+            String json = GSON.toJson(metadata, EntityMetadata.class);
+            setIfNotNull("metadata", json, form);
+        }
+
+        setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
+
+        setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
+
+        setIfNotNull("error", req.getError(), form);
+
+        return form;
+    }
+
     public static FormBody.Builder toForm(FilesDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("file", req.getFile(), form);
@@ -2168,11 +2244,14 @@ public class RequestFormBuilder {
         setIfNotNull("title", req.getTitle(), form);
         setIfNotNull("filetype", req.getFiletype(), form);
         if (req.getIndexableFileContents() != null) {
-            RequestBody indexableFileContents = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getIndexableFileContents());
+            RequestBody indexableFileContents = RequestBody.create(
+                    req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null,
+                    req.getIndexableFileContents());
             form.addFormDataPart("indexable_file_contents", req.getTitle(), indexableFileContents);
         }
         if (req.getPreviewImage() != null) {
-            RequestBody previewImage = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getPreviewImage());
+            RequestBody previewImage = RequestBody.create(
+                    req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getPreviewImage());
             form.addFormDataPart("preview_image", req.getTitle(), previewImage);
         }
         return form;
@@ -2221,11 +2300,14 @@ public class RequestFormBuilder {
         setIfNotNull("title", req.getTitle(), form);
         setIfNotNull("filetype", req.getFiletype(), form);
         if (req.getIndexableFileContents() != null) {
-            RequestBody indexableFileContents = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getIndexableFileContents());
+            RequestBody indexableFileContents = RequestBody.create(
+                    req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null,
+                    req.getIndexableFileContents());
             form.addFormDataPart("indexable_file_contents", null, indexableFileContents);
         }
         if (req.getPreviewImage() != null) {
-            RequestBody previewImage = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getPreviewImage());
+            RequestBody previewImage = RequestBody.create(
+                    req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getPreviewImage());
             form.addFormDataPart("preview_image", null, previewImage);
         }
         return form;
@@ -2743,7 +2825,8 @@ public class RequestFormBuilder {
         setIfNotNull("connection_status_filter", req.getConnectionStatusFilter(), form);
         setIfNotNull("limit", req.getLimit(), form);
         if (req.getSlackConnectPrefFilter() != null) {
-            setIfNotNull("slack_connect_pref_filter", req.getSlackConnectPrefFilter().stream().collect(joining(",")), form);
+            setIfNotNull("slack_connect_pref_filter", req.getSlackConnectPrefFilter().stream().collect(joining(",")),
+                    form);
         }
         setIfNotNull("sort_direction", req.getSortDirection(), form);
         setIfNotNull("sort_field", req.getSortField(), form);
@@ -3044,12 +3127,9 @@ public class RequestFormBuilder {
     // ----------------------------------------------------------------------------------
     // internal methods
     // ----------------------------------------------------------------------------------
+    private static final String TEXT_WARN_MESSAGE_TEMPLATE = "The top-level `text` argument is missing in the request payload for a {} call - It's a best practice to always provide a `text` argument when posting a message. The `text` is used in places where the content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.";
 
-    private static final String TEXT_WARN_MESSAGE_TEMPLATE =
-            "The top-level `text` argument is missing in the request payload for a {} call - It's a best practice to always provide a `text` argument when posting a message. The `text` is used in places where the content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.";
-
-    private static final String FALLBACK_WARN_MESSAGE_TEMPLATE =
-            "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments#legacy_fields for more details).";
+    private static final String FALLBACK_WARN_MESSAGE_TEMPLATE = "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments#legacy_fields for more details).";
 
     private static final String GSON_ANONYM_INNER_CLASS_INIT_OUTPUT = "null";
 
@@ -3080,8 +3160,7 @@ public class RequestFormBuilder {
             // when attachments exist, the top-level text is not always required
             warnIfAttachmentWithoutFallbackDetected(
                     endpointName,
-                    Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class))
-            );
+                    Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class)));
         } else {
             // when attachments do not exist, the top-level text is always required
             if (text == null || text.trim().isEmpty()) {
@@ -3112,7 +3191,8 @@ public class RequestFormBuilder {
         }
     }
 
-    // Workarounds to solve GSON not handling anonymous inner class object initialization
+    // Workarounds to solve GSON not handling anonymous inner class object
+    // initialization
     // https://github.com/google/gson/issues/2023
     private static <T> String getJsonWithGsonAnonymInnerClassHandling(Map<String, T> stringTMap) {
         String json = GSON.toJson(stringTMap);
@@ -3124,4 +3204,46 @@ public class RequestFormBuilder {
         return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new ArrayList<>(tList)) : json;
     }
 
+    private static EntityMetadata[] setEntityMetadataFieldsPropertyForEntities(EntityMetadata[] entities) {
+        List<EntityMetadata> updatedEntities = new ArrayList<EntityMetadata>();
+        for (EntityMetadata entity : entities) {
+            entity = setEntityMetadataFieldsPropertyForEntity(entity);
+            updatedEntities.add(entity);
+        }
+
+        EntityMetadata[] entityArray = new EntityMetadata[updatedEntities.size()];
+        entityArray = updatedEntities.toArray(entityArray);
+
+        return entityArray;
+    }
+
+    private static EntityMetadata setEntityMetadataFieldsPropertyForEntity(EntityMetadata entity) {
+        if (entity.getEntityPayload().getFileFields() != null) {
+            String json = GSON.toJson(entity.getEntityPayload().getFileFields(),
+                    EntityPayload.FileFields.class);
+            JsonElement fields = GSON.fromJson(json, JsonElement.class);
+            entity.getEntityPayload().setFields(fields);
+            entity.getEntityPayload().setFileFields(null);
+        } else if (entity.getEntityPayload().getTaskFields() != null) {
+            String json = GSON.toJson(entity.getEntityPayload().getTaskFields(),
+                    EntityPayload.TaskFields.class);
+            JsonElement fields = GSON.fromJson(json, JsonElement.class);
+            entity.getEntityPayload().setFields(fields);
+            entity.getEntityPayload().setTaskFields(null);
+        } else if (entity.getEntityPayload().getIncidentFields() != null) {
+            String json = GSON.toJson(entity.getEntityPayload().getIncidentFields(),
+                    EntityPayload.IncidentFields.class);
+            JsonElement fields = GSON.fromJson(json, JsonElement.class);
+            entity.getEntityPayload().setFields(fields);
+            entity.getEntityPayload().setIncidentFields(null);
+        } else if (entity.getEntityPayload().getContentItemFields() != null) {
+            String json = GSON.toJson(entity.getEntityPayload().getContentItemFields(),
+                    EntityPayload.ContentItemFields.class);
+            JsonElement fields = GSON.fromJson(json, JsonElement.class);
+            entity.getEntityPayload().setFields(fields);
+            entity.getEntityPayload().setContentItemFields(null);
+        }
+
+        return entity;
+    }
 }
