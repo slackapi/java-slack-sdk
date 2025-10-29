@@ -1614,13 +1614,13 @@ public class RequestFormBuilder {
                 form.add("metadata", json);
             } else {
                 EntityMetadata[] entities = metadata.getEntities();
-                entities = prepareEntities(metadata.getEntities());
+                entities = setEntityMetadataFieldsPropertyForEntities(metadata.getEntities());
                 metadata.setEntities(entities);
                 String json = GSON.toJson(metadata);
                 form.add("metadata", json);
             }
         }
-        
+
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
@@ -1740,7 +1740,7 @@ public class RequestFormBuilder {
         } else if (req.getMetadata() != null) {
             ChatUnfurlRequest.UnfurlMetadata metadata = req.getMetadata();
 
-            EntityMetadata[] entities = prepareEntities(metadata.getEntities());
+            EntityMetadata[] entities = setEntityMetadataFieldsPropertyForEntities(metadata.getEntities());
             metadata.setEntities(entities);
 
             String json = GSON.toJson(metadata, ChatUnfurlRequest.UnfurlMetadata.class);
@@ -2072,7 +2072,7 @@ public class RequestFormBuilder {
             setIfNotNull("metadata", req.getRawMetadata(), form);
         } else if (req.getMetadata() != null) {
             EntityMetadata metadata = req.getMetadata();
-            metadata = prepareEntityMetadata(metadata);
+            metadata = setEntityMetadataFieldsPropertyForEntity(metadata);
             String json = GSON.toJson(metadata, EntityMetadata.class);
             setIfNotNull("metadata", json, form);
         }
@@ -3105,7 +3105,6 @@ public class RequestFormBuilder {
     // ----------------------------------------------------------------------------------
     // internal methods
     // ----------------------------------------------------------------------------------
-
     private static final String TEXT_WARN_MESSAGE_TEMPLATE = "The top-level `text` argument is missing in the request payload for a {} call - It's a best practice to always provide a `text` argument when posting a message. The `text` is used in places where the content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.";
 
     private static final String FALLBACK_WARN_MESSAGE_TEMPLATE = "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments#legacy_fields for more details).";
@@ -3183,19 +3182,20 @@ public class RequestFormBuilder {
         return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new ArrayList<>(tList)) : json;
     }
 
-    private static EntityMetadata[] prepareEntities(EntityMetadata[] entities) {
+    private static EntityMetadata[] setEntityMetadataFieldsPropertyForEntities(EntityMetadata[] entities) {
         List<EntityMetadata> updatedEntities = new ArrayList<EntityMetadata>();
         for (EntityMetadata entity : entities) {
-            entity = prepareEntityMetadata(entity);
+            entity = setEntityMetadataFieldsPropertyForEntity(entity);
             updatedEntities.add(entity);
         }
+
         EntityMetadata[] entityArray = new EntityMetadata[updatedEntities.size()];
         entityArray = updatedEntities.toArray(entityArray);
 
         return entityArray;
     }
 
-    private static EntityMetadata prepareEntityMetadata(EntityMetadata entity) {
+    private static EntityMetadata setEntityMetadataFieldsPropertyForEntity(EntityMetadata entity) {
         if (entity.getEntityPayload().getFileFields() != null) {
             String json = GSON.toJson(entity.getEntityPayload().getFileFields(),
                     EntityPayload.FileFields.class);
@@ -3224,5 +3224,4 @@ public class RequestFormBuilder {
 
         return entity;
     }
-
 }
