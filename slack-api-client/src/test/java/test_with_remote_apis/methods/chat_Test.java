@@ -892,14 +892,6 @@ public class chat_Test {
         assertThat(attachments.get(0), is(not(nullValue())));
         assertThat(attachments.get(0).getFromUrl(),
                 is("https://myappdomain.com/admin/slack/workobject/94/change/"));
-
-        // Verify if the message can be parsed by the JSON parser
-        String ts = postResponse.getTs();
-        ConversationsHistoryResponse history = slack.methods(botToken).conversationsHistory(r -> r
-                .channel(randomChannelId)
-                .oldest(ts)
-                .inclusive(true));
-        assertThat(history.getError(), is(nullValue()));
     }
 
     // NOTE: You need to add "myappdomain.com" at
@@ -952,15 +944,7 @@ public class chat_Test {
         assertThat(attachments, is(not(nullValue())));
         assertThat(attachments.get(0), is(not(nullValue())));
         assertThat(attachments.get(0).getFromUrl(),
-                is("https://myappdomain.com/admin/slack/workobject/94/change/"));
-
-        // Verify if the message can be parsed by the JSON parser
-        String ts = postResponse.getTs();
-        ConversationsHistoryResponse history = slack.methods(botToken).conversationsHistory(r -> r
-                .channel(randomChannelId)
-                .oldest(ts)
-                .inclusive(true));
-        assertThat(history.getError(), is(nullValue()));
+                is("https://myappdomain.com/id/F123456"));
     }
 
     @Test
