@@ -94,7 +94,7 @@ public class BlocksTest {
                                     .style("danger")
                                 )
                             )
-                            .visibleToUserIds(List.of("USLACKBOT", "U0123456789"))
+                            .visibleToUserIds(Arrays.asList("USLACKBOT", "U0123456789"))
                             )
                     ))
                 ), is(notNullValue()));
