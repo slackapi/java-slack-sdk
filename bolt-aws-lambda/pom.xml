@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.45.5-SNAPSHOT</version>
+        <version>1.46.0</version>
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -17,7 +17,7 @@
     </properties>
 
     <artifactId>bolt-aws-lambda</artifactId>
-    <version>1.45.5-SNAPSHOT</version>
+    <version>1.46.0</version>
     <packaging>jar</packaging>
 
     <dependencies>
