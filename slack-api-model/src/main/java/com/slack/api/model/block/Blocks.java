@@ -43,6 +43,20 @@ public class Blocks {
         return ContextBlock.builder().blockId(blockId).elements(elements).build();
     }
 
+    // ContextActionsBlock
+
+    public static ContextActionsBlock contextActions(ModelConfigurator<ContextActionsBlock.ContextActionsBlockBuilder> configurator) {
+        return configurator.configure(ContextActionsBlock.builder()).build();
+    }
+
+    public static ContextActionsBlock contextActions(List<ContextActionsBlockElement> elements) {
+        return ContextActionsBlock.builder().elements(elements).build();
+    }
+
+    public static ContextActionsBlock contextActions(String blockId, List<ContextActionsBlockElement> elements) {
+        return ContextActionsBlock.builder().blockId(blockId).elements(elements).build();
+    }
+
     // DividerBlock
 
     public static DividerBlock divider(ModelConfigurator<DividerBlock.DividerBlockBuilder> configurator) {
