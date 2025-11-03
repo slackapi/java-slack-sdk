@@ -66,6 +66,22 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private String metadataAsString;
 
     /**
+     * JSON object with event and/or entity metadata.
+     * For event metadata, provide event_type and event_payload fields.
+     * For entity metadata, provide the entities field.
+     * This field will overwrite the `metadata` field.
+     */
+    private Message.EventAndEntityMetadata eventAndEntityMetadata;
+
+    /**
+     * JSON object with event and/or entity metadata.
+     * For event metadata, provide event_type and event_payload fields.
+     * For entity metadata, provide the entities field.
+     * This field will overwrite the `metadata` field.
+     */
+    private String eventAndEntityMetadataAsString;
+
+    /**
      * A JSON-based array of structured blocks, presented as a URL-encoded string.
      */
     private List<LayoutBlock> blocks;

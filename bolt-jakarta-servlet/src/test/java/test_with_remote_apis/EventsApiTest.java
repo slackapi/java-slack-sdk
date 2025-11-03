@@ -143,6 +143,7 @@ public class EventsApiTest {
         private boolean channelUnarchive;
         private boolean appMention;
         private boolean linkShared;
+        private boolean entityDetailsRequested;
         private boolean message;
         private boolean reactionAdded;
         private boolean reactionRemoved;
@@ -260,6 +261,12 @@ public class EventsApiTest {
             // link_shared
             app.event(LinkSharedEvent.class, (req, ctx) -> {
                 state.setLinkShared(true);
+                return ctx.ack();
+            });
+
+            // entity_details_requested
+            app.event(EntityDetailsRequestedEvent.class, (req, ctx) -> {
+                state.setEntityDetailsRequested(true);
                 return ctx.ack();
             });
 
