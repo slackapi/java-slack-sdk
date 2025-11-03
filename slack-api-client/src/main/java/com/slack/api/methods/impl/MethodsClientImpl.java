@@ -85,6 +85,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
@@ -219,6 +220,7 @@ import com.slack.api.methods.response.conversations.request_shared_invite.Conver
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.slack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
@@ -2337,6 +2339,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public EmojiListResponse emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException {
         return emojiList(req.configure(EmojiListRequest.builder()).build());
+    }
+
+    @Override
+    public EntityPresentDetailsResponse entityPresentDetails(EntityPresentDetailsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ENTITY_PRESENT_DETAILS, getToken(req), EntityPresentDetailsResponse.class);
+    }
+
+    @Override
+    public EntityPresentDetailsResponse entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req) throws IOException, SlackApiException {
+        return entityPresentDetails(req.configure(EntityPresentDetailsRequest.builder()).build());
     }
 
     @Override
