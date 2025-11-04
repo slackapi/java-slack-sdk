@@ -9,6 +9,7 @@ import com.slack.api.model.Attachment;
 import com.slack.api.model.File;
 import com.slack.api.model.admin.AppWorkflow;
 import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.ContextActionsBlockElement;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
@@ -75,6 +76,7 @@ public class GsonFactory {
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProps))
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProps))
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(ContextActionsBlockElement.class, new GsonContextActionsBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(FunctionExecutedEvent.InputValue.class, new GsonFunctionExecutedEventInputValueFactory())

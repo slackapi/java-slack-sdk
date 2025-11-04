@@ -38,6 +38,8 @@ import java.util.concurrent.ExecutionException;
 import static com.slack.api.model.Attachments.asAttachments;
 import static com.slack.api.model.Attachments.attachment;
 import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.confirmationDialog;
+import static com.slack.api.model.block.composition.BlockCompositions.feedbackButton;
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.*;
@@ -1072,7 +1074,42 @@ public class chat_Test {
         assertThat(appends.getError(), is(nullValue()));
         ChatStopStreamResponse stops = slack.methods(botToken).chatStopStream(r -> r
                 .channel(randomChannelId)
-                .ts(streamer.getTs()));
+                .ts(streamer.getTs())
+                .blocks(
+                    asBlocks(
+                        contextActions(a -> a.
+                            elements(
+                                asContextActionsElements(
+                                    feedbackButtons(b -> b
+                                        .positiveButton(
+                                            feedbackButton(c -> c
+                                                .text(plainText(":+1:"))
+                                                .value("+1")
+                                            )
+                                        )
+                                        .negativeButton(
+                                            feedbackButton(c -> c
+                                                .text(plainText(":-1:"))
+                                                .value("-1")
+                                            )
+                                        )
+                                    ),
+                                    iconButton(b -> b
+                                        .icon("trash")
+                                        .text(plainText("Remove"))
+                                        .confirm(
+                                            confirmationDialog(c -> c
+                                                .title(plainText("Oops"))
+                                                .text(plainText("This response might've been just alright..."))
+                                                .style("danger")
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ));
         assertThat(stops.isOk(), is(true));
         assertThat(stops.getError(), is(nullValue()));
     }
