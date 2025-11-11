@@ -201,6 +201,16 @@ public class chat_Test {
         assertThat(scopes, is(notNullValue()));
     }
 
+    @Test
+    public void postMessage_markdownText() throws Exception {
+        loadRandomChannelId();
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(req -> req
+                .channel(randomChannelId)
+                .markdownText("**bold**"));
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getMessage().getText(), is("*bold*"));
+    }
+
     // https://github.com/slackapi/java-slack-sdk/issues/157
     @Test
     public void postMessage_blocksInAttachment_do_not_work_bot() throws Exception {
@@ -782,6 +792,19 @@ public class chat_Test {
     }
 
     @Test
+    public void chatUpdate_markdownText() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        ChatPostMessageResponse creation = slack.methods(botToken)
+                .chatPostMessage(r -> r.channel(randomChannelId).text("plain"));
+        assertThat(creation.getError(), is(nullValue()));
+        assertThat(creation.getMessage().getText(), is("plain"));
+        ChatUpdateResponse modified = slack.methods(botToken)
+                .chatUpdate(r -> r.channel(randomChannelId).markdownText("**bold**").ts(creation.getTs()));
+        assertThat(modified.getError(), is(nullValue()));
+        assertThat(modified.getMessage().getText(), is("*bold*"));
+    }
+
+    @Test
     public void chatUpdateWithBotToken_issue_372() throws IOException, SlackApiException {
         loadRandomChannelId();
         ChatPostMessageResponse creation = slack.methods(botToken)
@@ -988,6 +1011,17 @@ public class chat_Test {
         assertThat(response.getError(), is(nullValue()));
     }
 
+    @Test
+    public void postEphemeral_markdownText() throws Exception {
+        loadRandomChannelId();
+        String userId = findUser();
+        ChatPostEphemeralResponse response = slack.methods(botToken).chatPostEphemeral(r -> r
+                .user(userId)
+                .channel(randomChannelId)
+                .markdownText("**bold**"));
+        assertThat(response.getError(), is(nullValue()));
+    }
+
     private String findUser() throws IOException, SlackApiException {
 
         String userId = null;
@@ -1043,10 +1077,15 @@ public class chat_Test {
                 .blocks(blocks));
         assertNull(message3.getError());
 
+        ChatScheduleMessageResponse message4 = slack.methods(botToken)
+                .chatScheduleMessage(r -> r.channel(randomChannelId).postAt(postAt)
+                .markdownText("**bold**"));
+        assertNull(message4.getError());
+
         ChatScheduledMessagesListResponse after = slack.methods(botToken)
                 .chatScheduledMessagesList(r -> r.limit(100));
         assertNull(after.getError());
-        assertTrue(after.getScheduledMessages().size() - before.getScheduledMessages().size() == 2);
+        assertTrue(after.getScheduledMessages().size() - before.getScheduledMessages().size() == 3);
     }
 
     @Test
