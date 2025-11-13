@@ -365,6 +365,7 @@ public class LogsResponse implements AuditApiResponse {
         private String viewId; // list_view_updated
         private String user; // list_access_added
         private String fileId;
+        private String triggerId; // workflow_trigger_permission_set, workflow_trigger_permission_added
     }
 
     @Data

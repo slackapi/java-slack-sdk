@@ -53,7 +53,13 @@
         "action": "",
         "team_id": "E00000000",
         "user_id": "W00000000",
-        "bundle_size_kb": 12345
+        "bundle_size_kb": 12345,
+        "outputs": {
+          "channel_id": "C00000000",
+          "message_ts": "0000000000.000000"
+        },
+        "code": "",
+        "app_id": "A00000000"
       },
       "created": 12345,
       "trace_id": "",

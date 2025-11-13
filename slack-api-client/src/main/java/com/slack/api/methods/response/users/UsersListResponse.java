@@ -18,6 +18,8 @@ public class UsersListResponse implements SlackApiTextResponse {
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
+    private String arg;
+
     private String offset; // user id
     private List<User> members;
     private String cacheTs;
