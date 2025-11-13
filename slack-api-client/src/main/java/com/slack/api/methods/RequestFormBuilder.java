@@ -1140,6 +1140,9 @@ public class RequestFormBuilder {
         setIfNotNull("channel_id", req.getChannelId(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
         setIfNotNull("status", req.getStatus(), form);
+        if (req.getLoadingMessages() != null) {
+            setIfNotNull("loading_messages", req.getLoadingMessages().stream().collect(joining(",")), form);
+        }
         return form;
     }
 
@@ -1497,6 +1500,7 @@ public class RequestFormBuilder {
         warnIfEitherTextOrAttachmentFallbackIsMissing(
                 "chat.scheduleMessage",
                 req.getText(),
+                req.getMarkdownText(),
                 req.getAttachments(),
                 req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
@@ -1528,6 +1532,7 @@ public class RequestFormBuilder {
             form.add("attachments", json);
         }
         setIfNotNull("link_names", req.isLinkNames(), form);
+        setIfNotNull("markdown_text", req.getMarkdownText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("reply_broadcast", req.isReplyBroadcast(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
@@ -1551,6 +1556,7 @@ public class RequestFormBuilder {
         warnIfEitherTextOrAttachmentFallbackIsMissing(
                 "chat.postEphemeral",
                 req.getText(),
+                req.getMarkdownText(),
                 req.getAttachments(),
                 req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
@@ -1580,6 +1586,7 @@ public class RequestFormBuilder {
         setIfNotNull("icon_url", req.getIconUrl(), form);
         setIfNotNull("username", req.getUsername(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
+        setIfNotNull("markdown_text", req.getMarkdownText(), form);
         setIfNotNull("parse", req.getParse(), form);
         return form;
     }
@@ -1588,6 +1595,7 @@ public class RequestFormBuilder {
         warnIfEitherTextOrAttachmentFallbackIsMissing(
                 "chat.postMessage",
                 req.getText(),
+                req.getMarkdownText(),
                 req.getAttachments(),
                 req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
@@ -1596,6 +1604,7 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
+        setIfNotNull("markdown_text", req.getMarkdownText(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
 
         if (req.getMetadataAsString() != null) {
@@ -1699,11 +1708,13 @@ public class RequestFormBuilder {
         warnIfEitherTextOrAttachmentFallbackIsMissing(
                 "chat.update",
                 req.getText(),
+                req.getMarkdownText(),
                 req.getAttachments(),
                 req.getAttachmentsAsString());
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("markdown_text", req.getMarkdownText(), form);
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
@@ -3150,6 +3161,7 @@ public class RequestFormBuilder {
     private static void warnIfEitherTextOrAttachmentFallbackIsMissing(
             String endpointName,
             String text,
+            String markdownText,
             List<Attachment> attachments,
             String attachmentsAsString) {
 
@@ -3162,8 +3174,8 @@ public class RequestFormBuilder {
                     endpointName,
                     Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class)));
         } else {
-            // when attachments do not exist, the top-level text is always required
-            if (text == null || text.trim().isEmpty()) {
+            // when attachments do not exist, the top-level text or markdown_text is always required
+            if ((text == null || text.trim().isEmpty()) && (markdownText == null || markdownText.trim().isEmpty())) {
                 log.warn(TEXT_WARN_MESSAGE_TEMPLATE, endpointName);
             }
         }

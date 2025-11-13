@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.confirmationDialog;
+import static com.slack.api.model.block.composition.BlockCompositions.feedbackButton;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -61,6 +63,41 @@ public class BlocksTest {
     @Test
     public void testCall() {
         assertThat(call(f -> f.blockId("block-id").callId("R111")), is(notNullValue()));
+    }
+
+    @Test
+    public void testContextActions() {
+        assertThat(contextActions(b -> b
+                .elements(asContextActionsElements(
+                        feedbackButtons(f -> f
+                            .actionId("feedback")
+                            .positiveButton(
+                                feedbackButton(p -> p
+                                    .text(plainText("Good Response"))
+                                    .value("good-feedback")
+                                )
+                            )
+                            .negativeButton(
+                                feedbackButton(n -> n
+                                    .text(plainText("Bad Response"))
+                                    .value("bad-feedback")
+                                )
+                            )
+                        ),
+                        iconButton(i -> i
+                            .icon("trash")
+                            .text(plainText("Remove"))
+                            .confirm(
+                                confirmationDialog(c -> c
+                                    .title(plainText("Oops"))
+                                    .text(plainText("This response might've been just alright..."))
+                                    .style("danger")
+                                )
+                            )
+                            .visibleToUserIds(Arrays.asList("USLACKBOT", "U0123456789"))
+                            )
+                    ))
+                ), is(notNullValue()));
     }
 
     @Test
