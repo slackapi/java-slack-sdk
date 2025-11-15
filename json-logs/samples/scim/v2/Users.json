@@ -82,6 +82,10 @@
       },
       "groups": [
         {
+          "value": "S00000000",
+          "display": ""
+        },
+        {
           "value": "",
           "display": ""
         }
@@ -95,6 +99,9 @@
             "display": ""
           }
         ]
+      },
+      "urn:ietf:params:scim:schemas:extension:slack:profile:2.0:User": {
+        "startDate": ""
       }
     }
   ],

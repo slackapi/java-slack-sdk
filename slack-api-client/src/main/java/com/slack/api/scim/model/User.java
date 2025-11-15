@@ -15,7 +15,8 @@ public class User {
     private List<String> schemas = Arrays.asList(
             Schemas.SCHEMA_CORE,
             Schemas.SCHEMA_EXTENSION_ENTERPRISE,
-            Schemas.SCHEMA_EXTENSION_SLACK_GUEST
+            Schemas.SCHEMA_EXTENSION_SLACK_GUEST,
+            Schemas.SCHEMA_EXTENSION_SLACK_PROFILE
     );
 
     private String id;
@@ -46,6 +47,8 @@ public class User {
     private Extension extension;
     @SerializedName(Schemas.SCHEMA_EXTENSION_SLACK_GUEST)
     private SlackGuest slackGuest;
+    @SerializedName(Schemas.SCHEMA_EXTENSION_SLACK_PROFILE)
+    private SlackProfile slackProfile;
 
     private List<Group> groups;
 
@@ -182,4 +185,15 @@ public class User {
         }
     }
 
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class SlackProfile {
+        /**
+         * Identifies date and time the user started within the organization. Used to create and display profile Celebrations.
+         * The accepted format is ISO 8601. (e.g., "2020-10-31T23:59:59Z")
+         */
+        private String startDate;
+    }
 }

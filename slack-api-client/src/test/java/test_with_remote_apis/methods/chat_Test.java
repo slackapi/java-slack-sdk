@@ -29,6 +29,7 @@ import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -1215,6 +1216,7 @@ public class chat_Test {
     }
 
     // https://github.com/slackapi/java-slack-sdk/issues/647
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void share_message_with_files_issue_647() throws Exception {
         loadRandomChannelId();

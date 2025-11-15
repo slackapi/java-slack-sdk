@@ -73,6 +73,7 @@ public class File {
     }
 
     private Integer originalAttachmentCount;
+    private Integer inlineAttachmentCount;
 
     @SerializedName("is_external")
     private boolean external;

@@ -278,7 +278,8 @@
       "mcp_slack_search_users_tool_called",
       "mcp_slack_send_message_tool_called",
       "mcp_slack_read_user_profile_tool_called",
-      "pref.allow_cea_for_hippa_team_changed"
+      "pref.allow_cea_for_hippa_team_changed",
+      "custom_tos_link_clicked"
     ],
     "user": [
       "custom_tos_accepted",
@@ -336,7 +337,8 @@
       "app_agentforce_execute_slack_action",
       "user_anomaly_event_reponse_allowlist_changed",
       "org_owner_created",
-      "slackbot_ai_shareable_prompt_created"
+      "slackbot_ai_shareable_prompt_created",
+      "user_anomaly_event_response_allowlist_changed"
     ],
     "file": [
       "file_downloaded",
