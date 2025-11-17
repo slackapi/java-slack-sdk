@@ -14,7 +14,7 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>Examples of using Slack Bolt for Java applications with Kotlin</description>
+    <description>Examples of using Slack Bolt for Java applications with Kotlin.</description>
     <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <dependencies>
