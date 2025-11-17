@@ -10,7 +10,8 @@
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>An adapter for running Slack Bolt for Java applications on Micronaut.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
         <micronaut.version>4.8.3</micronaut.version>
