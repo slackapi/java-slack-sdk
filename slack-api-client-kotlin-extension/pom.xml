@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>Contains extension methods for various slack client message builders so you can seamlessly use the Block Kit Kotlin DSL directly on the Java message builders.</description>
+    <description>Contains extension methods for various Slack client message builders so you can seamlessly use the Block Kit Kotlin DSL directly on the Java message builders.</description>
     <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
