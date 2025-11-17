@@ -14,7 +14,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>The official Slack Bolt framework for Java, used for building modern Slack apps.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk/guides/getting-started-with-bolt</url>
 
     <properties>
         <commons-text.version>1.14.0</commons-text.version>

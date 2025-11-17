@@ -14,7 +14,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>Contains the Block Kit Kotlin DSL builder, which allows you to define block kit structures via a Kotlin-native DSL.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <pluginRepositories>
         <pluginRepository>
