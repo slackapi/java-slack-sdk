@@ -50,19 +50,6 @@
               "latest_reply": "0000000000.000000",
               "source": "",
               "is_silent_share": false
-            },
-            {
-              "reply_users": [
-                ""
-              ],
-              "reply_users_count": 12345,
-              "reply_count": 12345,
-              "ts": "0000000000.000000",
-              "channel_name": "",
-              "team_id": "T00000000",
-              "share_user_id": "U00000000",
-              "source": "",
-              "is_silent_share": false
             }
           ],
           "C00000001": [
@@ -78,19 +65,6 @@
               "share_user_id": "U00000000",
               "thread_ts": "0000000000.000000",
               "latest_reply": "0000000000.000000",
-              "source": "",
-              "is_silent_share": false
-            },
-            {
-              "reply_users": [
-                ""
-              ],
-              "reply_users_count": 12345,
-              "reply_count": 12345,
-              "ts": "0000000000.000000",
-              "channel_name": "",
-              "team_id": "T00000000",
-              "share_user_id": "U00000000",
               "source": "",
               "is_silent_share": false
             }

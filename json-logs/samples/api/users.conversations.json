@@ -89,15 +89,6 @@
               "shared_ts": "0000000000.000000"
             },
             "is_disabled": false
-          },
-          {
-            "id": "",
-            "type": "",
-            "data": {
-              "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
-            },
-            "label": ""
           }
         ],
         "tabz": [
@@ -110,14 +101,6 @@
               "shared_ts": "0000000000.000000"
             },
             "is_disabled": false
-          },
-          {
-            "id": "",
-            "type": "",
-            "data": {
-              "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
-            }
           }
         ],
         "meeting_notes": {

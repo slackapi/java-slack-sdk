@@ -28,13 +28,17 @@ public class ModelsTest {
                 .type("multi")
                 .expiration("2020-11-30T23:59:59Z")
                 .build());
+        user.setSlackProfile(User.SlackProfile.builder()
+                .startDate("2020-10-31T23:59:59Z")
+                .build());
 
         assertNotNull(user);
         assertNotNull(user.getExtension().getDivision());
         assertNotNull(user.getSlackGuest().getType());
+        assertNotNull(user.getSlackProfile().getStartDate());
 
         String json = GsonFactory.createCamelCase(SlackConfig.DEFAULT).toJson(user);
-        String expectedJson = "{\"schemas\":[\"urn:scim:schemas:core:1.0\",\"urn:scim:schemas:extension:enterprise:1.0\",\"urn:scim:schemas:extension:slack:guest:1.0\"],\"id\":\"W1234567890\",\"urn:scim:schemas:extension:enterprise:1.0\":{\"employeeNumber\":\"123-456\",\"organization\":\"PDE\",\"division\":\"Product\",\"department\":\"Product\"},\"urn:scim:schemas:extension:slack:guest:1.0\":{\"type\":\"multi\",\"expiration\":\"2020-11-30T23:59:59Z\"}}";
+        String expectedJson = "{\"schemas\":[\"urn:scim:schemas:core:1.0\",\"urn:scim:schemas:extension:enterprise:1.0\",\"urn:scim:schemas:extension:slack:guest:1.0\",\"urn:scim:schemas:extension:slack:profile:1.0\"],\"id\":\"W1234567890\",\"urn:scim:schemas:extension:enterprise:1.0\":{\"employeeNumber\":\"123-456\",\"organization\":\"PDE\",\"division\":\"Product\",\"department\":\"Product\"},\"urn:scim:schemas:extension:slack:guest:1.0\":{\"type\":\"multi\",\"expiration\":\"2020-11-30T23:59:59Z\"},\"urn:scim:schemas:extension:slack:profile:1.0\":{\"startDate\":\"2020-10-31T23:59:59Z\"}}";
         assertEquals(expectedJson, json);
     }
 }

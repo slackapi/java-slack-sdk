@@ -12,6 +12,7 @@ import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -57,6 +58,7 @@ public class pins_Test {
         }
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void add() throws IOException, SlackApiException {
         List<Conversation> channels_ = slack.methods().conversationsList(r -> r.token(botToken)).getChannels();
