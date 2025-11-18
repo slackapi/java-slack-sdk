@@ -14,7 +14,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>The official Slack API client for Java.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk/guides/web-api-basics</url>
 
     <properties>
         <javax.websocket-api.version>1.1</javax.websocket-api.version>

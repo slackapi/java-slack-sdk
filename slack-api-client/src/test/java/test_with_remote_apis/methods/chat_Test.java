@@ -15,6 +15,7 @@ import com.slack.api.methods.response.conversations.ConversationsMembersResponse
 import com.slack.api.methods.response.files.FilesUploadResponse;
 import com.slack.api.methods.response.files.FilesUploadV2Response;
 import com.slack.api.model.*;
+import com.slack.api.model.EntityMetadata.EntityPayload.BooleanField;
 import com.slack.api.model.EntityMetadata.EntityPayload.FileFields;
 import com.slack.api.model.EntityMetadata.EntityPayload.IncidentFields;
 import com.slack.api.model.EntityMetadata.EntityPayload;
@@ -29,6 +30,7 @@ import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -538,10 +540,13 @@ public class chat_Test {
             EntityPayload.StringField.builder().value("World").tagColor("green").build()};
         EntityPayload.CustomField[] customFields = {
             EntityPayload.CustomField.builder().type("string").key("hello_world").label("Message")
-            .value("Hello World").build(),
+                .value("Hello World").build(),
             EntityPayload.CustomField.builder().type("array").key("array_field")
-            .label("Array Field").itemType("string")
-            .value(stringArray).build()};
+                .label("Array Field").itemType("string")
+                .value(stringArray).build(),
+            EntityPayload.CustomField.builder().type("boolean").key("checkbox").label("Checkbox")
+                .value(true).booleanField(BooleanField.builder().type("checkbox").text("Check the box").build()).build()
+        };
         EntityPayload payload = EntityPayload.builder()
                 .attributes(attributes)
                 .fileFields(fields)
@@ -567,6 +572,8 @@ public class chat_Test {
                 .metadata(metadata)
                 .build());
         assertThat(unfurlResponse.getError(), is(nullValue()));
+        assertThat(unfurlResponse.getWarning(), is(nullValue()));
+        assertThat(unfurlResponse.getResponseMetadata(), is(nullValue()));
 
         // Verify if the message can be parsed by the JSON parser
         ConversationsHistoryResponse history = slack.methods(botToken).conversationsHistory(r -> r
@@ -1215,6 +1222,7 @@ public class chat_Test {
     }
 
     // https://github.com/slackapi/java-slack-sdk/issues/647
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void share_message_with_files_issue_647() throws Exception {
         loadRandomChannelId();
