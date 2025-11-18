@@ -2510,10 +2510,10 @@ public interface MethodsClient {
     SlackListsCreateResponse slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req)
             throws IOException, SlackApiException;
 
-    // ------------------------------å
+    // ------------------------------
     // team
     // ------------------------------
-å
+
     TeamAccessLogsResponse teamAccessLogs(TeamAccessLogsRequest req) throws IOException, SlackApiException;
 
     TeamAccessLogsResponse teamAccessLogs(RequestConfigurator<TeamAccessLogsRequest.TeamAccessLogsRequestBuilder> req)

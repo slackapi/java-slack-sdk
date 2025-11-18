@@ -659,7 +659,7 @@ public class Methods {
     // slackLists
     // ------------------------------
 
-    public static final String SLACKLISTS_CREATE = "slackLists.create"
+    public static final String SLACKLISTS_CREATE = "slackLists.create";
 
     // ------------------------------
     // team
