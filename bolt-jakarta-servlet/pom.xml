@@ -14,7 +14,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>A handy way to run Slack Bolt apps on the Jakarta EE Servlet environments.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <dependencies>
         <dependency>

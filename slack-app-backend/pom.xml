@@ -14,7 +14,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>A set of Slack app server-side handlers and data classes for Events API, Interactive Components, Slash Commands, Actions, and OAuth flow.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <dependencies>
         <dependency>

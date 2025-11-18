@@ -28,6 +28,8 @@ public class Team {
     private String avatarBaseUrl;
     private Boolean lobSalesHomeEnabled;
     private Boolean isSfdcAutoSlack;
+    private SsoProvider ssoProvider;
+    private String payProdCur;
 
     @Data
     public static class Profile {
@@ -71,5 +73,12 @@ public class Team {
         private List<String> api;
         private boolean ui;
         private boolean scim;
+    }
+
+    @Data
+    public static class SsoProvider {
+        private String type;
+        private String name;
+        private String label;
     }
 }

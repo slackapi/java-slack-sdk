@@ -21,7 +21,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>An adapter for running Slack Bolt for Java applications on Google cloud functions.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <dependencies>
         <dependency>

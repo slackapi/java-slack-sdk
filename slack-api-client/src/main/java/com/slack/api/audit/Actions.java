@@ -337,6 +337,7 @@ public class Actions {
         public static final String app_agentforce_session_created_from_prompt_link = "app_agentforce_session_created_from_prompt_link";
         public static final String app_agentforce_execute_slack_action = "app_agentforce_execute_slack_action";
         public static final String user_anomaly_event_reponse_allowlist_changed = "user_anomaly_event_reponse_allowlist_changed";
+        public static final String user_anomaly_event_response_allowlist_changed = "user_anomaly_event_response_allowlist_changed";
         public static final String org_owner_created = "org_owner_created";
         public static final String slackbot_ai_shareable_prompt_created = "slackbot_ai_shareable_prompt_created";
     }
