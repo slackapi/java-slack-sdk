@@ -129,6 +129,13 @@ public class EntityMetadata {
 
             // When type is 'slack#/types/user'
             private User user;
+
+            // When type is 'slack#/types/entity_ref'
+            private EntityRef entityRef;
+
+            // When type is 'boolean'
+            @SerializedName("boolean")
+            private BooleanField booleanField;
         }
 
         @Data
@@ -143,6 +150,36 @@ public class EntityMetadata {
             private String text;
             private String url;
             private String email;
+            private Icon icon;
+        }
+
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class BooleanField {
+            private String type;
+            
+            // Checkbox
+            private String text;
+            private String description;
+
+            // or text-based
+            private String trueText;
+            private String trueDescription;
+            private String falseText;
+            private String falseDescription;
+        }
+
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class EntityRef {
+            private String entityUrl;
+            private ExternalRef externalRef;
+            private String displayType;
+            private String title;
             private Icon icon;
         }
 
@@ -170,8 +207,6 @@ public class EntityMetadata {
         public static class Timestamp {
             private String label;
             private Integer value;
-            private String link;
-            private Icon icon;
             private String type;
             private Edit edit;
         }
@@ -220,6 +255,9 @@ public class EntityMetadata {
             private Edit edit;
             private String itemType;
             private User user;
+            private EntityRef entityRef;
+            @SerializedName("boolean")
+            private BooleanField booleanField;
         }
 
         @Data
