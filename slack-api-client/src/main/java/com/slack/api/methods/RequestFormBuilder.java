@@ -114,10 +114,21 @@ import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.search.SearchAllRequest;
 import com.slack.api.methods.request.search.SearchFilesRequest;
 import com.slack.api.methods.request.search.SearchMessagesRequest;
+import com.slack.api.methods.request.slacklists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slacklists.SlackListsAccessSetRequest;
+import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slacklists.SlackListsDownloadStartRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
-import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -2779,7 +2790,7 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(SlackListsAccessDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("list_id", req.getId(), form);
+        setIfNotNull("list_id", req.getListId(), form);
         if (req.getUserIds() != null) {
             setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
         }

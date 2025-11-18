@@ -2,6 +2,7 @@ package com.slack.api.methods.request.slacklists;
 
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.block.RichTextBlock;
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 
