@@ -10,7 +10,8 @@
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>An adapter for running Slack Bolt for Java applications on AWS Lambda.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
         <aws-lambda-core.version>1.2.3</aws-lambda-core.version>

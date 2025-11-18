@@ -10,7 +10,8 @@
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>A handy way to run Slack Bolt apps on the Java EE Servlet environments.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
         <!-- TODO: Upgrade to 11.x in the next major version - v2 -->

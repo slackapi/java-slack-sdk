@@ -19,7 +19,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>Provides WebSocket connectivity to the Slack API using Socket Mode, compatible with Jakarta EE.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <dependencies>
         <dependency>
