@@ -165,10 +165,10 @@ public class EntityMetadata {
             private String description;
 
             // or text-based
-            private String true_text;
-            private String true_description;
-            private String false_text;
-            private String false_description;
+            private String trueText;
+            private String trueDescription;
+            private String falseText;
+            private String falseDescription;
         }
 
         @Data
