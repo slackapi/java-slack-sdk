@@ -424,11 +424,23 @@ public class MethodsRateLimits {
         setRateLimitTier(SEARCH_FILES, Tier2);
         setRateLimitTier(SEARCH_MESSAGES, Tier2);
 
+        setRateLimitTier(SLACKLISTS_ACCESS_DELETE, Tier3);
+        setRateLimitTier(SLACKLISTS_ACCESS_SET, Tier3);
+        setRateLimitTier(SLACKLISTS_CREATE, Tier2);
+        setRateLimitTier(SLACKLISTS_DOWNLOAD_GET, Tier4);
+        setRateLimitTier(SLACKLISTS_DOWNLOAD_START, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_CREATE, Tier3);
+        setRateLimitTier(SLACKLISTS_ITEMS_DELETE, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_DELETE_MULTIPLE, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_INFO, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_LIST, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_UPDATE, Tier3);
+        setRateLimitTier(SLACKLISTS_UPDATE, Tier2);
+
         setRateLimitTier(STARS_ADD, Tier2);
         setRateLimitTier(STARS_LIST, Tier3);
         setRateLimitTier(STARS_REMOVE, Tier2);
 
-        setRateLimitTier(SLACKLISTS_CREATE, Tier2);
 
         setRateLimitTier(TEAM_ACCESS_LOGS, Tier2);
         setRateLimitTier(TEAM_BILLABLE_INFO, Tier2);

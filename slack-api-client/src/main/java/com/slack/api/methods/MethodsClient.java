@@ -117,7 +117,18 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
+import com.slack.api.methods.request.slacklists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slacklists.SlackListsAccessSetRequest;
 import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slacklists.SlackListsDownloadSetRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -249,7 +260,18 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.methods.response.search.SearchMessagesResponse;
+import com.slack.api.methods.response.slacklists.SlackListsAccessDeleteResponse;
+import com.slack.api.methods.response.slacklists.SlackListsAccessSetResponse;
 import com.slack.api.methods.response.slacklists.SlackListsCreateResponse;
+import com.slack.api.methods.response.slacklists.SlackListsDownloadGetResponse;
+import com.slack.api.methods.response.slacklists.SlackListsDownloadSetResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsCreateResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsDeleteResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsDeleteMultipleResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsInfoResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsListResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsUpdateResponse;
+import com.slack.api.methods.response.slacklists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -2506,9 +2528,64 @@ public interface MethodsClient {
     // slackLists
     // ------------------------------
     
+    SlackListsAccessDeleteResponse slackListsAccessDelete(SlackListsAccessDeleteRequest req) throws IOException, SlackApiException;
+
+    SlackListsAccessDeleteResponse slackListsAccessDelete(RequestConfigurator<SlackListsAccessDeleteRequest.SlackListsAccessDeleteRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsAccessSetResponse slackListsAccessSet(SlackListsAccessSetRequest req) throws IOException, SlackApiException;
+
+    SlackListsAccessSetResponse slackListsAccessSet(RequestConfigurator<SlackListsAccessSetRequest.SlackListsAccessSetRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
     SlackListsCreateResponse slackListsCreate(SlackListsCreateRequest req) throws IOException, SlackApiException;
 
     SlackListsCreateResponse slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsDownloadGetResponse slackListsDownloadGet(SlackListsDownloadGetRequest req) throws IOException, SlackApiException;
+
+    SlackListsDownloadGetResponse slackListsDownloadGet(RequestConfigurator<SlackListsDownloadGetRequest.SlackListsDownloadGetRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsDownloadStartResponse slackListsDownloadStart(SlackListsDownloadStartRequest req) throws IOException, SlackApiException;
+
+    SlackListsDownloadStartResponse slackListsDownloadStart(RequestConfigurator<SlackListsDownloadStartRequest.SlackListsDownloadStartRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsItemsCreateResponse slackListsItemsCreate(SlackListsItemsCreateRequest req) throws IOException, SlackApiException;
+
+    SlackListsItemsCreateResponse slackListsItemsCreate(RequestConfigurator<SlackListsItemsCreateRequest.SlackListsItemsCreateRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsItemsDeleteResponse slackListsItemsDelete(SlackListsItemsDeleteRequest req) throws IOException, SlackApiException;
+
+    SlackListsItemsDeleteResponse slackListsItemsDelete(RequestConfigurator<SlackListsItemsDeleteRequest.SlackListsItemsDeleteRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsItemsDeleteMultipleResponse slackListsItemsDeleteMultiple(SlackListsItemsDeleteMultipleRequest req) throws IOException, SlackApiException;
+
+    SlackListsItemsDeleteMultipleResponse slackListsItemsDeleteMultiple(RequestConfigurator<SlackListsItemsDeleteMultipleRequest.SlackListsItemsDeleteMultipleRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsItemsInfoResponse slackListsItemsInfo(SlackListsItemsInfoRequest req) throws IOException, SlackApiException;
+
+    SlackListsItemsInfoResponse slackListsItemsInfo(RequestConfigurator<SlackListsItemsInfoRequest.SlackListsItemsInfoRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsItemsListResponse slackListsItemsList(SlackListsItemsListRequest req) throws IOException, SlackApiException;
+
+    SlackListsItemsListResponse slackListsItemsList(RequestConfigurator<SlackListsItemsListRequest.SlackListsItemsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsItemsUpdateResponse slackListsItemsUpdate(SlackListsItemsUpdateRequest req) throws IOException, SlackApiException;
+
+    SlackListsItemsUpdateResponse slackListsItemsUpdate(RequestConfigurator<SlackListsItemsUpdateRequest.SlackListsItemsUpdateRequestBuilder> req)
+            throws IOException, SlackApiException;
+    
+    SlackListsUpdateResponse slackListsUpdate(SlackListsUpdateRequest req) throws IOException, SlackApiException;
+
+    SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

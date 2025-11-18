@@ -1,16 +1,16 @@
 package com.slack.api.methods.request.slacklists;
 
+import com.slack.api.methods.SlackApiRequest;
+import com.slack.api.model.block.RichTextBlock;
+
 import java.util.List;
 import java.util.Map;
 
-import com.slack.api.model.block.RichTextBlock;
-
-import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://docs.slack.dev/reference/methods/search.all
+ * https://docs.slack.dev/reference/methods/slackLists.create
  */
 @Data
 @Builder
@@ -50,5 +50,4 @@ public class SlackListsCreateRequest implements SlackApiRequest {
      * Boolean indicating whether the List should be used to track todo tasks. (Optional)
      */
     private Boolean todoMode;
-
 }

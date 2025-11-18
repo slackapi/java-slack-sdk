@@ -2777,6 +2777,22 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(SlackListsAccessDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getId(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
+        }
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsAccessSetRequest req) {
+
+    }
+
     public static FormBody.Builder toForm(SlackListsCreateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("name", req.getName(), form);
@@ -2792,6 +2808,38 @@ public class RequestFormBuilder {
         setIfNotNull("include_copied_list_records", req.getIncludeCopiedListRecords(), form);
         setIfNotNull("todo_mode", req.getTodoMode(), form);
         return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsDownloadGetRequest req) {
+
+    }
+
+    public static FormBody.Builder toForm(SlackListsDownloadSetRequest req) {
+
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsCreateRequest req) {
+
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsDeleteRequest req) {
+
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsInfoRequest req) {
+
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsListRequest req) {
+
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsUpdateRequest req) {
+
+    }
+
+    public static FormBody.Builder toForm(SlackListsUpdateRequest req) {
+
     }
 
     public static FormBody.Builder toForm(TeamAccessLogsRequest req) {
