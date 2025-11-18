@@ -2512,6 +2512,126 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(SlackListsAccessDeleteRequest req) {
+        return executor.execute(SLACKLISTS_ACCESS_DELETE, toMap(req), () -> methods.slackListsAccessDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(RequestConfigurator<SlackListsAccessDeleteRequest.SlackListsAccessDeleteRequestBuilder> req) {
+        return slackListsAccessDelete(req.configure(SlackListsAccessDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsAccessSetResponse> slackListsAccessSet(SlackListsAccessSetRequest req) {
+        return executor.execute(SLACKLISTS_ACCESS_SET, toMap(req), () -> methods.slackListsAccessSet(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsAccessSetResponse> slackListsAccessSet(RequestConfigurator<SlackListsAccessSetRequest.SlackListsAccessSetRequestBuilder> req) {
+        return slackListsAccessSet(req.configure(SlackListsAccessSetRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsCreateResponse> slackListsCreate(SlackListsCreateRequest req) {
+        return executor.execute(SLACKLISTS_CREATE, toMap(req), () -> methods.slackListsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) {
+        return slackListsCreate(req.configure(SlackListsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsDownloadGetResponse> slackListsDownloadGet(SlackListsDownloadGetRequest req) {
+        return executor.execute(SLACKLISTS_DOWNLOAD_GET, toMap(req), () -> methods.slackListsDownloadGet(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsDownloadGetResponse> slackListsDownloadGet(RequestConfigurator<SlackListsDownloadGetRequest.SlackListsDownloadGetRequestBuilder> req) {
+        return slackListsDownloadGet(req.configure(SlackListsDownloadGetRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsDownloadStartResponse> slackListsDownloadStart(SlackListsDownloadStartRequest req) {
+        return executor.execute(SLACKLISTS_DOWNLOAD_START, toMap(req), () -> methods.slackListsDownloadStart(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsDownloadStartResponse> slackListsDownloadStart(RequestConfigurator<SlackListsDownloadStartRequest.SlackListsDownloadStartRequestBuilder> req) {
+        return slackListsDownloadStart(req.configure(SlackListsDownloadStartRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsCreateResponse> slackListsItemsCreate(SlackListsItemsCreateRequest req) {
+        return executor.execute(SLACKLISTS_ITEMS_CREATE, toMap(req), () -> methods.slackListsItemsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsCreateResponse> slackListsItemsCreate(RequestConfigurator<SlackListsItemsCreateRequest.SlackListsItemsCreateRequestBuilder> req) {
+        return slackListsItemsCreate(req.configure(SlackListsItemsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsDeleteResponse> slackListsItemsDelete(SlackListsItemsDeleteRequest req) {
+        return executor.execute(SLACKLISTS_ITEMS_DELETE, toMap(req), () -> methods.slackListsItemsDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsDeleteResponse> slackListsItemsDelete(RequestConfigurator<SlackListsItemsDeleteRequest.SlackListsItemsDeleteRequestBuilder> req) {
+        return slackListsItemsDelete(req.configure(SlackListsItemsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsDeleteMultipleResponse> slackListsItemsDeleteMultiple(SlackListsItemsDeleteMultipleRequest req) {
+        return executor.execute(SLACKLISTS_ITEMS_DELETE_MULTIPLE, toMap(req), () -> methods.slackListsItemsDeleteMultiple(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsDeleteMultipleResponse> slackListsItemsDeleteMultiple(RequestConfigurator<SlackListsItemsDeleteMultipleRequest.SlackListsItemsDeleteMultipleRequestBuilder> req) {
+        return slackListsItemsDeleteMultiple(req.configure(SlackListsItemsDeleteMultipleRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsInfoResponse> slackListsItemsInfo(SlackListsItemsInfoRequest req) {
+        return executor.execute(SLACKLISTS_ITEMS_INFO, toMap(req), () -> methods.slackListsItemsInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsInfoResponse> slackListsItemsInfo(RequestConfigurator<SlackListsItemsInfoRequest.SlackListsItemsInfoRequestBuilder> req) {
+        return slackListsItemsInfo(req.configure(SlackListsItemsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsListResponse> slackListsItemsList(SlackListsItemsListRequest req) {
+        return executor.execute(SLACKLISTS_ITEMS_LIST, toMap(req), () -> methods.slackListsItemsList(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsListResponse> slackListsItemsList(RequestConfigurator<SlackListsItemsListRequest.SlackListsItemsListRequestBuilder> req) {
+        return slackListsItemsList(req.configure(SlackListsItemsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsUpdateResponse> slackListsItemsUpdate(SlackListsItemsUpdateRequest req) {
+        return executor.execute(SLACKLISTS_ITEMS_UPDATE, toMap(req), () -> methods.slackListsItemsUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsItemsUpdateResponse> slackListsItemsUpdate(RequestConfigurator<SlackListsItemsUpdateRequest.SlackListsItemsUpdateRequestBuilder> req) {
+        return slackListsItemsUpdate(req.configure(SlackListsItemsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req) {
+        return executor.execute(SLACKLISTS_UPDATE, toMap(req), () -> methods.slackListsUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) {
+        return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
     @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     public CompletableFuture<StarsAddResponse> starsAdd(StarsAddRequest req) {
         return executor.execute(STARS_ADD, toMap(req), () -> methods.starsAdd(req));
@@ -2547,15 +2667,6 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
         return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
     }
 
-    @Override
-    public CompletableFuture<SlackListsCreateResponse> slackListsCreate(SlackListsCreateRequest req) {
-        return executor.execute(SLACKLISTS_CREATE, toMap(req), () -> methods.slackListsCreate(req));
-    }
-
-    @Override
-    public CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) {
-        return slackListsCreate(req.configure(SlackListsCreateRequest.builder()).build());
-    } 
 
     @Override
     public CompletableFuture<TeamAccessLogsResponse> teamAccessLogs(TeamAccessLogsRequest req) {

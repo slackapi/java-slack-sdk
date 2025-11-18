@@ -2790,7 +2790,16 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(SlackListsAccessSetRequest req) {
-
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("access_level", req.getAccessLevel(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
+        }
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds()), form);
+        }
+        return form;
     }
 
     public static FormBody.Builder toForm(SlackListsCreateRequest req) {
@@ -2811,35 +2820,80 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(SlackListsDownloadGetRequest req) {
-
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("job_id", req.getJobId(), form);
+        return form;
     }
 
-    public static FormBody.Builder toForm(SlackListsDownloadSetRequest req) {
-
+    public static FormBody.Builder toForm(SlackListsDownloadStartRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("include_archived", req.getIncludeArchived(), form);
+        return form;
     }
 
     public static FormBody.Builder toForm(SlackListsItemsCreateRequest req) {
-
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("duplicated_item_id", req.getDuplicatedItemId(), form);
+        setIfNotNull("parent_item_id", req.getParentItemId(), form);
+        if (req.getIntialFields() != null) {
+            setIfNotNull("intial_fields", getJsonWithGsonAnonymInnerClassHandling(req.getIntialFields()), form);
+        }
+        return form;
     }
 
     public static FormBody.Builder toForm(SlackListsItemsDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("id", req.getId(), form);
+        return form;
+    }
 
+    public static FormBody.Builder toForm(SlackListsItemsDeleteMultipleRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        if (req.getIds() != null) {
+            setIfNotNull("ids", getJsonWithGsonAnonymInnerClassHandling(req.getIds()), form);
+        }
+        return form;
     }
 
     public static FormBody.Builder toForm(SlackListsItemsInfoRequest req) {
-
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("id", req.getId(), form);
+        setIfNotNull("include_is_subscribed", req.getIncludeIsSubscribed(), form);
+        return form;
     }
 
     public static FormBody.Builder toForm(SlackListsItemsListRequest req) {
-
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("archived", req.getArchived(), form);
+        return form;
     }
 
     public static FormBody.Builder toForm(SlackListsItemsUpdateRequest req) {
-
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        if (req.getCells() != null) {
+            setIfNotNull("cells", getJsonWithGsonAnonymInnerClassHandling(req.getCells()), form);
+        }
+        return form;
     }
 
     public static FormBody.Builder toForm(SlackListsUpdateRequest req) {
-
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("id", req.getId(), form);
+        setIfNotNull("name", req.getName(), form);
+        if (req.getDescriptionBlocks() != null) {
+            setIfNotNull("description_blocks", getJsonWithGsonAnonymInnerClassHandling(req.getDescriptionBlocks()), form);
+        }
+        setIfNotNull("todo_mode", req.getTodoMode(), form);
+        return form;
     }
 
     public static FormBody.Builder toForm(TeamAccessLogsRequest req) {

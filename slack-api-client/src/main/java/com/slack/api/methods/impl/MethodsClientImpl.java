@@ -3224,6 +3224,26 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public SlackListsAccessDeleteResponse slackListsAccessDelete(SlackListsAccessDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ACCESS_DELETE, getToken(req), SlackListsAccessDeleteResponse.class);
+    }
+
+    @Override
+    public SlackListsAccessDeleteResponse slackListsAccessDelete(RequestConfigurator<SlackListsAccessDeleteRequest.SlackListsAccessDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsAccessDelete(req.configure(SlackListsAccessDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsAccessSetResponse slackListsAccessSet(SlackListsAccessSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ACCESS_SET, getToken(req), SlackListsAccessSetResponse.class);
+    }
+
+    @Override
+    public SlackListsAccessSetResponse slackListsAccessSet(RequestConfigurator<SlackListsAccessSetRequest.SlackListsAccessSetRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsAccessSet(req.configure(SlackListsAccessSetRequest.builder()).build());
+    }
+
+    @Override
     public SlackListsCreateResponse slackListsCreate(SlackListsCreateRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_CREATE, getToken(req), SlackListsCreateResponse.class);
     }
@@ -3231,6 +3251,96 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public SlackListsCreateResponse slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) throws IOException, SlackApiException {
         return slackListsCreate(req.configure(SlackListsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsDownloadGetResponse slackListsDownloadGet(SlackListsDownloadGetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_DOWNLOAD_GET, getToken(req), SlackListsDownloadGetResponse.class);
+    }
+
+    @Override
+    public SlackListsDownloadGetResponse slackListsDownloadGet(RequestConfigurator<SlackListsDownloadGetRequest.SlackListsDownloadGetRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsDownloadGet(req.configure(SlackListsDownloadGetRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsDownloadStartResponse slackListsDownloadStart(SlackListsDownloadStartRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_DOWNLOAD_START, getToken(req), SlackListsDownloadStartResponse.class);
+    }
+
+    @Override
+    public SlackListsDownloadStartResponse slackListsDownloadStart(RequestConfigurator<SlackListsDownloadStartRequest.SlackListsDownloadStartRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsDownloadStart(req.configure(SlackListsDownloadStartRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsCreateResponse slackListsItemsCreate(SlackListsItemsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_CREATE, getToken(req), SlackListsItemsCreateResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsCreateResponse slackListsItemsCreate(RequestConfigurator<SlackListsItemsCreateRequest.SlackListsItemsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsCreate(req.configure(SlackListsItemsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsDeleteResponse slackListsItemsDelete(SlackListsItemsDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_DELETE, getToken(req), SlackListsItemsDeleteResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsDeleteResponse slackListsItemsDelete(RequestConfigurator<SlackListsItemsDeleteRequest.SlackListsItemsDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsDelete(req.configure(SlackListsItemsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsDeleteMultipleResponse slackListsItemsDeleteMultiple(SlackListsItemsDeleteMultipleRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_DELETE_MULTIPLE, getToken(req), SlackListsItemsDeleteMultipleResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsDeleteMultipleResponse slackListsItemsDeleteMultiple(RequestConfigurator<SlackListsItemsDeleteMultipleRequest.SlackListsItemsDeleteMultipleRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsDeleteMultiple(req.configure(SlackListsItemsDeleteMultipleRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsInfoResponse slackListsItemsInfo(SlackListsItemsInfoRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_INFO, getToken(req), SlackListsItemsInfoResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsInfoResponse slackListsItemsInfo(RequestConfigurator<SlackListsItemsInfoRequest.SlackListsItemsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsInfo(req.configure(SlackListsItemsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsListResponse slackListsItemsList(SlackListsItemsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_LIST, getToken(req), SlackListsItemsListResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsListResponse slackListsItemsList(RequestConfigurator<SlackListsItemsListRequest.SlackListsItemsListRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsList(req.configure(SlackListsItemsListRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsUpdateResponse slackListsItemsUpdate(SlackListsItemsUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_UPDATE, getToken(req), SlackListsItemsUpdateResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsUpdateResponse slackListsItemsUpdate(RequestConfigurator<SlackListsItemsUpdateRequest.SlackListsItemsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsUpdate(req.configure(SlackListsItemsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsUpdateResponse slackListsUpdate(SlackListsUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_UPDATE, getToken(req), SlackListsUpdateResponse.class);
+    }
+
+    @Override
+    public SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
     }
 
     @Override

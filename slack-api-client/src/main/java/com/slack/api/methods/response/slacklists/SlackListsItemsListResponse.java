@@ -10,7 +10,7 @@ import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class SlackListsItemsListsResponse implements SlackApiTextResponse {
+public class SlackListsItemsListResponse implements SlackApiTextResponse {
     
     private boolean ok;
     private String warning;
