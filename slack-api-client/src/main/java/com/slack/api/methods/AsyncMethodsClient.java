@@ -104,6 +104,7 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
+import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -1410,6 +1411,14 @@ public interface AsyncMethodsClient {
     @Deprecated
         // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req);
+
+    // ------------------------------
+    // slackLists
+    // ------------------------------
+    
+    CompletableFuture<SlackListsCreateResponse> slackListsCreate(SlackListsCreateRequest req);
+
+    CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req);
 
     // ------------------------------
     // team

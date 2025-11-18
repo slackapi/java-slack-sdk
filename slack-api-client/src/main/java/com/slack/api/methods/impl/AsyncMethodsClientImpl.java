@@ -108,6 +108,7 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
+import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -2544,6 +2545,11 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     public CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) {
         return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
     }
+
+   @Override
+   public CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) {
+        return slackListsCreate(req.configure(SlackListsCreateRequest.builder()).build());
+   } 
 
     @Override
     public CompletableFuture<TeamAccessLogsResponse> teamAccessLogs(TeamAccessLogsRequest req) {

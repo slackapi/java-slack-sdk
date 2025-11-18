@@ -117,6 +117,7 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
+import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -2499,11 +2500,20 @@ public interface MethodsClient {
     // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req)
             throws IOException, SlackApiException;
-
+    
     // ------------------------------
+    // slackLists
+    // ------------------------------
+    
+    SlackListsCreateResponse slackListsCreate(SlackListsCreateRequest req) throws IOException, SlackApiException;
+
+    SlackListsCreateResponse slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------å
     // team
     // ------------------------------
-
+å
     TeamAccessLogsResponse teamAccessLogs(TeamAccessLogsRequest req) throws IOException, SlackApiException;
 
     TeamAccessLogsResponse teamAccessLogs(RequestConfigurator<TeamAccessLogsRequest.TeamAccessLogsRequestBuilder> req)

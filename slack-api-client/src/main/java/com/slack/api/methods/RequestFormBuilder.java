@@ -117,6 +117,7 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
+import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -2773,6 +2774,23 @@ public class RequestFormBuilder {
         setIfNotNull("file", req.getFile(), form);
         setIfNotNull("file_comment", req.getFileComment(), form);
         setIfNotNull("timestamp", req.getTimestamp(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("name", req.getName(), form);
+        if (req.getDescriptionBlocks() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getDescriptionBlocks());
+            form.add("description_blocks", json);
+        }
+        if (req.getSchema() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getSchema());
+            form.add("schema", json);
+        }
+        setIfNotNull("copy_from_list_id", req.getCopyFromListId(), form);
+        setIfNotNull("include_copied_list_records", req.getIncludeCopiedListRecords(), form);
+        setIfNotNull("todo_mode", req.getTodoMode(), form);
         return form;
     }
 

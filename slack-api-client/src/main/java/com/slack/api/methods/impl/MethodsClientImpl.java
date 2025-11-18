@@ -119,6 +119,7 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
+import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -3219,6 +3220,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     public StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException {
         return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsCreateResponse slackListsCreate(SlackListsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_CREATE, getToken(req), SlackListsCreateResponse.class);
+    }
+
+    @Override
+    public SlackListsCreateResponse slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsCreate(req.configure(SlackListsCreateRequest.builder()).build());
     }
 
     @Override

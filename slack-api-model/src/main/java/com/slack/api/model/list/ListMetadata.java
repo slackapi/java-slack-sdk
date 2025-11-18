@@ -23,6 +23,7 @@ public class ListMetadata {
     private boolean trial;
     private ListCreationSource creationSource;
     private List<ListColumn> schema;
+    private List<ListColumn> subtaskSchema;
     private List<ListView> views;
     private List<String> integrations;
     private List<LayoutBlock> descriptionBlocks;

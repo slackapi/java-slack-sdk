@@ -428,6 +428,8 @@ public class MethodsRateLimits {
         setRateLimitTier(STARS_LIST, Tier3);
         setRateLimitTier(STARS_REMOVE, Tier2);
 
+        setRateLimitTier(SLACKLISTS_CREATE, Tier2);
+
         setRateLimitTier(TEAM_ACCESS_LOGS, Tier2);
         setRateLimitTier(TEAM_BILLABLE_INFO, Tier2);
         setRateLimitTier(TEAM_INFO, Tier3);

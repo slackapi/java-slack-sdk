@@ -654,6 +654,12 @@ public class Methods {
     public static final String STARS_ADD = "stars.add";
     public static final String STARS_LIST = "stars.list";
     public static final String STARS_REMOVE = "stars.remove";
+    
+    // ------------------------------
+    // slackLists
+    // ------------------------------
+
+    public static final String SLACKLISTS_CREATE = "slackLists.create"
 
     // ------------------------------
     // team
