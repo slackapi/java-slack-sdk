@@ -27,4 +27,6 @@ public class ListMetadata {
     private List<ListView> views;
     private List<String> integrations;
     private List<LayoutBlock> descriptionBlocks;
+    private String defaultView;
+    private boolean todoMode;
 }

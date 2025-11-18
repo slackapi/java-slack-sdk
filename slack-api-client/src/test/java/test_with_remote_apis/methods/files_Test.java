@@ -66,7 +66,7 @@ public class files_Test {
     void loadGeneralChannelId() throws IOException, SlackApiException {
         if (generalChannelId == null) {
             ConversationsListResponse channelsListResponse =
-                    slack.methods().conversationsList(r -> r.token(botToken).excludeArchived(true).limit(100));
+                    slack.methods().conversationsList(r -> r.token(botToken).excludeArchived(true).limit(200));
             assertThat(channelsListResponse.getError(), is(nullValue()));
             for (Conversation channel : channelsListResponse.getChannels()) {
                 if (channel.getName().equals("general")) {
@@ -136,6 +136,7 @@ public class files_Test {
         }
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void createTextFileAndComments() throws IOException, SlackApiException {
         File file = new File("src/test/resources/sample.txt");
@@ -227,6 +228,7 @@ public class files_Test {
         }
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void createLongTextFile() throws IOException, SlackApiException {
         File file = new File("src/test/resources/sample_long.txt");
@@ -430,6 +432,7 @@ public class files_Test {
         }
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void createImageFileAndComments() throws IOException, SlackApiException {
         File file = new File("src/test/resources/seratch.jpg");
@@ -529,6 +532,7 @@ public class files_Test {
         }
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void createFileForAThread() throws IOException, SlackApiException {
         TestChannelGenerator channelGenerator = new TestChannelGenerator(testConfig, userToken);
@@ -629,6 +633,7 @@ public class files_Test {
         }
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void issue523_text() throws IOException, SlackApiException {
         MethodsClient slackMethods = slack.methods(userToken);
@@ -638,6 +643,7 @@ public class files_Test {
         assertThat(response.getError(), is(nullValue()));
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void issue523_image() throws IOException, SlackApiException {
         MethodsClient slackMethods = slack.methods(userToken);
@@ -647,6 +653,7 @@ public class files_Test {
         assertThat(response.getError(), is(nullValue()));
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void issue523_text_no_filename() throws IOException, SlackApiException {
         MethodsClient slackMethods = slack.methods(userToken);
@@ -667,6 +674,7 @@ public class files_Test {
         assertThat(response.getError(), is(nullValue()));
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void issue523_image_no_filename() throws IOException, SlackApiException {
         MethodsClient slackMethods = slack.methods(userToken);
@@ -677,6 +685,7 @@ public class files_Test {
         assertThat(response.getError(), is(nullValue()));
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void uploadAndPostMessage() throws IOException, SlackApiException, InterruptedException {
         MethodsClient slackMethods = slack.methods(botToken);
@@ -763,6 +772,7 @@ public class files_Test {
         assertThat(uploadAndSharedInTwoTypesOfChannels.getFile().getShares().getPrivateChannels(), is(notNullValue()));
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void uploadInThreads() throws Exception {
         MethodsClient slackMethods = slack.methods(userToken);
@@ -851,6 +861,7 @@ public class files_Test {
         assertThat(replies.getMessages().get(1).getFile(), is(nullValue()));
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void issue824_gif_files() throws IOException, SlackApiException {
         loadRandomChannel();
@@ -908,6 +919,7 @@ public class files_Test {
         assertThat(upload2.getError(), is(nullValue()));
     }
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void fileLinks() throws Exception {
         loadRandomChannelId();

@@ -14,7 +14,8 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>An option to switch to Jakarta EE compatible Socket Mode client.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
         <tyrus-standalone-client.version>2.2.0</tyrus-standalone-client.version>

@@ -9,7 +9,8 @@
     <packaging>pom</packaging>
 
     <name>Java Slack SDK Project</name>
-    <url>${project.url}</url>
+    <description>Comprehensive toolkit for building Slack apps in Java. Includes API client, Bolt framework, core objects, and Socket Mode support.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk/</url>
 
     <modules>
         <module>slack-api-client</module>
@@ -42,7 +43,6 @@
     </parent>
 
     <properties>
-        <project.url>https://github.com/slackapi/java-slack-sdk</project.url>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -137,7 +137,7 @@
     <scm>
         <connection>scm:git:git@github.com:slackapi/java-slack-sdk.git</connection>
         <developerConnection>scm:git:git@github.com:slackapi/java-slack-sdk.git</developerConnection>
-        <url>git@github.com:slackapi/java-slack-sdk.git</url>
+        <url>https://github.com/slackapi/java-slack-sdk</url>
     </scm>
 
     <developers>

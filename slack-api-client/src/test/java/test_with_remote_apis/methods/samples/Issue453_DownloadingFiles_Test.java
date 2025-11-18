@@ -6,6 +6,7 @@ import config.Constants;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.nio.file.Files;
@@ -21,6 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class Issue453_DownloadingFiles_Test {
 
+    @Ignore // "method_deprecated" 2025-11-12 https://docs.slack.dev/changelog/2025/03/17/files-upload-extension/
     @Test
     public void sample() throws Exception {
         Slack slack = Slack.getInstance();
