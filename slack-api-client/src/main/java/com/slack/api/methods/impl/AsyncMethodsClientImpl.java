@@ -228,6 +228,7 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.methods.response.search.SearchMessagesResponse;
+import com.slack.api.methods.response.slacklists.SlackListsCreateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -2546,10 +2547,15 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
         return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
     }
 
-   @Override
-   public CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) {
+    @Override
+    public CompletableFuture<SlackListsCreateResponse> slackListsCreate(SlackListsCreateRequest req) {
+        return executor.execute(SLACKLISTS_CREATE, toMap(req), () -> methods.slackListsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) {
         return slackListsCreate(req.configure(SlackListsCreateRequest.builder()).build());
-   } 
+    } 
 
     @Override
     public CompletableFuture<TeamAccessLogsResponse> teamAccessLogs(TeamAccessLogsRequest req) {

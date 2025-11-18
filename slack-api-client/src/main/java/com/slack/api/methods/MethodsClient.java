@@ -249,6 +249,7 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.methods.response.search.SearchMessagesResponse;
+import com.slack.api.methods.response.slacklists.SlackListsCreateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
