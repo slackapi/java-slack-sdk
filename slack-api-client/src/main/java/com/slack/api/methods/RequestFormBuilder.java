@@ -2849,8 +2849,8 @@ public class RequestFormBuilder {
         setIfNotNull("list_id", req.getListId(), form);
         setIfNotNull("duplicated_item_id", req.getDuplicatedItemId(), form);
         setIfNotNull("parent_item_id", req.getParentItemId(), form);
-        if (req.getIntialFields() != null) {
-            setIfNotNull("intial_fields", getJsonWithGsonAnonymInnerClassHandling(req.getIntialFields()), form);
+        if (req.getInitialFields() != null) {
+            setIfNotNull("intial_fields", getJsonWithGsonAnonymInnerClassHandling(req.getInitialFields()), form);
         }
         return form;
     }

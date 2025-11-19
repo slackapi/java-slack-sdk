@@ -38,5 +38,5 @@ public class SlackListsItemsCreateRequest implements SlackApiRequest {
     /**
      * Initial item data. (Optional)
      */
-    private List<Map<String, Object>> intialFields;
+    private List<Map<String, Object>> initialFields;
 }

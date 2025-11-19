@@ -17,6 +17,12 @@ public class SlackListsItemsListRequest implements SlackApiRequest {
     private String token;
 
     /**
+     * ID of the List.
+     */
+    private String listId;
+    
+
+    /**
      * The maximum number of records to return. (Optional)
      */
     private Integer limit;
