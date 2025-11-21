@@ -53,6 +53,8 @@ public class ListRecord {
         private List<String> channel;
         private List<Integer> rating;
         private List<Integer> timestamp;
+        private List<String> link;
+        private List<String> reference;
     }
 
     @Data

@@ -1,8 +1,8 @@
 {
-    "channel": "",
+    "ok": false,
+    "warning": "",
     "error": "",
     "needed": "",
-    "ok": false,
     "provided": "",
-    "ts": ""
+    "job_id": ""
 }

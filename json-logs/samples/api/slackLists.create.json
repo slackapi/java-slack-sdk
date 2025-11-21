@@ -1,8 +1,12 @@
 {
-    "channel": "",
+    "ok": false,
+    "warning": "",
     "error": "",
     "needed": "",
-    "ok": false,
     "provided": "",
-    "ts": ""
+    "list_id": "",
+    "list_metadata": {
+        "schema": [],
+        "subtask_schema": []
+    }
 }

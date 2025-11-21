@@ -1,8 +1,9 @@
 {
-    "channel": "",
+    "ok": false,
+    "warning": "",
     "error": "",
     "needed": "",
-    "ok": false,
     "provided": "",
-    "ts": ""
+    "status": "",
+    "download_url": ""
 }

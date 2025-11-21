@@ -1,8 +1,21 @@
 {
-    "channel": "",
+    "ok": false,
+    "warning": "",
     "error": "",
     "needed": "",
-    "ok": false,
     "provided": "",
-    "ts": ""
+    "items": [
+        {
+            "id": "",
+            "list_id": "",
+            "date_created": 0,
+            "created_by": "",
+            "updated_by": "",
+            "fields": [],
+            "updated_timestamp": ""
+        }
+    ],
+    "response_metadata": {
+        "next_cursor": ""
+    }
 }
