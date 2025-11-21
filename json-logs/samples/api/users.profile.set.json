@@ -38,6 +38,7 @@
     "pronouns": "",
     "huddle_state": "",
     "huddle_state_expiration_ts": 12345,
+    "huddle_state_call_id": "",
     "status_emoji_display_info": [
       {
         "emoji_name": "",
