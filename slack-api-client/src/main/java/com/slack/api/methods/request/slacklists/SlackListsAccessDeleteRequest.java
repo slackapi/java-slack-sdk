@@ -13,7 +13,7 @@ import lombok.Data;
 public class SlackListsAccessDeleteRequest implements SlackApiRequest {
 
     /**
-     * Authentication token bearing required scopes.
+     * Authentication token. Requires scope: `lists:write`
      */
     private String token;
 
