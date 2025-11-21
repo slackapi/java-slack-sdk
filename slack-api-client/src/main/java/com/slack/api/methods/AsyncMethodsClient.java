@@ -101,6 +101,18 @@ import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.search.SearchAllRequest;
 import com.slack.api.methods.request.search.SearchFilesRequest;
 import com.slack.api.methods.request.search.SearchMessagesRequest;
+import com.slack.api.methods.request.slacklists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slacklists.SlackListsAccessSetRequest;
+import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slacklists.SlackListsDownloadStartRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slacklists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slacklists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -223,6 +235,18 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.methods.response.search.SearchMessagesResponse;
+import com.slack.api.methods.response.slacklists.SlackListsAccessDeleteResponse;
+import com.slack.api.methods.response.slacklists.SlackListsAccessSetResponse;
+import com.slack.api.methods.response.slacklists.SlackListsCreateResponse;
+import com.slack.api.methods.response.slacklists.SlackListsDownloadGetResponse;
+import com.slack.api.methods.response.slacklists.SlackListsDownloadStartResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsCreateResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsDeleteResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsDeleteMultipleResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsInfoResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsListResponse;
+import com.slack.api.methods.response.slacklists.SlackListsItemsUpdateResponse;
+import com.slack.api.methods.response.slacklists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -1410,6 +1434,57 @@ public interface AsyncMethodsClient {
     @Deprecated
         // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req);
+
+    // ------------------------------
+    // slackLists
+    // ------------------------------
+    CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(SlackListsAccessDeleteRequest req);
+
+    CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(RequestConfigurator<SlackListsAccessDeleteRequest.SlackListsAccessDeleteRequestBuilder> req);
+    
+    CompletableFuture<SlackListsAccessSetResponse> slackListsAccessSet(SlackListsAccessSetRequest req);
+
+    CompletableFuture<SlackListsAccessSetResponse> slackListsAccessSet(RequestConfigurator<SlackListsAccessSetRequest.SlackListsAccessSetRequestBuilder> req);
+    
+    CompletableFuture<SlackListsCreateResponse> slackListsCreate(SlackListsCreateRequest req);
+
+    CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req);
+    
+    CompletableFuture<SlackListsDownloadGetResponse> slackListsDownloadGet(SlackListsDownloadGetRequest req);
+
+    CompletableFuture<SlackListsDownloadGetResponse> slackListsDownloadGet(RequestConfigurator<SlackListsDownloadGetRequest.SlackListsDownloadGetRequestBuilder> req);
+
+    CompletableFuture<SlackListsDownloadStartResponse> slackListsDownloadStart(SlackListsDownloadStartRequest req);
+
+    CompletableFuture<SlackListsDownloadStartResponse> slackListsDownloadStart(RequestConfigurator<SlackListsDownloadStartRequest.SlackListsDownloadStartRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsCreateResponse> slackListsItemsCreate(SlackListsItemsCreateRequest req);
+
+    CompletableFuture<SlackListsItemsCreateResponse> slackListsItemsCreate(RequestConfigurator<SlackListsItemsCreateRequest.SlackListsItemsCreateRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsDeleteResponse> slackListsItemsDelete(SlackListsItemsDeleteRequest req);
+
+    CompletableFuture<SlackListsItemsDeleteResponse> slackListsItemsDelete(RequestConfigurator<SlackListsItemsDeleteRequest.SlackListsItemsDeleteRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsDeleteMultipleResponse> slackListsItemsDeleteMultiple(SlackListsItemsDeleteMultipleRequest req);
+
+    CompletableFuture<SlackListsItemsDeleteMultipleResponse> slackListsItemsDeleteMultiple(RequestConfigurator<SlackListsItemsDeleteMultipleRequest.SlackListsItemsDeleteMultipleRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsInfoResponse> slackListsItemsInfo(SlackListsItemsInfoRequest req);
+
+    CompletableFuture<SlackListsItemsInfoResponse> slackListsItemsInfo(RequestConfigurator<SlackListsItemsInfoRequest.SlackListsItemsInfoRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsListResponse> slackListsItemsList(SlackListsItemsListRequest req);
+
+    CompletableFuture<SlackListsItemsListResponse> slackListsItemsList(RequestConfigurator<SlackListsItemsListRequest.SlackListsItemsListRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsUpdateResponse> slackListsItemsUpdate(SlackListsItemsUpdateRequest req);
+
+    CompletableFuture<SlackListsItemsUpdateResponse> slackListsItemsUpdate(RequestConfigurator<SlackListsItemsUpdateRequest.SlackListsItemsUpdateRequestBuilder> req);
+    
+    CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req);
+
+    CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req);
 
     // ------------------------------
     // team
