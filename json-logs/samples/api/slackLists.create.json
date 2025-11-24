@@ -1,12 +1,36 @@
 {
-    "ok": false,
-    "warning": "",
-    "error": "",
-    "needed": "",
-    "provided": "",
-    "list_id": "",
-    "list_metadata": {
-        "schema": [],
-        "subtask_schema": []
-    }
+  "ok": false,
+  "warning": "",
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "list_id": "",
+  "list_metadata": {
+    "schema": [
+      {
+        "key": "",
+        "name": "",
+        "is_primary_column": false,
+        "type": "",
+        "id": "",
+        "options": {
+          "format": "",
+          "show_member_name": false
+        }
+      }
+    ],
+    "subtask_schema": [
+      {
+        "key": "",
+        "name": "",
+        "is_primary_column": false,
+        "type": "",
+        "id": "",
+        "options": {
+          "format": "",
+          "show_member_name": false
+        }
+      }
+    ]
+  }
 }
