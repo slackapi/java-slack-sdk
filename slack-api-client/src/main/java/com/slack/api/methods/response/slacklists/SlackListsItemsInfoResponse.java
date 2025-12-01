@@ -3,6 +3,7 @@ package com.slack.api.methods.response.slacklists;
 import java.util.List;
 import java.util.Map;
 
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.File;
 import com.slack.api.model.list.ListRecord;
@@ -23,4 +24,6 @@ public class SlackListsItemsInfoResponse implements SlackApiTextResponse {
     private File list;
     private ListRecord record;
     private List<ListRecord> subtasks;
+
+    private ResponseMetadata responseMetadata;
 }

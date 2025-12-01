@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.list.ListMetadata;
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.methods.SlackApiTextResponse;
 
 import lombok.Data;
@@ -25,4 +26,6 @@ public class SlackListsCreateResponse implements SlackApiTextResponse {
     
     @SerializedName("list_metadata")
     private ListMetadata listMetadata;
+
+    private ResponseMetadata responseMetadata;
 }

@@ -3,6 +3,7 @@ package com.slack.api.methods.response.slacklists;
 import java.util.List;
 import java.util.Map;
 
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.methods.SlackApiTextResponse;
 
 import lombok.Data;
@@ -17,4 +18,6 @@ public class SlackListsUpdateResponse implements SlackApiTextResponse {
     private String needed;
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
+
+    private ResponseMetadata responseMetadata;
 }

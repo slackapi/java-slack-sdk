@@ -23,14 +23,19 @@
       {
         "key": "",
         "name": "",
-        "is_primary_column": false,
         "type": "",
+        "is_primary_column": false,
         "id": "",
         "options": {
           "format": "",
           "show_member_name": false
         }
       }
+    ]
+  },
+  "response_metadata": {
+    "messages": [
+      ""
     ]
   }
 }

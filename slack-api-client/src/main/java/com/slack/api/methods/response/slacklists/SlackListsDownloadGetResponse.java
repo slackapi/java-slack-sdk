@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.methods.SlackApiTextResponse;
 
 import lombok.Data;
@@ -23,4 +24,6 @@ public class SlackListsDownloadGetResponse implements SlackApiTextResponse {
 
     @SerializedName("download_url")
     private String downloadUrl;
+
+    private ResponseMetadata responseMetadata;
 }
