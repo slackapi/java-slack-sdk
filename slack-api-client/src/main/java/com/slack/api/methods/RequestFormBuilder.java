@@ -2881,6 +2881,7 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(SlackListsItemsListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("archived", req.getArchived(), form);
