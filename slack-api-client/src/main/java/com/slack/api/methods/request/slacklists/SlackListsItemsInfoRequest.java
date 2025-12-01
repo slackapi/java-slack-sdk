@@ -1,5 +1,6 @@
 package com.slack.api.methods.request.slacklists;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class SlackListsItemsInfoRequest implements SlackApiRequest {
     /**
      * ID of the List containing the items.
      */
+    @SerializedName("list_id")
     private String listId;
     
     /**
@@ -29,6 +31,7 @@ public class SlackListsItemsInfoRequest implements SlackApiRequest {
     /**
      * Set to true to include is_subscribed data for the returned List row. (Optional)
      */
+    @SerializedName("include_is_subscribed")
     @Builder.Default
     private Boolean includeIsSubscribed = false;
 }

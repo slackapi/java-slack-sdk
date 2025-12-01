@@ -1,5 +1,6 @@
 package com.slack.api.methods.request.slacklists;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class SlackListsItemsUpdateRequest implements SlackApiRequest {
     /**
      * ID of the List containing the items.
      */
+    @SerializedName("list_id")
     private String listId;
 
     /**
