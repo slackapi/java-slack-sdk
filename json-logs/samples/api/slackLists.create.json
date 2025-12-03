@@ -15,7 +15,14 @@
         "id": "",
         "options": {
           "format": "",
-          "show_member_name": false
+          "show_member_name": false,
+          "choices": [
+            {
+              "value": "",
+              "label": "",
+              "color": ""
+            }
+          ]
         }
       }
     ],

@@ -1,4 +1,4 @@
-package com.slack.api.methods.request.slacklists;
+package com.slack.api.methods.request.slack_lists;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;

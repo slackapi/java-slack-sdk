@@ -1,4 +1,4 @@
-package com.slack.api.methods.response.slacklists;
+package com.slack.api.methods.response.slack_lists;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 
-public class SlackListsAccessDeleteResponse implements SlackApiTextResponse {
+public class SlackListsAccessSetResponse implements SlackApiTextResponse {
     
     private boolean ok;
     private String warning;

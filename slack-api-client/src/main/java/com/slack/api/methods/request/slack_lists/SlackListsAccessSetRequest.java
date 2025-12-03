@@ -1,4 +1,4 @@
-package com.slack.api.methods.request.slacklists;
+package com.slack.api.methods.request.slack_lists;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
@@ -7,22 +7,28 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://docs.slack.dev/reference/methods/slackLists.access.delete
+ * https://docs.slack.dev/reference/methods/slackLists.access.set
  */
 @Data
 @Builder
-public class SlackListsAccessDeleteRequest implements SlackApiRequest {
+public class SlackListsAccessSetRequest implements SlackApiRequest {
 
     /**
-     * Authentication token. Requires scope: `lists:write`
+     * Authentication token bearing required scopes.
      */
     private String token;
-
+        
     /**
      * Encoded ID of the List.
      */
     @SerializedName("list_id")
     private String listId;
+
+    /**
+     * Desired level of access.
+     */
+    @SerializedName("access_level")
+    private String accessLevel;
 
     /**
      * List of channels you wish to update access for. Can only be used if user_ids is not provided. (Optional)

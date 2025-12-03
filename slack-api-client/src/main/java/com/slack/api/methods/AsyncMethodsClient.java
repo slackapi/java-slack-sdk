@@ -101,18 +101,18 @@ import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.search.SearchAllRequest;
 import com.slack.api.methods.request.search.SearchFilesRequest;
 import com.slack.api.methods.request.search.SearchMessagesRequest;
-import com.slack.api.methods.request.slacklists.SlackListsAccessDeleteRequest;
-import com.slack.api.methods.request.slacklists.SlackListsAccessSetRequest;
-import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
-import com.slack.api.methods.request.slacklists.SlackListsDownloadGetRequest;
-import com.slack.api.methods.request.slacklists.SlackListsDownloadStartRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsCreateRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteMultipleRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsInfoRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsListRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsUpdateRequest;
-import com.slack.api.methods.request.slacklists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessSetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadStartRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -235,18 +235,18 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.methods.response.search.SearchMessagesResponse;
-import com.slack.api.methods.response.slacklists.SlackListsAccessDeleteResponse;
-import com.slack.api.methods.response.slacklists.SlackListsAccessSetResponse;
-import com.slack.api.methods.response.slacklists.SlackListsCreateResponse;
-import com.slack.api.methods.response.slacklists.SlackListsDownloadGetResponse;
-import com.slack.api.methods.response.slacklists.SlackListsDownloadStartResponse;
-import com.slack.api.methods.response.slacklists.SlackListsItemsCreateResponse;
-import com.slack.api.methods.response.slacklists.SlackListsItemsDeleteResponse;
-import com.slack.api.methods.response.slacklists.SlackListsItemsDeleteMultipleResponse;
-import com.slack.api.methods.response.slacklists.SlackListsItemsInfoResponse;
-import com.slack.api.methods.response.slacklists.SlackListsItemsListResponse;
-import com.slack.api.methods.response.slacklists.SlackListsItemsUpdateResponse;
-import com.slack.api.methods.response.slacklists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsAccessDeleteResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsAccessSetResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsCreateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsDownloadGetResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsDownloadStartResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsCreateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsDeleteResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsDeleteMultipleResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -1408,36 +1408,9 @@ public interface AsyncMethodsClient {
     CompletableFuture<SearchFilesResponse> searchFiles(RequestConfigurator<SearchFilesRequest.SearchFilesRequestBuilder> req);
 
     // ------------------------------
-    // stars
-    // ------------------------------
-
-    @Deprecated
-        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    CompletableFuture<StarsAddResponse> starsAdd(StarsAddRequest req);
-
-    @Deprecated
-        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    CompletableFuture<StarsAddResponse> starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req);
-
-    @Deprecated
-        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    CompletableFuture<StarsListResponse> starsList(StarsListRequest req);
-
-    @Deprecated
-        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    CompletableFuture<StarsListResponse> starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req);
-
-    @Deprecated
-        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    CompletableFuture<StarsRemoveResponse> starsRemove(StarsRemoveRequest req);
-
-    @Deprecated
-        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req);
-
-    // ------------------------------
     // slackLists
     // ------------------------------
+    
     CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(SlackListsAccessDeleteRequest req);
 
     CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(RequestConfigurator<SlackListsAccessDeleteRequest.SlackListsAccessDeleteRequestBuilder> req);
@@ -1485,6 +1458,34 @@ public interface AsyncMethodsClient {
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req);
 
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req);
+
+    // ------------------------------
+    // stars
+    // ------------------------------
+
+    @Deprecated
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    CompletableFuture<StarsAddResponse> starsAdd(StarsAddRequest req);
+
+    @Deprecated
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    CompletableFuture<StarsAddResponse> starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req);
+
+    @Deprecated
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    CompletableFuture<StarsListResponse> starsList(StarsListRequest req);
+
+    @Deprecated
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    CompletableFuture<StarsListResponse> starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req);
+
+    @Deprecated
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    CompletableFuture<StarsRemoveResponse> starsRemove(StarsRemoveRequest req);
+
+    @Deprecated
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req);
 
     // ------------------------------
     // team

@@ -1,17 +1,18 @@
-package com.slack.api.methods.response.slacklists;
+package com.slack.api.methods.response.slack_lists;
 
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.ResponseMetadata;
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.File;
+import com.slack.api.model.list.ListRecord;
 
 import lombok.Data;
 
 @Data
 
-public class SlackListsDownloadGetResponse implements SlackApiTextResponse {
+public class SlackListsItemsInfoResponse implements SlackApiTextResponse {
     
     private boolean ok;
     private String warning;
@@ -20,10 +21,9 @@ public class SlackListsDownloadGetResponse implements SlackApiTextResponse {
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
-    private String status;
-
-    @SerializedName("download_url")
-    private String downloadUrl;
+    private File list;
+    private ListRecord record;
+    private List<ListRecord> subtasks;
 
     private ResponseMetadata responseMetadata;
 }

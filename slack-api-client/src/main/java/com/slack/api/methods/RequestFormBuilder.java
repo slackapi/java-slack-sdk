@@ -114,18 +114,18 @@ import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.search.SearchAllRequest;
 import com.slack.api.methods.request.search.SearchFilesRequest;
 import com.slack.api.methods.request.search.SearchMessagesRequest;
-import com.slack.api.methods.request.slacklists.SlackListsAccessDeleteRequest;
-import com.slack.api.methods.request.slacklists.SlackListsAccessSetRequest;
-import com.slack.api.methods.request.slacklists.SlackListsCreateRequest;
-import com.slack.api.methods.request.slacklists.SlackListsDownloadGetRequest;
-import com.slack.api.methods.request.slacklists.SlackListsDownloadStartRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsCreateRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsDeleteMultipleRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsInfoRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsListRequest;
-import com.slack.api.methods.request.slacklists.SlackListsItemsUpdateRequest;
-import com.slack.api.methods.request.slacklists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessSetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadStartRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -2792,10 +2792,12 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("list_id", req.getListId(), form);
         if (req.getUserIds() != null) {
-            setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUserIds());
+            form.add("user_ids", json);
         }
         if (req.getChannelIds() != null) {
-            setIfNotNull("channel_ids", getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds());
+            form.add("channel_ids", json);
         }
         return form;
     }
@@ -2805,10 +2807,12 @@ public class RequestFormBuilder {
         setIfNotNull("list_id", req.getListId(), form);
         setIfNotNull("access_level", req.getAccessLevel(), form);
         if (req.getUserIds() != null) {
-            setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUserIds());
+            form.add("user_ids", json);
         }
         if (req.getChannelIds() != null) {
-            setIfNotNull("channel_ids", getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds());
+            form.add("channel_ids", json);
         }
         return form;
     }
@@ -2850,7 +2854,8 @@ public class RequestFormBuilder {
         setIfNotNull("duplicated_item_id", req.getDuplicatedItemId(), form);
         setIfNotNull("parent_item_id", req.getParentItemId(), form);
         if (req.getInitialFields() != null) {
-            setIfNotNull("intial_fields", getJsonWithGsonAnonymInnerClassHandling(req.getInitialFields()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getInitialFields());
+            form.add("intial_fields", json);
         }
         return form;
     }
@@ -2866,7 +2871,8 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("list_id", req.getListId(), form);
         if (req.getIds() != null) {
-            setIfNotNull("ids", getJsonWithGsonAnonymInnerClassHandling(req.getIds()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getIds());
+            form.add("ids", json);
         }
         return form;
     }
@@ -2892,7 +2898,8 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("list_id", req.getListId(), form);
         if (req.getCells() != null) {
-            setIfNotNull("cells", getJsonWithGsonAnonymInnerClassHandling(req.getCells()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getCells());
+            form.add("cells", json);
         }
         return form;
     }
@@ -2902,7 +2909,8 @@ public class RequestFormBuilder {
         setIfNotNull("id", req.getId(), form);
         setIfNotNull("name", req.getName(), form);
         if (req.getDescriptionBlocks() != null) {
-            setIfNotNull("description_blocks", getJsonWithGsonAnonymInnerClassHandling(req.getDescriptionBlocks()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getDescriptionBlocks());
+            form.add("description_blocks", json);
         }
         setIfNotNull("todo_mode", req.getTodoMode(), form);
         return form;

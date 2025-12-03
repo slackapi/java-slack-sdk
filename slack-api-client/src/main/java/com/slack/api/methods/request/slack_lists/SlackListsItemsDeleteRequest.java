@@ -1,4 +1,4 @@
-package com.slack.api.methods.request.slacklists;
+package com.slack.api.methods.request.slack_lists;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
@@ -6,11 +6,11 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://docs.slack.dev/reference/methods/slackLists.download.get
+ * https://docs.slack.dev/reference/methods/slackLists.items.delete
  */
 @Data
 @Builder
-public class SlackListsDownloadGetRequest implements SlackApiRequest {
+public class SlackListsItemsDeleteRequest implements SlackApiRequest {
 
     /**
      * Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.`
@@ -18,14 +18,13 @@ public class SlackListsDownloadGetRequest implements SlackApiRequest {
     private String token;
 
     /**
-     * ID of the List to export.
+     * ID of the List containing the items.
      */
     @SerializedName("list_id")
     private String listId;
     
     /**
-     * The ID of the recently started job to export the List.
+     * ID of item to delete.
      */
-    @SerializedName("job_id")
-    private String jobId;
+    private String id;
 }

@@ -1,18 +1,16 @@
-package com.slack.api.methods.response.slacklists;
+package com.slack.api.methods.response.slack_lists;
 
 import java.util.List;
 import java.util.Map;
 
 import com.slack.api.model.ResponseMetadata;
-import com.slack.api.methods.SlackApiTextResponse;
-import com.slack.api.model.File;
 import com.slack.api.model.list.ListRecord;
+import com.slack.api.methods.SlackApiTextResponse;
 
 import lombok.Data;
 
 @Data
-
-public class SlackListsItemsInfoResponse implements SlackApiTextResponse {
+public class SlackListsItemsListResponse implements SlackApiTextResponse {
     
     private boolean ok;
     private String warning;
@@ -21,9 +19,6 @@ public class SlackListsItemsInfoResponse implements SlackApiTextResponse {
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
-    private File list;
-    private ListRecord record;
-    private List<ListRecord> subtasks;
-
+    private List<ListRecord> items;
     private ResponseMetadata responseMetadata;
 }

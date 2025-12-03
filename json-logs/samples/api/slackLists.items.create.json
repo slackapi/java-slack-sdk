@@ -7,7 +7,7 @@
   "item": {
     "id": "",
     "list_id": "",
-    "date_created": 0,
+    "date_created": 12345,
     "created_by": "",
     "updated_by": "",
     "fields": [
@@ -15,7 +15,10 @@
         "key": "",
         "column_id": "",
         "value": "",
-        "rich_text": []
+        "rich_text": [
+          ""
+        ],
+        "checkbox": false
       }
     ],
     "updated_timestamp": ""

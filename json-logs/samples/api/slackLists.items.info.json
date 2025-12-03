@@ -6,8 +6,8 @@
   "provided": "",
   "list": {
     "id": "",
-    "created": 0,
-    "timestamp": 0,
+    "created": 12345,
+    "timestamp": 12345,
     "name": "",
     "title": "",
     "mimetype": "",
@@ -16,7 +16,7 @@
     "user": "",
     "user_team": "",
     "editable": false,
-    "size": 0,
+    "size": 12345,
     "mode": "",
     "is_external": false,
     "external_type": "",
@@ -25,14 +25,85 @@
     "display_as_bot": false,
     "username": "",
     "list_metadata": {
-      "schema": [],
-      "views": [],
-      "integrations": [],
+      "schema": [
+        {
+          "id": "",
+          "name": "",
+          "key": "",
+          "type": "",
+          "is_primary_column": false,
+          "options": {
+            "format": "",
+            "show_member_name": false,
+            "choices": [
+              {
+                "value": "",
+                "label": "",
+                "color": ""
+              }
+            ]
+          }
+        }
+      ],
+      "views": [
+        {
+          "id": "",
+          "name": "",
+          "type": "",
+          "is_locked": false,
+          "position": "1234567890",
+          "columns": [
+            {
+              "visible": false,
+              "key": "",
+              "id": "",
+              "position": "1234567890"
+            }
+          ],
+          "date_created": 12345,
+          "created_by": "U00000000",
+          "stick_column_left": false,
+          "is_all_items_view": false,
+          "default_view_key": "",
+          "show_completed_items": false
+        }
+      ],
+      "integrations": [
+        ""
+      ],
       "icon": "",
       "description": "",
-      "description_blocks": [],
+      "description_blocks": [
+        {
+          "type": "",
+          "block_id": "",
+          "elements": [
+            {
+              "type": "",
+              "elements": [
+                {
+                  "type": "",
+                  "text": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "is_trial": false,
-      "subtask_schema": [],
+      "subtask_schema": [
+        {
+          "id": "",
+          "name": "",
+          "key": "",
+          "type": "",
+          "is_primary_column": false,
+          "options": {
+            "format": "",
+            "show_member_name": false
+          }
+        }
+      ],
       "creation_source": {
         "type": "",
         "reference_id": ""
@@ -42,16 +113,16 @@
     },
     "list_limits": {
       "over_row_maximum": false,
-      "row_count_limit": 0,
-      "row_count": 0,
-      "archived_row_count": 0,
+      "row_count_limit": 12345,
+      "row_count": 12345,
+      "archived_row_count": 12345,
       "over_column_maximum": false,
-      "column_count": 0,
-      "column_count_limit": 0,
+      "column_count": 12345,
+      "column_count_limit": 12345,
       "over_view_maximum": false,
-      "view_count": 0,
-      "view_count_limit": 0,
-      "max_attachments_per_cell": 0
+      "view_count": 12345,
+      "view_count_limit": 12345,
+      "max_attachments_per_cell": 12345
     },
     "url_private": "",
     "url_private_download": "",
@@ -59,10 +130,12 @@
     "permalink_public": "",
     "last_editor": "",
     "list_csv_download_url": "",
-    "updated": 0,
+    "updated": 12345,
     "is_starred": false,
     "skipped_shares": false,
-    "teams_shared_with": [],
+    "teams_shared_with": [
+      ""
+    ],
     "is_restricted_sharing_enabled": false,
     "has_rich_preview": false,
     "file_access": "",
@@ -73,13 +146,23 @@
   "record": {
     "id": "",
     "list_id": "",
-    "date_created": 0,
+    "date_created": 12345,
     "created_by": "",
     "updated_by": "",
-    "fields": [],
-    "updated_timestamp": ""
+    "fields": [
+      {
+        "key": "",
+        "value": false,
+        "checkbox": false,
+        "column_id": ""
+      }
+    ],
+    "updated_timestamp": "",
+    "is_subscribed": false
   },
-  "subtasks": [],
+  "subtasks": [
+    ""
+  ],
   "response_metadata": {
     "messages": [
       ""

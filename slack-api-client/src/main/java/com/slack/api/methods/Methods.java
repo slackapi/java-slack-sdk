@@ -648,14 +648,6 @@ public class Methods {
     public static final String SEARCH_MESSAGES = "search.messages";
 
     // ------------------------------
-    // stars
-    // ------------------------------
-
-    public static final String STARS_ADD = "stars.add";
-    public static final String STARS_LIST = "stars.list";
-    public static final String STARS_REMOVE = "stars.remove";
-    
-    // ------------------------------
     // slackLists
     // ------------------------------
 
@@ -672,6 +664,14 @@ public class Methods {
     public static final String SLACKLISTS_ITEMS_UPDATE = "slackLists.items.update";
     public static final String SLACKLISTS_UPDATE = "slackLists.update";
 
+    // ------------------------------
+    // stars
+    // ------------------------------
+
+    public static final String STARS_ADD = "stars.add";
+    public static final String STARS_LIST = "stars.list";
+    public static final String STARS_REMOVE = "stars.remove";
+    
     // ------------------------------
     // team
     // ------------------------------
