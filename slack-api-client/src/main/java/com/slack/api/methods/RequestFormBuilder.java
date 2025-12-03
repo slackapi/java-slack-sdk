@@ -2792,7 +2792,8 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("list_id", req.getListId(), form);
         if (req.getUserIds() != null) {
-            setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUserIds());
+            form.add("user_ids", json);
         }
         if (req.getChannelIds() != null) {
             setIfNotNull("channel_ids", getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds()), form);
