@@ -161,7 +161,23 @@
     "is_subscribed": false
   },
   "subtasks": [
-    ""
+    {
+      "id": "",
+      "list_id": "",
+      "date_created": 12345,
+      "created_by": "",
+      "updated_by": "",
+      "fields": [
+        {
+          "key": "",
+          "value": false,
+          "checkbox": false,
+          "column_id": ""
+        }
+      ],
+      "updated_timestamp": "",
+      "is_subscribed": false
+    }
   ],
   "response_metadata": {
     "messages": [

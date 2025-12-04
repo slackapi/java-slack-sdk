@@ -16,7 +16,20 @@
         "column_id": "",
         "value": "",
         "rich_text": [
-          ""
+          {
+            "type": "",
+            "elements": [
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "type": "",
+                    "text": ""
+                  }
+                ]
+              }
+            ]
+          }
         ],
         "checkbox": false
       }

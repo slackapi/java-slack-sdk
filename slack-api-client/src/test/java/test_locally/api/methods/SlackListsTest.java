@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.util.List;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -37,44 +37,44 @@ public class SlackListsTest {
     // Create a new list
     @Test
     public void slackListsCreate() throws Exception {
-        Map<String, Object> taskNameColumn = new HashMap<>();
-        taskNameColumn.put("key", "task_name");
-        taskNameColumn.put("name", "Task Name");
-        taskNameColumn.put("type", "text");
-        taskNameColumn.put("is_primary_column", true);
-
-        Map<String, Object> dueDateColumn = new HashMap<>();
-        dueDateColumn.put("key", "due_date");
-        dueDateColumn.put("name", "Due Date");
-        dueDateColumn.put("type", "date");
-
-        Map<String, Object> statusChoices = new HashMap<>();
-        statusChoices.put("choices", Arrays.asList(
-                createChoice("not_started", "Not Started", "red"),
-                createChoice("in_progress", "In Progress", "yellow"),
-                createChoice("completed", "Completed", "green")
-        ));
-        Map<String, Object> statusColumn = new HashMap<>();
-        statusColumn.put("key", "status");
-        statusColumn.put("name", "Status");
-        statusColumn.put("type", "select");
-        statusColumn.put("options", statusChoices);
-
-        Map<String, Object> assigneeColumn = new HashMap<>();
-        assigneeColumn.put("key", "assignee");
-        assigneeColumn.put("name", "Assignee");
-        assigneeColumn.put("type", "user");
-
         assertThat(slack.methods(ValidToken).slackListsCreate(r -> r
-                .name("Backlog")
-                .descriptionBlocks(Arrays.asList(createRichTextBlock("List to keep track of tasks!")))
-                .schema(Arrays.asList(taskNameColumn, dueDateColumn, statusColumn, assigneeColumn)))
-                .isOk(), is(true));
+            .name("Test List - SlackLists API")
+            .descriptionBlocks(List.of(RichTextBlock.builder()
+                    .elements(List.of(RichTextSectionElement.builder()
+                            .elements(List.of(RichTextSectionElement.Text.builder()
+                                    .text("List to keep track of tasks!")
+                                    .build()))
+                            .build()))
+                    .build()))
+            .schema(List.of(
+                    Map.of(
+                            "key", "task_name",
+                            "name", "Task Name",
+                            "type", "text",
+                            "is_primary_column", true),
+                    Map.of(
+                            "key", "due_date",
+                            "name", "Due Date",
+                            "type", "date"),
+                    Map.of(
+                            "key", "status",
+                            "name", "Status",
+                            "type", "select",
+                            "options", Map.of(
+                                    "choices", List.of(
+                                            Map.of("value", "not_started", "label", "Not Started", "color", "red"),
+                                            Map.of("value", "in_progress", "label", "In Progress", "color", "yellow"),
+                                            Map.of("value", "completed", "label", "Completed", "color", "green")))),
+                    Map.of(
+                            "key", "assignee",
+                            "name", "Assignee",
+                            "type", "user"))))
+            .isOk(), is(true));
     }
 
     @Test
     public void slackListsCreate_async() throws Exception {
-        assertThat(slack.methodsAsync(ValidToken).slackListsCreate(r -> r.name("Backlog"))
+        assertThat(slack.methodsAsync(ValidToken).slackListsCreate(r -> r.name("Test List Async - SlackLists API"))
                 .get().isOk(), is(true));
     }
 
@@ -84,7 +84,7 @@ public class SlackListsTest {
         assertThat(slack.methods(ValidToken).slackListsAccessSet(r -> r
                 .listId("F1234567")
                 .accessLevel("write")
-                .userIds(Arrays.asList("U09G4FG3TRN")))
+                .channelIds(List.of("C1234567")))
                 .isOk(), is(true));
     }
 
@@ -93,21 +93,25 @@ public class SlackListsTest {
         assertThat(slack.methodsAsync(ValidToken).slackListsAccessSet(r -> r
                 .listId("F1234567")
                 .accessLevel("write")
-                .userIds(Arrays.asList("U09G4FG3TRN")))
+                .channelIds(List.of("C1234567")))
                 .get().isOk(), is(true));
     }
 
     // Create several list items
     @Test
     public void slackListsItemsCreate() throws Exception {
-        Map<String, Object> initialField = new HashMap<>();
-        initialField.put("column_id", "col123");
-        initialField.put("rich_text", Arrays.asList(createRichTextBlock("CLI app unlink command")));
-
         assertThat(slack.methods(ValidToken).slackListsItemsCreate(r -> r
-                .listId("F1234567")
-                .initialFields(Arrays.asList(initialField)))
-                .isOk(), is(true));
+            .listId("F1234567")
+            .initialFields(List.of(Map.of(
+                    "column_id", "C1234567",
+                    "rich_text", List.of(Map.of(
+                            "type", "rich_text",
+                            "elements", List.of(Map.of(
+                                    "type", "rich_text_section",
+                                    "elements", List.of(Map.of(
+                                            "type", "text",
+                                            "text", "Test task item"))))))))))
+            .isOk(), is(true));
     }
 
     @Test
@@ -117,7 +121,7 @@ public class SlackListsTest {
                 .get().isOk(), is(true));
     }
 
-    // Delete specific list items
+    // delete specific list items
     @Test
     public void slackListsItemsDelete() throws Exception {
         assertThat(slack.methods(ValidToken).slackListsItemsDelete(r -> r
@@ -138,7 +142,7 @@ public class SlackListsTest {
     public void slackListsItemsDeleteMultiple() throws Exception {
         assertThat(slack.methods(ValidToken).slackListsItemsDeleteMultiple(r -> r
                 .listId("F1234567")
-                .ids(Arrays.asList("Rec018ALE9720", "Rec018ALE9721")))
+                .ids(List.of("Rec018ALE9720", "Rec018ALE9721")))
                 .isOk(), is(true));
     }
 
@@ -146,7 +150,7 @@ public class SlackListsTest {
     public void slackListsItemsDeleteMultiple_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).slackListsItemsDeleteMultiple(r -> r
                 .listId("F1234567")
-                .ids(Arrays.asList("Rec018ALE9720", "Rec018ALE9721")))
+                .ids(List.of("Rec1234567890", "Rec1234567891")))
                 .get().isOk(), is(true));
     }
 
@@ -155,7 +159,7 @@ public class SlackListsTest {
     public void slackListsItemsInfo() throws Exception {
         assertThat(slack.methods(ValidToken).slackListsItemsInfo(r -> r
                 .listId("F1234567")
-                .id("Rec018ALE9718")
+                .id("Rec1234567890")
                 .includeIsSubscribed(true))
                 .isOk(), is(true));
     }
@@ -164,7 +168,7 @@ public class SlackListsTest {
     public void slackListsItemsInfo_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).slackListsItemsInfo(r -> r
                 .listId("F1234567")
-                .id("Rec018ALE9718")
+                .id("Rec1234567890")
                 .includeIsSubscribed(true))
                 .get().isOk(), is(true));
     }
@@ -224,27 +228,35 @@ public class SlackListsTest {
     // Update an existing list item
     @Test
     public void slackListsItemsUpdate() throws Exception {
-        Map<String, Object> cell = new HashMap<>();
-        cell.put("column_id", "col123");
-        cell.put("rich_text", Arrays.asList(createRichTextBlock("Updated text")));
-        cell.put("row_id", "item_id_1");
-
         assertThat(slack.methods(ValidToken).slackListsItemsUpdate(r -> r
-                .listId("F1234567")
-                .cells(Arrays.asList(cell)))
+            .listId("F1234567")
+            .cells(List.of(Map.of(
+                    "row_id", "Rec1234567890",
+                    "column_id", "C1234567",
+                    "rich_text", List.of(Map.of(
+                            "type", "rich_text",
+                            "elements", List.of(Map.of(
+                                    "type", "rich_text_section",
+                                    "elements", List.of(Map.of(
+                                            "type", "text",
+                                            "text", "new task name"))))))))))
                 .isOk(), is(true));
     }
 
     @Test
     public void slackListsItemsUpdate_async() throws Exception {
-        Map<String, Object> cell = new HashMap<>();
-        cell.put("column_id", "col123");
-        cell.put("rich_text", Arrays.asList(createRichTextBlock("Updated text")));
-        cell.put("row_id", "item_id_1");
-
         assertThat(slack.methodsAsync(ValidToken).slackListsItemsUpdate(r -> r
                 .listId("F1234567")
-                .cells(Arrays.asList(cell)))
+                .cells(List.of(Map.of(
+                    "row_id", "Rec1234567890",
+                    "column_id", "C1234567",
+                    "rich_text", List.of(Map.of(
+                            "type", "rich_text",
+                            "elements", List.of(Map.of(
+                                    "type", "rich_text_section",
+                                    "elements", List.of(Map.of(
+                                            "type", "text",
+                                            "text", "new task name"))))))))))
                 .get().isOk(), is(true));
     }
 
@@ -253,9 +265,7 @@ public class SlackListsTest {
     public void slackListsUpdate() throws Exception {
         assertThat(slack.methods(ValidToken).slackListsUpdate(r -> r
                 .id("F1234567")
-                .name("Test List - UPDATED")
-                .descriptionBlocks(Arrays.asList(createRichTextBlock("This list has been updated via API")))
-                .todoMode(false))
+                .name("Test List - UPDATED"))
                 .isOk(), is(true));
     }
 
@@ -263,9 +273,7 @@ public class SlackListsTest {
     public void slackListsUpdate_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).slackListsUpdate(r -> r
                 .id("F1234567")
-                .name("Test List - UPDATED")
-                .descriptionBlocks(Arrays.asList(createRichTextBlock("This list has been updated via API")))
-                .todoMode(false))
+                .name("Test List - UPDATED"))
                 .get().isOk(), is(true));
     }
 
@@ -274,7 +282,7 @@ public class SlackListsTest {
     public void slackListsAccessDelete() throws Exception {
         assertThat(slack.methods(ValidToken).slackListsAccessDelete(r -> r
                 .listId("F1234567")
-                .userIds(Arrays.asList("U09G4FG3TRN")))
+                .userIds(List.of("U1234567")))
                 .isOk(), is(true));
     }
 
@@ -282,16 +290,16 @@ public class SlackListsTest {
     public void slackListsAccessDelete_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).slackListsAccessDelete(r -> r
                 .listId("F1234567")
-                .userIds(Arrays.asList("U09G4FG3TRN")))
+                .userIds(List.of("U1234567")))
                 .get().isOk(), is(true));
     }
 
     // Helper methods
     private RichTextBlock createRichTextBlock(String text) {
         return RichTextBlock.builder()
-                .elements(Arrays.asList(
+                .elements(List.of(
                         RichTextSectionElement.builder()
-                                .elements(Arrays.asList(
+                                .elements(List.of(
                                         RichTextSectionElement.Text.builder()
                                                 .text(text)
                                                 .build()
@@ -299,13 +307,5 @@ public class SlackListsTest {
                                 .build()
                 ))
                 .build();
-    }
-
-    private Map<String, Object> createChoice(String value, String label, String color) {
-        Map<String, Object> choice = new HashMap<>();
-        choice.put("value", value);
-        choice.put("label", label);
-        choice.put("color", color);
-        return choice;
     }
 }

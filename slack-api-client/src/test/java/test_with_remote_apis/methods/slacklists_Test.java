@@ -53,7 +53,6 @@ public class slacklists_Test {
     @Test
     public void fullSlackListsWorkflow() throws IOException, SlackApiException {
         // create list
-        log.info("Creating list...");
         SlackListsCreateResponse createResponse = slack.methods().slackListsCreate(r -> r
                 .token(botToken)
                 .name("Test List - SlackLists API")
@@ -88,7 +87,6 @@ public class slacklists_Test {
                                 "name", "Assignee",
                                 "type", "user"))));
 
-        log.info("List created: {}", createResponse);
         assertThat(createResponse.getError(), is(nullValue()));
         assertThat(createResponse.isOk(), is(true));
 
@@ -102,23 +100,19 @@ public class slacklists_Test {
                 keyToId.put(col.getKey(), col.getId());
             });
         }
-        String taskNameColId = keyToId.get("task_name");
-        log.info("Column IDs: {}", keyToId);
-        
+        String taskNameColId = keyToId.get("task_name");  
+      
         // set access 
-        log.info("Setting access...");
-            SlackListsAccessSetResponse accessSetResponse = slack.methods().slackListsAccessSet(r -> r
-                    .token(botToken)
-                    .listId(listId)
-                    .accessLevel("write")
-                    .channelIds(List.of(channelId)));
-            log.info("Access set: {}", accessSetResponse);
-            assertThat(accessSetResponse.getError(), is(nullValue()));
-            assertThat(accessSetResponse.isOk(), is(true));
+        SlackListsAccessSetResponse accessSetResponse = slack.methods().slackListsAccessSet(r -> r
+                .token(botToken)
+                .listId(listId)
+                .accessLevel("write")
+                .channelIds(List.of(channelId)));
+        assertThat(accessSetResponse.getError(), is(nullValue()));
+        assertThat(accessSetResponse.isOk(), is(true));
 
         try {
            // create an item
-            log.info("Creating item...");
             SlackListsItemsCreateResponse createItemResponse = slack.methods().slackListsItemsCreate(r -> r
                     .token(botToken)
                     .listId(listId)
@@ -131,7 +125,6 @@ public class slacklists_Test {
                                             "elements", List.of(Map.of(
                                                     "type", "text",
                                                     "text", "Test task item"))))))))));
-            log.info("Item created: {}", createItemResponse);
             assertThat(createItemResponse.getError(), is(nullValue()));
             assertThat(createItemResponse.isOk(), is(true));
             assertThat(createItemResponse.getItem(), is(notNullValue()));
@@ -140,18 +133,15 @@ public class slacklists_Test {
             assertThat(itemId, is(notNullValue()));
 
             // get item info
-            log.info("Getting item info...");
             SlackListsItemsInfoResponse itemInfoResponse = slack.methods().slackListsItemsInfo(r -> r
                     .token(botToken)
                     .listId(listId)
                     .id(itemId)
                     .includeIsSubscribed(true));
-            log.info("Item info retrieved: {}", itemInfoResponse);
             assertThat(itemInfoResponse.getError(), is(nullValue()));
             assertThat(itemInfoResponse.isOk(), is(true));
 
             // update item
-            log.info("Updating item...");
             SlackListsItemsUpdateResponse updateItemResponse = slack.methods().slackListsItemsUpdate(r -> r
                     .token(botToken)
                     .listId(listId)
@@ -165,72 +155,59 @@ public class slacklists_Test {
                                             "elements", List.of(Map.of(
                                                     "type", "text",
                                                     "text", "new task name"))))))))));
-            log.info("Item updated: {}", updateItemResponse);
             assertThat(updateItemResponse.getError(), is(nullValue()));
             assertThat(updateItemResponse.isOk(), is(true));
 
             // list items
-            log.info("Listing items...");
             SlackListsItemsListResponse listItemsResponse = slack.methods().slackListsItemsList(r -> r
                     .token(botToken)
                     .listId(listId)
                     .limit(50));
-            log.info("Items listed: {}", listItemsResponse);
             assertThat(listItemsResponse.getError(), is(nullValue()));
             assertThat(listItemsResponse.isOk(), is(true));
             assertThat(listItemsResponse.getItems(), is(notNullValue()));
 
             // start download
-            log.info("Starting download...");
             SlackListsDownloadStartResponse downloadStartResponse = slack.methods().slackListsDownloadStart(r -> r
                     .token(botToken)
                     .listId(listId)
                     .includeArchived(false));
-            log.info("Download started: {}", downloadStartResponse);
             assertThat(downloadStartResponse.getError(), is(nullValue()));
             assertThat(downloadStartResponse.isOk(), is(true));
 
             String jobId = downloadStartResponse.getJobId();
             if (jobId != null) {
                 // get download status
-                log.info("Getting download status...");
                 SlackListsDownloadGetResponse downloadGetResponse = slack.methods().slackListsDownloadGet(r -> r
                         .token(botToken)
                         .listId(listId)
                         .jobId(jobId));
-                log.info("Download status retrieved: {}", downloadGetResponse);
                 assertThat(downloadGetResponse.getError(), is(nullValue()));
                 assertThat(downloadGetResponse.isOk(), is(true));
             }
              
             // delete the item
-            log.info("Deleting item...");
             SlackListsItemsDeleteResponse deleteItemResponse = slack.methods().slackListsItemsDelete(r -> r
                     .token(botToken)
                     .listId(listId)
                     .id(itemId));
-            log.info("Item deleted: {}", deleteItemResponse);
             assertThat(deleteItemResponse.getError(), is(nullValue()));
             assertThat(deleteItemResponse.isOk(), is(true));
 
             // update list
-            log.info("Updating list...");
             SlackListsUpdateResponse updateResponse = slack.methods().slackListsUpdate(r -> r
                     .token(botToken)
                     .id(listId)
                     .name("Updated Test List")
                     .todoMode(true));
-            log.info("List updated: {}", updateResponse);
             assertThat(updateResponse.getError(), is(nullValue()));
             assertThat(updateResponse.isOk(), is(true));
 
             // delete access
-            log.info("Deleting access...");
             SlackListsAccessDeleteResponse accessDeleteResponse = slack.methods().slackListsAccessDelete(r -> r
                     .token(botToken)
                     .listId(listId)
                     .channelIds(List.of(channelId)));
-            log.info("Access removed: {}", accessDeleteResponse);
             assertThat(accessDeleteResponse.getError(), is(nullValue()));
             assertThat(accessDeleteResponse.isOk(), is(true));
 
@@ -242,13 +219,11 @@ public class slacklists_Test {
     @Test
     public void fullSlackListsWorkflow_async() throws Exception {
         // 1. Create a list
-        log.info("Creating list (async)...");
         SlackListsCreateResponse createResponse = slack.methodsAsync().slackListsCreate(r -> r
                 .token(botToken)
                 .name("Test List Async - SlackLists API")
                 .todoMode(true)).get();
 
-        log.info("List created: {}", createResponse);
         assertThat(createResponse.getError(), is(nullValue()));
         assertThat(createResponse.isOk(), is(true));
 
@@ -257,11 +232,9 @@ public class slacklists_Test {
 
         try {
             // create an item
-            log.info("Creating item (async)...");
             SlackListsItemsCreateResponse createItemResponse = slack.methodsAsync().slackListsItemsCreate(r -> r
                     .token(botToken)
                     .listId(listId)).get();
-            log.info("Item created: {}", createItemResponse);
             assertThat(createItemResponse.getError(), is(nullValue()));
             assertThat(createItemResponse.isOk(), is(true));
 
@@ -269,32 +242,26 @@ public class slacklists_Test {
                 String itemId = createItemResponse.getItem().getId();
 
                 // get item info
-                log.info("Getting item info (async)...");
                 SlackListsItemsInfoResponse itemInfoResponse = slack.methodsAsync().slackListsItemsInfo(r -> r
                         .token(botToken)
                         .listId(listId)
                         .id(itemId)).get();
-                log.info("Item info: {}", itemInfoResponse);
                 assertThat(itemInfoResponse.getError(), is(nullValue()));
                 assertThat(itemInfoResponse.isOk(), is(true));
 
                 // list items
-                log.info("Listing items (async)...");
                 SlackListsItemsListResponse listItemsResponse = slack.methodsAsync().slackListsItemsList(r -> r
                         .token(botToken)
                         .listId(listId)
                         .limit(50)).get();
-                log.info("Items listed: {}", listItemsResponse);
                 assertThat(listItemsResponse.getError(), is(nullValue()));
                 assertThat(listItemsResponse.isOk(), is(true));
 
                 // delete the item
-                log.info("Deleting item (async)...");
                 SlackListsItemsDeleteResponse deleteItemResponse = slack.methodsAsync().slackListsItemsDelete(r -> r
                         .token(botToken)
                         .listId(listId)
                         .id(itemId)).get();
-                log.info("Item deleted: {}", deleteItemResponse);
                 assertThat(deleteItemResponse.getError(), is(nullValue()));
                 assertThat(deleteItemResponse.isOk(), is(true));
             }
@@ -329,12 +296,10 @@ public class slacklists_Test {
         String itemId2 = item2.getItem().getId();
 
         // delete multiple items
-        log.info("Deleting multiple items...");
         SlackListsItemsDeleteMultipleResponse deleteMultipleResponse = slack.methods().slackListsItemsDeleteMultiple(r -> r
                 .token(botToken)
                 .listId(listId)
                 .ids(List.of(itemId1, itemId2)));
-        log.info("Multiple items deleted: {}", deleteMultipleResponse);
         assertThat(deleteMultipleResponse.getError(), is(nullValue()));
         assertThat(deleteMultipleResponse.isOk(), is(true));
     }
