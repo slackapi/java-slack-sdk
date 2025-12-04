@@ -24,8 +24,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -52,40 +52,59 @@ public class slacklists_Test {
 
     @Test
     public void fullSlackListsWorkflow() throws IOException, SlackApiException {
+        // Build schema columns
+        Map<String, Object> taskNameCol = new HashMap<>();
+        taskNameCol.put("key", "task_name");
+        taskNameCol.put("name", "Task Name");
+        taskNameCol.put("type", "text");
+        taskNameCol.put("is_primary_column", true);
+
+        Map<String, Object> dueDateCol = new HashMap<>();
+        dueDateCol.put("key", "due_date");
+        dueDateCol.put("name", "Due Date");
+        dueDateCol.put("type", "date");
+
+        Map<String, Object> choice1 = new HashMap<>();
+        choice1.put("value", "not_started");
+        choice1.put("label", "Not Started");
+        choice1.put("color", "red");
+
+        Map<String, Object> choice2 = new HashMap<>();
+        choice2.put("value", "in_progress");
+        choice2.put("label", "In Progress");
+        choice2.put("color", "yellow");
+
+        Map<String, Object> choice3 = new HashMap<>();
+        choice3.put("value", "completed");
+        choice3.put("label", "Completed");
+        choice3.put("color", "green");
+
+        Map<String, Object> options = new HashMap<>();
+        options.put("choices", Arrays.asList(choice1, choice2, choice3));
+
+        Map<String, Object> statusCol = new HashMap<>();
+        statusCol.put("key", "status");
+        statusCol.put("name", "Status");
+        statusCol.put("type", "select");
+        statusCol.put("options", options);
+
+        Map<String, Object> assigneeCol = new HashMap<>();
+        assigneeCol.put("key", "assignee");
+        assigneeCol.put("name", "Assignee");
+        assigneeCol.put("type", "user");
+
         // create list
         SlackListsCreateResponse createResponse = slack.methods().slackListsCreate(r -> r
                 .token(botToken)
                 .name("Test List - SlackLists API")
-                .descriptionBlocks(List.of(RichTextBlock.builder()
-                        .elements(List.of(RichTextSectionElement.builder()
-                                .elements(List.of(RichTextSectionElement.Text.builder()
+                .descriptionBlocks(Arrays.asList(RichTextBlock.builder()
+                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
                                         .text("List to keep track of tasks!")
                                         .build()))
                                 .build()))
                         .build()))
-                .schema(List.of(
-                        Map.of(
-                                "key", "task_name",
-                                "name", "Task Name",
-                                "type", "text",
-                                "is_primary_column", true),
-                        Map.of(
-                                "key", "due_date",
-                                "name", "Due Date",
-                                "type", "date"),
-                        Map.of(
-                                "key", "status",
-                                "name", "Status",
-                                "type", "select",
-                                "options", Map.of(
-                                        "choices", List.of(
-                                                Map.of("value", "not_started", "label", "Not Started", "color", "red"),
-                                                Map.of("value", "in_progress", "label", "In Progress", "color", "yellow"),
-                                                Map.of("value", "completed", "label", "Completed", "color", "green")))),
-                        Map.of(
-                                "key", "assignee",
-                                "name", "Assignee",
-                                "type", "user"))));
+                .schema(Arrays.asList(taskNameCol, dueDateCol, statusCol, assigneeCol)));
 
         assertThat(createResponse.getError(), is(nullValue()));
         assertThat(createResponse.isOk(), is(true));
@@ -107,24 +126,33 @@ public class slacklists_Test {
                 .token(botToken)
                 .listId(listId)
                 .accessLevel("write")
-                .channelIds(List.of(channelId)));
+                .channelIds(Arrays.asList(channelId)));
         assertThat(accessSetResponse.getError(), is(nullValue()));
         assertThat(accessSetResponse.isOk(), is(true));
 
         try {
+            // Build initial fields for item creation
+            Map<String, Object> textElement = new HashMap<>();
+            textElement.put("type", "text");
+            textElement.put("text", "Test task item");
+
+            Map<String, Object> richTextSection = new HashMap<>();
+            richTextSection.put("type", "rich_text_section");
+            richTextSection.put("elements", Arrays.asList(textElement));
+
+            Map<String, Object> richText = new HashMap<>();
+            richText.put("type", "rich_text");
+            richText.put("elements", Arrays.asList(richTextSection));
+
+            Map<String, Object> field = new HashMap<>();
+            field.put("column_id", taskNameColId);
+            field.put("rich_text", Arrays.asList(richText));
+
            // create an item
             SlackListsItemsCreateResponse createItemResponse = slack.methods().slackListsItemsCreate(r -> r
                     .token(botToken)
                     .listId(listId)
-                    .initialFields(List.of(Map.of(
-                            "column_id", taskNameColId,
-                            "rich_text", List.of(Map.of(
-                                    "type", "rich_text",
-                                    "elements", List.of(Map.of(
-                                            "type", "rich_text_section",
-                                            "elements", List.of(Map.of(
-                                                    "type", "text",
-                                                    "text", "Test task item"))))))))));
+                    .initialFields(Arrays.asList(field)));
             assertThat(createItemResponse.getError(), is(nullValue()));
             assertThat(createItemResponse.isOk(), is(true));
             assertThat(createItemResponse.getItem(), is(notNullValue()));
@@ -141,20 +169,29 @@ public class slacklists_Test {
             assertThat(itemInfoResponse.getError(), is(nullValue()));
             assertThat(itemInfoResponse.isOk(), is(true));
 
+            // Build update cell
+            Map<String, Object> updateTextElement = new HashMap<>();
+            updateTextElement.put("type", "text");
+            updateTextElement.put("text", "new task name");
+
+            Map<String, Object> updateRichTextSection = new HashMap<>();
+            updateRichTextSection.put("type", "rich_text_section");
+            updateRichTextSection.put("elements", Arrays.asList(updateTextElement));
+
+            Map<String, Object> updateRichText = new HashMap<>();
+            updateRichText.put("type", "rich_text");
+            updateRichText.put("elements", Arrays.asList(updateRichTextSection));
+
+            Map<String, Object> cell = new HashMap<>();
+            cell.put("row_id", itemId);
+            cell.put("column_id", taskNameColId);
+            cell.put("rich_text", Arrays.asList(updateRichText));
+
             // update item
             SlackListsItemsUpdateResponse updateItemResponse = slack.methods().slackListsItemsUpdate(r -> r
                     .token(botToken)
                     .listId(listId)
-                    .cells(List.of(Map.of(
-                            "row_id", itemId,
-                            "column_id", taskNameColId,
-                            "rich_text", List.of(Map.of(
-                                    "type", "rich_text",
-                                    "elements", List.of(Map.of(
-                                            "type", "rich_text_section",
-                                            "elements", List.of(Map.of(
-                                                    "type", "text",
-                                                    "text", "new task name"))))))))));
+                    .cells(Arrays.asList(cell)));
             assertThat(updateItemResponse.getError(), is(nullValue()));
             assertThat(updateItemResponse.isOk(), is(true));
 
@@ -207,7 +244,7 @@ public class slacklists_Test {
             SlackListsAccessDeleteResponse accessDeleteResponse = slack.methods().slackListsAccessDelete(r -> r
                     .token(botToken)
                     .listId(listId)
-                    .channelIds(List.of(channelId)));
+                    .channelIds(Arrays.asList(channelId)));
             assertThat(accessDeleteResponse.getError(), is(nullValue()));
             assertThat(accessDeleteResponse.isOk(), is(true));
 
@@ -299,10 +336,9 @@ public class slacklists_Test {
         SlackListsItemsDeleteMultipleResponse deleteMultipleResponse = slack.methods().slackListsItemsDeleteMultiple(r -> r
                 .token(botToken)
                 .listId(listId)
-                .ids(List.of(itemId1, itemId2)));
+                .ids(Arrays.asList(itemId1, itemId2)));
         assertThat(deleteMultipleResponse.getError(), is(nullValue()));
         assertThat(deleteMultipleResponse.isOk(), is(true));
     }
 
 }
-
