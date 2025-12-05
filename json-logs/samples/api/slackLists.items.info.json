@@ -1,9 +1,5 @@
 {
   "ok": false,
-  "warning": "",
-  "error": "",
-  "needed": "",
-  "provided": "",
   "list": {
     "id": "",
     "created": 12345,
@@ -183,5 +179,9 @@
     "messages": [
       ""
     ]
-  }
+  },
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": ""
 }
