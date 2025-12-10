@@ -410,7 +410,7 @@ Slack slack = Slack.getInstance(config);
 
 以下は利用可能なカスタマイズ用オプションの一覧です。
 
-|名称|型|説明（デフォルト値）|
+|名称|型|説明（デフォルト値）|
 |-|-|-|
 |**proxyUrl**|**String**|全ての Slack への通信にプロキシサーバーを有効にしたい場合、`http://localhost:8888` のような完全な URL を表現する文字列の値を指定します。 (デフォルト値: null)|
 |**prettyResponseLoggingEnabled**|**boolean**|このフラグが true のとき Slack API から受け取ったレスポンスボディの JSON データを整形した上でデバッグレベルでログ出力します （デフォルト値: `false`）|
