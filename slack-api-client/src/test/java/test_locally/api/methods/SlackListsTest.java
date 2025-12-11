@@ -4,14 +4,15 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.element.RichTextSectionElement;
+import com.slack.api.model.list.ListColumn;
+import com.slack.api.model.list.ListColumnOptions;
+import com.slack.api.model.list.ListRecord;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -37,45 +38,53 @@ public class SlackListsTest {
     // Create a new list
     @Test
     public void slackListsCreate() throws Exception {
-        Map<String, Object> taskNameCol = new HashMap<>();
-        taskNameCol.put("key", "task_name");
-        taskNameCol.put("name", "Task Name");
-        taskNameCol.put("type", "text");
-        taskNameCol.put("is_primary_column", true);
+        ListColumn taskNameCol = ListColumn.builder()
+                .key("task_name")
+                .name("Task Name")
+                .type("text")
+                .primaryColumn(true)
+                .build();
 
-        Map<String, Object> dueDateCol = new HashMap<>();
-        dueDateCol.put("key", "due_date");
-        dueDateCol.put("name", "Due Date");
-        dueDateCol.put("type", "date");
+        ListColumn dueDateCol = ListColumn.builder()
+                .key("due_date")
+                .name("Due Date")
+                .type("date")
+                .build();
 
-        Map<String, Object> choice1 = new HashMap<>();
-        choice1.put("value", "not_started");
-        choice1.put("label", "Not Started");
-        choice1.put("color", "red");
+        ListColumnOptions.Choice choice1 = ListColumnOptions.Choice.builder()
+                .value("not_started")
+                .label("Not Started")
+                .color("red")
+                .build();
 
-        Map<String, Object> choice2 = new HashMap<>();
-        choice2.put("value", "in_progress");
-        choice2.put("label", "In Progress");
-        choice2.put("color", "yellow");
+        ListColumnOptions.Choice choice2 = ListColumnOptions.Choice.builder()
+                .value("in_progress")
+                .label("In Progress")
+                .color("yellow")
+                .build();
 
-        Map<String, Object> choice3 = new HashMap<>();
-        choice3.put("value", "completed");
-        choice3.put("label", "Completed");
-        choice3.put("color", "green");
+        ListColumnOptions.Choice choice3 = ListColumnOptions.Choice.builder()
+                .value("completed")
+                .label("Completed")
+                .color("green")
+                .build();
 
-        Map<String, Object> options = new HashMap<>();
-        options.put("choices", Arrays.asList(choice1, choice2, choice3));
+        ListColumnOptions statusOptions = ListColumnOptions.builder()
+                .choices(Arrays.asList(choice1, choice2, choice3))
+                .build();
 
-        Map<String, Object> statusCol = new HashMap<>();
-        statusCol.put("key", "status");
-        statusCol.put("name", "Status");
-        statusCol.put("type", "select");
-        statusCol.put("options", options);
+        ListColumn statusCol = ListColumn.builder()
+                .key("status")
+                .name("Status")
+                .type("select")
+                .options(statusOptions)
+                .build();
 
-        Map<String, Object> assigneeCol = new HashMap<>();
-        assigneeCol.put("key", "assignee");
-        assigneeCol.put("name", "Assignee");
-        assigneeCol.put("type", "user");
+        ListColumn assigneeCol = ListColumn.builder()
+                .key("assignee")
+                .name("Assignee")
+                .type("user")
+                .build();
 
         assertThat(slack.methods(ValidToken).slackListsCreate(r -> r
             .name("Test List - SlackLists API")
@@ -118,21 +127,18 @@ public class SlackListsTest {
     // Create several list items
     @Test
     public void slackListsItemsCreate() throws Exception {
-        Map<String, Object> textElement = new HashMap<>();
-        textElement.put("type", "text");
-        textElement.put("text", "Test task item");
+        RichTextBlock richTextBlock = RichTextBlock.builder()
+                .elements(Arrays.asList(RichTextSectionElement.builder()
+                        .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                .text("Test task item")
+                                .build()))
+                        .build()))
+                .build();
 
-        Map<String, Object> richTextSection = new HashMap<>();
-        richTextSection.put("type", "rich_text_section");
-        richTextSection.put("elements", Arrays.asList(textElement));
-
-        Map<String, Object> richText = new HashMap<>();
-        richText.put("type", "rich_text");
-        richText.put("elements", Arrays.asList(richTextSection));
-
-        Map<String, Object> field = new HashMap<>();
-        field.put("column_id", "C1234567");
-        field.put("rich_text", Arrays.asList(richText));
+        ListRecord.Field field = ListRecord.Field.builder()
+                .columnId("C1234567")
+                .richText(Arrays.asList(richTextBlock))
+                .build();
 
         assertThat(slack.methods(ValidToken).slackListsItemsCreate(r -> r
             .listId("F1234567")
@@ -254,22 +260,19 @@ public class SlackListsTest {
     // Update an existing list item
     @Test
     public void slackListsItemsUpdate() throws Exception {
-        Map<String, Object> textElement = new HashMap<>();
-        textElement.put("type", "text");
-        textElement.put("text", "new task name");
+        RichTextBlock richTextBlock = RichTextBlock.builder()
+                .elements(Arrays.asList(RichTextSectionElement.builder()
+                        .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                .text("new task name")
+                                .build()))
+                        .build()))
+                .build();
 
-        Map<String, Object> richTextSection = new HashMap<>();
-        richTextSection.put("type", "rich_text_section");
-        richTextSection.put("elements", Arrays.asList(textElement));
-
-        Map<String, Object> richText = new HashMap<>();
-        richText.put("type", "rich_text");
-        richText.put("elements", Arrays.asList(richTextSection));
-
-        Map<String, Object> cell = new HashMap<>();
-        cell.put("row_id", "Rec1234567890");
-        cell.put("column_id", "C1234567");
-        cell.put("rich_text", Arrays.asList(richText));
+        ListRecord.CellUpdate cell = ListRecord.CellUpdate.builder()
+                .rowId("Rec1234567890")
+                .columnId("C1234567")
+                .richText(Arrays.asList(richTextBlock))
+                .build();
 
         assertThat(slack.methods(ValidToken).slackListsItemsUpdate(r -> r
             .listId("F1234567")
@@ -279,22 +282,19 @@ public class SlackListsTest {
 
     @Test
     public void slackListsItemsUpdate_async() throws Exception {
-        Map<String, Object> textElement = new HashMap<>();
-        textElement.put("type", "text");
-        textElement.put("text", "new task name");
+        RichTextBlock richTextBlock = RichTextBlock.builder()
+                .elements(Arrays.asList(RichTextSectionElement.builder()
+                        .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                .text("new task name")
+                                .build()))
+                        .build()))
+                .build();
 
-        Map<String, Object> richTextSection = new HashMap<>();
-        richTextSection.put("type", "rich_text_section");
-        richTextSection.put("elements", Arrays.asList(textElement));
-
-        Map<String, Object> richText = new HashMap<>();
-        richText.put("type", "rich_text");
-        richText.put("elements", Arrays.asList(richTextSection));
-
-        Map<String, Object> cell = new HashMap<>();
-        cell.put("row_id", "Rec1234567890");
-        cell.put("column_id", "C1234567");
-        cell.put("rich_text", Arrays.asList(richText));
+        ListRecord.CellUpdate cell = ListRecord.CellUpdate.builder()
+                .rowId("Rec1234567890")
+                .columnId("C1234567")
+                .richText(Arrays.asList(richTextBlock))
+                .build();
 
         assertThat(slack.methodsAsync(ValidToken).slackListsItemsUpdate(r -> r
                 .listId("F1234567")

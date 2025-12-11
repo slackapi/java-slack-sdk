@@ -3,6 +3,7 @@ package com.slack.api.methods.request.slack_lists;
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.block.RichTextBlock;
+import com.slack.api.model.list.ListColumn;
 
 import java.util.List;
 import java.util.Map;
@@ -30,13 +31,12 @@ public class SlackListsCreateRequest implements SlackApiRequest {
     /**
      * A rich text description of the List. (Optional)
      */
-    @SerializedName("description_blocks")
     private List<RichTextBlock> descriptionBlocks;
 
     /**
      * Column definition for the List. (Optional)
      */
-    private List<Map<String, Object>> schema;
+    private List<ListColumn> schema;
 
     /**
      * ID of the List to copy. (Optional)
@@ -53,6 +53,5 @@ public class SlackListsCreateRequest implements SlackApiRequest {
     /**
      * Boolean indicating whether the List should be used to track todo tasks. (Optional)
      */
-    @SerializedName("todo_mode")
     private Boolean todoMode;
 }

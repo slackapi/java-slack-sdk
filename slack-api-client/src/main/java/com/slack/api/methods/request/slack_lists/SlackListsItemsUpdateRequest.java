@@ -1,10 +1,9 @@
 package com.slack.api.methods.request.slack_lists;
 
-import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
+import com.slack.api.model.list.ListRecord;
 
 import java.util.List;
-import java.util.Map;
 
 import lombok.Builder;
 import lombok.Data;
@@ -24,12 +23,12 @@ public class SlackListsItemsUpdateRequest implements SlackApiRequest {
     /**
      * ID of the List containing the items.
      */
-    @SerializedName("list_id")
     private String listId;
 
     /**
      * Cells to update.
+     * Each cell should have a rowId, columnId, and one of the type-specific value properties.
      */
-    private List<Map<String, Object>> cells;
+    private List<ListRecord.CellUpdate> cells;
     
 }

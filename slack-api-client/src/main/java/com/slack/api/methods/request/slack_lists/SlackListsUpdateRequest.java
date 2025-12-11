@@ -1,6 +1,5 @@
 package com.slack.api.methods.request.slack_lists;
 
-import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.block.RichTextBlock;
 import java.util.List;
@@ -32,12 +31,10 @@ public class SlackListsUpdateRequest implements SlackApiRequest {
     /**
      * A rich text description of the List. (Optional)
      */
-    @SerializedName("description_blocks")
     private List<RichTextBlock> descriptionBlocks;
 
     /**
      * Boolean indicating whether the List should be used to track todo tasks. (Optional)
      */
-    @SerializedName("todo_mode")
     private Boolean todoMode;
 }

@@ -27,6 +27,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.slack.api.model.list.ListColumn;
+import com.slack.api.model.list.ListColumnOptions;
+import com.slack.api.model.list.ListRecord;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -53,45 +56,53 @@ public class slacklists_Test {
     @Test
     public void fullSlackListsWorkflow() throws IOException, SlackApiException {
         // Build schema columns
-        Map<String, Object> taskNameCol = new HashMap<>();
-        taskNameCol.put("key", "task_name");
-        taskNameCol.put("name", "Task Name");
-        taskNameCol.put("type", "text");
-        taskNameCol.put("is_primary_column", true);
+        ListColumn taskNameCol = ListColumn.builder()
+                .key("task_name")
+                .name("Task Name")
+                .type("text")
+                .primaryColumn(true)
+                .build();
 
-        Map<String, Object> dueDateCol = new HashMap<>();
-        dueDateCol.put("key", "due_date");
-        dueDateCol.put("name", "Due Date");
-        dueDateCol.put("type", "date");
+        ListColumn dueDateCol = ListColumn.builder()
+                .key("due_date")
+                .name("Due Date")
+                .type("date")
+                .build();
 
-        Map<String, Object> choice1 = new HashMap<>();
-        choice1.put("value", "not_started");
-        choice1.put("label", "Not Started");
-        choice1.put("color", "red");
+        ListColumnOptions.Choice choice1 = ListColumnOptions.Choice.builder()
+                .value("not_started")
+                .label("Not Started")
+                .color("red")
+                .build();
 
-        Map<String, Object> choice2 = new HashMap<>();
-        choice2.put("value", "in_progress");
-        choice2.put("label", "In Progress");
-        choice2.put("color", "yellow");
+        ListColumnOptions.Choice choice2 = ListColumnOptions.Choice.builder()
+                .value("in_progress")
+                .label("In Progress")
+                .color("yellow")
+                .build();
 
-        Map<String, Object> choice3 = new HashMap<>();
-        choice3.put("value", "completed");
-        choice3.put("label", "Completed");
-        choice3.put("color", "green");
+        ListColumnOptions.Choice choice3 = ListColumnOptions.Choice.builder()
+                .value("completed")
+                .label("Completed")
+                .color("green")
+                .build();
 
-        Map<String, Object> options = new HashMap<>();
-        options.put("choices", Arrays.asList(choice1, choice2, choice3));
+        ListColumnOptions statusOptions = ListColumnOptions.builder()
+                .choices(Arrays.asList(choice1, choice2, choice3))
+                .build();
 
-        Map<String, Object> statusCol = new HashMap<>();
-        statusCol.put("key", "status");
-        statusCol.put("name", "Status");
-        statusCol.put("type", "select");
-        statusCol.put("options", options);
+        ListColumn statusCol = ListColumn.builder()
+                .key("status")
+                .name("Status")
+                .type("select")
+                .options(statusOptions)
+                .build();
 
-        Map<String, Object> assigneeCol = new HashMap<>();
-        assigneeCol.put("key", "assignee");
-        assigneeCol.put("name", "Assignee");
-        assigneeCol.put("type", "user");
+        ListColumn assigneeCol = ListColumn.builder()
+                .key("assignee")
+                .name("Assignee")
+                .type("user")
+                .build();
 
         // create list
         SlackListsCreateResponse createResponse = slack.methods().slackListsCreate(r -> r
@@ -130,127 +141,114 @@ public class slacklists_Test {
         assertThat(accessSetResponse.getError(), is(nullValue()));
         assertThat(accessSetResponse.isOk(), is(true));
 
-        try {
-            // Build initial fields for item creation
-            Map<String, Object> textElement = new HashMap<>();
-            textElement.put("type", "text");
-            textElement.put("text", "Test task item");
+        // Build initial fields for item creation
+        ListRecord.Field field = ListRecord.Field.builder()
+                .columnId(taskNameColId)
+                .richText(Arrays.asList(RichTextBlock.builder()
+                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                        .text("Test task item")
+                                        .build()))
+                                .build()))
+                        .build()))
+                .build();
 
-            Map<String, Object> richTextSection = new HashMap<>();
-            richTextSection.put("type", "rich_text_section");
-            richTextSection.put("elements", Arrays.asList(textElement));
+        // create an item
+        SlackListsItemsCreateResponse createItemResponse = slack.methods().slackListsItemsCreate(r -> r
+                .token(botToken)
+                .listId(listId)
+                .initialFields(Arrays.asList(field)));
+        assertThat(createItemResponse.getError(), is(nullValue()));
+        assertThat(createItemResponse.isOk(), is(true));
+        assertThat(createItemResponse.getItem(), is(notNullValue()));
 
-            Map<String, Object> richText = new HashMap<>();
-            richText.put("type", "rich_text");
-            richText.put("elements", Arrays.asList(richTextSection));
+        String itemId = createItemResponse.getItem().getId();
+        assertThat(itemId, is(notNullValue()));
 
-            Map<String, Object> field = new HashMap<>();
-            field.put("column_id", taskNameColId);
-            field.put("rich_text", Arrays.asList(richText));
+        // get item info
+        SlackListsItemsInfoResponse itemInfoResponse = slack.methods().slackListsItemsInfo(r -> r
+                .token(botToken)
+                .listId(listId)
+                .id(itemId)
+                .includeIsSubscribed(true));
+        assertThat(itemInfoResponse.getError(), is(nullValue()));
+        assertThat(itemInfoResponse.isOk(), is(true));
 
-           // create an item
-            SlackListsItemsCreateResponse createItemResponse = slack.methods().slackListsItemsCreate(r -> r
+        // Build update cell
+        ListRecord.CellUpdate cell = ListRecord.CellUpdate.builder()
+                .rowId(itemId)
+                .columnId(taskNameColId)
+                .richText(Arrays.asList(RichTextBlock.builder()
+                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                        .text("new task name")
+                                        .build()))
+                                .build()))
+                        .build()))
+                .build();
+
+        // update item
+        SlackListsItemsUpdateResponse updateItemResponse = slack.methods().slackListsItemsUpdate(r -> r
+                .token(botToken)
+                .listId(listId)
+                .cells(Arrays.asList(cell)));
+        assertThat(updateItemResponse.getError(), is(nullValue()));
+        assertThat(updateItemResponse.isOk(), is(true));
+
+        // list items
+        SlackListsItemsListResponse listItemsResponse = slack.methods().slackListsItemsList(r -> r
+                .token(botToken)
+                .listId(listId)
+                .limit(50));
+        assertThat(listItemsResponse.getError(), is(nullValue()));
+        assertThat(listItemsResponse.isOk(), is(true));
+        assertThat(listItemsResponse.getItems(), is(notNullValue()));
+
+        // start download
+        SlackListsDownloadStartResponse downloadStartResponse = slack.methods().slackListsDownloadStart(r -> r
+                .token(botToken)
+                .listId(listId)
+                .includeArchived(false));
+        assertThat(downloadStartResponse.getError(), is(nullValue()));
+        assertThat(downloadStartResponse.isOk(), is(true));
+
+        String jobId = downloadStartResponse.getJobId();
+        if (jobId != null) {
+            // get download status
+            SlackListsDownloadGetResponse downloadGetResponse = slack.methods().slackListsDownloadGet(r -> r
                     .token(botToken)
                     .listId(listId)
-                    .initialFields(Arrays.asList(field)));
-            assertThat(createItemResponse.getError(), is(nullValue()));
-            assertThat(createItemResponse.isOk(), is(true));
-            assertThat(createItemResponse.getItem(), is(notNullValue()));
-
-            String itemId = createItemResponse.getItem().getId();
-            assertThat(itemId, is(notNullValue()));
-
-            // get item info
-            SlackListsItemsInfoResponse itemInfoResponse = slack.methods().slackListsItemsInfo(r -> r
-                    .token(botToken)
-                    .listId(listId)
-                    .id(itemId)
-                    .includeIsSubscribed(true));
-            assertThat(itemInfoResponse.getError(), is(nullValue()));
-            assertThat(itemInfoResponse.isOk(), is(true));
-
-            // Build update cell
-            Map<String, Object> updateTextElement = new HashMap<>();
-            updateTextElement.put("type", "text");
-            updateTextElement.put("text", "new task name");
-
-            Map<String, Object> updateRichTextSection = new HashMap<>();
-            updateRichTextSection.put("type", "rich_text_section");
-            updateRichTextSection.put("elements", Arrays.asList(updateTextElement));
-
-            Map<String, Object> updateRichText = new HashMap<>();
-            updateRichText.put("type", "rich_text");
-            updateRichText.put("elements", Arrays.asList(updateRichTextSection));
-
-            Map<String, Object> cell = new HashMap<>();
-            cell.put("row_id", itemId);
-            cell.put("column_id", taskNameColId);
-            cell.put("rich_text", Arrays.asList(updateRichText));
-
-            // update item
-            SlackListsItemsUpdateResponse updateItemResponse = slack.methods().slackListsItemsUpdate(r -> r
-                    .token(botToken)
-                    .listId(listId)
-                    .cells(Arrays.asList(cell)));
-            assertThat(updateItemResponse.getError(), is(nullValue()));
-            assertThat(updateItemResponse.isOk(), is(true));
-
-            // list items
-            SlackListsItemsListResponse listItemsResponse = slack.methods().slackListsItemsList(r -> r
-                    .token(botToken)
-                    .listId(listId)
-                    .limit(50));
-            assertThat(listItemsResponse.getError(), is(nullValue()));
-            assertThat(listItemsResponse.isOk(), is(true));
-            assertThat(listItemsResponse.getItems(), is(notNullValue()));
-
-            // start download
-            SlackListsDownloadStartResponse downloadStartResponse = slack.methods().slackListsDownloadStart(r -> r
-                    .token(botToken)
-                    .listId(listId)
-                    .includeArchived(false));
-            assertThat(downloadStartResponse.getError(), is(nullValue()));
-            assertThat(downloadStartResponse.isOk(), is(true));
-
-            String jobId = downloadStartResponse.getJobId();
-            if (jobId != null) {
-                // get download status
-                SlackListsDownloadGetResponse downloadGetResponse = slack.methods().slackListsDownloadGet(r -> r
-                        .token(botToken)
-                        .listId(listId)
-                        .jobId(jobId));
-                assertThat(downloadGetResponse.getError(), is(nullValue()));
-                assertThat(downloadGetResponse.isOk(), is(true));
-            }
-             
-            // delete the item
-            SlackListsItemsDeleteResponse deleteItemResponse = slack.methods().slackListsItemsDelete(r -> r
-                    .token(botToken)
-                    .listId(listId)
-                    .id(itemId));
-            assertThat(deleteItemResponse.getError(), is(nullValue()));
-            assertThat(deleteItemResponse.isOk(), is(true));
-
-            // update list
-            SlackListsUpdateResponse updateResponse = slack.methods().slackListsUpdate(r -> r
-                    .token(botToken)
-                    .id(listId)
-                    .name("Updated Test List")
-                    .todoMode(true));
-            assertThat(updateResponse.getError(), is(nullValue()));
-            assertThat(updateResponse.isOk(), is(true));
-
-            // delete access
-            SlackListsAccessDeleteResponse accessDeleteResponse = slack.methods().slackListsAccessDelete(r -> r
-                    .token(botToken)
-                    .listId(listId)
-                    .channelIds(Arrays.asList(channelId)));
-            assertThat(accessDeleteResponse.getError(), is(nullValue()));
-            assertThat(accessDeleteResponse.isOk(), is(true));
-
-        } finally {
-            log.info("Slack Lists API workflow completed for list: {}", listId);
+                    .jobId(jobId));
+            assertThat(downloadGetResponse.getError(), is(nullValue()));
+            assertThat(downloadGetResponse.isOk(), is(true));
         }
+
+        // delete the item
+        SlackListsItemsDeleteResponse deleteItemResponse = slack.methods().slackListsItemsDelete(r -> r
+                .token(botToken)
+                .listId(listId)
+                .id(itemId));
+        assertThat(deleteItemResponse.getError(), is(nullValue()));
+        assertThat(deleteItemResponse.isOk(), is(true));
+
+        // update list
+        SlackListsUpdateResponse updateResponse = slack.methods().slackListsUpdate(r -> r
+                .token(botToken)
+                .id(listId)
+                .name("Updated Test List")
+                .todoMode(true));
+        assertThat(updateResponse.getError(), is(nullValue()));
+        assertThat(updateResponse.isOk(), is(true));
+
+        // delete access
+        SlackListsAccessDeleteResponse accessDeleteResponse = slack.methods().slackListsAccessDelete(r -> r
+                .token(botToken)
+                .listId(listId)
+                .channelIds(Arrays.asList(channelId)));
+        assertThat(accessDeleteResponse.getError(), is(nullValue()));
+        assertThat(accessDeleteResponse.isOk(), is(true));
+
+        log.info("Slack Lists API workflow completed for list: {}", listId);
     }
 
     @Test
@@ -267,15 +265,14 @@ public class slacklists_Test {
         String listId = createResponse.getListId();
         assertThat(listId, is(notNullValue()));
 
-        try {
-            // create an item
-            SlackListsItemsCreateResponse createItemResponse = slack.methodsAsync().slackListsItemsCreate(r -> r
-                    .token(botToken)
-                    .listId(listId)).get();
-            assertThat(createItemResponse.getError(), is(nullValue()));
-            assertThat(createItemResponse.isOk(), is(true));
+        // create an item
+        SlackListsItemsCreateResponse createItemResponse = slack.methodsAsync().slackListsItemsCreate(r -> r
+                .token(botToken)
+                .listId(listId)).get();
+        assertThat(createItemResponse.getError(), is(nullValue()));
+        assertThat(createItemResponse.isOk(), is(true));
 
-            if (createItemResponse.getItem() != null) {
+        if (createItemResponse.getItem() != null) {
                 String itemId = createItemResponse.getItem().getId();
 
                 // get item info
@@ -301,11 +298,8 @@ public class slacklists_Test {
                         .id(itemId)).get();
                 assertThat(deleteItemResponse.getError(), is(nullValue()));
                 assertThat(deleteItemResponse.isOk(), is(true));
-            }
-
-        } finally {
-            log.info("Async Slack Lists API workflow completed for list: {}", listId);
         }
+        log.info("Async Slack Lists API workflow completed for list: {}", listId);
     }
 
     @Test

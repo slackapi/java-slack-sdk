@@ -2,9 +2,9 @@ package com.slack.api.methods.request.slack_lists;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
+import com.slack.api.model.list.ListRecord;
 
 import java.util.List;
-import java.util.Map;
 
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +24,6 @@ public class SlackListsItemsCreateRequest implements SlackApiRequest {
     /**
      * ID of the List containing the items.
      */
-    @SerializedName("list_id")
     private String listId;
     
     /**
@@ -42,6 +41,5 @@ public class SlackListsItemsCreateRequest implements SlackApiRequest {
     /**
      * Initial item data. (Optional)
      */
-    @SerializedName("initial_fields")
-    private List<Map<String, Object>> initialFields;
+    private List<ListRecord.Field> initialFields;
 }

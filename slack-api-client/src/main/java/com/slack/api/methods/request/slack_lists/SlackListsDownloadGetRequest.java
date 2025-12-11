@@ -1,6 +1,5 @@
 package com.slack.api.methods.request.slack_lists;
 
-import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
@@ -20,12 +19,10 @@ public class SlackListsDownloadGetRequest implements SlackApiRequest {
     /**
      * ID of the List to export.
      */
-    @SerializedName("list_id")
     private String listId;
     
     /**
      * The ID of the recently started job to export the List.
      */
-    @SerializedName("job_id")
     private String jobId;
 }

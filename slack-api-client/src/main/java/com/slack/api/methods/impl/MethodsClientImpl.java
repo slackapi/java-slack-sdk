@@ -3210,42 +3210,6 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    public StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.STARS_ADD, getToken(req), StarsAddResponse.class);
-    }
-
-    @Override
-    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    public StarsAddResponse starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException {
-        return starsAdd(req.configure(StarsAddRequest.builder()).build());
-    }
-
-    @Override
-    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    public StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.STARS_LIST, getToken(req), StarsListResponse.class);
-    }
-
-    @Override
-    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    public StarsListResponse starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException {
-        return starsList(req.configure(StarsListRequest.builder()).build());
-    }
-
-    @Override
-    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    public StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.STARS_REMOVE, getToken(req), StarsRemoveResponse.class);
-    }
-
-    @Override
-    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
-    public StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException {
-        return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
-    }
-
-    @Override
     public SlackListsAccessDeleteResponse slackListsAccessDelete(SlackListsAccessDeleteRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ACCESS_DELETE, getToken(req), SlackListsAccessDeleteResponse.class);
     }
@@ -3363,6 +3327,42 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) throws IOException, SlackApiException {
         return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    public StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.STARS_ADD, getToken(req), StarsAddResponse.class);
+    }
+
+    @Override
+    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    public StarsAddResponse starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return starsAdd(req.configure(StarsAddRequest.builder()).build());
+    }
+
+    @Override
+    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    public StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.STARS_LIST, getToken(req), StarsListResponse.class);
+    }
+
+    @Override
+    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    public StarsListResponse starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException {
+        return starsList(req.configure(StarsListRequest.builder()).build());
+    }
+
+    @Override
+    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    public StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.STARS_REMOVE, getToken(req), StarsRemoveResponse.class);
+    }
+
+    @Override
+    @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
+    public StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
     }
 
     @Override

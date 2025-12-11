@@ -1,6 +1,5 @@
 package com.slack.api.methods.request.slack_lists;
 
-import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
 import java.util.List;
 import lombok.Builder;
@@ -21,7 +20,6 @@ public class SlackListsItemsDeleteMultipleRequest implements SlackApiRequest {
     /**
      * ID of the List containing the items.
      */
-    @SerializedName("list_id")
     private String listId;
     
     /**
