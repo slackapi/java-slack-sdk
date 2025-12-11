@@ -11,7 +11,7 @@
 
 **Redirect URL** については Bolt for Java では `https://{あなたのドメイン}/slack/oauth/callback` のような URL で応答します。この URL を変更する方法などはこのページのあとのセクションの一覧を参照してください。
 
-Bolt for Java は、バージョン 1.4.0 から自動的に [OrG 全体へのインストール機能](/enterprise-grid/)に対応しています。OrG 全体へのインストールは、Slack アプリ管理画面の **Org Level Apps** にある設定から有効にしてください。
+Bolt for Java は、バージョン 1.4.0 から自動的に [OrG 全体へのインストール機能](/enterprise)に対応しています。OrG 全体へのインストールは、Slack アプリ管理画面の **Org Level Apps** にある設定から有効にしてください。
 
 ### Bolt アプリがやること
 
