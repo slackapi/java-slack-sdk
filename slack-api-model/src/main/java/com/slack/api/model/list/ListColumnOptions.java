@@ -40,6 +40,8 @@ public class ListColumnOptions {
     @AllArgsConstructor
     public static class DefaultValue {
         private List<String> select;
+        private List<String> user;
+        private List<String> channel;
     }
 
     @Data

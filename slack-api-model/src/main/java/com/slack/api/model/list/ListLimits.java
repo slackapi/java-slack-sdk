@@ -13,6 +13,7 @@ public class ListLimits {
     private Boolean overRowMaximum;
     private Integer rowCountLimit;
     private Integer rowCount;
+    private Integer archivedRowCount;
     private Boolean overColumnMaximum;
     private Integer columnCount;
     private Integer columnCountLimit;

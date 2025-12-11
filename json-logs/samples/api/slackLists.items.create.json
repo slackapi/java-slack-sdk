@@ -1,0 +1,44 @@
+{
+  "ok": false,
+  "item": {
+    "id": "",
+    "list_id": "",
+    "date_created": 12345,
+    "created_by": "",
+    "updated_by": "",
+    "fields": [
+      {
+        "key": "",
+        "column_id": "",
+        "value": "",
+        "rich_text": [
+          {
+            "type": "",
+            "elements": [
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "type": "",
+                    "text": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "checkbox": false
+      }
+    ],
+    "updated_timestamp": ""
+  },
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": ""
+}

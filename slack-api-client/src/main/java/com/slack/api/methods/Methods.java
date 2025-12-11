@@ -648,13 +648,29 @@ public class Methods {
     public static final String SEARCH_MESSAGES = "search.messages";
 
     // ------------------------------
+    // slackLists
+    // ------------------------------
+
+    public static final String SLACKLISTS_ACCESS_DELETE = "slackLists.access.delete";
+    public static final String SLACKLISTS_ACCESS_SET = "slackLists.access.set";
+    public static final String SLACKLISTS_CREATE = "slackLists.create";
+    public static final String SLACKLISTS_DOWNLOAD_GET = "slackLists.download.get";
+    public static final String SLACKLISTS_DOWNLOAD_START = "slackLists.download.start";
+    public static final String SLACKLISTS_ITEMS_CREATE = "slackLists.items.create";
+    public static final String SLACKLISTS_ITEMS_DELETE = "slackLists.items.delete";
+    public static final String SLACKLISTS_ITEMS_DELETE_MULTIPLE = "slackLists.items.deleteMultiple";
+    public static final String SLACKLISTS_ITEMS_INFO = "slackLists.items.info";
+    public static final String SLACKLISTS_ITEMS_LIST = "slackLists.items.list";
+    public static final String SLACKLISTS_ITEMS_UPDATE = "slackLists.items.update";
+    public static final String SLACKLISTS_UPDATE = "slackLists.update";
+
+    // ------------------------------
     // stars
     // ------------------------------
 
     public static final String STARS_ADD = "stars.add";
     public static final String STARS_LIST = "stars.list";
     public static final String STARS_REMOVE = "stars.remove";
-
     // ------------------------------
     // team
     // ------------------------------

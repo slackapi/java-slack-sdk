@@ -1,0 +1,43 @@
+{
+  "ok": false,
+  "list_id": "F00000000",
+  "list_metadata": {
+    "schema": [
+      {
+        "key": "",
+        "name": "",
+        "is_primary_column": false,
+        "type": "",
+        "id": "",
+        "options": {
+          "format": "",
+          "show_member_name": false,
+          "choices": [
+            {
+              "value": "",
+              "label": "",
+              "color": ""
+            }
+          ]
+        }
+      }
+    ],
+    "subtask_schema": [
+      {
+        "key": "",
+        "name": "",
+        "is_primary_column": false,
+        "type": "",
+        "id": "",
+        "options": {
+          "format": "",
+          "show_member_name": false
+        }
+      }
+    ]
+  },
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": ""
+}

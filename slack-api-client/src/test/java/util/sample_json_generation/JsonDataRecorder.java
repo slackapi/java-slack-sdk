@@ -275,6 +275,7 @@ public class JsonDataRecorder {
 
     private static final List<String> COMMON_TOP_LEVEL_PROPERTY_NAMES = Arrays.asList(
             "ok",
+            "warning",
             "error",
             "needed",
             "provided"

@@ -114,6 +114,18 @@ import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.search.SearchAllRequest;
 import com.slack.api.methods.request.search.SearchFilesRequest;
 import com.slack.api.methods.request.search.SearchMessagesRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessSetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadStartRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -2773,6 +2785,134 @@ public class RequestFormBuilder {
         setIfNotNull("file", req.getFile(), form);
         setIfNotNull("file_comment", req.getFileComment(), form);
         setIfNotNull("timestamp", req.getTimestamp(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsAccessDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        if (req.getUserIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUserIds());
+            form.add("user_ids", json);
+        }
+        if (req.getChannelIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds());
+            form.add("channel_ids", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsAccessSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("access_level", req.getAccessLevel(), form);
+        if (req.getUserIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUserIds());
+            form.add("user_ids", json);
+        }
+        if (req.getChannelIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds());
+            form.add("channel_ids", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("name", req.getName(), form);
+        if (req.getDescriptionBlocks() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getDescriptionBlocks());
+            form.add("description_blocks", json);
+        }
+        if (req.getSchema() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getSchema());
+            form.add("schema", json);
+        }
+        setIfNotNull("copy_from_list_id", req.getCopyFromListId(), form);
+        setIfNotNull("include_copied_list_records", req.getIncludeCopiedListRecords(), form);
+        setIfNotNull("todo_mode", req.getTodoMode(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsDownloadGetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("job_id", req.getJobId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsDownloadStartRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("include_archived", req.getIncludeArchived(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("duplicated_item_id", req.getDuplicatedItemId(), form);
+        setIfNotNull("parent_item_id", req.getParentItemId(), form);
+        if (req.getInitialFields() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getInitialFields());
+            form.add("intial_fields", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("id", req.getId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsDeleteMultipleRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        if (req.getIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getIds());
+            form.add("ids", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("id", req.getId(), form);
+        setIfNotNull("include_is_subscribed", req.getIncludeIsSubscribed(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("archived", req.getArchived(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsItemsUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("list_id", req.getListId(), form);
+        if (req.getCells() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getCells());
+            form.add("cells", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackListsUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("id", req.getId(), form);
+        setIfNotNull("name", req.getName(), form);
+        if (req.getDescriptionBlocks() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getDescriptionBlocks());
+            form.add("description_blocks", json);
+        }
+        setIfNotNull("todo_mode", req.getTodoMode(), form);
         return form;
     }
 
