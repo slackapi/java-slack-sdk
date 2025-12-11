@@ -1,6 +1,6 @@
 # Audit Logs API
 
-[Audit Logs API](/admins/audit-logs-api) は [Enterprise Grid](/enterprise-grid/) の [OrG](https://slack.com/intl/ja-jp/help/articles/360004150931) 内で発生したイベントをモニタリングするための API 群です。
+[Audit Logs API](/admins/audit-logs-api) は [Enterprise Grid](/enterprise) の [OrG](https://slack.com/intl/ja-jp/help/articles/360004150931) 内で発生したイベントをモニタリングするための API 群です。
 
 Audit Logs API は、各種 SIEM (Security Information and Event Management) ツールによって Slack の OrG がどのようにアクセスされているかの分析結果を提供するために利用されることがあります。アプリケーションを開発して OrG のメンバーがどのように Slack を使っているかを確認する用途にも利用できます。
 
