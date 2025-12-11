@@ -1,6 +1,5 @@
 package com.slack.api.methods.request.slack_lists;
 
-import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.list.ListColumn;
@@ -41,13 +40,11 @@ public class SlackListsCreateRequest implements SlackApiRequest {
     /**
      * ID of the List to copy. (Optional)
      */
-    @SerializedName("copy_from_list_id")
     private String copyFromListId;
 
     /**
      * Boolean indicating whether to include records when a List is copied. (Optional)
      */
-    @SerializedName("include_copied_list_records")
     private Boolean includeCopiedListRecords;
 
     /**
