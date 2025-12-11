@@ -150,7 +150,7 @@ app.step(step);
 ---
 ## Executing Steps from Apps
 
-When your workflow step is executed by an end user, your app will receive a [`workflow_step_execute`](/reference/events/workflow_step_execute) event. The `execute` callback in your `WorkflowStep` configuration will be run when this event is received.
+When your workflow step is executed by an end user, your app will receive a `workflow_step_execute` event. The `execute` callback in your `WorkflowStep` configuration will be run when this event is received.
 
 Using the `inputs` from the `save` callback, this is where you can make third-party API calls, save information to a database, update the user's Home tab, or decide the outputs that will be available to subsequent steps from apps by mapping values to the `outputs` object.
 
