@@ -671,7 +671,6 @@ public class Methods {
     public static final String STARS_ADD = "stars.add";
     public static final String STARS_LIST = "stars.list";
     public static final String STARS_REMOVE = "stars.remove";
-    
     // ------------------------------
     // team
     // ------------------------------
