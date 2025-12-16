@@ -145,6 +145,10 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedAddRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedListRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedRemoveRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedSetRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
@@ -3228,6 +3232,45 @@ public class RequestFormBuilder {
             setIfNotNull("view", GSON.toJson(req.getView()), form);
         }
         setIfNotNull("hash", req.getHash(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(WorkflowsFeaturedAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getTriggerIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getTriggerIds());
+            form.add("trigger_ids", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(WorkflowsFeaturedListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getChannelIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds());
+            form.add("channel_ids", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(WorkflowsFeaturedRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getTriggerIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getTriggerIds());
+            form.add("trigger_ids", json);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(WorkflowsFeaturedSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getTriggerIds() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getTriggerIds());
+            form.add("trigger_ids", json);
+        }
         return form;
     }
 

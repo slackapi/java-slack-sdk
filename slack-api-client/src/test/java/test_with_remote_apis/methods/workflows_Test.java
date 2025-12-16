@@ -1,6 +1,10 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedAddResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedListResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedRemoveResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
@@ -40,6 +44,54 @@ public class workflows_Test {
     }
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+
+    @Test
+    public void workflowsFeaturedAdd() throws ExecutionException, InterruptedException {
+        List<String> triggerIds = new ArrayList<>();
+        triggerIds.add("dummy-trigger-id");
+        
+        WorkflowsFeaturedAddResponse workflowsFeaturedAddResponse = slack.methodsAsync(botToken)
+                .workflowsFeaturedAdd(r -> r
+                        .channelId("dummy-channel-id")
+                        .triggerIds(triggerIds)
+                ).get();
+        assertThat(workflowsFeaturedAddResponse.getError(), is(notNullValue()));
+    }
+
+    @Test
+    public void workflowsFeaturedList() throws ExecutionException, InterruptedException {
+        WorkflowsFeaturedListResponse workflowsFeaturedListResponse = slack.methodsAsync(botToken)
+                .workflowsFeaturedList(r -> r
+                        .channelIds("dummy-channel-id")
+                ).get();
+        assertThat(workflowsFeaturedListResponse.getError(), is(notNullValue()));
+    }
+
+    @Test
+    public void workflowsFeaturedRemove() throws ExecutionException, InterruptedException {
+        List<String> triggerIds = new ArrayList<>();
+        triggerIds.add("dummy-trigger-id");
+
+        WorkflowsFeaturedRemoveResponse workflowsFeaturedRemoveResponse = slack.methodsAsync(botToken)
+                .workflowsFeaturedRemove(r -> r
+                        .channelId("dummy-channel-id")
+                        .triggerIds(triggerIds)
+                ).get();
+        assertThat(workflowsFeaturedRemoveResponse.getError(), is(notNullValue()));
+    }
+
+    @Test
+    public void workflowsFeaturedSet() throws ExecutionException, InterruptedException {
+        List<String> triggerIds = new ArrayList<>();
+        triggerIds.add("dummy-trigger-id");
+
+        WorkflowsFeaturedSetResponse workflowsFeaturedSetResponse = slack.methodsAsync(botToken)
+                .workflowsFeaturedSet(r -> r
+                        .channelId("dummy-channel-id")
+                        .triggerIds(triggerIds)
+                ).get();
+        assertThat(workflowsFeaturedSetResponse.getError(), is(notNullValue()));
+    }
 
     @Test
     public void workflowsUpdateStep() throws ExecutionException, InterruptedException {

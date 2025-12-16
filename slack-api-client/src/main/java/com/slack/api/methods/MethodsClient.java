@@ -145,6 +145,10 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedAddRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedListRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedRemoveRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedSetRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
@@ -292,6 +296,10 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedAddResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedListResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedRemoveResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
@@ -2814,6 +2822,34 @@ public interface MethodsClient {
     // ------------------------------
     // workflows
     // ------------------------------
+
+    WorkflowsFeaturedAddResponse workflowsFeaturedAdd(WorkflowsFeaturedAddRequest req)
+            throws IOException, SlackApiException;
+
+    WorkflowsFeaturedAddResponse workflowsFeaturedAdd(
+            RequestConfigurator<WorkflowsFeaturedAddRequest.WorkflowsFeaturedAddRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    WorkflowsFeaturedListResponse workflowsFeaturedList(WorkflowsFeaturedListRequest req)
+            throws IOException, SlackApiException;
+
+    WorkflowsFeaturedListResponse workflowsFeaturedList(
+            RequestConfigurator<WorkflowsFeaturedListRequest.WorkflowsFeaturedListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    WorkflowsFeaturedRemoveResponse workflowsFeaturedRemove(WorkflowsFeaturedRemoveRequest req)
+            throws IOException, SlackApiException;
+
+    WorkflowsFeaturedRemoveResponse workflowsFeaturedRemove(
+            RequestConfigurator<WorkflowsFeaturedRemoveRequest.WorkflowsFeaturedRemoveRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    WorkflowsFeaturedSetResponse workflowsFeaturedSet(WorkflowsFeaturedSetRequest req)
+            throws IOException, SlackApiException;
+
+    WorkflowsFeaturedSetResponse workflowsFeaturedSet(
+            RequestConfigurator<WorkflowsFeaturedSetRequest.WorkflowsFeaturedSetRequestBuilder> req)
+            throws IOException, SlackApiException;
 
     WorkflowsStepCompletedResponse workflowsStepCompleted(WorkflowsStepCompletedRequest req)
             throws IOException, SlackApiException;

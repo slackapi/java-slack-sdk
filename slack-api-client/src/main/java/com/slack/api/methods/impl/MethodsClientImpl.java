@@ -147,6 +147,10 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedAddRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedListRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedRemoveRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedSetRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
@@ -295,6 +299,10 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedAddResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedListResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedRemoveResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
@@ -3721,6 +3729,46 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ViewsPublishResponse viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) throws IOException, SlackApiException {
         return viewsPublish(req.configure(ViewsPublishRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedAddResponse workflowsFeaturedAdd(WorkflowsFeaturedAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_ADD, getToken(req), WorkflowsFeaturedAddResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedAddResponse workflowsFeaturedAdd(RequestConfigurator<WorkflowsFeaturedAddRequest.WorkflowsFeaturedAddRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedAdd(req.configure(WorkflowsFeaturedAddRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedListResponse workflowsFeaturedList(WorkflowsFeaturedListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_LIST, getToken(req), WorkflowsFeaturedListResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedListResponse workflowsFeaturedList(RequestConfigurator<WorkflowsFeaturedListRequest.WorkflowsFeaturedListRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedList(req.configure(WorkflowsFeaturedListRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedRemoveResponse workflowsFeaturedRemove(WorkflowsFeaturedRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_REMOVE, getToken(req), WorkflowsFeaturedRemoveResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedRemoveResponse workflowsFeaturedRemove(RequestConfigurator<WorkflowsFeaturedRemoveRequest.WorkflowsFeaturedRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedRemove(req.configure(WorkflowsFeaturedRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedSetResponse workflowsFeaturedSet(WorkflowsFeaturedSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_SET, getToken(req), WorkflowsFeaturedSetResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedSetResponse workflowsFeaturedSet(RequestConfigurator<WorkflowsFeaturedSetRequest.WorkflowsFeaturedSetRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedSet(req.configure(WorkflowsFeaturedSetRequest.builder()).build());
     }
 
     @Override
