@@ -3039,42 +3039,42 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedAddResponse> WorkflowsFeaturedAdd(WorkflowsFeaturedAddRequest req) {
+    public CompletableFuture<WorkflowsFeaturedAddResponse> workflowsFeaturedAdd(WorkflowsFeaturedAddRequest req) {
         return executor.execute(WORKFLOWS_FEATURED_ADD, toMap(req), () -> methods.workflowsFeaturedAdd(req));
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedAddResponse> WorkflowsFeaturedAdd(RequestConfigurator<WorkflowsFeaturedAddRequest.WorkflowsFeaturedAddRequestBuilder> req) {
+    public CompletableFuture<WorkflowsFeaturedAddResponse> workflowsFeaturedAdd(RequestConfigurator<WorkflowsFeaturedAddRequest.WorkflowsFeaturedAddRequestBuilder> req) {
         return workflowsFeaturedAdd(req.configure(WorkflowsFeaturedAddRequest.builder()).build());
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedListResponse> WorkflowsFeaturedList(WorkflowsFeaturedListRequest req) {
+    public CompletableFuture<WorkflowsFeaturedListResponse> workflowsFeaturedList(WorkflowsFeaturedListRequest req) {
         return executor.execute(WORKFLOWS_FEATURED_LIST, toMap(req), () -> methods.workflowsFeaturedList(req));
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedListResponse> WorkflowsFeaturedList(RequestConfigurator<WorkflowsFeaturedListRequest.WorkflowsFeaturedListRequestBuilder> req) {
+    public CompletableFuture<WorkflowsFeaturedListResponse> workflowsFeaturedList(RequestConfigurator<WorkflowsFeaturedListRequest.WorkflowsFeaturedListRequestBuilder> req) {
         return workflowsFeaturedList(req.configure(WorkflowsFeaturedListRequest.builder()).build());
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedRemoveResponse> WorkflowsFeaturedRemove(WorkflowsFeaturedRemoveRequest req) {
+    public CompletableFuture<WorkflowsFeaturedRemoveResponse> workflowsFeaturedRemove(WorkflowsFeaturedRemoveRequest req) {
         return executor.execute(WORKFLOWS_FEATURED_REMOVE, toMap(req), () -> methods.workflowsFeaturedRemove(req));
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedRemoveResponse> WorkflowsFeaturedRemove(RequestConfigurator<WorkflowsFeaturedRemoveRequest.WorkflowsFeaturedRemoveRequestBuilder> req) {
+    public CompletableFuture<WorkflowsFeaturedRemoveResponse> workflowsFeaturedRemove(RequestConfigurator<WorkflowsFeaturedRemoveRequest.WorkflowsFeaturedRemoveRequestBuilder> req) {
         return workflowsFeaturedRemove(req.configure(WorkflowsFeaturedRemoveRequest.builder()).build());
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedSetResponse> WorkflowsFeaturedSet(WorkflowsFeaturedSetRequest req) {
+    public CompletableFuture<WorkflowsFeaturedSetResponse> workflowsFeaturedSet(WorkflowsFeaturedSetRequest req) {
         return executor.execute(WORKFLOWS_FEATURED_SET, toMap(req), () -> methods.workflowsFeaturedSet(req));
     }
 
     @Override
-    public CompletableFuture<WorkflowsFeaturedSetResponse> WorkflowsFeaturedSet(RequestConfigurator<WorkflowsFeaturedSetRequest.WorkflowsFeaturedSetRequestBuilder> req) {
+    public CompletableFuture<WorkflowsFeaturedSetResponse> workflowsFeaturedSet(RequestConfigurator<WorkflowsFeaturedSetRequest.WorkflowsFeaturedSetRequestBuilder> req) {
         return workflowsFeaturedSet(req.configure(WorkflowsFeaturedSetRequest.builder()).build());
     }
 

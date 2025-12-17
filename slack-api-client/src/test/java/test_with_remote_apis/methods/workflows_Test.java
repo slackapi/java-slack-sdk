@@ -60,9 +60,11 @@ public class workflows_Test {
 
     @Test
     public void workflowsFeaturedList() throws ExecutionException, InterruptedException {
+        List<String> channelIds = new ArrayList<>();
+        channelIds.add("dummy-channel-id");
         WorkflowsFeaturedListResponse workflowsFeaturedListResponse = slack.methodsAsync(botToken)
                 .workflowsFeaturedList(r -> r
-                        .channelIds("dummy-channel-id")
+                        .channelIds(channelIds)
                 ).get();
         assertThat(workflowsFeaturedListResponse.getError(), is(notNullValue()));
     }
