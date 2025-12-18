@@ -184,6 +184,7 @@ public class MethodsRateLimits {
 
         // Tier4
         final List<String> adminApiMethods_Tier4 = Arrays.asList(
+                ADMIN_USERS_GET_EXPIRATION,
                 ADMIN_USERS_SESSION_GET_SETTINGS,
                 ADMIN_USERS_SESSION_SET_SETTINGS,
                 ADMIN_USERS_SESSION_CLEAR_SETTINGS,

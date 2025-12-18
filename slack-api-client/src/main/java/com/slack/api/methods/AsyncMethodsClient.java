@@ -688,6 +688,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminUsersAssignResponse> adminUsersAssign(RequestConfigurator<AdminUsersAssignRequest.AdminUsersAssignRequestBuilder> req);
 
+    CompletableFuture<AdminUsersGetExpirationResponse> adminUsersGetExpiration(AdminUsersGetExpirationRequest req);
+
+    CompletableFuture<AdminUsersGetExpirationResponse> adminUsersGetExpiration(RequestConfigurator<AdminUsersGetExpirationRequest.AdminUsersGetExpirationRequestBuilder> req);
+
     CompletableFuture<AdminUsersInviteResponse> adminUsersInvite(AdminUsersInviteRequest req);
 
     CompletableFuture<AdminUsersInviteResponse> adminUsersInvite(RequestConfigurator<AdminUsersInviteRequest.AdminUsersInviteRequestBuilder> req);

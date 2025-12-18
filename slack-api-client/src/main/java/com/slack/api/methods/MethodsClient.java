@@ -969,6 +969,12 @@ public interface MethodsClient {
             RequestConfigurator<AdminUsersAssignRequest.AdminUsersAssignRequestBuilder> req)
             throws IOException, SlackApiException;
 
+    AdminUsersGetExpirationResponse adminUsersGetExpiration(AdminUsersGetExpirationRequest req) throws IOException, SlackApiException;
+
+    AdminUsersGetExpirationResponse adminUsersGetExpiration(
+            RequestConfigurator<AdminUsersGetExpirationRequest.AdminUsersGetExpirationRequestBuilder> req)
+            throws IOException, SlackApiException;
+
     AdminUsersInviteResponse adminUsersInvite(AdminUsersInviteRequest req) throws IOException, SlackApiException;
 
     AdminUsersInviteResponse adminUsersInvite(

@@ -182,6 +182,7 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_USERS_ASSIGN = "admin.users.assign";
+    public static final String ADMIN_USERS_GET_EXPIRATION= "admin.users.getExpiration";
     public static final String ADMIN_USERS_INVITE = "admin.users.invite";
     public static final String ADMIN_USERS_LIST = "admin.users.list";
     public static final String ADMIN_USERS_REMOVE = "admin.users.remove";
