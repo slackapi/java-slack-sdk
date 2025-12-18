@@ -77,6 +77,7 @@
   "admin.usergroups.listChannels": "Tier2",
   "admin.usergroups.removeChannels": "Tier2",
   "admin.users.assign": "Tier2",
+  "admin.users.getExpiration": "Tier4",
   "admin.users.invite": "Tier2",
   "admin.users.list": "Tier3",
   "admin.users.remove": "Tier2",

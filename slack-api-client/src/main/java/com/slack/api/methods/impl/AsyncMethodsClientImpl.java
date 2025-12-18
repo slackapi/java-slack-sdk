@@ -1106,6 +1106,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminUsersGetExpirationResponse> adminUsersGetExpiration(AdminUsersGetExpirationRequest req) {
+        return executor.execute(ADMIN_USERS_GET_EXPIRATION, toMap(req), () -> methods.adminUsersGetExpiration(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsersGetExpirationResponse> adminUsersGetExpiration(RequestConfigurator<AdminUsersGetExpirationRequest.AdminUsersGetExpirationRequestBuilder> req) {
+        return adminUsersGetExpiration(req.configure(AdminUsersGetExpirationRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminUsersInviteResponse> adminUsersInvite(AdminUsersInviteRequest req) {
         return executor.execute(ADMIN_USERS_INVITE, toMap(req), () -> methods.adminUsersInvite(req));
     }

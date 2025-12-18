@@ -1147,6 +1147,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminUsersGetExpirationResponse adminUsersGetExpiration(RequestConfigurator<AdminUsersGetExpirationRequest.AdminUsersGetExpirationRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersGetExpiration(req.configure(AdminUsersGetExpirationRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersGetExpirationResponse adminUsersGetExpiration(AdminUsersGetExpirationRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_GET_EXPIRATION, getToken(req), AdminUsersGetExpirationResponse.class);
+    }
+
+    @Override
     public AdminUsersInviteResponse adminUsersInvite(AdminUsersInviteRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_INVITE, getToken(req), AdminUsersInviteResponse.class);
     }

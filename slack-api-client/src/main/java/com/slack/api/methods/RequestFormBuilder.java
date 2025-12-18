@@ -913,6 +913,13 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminUsersGetExpirationRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("user_id", req.getUserId(), form);
+        setIfNotNull("target_team", req.getTargetTeam(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminUsersInviteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
