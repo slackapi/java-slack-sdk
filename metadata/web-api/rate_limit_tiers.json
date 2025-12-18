@@ -316,6 +316,10 @@
   "views.publish": "Tier4",
   "views.push": "Tier4",
   "views.update": "Tier4",
+  "workflows.featured.add": "Tier2",
+  "workflows.featured.list": "Tier2",
+  "workflows.featured.remove": "Tier2",
+  "workflows.featured.set": "Tier2",
   "workflows.stepCompleted": "Tier2",
   "workflows.stepFailed": "Tier2",
   "workflows.updateStep": "Tier2"

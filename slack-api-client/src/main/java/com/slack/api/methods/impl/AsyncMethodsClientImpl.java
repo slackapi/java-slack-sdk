@@ -136,6 +136,10 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedAddRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedListRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedRemoveRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedSetRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
@@ -270,6 +274,10 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedAddResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedListResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedRemoveResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
@@ -3028,6 +3036,46 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ViewsPublishResponse> viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) {
         return viewsPublish(req.configure(ViewsPublishRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedAddResponse> workflowsFeaturedAdd(WorkflowsFeaturedAddRequest req) {
+        return executor.execute(WORKFLOWS_FEATURED_ADD, toMap(req), () -> methods.workflowsFeaturedAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedAddResponse> workflowsFeaturedAdd(RequestConfigurator<WorkflowsFeaturedAddRequest.WorkflowsFeaturedAddRequestBuilder> req) {
+        return workflowsFeaturedAdd(req.configure(WorkflowsFeaturedAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedListResponse> workflowsFeaturedList(WorkflowsFeaturedListRequest req) {
+        return executor.execute(WORKFLOWS_FEATURED_LIST, toMap(req), () -> methods.workflowsFeaturedList(req));
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedListResponse> workflowsFeaturedList(RequestConfigurator<WorkflowsFeaturedListRequest.WorkflowsFeaturedListRequestBuilder> req) {
+        return workflowsFeaturedList(req.configure(WorkflowsFeaturedListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedRemoveResponse> workflowsFeaturedRemove(WorkflowsFeaturedRemoveRequest req) {
+        return executor.execute(WORKFLOWS_FEATURED_REMOVE, toMap(req), () -> methods.workflowsFeaturedRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedRemoveResponse> workflowsFeaturedRemove(RequestConfigurator<WorkflowsFeaturedRemoveRequest.WorkflowsFeaturedRemoveRequestBuilder> req) {
+        return workflowsFeaturedRemove(req.configure(WorkflowsFeaturedRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedSetResponse> workflowsFeaturedSet(WorkflowsFeaturedSetRequest req) {
+        return executor.execute(WORKFLOWS_FEATURED_SET, toMap(req), () -> methods.workflowsFeaturedSet(req));
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsFeaturedSetResponse> workflowsFeaturedSet(RequestConfigurator<WorkflowsFeaturedSetRequest.WorkflowsFeaturedSetRequestBuilder> req) {
+        return workflowsFeaturedSet(req.configure(WorkflowsFeaturedSetRequest.builder()).build());
     }
 
     @Override
