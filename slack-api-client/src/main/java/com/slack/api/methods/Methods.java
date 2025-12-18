@@ -747,7 +747,10 @@ public class Methods {
     // ------------------------------
     // workflows
     // ------------------------------
-
+    public static final String WORKFLOWS_FEATURED_ADD = "workflows.featured.add";
+    public static final String WORKFLOWS_FEATURED_LIST = "workflows.featured.list";
+    public static final String WORKFLOWS_FEATURED_REMOVE = "workflows.featured.remove";
+    public static final String WORKFLOWS_FEATURED_SET = "workflows.featured.set";
     public static final String WORKFLOWS_STEP_COMPLETED = "workflows.stepCompleted";
     public static final String WORKFLOWS_STEP_FAILED = "workflows.stepFailed";
     public static final String WORKFLOWS_UPDATE_STEP = "workflows.updateStep";
