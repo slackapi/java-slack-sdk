@@ -24,7 +24,7 @@ public class WorkflowsFeaturedAddRequest implements SlackApiRequest {
     private String channelId;
 
     /**
-     * Comma-separated array of trigger IDs that will replace any existing featured workflows in the channel; max 15
+     * Comma-separated array of trigger IDs to add; max 15
      */
     private List<String> triggerIds;
 }
