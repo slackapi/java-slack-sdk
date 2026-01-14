@@ -1977,6 +1977,11 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatStreamHelper chatStreamHelper(RequestConfigurator<ChatStreamHelper.ChatStreamHelperBuilder> req){
+        return req.configure(ChatStreamHelper.builder().client(this)).build();
+    }
+
+    @Override
     public ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_UPDATE, getToken(req), ChatUpdateResponse.class);
     }

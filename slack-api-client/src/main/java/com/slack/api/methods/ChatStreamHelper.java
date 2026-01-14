@@ -21,19 +21,17 @@ import java.util.List;
  * This class provides a convenient interface for the chat.startStream, chat.appendStream, and chat.stopStream API
  * methods, with automatic buffering and state management.
  * <p>
- * Typical usage is to build a token-bound {@link MethodsClient} first, then construct this helper:
+ * Typical usage is to use the {@link MethodsClient#chatStreamHelper} method:
  *
  * <pre>
  * {@code
  * MethodsClient client = Slack.getInstance().methods(token);
- * ChatStreamHelper stream = ChatStreamHelper.builder()
- *     .client(client)
+ * ChatStreamHelper stream = client.chatStreamHelper(req -> req
  *     .channel("C0123456789")
  *     .threadTs("1700000001.123456")
  *     .recipientTeamId("T0123456789")
  *     .recipientUserId("U0123456789")
- *     .bufferSize(100)
- *     .build();
+ *     .bufferSize(100));
  *
  * stream.append("**hello wo");
  * stream.append("rld!**");
