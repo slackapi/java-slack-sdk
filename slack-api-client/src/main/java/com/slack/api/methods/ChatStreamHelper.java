@@ -68,7 +68,7 @@ public class ChatStreamHelper {
      * Default is 100.
      */
     @Builder.Default
-    private final int bufferSize = 100;
+    private final int bufferSize = 256;
 
     // Mutable state (not thread-safe)
     @Builder.Default
