@@ -41,7 +41,7 @@ public class AsyncChatStreamHelper {
     private final String recipientUserId;
 
     @Builder.Default
-    private final int bufferSize = 100;
+    private final int bufferSize = 256;
 
     @Builder.Default
     private StringBuilder buffer = new StringBuilder();
