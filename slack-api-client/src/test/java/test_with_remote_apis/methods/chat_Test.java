@@ -56,7 +56,7 @@ public class chat_Test {
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-    String teamId = "T09EX3FS2J3"; // Required if testing in an org environment. eg. "T0123ABC"
+    String teamId = null; // Required if testing in an org environment. eg. "T0123ABC"
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
@@ -71,7 +71,7 @@ public class chat_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    private String randomChannelId = "C0A30SRQAMU";
+    private String randomChannelId = null;
 
     void loadRandomChannelId() throws IOException, SlackApiException {
         if (randomChannelId == null) {
