@@ -76,10 +76,12 @@
         {
           "type": ""
         }
-      ]
+      ],
+      "has_slack_connect_invite_created": false
     }
   },
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

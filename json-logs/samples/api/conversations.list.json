@@ -87,7 +87,8 @@
             "data": {
               "file_id": "F00000000",
               "shared_ts": "0000000000.000000",
-              "folder_bookmark_id": ""
+              "folder_bookmark_id": "",
+              "mute_edit_updates": false
             },
             "is_disabled": false
           }
@@ -100,7 +101,8 @@
             "data": {
               "file_id": "F00000000",
               "shared_ts": "0000000000.000000",
-              "folder_bookmark_id": ""
+              "folder_bookmark_id": "",
+              "mute_edit_updates": false
             },
             "is_disabled": false
           }
@@ -115,7 +117,8 @@
             "workflow_trigger_id": "",
             "title": ""
           }
-        ]
+        ],
+        "has_slack_connect_invite_created": false
       }
     }
   ],
@@ -126,5 +129,6 @@
   "needed": "",
   "provided": "",
   "arg": "",
-  "callstack": ""
+  "callstack": "",
+  "warning": ""
 }
