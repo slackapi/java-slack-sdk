@@ -63,7 +63,7 @@ public class ChatStreamHelper {
      * The length of markdown_text to buffer in-memory before calling a method.
      * Increasing this value decreases the number of method calls made for the same amount of text,
      * which is useful to avoid rate limits.
-     * Default is 100.
+     * Default is 256.
      */
     @Builder.Default
     private final int bufferSize = 256;
