@@ -1017,7 +1017,7 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<ChatStopStreamResponse> chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req);
     
-    AsyncChatStreamHelper asyncChatStreamHelper(RequestConfigurator<AsyncChatStreamHelper.AsyncChatStreamHelperBuilder> req);
+    AsyncChatStreamHelper chatStream(RequestConfigurator<AsyncChatStreamHelper.AsyncChatStreamHelperBuilder> req);
     
     CompletableFuture<ChatUpdateResponse> chatUpdate(ChatUpdateRequest req);
 
