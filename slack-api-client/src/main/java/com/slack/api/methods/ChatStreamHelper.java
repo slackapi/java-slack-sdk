@@ -47,7 +47,7 @@ public class ChatStreamHelper {
     /**
      * The state of the chat stream.
      */
-    public enum State {
+    private enum StreamState {
         STARTING,
         IN_PROGRESS,
         COMPLETED
@@ -72,7 +72,7 @@ public class ChatStreamHelper {
     @Builder.Default
     private StringBuilder buffer = new StringBuilder();
     @Builder.Default
-    private State state = State.STARTING;
+    private StreamState state = StreamState.STARTING;
     private String streamTs;
 
     /**
@@ -88,7 +88,7 @@ public class ChatStreamHelper {
      * @throws SlackApiException        if a Slack API error occurs
      */
     public ChatAppendStreamResponse append(String markdownText) throws IOException, SlackApiException {
-        if (state == State.COMPLETED) {
+        if (state == StreamState.COMPLETED) {
             throw new SlackChatStreamException("Cannot append to stream: stream state is " + state);
         }
 
@@ -148,7 +148,7 @@ public class ChatStreamHelper {
             List<LayoutBlock> blocks,
             Message.Metadata metadata
     ) throws IOException, SlackApiException {
-        if (state == State.COMPLETED) {
+        if (state == StreamState.COMPLETED) {
             throw new SlackChatStreamException("Cannot stop stream: stream state is " + state);
         }
 
@@ -173,7 +173,7 @@ public class ChatStreamHelper {
             }
 
             streamTs = startResponse.getTs();
-            state = State.IN_PROGRESS;
+            state = StreamState.IN_PROGRESS;
         }
 
         ChatStopStreamResponse response = client.chatStopStream(ChatStopStreamRequest.builder()
@@ -184,7 +184,7 @@ public class ChatStreamHelper {
                 .metadata(metadata)
                 .build());
 
-        state = State.COMPLETED;
+        state = StreamState.COMPLETED;
         return response;
     }
 
@@ -216,7 +216,7 @@ public class ChatStreamHelper {
             }
 
             streamTs = startResponse.getTs();
-            state = State.IN_PROGRESS;
+            state = StreamState.IN_PROGRESS;
 
             // Create a response object to return (mimicking the append response structure)
             response = new ChatAppendStreamResponse();

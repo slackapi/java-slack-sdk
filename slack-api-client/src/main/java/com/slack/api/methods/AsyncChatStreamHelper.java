@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
 @Builder
 public class AsyncChatStreamHelper {
 
-    public enum State {
+    private enum StreamState {
         STARTING,
         IN_PROGRESS,
         COMPLETED
@@ -46,7 +46,7 @@ public class AsyncChatStreamHelper {
     @Builder.Default
     private StringBuilder buffer = new StringBuilder();
     @Builder.Default
-    private State state = State.STARTING;
+    private StreamState state = StreamState.STARTING;
     private String streamTs;
 
     /**
@@ -56,7 +56,7 @@ public class AsyncChatStreamHelper {
      * @return a future that completes with a response if the buffer was flushed; completes with null if buffering
      */
     public CompletableFuture<ChatAppendStreamResponse> append(String markdownText) {
-        if (state == State.COMPLETED) {
+        if (state == StreamState.COMPLETED) {
             CompletableFuture<ChatAppendStreamResponse> f = new CompletableFuture<>();
             f.completeExceptionally(new SlackChatStreamException("Cannot append to stream: stream state is " + state));
             return f;
@@ -89,7 +89,7 @@ public class AsyncChatStreamHelper {
             List<LayoutBlock> blocks,
             Message.Metadata metadata
     ) {
-        if (state == State.COMPLETED) {
+        if (state == StreamState.COMPLETED) {
             CompletableFuture<ChatStopStreamResponse> f = new CompletableFuture<>();
             f.completeExceptionally(new SlackChatStreamException("Cannot stop stream: stream state is " + state));
             return f;
@@ -115,7 +115,7 @@ public class AsyncChatStreamHelper {
                             throw ex;
                         }
                         streamTs = startResponse.getTs();
-                        state = State.IN_PROGRESS;
+                        state = StreamState.IN_PROGRESS;
                         return null;
                     });
         } else {
@@ -130,7 +130,7 @@ public class AsyncChatStreamHelper {
                         .metadata(metadata)
                         .build())
                 .thenApply(resp -> {
-                    state = State.COMPLETED;
+                    state = StreamState.COMPLETED;
                     return resp;
                 }));
     }
@@ -152,7 +152,7 @@ public class AsyncChatStreamHelper {
                             throw ex;
                         }
                         streamTs = startResponse.getTs();
-                        state = State.IN_PROGRESS;
+                        state = StreamState.IN_PROGRESS;
                         ChatAppendStreamResponse synth = new ChatAppendStreamResponse();
                         synth.setOk(startResponse.isOk());
                         synth.setChannel(startResponse.getChannel());

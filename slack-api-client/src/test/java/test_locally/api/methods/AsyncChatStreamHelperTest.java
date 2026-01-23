@@ -49,7 +49,6 @@ public class AsyncChatStreamHelperTest {
     
         ChatAppendStreamResponse resp = stream.append("hello").get();
         assertThat(resp, is(nullValue()));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.STARTING));
         assertThat(stream.getStreamTs(), is(nullValue()));
         assertThat(stream.getBuffer().toString(), is("hello"));
     }
@@ -63,7 +62,6 @@ public class AsyncChatStreamHelperTest {
 
         ChatAppendStreamResponse resp = stream.append("hey").get(); // triggers flush
         assertThat(resp.isOk(), is(true));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.IN_PROGRESS));
         assertThat(stream.getStreamTs(), is("0000000000.000000"));
         assertThat(stream.getBuffer().toString(), is(""));
     }
@@ -78,7 +76,6 @@ public class AsyncChatStreamHelperTest {
         stream.append("hello").get(); // buffered only
         ChatStopStreamResponse stop = stream.stop().get();
         assertThat(stop.isOk(), is(true));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.COMPLETED));
         assertThat(stream.getStreamTs(), is("0000000000.000000"));
     }
 
@@ -124,7 +121,6 @@ public class AsyncChatStreamHelperTest {
         stream.append("hello ").get();
         ChatStopStreamResponse stop = stream.stop("world!").get();
         assertThat(stop.isOk(), is(true));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.COMPLETED));
         assertThat(stream.getBuffer().toString(), is("hello world!"));
     }
 
@@ -145,7 +141,6 @@ public class AsyncChatStreamHelperTest {
                 metadata
         ).get();
         assertThat(stop.isOk(), is(true));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.COMPLETED));
     }
 
     @Test
@@ -158,13 +153,11 @@ public class AsyncChatStreamHelperTest {
         // Start the stream via append
         ChatAppendStreamResponse appendResp = stream.append("a").get();
         assertThat(appendResp.isOk(), is(true));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.IN_PROGRESS));
         assertThat(stream.getStreamTs(), is(notNullValue()));
 
         // Now stop - should not call startStream again
         ChatStopStreamResponse stop = stream.stop().get();
         assertThat(stop.isOk(), is(true));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.COMPLETED));
     }
 
     @Test
@@ -186,7 +179,6 @@ public class AsyncChatStreamHelperTest {
         stream.append("world").get();
 
         assertThat(stream.getBuffer().toString(), is("hello world"));
-        assertThat(stream.getState(), is(AsyncChatStreamHelper.State.STARTING));
     }
 }
 
