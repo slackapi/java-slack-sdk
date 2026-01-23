@@ -27,7 +27,8 @@
       },
       "channel_count": 12345,
       "users": [
-        ""
+        "",
+        "U00000000"
       ],
       "user_count": 12345,
       "is_section": false,
@@ -41,5 +42,6 @@
   ],
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

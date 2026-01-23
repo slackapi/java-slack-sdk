@@ -4,5 +4,6 @@
   "error": "",
   "needed": "",
   "provided": "",
-  "channel": "C00000000"
+  "channel": "C00000000",
+  "warning": ""
 }

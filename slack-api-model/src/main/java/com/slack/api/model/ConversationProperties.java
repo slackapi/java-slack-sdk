@@ -25,6 +25,7 @@ public class ConversationProperties {
     private String useCase;
     private List<ChannelWorkflow> channelWorkflows;
     private Boolean isDormant;
+    private Boolean hasSlackConnectInviteCreated;
 
     @Data
     @Builder
