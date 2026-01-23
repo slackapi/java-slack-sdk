@@ -1174,7 +1174,7 @@ public class chat_Test {
                 .text("Get ready to stream a response in thread! (async helper)"));
         assertThat(topMessage.getError(), is(nullValue()));
 
-        AsyncChatStreamHelper stream = slack.methodsAsync(botToken).asyncChatStreamHelper(req -> req
+        AsyncChatStreamHelper stream = slack.methodsAsync(botToken).chatStream(req -> req
                 .channel(randomChannelId)
                 .threadTs(topMessage.getTs())
                 .recipientUserId(userId)

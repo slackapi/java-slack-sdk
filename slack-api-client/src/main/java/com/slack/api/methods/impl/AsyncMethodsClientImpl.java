@@ -1743,7 +1743,7 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
-    public AsyncChatStreamHelper asyncChatStreamHelper(RequestConfigurator<AsyncChatStreamHelper.AsyncChatStreamHelperBuilder> req) {
+    public AsyncChatStreamHelper chatStream(RequestConfigurator<AsyncChatStreamHelper.AsyncChatStreamHelperBuilder> req) {
         return req.configure(AsyncChatStreamHelper.builder().client(this)).build();
     }
 

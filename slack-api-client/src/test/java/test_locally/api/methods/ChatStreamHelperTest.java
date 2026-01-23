@@ -41,7 +41,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void append_buffers_when_under_bufferSize() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(256));
@@ -55,7 +55,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void append_flushes_and_starts_stream_on_first_flush() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(3));
@@ -69,7 +69,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void append_flushes_with_appendStream_after_started() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(1));
@@ -89,7 +89,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void stop_starts_stream_if_needed_and_completes() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(1000));
@@ -103,7 +103,7 @@ public class ChatStreamHelperTest {
 
     @Test(expected = SlackChatStreamException.class)
     public void append_throws_after_completed() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(1000));
@@ -114,7 +114,7 @@ public class ChatStreamHelperTest {
 
     @Test(expected = SlackChatStreamException.class)
     public void stop_throws_after_completed() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(1000));
@@ -125,7 +125,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void stop_with_additional_markdown_text() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(1000));
@@ -139,7 +139,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void stop_with_blocks_and_metadata() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(1000));
@@ -159,7 +159,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void stop_after_stream_already_started() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .threadTs("123.123")
                 .bufferSize(1)); // force immediate flush
@@ -178,7 +178,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void default_buffer_size_is_256() {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123"));
 
         assertThat(stream.getBufferSize(), is(256));
@@ -186,7 +186,7 @@ public class ChatStreamHelperTest {
 
     @Test
     public void multiple_appends_accumulate_in_buffer() throws Exception {
-        ChatStreamHelper stream = slack.methods(ValidToken).chatStreamHelper(req -> req
+        ChatStreamHelper stream = slack.methods(ValidToken).chatStream(req -> req
                 .channel("C123")
                 .bufferSize(256));
 

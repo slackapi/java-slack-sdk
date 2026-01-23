@@ -1977,7 +1977,7 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatStreamHelper chatStreamHelper(RequestConfigurator<ChatStreamHelper.ChatStreamHelperBuilder> req){
+    public ChatStreamHelper chatStream(RequestConfigurator<ChatStreamHelper.ChatStreamHelperBuilder> req){
         return req.configure(ChatStreamHelper.builder().client(this)).build();
     }
 
