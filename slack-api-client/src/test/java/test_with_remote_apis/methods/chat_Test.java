@@ -2,6 +2,7 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.AsyncChatStreamHelper;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest.UnfurlMetadata;
@@ -32,6 +33,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.Assume;
 
 import java.io.IOException;
 import java.util.*;
@@ -1156,6 +1158,41 @@ public class chat_Test {
                         )
                     )
                 ));
+        assertThat(stops.isOk(), is(true));
+        assertThat(stops.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void streamMessages_async_helper() throws Exception {
+        AuthTestResponse auth = slack.methods(botToken).authTest(req -> req);
+        assertThat(auth.getError(), is(nullValue()));
+        loadRandomChannelId();
+        String userId = findUser();
+
+        ChatPostMessageResponse topMessage = slack.methods(botToken).chatPostMessage(req -> req
+                .channel(randomChannelId)
+                .text("Get ready to stream a response in thread! (async helper)"));
+        assertThat(topMessage.getError(), is(nullValue()));
+
+        AsyncChatStreamHelper stream = slack.methodsAsync(botToken).chatStream(req -> req
+                .channel(randomChannelId)
+                .threadTs(topMessage.getTs())
+                .recipientUserId(userId)
+                .recipientTeamId(auth.getTeamId())
+                .bufferSize(1));
+
+        // first append -> starts stream
+        ChatAppendStreamResponse first = stream.append("hello").get();
+        assertThat(first.isOk(), is(true));
+        assertThat(first.getError(), is(nullValue()));
+
+        // second append -> appendStream
+        ChatAppendStreamResponse second = stream.append(" world").get();
+        assertThat(second.isOk(), is(true));
+        assertThat(second.getError(), is(nullValue()));
+
+        // stop -> stopStream
+        ChatStopStreamResponse stops = stream.stop().get();
         assertThat(stops.isOk(), is(true));
         assertThat(stops.getError(), is(nullValue()));
     }
