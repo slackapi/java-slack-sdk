@@ -11,7 +11,10 @@ import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
 import com.slack.api.model.block.element.OverflowMenuElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
+import com.slack.api.util.annotation.Required;
 import com.slack.api.util.json.*;
+import lombok.Builder;
+import lombok.Data;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
@@ -25,6 +28,8 @@ import static com.slack.api.model.block.element.BlockElements.overflowMenu;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 
 public class JSONUtilityTest {
 
@@ -152,5 +157,25 @@ public class JSONUtilityTest {
         assertNotNull(json);
         parsed = f.deserialize(json, FunctionExecutedEvent.InputValue.class, context);
         assertThat(parsed.asStringArray(), is(Arrays.asList("C111", "C222")));
+    }
+
+    @Test
+    public void testRequiredAdapterFactory() {
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(new RequiredAdapterFactory()).create();
+
+        // Serialization
+        TestClassWithRequired instance = TestClassWithRequired.builder().build();
+        assertThrows(JsonParseException.class, () -> gson.toJson(instance));
+
+        // Deserialization
+        String json = "{\"name\": \"Hello\"}";
+        assertThrows(JsonParseException.class, () -> gson.fromJson(json, TestClassWithRequired.class));
+    }
+
+    @Data
+    @Builder
+    private static class TestClassWithRequired {
+        @Required private Integer id;
+        private String name;
     }
 }
