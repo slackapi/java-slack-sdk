@@ -13,13 +13,15 @@ import java.util.Arrays;
 import java.io.IOException;
 
 /**
- * Adapter factory for processing objects annotated with our custom annotation {@link Required}.
+ * Adapter factory for processing objects annotated with {@link Required}.  This annotation signals what properties
+ * of a model object are required, and thus should be expected to be initialized and non-null on every instance of
+ * said object.
  * <p>
  * For deserialization (e.g. converting JSON --> POJO), it ensures that any fields marked as {@link Required} are
  * present in the constructed object and nonnull.
  * <p>
- * For serialization (e.g. converting POJO --> JSON), it ensures that any fields marked as {@link Required} are
- * non-null and written to the JSON string.
+ * For serialization (e.g. converting POJO --> JSON), it ensures that any fields marked as {@link Required} are non-null
+ * in the construct object prior to serialization.
  */
 public class RequiredAdapterFactory implements TypeAdapterFactory {
     @Override
