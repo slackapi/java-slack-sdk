@@ -28,9 +28,13 @@ public class GsonFactory {
     }
 
     public static Gson createSnakeCase(boolean failOnUnknownProperties, boolean unknownPropertyDetection) {
+        return getBuilder(failOnUnknownProperties, unknownPropertyDetection).create();
+    }
+
+    public static GsonBuilder getBuilder(boolean failOnUnknownProperties, boolean unknownPropertyDetection) {
         GsonBuilder builder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProperties))
+                .registerTypeAdapter(File.class, new GsonFileFactory())
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProperties))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProperties))
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProperties))
@@ -45,9 +49,9 @@ public class GsonFactory {
                         new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
-            return builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory()).create();
-        } else {
-            return builder.create();
+            builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
+
+        return builder;
     }
 }

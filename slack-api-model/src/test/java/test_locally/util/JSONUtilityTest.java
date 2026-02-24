@@ -1,6 +1,7 @@
 package test_locally.util;
 
 import com.google.gson.*;
+import com.slack.api.model.annotation.FieldPredicate;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
@@ -11,8 +12,12 @@ import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
 import com.slack.api.model.block.element.OverflowMenuElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
+import com.slack.api.model.annotation.Required;
 import com.slack.api.util.json.*;
+import lombok.Builder;
+import lombok.Data;
 import org.junit.Test;
+import org.junit.runners.model.TestClass;
 import test_locally.unit.GsonFactory;
 
 import java.lang.reflect.Type;
@@ -23,8 +28,10 @@ import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.image;
 import static com.slack.api.model.block.element.BlockElements.overflowMenu;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 
 public class JSONUtilityTest {
 
@@ -152,5 +159,63 @@ public class JSONUtilityTest {
         assertNotNull(json);
         parsed = f.deserialize(json, FunctionExecutedEvent.InputValue.class, context);
         assertThat(parsed.asStringArray(), is(Arrays.asList("C111", "C222")));
+    }
+
+    @Test
+    public void testRequiredAdapterFactory_basicCase() {
+        Gson gson = GsonFactory.getBuilder(true, true)
+                .registerTypeAdapterFactory(new RequiredAdapterFactory()).create();
+
+        // Serialization
+        TestClassWithRequiredBasic instance = TestClassWithRequiredBasic.builder().build();
+        assertThrows(JsonParseException.class, () -> gson.toJson(instance));
+
+        // Deserialization
+        String json = "{\"name\": \"Hello\"}";
+        assertThrows(JsonParseException.class, () -> gson.fromJson(json, TestClassWithRequiredBasic.class));
+    }
+
+    @Test
+    public void testRequiredAdapterFactory_advancedCase() {
+        Gson gson = GsonFactory.getBuilder(true, true).registerTypeAdapterFactory(new RequiredAdapterFactory()).create();
+
+        // Serialization
+        JsonParseException e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().build()));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'id' failed validation in TestClassWithRequiredAdvanced using predicate IntegerGreaterThanZero"));
+
+        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).build()));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
+        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("").build()));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
+    }
+
+    @Data
+    @Builder
+    private static class TestClassWithRequiredBasic {
+        @Required private Integer id;
+        private String name;
+    }
+
+    @Data
+    @Builder
+    private static class TestClassWithRequiredAdvanced {
+        @Required(validator = IntegerGreaterThanZero.class)
+        private int id;
+        @Required(validator = NonEmptyString.class)
+        private String name;
+
+        public static class IntegerGreaterThanZero implements FieldPredicate {
+            @Override
+            public boolean test(Object obj) {
+                return obj instanceof Integer && (int)obj > 0;
+            }
+        }
+
+        public static class NonEmptyString implements FieldPredicate {
+            @Override
+            public boolean test(Object obj) {
+                return obj instanceof String && !((String) obj).isEmpty();
+            }
+        }
     }
 }
