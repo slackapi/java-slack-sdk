@@ -34,7 +34,7 @@ public class GsonFactory {
     public static GsonBuilder getBuilder(boolean failOnUnknownProperties, boolean unknownPropertyDetection) {
         GsonBuilder builder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(File.class, new GsonFileFactory())
+                .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProperties))
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProperties))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProperties))
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProperties))
