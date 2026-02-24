@@ -32,7 +32,7 @@ public class GsonFactory {
     public static Gson createSnakeCase() {
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        registerTypeAdapters(gsonBuilder, false);
+        registerTypeAdapters(gsonBuilder, false, false);
         return gsonBuilder.create();
     }
 
@@ -41,9 +41,10 @@ public class GsonFactory {
      */
     public static Gson createSnakeCase(SlackConfig config) {
         boolean failOnUnknownProps = config.isFailOnUnknownProperties();
+        boolean failOnRequiredProperties = config.isFailOnRequiredProperties();
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        registerTypeAdapters(gsonBuilder, failOnUnknownProps);
+        registerTypeAdapters(gsonBuilder, failOnUnknownProps, failOnRequiredProperties);
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
@@ -58,8 +59,9 @@ public class GsonFactory {
      */
     public static Gson createCamelCase(SlackConfig config) {
         boolean failOnUnknownProps = config.isFailOnUnknownProperties();
+        boolean failOnRequiredProperties = config.isFailOnRequiredProperties();
         GsonBuilder gsonBuilder = new GsonBuilder();
-        registerTypeAdapters(gsonBuilder, failOnUnknownProps);
+        registerTypeAdapters(gsonBuilder, failOnUnknownProps, failOnRequiredProperties);
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
@@ -69,7 +71,7 @@ public class GsonFactory {
         return gsonBuilder.create();
     }
 
-    public static void registerTypeAdapters(GsonBuilder builder, boolean failOnUnknownProps) {
+    public static void registerTypeAdapters(GsonBuilder builder, boolean failOnUnknownProps, boolean failOnRequiredProperties) {
         builder
                 .registerTypeAdapter(Instant.class, new JavaTimeInstantFactory(failOnUnknownProps))
                 .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProps))
@@ -86,5 +88,9 @@ public class GsonFactory {
                 .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
+
+        if (failOnRequiredProperties) {
+            builder.registerTypeAdapterFactory(new RequiredAdapterFactory());
+        }
     }
 }

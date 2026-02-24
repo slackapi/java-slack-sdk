@@ -7,8 +7,10 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.slack.api.util.annotation.Required;
+import com.slack.api.model.annotation.FieldPredicate;
+import com.slack.api.model.annotation.Required;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.io.IOException;
 
@@ -27,15 +29,6 @@ public class RequiredAdapterFactory implements TypeAdapterFactory {
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
         TypeAdapter<T> delegate = gson.getDelegateAdapter(this, type);
-
-        // Check if there are any fields that have the @Required annotation.  If there aren't,
-        // we can directly delegate to the underlying type factory
-        boolean hasRequiredAnnotation = Arrays.stream(type.getRawType().getDeclaredFields())
-                .anyMatch(field -> field.isAnnotationPresent(Required.class));
-
-        if (!hasRequiredAnnotation) {
-            return delegate;
-        }
 
         return new TypeAdapter<T>() {
             @Override
@@ -62,18 +55,16 @@ public class RequiredAdapterFactory implements TypeAdapterFactory {
     private <T> void ensureFieldValidity(T obj) {
         Arrays.asList(obj.getClass().getDeclaredFields()).forEach(field -> {
             if (field.isAnnotationPresent(Required.class)) {
-                // Primitives get initialized by the JVM, so if the annotation was used
-                // on any primitives, it doesn't really make sense to check this
-                if (!field.getType().isPrimitive()) {
-                    field.setAccessible(true);
-                    try {
-                        if (field.get(obj) == null) {
-                            throw new JsonParseException("Required field '" + field.getName() + "' is missing in "
-                                    + obj.getClass().getSimpleName());
-                        }
-                    } catch (IllegalAccessException e) {
-                        throw new JsonParseException("Cannot access field: " + field.getName(), e);
+                field.setAccessible(true);
+                try {
+                    FieldPredicate predicate = field.getAnnotation(Required.class).validator().getDeclaredConstructor().newInstance();
+                    if (!predicate.test(field.get(obj))) {
+                        throw new JsonParseException("Required field '" + field.getName() + "' failed validation in "
+                            + obj.getClass().getSimpleName() + " using predicate " + predicate.getClass().getSimpleName());
                     }
+                } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                         InvocationTargetException e) {
+                    throw new JsonParseException("Cannot parse field: " + field.getName(), e);
                 }
             }
         });
