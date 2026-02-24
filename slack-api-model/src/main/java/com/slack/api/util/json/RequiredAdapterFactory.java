@@ -16,14 +16,11 @@ import java.io.IOException;
 
 /**
  * Adapter factory for processing objects annotated with {@link Required}.  This annotation signals what properties
- * of a model object are required, and thus should be expected to be initialized and non-null on every instance of
- * said object.
+ * of a model object are required, and thus should be expected to be initialized on instantiated instances. For all
+ * fields on the model objected annotated with {@link Required} applies the {@link FieldPredicate#test(Object)} via the
+ * specified {@link Required#validator()}.
  * <p>
- * For deserialization (e.g. converting JSON --> POJO), it ensures that any fields marked as {@link Required} are
- * present in the constructed object and nonnull.
- * <p>
- * For serialization (e.g. converting POJO --> JSON), it ensures that any fields marked as {@link Required} are non-null
- * in the construct object prior to serialization.
+ * Note that this adapter handles both deserialization (JSON --> POJO) and serialization (POJO --> JSON).
  */
 public class RequiredAdapterFactory implements TypeAdapterFactory {
     @Override
