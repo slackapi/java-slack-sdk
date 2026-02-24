@@ -9,9 +9,14 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.slack.api.model.annotation.FieldPredicate;
 import com.slack.api.model.annotation.Required;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.io.IOException;
 
 /**
@@ -26,12 +31,17 @@ public class RequiredAdapterFactory implements TypeAdapterFactory {
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
         TypeAdapter<T> delegate = gson.getDelegateAdapter(this, type);
+        List<RequiredFieldEntry> entries = buildRequiredFieldEntries(type.getRawType());
+
+        if (entries.isEmpty()) {
+            return delegate;
+        }
 
         return new TypeAdapter<T>() {
             @Override
             public void write(JsonWriter out, T value) throws IOException {
                 if (value != null) {
-                    ensureFieldValidity(value);
+                    ensureFieldValidity(value, entries);
                 }
                 delegate.write(out, value);
             }
@@ -43,27 +53,59 @@ public class RequiredAdapterFactory implements TypeAdapterFactory {
                     return null;
                 }
 
-                ensureFieldValidity(result);
+                ensureFieldValidity(result, entries);
                 return result;
             }
         };
     }
 
-    private <T> void ensureFieldValidity(T obj) {
-        Arrays.asList(obj.getClass().getDeclaredFields()).forEach(field -> {
-            if (field.isAnnotationPresent(Required.class)) {
+    /**
+     * Scans the given class for fields annotated with {@link Required}, pre-resolves each field's
+     * accessibility and {@link FieldPredicate} instance, and returns an immutable list of entries.
+     * This is called once per type during Gson adapter creation.
+     */
+    private List<RequiredFieldEntry> buildRequiredFieldEntries(Class<?> clazz) {
+        List<RequiredFieldEntry> entries = new ArrayList<>();
+        for (Field field : clazz.getDeclaredFields()) {
+            Required annotation = field.getAnnotation(Required.class);
+            if (annotation != null) {
                 field.setAccessible(true);
                 try {
-                    FieldPredicate predicate = field.getAnnotation(Required.class).validator().getDeclaredConstructor().newInstance();
-                    if (!predicate.test(field.get(obj))) {
-                        throw new JsonParseException("Required field '" + field.getName() + "' failed validation in "
-                            + obj.getClass().getSimpleName() + " using predicate " + predicate.getClass().getSimpleName());
-                    }
-                } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-                         InvocationTargetException e) {
-                    throw new JsonParseException("Cannot parse field: " + field.getName(), e);
+                    FieldPredicate predicate = annotation.validator().getDeclaredConstructor().newInstance();
+                    entries.add(new RequiredFieldEntry(field, predicate));
+                } catch (NoSuchMethodException | InstantiationException |
+                         IllegalAccessException | InvocationTargetException e) {
+                    throw new JsonParseException(
+                            "Cannot instantiate validator for field: " + field.getName(), e);
                 }
             }
-        });
+        }
+        return Collections.unmodifiableList(entries);
+    }
+
+    private <T> void ensureFieldValidity(T obj, List<RequiredFieldEntry> entries) {
+        for (RequiredFieldEntry entry : entries) {
+            try {
+                Object value = entry.field.get(obj);
+                if (!entry.predicate.test(value)) {
+                    throw new JsonParseException("Required field '" + entry.field.getName()
+                            + "' failed validation in " + obj.getClass().getSimpleName()
+                            + " using predicate " + entry.predicate.getClass().getSimpleName());
+                }
+            } catch (IllegalAccessException e) {
+                throw new JsonParseException(
+                        "Cannot access field: " + entry.field.getName(), e);
+            }
+        }
+    }
+
+    /**
+     * Class holding the accessible {@link Field} handle and the cached instance of {@link FieldPredicate}.
+     */
+    @RequiredArgsConstructor
+    @EqualsAndHashCode
+    private static class RequiredFieldEntry {
+        final Field field;
+        final FieldPredicate predicate;
     }
 }
