@@ -187,6 +187,16 @@ public class JSONUtilityTest {
         assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
         e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("").build()));
         assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
+
+        // Deserialization
+        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\": 0}", TestClassWithRequiredAdvanced.class));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'id' failed validation in TestClassWithRequiredAdvanced using predicate IntegerGreaterThanZero"));
+
+        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\": 1}", TestClassWithRequiredAdvanced.class));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
+
+        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\": 1, \"name\": ''}", TestClassWithRequiredAdvanced.class));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
     }
 
     @Data
