@@ -1,5 +1,9 @@
 package com.slack.api.model.annotation;
 
+import com.slack.api.model.predicate.FieldPredicate;
+import com.slack.api.model.predicate.IsNotNullFieldPredicate;
+import com.slack.api.util.json.RequiredPropertyDetectionAdapterFactory;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -9,7 +13,7 @@ import java.lang.annotation.Target;
  * Field-level annotation indicating whether the field is a "required" field or not on the model object.
  * <p>
  * The enforcement of the field's presence in instantiated instances of the model object is accomplished using the
- * {@link com.slack.api.util.json.RequiredAdapterFactory} which ensures all fields marked with {@link Required} are
+ * {@link RequiredPropertyDetectionAdapterFactory} which ensures all fields marked with {@link Required} are
  * present during the object deserialization (or serialization) process.  Note that the enforcement of this annotation
  * is opt-in and defaults to "off".
  */

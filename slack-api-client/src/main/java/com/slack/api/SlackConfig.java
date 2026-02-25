@@ -252,9 +252,7 @@ public class SlackConfig implements AutoCloseable {
     private boolean failOnUnknownProperties = false;
 
     /**
-     * Makes it so that any fields annotated with {@link com.slack.api.model.annotation.Required} that are missing
-     * or invalid when deserializing responses from the Slack Web API client will throw an exception.
-     * By default, this is "off", but can be opted into by setting to true.
+     * If you would like to detect required properties by throwing exceptions, set this flag as true.
      */
     private boolean failOnRequiredProperties = false;
 

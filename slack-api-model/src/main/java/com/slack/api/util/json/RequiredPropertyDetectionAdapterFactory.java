@@ -7,7 +7,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.slack.api.model.annotation.FieldPredicate;
+import com.slack.api.model.predicate.FieldPredicate;
 import com.slack.api.model.annotation.Required;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ import java.io.IOException;
  * <p>
  * Note that this adapter handles both deserialization (JSON --> POJO) and serialization (POJO --> JSON).
  */
-public class RequiredAdapterFactory implements TypeAdapterFactory {
+public class RequiredPropertyDetectionAdapterFactory implements TypeAdapterFactory {
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
         TypeAdapter<T> delegate = gson.getDelegateAdapter(this, type);
@@ -87,7 +87,7 @@ public class RequiredAdapterFactory implements TypeAdapterFactory {
         for (RequiredFieldEntry entry : entries) {
             try {
                 Object value = entry.field.get(obj);
-                if (!entry.predicate.test(value)) {
+                if (!entry.predicate.validate(value)) {
                     throw new JsonParseException("Required field '" + entry.field.getName()
                             + "' failed validation in " + obj.getClass().getSimpleName()
                             + " using predicate " + entry.predicate.getClass().getSimpleName());
