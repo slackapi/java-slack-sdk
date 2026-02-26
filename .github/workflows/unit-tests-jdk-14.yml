@@ -29,6 +29,7 @@ jobs:
           ./scripts/run_no_prep_tests.sh -ci
         env:
           SKIP_UNSTABLE_TESTS: 1
+          MAVEN_OPTS: "-Xmx4g -Xms512m"
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
         with:

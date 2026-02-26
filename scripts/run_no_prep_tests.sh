@@ -31,9 +31,8 @@ then
     -pl !bolt-http4k \
     -pl !bolt-micronaut \
     -pl !slack-jakarta-socket-mode-client \
-    clean \
-    test-compile \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+    clean test \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
@@ -42,18 +41,16 @@ elif [[ "${is_jdk_14}" != "" ]];
 then
   ./mvnw ${MAVEN_OPTS} \
     -pl !bolt-micronaut \
-    clean \
-    test-compile \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+    clean test \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 else
   ./mvnw ${MAVEN_OPTS} \
-    clean \
-    test-compile \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+    clean test \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
