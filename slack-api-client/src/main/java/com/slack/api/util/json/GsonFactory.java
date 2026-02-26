@@ -44,12 +44,17 @@ public class GsonFactory {
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         registerTypeAdapters(gsonBuilder, failOnUnknownProps);
+
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
-            gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+            gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+        }
+        if (config.isFailOnRequiredProperties()) {
+            gsonBuilder.registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory());
         }
         if (config.isPrettyResponseLoggingEnabled()) {
-            gsonBuilder = gsonBuilder.setPrettyPrinting();
+            gsonBuilder.setPrettyPrinting();
         }
+
         return gsonBuilder.create();
     }
 
@@ -60,12 +65,17 @@ public class GsonFactory {
         boolean failOnUnknownProps = config.isFailOnUnknownProperties();
         GsonBuilder gsonBuilder = new GsonBuilder();
         registerTypeAdapters(gsonBuilder, failOnUnknownProps);
+
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
-            gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+            gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+        }
+        if (config.isFailOnRequiredProperties()) {
+            gsonBuilder.registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory());
         }
         if (config.isPrettyResponseLoggingEnabled()) {
-            gsonBuilder = gsonBuilder.setPrettyPrinting();
+            gsonBuilder.setPrettyPrinting();
         }
+
         return gsonBuilder.create();
     }
 
