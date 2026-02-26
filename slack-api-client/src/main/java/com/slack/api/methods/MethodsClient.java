@@ -42,6 +42,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
@@ -193,6 +194,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
@@ -1156,6 +1158,17 @@ public interface MethodsClient {
 
     AppsConnectionsOpenResponse appsConnectionsOpen(
             RequestConfigurator<AppsConnectionsOpenRequest.AppsConnectionsOpenRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.user.connection
+    // ------------------------------
+
+    AppsUserConnectionUpdateResponse appsUserConnectionUpdate(AppsUserConnectionUpdateRequest req)
+            throws IOException, SlackApiException;
+
+    AppsUserConnectionUpdateResponse appsUserConnectionUpdate(
+            RequestConfigurator<AppsUserConnectionUpdateRequest.AppsUserConnectionUpdateRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

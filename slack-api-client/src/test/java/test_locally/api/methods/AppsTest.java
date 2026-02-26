@@ -30,6 +30,18 @@ public class AppsTest {
     }
 
     @Test
+    public void appsUserConnectionUpdate() throws Exception {
+        assertThat(slack.methods(ValidToken).appsUserConnectionUpdate(r -> r
+                .userId("U12345678").status("connected")).isOk(), is(true));
+    }
+
+    @Test
+    public void appsUserConnectionUpdate_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsUserConnectionUpdate(r -> r
+                .userId("U12345678").status("connected")).get().isOk(), is(true));
+    }
+
+    @Test
     public void appsUninstall_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).appsUninstall(r -> r.clientId("x").clientSecret("y"))
                 .get().isOk(), is(true));
