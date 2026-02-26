@@ -1,6 +1,13 @@
 {
 	"permissions": {
 		"allow": [
+			"Bash(./mvnw:*)",
+			"Bash(./scripts/check_dependency_updates.sh:*)",
+			"Bash(./scripts/install_local.sh:*)",
+			"Bash(./scripts/run_all_bolt_tests.sh:*)",
+			"Bash(./scripts/run_all_client_tests.sh:*)",
+			"Bash(./scripts/run_no_prep_tests.sh:*)",
+			"Bash(./scripts/set_version.sh:*)",
 			"Bash(gh issue view:*)",
 			"Bash(gh label list:*)",
 			"Bash(gh pr checks:*)",
@@ -18,9 +25,9 @@
 			"Bash(grep:*)",
 			"Bash(ls:*)",
 			"Bash(tree:*)",
-			"WebFetch(domain:github.com)",
+			"WebFetch(domain:central.sonatype.com)",
 			"WebFetch(domain:docs.slack.dev)",
-			"WebFetch(domain:central.sonatype.com)"
+			"WebFetch(domain:github.com)"
 		]
 	}
 }
