@@ -20,11 +20,11 @@ public class GsonFactory {
     }
 
     public static Gson createSnakeCase() {
-        return createSnakeCase(false, true, false);
+        return createSnakeCase(false, true);
     }
 
     public static Gson createSnakeCaseWithoutUnknownPropertyDetection(boolean failOnUnknownProperties) {
-        return createSnakeCase(failOnUnknownProperties, false, false);
+        return createSnakeCase(failOnUnknownProperties, false);
     }
 
     public static Gson createSnakeCaseWithRequiredPropertyDetection() {
