@@ -21,7 +21,7 @@ is_jdk_14=`echo $JAVA_HOME | grep 14.`
 is_travis_jdk_8=`echo $TRAVIS_JDK | grep openjdk8`
 if [[ "${is_jdk_8}" != "" && "${is_travis_jdk_8}" != "" ]];
 then
-  ./mvnw ${MAVEN_OPTS} \
+  ./mvnw \
     -pl !bolt-google-cloud-functions \
     -pl !bolt-helidon \
     -pl !bolt-quarkus-examples \
@@ -39,7 +39,7 @@ then
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 elif [[ "${is_jdk_14}" != "" ]];
 then
-  ./mvnw ${MAVEN_OPTS} \
+  ./mvnw \
     -pl !bolt-micronaut \
     clean test \
     '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
@@ -48,7 +48,7 @@ then
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 else
-  ./mvnw ${MAVEN_OPTS} \
+  ./mvnw \
     clean test \
     '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
     -DfailIfNoTests=false \
