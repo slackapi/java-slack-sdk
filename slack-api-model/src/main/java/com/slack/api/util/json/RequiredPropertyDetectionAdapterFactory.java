@@ -7,8 +7,8 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.slack.api.model.predicate.FieldPredicate;
-import com.slack.api.model.annotation.Required;
+import com.slack.api.util.predicate.FieldPredicate;
+import com.slack.api.util.annotation.Required;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * Adapter factory for processing objects annotated with {@link Required}.  This annotation signals what properties
  * of a model object are required, and thus should be expected to be initialized on instantiated instances. For all
- * fields on the model objected annotated with {@link Required} applies the {@link FieldPredicate#test(Object)} via the
+ * fields on the model objected annotated with {@link Required} applies the {@link FieldPredicate#validate(Object)} via the
  * specified {@link Required#validator()}.
  * <p>
  * Note that this adapter handles both deserialization (JSON --> POJO) and serialization (POJO --> JSON).

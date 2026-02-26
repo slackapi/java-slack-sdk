@@ -1,7 +1,6 @@
 package test_locally.util;
 
 import com.google.gson.*;
-import com.slack.api.model.predicate.FieldPredicate;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
@@ -12,14 +11,16 @@ import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
 import com.slack.api.model.block.element.OverflowMenuElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
-import com.slack.api.model.annotation.Required;
+import com.slack.api.util.annotation.Required;
 import com.slack.api.util.json.*;
+import com.slack.api.util.predicate.FieldPredicate;
 import lombok.Builder;
 import lombok.Data;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -202,7 +203,7 @@ public class JSONUtilityTest {
     @Test
     public void testRequiredPropertyDetectionAdapterFactory_advancedCase_failureCases() {
         Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
-
+        List<String> users = new ArrayList<>();
         // Serialization
         JsonParseException e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().build()));
         assertThat(e.getMessage(), equalToIgnoringCase("Required field 'id' failed validation in TestClassWithRequiredAdvanced using predicate IntegerGreaterThanZero"));
@@ -216,7 +217,8 @@ public class JSONUtilityTest {
         e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("Hello").build()));
         assertThat(e.getMessage(), equalToIgnoringCase("Required field 'users' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyCollection"));
 
-        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("Hello").users(List.of("user1")).build()));
+        users.add("user1");
+        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("Hello").users(users).build()));
         assertThat(e.getMessage(), equalToIgnoringCase("Required field 'myBool' failed validation in TestClassWithRequiredAdvanced using predicate isNotNullFieldPredicate"));
 
         // Deserialization
@@ -239,10 +241,12 @@ public class JSONUtilityTest {
     @Test
     public void testRequiredPropertyDetectionAdapterFactory_advancedCase_happyPath() {
         Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
+        List<String> users = new ArrayList<>();
+        users.add("testUser");
         TestClassWithRequiredAdvanced instance = TestClassWithRequiredAdvanced.builder()
                 .id(1)
                 .name("test")
-                .users(List.of("testUser"))
+                .users(users)
                 .myBool(true)
                 .build();
 

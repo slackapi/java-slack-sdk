@@ -1,4 +1,4 @@
-package com.slack.api.model.predicate;
+package com.slack.api.util.predicate;
 
 import java.util.Objects;
 

@@ -1,7 +1,7 @@
-package com.slack.api.model.annotation;
+package com.slack.api.util.annotation;
 
-import com.slack.api.model.predicate.FieldPredicate;
-import com.slack.api.model.predicate.IsNotNullFieldPredicate;
+import com.slack.api.util.predicate.FieldPredicate;
+import com.slack.api.util.predicate.IsNotNullFieldPredicate;
 import com.slack.api.util.json.RequiredPropertyDetectionAdapterFactory;
 
 import java.lang.annotation.ElementType;
