@@ -20,18 +20,26 @@ public class GsonFactory {
     }
 
     public static Gson createSnakeCase() {
-        return createSnakeCase(false, true);
+        return createSnakeCase(false, true, false);
     }
 
     public static Gson createSnakeCaseWithoutUnknownPropertyDetection(boolean failOnUnknownProperties) {
-        return createSnakeCase(failOnUnknownProperties, false);
+        return createSnakeCase(failOnUnknownProperties, false, false);
+    }
+
+    public static Gson createSnakeCaseWithRequiredPropertyDetection() {
+        return createSnakeCase(false, true, true);
     }
 
     public static Gson createSnakeCase(boolean failOnUnknownProperties, boolean unknownPropertyDetection) {
-        return getBuilder(failOnUnknownProperties, unknownPropertyDetection).create();
+        return createSnakeCase(failOnUnknownProperties, unknownPropertyDetection, false);
     }
 
-    public static GsonBuilder getBuilder(boolean failOnUnknownProperties, boolean unknownPropertyDetection) {
+    public static Gson createSnakeCase(
+            boolean failOnUnknownProperties,
+            boolean unknownPropertyDetection,
+            boolean failOnRequiredProperties
+    ) {
         GsonBuilder builder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProperties))
@@ -51,7 +59,10 @@ public class GsonFactory {
         if (unknownPropertyDetection) {
             builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
+        if (failOnRequiredProperties) {
+            builder.registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory());
+        }
 
-        return builder;
+        return builder.create();
     }
 }

@@ -166,8 +166,7 @@ public class JSONUtilityTest {
 
     @Test
     public void testRequiredPropertyDetectionAdapterFactory_basicCase_failureCases() {
-        Gson gson = GsonFactory.getBuilder(true, true)
-                .registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory()).create();
+        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
 
         // Serialization
         TestClassWithRequiredBasic instance = TestClassWithRequiredBasic.builder().build();
@@ -180,7 +179,7 @@ public class JSONUtilityTest {
 
     @Test
     public void testRequiredPropertyDetectionAdapterFactory_basicCase_happyPath() {
-        Gson gson = GsonFactory.getBuilder(true, true).registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory()).create();
+        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
         TestClassWithRequiredBasic instanceNoName = TestClassWithRequiredBasic.builder().id(1).build();
         TestClassWithRequiredBasic instanceWithName = TestClassWithRequiredBasic.builder().id(1).name("Hello").build();
 
@@ -202,7 +201,7 @@ public class JSONUtilityTest {
 
     @Test
     public void testRequiredPropertyDetectionAdapterFactory_advancedCase_failureCases() {
-        Gson gson = GsonFactory.getBuilder(true, true).registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory()).create();
+        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
 
         // Serialization
         JsonParseException e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().build()));
@@ -239,7 +238,7 @@ public class JSONUtilityTest {
 
     @Test
     public void testRequiredPropertyDetectionAdapterFactory_advancedCase_happyPath() {
-        Gson gson = GsonFactory.getBuilder(true, true).registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory()).create();
+        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
         TestClassWithRequiredAdvanced instance = TestClassWithRequiredAdvanced.builder()
                 .id(1)
                 .name("test")

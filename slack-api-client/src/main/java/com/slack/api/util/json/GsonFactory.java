@@ -30,8 +30,9 @@ public class GsonFactory {
      * Most of the Slack APIs' key naming is snake-cased.
      */
     public static Gson createSnakeCase() {
-        GsonBuilder gsonBuilder = getSnakeCaseBuilder();
-        configureBuilder(gsonBuilder);
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        registerTypeAdapters(gsonBuilder, false);
         return gsonBuilder.create();
     }
 
@@ -39,8 +40,21 @@ public class GsonFactory {
      * Most of the Slack APIs' key naming is snake-cased.
      */
     public static Gson createSnakeCase(SlackConfig config) {
-        GsonBuilder gsonBuilder = getSnakeCaseBuilder();
-        configureBuilder(gsonBuilder, config);
+        boolean failOnUnknownProps = config.isFailOnUnknownProperties();
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        registerTypeAdapters(gsonBuilder, failOnUnknownProps);
+
+        if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
+            gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+        }
+        if (config.isFailOnRequiredProperties()) {
+            gsonBuilder.registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory());
+        }
+        if (config.isPrettyResponseLoggingEnabled()) {
+            gsonBuilder.setPrettyPrinting();
+        }
+
         return gsonBuilder.create();
     }
 
@@ -48,65 +62,39 @@ public class GsonFactory {
      * Mainly used for SCIM APIs.
      */
     public static Gson createCamelCase(SlackConfig config) {
+        boolean failOnUnknownProps = config.isFailOnUnknownProperties();
         GsonBuilder gsonBuilder = new GsonBuilder();
-        configureBuilder(gsonBuilder, config);
+        registerTypeAdapters(gsonBuilder, failOnUnknownProps);
+
+        if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
+            gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+        }
+        if (config.isFailOnRequiredProperties()) {
+            gsonBuilder.registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory());
+        }
+        if (config.isPrettyResponseLoggingEnabled()) {
+            gsonBuilder.setPrettyPrinting();
+        }
+
         return gsonBuilder.create();
-    }
-
-    private static GsonBuilder getSnakeCaseBuilder() {
-        return new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-    }
-
-    private static void configureBuilder(GsonBuilder builder) {
-        configureBuilder(builder, false, false, false, false);
-    }
-
-    private static void configureBuilder(GsonBuilder builder, SlackConfig config) {
-        configureBuilder(
-                builder,
-                config.isFailOnUnknownProperties(),
-                config.isFailOnRequiredProperties(),
-                config.isPrettyResponseLoggingEnabled(),
-                config.isLibraryMaintainerMode()
-        );
-    }
-
-    private static void configureBuilder(
-            GsonBuilder builder,
-            boolean failOnUnknownProps,
-            boolean failOnRequiredProps,
-            boolean isPrettyResponseLoggingEnabled,
-            boolean isLibraryMaintainerMode
-    ) {
-        if (failOnUnknownProps || isLibraryMaintainerMode) {
-            builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
-        }
-        if (failOnRequiredProps) {
-            builder.registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory());
-        }
-        if (isPrettyResponseLoggingEnabled) {
-            builder.setPrettyPrinting();
-        }
-
-        registerTypeAdapters(builder, failOnUnknownProps);
     }
 
     public static void registerTypeAdapters(GsonBuilder builder, boolean failOnUnknownProps) {
         builder
-            .registerTypeAdapter(Instant.class, new JavaTimeInstantFactory(failOnUnknownProps))
-            .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProps))
-            .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProps))
-            .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProps))
-            .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
-            .registerTypeAdapter(ContextActionsBlockElement.class, new GsonContextActionsBlockElementFactory(failOnUnknownProps))
-            .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
-            .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
-            .registerTypeAdapter(FunctionExecutedEvent.InputValue.class, new GsonFunctionExecutedEventInputValueFactory())
-            .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps))
-            .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
-            .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory(failOnUnknownProps))
-            .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory(failOnUnknownProps))
-            .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
-            .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
+                .registerTypeAdapter(Instant.class, new JavaTimeInstantFactory(failOnUnknownProps))
+                .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProps))
+                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProps))
+                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProps))
+                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(ContextActionsBlockElement.class, new GsonContextActionsBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(FunctionExecutedEvent.InputValue.class, new GsonFunctionExecutedEventInputValueFactory())
+                .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
+                .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
     }
 }
