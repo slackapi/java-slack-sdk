@@ -3,18 +3,18 @@ package com.slack.api.model.work_objects;
 import com.slack.api.model.block.ImageBlock;
 import com.slack.api.util.annotation.Required;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class UserMetadata {
-    private String role;
-    private OverlayIcon overlayIcon;
+    String role;
+    OverlayIcon overlayIcon;
 
-    @Data
+    @Value
     @Builder
     public static class OverlayIcon {
-        @Required private String iconName;
-        private ImageBlock icon;
+        @Required String iconName;
+        ImageBlock icon;
     }
 }

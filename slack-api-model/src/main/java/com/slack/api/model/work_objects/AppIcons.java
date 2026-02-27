@@ -2,11 +2,11 @@ package com.slack.api.model.work_objects;
 
 import com.slack.api.model.block.element.ImageElement;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class AppIcons {
-    private ImageElement image36;
-    private ImageElement image128;
+    ImageElement image36;
+    ImageElement image128;
 }

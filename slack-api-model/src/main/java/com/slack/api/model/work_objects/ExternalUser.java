@@ -2,11 +2,10 @@ package com.slack.api.model.work_objects;
 
 import com.slack.api.model.block.ImageBlock;
 import com.slack.api.util.annotation.Required;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
 @Value
 @EqualsAndHashCode(callSuper = true)
 public class ExternalUser extends User {
@@ -18,12 +17,21 @@ public class ExternalUser extends User {
     String caption;
     UserMetadata userMetadata;
 
-    private static final class ExternalUserBuilderImpl
-            extends ExternalUserBuilder<ExternalUser, ExternalUserBuilderImpl> {
-        @Override
-        public ExternalUser build() {
-            this.userType(USER_TYPE);
-            return new ExternalUser(this);
-        }
+    @Builder
+    public ExternalUser(
+            String text,
+            ImageBlock image,
+            String url,
+            String email,
+            String caption,
+            UserMetadata userMetadata
+    ) {
+        super(USER_TYPE);
+        this.text = text;
+        this.image = image;
+        this.url = url;
+        this.email = email;
+        this.caption = caption;
+        this.userMetadata = userMetadata;
     }
 }

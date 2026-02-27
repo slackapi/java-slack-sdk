@@ -4,11 +4,11 @@ import com.slack.api.util.annotation.Required;
 import lombok.Builder;
 import lombok.Value;
 
-import java.util.Map;
-
 @Value
 @Builder
-public class LookupFunction {
-    @Required String functionId;
-    @Required Map<String, Object> inputs;
+public class CheckboxOption {
+    @Required String text;
+    @Required Boolean checked;
+    String description;
 }
+

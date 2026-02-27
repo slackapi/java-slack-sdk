@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.slack.api.model.work_objects.ExternalUser;
 import com.slack.api.model.work_objects.SlackUser;
+import com.slack.api.model.work_objects.UnknownUser;
 import com.slack.api.model.work_objects.User;
 import test_locally.unit.GsonFactory;
 import org.junit.Test;
@@ -42,14 +43,14 @@ public class UserTest {
     public void parseSlackUser_withoutUserId_throwsException() {
         String json = "{\"user_type\": \"slack\"}";
         JsonParseException e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, SlackUser.class));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'userId' failed validation in SlackUser using predicate IsValidSlackUserIdPredicate"));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'userId' failed validation in SlackUser using predicate IsValidUserIdPredicate"));
     }
 
     @Test
     public void parseSlackUser_withInvalidUserId_throwsException() {
         String json = "{\"user_type\": \"slack\", \"user_id\": \"test\"}";
         JsonParseException e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, SlackUser.class));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'userId' failed validation in SlackUser using predicate IsValidSlackUserIdPredicate"));
+        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'userId' failed validation in SlackUser using predicate IsValidUserIdPredicate"));
     }
 
     @Test
@@ -67,17 +68,20 @@ public class UserTest {
         String badJson = "{\"user_type\": \"something we dont know\"}";
         User user = lenientGson.fromJson(badJson, User.class);
         assertThat(user.getUserType(), is("something we dont know"));
+        assertThat(user, instanceOf(UnknownUser.class));
     }
 
     @Test
     public void testUserBuilders() {
-         User slackUser = SlackUser.builder().userId("U12345678").userType("this will get ignored").build();
-         User externalUser = ExternalUser.builder().text("test").userType("this will also get ignored").build();
+         User slackUser = SlackUser.builder().userId("U12345678").build();
+         User externalUser = ExternalUser.builder().text("test").build();
          assertTrue(slackUser.isSlackUser());
          assertFalse(slackUser.isExternalUser());
          assertTrue(externalUser.isExternalUser());
          assertFalse(externalUser.isSlackUser());
          assertThat(slackUser.getUserType(), is("slack"));
          assertThat(externalUser.getUserType(), is("external"));
+
+         assertThrows(IllegalArgumentException.class, () -> SlackUser.builder().userId("invalid!").build());
     }
 }

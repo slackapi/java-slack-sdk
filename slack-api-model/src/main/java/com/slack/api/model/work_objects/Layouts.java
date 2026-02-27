@@ -1,10 +1,10 @@
 package com.slack.api.model.work_objects;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class Layouts {
-    private CompactLayout compact;
+    CompactLayout compact;
 }
