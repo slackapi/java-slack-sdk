@@ -1,18 +1,44 @@
 package com.slack.api.model.work_objects;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.slack.api.util.annotation.Required;
+import com.slack.api.util.predicate.FieldPredicate;
+import lombok.EqualsAndHashCode;
+import lombok.Value;
+import lombok.experimental.SuperBuilder;
 
+import java.util.regex.Pattern;
+
+@SuperBuilder
+@Value
+@EqualsAndHashCode(callSuper = true)
 public class SlackUser extends User {
-    private static final String USER_TYPE = "slack";
+    public static final String USER_TYPE = "slack";
 
-    @Getter @Setter
-    private String userId;
+    @Required(validator = IsValidSlackUserIdPredicate.class)
+    String userId;
 
-    @Getter @Setter
-    private UserMetadata metadata;
+    UserMetadata metadata;
 
-    public SlackUser() {
-        super(USER_TYPE);
+    private static final class SlackUserBuilderImpl
+            extends SlackUserBuilder<SlackUser, SlackUserBuilderImpl> {
+        @Override
+        public SlackUser build() {
+            this.userType(USER_TYPE);
+            return new SlackUser(this);
+        }
+    }
+
+    public static class IsValidSlackUserIdPredicate implements FieldPredicate {
+        private static final Pattern USER_ID_REGEX = Pattern.compile("^[WU][A-Z0-9]{8,}$");
+
+        @Override
+        public boolean validate(Object obj) {
+            if (!(obj instanceof String)) {
+                return false;
+            }
+
+            String userId = ((String) obj);
+            return USER_ID_REGEX.matcher(userId).matches();
+        }
     }
 }

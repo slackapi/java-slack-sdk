@@ -5,43 +5,43 @@ import com.slack.api.model.block.ImageBlock;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.util.annotation.Required;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 import java.util.List;
 
-@Data
+@Value
 @Builder
 public class Field {
-    @Required private String type;
-    @Required private String label;
-    @Required private String fieldType;
+    @Required String type;
+    @Required String label;
+    @Required String fieldType;
 
     /**
      * The name of the field from {@link com.slack.api.model.EntityMetadata}.
      */
-    private String fieldName;
+    String fieldName;
 
-    private String text;
+    String text;
 
-    private RichTextBlock richText;
+    RichTextBlock richText;
 
     /**
      * List of Unix timestamps.
      */
-    private List<Integer> timestamp;
+    List<Integer> timestamp;
 
-    private List<ImageBlock> image;
+    List<ImageBlock> image;
 
     /**
      * Should the field take up the full width.
      */
     @SerializedName("long")
-    private Boolean isLong;
+    Boolean isLong;
 
     /**
      * List of Slack and external users.
      */
-    private List<User> user;
+    List<User> user;
 
-    private List<SlackUser> slackUser;
+    List<SlackUser> slackUser;
 }

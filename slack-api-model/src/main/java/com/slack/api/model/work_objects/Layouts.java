@@ -7,7 +7,4 @@ import lombok.Data;
 @Builder
 public class Layouts {
     private CompactLayout compact;
-    private ExpandedLayout expanded;
-    private FullLayout full;
-    private MinimalLayout minimal;
 }

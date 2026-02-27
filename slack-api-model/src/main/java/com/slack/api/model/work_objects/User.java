@@ -1,14 +1,15 @@
 package com.slack.api.model.work_objects;
 
 import com.slack.api.util.annotation.Required;
-import lombok.AccessLevel;
+import com.slack.api.util.predicate.FieldPredicate;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
+
+@SuperBuilder
+@Getter
 public abstract class User {
-    @Required
-    @Getter
+    @Required(validator = IsValidUserTypePredicate.class)
     protected final String userType;
 
     public boolean isExternalUser() {
@@ -17,5 +18,17 @@ public abstract class User {
 
     public boolean isSlackUser() {
         return getUserType().equals("slack");
+    }
+
+    public static class IsValidUserTypePredicate implements FieldPredicate {
+        @Override
+        public boolean validate(Object obj) {
+            if (!(obj instanceof String)) {
+                return false;
+            }
+
+            String userType = (String) obj;
+            return userType.equals("external") || userType.equals("slack");
+        }
     }
 }
