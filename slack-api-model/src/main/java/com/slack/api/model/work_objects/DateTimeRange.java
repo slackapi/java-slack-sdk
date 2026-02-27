@@ -1,27 +1,30 @@
 package com.slack.api.model.work_objects;
 
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.Value;
 
-import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 /**
  * Combined date/time display data for calendar events.
  */
+@Value
+@Builder
+@JsonAdapter(DateTimeRange.DateTimeRangeSerializer.class)
 public class DateTimeRange {
     /**
      * Start as Unix timestamp or YYYY-MM-DD dates.
@@ -48,19 +51,33 @@ public class DateTimeRange {
      */
     @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
     public static class DateTimeImpl {
-        private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_TIME.withZone(ZoneOffset.UTC);
         private final Instant dateTime;
         @Getter @Setter
-        private boolean wasYYYYMMDDInput = false;
-        @Getter @Setter
-        private boolean wasUnixtimeInput = false;
+        private boolean inYearMonthDayFormat = false;
+
+        public boolean isUnknown() {
+            return dateTime.equals(Instant.EPOCH);
+        }
+
+        public static DateTimeImpl atStartOfDay() {
+            Instant startOfDay = LocalDate.now(ZoneOffset.UTC).atStartOfDay(ZoneOffset.UTC).toInstant();
+            return new DateTimeImpl(startOfDay);
+        }
+
+        public static DateTimeImpl atEndOfDay() {
+            Instant endOfDay = LocalDate.now(ZoneOffset.UTC).plusDays(1).atStartOfDay(ZoneOffset.UTC).toInstant();
+            return new DateTimeImpl(endOfDay);
+        }
+
+        // Used during JSON serialization/deserialization when we can't infer what the date-time value is
+        public static DateTimeImpl unknown() {
+            return new DateTimeImpl(Instant.EPOCH);
+        }
 
         public static DateTimeImpl from(String in) {
             // See if this is a number first
             try {
-                DateTimeImpl dateTime = DateTimeImpl.from(Long.parseLong(in));
-                dateTime.setWasUnixtimeInput(true);
-                return dateTime;
+                return DateTimeImpl.from(Long.parseLong(in));
             } catch (NumberFormatException e) {
                 // Swallow - means the input is not a unix timestamp, so try to parse this as a string
             }
@@ -69,7 +86,7 @@ public class DateTimeRange {
             try {
                 Instant dt = LocalDate.parse(in).atStartOfDay(ZoneOffset.UTC).toInstant();
                 DateTimeImpl dateTime = new DateTimeImpl(dt);
-                dateTime.setWasYYYYMMDDInput(true);
+                dateTime.setInYearMonthDayFormat(true);
                 return dateTime;
             } catch (DateTimeParseException e) {
                 throw new IllegalArgumentException(String.format("Datetime input string not in a recognized format %s", in));
@@ -90,7 +107,38 @@ public class DateTimeRange {
         }
 
         public String getDateTime() {
-            return formatter.format(dateTime);
+            return DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneOffset.UTC).format(dateTime);
+        }
+    }
+
+    public static class DateTimeRangeSerializer implements JsonSerializer<DateTimeRange> {
+        @Override
+        public JsonElement serialize(DateTimeRange dateTimeRange, Type typeOfT, JsonSerializationContext context) {
+            JsonObject jsonObject = new JsonObject();
+            if (dateTimeRange.getStart() != null) {
+                DateTimeImpl start = dateTimeRange.getStart();
+                if (start.isInYearMonthDayFormat()) {
+                    jsonObject.addProperty("start", start.getDateTime());
+                } else {
+                    jsonObject.addProperty("start", start.getUnixTime());
+                }
+            }
+            if (dateTimeRange.getEnd() != null) {
+                DateTimeImpl end = dateTimeRange.getEnd();
+                if (end.isInYearMonthDayFormat()) {
+                    jsonObject.addProperty("end", end.getDateTime());
+                } else {
+                    jsonObject.addProperty("end", end.getUnixTime());
+                }
+            }
+            if (dateTimeRange.getAllDay() != null) {
+                jsonObject.addProperty("all_day", dateTimeRange.getAllDay());
+            }
+            if (dateTimeRange.getRecurrence() != null && !dateTimeRange.getRecurrence().isEmpty()) {
+                jsonObject.addProperty("recurrence", dateTimeRange.getRecurrence());
+            }
+
+            return jsonObject;
         }
     }
 }

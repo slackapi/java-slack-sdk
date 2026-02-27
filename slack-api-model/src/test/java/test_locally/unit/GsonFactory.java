@@ -13,6 +13,7 @@ import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.RichTextElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.model.event.MessageChangedEvent;
+import com.slack.api.model.work_objects.DateTimeRange;
 import com.slack.api.model.work_objects.User;
 import com.slack.api.util.json.*;
 
@@ -29,10 +30,10 @@ public class GsonFactory {
     }
 
     public static Gson createSnakeCaseWithRequiredPropertyDetection() {
-        return createSnakeWithRequiredPropertyDetection(false);
+        return createSnakeCaseWithRequiredPropertyDetection(false);
     }
 
-    public static Gson createSnakeWithRequiredPropertyDetection(boolean failOnUnknownProperties) {
+    public static Gson createSnakeCaseWithRequiredPropertyDetection(boolean failOnUnknownProperties) {
         return createSnakeCase(failOnUnknownProperties, true, true);
     }
 
@@ -60,7 +61,8 @@ public class GsonFactory {
                         new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProperties))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
                         new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties))
-                .registerTypeAdapter(User.class, new GsonWorkObjectUserFactory(failOnUnknownProperties));
+                .registerTypeAdapter(User.class, new GsonWorkObjectUserFactory(failOnUnknownProperties))
+                .registerTypeAdapter(DateTimeRange.class, new GsonWorkObjectDateTimeDeserializer(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
             builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());

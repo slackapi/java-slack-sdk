@@ -6,7 +6,6 @@ import com.slack.api.model.block.InputBlock;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.util.annotation.Required;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Value;
 
 import java.util.List;
