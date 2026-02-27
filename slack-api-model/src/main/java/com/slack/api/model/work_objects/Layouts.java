@@ -7,4 +7,7 @@ import lombok.Value;
 @Builder
 public class Layouts {
     CompactLayout compact;
+    ExpandedLayout expanded;
+    FullLayout full;
+    MinimalLayout minimal;
 }

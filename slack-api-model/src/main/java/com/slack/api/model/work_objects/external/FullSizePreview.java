@@ -2,23 +2,23 @@ package com.slack.api.model.work_objects.external;
 
 import com.slack.api.util.annotation.Required;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class FullSizePreview {
-    @Required private Boolean isSupported;
-    private String previewUrl;
-    private Boolean isAnimated;
-    private String width;
-    private String height;
-    private String mimeType;
-    private Error error;
+    @Required Boolean isSupported;
+    String previewUrl;
+    Boolean isAnimated;
+    String width;
+    String height;
+    String mimeType;
+    Error error;
 
-    @Data
+    @Value
     @Builder
     public static class Error {
-        @Required private String code;
-        private String message;
+        @Required String code;
+        String message;
     }
 }

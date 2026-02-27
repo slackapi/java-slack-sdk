@@ -14,6 +14,7 @@ import com.slack.api.model.block.element.RichTextElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.model.work_objects.DateTimeRange;
+import com.slack.api.model.work_objects.PrimaryActions;
 import com.slack.api.model.work_objects.User;
 import com.slack.api.util.json.*;
 
@@ -62,7 +63,8 @@ public class GsonFactory {
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
                         new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties))
                 .registerTypeAdapter(User.class, new GsonWorkObjectUserFactory(failOnUnknownProperties))
-                .registerTypeAdapter(DateTimeRange.class, new GsonWorkObjectDateTimeDeserializer(failOnUnknownProperties));
+                .registerTypeAdapter(DateTimeRange.class, new GsonWorkObjectDateTimeDeserializer(failOnUnknownProperties))
+                .registerTypeAdapter(PrimaryActions.class, new GsonWorkObjectPrimaryActionsFactory(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
             builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
