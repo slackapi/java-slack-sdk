@@ -6,15 +6,13 @@
 #
 # Environment variables:
 #   CI_ARGS  - Additional Maven CLI options (e.g., "--batch-mode -T 1C")
-#   TRAVIS_JDK  - Set to "openjdk8" to use JDK 8 module exclusions
 
 MVN_PHASES="${*:-clean test}"
 
 is_jdk_8=`echo $JAVA_HOME | grep 8.`
 is_jdk_14=`echo $JAVA_HOME | grep 14.`
 
-is_travis_jdk_8=`echo $TRAVIS_JDK | grep openjdk8`
-if [[ "${is_jdk_8}" != "" && "${is_travis_jdk_8}" != "" ]];
+if [[ "${is_jdk_8}" != "" ]];
 then
   ./mvnw \
     -pl !bolt-google-cloud-functions \
