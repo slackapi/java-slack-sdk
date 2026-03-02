@@ -45,7 +45,7 @@ public class FullLayout {
     @Builder
     public static class Actions {
         @Required List<PrimaryActions> primaryActions;
-        List<PrimaryActionsMenu> primaryActionsMenu;
+        List<ActionMenu> primaryActionsMenu;
         @Required OverflowActions overflowActions;
         @Required ActionBlockPayload blockPayload;
     }
