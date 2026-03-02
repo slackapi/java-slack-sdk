@@ -1,19 +1,14 @@
 #!/bin/bash
 
-flags()
-{
-    while test $# -gt 0
-    do
-        case "$1" in
-        -ci)
-            CI_OPTIONS="--batch-mode -T 1C"
-            ;;
-        *) usage;;
-        esac
-        shift
-    done
-}
-flags "$@"
+# Usage: ./scripts/run_no_prep_tests.sh [goals...]
+#
+# Arguments: Maven phases/goals to run (default: clean test)
+#
+# Environment variables:
+#   CI_ARGS  - Additional Maven CLI options (e.g., "--batch-mode -T 1C")
+#   TRAVIS_JDK  - Set to "openjdk8" to use JDK 8 module exclusions
+
+MVN_PHASES="${*:-clean test}"
 
 is_jdk_8=`echo $JAVA_HOME | grep 8.`
 is_jdk_14=`echo $JAVA_HOME | grep 14.`
@@ -31,8 +26,8 @@ then
     -pl !bolt-http4k \
     -pl !bolt-micronaut \
     -pl !slack-jakarta-socket-mode-client \
-    clean test \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
+    $MVN_PHASES \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_ARGS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
@@ -41,16 +36,16 @@ elif [[ "${is_jdk_14}" != "" ]];
 then
   ./mvnw \
     -pl !bolt-micronaut \
-    clean test \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
+    $MVN_PHASES \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_ARGS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 else
   ./mvnw \
-    clean test \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_OPTIONS} \
+    $MVN_PHASES \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_ARGS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
