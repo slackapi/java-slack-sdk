@@ -47,7 +47,7 @@ jobs:
           fi
           ./scripts/run_no_prep_tests.sh clean compile test-compile
         env:
-          CI_ARGS: "--batch-mode -T 1C"
+          CI_ARGS: "--batch-mode"
           MAVEN_OPTS: ${{ matrix.maven-opts }}
       - name: Run tests
         run: |
