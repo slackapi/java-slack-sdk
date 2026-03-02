@@ -33,14 +33,13 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: "adopt"
-      - name: Clean GitHub's pre-baked Maven receipts
-        run: find ~/.m2/repository -name _remote.repositories -exec rm -f {} \;
+          cache: "maven"
       - name: Compile
         run: |
           if [ ${{ matrix.java-version }} == "8" ]; then
             export TRAVIS_JDK=openjdk8
           fi
-          ./scripts/run_no_prep_tests.sh compile test-compile
+          ./scripts/run_no_prep_tests.sh clean compile test-compile
         env:
           CI_ARGS: "--batch-mode -T 1C"
           MAVEN_OPTS: ${{ matrix.maven-opts }}
