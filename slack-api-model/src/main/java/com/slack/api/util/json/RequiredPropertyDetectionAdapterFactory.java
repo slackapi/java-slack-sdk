@@ -66,17 +66,19 @@ public class RequiredPropertyDetectionAdapterFactory implements TypeAdapterFacto
      */
     private List<RequiredFieldEntry> buildRequiredFieldEntries(Class<?> clazz) {
         List<RequiredFieldEntry> entries = new ArrayList<>();
-        for (Field field : clazz.getDeclaredFields()) {
-            Required annotation = field.getAnnotation(Required.class);
-            if (annotation != null) {
-                field.setAccessible(true);
-                try {
-                    FieldPredicate predicate = annotation.validator().getDeclaredConstructor().newInstance();
-                    entries.add(new RequiredFieldEntry(field, predicate));
-                } catch (NoSuchMethodException | InstantiationException |
-                         IllegalAccessException | InvocationTargetException e) {
-                    throw new JsonParseException(
-                            "Cannot instantiate validator for field: " + field.getName(), e);
+        for (Class<?> current = clazz; current != null && current != Object.class; current = current.getSuperclass()) {
+            for (Field field : current.getDeclaredFields()) {
+                Required annotation = field.getAnnotation(Required.class);
+                if (annotation != null) {
+                    field.setAccessible(true);
+                    try {
+                        FieldPredicate predicate = annotation.validator().getDeclaredConstructor().newInstance();
+                        entries.add(new RequiredFieldEntry(field, predicate));
+                    } catch (NoSuchMethodException | InstantiationException |
+                             IllegalAccessException | InvocationTargetException e) {
+                        throw new JsonParseException(
+                                "Cannot instantiate validator for field: " + field.getName(), e);
+                    }
                 }
             }
         }
