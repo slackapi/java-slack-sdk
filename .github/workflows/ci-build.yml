@@ -40,14 +40,14 @@ jobs:
           fi
           ./scripts/run_no_prep_tests.sh compile test-compile
         env:
-          CI_ARGS: "--batch-mode -T 1C"
+          CI_ARGS: "--batch-mode"
           MAVEN_OPTS: ${{ matrix.maven-opts }}
       - name: Run tests
         run: |
           if [ ${{ matrix.java-version }} == "8" ]; then
             export TRAVIS_JDK=openjdk8
           fi
-          ./scripts/run_no_prep_tests.sh surefire:test
+          ./scripts/run_no_prep_tests.sh test
         env:
           CI_ARGS: "--batch-mode"
           SKIP_UNSTABLE_TESTS: 1
