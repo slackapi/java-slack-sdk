@@ -33,6 +33,8 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: "adopt"
+      - name: Clean GitHub's pre-baked Maven receipts
+        run: find ~/.m2/repository -name _remote.repositories -exec rm -f {} \;
       - name: Compile
         run: |
           if [ ${{ matrix.java-version }} == "8" ]; then
@@ -40,7 +42,7 @@ jobs:
           fi
           ./scripts/run_no_prep_tests.sh compile test-compile
         env:
-          CI_ARGS: "--batch-mode"
+          CI_ARGS: "--batch-mode -T 1C"
           MAVEN_OPTS: ${{ matrix.maven-opts }}
       - name: Run tests
         run: |
