@@ -203,6 +203,7 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                    <fork>true</fork>
                 </configuration>
             </plugin>
             <plugin>
