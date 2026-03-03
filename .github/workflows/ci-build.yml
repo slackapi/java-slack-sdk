@@ -44,7 +44,7 @@ jobs:
           CI_ARGS: "--batch-mode"
           SKIP_UNSTABLE_TESTS: 1
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && hashFiles('**/target/surefire-reports/TEST-*.xml') != '' }}
         uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
         with:
           directory: .
@@ -54,7 +54,7 @@ jobs:
           report_type: test_results
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Upload coverage to Codecov
-        if: ${{ !cancelled() && startsWith(matrix.java-version, '14') }}
+        if: ${{ !cancelled() && startsWith(matrix.java-version, '14') && hashFiles('**/target/site/jacoco/jacoco.xml') != '' }}
         uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
         with:
           files: "**/target/site/jacoco/jacoco.xml"
