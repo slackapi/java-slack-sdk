@@ -6,4 +6,4 @@ then
   exit 1
 fi
 
-./mvnw install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -T 1C
+./mvnw install -Dmaven.test.skip=true
