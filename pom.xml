@@ -204,6 +204,16 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <fork>true</fork>
+                    <meminitial>256m</meminitial>
+                    <maxmem>1024m</maxmem>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>

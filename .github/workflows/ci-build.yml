@@ -35,6 +35,7 @@ jobs:
         run: ./scripts/run_no_prep_tests.sh test
         env:
           CI_ARGS: "--batch-mode"
+          MAVEN_OPTS: "-Xmx4g -Xms512m"
           SKIP_UNSTABLE_TESTS: 1
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
@@ -47,7 +48,7 @@ jobs:
           report_type: test_results
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Upload coverage to Codecov
-        if: ${{ !cancelled() && hashFiles('**/target/site/jacoco/jacoco.xml') != '' }}
+        if: ${{ !cancelled() && startsWith(matrix.java-version, '14') }}
         uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
         with:
           files: "**/target/site/jacoco/jacoco.xml"
