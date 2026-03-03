@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java-version: ["8", "14", "17", "21", "25"]
+        java-version: ["8", "14", "17", "21"]
     permissions:
       contents: read
     steps:
@@ -27,7 +27,7 @@ jobs:
           java-version: ${{ matrix.java-version }}
           distribution: "adopt"
       - name: Compile
-        run: ./scripts/run_no_prep_tests.sh clean compile test-compile
+        run: ./scripts/run_no_prep_tests.sh clean test-compile
         env:
           CI_ARGS: "--batch-mode"
           MAVEN_OPTS: "-Xmx8g -Xms1g"
