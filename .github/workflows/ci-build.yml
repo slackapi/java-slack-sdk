@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -26,11 +26,18 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: "adopt"
+      - name: Cache Maven repository
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ runner.os }}-${{ matrix.java-version }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ runner.os }}-${{ matrix.java-version }}-
       - name: Compile
         run: ./scripts/run_no_prep_tests.sh clean test-compile
         env:
           CI_ARGS: "--batch-mode"
-          MAVEN_OPTS: "-Xmx8g -Xms1g"
+          MAVEN_OPTS: "-Xmx10g -Xms1g"
       - name: Run tests
         run: ./scripts/run_no_prep_tests.sh test
         env:
