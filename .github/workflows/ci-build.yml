@@ -26,17 +26,10 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: "adopt"
-      - name: Cache Maven dependencies
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
-        with:
-          path: ~/.m2/repository
-          key: v1-${{ runner.os }}-maven-${{ matrix.java-version }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            v1-${{ runner.os }}-maven-${{ matrix.java-version }}-
       - name: Compile
         run: ./scripts/run_no_prep_tests.sh clean compile test-compile
         env:
-          CI_ARGS: "--batch-mode -T 1C"
+          CI_ARGS: "--batch-mode"
           MAVEN_OPTS: "-Xmx4g -Xms512m"
       - name: Run tests
         run: ./scripts/run_no_prep_tests.sh test
