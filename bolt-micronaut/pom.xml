@@ -146,7 +146,7 @@
                         <compilerArgs>
                             <arg>-parameters</arg>
                         </compilerArgs>
-                        <annotationProcessorPaths>
+                        <annotationProcessorPaths combine.children="append">
                             <path>
                                 <groupId>io.micronaut</groupId>
                                 <artifactId>micronaut-inject-java</artifactId>
@@ -164,7 +164,7 @@
                                 <compilerArgs>
                                     <arg>-parameters</arg>
                                 </compilerArgs>
-                                <annotationProcessorPaths>
+                                <annotationProcessorPaths combine.children="append">
                                     <path>
                                         <groupId>io.micronaut</groupId>
                                         <artifactId>micronaut-inject-java</artifactId>

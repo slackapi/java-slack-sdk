@@ -1,27 +1,20 @@
 #!/bin/bash
 
-flags()
-{
-    while test $# -gt 0
-    do
-        case "$1" in
-        -ci)
-            CI_OPTIONS="--batch-mode -T 1C"
-            ;;
-        *) usage;;
-        esac
-        shift
-    done
-}
-flags "$@"
+# Usage: ./scripts/run_no_prep_tests.sh [goals...]
+#
+# Arguments: Maven phases/goals to run (default: clean test)
+#
+# Environment variables:
+#   CI_ARGS  - Additional Maven CLI options (e.g., "--batch-mode -T 1C")
+
+MVN_PHASES="${*:-clean test}"
 
 is_jdk_8=`echo $JAVA_HOME | grep 8.`
 is_jdk_14=`echo $JAVA_HOME | grep 14.`
 
-is_travis_jdk_8=`echo $TRAVIS_JDK | grep openjdk8`
-if [[ "${is_jdk_8}" != "" && "${is_travis_jdk_8}" != "" ]];
+if [[ "${is_jdk_8}" != "" ]];
 then
-  ./mvnw ${MAVEN_OPTS} \
+  ./mvnw \
     -pl !bolt-google-cloud-functions \
     -pl !bolt-helidon \
     -pl !bolt-quarkus-examples \
@@ -31,29 +24,26 @@ then
     -pl !bolt-http4k \
     -pl !bolt-micronaut \
     -pl !slack-jakarta-socket-mode-client \
-    clean \
-    test-compile \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+    $MVN_PHASES \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_ARGS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 elif [[ "${is_jdk_14}" != "" ]];
 then
-  ./mvnw ${MAVEN_OPTS} \
+  ./mvnw \
     -pl !bolt-micronaut \
-    clean \
-    test-compile \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+    $MVN_PHASES \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_ARGS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 else
-  ./mvnw ${MAVEN_OPTS} \
-    clean \
-    test-compile \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+  ./mvnw \
+    $MVN_PHASES \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_ARGS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
