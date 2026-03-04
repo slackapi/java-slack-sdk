@@ -238,6 +238,12 @@ public class Methods {
     public static final String APPS_CONNECTIONS_OPEN = "apps.connections.open";
 
     // ------------------------------
+    // apps.user.connection
+    // ------------------------------
+
+    public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 
