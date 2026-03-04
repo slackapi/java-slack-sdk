@@ -1,0 +1,62 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        java-version: ["8", "14", "17"]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Install JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: "adopt"
+      - name: Cache Maven repository
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ runner.os }}-${{ matrix.java-version }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ runner.os }}-${{ matrix.java-version }}-
+      - name: Compile
+        run: ./scripts/run_no_prep_tests.sh clean test-compile
+        env:
+          CI_ARGS: "--batch-mode"
+          MAVEN_OPTS: "-Xmx10g -Xms1g"
+      - name: Run tests
+        run: ./scripts/run_no_prep_tests.sh test
+        env:
+          CI_ARGS: "--batch-mode"
+          SKIP_UNSTABLE_TESTS: 1
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() && hashFiles('**/target/surefire-reports/TEST-*.xml') != '' }}
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+        with:
+          directory: .
+          files: "**/target/surefire-reports/TEST-*.xml"
+          fail_ci_if_error: true
+          flags: jdk-${{ matrix.java-version }}
+          report_type: test_results
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage to Codecov
+        if: ${{ !cancelled() && startsWith(matrix.java-version, '14') && hashFiles('**/target/site/jacoco/jacoco.xml') != '' }}
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+        with:
+          files: "**/target/site/jacoco/jacoco.xml"
+          flags: jdk-${{ matrix.java-version }}
+          token: ${{ secrets.CODECOV_TOKEN }}
