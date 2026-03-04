@@ -43,6 +43,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
@@ -1060,6 +1061,13 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(AppsConnectionsOpenRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsUserConnectionUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("user_id", req.getUserId(), form);
+        setIfNotNull("status", req.getStatus(), form);
         return form;
     }
 
