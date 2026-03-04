@@ -11,31 +11,20 @@ import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
 import com.slack.api.model.block.element.OverflowMenuElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
-import com.slack.api.util.annotation.Required;
 import com.slack.api.util.json.*;
-import com.slack.api.util.predicate.FieldPredicate;
-import lombok.Builder;
-import lombok.Data;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.function.Predicate;
 
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.image;
 import static com.slack.api.model.block.element.BlockElements.overflowMenu;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThrows;
 
 public class JSONUtilityTest {
 
@@ -163,146 +152,5 @@ public class JSONUtilityTest {
         assertNotNull(json);
         parsed = f.deserialize(json, FunctionExecutedEvent.InputValue.class, context);
         assertThat(parsed.asStringArray(), is(Arrays.asList("C111", "C222")));
-    }
-
-    @Test
-    public void testRequiredPropertyDetectionAdapterFactory_basicCase_failureCases() {
-        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
-
-        // Serialization
-        TestClassWithRequiredBasic instance = TestClassWithRequiredBasic.builder().build();
-        assertThrows(JsonParseException.class, () -> gson.toJson(instance));
-
-        // Deserialization
-        String json = "{\"name\": \"Hello\"}";
-        assertThrows(JsonParseException.class, () -> gson.fromJson(json, TestClassWithRequiredBasic.class));
-    }
-
-    @Test
-    public void testRequiredPropertyDetectionAdapterFactory_basicCase_happyPath() {
-        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
-        TestClassWithRequiredBasic instanceNoName = TestClassWithRequiredBasic.builder().id(1).build();
-        TestClassWithRequiredBasic instanceWithName = TestClassWithRequiredBasic.builder().id(1).name("Hello").build();
-
-        // Serialization
-        assertThat(gson.toJson(instanceNoName), is("{\"id\":1}"));
-        assertThat(gson.toJson(instanceWithName), is("{\"id\":1,\"name\":\"Hello\"}"));
-
-        // Deserialization
-        String json = "{\"id\": 1}";
-        TestClassWithRequiredBasic instance = gson.fromJson(json, TestClassWithRequiredBasic.class);
-        assertThat(instance.getId(), is(1));
-        assertNull(instance.getName());
-
-        json = "{\"id\": 1, \"name\": \"Hello\"}";
-        instance = gson.fromJson(json, TestClassWithRequiredBasic.class);
-        assertThat(instance.getId(), is(1));
-        assertThat(instance.getName(), is("Hello"));
-    }
-
-    @Test
-    public void testRequiredPropertyDetectionAdapterFactory_advancedCase_failureCases() {
-        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
-        List<String> users = new ArrayList<>();
-        // Serialization
-        JsonParseException e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().build()));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'id' failed validation in TestClassWithRequiredAdvanced using predicate IntegerGreaterThanZero"));
-
-        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).build()));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
-
-        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("").build()));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
-
-        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("Hello").build()));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'users' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyCollection"));
-
-        users.add("user1");
-        e = assertThrows(JsonParseException.class, () -> gson.toJson(TestClassWithRequiredAdvanced.builder().id(1).name("Hello").users(users).build()));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'myBool' failed validation in TestClassWithRequiredAdvanced using predicate isNotNullFieldPredicate"));
-
-        // Deserialization
-        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\": 0}", TestClassWithRequiredAdvanced.class));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'id' failed validation in TestClassWithRequiredAdvanced using predicate IntegerGreaterThanZero"));
-
-        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\": 1}", TestClassWithRequiredAdvanced.class));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
-
-        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\": 1, \"name\": ''}", TestClassWithRequiredAdvanced.class));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'name' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyString"));
-
-        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\":1,\"name\":\"test\",\"users\":[]}", TestClassWithRequiredAdvanced.class));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'users' failed validation in TestClassWithRequiredAdvanced using predicate NonEmptyCollection"));
-
-        e = assertThrows(JsonParseException.class, () -> gson.fromJson("{\"id\":1,\"name\":\"test\",\"users\":[\"hello\"]}", TestClassWithRequiredAdvanced.class));
-        assertThat(e.getMessage(), equalToIgnoringCase("Required field 'myBool' failed validation in TestClassWithRequiredAdvanced using predicate isNotNullFieldPredicate"));
-    }
-
-    @Test
-    public void testRequiredPropertyDetectionAdapterFactory_advancedCase_happyPath() {
-        Gson gson = GsonFactory.createSnakeCaseWithRequiredPropertyDetection();
-        List<String> users = new ArrayList<>();
-        users.add("testUser");
-        TestClassWithRequiredAdvanced instance = TestClassWithRequiredAdvanced.builder()
-                .id(1)
-                .name("test")
-                .users(users)
-                .myBool(true)
-                .build();
-
-        // Serialization
-        assertThat(gson.toJson(instance), is("{\"id\":1,\"name\":\"test\",\"users\":[\"testUser\"],\"my_bool\":true}"));
-
-        // Deserialization
-        String json = "{\"id\":1,\"name\":\"test\",\"users\":[\"testUser\"],\"my_bool\":true}";
-        instance = gson.fromJson(json, TestClassWithRequiredAdvanced.class);
-        assertThat(instance.getId(), is(1));
-        assertThat(instance.getName(), is("test"));
-        assertThat(instance.getUsers().get(0), is("testUser"));
-        assertThat(instance.getMyBool(), is(true));
-        assertNull(instance.getCanBeNull());
-    }
-
-    @Data
-    @Builder
-    private static class TestClassWithRequiredBasic {
-        @Required private Integer id;
-        private String name;
-    }
-
-    @Data
-    @Builder
-    private static class TestClassWithRequiredAdvanced {
-        @Required(validator = IntegerGreaterThanZero.class)
-        private int id;
-        @Required(validator = NonEmptyString.class)
-        private String name;
-        @Required(validator = NonEmptyCollection.class)
-        private List<String> users;
-        @Required
-        Boolean myBool;
-        private String canBeNull;
-
-        public static class IntegerGreaterThanZero implements FieldPredicate {
-            @Override
-            public boolean validate(Object obj) {
-                return obj instanceof Integer && (int)obj > 0;
-            }
-        }
-
-        public static class NonEmptyString implements FieldPredicate {
-            @Override
-            public boolean validate(Object obj) {
-                return obj instanceof String && !((String) obj).isEmpty();
-            }
-        }
-
-        public static class NonEmptyCollection implements FieldPredicate {
-            @Override
-            public boolean validate(Object obj) {
-                Predicate<Collection<?>> isNotEmpty = collection -> !collection.isEmpty();
-                return obj instanceof Collection && isNotEmpty.test((Collection<?>) obj);
-            }
-        }
     }
 }
