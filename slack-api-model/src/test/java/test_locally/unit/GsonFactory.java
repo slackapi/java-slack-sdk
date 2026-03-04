@@ -27,19 +27,7 @@ public class GsonFactory {
         return createSnakeCase(failOnUnknownProperties, false);
     }
 
-    public static Gson createSnakeCaseWithRequiredPropertyDetection() {
-        return createSnakeCase(false, true, true);
-    }
-
     public static Gson createSnakeCase(boolean failOnUnknownProperties, boolean unknownPropertyDetection) {
-        return createSnakeCase(failOnUnknownProperties, unknownPropertyDetection, false);
-    }
-
-    public static Gson createSnakeCase(
-            boolean failOnUnknownProperties,
-            boolean unknownPropertyDetection,
-            boolean failOnRequiredProperties
-    ) {
         GsonBuilder builder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProperties))
@@ -57,12 +45,9 @@ public class GsonFactory {
                         new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
-            builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+            return builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory()).create();
+        } else {
+            return builder.create();
         }
-        if (failOnRequiredProperties) {
-            builder.registerTypeAdapterFactory(new RequiredPropertyDetectionAdapterFactory());
-        }
-
-        return builder.create();
     }
 }
