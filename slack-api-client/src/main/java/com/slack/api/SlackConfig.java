@@ -63,9 +63,6 @@ public class SlackConfig implements AutoCloseable {
         }
 
         @Override
-        public void setFailOnRequiredProperties(boolean failOnRequiredProperties) { throwException(); }
-
-        @Override
         public void setPrettyResponseLoggingEnabled(boolean prettyResponseLoggingEnabled) {
             throwException();
         }
@@ -250,11 +247,6 @@ public class SlackConfig implements AutoCloseable {
      * If you would like to detect unknown properties by throwing exceptions, set this flag as true.
      */
     private boolean failOnUnknownProperties = false;
-
-    /**
-     * If you would like to detect required properties by throwing exceptions, set this flag as true.
-     */
-    private boolean failOnRequiredProperties = false;
 
     /**
      * Slack Web API client verifies the existence of tokens before sending HTTP requests to Slack servers.
