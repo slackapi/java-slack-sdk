@@ -41,6 +41,8 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
                 return ImageBlock.class;
             case ContextBlock.TYPE:
                 return ContextBlock.class;
+            case ContextActionsBlock.TYPE:
+                return ContextActionsBlock.class;
             case CallBlock.TYPE:
                 return CallBlock.class;
             case ActionsBlock.TYPE:
@@ -51,6 +53,8 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
                 return InputBlock.class;
             case HeaderBlock.TYPE:
                 return HeaderBlock.class;
+            case MarkdownBlock.TYPE:
+                return MarkdownBlock.class;
             case VideoBlock.TYPE:
                 return VideoBlock.class;
             case RichTextBlock.TYPE:

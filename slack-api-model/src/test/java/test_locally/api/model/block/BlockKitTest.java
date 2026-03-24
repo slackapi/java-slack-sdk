@@ -56,6 +56,20 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseMarkdownBlock() {
+        String blocks = "[{\n" +
+                "  \"type\": \"markdown\",\n" +
+                "  \"text\": \"**this is bold**\"\n" +
+                "}]";
+        String json = "{blocks: " + blocks + "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+        MarkdownBlock markdownBlock = (MarkdownBlock) message.getBlocks().get(0);
+        assertThat(markdownBlock.getText(), is("**this is bold**"));
+    }
+
+    @Test
     public void parseMultiSelectOnes() {
         String blocks = "[\n" +
                 "    {\n" +
@@ -265,6 +279,7 @@ public class BlockKitTest {
         assertThat(text.getStyle().isBold(), is(true));
         assertThat(text.getStyle().isItalic(), is(false));
         assertThat(text.getStyle().isStrike(), is(false));
+        assertThat(text.getStyle().isUnderline(), is(false));
     }
 
     @Test
@@ -615,6 +630,56 @@ public class BlockKitTest {
         // verify if Gson can parse the JSON data
         Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
         assertThat(view.getBlocks().size(), is(1));
+    }
+
+    @Test
+    public void parseRichTextOnes5() {
+        // https://docs.slack.dev/changelog/2019/09/01/what-they-see-is-what-you-get-and-more-and-less
+        String json = "{\n" +
+                "  \"user\": \"U111\",\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"ts\": \"1761165621.982069\",\n" +
+                "  \"client_msg_id\": \"d0b7fc31-7456-4e54-9094-b5b1833fca8c\",\n" +
+                "  \"text\": \"this is underline\",\n" +
+                "  \"team\": \"T111\",\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"sfvOa\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"this is underline\",\n" +
+                "              \"style\": {\n" +
+                "                \"underline\": true\n" +
+                "              }\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(view.getBlocks().size(), is(1));
+
+        RichTextBlock richTextBlock = (RichTextBlock) view.getBlocks().get(0);
+        assertThat(richTextBlock.getElements().size(), is(1));
+
+        RichTextSectionElement richTextSection = (RichTextSectionElement) richTextBlock.getElements().get(0);
+        assertThat(richTextSection.getElements().size(), is(1));
+
+        RichTextSectionElement.Text text = (RichTextSectionElement.Text) richTextSection.getElements().get(0);
+        assertThat(text.getType(), is("text"));
+        assertThat(text.getText(), is("this is underline"));
+        assertThat(text.getStyle().isBold(), is(false));
+        assertThat(text.getStyle().isItalic(), is(false));
+        assertThat(text.getStyle().isStrike(), is(false));
+        assertThat(text.getStyle().isUnderline(), is(true));
     }
 
     @Test
@@ -1178,6 +1243,74 @@ public class BlockKitTest {
         Gson prodGson = GsonFactory.createSnakeCase(false, false);
         CallBlock block = prodGson.fromJson(json, CallBlock.class);
         assertThat(block, is(notNullValue()));
+    }
+
+    @Test
+    public void parseContextActionsBlock() {
+            String json = "{\n" +
+            "      \"type\": \"context_actions\",\n" +
+            "      \"elements\": [\n" +
+            "        {\n" +
+            "          \"type\": \"feedback_buttons\",\n" +
+            "          \"action_id\": \"feedback\",\n" +
+            "          \"positive_button\": {\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Good Response\",\n" +
+            "              \"emoji\": true\n" +
+            "            },\n" +
+            "            \"accessibility_label\": \"Submit positive feedback on this response\",\n" +
+            "            \"value\": \"good-feedback\"\n" +
+            "          },\n" +
+            "          \"negative_button\": {\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Bad Response\",\n" +
+            "              \"emoji\": true\n" +
+            "            },\n" +
+            "            \"accessibility_label\": \"Submit negative feedback on this response\",\n" +
+            "            \"value\": \"bad-feedback\"\n" +
+            "          }\n" +
+            "        },\n" +
+            "        {\n" +
+            "          \"type\": \"icon_button\",\n" +
+            "          \"icon\": \"trash\",\n" +
+            "          \"text\": {\n" +
+            "            \"type\": \"plain_text\",\n" +
+            "            \"text\": \"Remove\"\n" +
+            "          },\n" +
+            "          \"confirm\": {\n" +
+            "            \"title\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Oops\"\n" +
+            "            },\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"This response might've been just alright...\"\n" +
+            "            },\n" +
+            "            \"style\": \"danger\"\n" +
+            "          },\n" +
+            "          \"visible_to_user_ids\": [\"USLACKBOT\", \"U0123456789\"]\n" +
+            "        }\n" +
+            "      ]\n" +
+            "}";
+        ContextActionsBlock block = GsonFactory.createSnakeCase().fromJson(json, ContextActionsBlock.class);
+        assertNotNull(block);
+        assertEquals("context_actions", block.getType());
+        assertEquals(2, block.getElements().size());
+        FeedbackButtonsElement buttons = (FeedbackButtonsElement) block.getElements().get(0);
+        assertEquals("feedback", buttons.getActionId());
+        assertEquals("good-feedback", buttons.getPositiveButton().getValue());
+        assertEquals("bad-feedback", buttons.getNegativeButton().getValue());
+        assertEquals("Good Response", buttons.getPositiveButton().getText().getText());
+        assertEquals("Bad Response", buttons.getNegativeButton().getText().getText());
+        IconButtonElement iconButton = (IconButtonElement) block.getElements().get(1);
+        assertEquals("trash", iconButton.getIcon());
+        assertEquals("Remove", iconButton.getText().getText());
+        assertEquals("Oops", iconButton.getConfirm().getTitle().getText());
+        assertEquals("This response might've been just alright...", iconButton.getConfirm().getText().getText());
+        assertEquals("danger", iconButton.getConfirm().getStyle());
+        assertEquals(Arrays.asList("USLACKBOT", "U0123456789"), iconButton.getVisibleToUserIds());
     }
 
     String richTextSkinTone = "{ \"blocks\": [\n" +

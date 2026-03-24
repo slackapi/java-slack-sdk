@@ -227,6 +227,8 @@ public class AdminApiTest {
 
         assertThat(methods.adminUsersAssign(r -> r.teamId("T123").userId("U123").isRestricted(false))
                 .isOk(), is(true));
+        assertThat(methods.adminUsersGetExpiration(r -> r.userId("U123").targetTeam("T123"))
+                .isOk(), is(true));    
         assertThat(methods.adminUsersInvite(r ->
                 r.teamId("T123").channelIds(Arrays.asList("C123")).email("who@example.com"))
                 .isOk(), is(true));

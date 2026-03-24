@@ -76,11 +76,15 @@ public class BlockCompositions {
         return configurator.configure(DispatchActionConfig.builder()).build();
     }
 
+    // FeedbackButtonsObject
+
+    public static FeedbackButtonObject feedbackButton(ModelConfigurator<FeedbackButtonObject.FeedbackButtonObjectBuilder> configurator) {
+        return configurator.configure(FeedbackButtonObject.builder()).build();
+    }
+
     // SlackFileObject
 
     public static SlackFileObject slackFile(ModelConfigurator<SlackFileObject.SlackFileObjectBuilder> configurator) {
         return configurator.configure(SlackFileObject.builder()).build();
     }
-
 }
-

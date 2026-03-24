@@ -6,11 +6,12 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.45.5-SNAPSHOT</version>
+        <version>1.48.1-SNAPSHOT</version>
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>An adapter for running Slack Bolt for Java applications on Micronaut.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
         <micronaut.version>4.8.3</micronaut.version>
@@ -28,7 +29,7 @@
     </properties>
 
     <artifactId>bolt-micronaut</artifactId>
-    <version>1.45.5-SNAPSHOT</version>
+    <version>1.48.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -145,7 +146,7 @@
                         <compilerArgs>
                             <arg>-parameters</arg>
                         </compilerArgs>
-                        <annotationProcessorPaths>
+                        <annotationProcessorPaths combine.children="append">
                             <path>
                                 <groupId>io.micronaut</groupId>
                                 <artifactId>micronaut-inject-java</artifactId>
@@ -163,7 +164,7 @@
                                 <compilerArgs>
                                     <arg>-parameters</arg>
                                 </compilerArgs>
-                                <annotationProcessorPaths>
+                                <annotationProcessorPaths combine.children="append">
                                     <path>
                                         <groupId>io.micronaut</groupId>
                                         <artifactId>micronaut-inject-java</artifactId>

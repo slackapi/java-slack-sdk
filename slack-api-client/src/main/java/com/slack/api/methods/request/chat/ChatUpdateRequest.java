@@ -78,6 +78,11 @@ public class ChatUpdateRequest implements SlackApiRequest {
     }
 
     /**
+     * Accepts message text formatted in markdown. This argument should not be used in conjunction with blocks or text. Limit this field to 12,000 characters.
+     */
+    private String markdownText;
+
+    /**
      * JSON object with event_type and event_payload fields, presented as a URL-encoded string.
      * Metadata you post to Slack is accessible to any app or user who is a member of that workspace.
      */

@@ -27,8 +27,10 @@ public class AppActivity {
         private String workflowName;
         private String type;
         private String actor;
+        private String appId;
         private String channelId;
         private String botUserId;
+        private String code;
         private String error; // "restricted_action" etc.
         private String errorExtended;
         private String functionId; // "Fn0106" etc.
@@ -43,6 +45,8 @@ public class AppActivity {
         private Trigger trigger;
         // TODO: complete typing for the value
         private Map<String, Object> inputs;
+        // TODO: complete typing for the value
+        private Map<String, Object> outputs;
 
         private String action;
         private String teamId;

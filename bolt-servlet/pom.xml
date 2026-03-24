@@ -6,11 +6,12 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.45.5-SNAPSHOT</version>
+        <version>1.48.1-SNAPSHOT</version>
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>A handy way to run Slack Bolt apps on the Java EE Servlet environments.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
         <!-- TODO: Upgrade to 11.x in the next major version - v2 -->
@@ -18,7 +19,7 @@
     </properties>
 
     <artifactId>bolt-servlet</artifactId>
-    <version>1.45.5-SNAPSHOT</version>
+    <version>1.48.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>

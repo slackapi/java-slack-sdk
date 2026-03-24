@@ -4,6 +4,8 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * https://docs.slack.dev/reference/methods/assistant.threads.setStatus
  */
@@ -27,4 +29,9 @@ public class AssistantThreadsSetStatusRequest implements SlackApiRequest {
      * Status of the specified bot user, e.g. 'is thinking...'
      */
     private String status;
+
+    /**
+     * The list of messages to rotate through as a loading indicator.
+     */
+    private List<String> loadingMessages;
 }

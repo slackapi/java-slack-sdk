@@ -44,6 +44,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
@@ -85,6 +86,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
@@ -115,6 +117,18 @@ import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.search.SearchAllRequest;
 import com.slack.api.methods.request.search.SearchFilesRequest;
 import com.slack.api.methods.request.search.SearchMessagesRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessSetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadStartRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -134,6 +148,10 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedAddRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedListRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedRemoveRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedSetRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
@@ -178,6 +196,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
@@ -219,6 +238,7 @@ import com.slack.api.methods.response.conversations.request_shared_invite.Conver
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.slack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
@@ -249,6 +269,18 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.methods.response.search.SearchMessagesResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsAccessDeleteResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsAccessSetResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsCreateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsDownloadGetResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsDownloadStartResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsCreateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsDeleteResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsDeleteMultipleResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -269,6 +301,10 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedAddResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedListResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedRemoveResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
@@ -1113,6 +1149,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminUsersGetExpirationResponse adminUsersGetExpiration(RequestConfigurator<AdminUsersGetExpirationRequest.AdminUsersGetExpirationRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersGetExpiration(req.configure(AdminUsersGetExpirationRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersGetExpirationResponse adminUsersGetExpiration(AdminUsersGetExpirationRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_GET_EXPIRATION, getToken(req), AdminUsersGetExpirationResponse.class);
+    }
+
+    @Override
     public AdminUsersInviteResponse adminUsersInvite(AdminUsersInviteRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_INVITE, getToken(req), AdminUsersInviteResponse.class);
     }
@@ -1340,6 +1386,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AppsConnectionsOpenResponse appsConnectionsOpen(RequestConfigurator<AppsConnectionsOpenRequest.AppsConnectionsOpenRequestBuilder> req) throws IOException, SlackApiException {
         return appsConnectionsOpen(req.configure(AppsConnectionsOpenRequest.builder()).build());
+    }
+
+    @Override
+    public AppsUserConnectionUpdateResponse appsUserConnectionUpdate(AppsUserConnectionUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.APPS_USER_CONNECTION_UPDATE, getToken(req), AppsUserConnectionUpdateResponse.class);
+    }
+
+    @Override
+    public AppsUserConnectionUpdateResponse appsUserConnectionUpdate(RequestConfigurator<AppsUserConnectionUpdateRequest.AppsUserConnectionUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return appsUserConnectionUpdate(req.configure(AppsUserConnectionUpdateRequest.builder()).build());
     }
 
     @Override
@@ -1832,13 +1888,13 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_GET_PERMALINK, getToken(req), ChatGetPermalinkResponse.class);
+    public ChatAppendStreamResponse chatAppendStream(ChatAppendStreamRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_APPEND_STREAM, getToken(req), ChatAppendStreamResponse.class);
     }
 
     @Override
-    public ChatGetPermalinkResponse chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException {
-        return chatGetPermalink(req.configure(ChatGetPermalinkRequest.builder()).build());
+    public ChatAppendStreamResponse chatAppendStream(RequestConfigurator<ChatAppendStreamRequest.ChatAppendStreamRequestBuilder> req) throws IOException, SlackApiException {
+        return chatAppendStream(req.configure(ChatAppendStreamRequest.builder()).build());
     }
 
     @Override
@@ -1860,6 +1916,17 @@ public class MethodsClientImpl implements MethodsClient {
     public ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(RequestConfigurator<ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) throws IOException, SlackApiException {
         return chatDeleteScheduledMessage(req.configure(ChatDeleteScheduledMessageRequest.builder()).build());
     }
+
+    @Override
+    public ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_GET_PERMALINK, getToken(req), ChatGetPermalinkResponse.class);
+    }
+
+    @Override
+    public ChatGetPermalinkResponse chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException {
+        return chatGetPermalink(req.configure(ChatGetPermalinkRequest.builder()).build());
+    }
+
 
     @Override
     public ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException {
@@ -1899,6 +1966,26 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ChatScheduleMessageResponse chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException {
         return chatScheduleMessage(req.configure(ChatScheduleMessageRequest.builder()).build());
+    }
+
+    @Override
+    public ChatStartStreamResponse chatStartStream(ChatStartStreamRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_START_STREAM, getToken(req), ChatStartStreamResponse.class);
+    }
+
+    @Override
+    public ChatStartStreamResponse chatStartStream(RequestConfigurator<ChatStartStreamRequest.ChatStartStreamRequestBuilder> req) throws IOException, SlackApiException {
+        return chatStartStream(req.configure(ChatStartStreamRequest.builder()).build());
+    }
+
+    @Override
+    public ChatStopStreamResponse chatStopStream(ChatStopStreamRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_STOP_STREAM, getToken(req), ChatStopStreamResponse.class);
+    }
+
+    @Override
+    public ChatStopStreamResponse chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req) throws IOException, SlackApiException {
+        return chatStopStream(req.configure(ChatStopStreamRequest.builder()).build());
     }
 
     @Override
@@ -2306,6 +2393,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public EmojiListResponse emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException {
         return emojiList(req.configure(EmojiListRequest.builder()).build());
+    }
+
+    @Override
+    public EntityPresentDetailsResponse entityPresentDetails(EntityPresentDetailsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ENTITY_PRESENT_DETAILS, getToken(req), EntityPresentDetailsResponse.class);
+    }
+
+    @Override
+    public EntityPresentDetailsResponse entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req) throws IOException, SlackApiException {
+        return entityPresentDetails(req.configure(EntityPresentDetailsRequest.builder()).build());
     }
 
     @Override
@@ -3143,6 +3240,126 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public SlackListsAccessDeleteResponse slackListsAccessDelete(SlackListsAccessDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ACCESS_DELETE, getToken(req), SlackListsAccessDeleteResponse.class);
+    }
+
+    @Override
+    public SlackListsAccessDeleteResponse slackListsAccessDelete(RequestConfigurator<SlackListsAccessDeleteRequest.SlackListsAccessDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsAccessDelete(req.configure(SlackListsAccessDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsAccessSetResponse slackListsAccessSet(SlackListsAccessSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ACCESS_SET, getToken(req), SlackListsAccessSetResponse.class);
+    }
+
+    @Override
+    public SlackListsAccessSetResponse slackListsAccessSet(RequestConfigurator<SlackListsAccessSetRequest.SlackListsAccessSetRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsAccessSet(req.configure(SlackListsAccessSetRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsCreateResponse slackListsCreate(SlackListsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_CREATE, getToken(req), SlackListsCreateResponse.class);
+    }
+
+    @Override
+    public SlackListsCreateResponse slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsCreate(req.configure(SlackListsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsDownloadGetResponse slackListsDownloadGet(SlackListsDownloadGetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_DOWNLOAD_GET, getToken(req), SlackListsDownloadGetResponse.class);
+    }
+
+    @Override
+    public SlackListsDownloadGetResponse slackListsDownloadGet(RequestConfigurator<SlackListsDownloadGetRequest.SlackListsDownloadGetRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsDownloadGet(req.configure(SlackListsDownloadGetRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsDownloadStartResponse slackListsDownloadStart(SlackListsDownloadStartRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_DOWNLOAD_START, getToken(req), SlackListsDownloadStartResponse.class);
+    }
+
+    @Override
+    public SlackListsDownloadStartResponse slackListsDownloadStart(RequestConfigurator<SlackListsDownloadStartRequest.SlackListsDownloadStartRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsDownloadStart(req.configure(SlackListsDownloadStartRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsCreateResponse slackListsItemsCreate(SlackListsItemsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_CREATE, getToken(req), SlackListsItemsCreateResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsCreateResponse slackListsItemsCreate(RequestConfigurator<SlackListsItemsCreateRequest.SlackListsItemsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsCreate(req.configure(SlackListsItemsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsDeleteResponse slackListsItemsDelete(SlackListsItemsDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_DELETE, getToken(req), SlackListsItemsDeleteResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsDeleteResponse slackListsItemsDelete(RequestConfigurator<SlackListsItemsDeleteRequest.SlackListsItemsDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsDelete(req.configure(SlackListsItemsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsDeleteMultipleResponse slackListsItemsDeleteMultiple(SlackListsItemsDeleteMultipleRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_DELETE_MULTIPLE, getToken(req), SlackListsItemsDeleteMultipleResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsDeleteMultipleResponse slackListsItemsDeleteMultiple(RequestConfigurator<SlackListsItemsDeleteMultipleRequest.SlackListsItemsDeleteMultipleRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsDeleteMultiple(req.configure(SlackListsItemsDeleteMultipleRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsInfoResponse slackListsItemsInfo(SlackListsItemsInfoRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_INFO, getToken(req), SlackListsItemsInfoResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsInfoResponse slackListsItemsInfo(RequestConfigurator<SlackListsItemsInfoRequest.SlackListsItemsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsInfo(req.configure(SlackListsItemsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsListResponse slackListsItemsList(SlackListsItemsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_LIST, getToken(req), SlackListsItemsListResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsListResponse slackListsItemsList(RequestConfigurator<SlackListsItemsListRequest.SlackListsItemsListRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsList(req.configure(SlackListsItemsListRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsItemsUpdateResponse slackListsItemsUpdate(SlackListsItemsUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ITEMS_UPDATE, getToken(req), SlackListsItemsUpdateResponse.class);
+    }
+
+    @Override
+    public SlackListsItemsUpdateResponse slackListsItemsUpdate(RequestConfigurator<SlackListsItemsUpdateRequest.SlackListsItemsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsItemsUpdate(req.configure(SlackListsItemsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackListsUpdateResponse slackListsUpdate(SlackListsUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_UPDATE, getToken(req), SlackListsUpdateResponse.class);
+    }
+
+    @Override
+    public SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
     @Deprecated // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     public StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.STARS_ADD, getToken(req), StarsAddResponse.class);
@@ -3534,6 +3751,46 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ViewsPublishResponse viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) throws IOException, SlackApiException {
         return viewsPublish(req.configure(ViewsPublishRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedAddResponse workflowsFeaturedAdd(WorkflowsFeaturedAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_ADD, getToken(req), WorkflowsFeaturedAddResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedAddResponse workflowsFeaturedAdd(RequestConfigurator<WorkflowsFeaturedAddRequest.WorkflowsFeaturedAddRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedAdd(req.configure(WorkflowsFeaturedAddRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedListResponse workflowsFeaturedList(WorkflowsFeaturedListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_LIST, getToken(req), WorkflowsFeaturedListResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedListResponse workflowsFeaturedList(RequestConfigurator<WorkflowsFeaturedListRequest.WorkflowsFeaturedListRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedList(req.configure(WorkflowsFeaturedListRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedRemoveResponse workflowsFeaturedRemove(WorkflowsFeaturedRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_REMOVE, getToken(req), WorkflowsFeaturedRemoveResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedRemoveResponse workflowsFeaturedRemove(RequestConfigurator<WorkflowsFeaturedRemoveRequest.WorkflowsFeaturedRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedRemove(req.configure(WorkflowsFeaturedRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsFeaturedSetResponse workflowsFeaturedSet(WorkflowsFeaturedSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_FEATURED_SET, getToken(req), WorkflowsFeaturedSetResponse.class);
+    }
+
+    @Override
+    public WorkflowsFeaturedSetResponse workflowsFeaturedSet(RequestConfigurator<WorkflowsFeaturedSetRequest.WorkflowsFeaturedSetRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsFeaturedSet(req.configure(WorkflowsFeaturedSetRequest.builder()).build());
     }
 
     @Override

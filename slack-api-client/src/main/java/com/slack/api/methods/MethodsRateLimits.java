@@ -15,7 +15,7 @@ import static com.slack.api.methods.MethodsRateLimitTier.*;
 /**
  * The comprehensive list of Slack Web API rate limits.
  *
- * @see <a href="https://docs.slack.dev/apis/web-api/rate-limits">api.slack.com document</a>
+ * @see <a href="https://docs.slack.dev/apis/web-api/rate-limits">API reference</a>
  */
 @Slf4j
 public class MethodsRateLimits {
@@ -184,6 +184,7 @@ public class MethodsRateLimits {
 
         // Tier4
         final List<String> adminApiMethods_Tier4 = Arrays.asList(
+                ADMIN_USERS_GET_EXPIRATION,
                 ADMIN_USERS_SESSION_GET_SETTINGS,
                 ADMIN_USERS_SESSION_SET_SETTINGS,
                 ADMIN_USERS_SESSION_CLEAR_SETTINGS,
@@ -226,6 +227,7 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);
         setRateLimitTier(APPS_UNINSTALL, Tier1);
         setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
+        setRateLimitTier(APPS_USER_CONNECTION_UPDATE, Tier2);
 
         setRateLimitTier(ASSISTANT_THREADS_SET_STATUS, SpecialTier_assistant_threads_setStatus);
         setRateLimitTier(ASSISTANT_THREADS_SET_SUGGESTED_PROMPTS, Tier3);
@@ -257,6 +259,7 @@ public class MethodsRateLimits {
         setRateLimitTier(CANVASES_SECTIONS_LOOKUP, Tier3);
         setRateLimitTier(CONVERSATIONS_CANVASES_CREATE, Tier2);
 
+        setRateLimitTier(CHAT_APPEND_STREAM, Tier4);
         setRateLimitTier(CHAT_DELETE, Tier3);
         setRateLimitTier(CHAT_DELETE_SCHEDULED_MESSAGE, Tier3);
         setRateLimitTier(CHAT_GET_PERMALINK, SpecialTier_chat_getPermalink);
@@ -264,6 +267,8 @@ public class MethodsRateLimits {
         setRateLimitTier(CHAT_POST_EPHEMERAL, Tier4);
         setRateLimitTier(CHAT_POST_MESSAGE, SpecialTier_chat_postMessage);
         setRateLimitTier(CHAT_SCHEDULE_MESSAGE, Tier3);
+        setRateLimitTier(CHAT_START_STREAM, Tier2);
+        setRateLimitTier(CHAT_STOP_STREAM, Tier2);
         setRateLimitTier(CHAT_UNFURL, Tier3);
         setRateLimitTier(CHAT_UPDATE, Tier3);
         setRateLimitTier(CHAT_SCHEDULED_MESSAGES_LIST, Tier3);
@@ -421,9 +426,23 @@ public class MethodsRateLimits {
         setRateLimitTier(SEARCH_FILES, Tier2);
         setRateLimitTier(SEARCH_MESSAGES, Tier2);
 
+        setRateLimitTier(SLACKLISTS_ACCESS_DELETE, Tier3);
+        setRateLimitTier(SLACKLISTS_ACCESS_SET, Tier3);
+        setRateLimitTier(SLACKLISTS_CREATE, Tier2);
+        setRateLimitTier(SLACKLISTS_DOWNLOAD_GET, Tier4);
+        setRateLimitTier(SLACKLISTS_DOWNLOAD_START, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_CREATE, Tier3);
+        setRateLimitTier(SLACKLISTS_ITEMS_DELETE, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_DELETE_MULTIPLE, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_INFO, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_LIST, Tier2);
+        setRateLimitTier(SLACKLISTS_ITEMS_UPDATE, Tier3);
+        setRateLimitTier(SLACKLISTS_UPDATE, Tier2);
+
         setRateLimitTier(STARS_ADD, Tier2);
         setRateLimitTier(STARS_LIST, Tier3);
         setRateLimitTier(STARS_REMOVE, Tier2);
+
 
         setRateLimitTier(TEAM_ACCESS_LOGS, Tier2);
         setRateLimitTier(TEAM_BILLABLE_INFO, Tier2);
@@ -462,6 +481,10 @@ public class MethodsRateLimits {
         setRateLimitTier(VIEWS_PUSH, Tier4);
         setRateLimitTier(VIEWS_UPDATE, Tier4);
 
+        setRateLimitTier(WORKFLOWS_FEATURED_ADD, Tier2);
+        setRateLimitTier(WORKFLOWS_FEATURED_LIST, Tier2);
+        setRateLimitTier(WORKFLOWS_FEATURED_REMOVE, Tier2);
+        setRateLimitTier(WORKFLOWS_FEATURED_SET, Tier2);
         setRateLimitTier(WORKFLOWS_STEP_COMPLETED, Tier2);
         setRateLimitTier(WORKFLOWS_STEP_FAILED, Tier2);
         setRateLimitTier(WORKFLOWS_UPDATE_STEP, Tier2);

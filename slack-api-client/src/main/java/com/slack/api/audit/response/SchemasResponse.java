@@ -153,6 +153,10 @@ public class SchemasResponse implements AuditApiResponse {
         private String updatedBy;
         private String stepConfiguration;
         private String templateId;
+        private String suspiciousKeywords;
+        private String triggerName;
+        private String triggerChannels;
+        private String triggerConfiguration;
     }
 
     @Data

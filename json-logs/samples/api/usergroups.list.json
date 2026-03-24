@@ -19,8 +19,7 @@
       "updated_by": "U00000000",
       "prefs": {
         "channels": [
-          "",
-          "C00000000"
+          ""
         ],
         "groups": [
           ""
@@ -34,10 +33,15 @@
       "user_count": 12345,
       "is_section": false,
       "is_idp_group": false,
-      "is_visible": false
+      "is_visible": false,
+      "is_editing_restricted": false,
+      "is_membership_locked": false,
+      "is_org_level": false,
+      "deleted_by": "U00000000"
     }
   ],
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

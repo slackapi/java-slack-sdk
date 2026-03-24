@@ -121,7 +121,9 @@ public class usergroups_Test {
                     .limit(3));
             List<String> userIds = new ArrayList<>();
             for (User member : usersListResponse.getMembers()) {
-                userIds.add(member.getId());
+                if (!member.isDeleted()) {
+                    userIds.add(member.getId());
+                }
             }
             UsergroupsUsersUpdateResponse response = slack.methods().usergroupsUsersUpdate(r -> r
                     .token(userToken)

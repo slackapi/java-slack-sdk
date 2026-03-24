@@ -149,6 +149,23 @@
         "id": "string",
         "template_name": "string"
       }
+    },
+    {
+      "type": "workflow_v2",
+      "workflow_v2": {
+        "id": "string",
+        "app_id": "string",
+        "date_updated": "int",
+        "callback_id": "string",
+        "name": "string",
+        "updated_by": "string",
+        "template_id": "string",
+        "step_configuration": "vec\u003cdict\u003cstring, mixed\u003e\u003e",
+        "suspicious_keywords": "vec\u003cstring\u003e",
+        "trigger_name": "string",
+        "trigger_channels": "vec\u003cstring\u003e",
+        "trigger_configuration": "dict\u003cstring, mixed\u003e"
+      }
     }
   ]
 }

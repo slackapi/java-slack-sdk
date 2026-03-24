@@ -42,6 +42,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
@@ -76,6 +77,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.remote.*;
 import com.slack.api.methods.request.functions.FunctionsCompleteErrorRequest;
@@ -100,6 +102,18 @@ import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.search.SearchAllRequest;
 import com.slack.api.methods.request.search.SearchFilesRequest;
 import com.slack.api.methods.request.search.SearchMessagesRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsAccessSetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadGetRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsDownloadStartRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsCreateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsDeleteMultipleRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
+import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -119,6 +133,10 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedAddRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedListRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedRemoveRequest;
+import com.slack.api.methods.request.workflows.WorkflowsFeaturedSetRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
@@ -163,6 +181,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
@@ -197,6 +216,7 @@ import com.slack.api.methods.response.conversations.request_shared_invite.Conver
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.remote.*;
 import com.slack.api.methods.response.functions.FunctionsCompleteErrorResponse;
@@ -221,6 +241,18 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.methods.response.search.SearchMessagesResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsAccessDeleteResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsAccessSetResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsCreateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsDownloadGetResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsDownloadStartResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsCreateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsDeleteResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsDeleteMultipleResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
+import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -240,6 +272,10 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedAddResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedListResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedRemoveResponse;
+import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
@@ -662,6 +698,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminUsersAssignResponse> adminUsersAssign(RequestConfigurator<AdminUsersAssignRequest.AdminUsersAssignRequestBuilder> req);
 
+    CompletableFuture<AdminUsersGetExpirationResponse> adminUsersGetExpiration(AdminUsersGetExpirationRequest req);
+
+    CompletableFuture<AdminUsersGetExpirationResponse> adminUsersGetExpiration(RequestConfigurator<AdminUsersGetExpirationRequest.AdminUsersGetExpirationRequestBuilder> req);
+
     CompletableFuture<AdminUsersInviteResponse> adminUsersInvite(AdminUsersInviteRequest req);
 
     CompletableFuture<AdminUsersInviteResponse> adminUsersInvite(RequestConfigurator<AdminUsersInviteRequest.AdminUsersInviteRequestBuilder> req);
@@ -777,6 +817,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsConnectionsOpenResponse> appsConnectionsOpen(AppsConnectionsOpenRequest req);
 
     CompletableFuture<AppsConnectionsOpenResponse> appsConnectionsOpen(RequestConfigurator<AppsConnectionsOpenRequest.AppsConnectionsOpenRequestBuilder> req);
+
+    // ------------------------------
+    // apps.user.connection
+    // ------------------------------
+
+    CompletableFuture<AppsUserConnectionUpdateResponse> appsUserConnectionUpdate(AppsUserConnectionUpdateRequest req);
+
+    CompletableFuture<AppsUserConnectionUpdateResponse> appsUserConnectionUpdate(RequestConfigurator<AppsUserConnectionUpdateRequest.AppsUserConnectionUpdateRequestBuilder> req);
 
     // ------------------------------
     // apps.event.authorizations
@@ -939,6 +987,10 @@ public interface AsyncMethodsClient {
     // chat
     // ------------------------------
 
+    CompletableFuture<ChatAppendStreamResponse> chatAppendStream(ChatAppendStreamRequest req);
+
+    CompletableFuture<ChatAppendStreamResponse> chatAppendStream(RequestConfigurator<ChatAppendStreamRequest.ChatAppendStreamRequestBuilder> req);
+
     CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(ChatGetPermalinkRequest req);
 
     CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req);
@@ -966,6 +1018,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<ChatScheduleMessageResponse> chatScheduleMessage(ChatScheduleMessageRequest req);
 
     CompletableFuture<ChatScheduleMessageResponse> chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req);
+
+    CompletableFuture<ChatStartStreamResponse> chatStartStream(ChatStartStreamRequest req);
+
+    CompletableFuture<ChatStartStreamResponse> chatStartStream(RequestConfigurator<ChatStartStreamRequest.ChatStartStreamRequestBuilder> req);
+
+    CompletableFuture<ChatStopStreamResponse> chatStopStream(ChatStopStreamRequest req);
+
+    CompletableFuture<ChatStopStreamResponse> chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req);
 
     CompletableFuture<ChatUpdateResponse> chatUpdate(ChatUpdateRequest req);
 
@@ -1142,6 +1202,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<EmojiListResponse> emojiList(EmojiListRequest req);
 
     CompletableFuture<EmojiListResponse> emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req);
+
+    // ------------------------------
+    // entity
+    // ------------------------------
+
+    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req);
+
+    CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(RequestConfigurator<EntityPresentDetailsRequest.EntityPresentDetailsRequestBuilder> req);
 
     // ------------------------------
     // files
@@ -1362,6 +1430,58 @@ public interface AsyncMethodsClient {
     CompletableFuture<SearchFilesResponse> searchFiles(RequestConfigurator<SearchFilesRequest.SearchFilesRequestBuilder> req);
 
     // ------------------------------
+    // slackLists
+    // ------------------------------
+    
+    CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(SlackListsAccessDeleteRequest req);
+
+    CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(RequestConfigurator<SlackListsAccessDeleteRequest.SlackListsAccessDeleteRequestBuilder> req);
+    
+    CompletableFuture<SlackListsAccessSetResponse> slackListsAccessSet(SlackListsAccessSetRequest req);
+
+    CompletableFuture<SlackListsAccessSetResponse> slackListsAccessSet(RequestConfigurator<SlackListsAccessSetRequest.SlackListsAccessSetRequestBuilder> req);
+    
+    CompletableFuture<SlackListsCreateResponse> slackListsCreate(SlackListsCreateRequest req);
+
+    CompletableFuture<SlackListsCreateResponse> slackListsCreate(RequestConfigurator<SlackListsCreateRequest.SlackListsCreateRequestBuilder> req);
+    
+    CompletableFuture<SlackListsDownloadGetResponse> slackListsDownloadGet(SlackListsDownloadGetRequest req);
+
+    CompletableFuture<SlackListsDownloadGetResponse> slackListsDownloadGet(RequestConfigurator<SlackListsDownloadGetRequest.SlackListsDownloadGetRequestBuilder> req);
+
+    CompletableFuture<SlackListsDownloadStartResponse> slackListsDownloadStart(SlackListsDownloadStartRequest req);
+
+    CompletableFuture<SlackListsDownloadStartResponse> slackListsDownloadStart(RequestConfigurator<SlackListsDownloadStartRequest.SlackListsDownloadStartRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsCreateResponse> slackListsItemsCreate(SlackListsItemsCreateRequest req);
+
+    CompletableFuture<SlackListsItemsCreateResponse> slackListsItemsCreate(RequestConfigurator<SlackListsItemsCreateRequest.SlackListsItemsCreateRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsDeleteResponse> slackListsItemsDelete(SlackListsItemsDeleteRequest req);
+
+    CompletableFuture<SlackListsItemsDeleteResponse> slackListsItemsDelete(RequestConfigurator<SlackListsItemsDeleteRequest.SlackListsItemsDeleteRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsDeleteMultipleResponse> slackListsItemsDeleteMultiple(SlackListsItemsDeleteMultipleRequest req);
+
+    CompletableFuture<SlackListsItemsDeleteMultipleResponse> slackListsItemsDeleteMultiple(RequestConfigurator<SlackListsItemsDeleteMultipleRequest.SlackListsItemsDeleteMultipleRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsInfoResponse> slackListsItemsInfo(SlackListsItemsInfoRequest req);
+
+    CompletableFuture<SlackListsItemsInfoResponse> slackListsItemsInfo(RequestConfigurator<SlackListsItemsInfoRequest.SlackListsItemsInfoRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsListResponse> slackListsItemsList(SlackListsItemsListRequest req);
+
+    CompletableFuture<SlackListsItemsListResponse> slackListsItemsList(RequestConfigurator<SlackListsItemsListRequest.SlackListsItemsListRequestBuilder> req);
+    
+    CompletableFuture<SlackListsItemsUpdateResponse> slackListsItemsUpdate(SlackListsItemsUpdateRequest req);
+
+    CompletableFuture<SlackListsItemsUpdateResponse> slackListsItemsUpdate(RequestConfigurator<SlackListsItemsUpdateRequest.SlackListsItemsUpdateRequestBuilder> req);
+    
+    CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req);
+
+    CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req);
+
+    // ------------------------------
     // stars
     // ------------------------------
 
@@ -1552,6 +1672,22 @@ public interface AsyncMethodsClient {
     // ------------------------------
     // workflows
     // ------------------------------
+
+    CompletableFuture<WorkflowsFeaturedAddResponse> workflowsFeaturedAdd(WorkflowsFeaturedAddRequest req);
+
+    CompletableFuture<WorkflowsFeaturedAddResponse> workflowsFeaturedAdd(RequestConfigurator<WorkflowsFeaturedAddRequest.WorkflowsFeaturedAddRequestBuilder> req);
+
+    CompletableFuture<WorkflowsFeaturedListResponse> workflowsFeaturedList(WorkflowsFeaturedListRequest req);
+
+    CompletableFuture<WorkflowsFeaturedListResponse> workflowsFeaturedList(RequestConfigurator<WorkflowsFeaturedListRequest.WorkflowsFeaturedListRequestBuilder> req);
+
+    CompletableFuture<WorkflowsFeaturedRemoveResponse> workflowsFeaturedRemove(WorkflowsFeaturedRemoveRequest req);
+    
+    CompletableFuture<WorkflowsFeaturedRemoveResponse> workflowsFeaturedRemove(RequestConfigurator<WorkflowsFeaturedRemoveRequest.WorkflowsFeaturedRemoveRequestBuilder> req);
+
+    CompletableFuture<WorkflowsFeaturedSetResponse> workflowsFeaturedSet(WorkflowsFeaturedSetRequest req);
+    
+    CompletableFuture<WorkflowsFeaturedSetResponse> workflowsFeaturedSet(RequestConfigurator<WorkflowsFeaturedSetRequest.WorkflowsFeaturedSetRequestBuilder> req);
 
     CompletableFuture<WorkflowsStepCompletedResponse> workflowsStepCompleted(WorkflowsStepCompletedRequest req);
 

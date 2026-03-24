@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "user": {
+    "id": "W00000000",
+    "email": "",
+    "is_restricted": false,
+    "is_ultra_restricted": true,
+    "expiration_ts": 12345
+  }
+}
+

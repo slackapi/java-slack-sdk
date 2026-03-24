@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.confirmationDialog;
+import static com.slack.api.model.block.composition.BlockCompositions.feedbackButton;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -64,6 +66,41 @@ public class BlocksTest {
     }
 
     @Test
+    public void testContextActions() {
+        assertThat(contextActions(b -> b
+                .elements(asContextActionsElements(
+                        feedbackButtons(f -> f
+                            .actionId("feedback")
+                            .positiveButton(
+                                feedbackButton(p -> p
+                                    .text(plainText("Good Response"))
+                                    .value("good-feedback")
+                                )
+                            )
+                            .negativeButton(
+                                feedbackButton(n -> n
+                                    .text(plainText("Bad Response"))
+                                    .value("bad-feedback")
+                                )
+                            )
+                        ),
+                        iconButton(i -> i
+                            .icon("trash")
+                            .text(plainText("Remove"))
+                            .confirm(
+                                confirmationDialog(c -> c
+                                    .title(plainText("Oops"))
+                                    .text(plainText("This response might've been just alright..."))
+                                    .style("danger")
+                                )
+                            )
+                            .visibleToUserIds(Arrays.asList("USLACKBOT", "U0123456789"))
+                            )
+                    ))
+                ), is(notNullValue()));
+    }
+
+    @Test
     public void testImage() {
         assertThat(Blocks.image(i -> i.blockId("block-id").imageUrl("https://www.example.com/")), is(notNullValue()));
         assertThat(Blocks.image(i -> i
@@ -84,6 +121,11 @@ public class BlocksTest {
     @Test
     public void testHeader() {
         assertThat(header(h -> h.blockId("block-id").text(plainText("This is the headline!"))), is(notNullValue()));
+    }
+
+    @Test
+    public void testMarkdown() {
+        assertThat(markdown(h -> h.text("**this is bold**")), is(notNullValue()));
     }
 
     @Test
