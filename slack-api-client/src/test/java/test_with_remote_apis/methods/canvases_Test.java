@@ -22,10 +22,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @Slf4j
@@ -159,5 +159,35 @@ public class canvases_Test {
                         .build())
         );
         assertThat(creation.getError(), is("invalid_arguments"));
+    }
+
+    @Test
+    public void error_detail() throws Exception {
+        MethodsClient client = slack.methods(botToken);
+        // canvases.create
+        {
+            CanvasesCreateResponse response = client.canvasesCreate(r -> r
+                    .title("test")
+                    .documentContent(CanvasDocumentContent.builder()
+                            .markdown("test")
+                            .type("invalid")
+                            .build())
+            );
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+            assertThat(response.getDetail(), is(notNullValue()));
+        }
+        // canvases.edit
+        {
+            CanvasesEditResponse response = client.canvasesEdit(r -> r
+                    .canvasId("F123")
+                    .changes(Collections.singletonList(CanvasDocumentChange.builder()
+                            .documentContent(CanvasDocumentContent.builder().markdown("foo").type("invalid").build())
+                            .build()))
+            );
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+            assertThat(response.getDetail(), is(notNullValue()));
+        }
     }
 }
