@@ -44,6 +44,10 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
         switch (typeName) {
             case ButtonElement.TYPE:
                 return ButtonElement.class;
+            case FeedbackButtonsElement.TYPE:
+                return FeedbackButtonsElement.class;
+            case IconButtonElement.TYPE:
+                return IconButtonElement.class;
             case ImageElement.TYPE:
                 return ImageElement.class;
             case ChannelsSelectElement.TYPE:

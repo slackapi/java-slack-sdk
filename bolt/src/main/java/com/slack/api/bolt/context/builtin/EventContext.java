@@ -116,6 +116,19 @@ public class EventContext extends Context implements SayUtility, FunctionUtility
         }
     }
 
+    public AssistantThreadsSetStatusResponse setStatus(String status, List<String> loadingMessages) throws IOException, SlackApiException {
+        if (isAssistantThreadEvent()) {
+            return this.client().assistantThreadsSetStatus(r -> r
+                    .channelId(this.getChannelId())
+                    .threadTs(this.getThreadTs())
+                    .status(status)
+                    .loadingMessages(loadingMessages)
+            );
+        } else {
+            throw new IllegalStateException("This utility is only available for Assistant feature enabled app!");
+        }
+    }
+
     public AssistantThreadsSetStatusResponse setStatus(RequestConfigurator<AssistantThreadsSetStatusRequest.AssistantThreadsSetStatusRequestBuilder> req) throws IOException, SlackApiException {
         if (isAssistantThreadEvent()) {
             return this.client().assistantThreadsSetStatus(req.configure(AssistantThreadsSetStatusRequest.builder()

@@ -20,7 +20,8 @@
         "image_48": "https://www.example.com/",
         "image_72": "https://www.example.com/"
       },
-      "team_id": "T00000000"
+      "team_id": "T00000000",
+      "user_id": "U00000000"
     },
     "thread_ts": "0000000000.000000",
     "parent_user_id": "U00000000",

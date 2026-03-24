@@ -15,4 +15,5 @@ public class ListViewColumn {
     private String id;
     private String position;
     private Integer width;
+    private boolean shouldWrapText;
 }

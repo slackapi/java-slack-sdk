@@ -159,6 +159,13 @@ public class AdminApi_users_Test {
                 ).get();
                 // TODO: Fix "failed_to_validate_expiration" that can be raised here (as of June 2022)
                 assertThat(response.getError(), is(anyOf(nullValue(), is("failed_to_validate_expiration"))));
+
+                // Test getExpiration
+                AdminUsersGetExpirationResponse getExpirationResponse = methodsAsync.adminUsersGetExpiration(r -> r
+                        .userId(guestUserId)
+                        .targetTeam(teamId)
+                ).get();
+                assertThat(getExpirationResponse.getError(), is(anyOf(nullValue(), is("failed_to_validate_expiration"))));
             }
         }
     }

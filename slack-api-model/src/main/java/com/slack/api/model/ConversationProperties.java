@@ -22,7 +22,10 @@ public class ConversationProperties {
     private List<Tab> tabs;
     private List<Tabz> tabz;
     private MeetingNotes meetingNotes;
+    private String useCase;
+    private List<ChannelWorkflow> channelWorkflows;
     private Boolean isDormant;
+    private Boolean hasSlackConnectInviteCreated;
 
     @Data
     @Builder
@@ -102,5 +105,14 @@ public class ConversationProperties {
         private String botUserId;
         private String appId;
         private Boolean muteEditUpdates;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ChannelWorkflow {
+        private String workflowTriggerId;
+        private String title;
     }
 }

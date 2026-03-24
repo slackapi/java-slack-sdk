@@ -6,18 +6,19 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.45.5-SNAPSHOT</version>
+        <version>1.48.1-SNAPSHOT</version>
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>${project.url}</url>
+    <description>An adapter for running Slack Bolt for Java applications on AWS Lambda.</description>
+    <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
         <aws-lambda-core.version>1.2.3</aws-lambda-core.version>
     </properties>
 
     <artifactId>bolt-aws-lambda</artifactId>
-    <version>1.45.5-SNAPSHOT</version>
+    <version>1.48.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>

@@ -48,7 +48,9 @@
         "display_url": "",
         "unicode": ""
       }
-    ]
+    ],
+    "start_date": "",
+    "always_active": false
   },
   "error": "",
   "needed": "",

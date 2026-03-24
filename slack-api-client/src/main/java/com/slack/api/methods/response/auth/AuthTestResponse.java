@@ -12,6 +12,7 @@ public class AuthTestResponse implements SlackApiTextResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String context;
     private String needed;
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;

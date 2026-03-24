@@ -6,10 +6,12 @@
       "email": "",
       "date_created": 12345,
       "requester_ids": [
-        "W00000000"
+        "W00000000",
+        "U00000000"
       ],
       "channel_ids": [
-        ""
+        "",
+        "C00000000"
       ],
       "invite_type": "",
       "request_reason": "",

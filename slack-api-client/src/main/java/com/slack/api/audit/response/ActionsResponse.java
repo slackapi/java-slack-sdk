@@ -47,6 +47,7 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> canvas;
         private List<String> function;
         private List<String> salesElevate;
+        private List<String> slackFirstCrm;
         private List<String> nativeDlp;
         private List<String> template;
         private List<String> list;

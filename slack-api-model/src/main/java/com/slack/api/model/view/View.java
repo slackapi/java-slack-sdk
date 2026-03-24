@@ -32,11 +32,23 @@ public class View {
     private ViewState state;
     private String hash;
     private Boolean clearOnClose; // must be nullable for App Home
-    private Boolean notifyOnClose;  // must be nullable for App Home
+    private Boolean notifyOnClose; // must be nullable for App Home
     private Boolean submitDisabled; // workflow_step
     private String rootViewId;
     private String previousViewId; // views.update
     private String appId;
     private String appInstalledTeamId; // workflow_step
     private String botId;
+    private String entityUrl;
+    private ExternalRef externalRef;
+    private String appUnfurlUrl;
+    private String messageTs;
+    private String threadTs;
+    private String channel;
+
+    @Data
+    public static class ExternalRef {
+        private String id;
+        private String type;
+    }
 }

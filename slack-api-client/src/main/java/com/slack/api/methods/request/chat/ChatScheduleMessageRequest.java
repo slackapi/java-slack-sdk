@@ -92,6 +92,11 @@ public class ChatScheduleMessageRequest implements SlackApiRequest {
     private boolean linkNames;
 
     /**
+     * Accepts message text formatted in markdown. This argument should not be used in conjunction with blocks or text. Limit this field to 12,000 characters.
+     */
+    private String markdownText;
+
+    /**
      * Change how messages are treated. Defaults to none. See below.
      */
     private String parse;

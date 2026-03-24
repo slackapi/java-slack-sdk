@@ -21,7 +21,7 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private String token;
 
     /**
-     * aSet your bot's user name.
+     * Set your bot's user name.
      * Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below.
      */
     private String username;
@@ -54,6 +54,11 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private boolean linkNames;
 
     /**
+     * Accepts message text formatted in markdown. This argument should not be used in conjunction with blocks or text. Limit this field to 12,000 characters.
+     */
+    private String markdownText;
+
+    /**
      * JSON object with event_type and event_payload fields, presented as a URL-encoded string.
      * Metadata you post to Slack is accessible to any app or user who is a member of that workspace.
      */
@@ -64,6 +69,22 @@ public class ChatPostMessageRequest implements SlackApiRequest {
      * Metadata you post to Slack is accessible to any app or user who is a member of that workspace.
      */
     private String metadataAsString;
+
+    /**
+     * JSON object with event and/or entity metadata.
+     * For event metadata, provide event_type and event_payload fields.
+     * For entity metadata, provide the entities field.
+     * This field will overwrite the `metadata` field.
+     */
+    private Message.EventAndEntityMetadata eventAndEntityMetadata;
+
+    /**
+     * JSON object with event and/or entity metadata.
+     * For event metadata, provide event_type and event_payload fields.
+     * For entity metadata, provide the entities field.
+     * This field will overwrite the `metadata` field.
+     */
+    private String eventAndEntityMetadataAsString;
 
     /**
      * A JSON-based array of structured blocks, presented as a URL-encoded string.

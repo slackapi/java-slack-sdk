@@ -18,6 +18,8 @@ public class UsersConversationsResponse implements SlackApiTextResponse {
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
+    private String arg;
+
     private List<Conversation> channels;
     private ResponseMetadata responseMetadata;
 }

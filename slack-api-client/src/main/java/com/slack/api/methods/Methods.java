@@ -182,6 +182,7 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_USERS_ASSIGN = "admin.users.assign";
+    public static final String ADMIN_USERS_GET_EXPIRATION= "admin.users.getExpiration";
     public static final String ADMIN_USERS_INVITE = "admin.users.invite";
     public static final String ADMIN_USERS_LIST = "admin.users.list";
     public static final String ADMIN_USERS_REMOVE = "admin.users.remove";
@@ -216,7 +217,7 @@ public class Methods {
     public static final String ADMIN_WORKFLOWS_COLLABORATORS_REMOVE = "admin.workflows.collaborators.remove";
     public static final String ADMIN_WORKFLOWS_PERMISSIONS_LOOKUP = "admin.workflows.permissions.lookup";
     public static final String ADMIN_WORKFLOWS_SEARCH = "admin.workflows.search";
-    public static final String ADMIN_WORKFLOWS_UNPUBLISH =  "admin.workflows.unpublish";
+    public static final String ADMIN_WORKFLOWS_UNPUBLISH = "admin.workflows.unpublish";
 
     // ------------------------------
     // api
@@ -237,6 +238,12 @@ public class Methods {
     public static final String APPS_CONNECTIONS_OPEN = "apps.connections.open";
 
     // ------------------------------
+    // apps.user.connection
+    // ------------------------------
+
+    public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 
@@ -246,7 +253,6 @@ public class Methods {
     public static final String APPS_MANIFEST_UPDATE = "apps.manifest.update";
     public static final String APPS_MANIFEST_VALIDATE = "apps.manifest.validate";
     public static final String TOOLING_TOKENS_ROTATE = "tooling.tokens.rotate";
-
 
     // ------------------------------
     // apps.event.authorizations
@@ -261,7 +267,8 @@ public class Methods {
     // Developer preview has ended
     // This feature was exclusive to our workspace apps developer preview.
     // The preview has now ended, but fan-favorite features such as token rotation
-    // and the Conversations API will become available to classic Slack apps over the coming months.
+    // and the Conversations API will become available to classic Slack apps over
+    // the coming months.
 
     @Deprecated
     public static final String APPS_PERMISSIONS_INFO = "apps.permissions.info";
@@ -378,6 +385,7 @@ public class Methods {
     // chat
     // ------------------------------
 
+    public static final String CHAT_APPEND_STREAM = "chat.appendStream";
     public static final String CHAT_DELETE = "chat.delete";
     public static final String CHAT_DELETE_SCHEDULED_MESSAGE = "chat.deleteScheduledMessage";
     public static final String CHAT_GET_PERMALINK = "chat.getPermalink";
@@ -385,6 +393,8 @@ public class Methods {
     public static final String CHAT_POST_EPHEMERAL = "chat.postEphemeral";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
     public static final String CHAT_SCHEDULE_MESSAGE = "chat.scheduleMessage";
+    public static final String CHAT_START_STREAM = "chat.startStream";
+    public static final String CHAT_STOP_STREAM = "chat.stopStream";
     public static final String CHAT_UNFURL = "chat.unfurl";
     public static final String CHAT_UPDATE = "chat.update";
 
@@ -452,6 +462,12 @@ public class Methods {
     // ------------------------------
 
     public static final String EMOJI_LIST = "emoji.list";
+
+    // ------------------------------
+    // entity
+    // ------------------------------
+
+    public static final String ENTITY_PRESENT_DETAILS = "entity.presentDetails";
 
     // ------------------------------
     // files.comments
@@ -639,13 +655,29 @@ public class Methods {
     public static final String SEARCH_MESSAGES = "search.messages";
 
     // ------------------------------
+    // slackLists
+    // ------------------------------
+
+    public static final String SLACKLISTS_ACCESS_DELETE = "slackLists.access.delete";
+    public static final String SLACKLISTS_ACCESS_SET = "slackLists.access.set";
+    public static final String SLACKLISTS_CREATE = "slackLists.create";
+    public static final String SLACKLISTS_DOWNLOAD_GET = "slackLists.download.get";
+    public static final String SLACKLISTS_DOWNLOAD_START = "slackLists.download.start";
+    public static final String SLACKLISTS_ITEMS_CREATE = "slackLists.items.create";
+    public static final String SLACKLISTS_ITEMS_DELETE = "slackLists.items.delete";
+    public static final String SLACKLISTS_ITEMS_DELETE_MULTIPLE = "slackLists.items.deleteMultiple";
+    public static final String SLACKLISTS_ITEMS_INFO = "slackLists.items.info";
+    public static final String SLACKLISTS_ITEMS_LIST = "slackLists.items.list";
+    public static final String SLACKLISTS_ITEMS_UPDATE = "slackLists.items.update";
+    public static final String SLACKLISTS_UPDATE = "slackLists.update";
+
+    // ------------------------------
     // stars
     // ------------------------------
 
     public static final String STARS_ADD = "stars.add";
     public static final String STARS_LIST = "stars.list";
     public static final String STARS_REMOVE = "stars.remove";
-
     // ------------------------------
     // team
     // ------------------------------
@@ -721,7 +753,10 @@ public class Methods {
     // ------------------------------
     // workflows
     // ------------------------------
-
+    public static final String WORKFLOWS_FEATURED_ADD = "workflows.featured.add";
+    public static final String WORKFLOWS_FEATURED_LIST = "workflows.featured.list";
+    public static final String WORKFLOWS_FEATURED_REMOVE = "workflows.featured.remove";
+    public static final String WORKFLOWS_FEATURED_SET = "workflows.featured.set";
     public static final String WORKFLOWS_STEP_COMPLETED = "workflows.stepCompleted";
     public static final String WORKFLOWS_STEP_FAILED = "workflows.stepFailed";
     public static final String WORKFLOWS_UPDATE_STEP = "workflows.updateStep";

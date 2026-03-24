@@ -34,6 +34,16 @@ public class ChatTest {
     }
 
     @Test
+    public void chatAppendStream() throws Exception {
+        assertThat(
+                slack.methods(ValidToken).chatAppendStream(r -> r.channel("C123").ts("123.123").markdownText("**hello!**")
+                ).isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatAppendStream(r -> r.channel("C123").ts("123.123").markdownText("**hello!**")
+                ).get().isOk(), is(true));
+    }
+
+    @Test
     public void postMessage() throws Exception {
         assertThat(
                 slack.methods(ValidToken).chatPostMessage(r -> r.channel("C123").text("Hi!")
@@ -153,6 +163,41 @@ public class ChatTest {
                 ).get().isOk(), is(true));
         assertThat(
                 slack.methodsAsync(ValidToken).chatScheduleMessage(r -> r.channel("C123").attachments(asAttachments()).postAt(123)
+                ).get().isOk(), is(true));
+    }
+
+    @Test
+    public void chatStartStream() throws Exception {
+        assertThat(
+                slack.methods(ValidToken).chatStartStream(r -> r.channel("C123").threadTs("123.123")
+                ).isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatStartStream(r -> r.channel("C123").threadTs("123.123")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatStartStream(r -> r.channel("C123").threadTs("123.123").markdownText("**hello!**")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatStartStream(r -> r.channel("C123").threadTs("123.123").recipientUserId("U123").recipientTeamId("T123")
+                ).get().isOk(), is(true));
+    }
+
+    @Test
+    public void chatStopStream() throws Exception {
+        assertThat(
+                slack.methods(ValidToken).chatStopStream(r -> r.channel("C123").ts("123.123")
+                ).isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatStopStream(r -> r.channel("C123").ts("123.123")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatStopStream(r -> r.channel("C123").ts("123.123").markdownText("**hello!**")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatStopStream(r -> r.channel("C123").ts("123.123").blocksAsString("[]")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatStopStream(r -> r.channel("C123").ts("123.123").blocks(asBlocks())
                 ).get().isOk(), is(true));
     }
 

@@ -442,12 +442,12 @@ public class FieldValidationTest {
         {
             AdminEmojiAddResponse obj = parse(prefix + "add", AdminEmojiAddResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
         {
             AdminEmojiAddAliasResponse obj = parse(prefix + "addAlias", AdminEmojiAddAliasResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
         {
             AdminEmojiListResponse obj = parse(prefix + "list", AdminEmojiListResponse.class);
@@ -456,12 +456,12 @@ public class FieldValidationTest {
         {
             AdminEmojiRemoveResponse obj = parse(prefix + "remove", AdminEmojiRemoveResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
         {
             AdminEmojiRenameResponse obj = parse(prefix + "rename", AdminEmojiRenameResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
     }
 
