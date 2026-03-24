@@ -15,6 +15,7 @@ public class CanvasesEditResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private String detail;
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private ResponseMetadata responseMetadata;
