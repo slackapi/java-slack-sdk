@@ -30,3 +30,5 @@ verificationToken.txt
 
 *.hprof
 .vscode
+.cursor
+package-lock.json
