@@ -21,10 +21,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
+import static java.util.Collections.singletonList;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -52,11 +52,7 @@ public class canvases_Test {
     public void channel_canvases() throws Exception {
         MethodsClient client = slack.methods(botToken);
 
-        ConversationsCreateResponse newChannel = client.conversationsCreate(r -> r.name("test-" + System.currentTimeMillis()));
-        assertThat(newChannel.getError(), is(nullValue()));
-        String channelId = newChannel.getChannel().getId();
-
-        Thread.sleep(500L); // To avoid occasional 500 errors
+        String channelId = createChannel(client);
 
         ConversationsCanvasesCreateResponse creation = client.conversationsCanvasesCreate(r -> r
                 .channelId(channelId)
@@ -72,9 +68,7 @@ public class canvases_Test {
         );
         assertThat(creation.getError(), is(nullValue()));
 
-        String canvasId = creation.getCanvasId();
-        List<String> userIds = Arrays.asList(client.authTest(r -> r).getUserId());
-        FilesInfoResponse details = verifyCanvasOps(client, canvasId, channelId, userIds);
+        FilesInfoResponse details = verifyCanvasOps(client, creation.getCanvasId());
         ChatPostMessageResponse message = client.chatPostMessage(r -> r
                 .channel(channelId)
                 .text("Here you are: " + details.getFile().getPermalink())
@@ -101,8 +95,8 @@ public class canvases_Test {
 
         String canvasId = creation.getCanvasId();
         try {
-            List<String> userIds = Arrays.asList(client.authTest(r -> r).getUserId());
-            verifyCanvasOps(client, canvasId, null, userIds);
+            List<String> userIds = singletonList(client.authTest(r -> r).getUserId());
+            verifyCanvasOps(client, canvasId);
 
             CanvasesAccessSetResponse set = client.canvasesAccessSet(r -> r
                     .canvasId(canvasId)
@@ -122,11 +116,11 @@ public class canvases_Test {
         }
     }
 
-    FilesInfoResponse verifyCanvasOps(MethodsClient client, String canvasId, String channelId, List<String> userIds) throws Exception {
+    FilesInfoResponse verifyCanvasOps(MethodsClient client, String canvasId) throws Exception {
         CanvasesSectionsLookupResponse lookupResult = client.canvasesSectionsLookup(r -> r
                 .canvasId(canvasId)
                 .criteria(CanvasesSectionsLookupRequest.Criteria.builder()
-                        .sectionTypes(Arrays.asList(CanvasDocumentSectionType.H2))
+                        .sectionTypes(singletonList(CanvasDocumentSectionType.H2))
                         .containsText("Before")
                         .build()
                 )
@@ -136,7 +130,7 @@ public class canvases_Test {
         String sectionId = lookupResult.getSections().get(0).getId();
         CanvasesEditResponse edit = client.canvasesEdit(r -> r
                 .canvasId(canvasId)
-                .changes(Arrays.asList(CanvasDocumentChange.builder()
+                .changes(singletonList(CanvasDocumentChange.builder()
                         .sectionId(sectionId)
                         .operation(CanvasEditOperation.REPLACE)
                         .documentContent(CanvasDocumentContent.builder().markdown("## After").build())
@@ -166,30 +160,47 @@ public class canvases_Test {
     @Test
     public void error_detail() throws Exception {
         MethodsClient client = slack.methods(botToken);
-        // canvases.create
-        {
-            CanvasesCreateResponse response = client.canvasesCreate(r -> r
-                    .title("test")
-                    .documentContent(CanvasDocumentContent.builder()
-                            .markdown("test")
-                            .type("invalid")
-                            .build())
-            );
-            assertThat(response.isOk(), is(false));
-            assertThat(response.getError(), is("invalid_arguments"));
-            assertThat(response.getDetail(), is(notNullValue()));
-        }
-        // canvases.edit
-        {
-            CanvasesEditResponse response = client.canvasesEdit(r -> r
-                    .canvasId("F123")
-                    .changes(Collections.singletonList(CanvasDocumentChange.builder()
-                            .documentContent(CanvasDocumentContent.builder().markdown("foo").type("invalid").build())
-                            .build()))
-            );
-            assertThat(response.isOk(), is(false));
-            assertThat(response.getError(), is("invalid_arguments"));
-            assertThat(response.getDetail(), is(notNullValue()));
-        }
+
+        String channelId = createChannel(client);
+
+        String invalidCanvasContent = "1. Text\n    * Nested"; // mixing of ordered and unordered lists is not supported
+        ConversationsCanvasesCreateResponse failedCreation = client.conversationsCanvasesCreate(r -> r
+                .channelId(channelId)
+                .documentContent(CanvasDocumentContent.builder()
+                        .markdown(invalidCanvasContent)
+                        .build())
+        );
+        assertThat(failedCreation.isOk(), is(false));
+        assertThat(failedCreation.getError(), is("canvas_creation_failed"));
+        assertThat(failedCreation.getDetail(), containsString("Unsupported list type"));
+
+        ConversationsCanvasesCreateResponse successfulCreation = client.conversationsCanvasesCreate(r -> r
+                .channelId(channelId)
+                .documentContent(CanvasDocumentContent.builder()
+                        .markdown("Correct MD")
+                        .build()
+                )
+        );
+        assertThat(successfulCreation.getCanvasId(), is(notNullValue()));
+
+        CanvasesEditResponse editFailingResponse = client.canvasesEdit(r -> r
+                .canvasId(successfulCreation.getCanvasId())
+                .changes(singletonList(CanvasDocumentChange.builder()
+                        .operation(CanvasEditOperation.REPLACE)
+                        .documentContent(CanvasDocumentContent.builder().markdown(invalidCanvasContent).build())
+                        .build()))
+        );
+        assertThat(editFailingResponse.isOk(), is(false));
+        assertThat(editFailingResponse.getError(), is("canvas_editing_failed"));
+        assertThat(editFailingResponse.getDetail(), containsString("Unsupported list type"));
+    }
+
+    private static String createChannel(MethodsClient client) throws Exception {
+        ConversationsCreateResponse newChannel = client.conversationsCreate(r -> r.name("test-" + System.currentTimeMillis()));
+        assertThat(newChannel.getError(), is(nullValue()));
+        String channelId = newChannel.getChannel().getId();
+
+        Thread.sleep(500L); // To avoid occasional 500 errors
+        return channelId;
     }
 }
