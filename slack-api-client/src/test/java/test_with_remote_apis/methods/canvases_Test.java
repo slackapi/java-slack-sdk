@@ -21,9 +21,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -52,7 +52,11 @@ public class canvases_Test {
     public void channel_canvases() throws Exception {
         MethodsClient client = slack.methods(botToken);
 
-        String channelId = createChannel(client);
+        ConversationsCreateResponse newChannel = client.conversationsCreate(r -> r.name("test-" + System.currentTimeMillis()));
+        assertThat(newChannel.getError(), is(nullValue()));
+        String channelId = newChannel.getChannel().getId();
+
+        Thread.sleep(500L); // To avoid occasional 500 errors
 
         ConversationsCanvasesCreateResponse creation = client.conversationsCanvasesCreate(r -> r
                 .channelId(channelId)
@@ -68,7 +72,9 @@ public class canvases_Test {
         );
         assertThat(creation.getError(), is(nullValue()));
 
-        FilesInfoResponse details = verifyCanvasOps(client, creation.getCanvasId());
+        String canvasId = creation.getCanvasId();
+        List<String> userIds = Arrays.asList(client.authTest(r -> r).getUserId());
+        FilesInfoResponse details = verifyCanvasOps(client, canvasId, channelId, userIds);
         ChatPostMessageResponse message = client.chatPostMessage(r -> r
                 .channel(channelId)
                 .text("Here you are: " + details.getFile().getPermalink())
@@ -95,8 +101,8 @@ public class canvases_Test {
 
         String canvasId = creation.getCanvasId();
         try {
-            List<String> userIds = singletonList(client.authTest(r -> r).getUserId());
-            verifyCanvasOps(client, canvasId);
+            List<String> userIds = Arrays.asList(client.authTest(r -> r).getUserId());
+            verifyCanvasOps(client, canvasId, null, userIds);
 
             CanvasesAccessSetResponse set = client.canvasesAccessSet(r -> r
                     .canvasId(canvasId)
@@ -116,11 +122,11 @@ public class canvases_Test {
         }
     }
 
-    FilesInfoResponse verifyCanvasOps(MethodsClient client, String canvasId) throws Exception {
+    FilesInfoResponse verifyCanvasOps(MethodsClient client, String canvasId, String channelId, List<String> userIds) throws Exception {
         CanvasesSectionsLookupResponse lookupResult = client.canvasesSectionsLookup(r -> r
                 .canvasId(canvasId)
                 .criteria(CanvasesSectionsLookupRequest.Criteria.builder()
-                        .sectionTypes(singletonList(CanvasDocumentSectionType.H2))
+                        .sectionTypes(Arrays.asList(CanvasDocumentSectionType.H2))
                         .containsText("Before")
                         .build()
                 )
@@ -130,7 +136,7 @@ public class canvases_Test {
         String sectionId = lookupResult.getSections().get(0).getId();
         CanvasesEditResponse edit = client.canvasesEdit(r -> r
                 .canvasId(canvasId)
-                .changes(singletonList(CanvasDocumentChange.builder()
+                .changes(Arrays.asList(CanvasDocumentChange.builder()
                         .sectionId(sectionId)
                         .operation(CanvasEditOperation.REPLACE)
                         .documentContent(CanvasDocumentContent.builder().markdown("## After").build())
@@ -161,7 +167,11 @@ public class canvases_Test {
     public void error_detail() throws Exception {
         MethodsClient client = slack.methods(botToken);
 
-        String channelId = createChannel(client);
+        ConversationsCreateResponse newChannel = client.conversationsCreate(r1 -> r1.name("test-" + System.currentTimeMillis()));
+        assertThat(newChannel.getError(), is(nullValue()));
+        String channelId = newChannel.getChannel().getId();
+
+        Thread.sleep(500L); // To avoid occasional 500 errors
 
         String invalidCanvasContent = "1. Text\n    * Nested"; // mixing of ordered and unordered lists is not supported
         ConversationsCanvasesCreateResponse failedCreation = client.conversationsCanvasesCreate(r -> r
@@ -185,7 +195,7 @@ public class canvases_Test {
 
         CanvasesEditResponse editFailingResponse = client.canvasesEdit(r -> r
                 .canvasId(successfulCreation.getCanvasId())
-                .changes(singletonList(CanvasDocumentChange.builder()
+                .changes(Arrays.asList(CanvasDocumentChange.builder()
                         .operation(CanvasEditOperation.REPLACE)
                         .documentContent(CanvasDocumentContent.builder().markdown(invalidCanvasContent).build())
                         .build()))
@@ -193,14 +203,5 @@ public class canvases_Test {
         assertThat(editFailingResponse.isOk(), is(false));
         assertThat(editFailingResponse.getError(), is("canvas_editing_failed"));
         assertThat(editFailingResponse.getDetail(), containsString("Unsupported list type"));
-    }
-
-    private static String createChannel(MethodsClient client) throws Exception {
-        ConversationsCreateResponse newChannel = client.conversationsCreate(r -> r.name("test-" + System.currentTimeMillis()));
-        assertThat(newChannel.getError(), is(nullValue()));
-        String channelId = newChannel.getChannel().getId();
-
-        Thread.sleep(500L); // To avoid occasional 500 errors
-        return channelId;
     }
 }
