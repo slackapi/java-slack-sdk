@@ -24,7 +24,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -159,5 +161,47 @@ public class canvases_Test {
                         .build())
         );
         assertThat(creation.getError(), is("invalid_arguments"));
+    }
+
+    @Test
+    public void error_detail() throws Exception {
+        MethodsClient client = slack.methods(botToken);
+
+        ConversationsCreateResponse newChannel = client.conversationsCreate(r1 -> r1.name("test-" + System.currentTimeMillis()));
+        assertThat(newChannel.getError(), is(nullValue()));
+        String channelId = newChannel.getChannel().getId();
+
+        Thread.sleep(500L); // To avoid occasional 500 errors
+
+        String invalidCanvasContent = "1. Text\n    * Nested"; // mixing of ordered and unordered lists is not supported
+        ConversationsCanvasesCreateResponse failedCreation = client.conversationsCanvasesCreate(r -> r
+                .channelId(channelId)
+                .documentContent(CanvasDocumentContent.builder()
+                        .markdown(invalidCanvasContent)
+                        .build())
+        );
+        assertThat(failedCreation.isOk(), is(false));
+        assertThat(failedCreation.getError(), is("canvas_creation_failed"));
+        assertThat(failedCreation.getDetail(), containsString("Unsupported list type"));
+
+        ConversationsCanvasesCreateResponse successfulCreation = client.conversationsCanvasesCreate(r -> r
+                .channelId(channelId)
+                .documentContent(CanvasDocumentContent.builder()
+                        .markdown("Correct MD")
+                        .build()
+                )
+        );
+        assertThat(successfulCreation.getCanvasId(), is(notNullValue()));
+
+        CanvasesEditResponse editFailingResponse = client.canvasesEdit(r -> r
+                .canvasId(successfulCreation.getCanvasId())
+                .changes(Arrays.asList(CanvasDocumentChange.builder()
+                        .operation(CanvasEditOperation.REPLACE)
+                        .documentContent(CanvasDocumentContent.builder().markdown(invalidCanvasContent).build())
+                        .build()))
+        );
+        assertThat(editFailingResponse.isOk(), is(false));
+        assertThat(editFailingResponse.getError(), is("canvas_editing_failed"));
+        assertThat(editFailingResponse.getDetail(), containsString("Unsupported list type"));
     }
 }
