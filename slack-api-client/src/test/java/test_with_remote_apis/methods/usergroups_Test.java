@@ -2,6 +2,7 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
@@ -17,6 +18,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -145,6 +148,42 @@ public class usergroups_Test {
 //            assertThat(response.getError(), is("missing_required_argument"));
         // As of 2018/05, the error message has been changed
         assertThat(response.getError(), is("no_such_subteam"));
+    }
+
+    @Test
+    public void usergroups_users_update_null_property() throws Exception {
+        UsergroupsCreateResponse creation = slack.methods().usergroupsCreate(r -> r
+                .token(userToken)
+                .name("usergroup-" + System.currentTimeMillis())
+                .description("Something wrong"));
+        assertThat(creation.getError(), is(nullValue()));
+        final Usergroup usergroup = creation.getUsergroup();
+
+        UsergroupsUsersUpdateResponse response = slack.methods().usergroupsUsersUpdate(
+                UsergroupsUsersUpdateRequest.builder()
+                        .token(userToken)
+                        .usergroup(usergroup.getId())
+                        .build());
+        assertThat(response.isOk(), is(false));
+        assertThat(response.getError(), is("missing_required_argument"));
+    }
+
+    @Test
+    public void usergroups_users_update_empty_list() throws Exception {
+        UsergroupsCreateResponse creation = slack.methods().usergroupsCreate(r -> r
+                .token(userToken)
+                .name("usergroup-" + System.currentTimeMillis())
+                .description("Should have 0 members"));
+        assertThat(creation.getError(), is(nullValue()));
+        final Usergroup usergroup = creation.getUsergroup();
+
+        UsergroupsUsersUpdateResponse response = slack.methods().usergroupsUsersUpdate(
+                UsergroupsUsersUpdateRequest.builder()
+                        .token(userToken)
+                        .usergroup(usergroup.getId())
+                        .users(Stream.<String>of().collect(Collectors.toList()))
+                        .build());
+        assertThat(response.getError(), is(nullValue()));
     }
 
 }

@@ -7,6 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
@@ -44,6 +47,10 @@ public class UsergroupsTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).usergroupsUsersUpdate(r -> r.usergroup("xxx"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usergroupsUsersUpdate(r -> r.usergroup("xxx").users(Stream.<String>of().collect(Collectors.toList())))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usergroupsUsersUpdate(r -> r.usergroup("xxx").users(Stream.of("user").collect(Collectors.toList())))
+                .isOk(), is(true));
     }
 
     @Test
@@ -61,6 +68,10 @@ public class UsergroupsTest {
         assertThat(slack.methodsAsync(ValidToken).usergroupsUsersList(r -> r.includeDisabled(true))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).usergroupsUsersUpdate(r -> r.usergroup("xxx"))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).usergroupsUsersUpdate(r -> r.usergroup("xxx").users(Stream.<String>of().collect(Collectors.toList())))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).usergroupsUsersUpdate(r -> r.usergroup("xxx").users(Stream.of("user").collect(Collectors.toList())))
                 .get().isOk(), is(true));
     }
 
