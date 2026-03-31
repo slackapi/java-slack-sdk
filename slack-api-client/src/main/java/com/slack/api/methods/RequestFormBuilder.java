@@ -3086,7 +3086,12 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("usergroup", req.getUsergroup(), form);
         if (req.getUsers() != null) {
-            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+            if (!req.getUsers().isEmpty()) {
+                setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+            }
+            else {
+                setIfNotNull("users", "[]", form);
+            }
         }
         setIfNotNull("include_count", req.isIncludeCount(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
