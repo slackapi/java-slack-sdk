@@ -287,6 +287,7 @@ public class File {
         private String address;
         private String name;
         private String original;
+        private String slackUserId;
     }
 
     private Map<String, PinnedInfo> pinnedInfo; // C00000000 -> {}
@@ -302,6 +303,8 @@ public class File {
 
     private Headers headers;
     private String simplifiedHtml;
+    private Map<String, Object> emailSecurity;
+    private Boolean appProvidesFileWorkObjects;
 
     // for Email App's attachments
     @Data

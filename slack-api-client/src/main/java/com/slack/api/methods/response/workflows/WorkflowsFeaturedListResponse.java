@@ -18,4 +18,5 @@ public class WorkflowsFeaturedListResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private List<FeaturedWorkflow> featuredWorkflows;
+    private List<String> invalidChannelIds;
 }

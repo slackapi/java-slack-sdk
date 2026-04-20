@@ -30,6 +30,7 @@ public class Team {
     private Boolean isSfdcAutoSlack;
     private SsoProvider ssoProvider;
     private String payProdCur;
+    private String locale;
 
     @Data
     public static class Profile {

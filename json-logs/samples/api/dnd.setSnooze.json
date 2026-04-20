@@ -6,5 +6,6 @@
   "snooze_remaining": 12345,
   "snooze_is_indefinite": false,
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

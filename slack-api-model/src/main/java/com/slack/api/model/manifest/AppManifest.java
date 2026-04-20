@@ -57,6 +57,7 @@ public class AppManifest {
         private Boolean tokenRotationEnabled;
         private String hermesAppType;
         private String functionRuntime;
+        private Boolean isMcpEnabled;
         // TODO: incoming_webhooks
     }
 
@@ -142,6 +143,7 @@ public class AppManifest {
         private Scopes scopes;
         private List<String> redirectUrls;
         private Boolean tokenManagementEnabled; // run-on-slack
+        private Boolean pkceEnabled;
     }
     @Data
     @Builder

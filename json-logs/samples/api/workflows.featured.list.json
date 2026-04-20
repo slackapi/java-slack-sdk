@@ -3,5 +3,8 @@
   "error": "",
   "needed": "",
   "provided": "",
-  "warning": ""
+  "warning": "",
+  "invalid_channel_ids": [
+    ""
+  ]
 }

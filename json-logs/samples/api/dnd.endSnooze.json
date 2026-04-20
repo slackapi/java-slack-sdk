@@ -6,5 +6,6 @@
   "next_dnd_end_ts": 12345,
   "snooze_enabled": false,
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

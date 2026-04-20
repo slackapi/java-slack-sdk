@@ -5,5 +5,6 @@
   "next_dnd_end_ts": 12345,
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

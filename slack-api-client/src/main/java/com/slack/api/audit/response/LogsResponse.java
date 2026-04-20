@@ -222,6 +222,7 @@ public class LogsResponse implements AuditApiResponse {
         private String name; // "Collect info in a form"
         private String stepFunctionType; // "Custom", "Builtin"
         private String stepFunctionAppId; // "A05QFAJ8LBA"
+        private String externalAuthConfiguration;
     }
 
     @Data

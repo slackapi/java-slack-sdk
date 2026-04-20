@@ -70,8 +70,9 @@ public class users_Test {
         List<String> userIds = new ArrayList<>();
         String nextCursor = null;
         while (nextCursor == null || !nextCursor.equals("")) {
-            // Using async client to avoid an exception due to rate limited errors
-            UsersListResponse response = slack.methodsAsync(userToken).usersList(r -> r.includeLocale(true).limit(3000)).get();
+            UsersListRequest.UsersListRequestBuilder req = UsersListRequest.builder()
+                    .token(userToken).includeLocale(true).limit(200).cursor(nextCursor);
+            UsersListResponse response = slack.methods(userToken).usersList(req.build());
             nextCursor = response.getResponseMetadata().getNextCursor();
             userIds.addAll(response.getMembers().stream().map(u -> u.getId()).collect(toList()));
         }

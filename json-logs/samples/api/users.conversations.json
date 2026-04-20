@@ -89,6 +89,15 @@
               "shared_ts": "0000000000.000000"
             },
             "is_disabled": false
+          },
+          {
+            "type": "",
+            "label": "",
+            "id": "",
+            "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000"
+            }
           }
         ],
         "tabz": [
@@ -101,12 +110,22 @@
               "shared_ts": "0000000000.000000"
             },
             "is_disabled": false
+          },
+          {
+            "type": "",
+            "id": "",
+            "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000"
+            },
+            "label": ""
           }
         ],
         "meeting_notes": {
           "file_id": "F00000000"
         },
-        "is_dormant": false
+        "is_dormant": false,
+        "use_case": ""
       }
     }
   ],
@@ -116,5 +135,6 @@
   "error": "",
   "needed": "",
   "provided": "",
-  "arg": ""
+  "arg": "",
+  "warning": ""
 }

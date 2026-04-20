@@ -166,6 +166,23 @@
         "trigger_channels": "vec\u003cstring\u003e",
         "trigger_configuration": "dict\u003cstring, mixed\u003e"
       }
+    },
+    {
+      "type": "user",
+      "user": {
+        "id": "string",
+        "name": "string",
+        "email": "string",
+        "team": "string",
+        "account_type": "string"
+      }
+    },
+    {
+      "type": "legal_hold_policy",
+      "legal_hold_policy": {
+        "id": "string",
+        "name": "string"
+      }
     }
   ]
 }

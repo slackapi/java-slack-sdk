@@ -25,5 +25,6 @@
   },
   "oauth_authorize_url": "https://www.example.com/",
   "team_id": "T00000000",
-  "team_domain": ""
+  "team_domain": "",
+  "warning": ""
 }

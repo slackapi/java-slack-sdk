@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.usergroups.users;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.model.Usergroup;
 import lombok.Data;
 
@@ -18,4 +19,5 @@ public class UsergroupsUsersUpdateResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private Usergroup usergroup;
+    private ResponseMetadata responseMetadata;
 }
