@@ -32,11 +32,18 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+      - name: Configure GPG
+        run: |
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          gpgconf --reload gpg-agent
+
       - name: Publish to Maven Central
         run: |
           ./mvnw clean deploy \
             -P production-releases \
             -D maven.test.skip=true \
+            -D gpg.passphrase="${MAVEN_GPG_PASSPHRASE}" \
+            -D gpg.args="--pinentry-mode=loopback" \
             -pl !bolt-kotlin-examples \
             -pl !bolt-quarkus-examples \
             --batch-mode \
