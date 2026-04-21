@@ -32,6 +32,15 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+      - name: Add snapshot server credentials
+        run: |
+          sed -i '/<\/servers>/i \
+            <server>\
+              <id>central-snapshots</id>\
+              <username>${env.MAVEN_USERNAME}</username>\
+              <password>${env.MAVEN_PASSWORD}</password>\
+            </server>' ~/.m2/settings.xml
+
       - name: Configure GPG
         run: |
           echo "use-agent" >> ~/.gnupg/gpg.conf
