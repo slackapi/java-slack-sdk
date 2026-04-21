@@ -108,7 +108,7 @@ Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/
 
 #### Snapshot Release
 
-Snapshot releases are automatically published when the version ends with `-SNAPSHOT` for either each push to `main` or manual `workflow_dispatch` event for another branch using the [release workflow](.github/workflows/release.yml).
+Snapshot releases are published by starting and approving the [release workflow](https://github.com/slackapi/java-slack-sdk/actions/workflows/release.yml) with `workflow_dispatch` for any branch with a `-SNAPSHOT` version, including the `main` branch.
 
 These `-SNAPSHOT` versions are intended to be overwritten. This enables developers to work with the latest version of a library without needing to update their dependencies repeatedly. To learn more about snapshot releases in maven central repository check out [publish-portal-snapshots](https://central.sonatype.org/publish/publish-portal-snapshots/).
 
@@ -123,7 +123,8 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
   * `git add . -v && git commit -m'version (your version here)'`
   * `git tag v(your version here)`
   * `git push && git push --tags`
-  * The push to `main` automatically triggers the [release workflow](.github/workflows/release.yml) which publishes to Maven Central
+* Publish to Maven Central
+  * Start and approve the [release workflow](https://github.com/slackapi/java-slack-sdk/actions/workflows/release.yml) using `workflow_dispatch` on `main`
 * Create a GitHub Release
   * Open https://github.com/slackapi/java-slack-sdk/releases/new?tag=v${version}
   * [Look at previous releases](https://github.com/slackapi/java-slack-sdk/releases) and follow their layouts
