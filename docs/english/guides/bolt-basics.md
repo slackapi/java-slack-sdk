@@ -219,7 +219,7 @@ app.command("/weather", (req, ctx) -> {
 });
 ```
 
-If you use the [ch.qos.logback:logback-classic](https://search.maven.org/artifact/ch.qos.logback/logback-classic/1.2.3/jar) library as the implementation of the APIs, you can configure the settings by [logback.xml](http://logback.qos.ch/manual/configuration.html) etc.
+If you use the [ch.qos.logback:logback-classic](https://central.sonatype.com/artifact/ch.qos.logback/logback-classic) library as the implementation of the APIs, you can configure the settings by [logback.xml](http://logback.qos.ch/manual/configuration.html) etc.
 
 ```xml
 <configuration>

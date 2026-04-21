@@ -86,9 +86,9 @@ If you prefer using Jakarta EE compatible one, the dependencies are:
 
 | Name                                                                           |Maven Artifact|
 |--------------------------------------------------------------------------------|-|
-| [Tyrus Standalone Client 1.x (default)](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
-| [Tyrus Standalone Client 2.x](https://github.com/eclipse-ee4j/tyrus)           |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
-| [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)                |[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
+| [Tyrus Standalone Client 1.x (default)](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://central.sonatype.com/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Tyrus Standalone Client 2.x](https://github.com/eclipse-ee4j/tyrus)           |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://central.sonatype.com/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)                |[org.java-websocket:Java-WebSocket](https://central.sonatype.com/artifact/org.java-websocket/Java-WebSocket)|
 
 To switch the underlying implementation, you can pass a `SocketModeClient.Backend.*` to either `SocketModeClient` in `slack-api-client` or `SocketModeApp` in `bolt-socket-mode`. If your own implements `SocketModeClient` interface, you can simply instantiate the class.
 

@@ -106,10 +106,10 @@ val response = slack.methods(token).chatPostMessage { req -> req
 
 Block Kit Kotlin DSL は、以下の二つの artifact で提供されています:
 
-|artifactId|Description|
+| artifactId | Description |
 |---|---|
-|[**com.slack.api:slack-api-model-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/sdkLatestVersion/slack-api-model-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|**slack-api-model** の Kotlin 拡張で Kotlin DSL そのものに加えて `withBlocks { }` というどこでも使えるビルダーを提供します。<br/><br/>また `View.ViewBuilder` に `.blocks { }` 拡張関数も追加します。|
-|[**com.slack.api:slack-api-client-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/sdkLatestVersion/slack-api-client-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|**slack-api-client** の Kotlin 拡張で `MethodsClient` のリクエストオブジェクトビルダーのメソッドに `.blocks { }` という拡張関数を追加して、シームレスに Kotlin DSL を使えるようにします。<br/><br/>この `.blocks { }` 拡張関数は **ChatPostEphemeralRequestBuilder**, **ChatPostMessageRequestBuilder**, **ChatScheduleMessageRequestBuilder**, **ChatUpdateRequestBuilder** で有効になります。|
+| [**com.slack.api:slack-api-model-kotlin-extension**](https://central.sonatype.com/artifact/com.slack.api/slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/sdkLatestVersion/slack-api-model-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package) | **slack-api-model** の Kotlin 拡張で Kotlin DSL そのものに加えて `withBlocks { }` というどこでも使えるビルダーを提供します。<br/><br/>また `View.ViewBuilder` に `.blocks { }` 拡張関数も追加します。 |
+| [**com.slack.api:slack-api-client-kotlin-extension**](https://central.sonatype.com/artifact/com.slack.api/slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/sdkLatestVersion/slack-api-client-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package) | **slack-api-client** の Kotlin 拡張で `MethodsClient` のリクエストオブジェクトビルダーのメソッドに `.blocks { }` という拡張関数を追加して、シームレスに Kotlin DSL を使えるようにします。<br/><br/>この `.blocks { }` 拡張関数は **ChatPostEphemeralRequestBuilder**, **ChatPostMessageRequestBuilder**, **ChatScheduleMessageRequestBuilder**, **ChatUpdateRequestBuilder** で有効になります。 |
 
 **Gradle での設定:**
 
