@@ -125,6 +125,7 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
   * `git push && git push --tags`
 * Publish to Maven Central
   * Start and approve the [release workflow](https://github.com/slackapi/java-slack-sdk/actions/workflows/release.yml) using `workflow_dispatch` on `main`
+  * Follow the workflow logs and [publishing](https://central.sonatype.com/publishing/deployments) step with patience to start debugging if errors appear
 * Create a GitHub Release
   * Open https://github.com/slackapi/java-slack-sdk/releases/new?tag=v${version}
   * [Look at previous releases](https://github.com/slackapi/java-slack-sdk/releases) and follow their layouts
@@ -136,6 +137,7 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
   * `scripts/set_version.sh (next patch version)-SNAPSHOT` (e.g., `scripts/set_version.sh 1.0.1-SNAPSHOT`)
   * `git add . -v && git commit -m 'Start next version'`
   * `git push`
+  * Close the [current GitHub milestone](https://github.com/slackapi/java-slack-sdk/milestones) and open a new one for the next version
 
 ## Workflow
 
