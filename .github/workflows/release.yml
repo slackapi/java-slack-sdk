@@ -34,8 +34,10 @@ jobs:
 
       - name: Configure GPG
         run: |
+          echo "use-agent" >> ~/.gnupg/gpg.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
           echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
-          gpgconf --reload gpg-agent
+          echo RELOADAGENT | gpg-connect-agent
 
       - name: Publish to Maven Central
         run: |
@@ -43,7 +45,6 @@ jobs:
             -P production-releases \
             -D maven.test.skip=true \
             -D gpg.passphrase="${MAVEN_GPG_PASSPHRASE}" \
-            -D gpg.args="--pinentry-mode=loopback" \
             -pl !bolt-kotlin-examples \
             -pl !bolt-quarkus-examples \
             --batch-mode \
