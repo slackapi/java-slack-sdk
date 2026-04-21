@@ -16,7 +16,8 @@
         "id": "",
         "name": "",
         "email": "",
-        "team": ""
+        "team": "",
+        "account_type": ""
       },
       "file": {
         "id": "string",
@@ -92,11 +93,16 @@
       "template": {
         "id": "",
         "template_name": ""
+      },
+      "legal_hold_policy": {
+        "id": "",
+        "name": ""
       }
     }
   ],
   "ok": false,
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

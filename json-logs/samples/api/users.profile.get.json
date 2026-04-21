@@ -50,9 +50,11 @@
       }
     ],
     "start_date": "",
-    "always_active": false
+    "always_active": false,
+    "status_clear_on_focus_end": false
   },
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

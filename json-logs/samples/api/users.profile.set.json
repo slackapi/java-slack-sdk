@@ -46,11 +46,13 @@
         "unicode": ""
       }
     ],
-    "start_date": ""
+    "start_date": "",
+    "status_clear_on_focus_end": false
   },
   "ok": false,
   "username": "",
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

@@ -165,7 +165,7 @@ public class usergroups_Test {
                         .usergroup(usergroup.getId())
                         .build());
         assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is("missing_required_argument"));
+        assertThat(response.getError(), is("invalid_arguments"));
     }
 
     @Test

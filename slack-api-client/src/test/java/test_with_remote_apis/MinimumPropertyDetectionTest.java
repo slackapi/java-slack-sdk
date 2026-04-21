@@ -27,6 +27,7 @@ import com.slack.api.methods.response.files.FilesUploadV2Response;
 import com.slack.api.methods.response.team.TeamInfoResponse;
 import com.slack.api.methods.response.team.TeamPreferencesListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.slack.api.methods.request.users.UsersListRequest;
 import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.model.Conversation;
@@ -180,8 +181,9 @@ public class MinimumPropertyDetectionTest {
         User botUser = null;
         String cursor = null;
         while (botUser == null && (cursor == null || !cursor.isEmpty())) {
-            // using async client to prevent failing due to a rate limited error
-            UsersListResponse response = asyncClient.usersList(req -> req).get();
+            UsersListRequest.UsersListRequestBuilder req = UsersListRequest.builder()
+                    .token(botToken).limit(200).cursor(cursor);
+            UsersListResponse response = client.usersList(req.build());
             for (User u : response.getMembers()) {
                 if (u.isBot() && !"USLACKBOT".equals(u.getId())) {
                     botUser = u;
@@ -347,8 +349,9 @@ public class MinimumPropertyDetectionTest {
     @Test
     public void users_profile() throws Exception {
         User humanUser = null;
-        // Using async client to avoid an exception due to rate limited errors
-        for (User user : asyncClient.usersList(r -> r).get().getMembers()) {
+        UsersListResponse usersResponse = client.usersList(UsersListRequest.builder()
+                .token(botToken).limit(200).build());
+        for (User user : usersResponse.getMembers()) {
             if (!user.isBot() && !user.isAppUser() && !user.isStranger() && !user.isDeleted()) {
                 humanUser = user;
                 break;
@@ -365,11 +368,9 @@ public class MinimumPropertyDetectionTest {
         List<String> userIds = new ArrayList<>();
         String nextCursor = null;
         while (nextCursor == null || !nextCursor.isEmpty()) {
-            // Using async client to avoid an exception due to rate limited errors
-            UsersListResponse response = asyncClient.usersList(r -> r
-                    .includeLocale(true)
-                    .limit(3000)
-            ).get();
+            UsersListRequest.UsersListRequestBuilder req = UsersListRequest.builder()
+                    .token(botToken).includeLocale(true).limit(200).cursor(nextCursor);
+            UsersListResponse response = client.usersList(req.build());
             nextCursor = response.getResponseMetadata().getNextCursor();
             userIds.addAll(response.getMembers().stream().map(User::getId).collect(toList()));
         }

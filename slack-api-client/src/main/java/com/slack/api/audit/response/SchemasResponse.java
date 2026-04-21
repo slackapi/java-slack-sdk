@@ -42,6 +42,7 @@ public class SchemasResponse implements AuditApiResponse {
         private Canvas canvas;
         private WorkflowV2 workflowV2;
         private Template template;
+        private LegalHoldPolicy legalHoldPolicy;
     }
 
     @Data
@@ -64,6 +65,7 @@ public class SchemasResponse implements AuditApiResponse {
         private String name;
         private String email;
         private String team;
+        private String accountType;
     }
 
     @Data
@@ -163,5 +165,11 @@ public class SchemasResponse implements AuditApiResponse {
     public static class Template {
         private String id;
         private String templateName;
+    }
+
+    @Data
+    public static class LegalHoldPolicy {
+        private String id;
+        private String name;
     }
 }

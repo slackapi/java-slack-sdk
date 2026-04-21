@@ -34,6 +34,18 @@
           "show_member_name": false
         }
       }
+    ],
+    "views": [
+      {
+        "id": "",
+        "name": "",
+        "type": "",
+        "is_locked": false,
+        "position": ""
+      }
+    ],
+    "integrations": [
+      ""
     ]
   },
   "error": "",

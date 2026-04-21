@@ -143,6 +143,7 @@ public class User {
         private Long huddleStateExpirationTs;
 
         private String startDate;
+        private Boolean statusClearOnFocusEnd;
 
         @Deprecated
         private String firstName;

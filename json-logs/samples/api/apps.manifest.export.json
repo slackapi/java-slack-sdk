@@ -36,7 +36,8 @@
       "socket_mode_enabled": false,
       "token_rotation_enabled": false,
       "hermes_app_type": "",
-      "function_runtime": ""
+      "function_runtime": "",
+      "is_mcp_enabled": false
     },
     "features": {
       "app_home": {
@@ -81,7 +82,8 @@
       "redirect_urls": [
         ""
       ],
-      "token_management_enabled": false
+      "token_management_enabled": false,
+      "pkce_enabled": false
     },
     "functions": {
       "Fn0000000000": {
@@ -200,5 +202,6 @@
   },
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }

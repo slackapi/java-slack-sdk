@@ -279,7 +279,29 @@
       "mcp_slack_send_message_tool_called",
       "mcp_slack_read_user_profile_tool_called",
       "pref.allow_cea_for_hippa_team_changed",
-      "custom_tos_link_clicked"
+      "custom_tos_link_clicked",
+      "migration_bulk_email_process_completed",
+      "migration_bulk_user_resolutions_uploaded",
+      "migration_bulk_user_resolutions_undone",
+      "migration_bulk_user_resolutions_upload_failed",
+      "data_deletion_date_changed",
+      "quip_migration_org_mapping_deleted",
+      "quip_migration_org_mapping_updated",
+      "salesforce_channels_retention_settings_synced",
+      "mcp_slack_create_draft_tool_called",
+      "mcp_slack_create_draft_message_tool_called",
+      "mcp_slack_send_message_draft_tool_called",
+      "mcp_slack_schedule_message_tool_called",
+      "mcp_slack_list_channel_members_tool_called",
+      "mcp_slack_mark_read_tool_called",
+      "mcp_slack_search_emojis_tool_called",
+      "mcp_slack_add_reaction_tool_called",
+      "mcp_slack_get_reactions_tool_called",
+      "mcp_slack_create_conversations_tool_called",
+      "mcp_slack_read_file_tool_called",
+      "pref.slackbot_ai_canvas_write_enabled_changed",
+      "pref.show_join_leave_changed",
+      "pref.show_join_leave_welcome_party_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -338,7 +360,11 @@
       "user_anomaly_event_reponse_allowlist_changed",
       "org_owner_created",
       "slackbot_ai_shareable_prompt_created",
-      "user_anomaly_event_response_allowlist_changed"
+      "user_anomaly_event_response_allowlist_changed",
+      "slack_ai_calendar_read",
+      "slack_ai_calendar_create",
+      "slack_ai_calendar_update",
+      "slackbot_ai_canvas_approval_bypassed"
     ],
     "file": [
       "file_downloaded",
@@ -425,7 +451,8 @@
       "channel_detail_flag_assignment",
       "channel_detail_flag_unassignment",
       "channel_detail_flag_moderated",
-      "channel_detail_flag_dismissed"
+      "channel_detail_flag_dismissed",
+      "channel_exclude_from_slack_ai_updated"
     ],
     "app": [
       "app_installed",
@@ -571,7 +598,8 @@
       "workflow_trigger_permission_set",
       "workflow_trigger_permission_added",
       "workflow_trigger_permission_removed",
-      "workflow_trigger_suspicious_keyword"
+      "workflow_trigger_suspicious_keyword",
+      "workflow_ai_answer_suspicious_prompt"
     ],
     "canvas": [
       "canvas_access_added",
@@ -600,7 +628,9 @@
       "canvas_restricted_sharing_disabled",
       "canvas_converted_to_standalone",
       "canvas_quip_migration_undone",
-      "slack_ai_canvas_content_generated"
+      "slack_ai_canvas_content_generated",
+      "canvas_slack_ai_exclusion_enabled",
+      "canvas_slack_ai_exclusion_disabled"
     ],
     "function": [
       "function_distribution_permission_added",
@@ -674,7 +704,9 @@
       "list_restricted_sharing_enabled",
       "list_restricted_sharing_disabled",
       "list_rows_undeleted",
-      "list_default_view_updated"
+      "list_default_view_updated",
+      "list_slack_ai_exclusion_enabled",
+      "list_slack_ai_exclusion_disabled"
     ],
     "slack_first_crm": [
       "contacts_import_initiated",
@@ -684,7 +716,20 @@
       "field_updated",
       "field_visibility_updated",
       "license_assigned",
-      "license_removed"
+      "license_removed",
+      "object_import_initiated",
+      "object_import_completed",
+      "object_import_failed"
+    ],
+    "legal_hold": [
+      "legal_hold_policy_created",
+      "legal_hold_policy_updated",
+      "legal_hold_policy_released",
+      "legal_hold_policy_reactivated",
+      "legal_hold_policy_entities_added",
+      "legal_hold_policy_entities_deleted",
+      "legal_hold_policy_exclusion_added",
+      "legal_hold_policy_exclusion_deleted"
     ]
   }
 }

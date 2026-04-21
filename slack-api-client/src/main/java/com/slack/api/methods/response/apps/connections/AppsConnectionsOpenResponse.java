@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.apps.connections;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -20,4 +21,5 @@ public class AppsConnectionsOpenResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private String url;
+    private ResponseMetadata responseMetadata;
 }
