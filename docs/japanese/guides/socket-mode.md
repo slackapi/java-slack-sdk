@@ -82,9 +82,9 @@ Jakarta EE 互換のものを利用したい場合、以下のようになりま
 
 | ライブラリ名                                                                         |Maven アーティファクト|
 |--------------------------------------------------------------------------------|-|
-| [Tyrus Standalone Client 1.x (default)](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
-| [Tyrus Standalone Client 2.x](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
-| [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)                |[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
+| [Tyrus Standalone Client 1.x (default)](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://central.sonatype.com/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Tyrus Standalone Client 2.x](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://central.sonatype.com/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)                |[org.java-websocket:Java-WebSocket](https://central.sonatype.com/artifact/org.java-websocket/Java-WebSocket)|
 
 実装を切り替える場合、`SocketModeClient.Backend.*` を **slack-api-client** の `SocketModeClient` か **bolt-socket-mode** の `SocketModeApp` のコンストラクターに渡します。まt、それ以外の実装が `SocketModeClient` インターフェースを実装しているなら、直接インスタンス化してもよいでしょう。
 

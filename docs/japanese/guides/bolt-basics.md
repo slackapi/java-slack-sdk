@@ -215,7 +215,7 @@ app.command("/weather", (req, ctx) -> {
 });
 ```
 
-SLF4J の実装として [**ch.qos.logback:logback-classic**](https://search.maven.org/artifact/ch.qos.logback/logback-classic/1.2.3/jar) を使っている場合は [**logback.xml**](http://logback.qos.ch/manual/configuration.html) などの手段で設定をすることができます。
+SLF4J の実装として [**ch.qos.logback:logback-classic**](https://central.sonatype.com/artifact/ch.qos.logback/logback-classic) を使っている場合は [**logback.xml**](http://logback.qos.ch/manual/configuration.html) などの手段で設定をすることができます。
 
 ```xml
 <configuration>

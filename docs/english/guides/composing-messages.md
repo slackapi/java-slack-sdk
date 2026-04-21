@@ -110,10 +110,10 @@ val response = slack.methods(token).chatPostMessage { req -> req
 
 Add the Block Kit Kotlin DSL via 2 artifacts:
 
-|artifactId|Description|
+| artifactId | Description |
 |---|---|
-|[`com.slack.api:slack-api-model-kotlin-extension`](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/sdkLatestVersion/slack-api-model-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The `slack-api-model` Kotlin extension, which adds the Kotlin DSL itself as well as the standalone `withBlocks { }` builder and `View.ViewBuilder`'s `.blocks { }` extension function.|
-|[`com.slack.api:slack-api-client-kotlin-extension`](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/sdkLatestVersion/slack-api-client-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The `slack-api-client` Kotlin extension, which adds the `.blocks { }` extension function to `MethodsClient`'s request object builders for seamless use of the DSL with the Java builders such as `ChatPostEphemeralRequestBuilder`, `ChatPostMessageRequestBuilder`, `ChatScheduleMessageRequestBuilder`, and `ChatUpdateRequestBuilder`.|
+| [`com.slack.api:slack-api-model-kotlin-extension`](https://central.sonatype.com/artifact/com.slack.api/slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/sdkLatestVersion/slack-api-model-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package) | The `slack-api-model` Kotlin extension, which adds the Kotlin DSL itself as well as the standalone `withBlocks { }` builder and `View.ViewBuilder`'s `.blocks { }` extension function. |
+| [`com.slack.api:slack-api-client-kotlin-extension`](https://central.sonatype.com/artifact/com.slack.api/slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/sdkLatestVersion/slack-api-client-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package) | The `slack-api-client` Kotlin extension, which adds the `.blocks { }` extension function to `MethodsClient`'s request object builders for seamless use of the DSL with the Java builders such as `ChatPostEphemeralRequestBuilder`, `ChatPostMessageRequestBuilder`, `ChatScheduleMessageRequestBuilder`, and `ChatUpdateRequestBuilder`. |
 
 #### Adding via Gradle
 

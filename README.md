@@ -1,6 +1,6 @@
 ## Slack SDK for Java
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22) [![codecov](https://codecov.io/gh/slackapi/java-slack-sdk/branch/main/graph/badge.svg)](https://codecov.io/gh/slackapi/java-slack-sdk)
+[![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/com.slack.api/slack-api-client) [![codecov](https://codecov.io/gh/slackapi/java-slack-sdk/branch/main/graph/badge.svg)](https://codecov.io/gh/slackapi/java-slack-sdk)
 
 **Slack SDK for Java** supports the Slack platform in a Java idiomatic way. The SDK written in Java so developers can use it in any JVM language including Kotlin, Groovy, and Scala.
 
@@ -79,32 +79,32 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 
 The table below shows all the available modules in the Slack Java SDK. All of them have the same latest version as we release all at the same time, even in the case that some don't have any changes apart from updates on their dependency side.
 
-All released versions are available on the Maven Central repositories. The latest version is: [![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22)
+All released versions are available on the Maven Central repositories. The latest version is: [![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/com.slack.api/slack-api-client)
 
 #### Bolt & Built-in Extensions
 
 | groupId:artifactId                                                                                                                       | Description                                                                                                                                                          |
 |------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**com.slack.api:bolt**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt)                                               | Bolt is a framework that offers an abstraction layer to build Slack apps safely and quickly. The most commonly used Servlet environment is supported out-of-the-box. |
-| [**com.slack.api:bolt-socket-mode**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-socket-mode)                       | This module offers a handy way to run Bolt apps through [Socket Mode](/apis/events-api/using-socket-mode) connections.                                                           |
-| [**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty)                                   | This module offers a handy way to run Bolt apps on the [Java EE compatible Jetty HTTP server (9.x)](https://www.eclipse.org/jetty/).                                 |
-| [**com.slack.api:bolt-jakarta-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jakarta-jetty)                   | This module offers a handy way to run Bolt apps on the [Jakarta EE compatible Jetty HTTP server](https://www.eclipse.org/jetty/).                                    |
-| [**com.slack.api:bolt-aws-lambda**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-aws-lambda)                         | This module offers a handy way to run Bolt apps on AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/).                |
-| [**com.slack.api:bolt-google-cloud-functions**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-google-cloud-functions) | This module offers a handy way to run Bolt apps on [Google Cloud Functions](https://cloud.google.com/functions).                                                     |
-| [**com.slack.api:bolt-micronaut**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-micronaut)                           | This is an adapter for [Micronaut](https://micronaut.io/) to run Bolt apps on top of it.                                                                             |
-| [**com.slack.api:bolt-helidon**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-helidon)                               | This is an adapter for [Helidon SE](https://helidon.io/docs/latest/) to run Bolt apps on top of it.                                                                  |
-| [**com.slack.api:bolt-http4k**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-http4k)                                 | This is an adapter for [http4k](https://http4k.org/) to run Bolt apps on top of any of the multiple server backends that the library supports.                       |
-| [**com.slack.api:bolt-ktor**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-ktor)                                     | This is an adapter for [Ktor](https://ktor.io/) to run Bolt apps on top of it.                                                                                       |
+| [**com.slack.api:bolt**](https://central.sonatype.com/artifact/com.slack.api/bolt)                                               | Bolt is a framework that offers an abstraction layer to build Slack apps safely and quickly. The most commonly used Servlet environment is supported out-of-the-box. |
+| [**com.slack.api:bolt-socket-mode**](https://central.sonatype.com/artifact/com.slack.api/bolt-socket-mode)                       | This module offers a handy way to run Bolt apps through [Socket Mode](/apis/events-api/using-socket-mode) connections.                                                           |
+| [**com.slack.api:bolt-jetty**](https://central.sonatype.com/artifact/com.slack.api/bolt-jetty)                                   | This module offers a handy way to run Bolt apps on the [Java EE compatible Jetty HTTP server (9.x)](https://www.eclipse.org/jetty/).                                 |
+| [**com.slack.api:bolt-jakarta-jetty**](https://central.sonatype.com/artifact/com.slack.api/bolt-jakarta-jetty)                   | This module offers a handy way to run Bolt apps on the [Jakarta EE compatible Jetty HTTP server](https://www.eclipse.org/jetty/).                                    |
+| [**com.slack.api:bolt-aws-lambda**](https://central.sonatype.com/artifact/com.slack.api/bolt-aws-lambda)                         | This module offers a handy way to run Bolt apps on AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/).                |
+| [**com.slack.api:bolt-google-cloud-functions**](https://central.sonatype.com/artifact/com.slack.api/bolt-google-cloud-functions) | This module offers a handy way to run Bolt apps on [Google Cloud Functions](https://cloud.google.com/functions).                                                     |
+| [**com.slack.api:bolt-micronaut**](https://central.sonatype.com/artifact/com.slack.api/bolt-micronaut)                           | This is an adapter for [Micronaut](https://micronaut.io/) to run Bolt apps on top of it.                                                                             |
+| [**com.slack.api:bolt-helidon**](https://central.sonatype.com/artifact/com.slack.api/bolt-helidon)                               | This is an adapter for [Helidon SE](https://helidon.io/docs/latest/) to run Bolt apps on top of it.                                                                  |
+| [**com.slack.api:bolt-http4k**](https://central.sonatype.com/artifact/com.slack.api/bolt-http4k)                                 | This is an adapter for [http4k](https://http4k.org/) to run Bolt apps on top of any of the multiple server backends that the library supports.                       |
+| [**com.slack.api:bolt-ktor**](https://central.sonatype.com/artifact/com.slack.api/bolt-ktor)                                     | This is an adapter for [Ktor](https://ktor.io/) to run Bolt apps on top of it.                                                                                       |
 
 #### Foundation Modules
 
-|groupId:artifactId|Description|
+| groupId:artifactId | Description |
 |---|---|
-|[**com.slack.api:slack-api-model**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model)|This is a collection of the classes representing the [Slack core objects](/reference/objects) such as conversations, messages, users, blocks, and surfaces. As this is an essential part of the SDK, all other modules depend on this.|
-|[**com.slack.api:slack-api-model-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension)|This contains the Block Kit Kotlin DSL builder, which allows you to define block kit structures via a Kotlin-native DSL.|
-|[**com.slack.api:slack-api-client**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client)|This is a collection of the Slack API clients. The supported are Basic API Methods, Socket Mode, RTM (Real Time Messaging) API, SCIM API, Audit Logs API, and Status API.|
-|[**com.slack.api:slack-api-client-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension)|This contains extension methods for various slack client message builders so you can seamlessly use the Block Kit Kotlin DSL directly on the Java message builders.|
-|[**com.slack.api:slack-app-backend**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-app-backend)|This module is a set of Slack app server-side handlers and data classes for Events API, Interactive Components, Slash Commands, Actions, and OAuth flow. These are used by Bolt framework as the foundation of it in primitive layers.|
+| [**com.slack.api:slack-api-model**](https://central.sonatype.com/artifact/com.slack.api/slack-api-model) | This is a collection of the classes representing the [Slack core objects](/reference/objects) such as conversations, messages, users, blocks, and surfaces. As this is an essential part of the SDK, all other modules depend on this. |
+| [**com.slack.api:slack-api-model-kotlin-extension**](https://central.sonatype.com/artifact/com.slack.api/slack-api-model-kotlin-extension) | This contains the Block Kit Kotlin DSL builder, which allows you to define block kit structures via a Kotlin-native DSL. |
+| [**com.slack.api:slack-api-client**](https://central.sonatype.com/artifact/com.slack.api/slack-api-client) | This is a collection of the Slack API clients. The supported are Basic API Methods, Socket Mode, RTM (Real Time Messaging) API, SCIM API, Audit Logs API, and Status API. |
+| [**com.slack.api:slack-api-client-kotlin-extension**](https://central.sonatype.com/artifact/com.slack.api/slack-api-client-kotlin-extension) | This contains extension methods for various slack client message builders so you can seamlessly use the Block Kit Kotlin DSL directly on the Java message builders. |
+| [**com.slack.api:slack-app-backend**](https://central.sonatype.com/artifact/com.slack.api/slack-app-backend) | This module is a set of Slack app server-side handlers and data classes for Events API, Interactive Components, Slash Commands, Actions, and OAuth flow. These are used by Bolt framework as the foundation of it in primitive layers. |
 
 ## Requirements
 
@@ -121,7 +121,7 @@ If you get stuck, we’re here to help. The following are the best ways to get a
 
 ## Important Notice for jSlack users
 
-The [jSlack](https://search.maven.org/artifact/com.github.seratch/jslack) project has been transferred to [@slackapi](http://github.com/slackapi). The jSlack maintenance releases for security issues or major bugfixes will be continued at https://github.com/seratch/jslack-maintenance-releases .
+The [jSlack](https://central.sonatype.com/artifact/com.github.seratch/jslack) project has been transferred to [@slackapi](http://github.com/slackapi). The jSlack maintenance releases for security issues or major bugfixes will be continued at https://github.com/seratch/jslack-maintenance-releases .
 
 ### Contributing
 
