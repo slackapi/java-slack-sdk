@@ -1174,6 +1174,9 @@ public class RequestFormBuilder {
         if (req.getLoadingMessages() != null) {
             setIfNotNull("loading_messages", req.getLoadingMessages().stream().collect(joining(",")), form);
         }
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("username", req.getUsername(), form);
         return form;
     }
 
@@ -1708,6 +1711,9 @@ public class RequestFormBuilder {
         setIfNotNull("markdown_text", req.getMarkdownText(), form);
         setIfNotNull("recipient_user_id", req.getRecipientUserId(), form);
         setIfNotNull("recipient_team_id", req.getRecipientTeamId(), form);
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("username", req.getUsername(), form);
         return form;
     }
 

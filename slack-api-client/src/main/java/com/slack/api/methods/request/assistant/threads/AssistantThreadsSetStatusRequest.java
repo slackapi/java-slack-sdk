@@ -34,4 +34,19 @@ public class AssistantThreadsSetStatusRequest implements SlackApiRequest {
      * The list of messages to rotate through as a loading indicator.
      */
     private List<String> loadingMessages;
+
+    /**
+     * Emoji to use as the icon for this message. Overrides icon_url.
+     */
+    private String iconEmoji;
+
+    /**
+     * Image URL to use as the icon for this message.
+     */
+    private String iconUrl;
+
+    /**
+     * The bot's username to display.
+     */
+    private String username;
 }

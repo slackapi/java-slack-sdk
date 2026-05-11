@@ -40,4 +40,19 @@ public class ChatStartStreamRequest implements SlackApiRequest {
      * The encoded ID of the team the user receiving the streaming text belongs to. Required when streaming to channels.
      */
     private String recipientTeamId;
+
+    /**
+     * Emoji to use as the icon for this message. Overrides icon_url.
+     */
+    private String iconEmoji;
+
+    /**
+     * Image URL to use as the icon for this message.
+     */
+    private String iconUrl;
+
+    /**
+     * The bot's username to display.
+     */
+    private String username;
 }
