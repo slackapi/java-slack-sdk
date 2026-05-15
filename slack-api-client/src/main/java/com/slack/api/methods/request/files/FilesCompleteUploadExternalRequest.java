@@ -53,7 +53,10 @@ public class FilesCompleteUploadExternalRequest implements SlackApiRequest {
     public static class FileDetails {
         private String id; // required
         private String title; // optional
-        private String highlightType; // optional - file type hint for optimistic rendering
+        /**
+         * Optional highlight type hint for the file. The upload processing job may overwrite this value.
+         */
+        private String highlightType;
     }
 
 }

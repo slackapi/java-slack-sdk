@@ -71,7 +71,7 @@ public class FilesUploadV2Request implements SlackApiRequest {
      */
     private String snippetType;
     /**
-     * File type hint for optimistic rendering (e.g. "png", "jpg", "gif").
+     * Optional highlight type hint for the file. The upload processing job may overwrite this value.
      * (this is mainly for backward compatibility - using uploadFiles instead is recommended)
      */
     private String highlightType;
@@ -119,7 +119,7 @@ public class FilesUploadV2Request implements SlackApiRequest {
          */
         private String snippetType;
         /**
-         * File type hint for optimistic rendering (e.g. "png", "jpg", "gif").
+         * Optional highlight type hint for the file. The upload processing job may overwrite this value.
          */
         private String highlightType;
     }
