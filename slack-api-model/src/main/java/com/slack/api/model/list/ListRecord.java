@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +47,7 @@ public class ListRecord {
         private String text;
         @SerializedName("rich_text")
         private List<RichTextBlock> richText;
+        private transient List<Message> messages;
         private Message message;
         private List<Double> number;
         private List<String> select;
@@ -60,6 +62,20 @@ public class ListRecord {
         private List<Integer> timestamp;
         private List<LinkField> link;
         private List<ReferenceField> reference;
+
+        public List<Message> getMessages() {
+            if (messages == null && message != null) {
+                return Collections.singletonList(message);
+            }
+            return messages;
+        }
+  
+          public void setMessages(List<Message> messages) {
+            this.messages = messages;
+            if (messages != null && !messages.isEmpty()) {
+                this.message = messages.get(0);
+            }
+        }
     }
 
     /**
