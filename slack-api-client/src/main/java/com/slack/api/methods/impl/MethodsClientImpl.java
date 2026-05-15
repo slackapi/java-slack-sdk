@@ -2520,6 +2520,7 @@ public class MethodsClientImpl implements MethodsClient {
                     FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
                     file.setId(fileId);
                     file.setTitle(uploadFile.getTitle());
+                    file.setHighlightType(uploadFile.getHighlightType());
 
                     files.add(file);
                 }
@@ -2542,12 +2543,14 @@ public class MethodsClientImpl implements MethodsClient {
 
                 uploadFile.setAltTxt(req.getAltTxt());
                 uploadFile.setSnippetType(req.getSnippetType());
+                uploadFile.setHighlightType(req.getHighlightType());
 
                 String fileId = helper.uploadFile(req, uploadFile);
 
                 FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
                 file.setId(fileId);
                 file.setTitle(uploadFile.getTitle());
+                file.setHighlightType(uploadFile.getHighlightType());
                 files.add(file);
             }
             return helper.completeUploads(req, files);
