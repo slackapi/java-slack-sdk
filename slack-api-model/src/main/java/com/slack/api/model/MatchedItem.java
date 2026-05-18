@@ -287,6 +287,9 @@ public class MatchedItem {
     @SerializedName("is_ai_suggested")
     private Boolean aiSuggested;
 
+    @SerializedName("is_modified_by_ai")
+    private Boolean modifiedByAi;
+
     private List<String> contentsExtracts;
 
 }

@@ -301,7 +301,24 @@
       "mcp_slack_read_file_tool_called",
       "pref.slackbot_ai_canvas_write_enabled_changed",
       "pref.show_join_leave_changed",
-      "pref.show_join_leave_welcome_party_changed"
+      "pref.show_join_leave_welcome_party_changed",
+      "mcp_slack_create_conversation_tool_called",
+      "mcp_slack_get_workflow_details_tool_called",
+      "mcp_slack_get_workflow_execution_status_tool_called",
+      "mcp_slack_canvas_find_replace_tool_called",
+      "mcp_slack_list_workflows_tool_called",
+      "mcp_slack_run_workflow_tool_called",
+      "slack_ai_mcp_tool_called",
+      "slack_ai_mcp_tool_permission_changed",
+      "slack_ai_mcp_connector_changed",
+      "prefs_setting_changed",
+      "auth_policy_created",
+      "auth_policy_entity_assigned",
+      "auth_policy_entity_removed",
+      "slack_connect_guidelines_changed",
+      "slack_connect_pref_set",
+      "slack_connect_pref_removed",
+      "slack_connect_pref_migrated"
     ],
     "user": [
       "custom_tos_accepted",
@@ -364,7 +381,12 @@
       "slack_ai_calendar_read",
       "slack_ai_calendar_create",
       "slack_ai_calendar_update",
-      "slackbot_ai_canvas_approval_bypassed"
+      "slackbot_ai_canvas_approval_bypassed",
+      "user_merged",
+      "slack_ai_skill_invoked",
+      "slack_ai_skill_metadata_updated",
+      "slack_ai_skill_auto_enabled",
+      "slack_ai_skill_auto_disabled"
     ],
     "file": [
       "file_downloaded",
@@ -452,7 +474,8 @@
       "channel_detail_flag_unassignment",
       "channel_detail_flag_moderated",
       "channel_detail_flag_dismissed",
-      "channel_exclude_from_slack_ai_updated"
+      "channel_exclude_from_slack_ai_updated",
+      "service_owner_transferred"
     ],
     "app": [
       "app_installed",
@@ -493,7 +516,9 @@
       "agentforce_agent_slack_connection_added",
       "agentforce_agent_actions_updated",
       "agentforce_agent_metadata_updated",
-      "agentforce_agent_slack_deleted"
+      "agentforce_agent_slack_deleted",
+      "child_app_auto_installed",
+      "child_app_auto_install_denied"
     ],
     "workflow_builder": [
       "workflow_created",
@@ -599,7 +624,10 @@
       "workflow_trigger_permission_added",
       "workflow_trigger_permission_removed",
       "workflow_trigger_suspicious_keyword",
-      "workflow_ai_answer_suspicious_prompt"
+      "workflow_ai_answer_suspicious_prompt",
+      "external_auth_oauth2_token_fetched",
+      "external_auth_oauth2_token_refreshed",
+      "external_auth_oauth2_token_deleted"
     ],
     "canvas": [
       "canvas_access_added",
@@ -630,7 +658,8 @@
       "canvas_quip_migration_undone",
       "slack_ai_canvas_content_generated",
       "canvas_slack_ai_exclusion_enabled",
-      "canvas_slack_ai_exclusion_disabled"
+      "canvas_slack_ai_exclusion_disabled",
+      "canvas_share_limit_reached"
     ],
     "function": [
       "function_distribution_permission_added",
@@ -654,7 +683,8 @@
       "native_dlp_rule_deactivated",
       "native_dlp_rule_reactivated",
       "native_dlp_rule_edited",
-      "native_dlp_rule_action_applied"
+      "native_dlp_rule_action_applied",
+      "native_dlp_violation_deleted"
     ],
     "template": [
       "template_created",
@@ -706,7 +736,8 @@
       "list_rows_undeleted",
       "list_default_view_updated",
       "list_slack_ai_exclusion_enabled",
-      "list_slack_ai_exclusion_disabled"
+      "list_slack_ai_exclusion_disabled",
+      "list_share_limit_reached"
     ],
     "slack_first_crm": [
       "contacts_import_initiated",

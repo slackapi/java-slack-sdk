@@ -137,7 +137,8 @@
     "file_access": "",
     "access": "",
     "org_or_workspace_access": "",
-    "is_ai_suggested": false
+    "is_ai_suggested": false,
+    "is_modified_by_ai": false
   },
   "record": {
     "id": "",
