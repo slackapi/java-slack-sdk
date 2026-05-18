@@ -70,6 +70,11 @@ public class FilesUploadV2Request implements SlackApiRequest {
      * (this is mainly for backward compatibility - using uploadFiles instead is recommended)
      */
     private String snippetType;
+    /**
+     * Optional highlight type hint for the file. The upload processing job may overwrite this value.
+     * (this is mainly for backward compatibility - using uploadFiles instead is recommended)
+     */
+    private String highlightType;
 
     /**
      * Fetches all the file metadata for better v1 compatibility when this property is true.
@@ -113,6 +118,10 @@ public class FilesUploadV2Request implements SlackApiRequest {
          * Syntax type of the snippet being uploaded.
          */
         private String snippetType;
+        /**
+         * Optional highlight type hint for the file. The upload processing job may overwrite this value.
+         */
+        private String highlightType;
     }
 
     /**
