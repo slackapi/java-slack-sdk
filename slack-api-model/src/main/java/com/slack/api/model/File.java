@@ -392,6 +392,7 @@ public class File {
     private boolean canvasPrintingEnabled;
 
     private boolean isAiSuggested;
+    private boolean isModifiedByAi;
 
     // ---------------------------------------
     // file comments

@@ -101,7 +101,8 @@
       "thumb_360_gif": "https://www.example.com/",
       "thumb_480_gif": "https://www.example.com/",
       "deanimate": "https://www.example.com/",
-      "deanimate_gif": "https://www.example.com/"
+      "deanimate_gif": "https://www.example.com/",
+      "is_modified_by_ai": false
     }
   ],
   "error": "",

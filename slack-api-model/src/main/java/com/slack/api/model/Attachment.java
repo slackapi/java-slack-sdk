@@ -316,6 +316,7 @@ public class Attachment {
     // Lists
 
     private String fileId;
+    private String slackFileId;
     private String listRecordId;
     private SingleListRecord listRecord;
     private List<ListRecord> listRecords;
