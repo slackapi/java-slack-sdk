@@ -54,8 +54,9 @@ public class AdminApi_roles_Test {
     public void addAndRemoveAssignments() throws Exception {
         if (orgAdminUserToken != null) {
             String userId = orgAdminMethodsAsync.authTest(r -> r).get().getUserId();
-            String channelId = workspaceAdminMethodsAsync.usersConversations(r -> r
-                    .user(userId).excludeArchived(true).limit(1)
+            String teamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
+            String channelId = orgAdminMethodsAsync.usersConversations(r -> r
+                    .user(userId).teamId(teamId).excludeArchived(true).limit(1)
             ).get().getChannels().get(0).getId();
             AdminRolesAddAssignmentsResponse addition = orgAdminMethodsAsync.adminRolesAddAssignments(r -> r
                     .roleId("Rl0A")
