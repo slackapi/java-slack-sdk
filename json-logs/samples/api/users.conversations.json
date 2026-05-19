@@ -125,7 +125,8 @@
           "file_id": "F00000000"
         },
         "is_dormant": false,
-        "use_case": ""
+        "use_case": "",
+        "has_slack_connect_invite_created": false
       }
     }
   ],
