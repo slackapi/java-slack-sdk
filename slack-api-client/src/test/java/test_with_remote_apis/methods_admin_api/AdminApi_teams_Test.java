@@ -136,7 +136,8 @@ public class AdminApi_teams_Test {
             AdminTeamsSettingsInfoResponse info = methodsAsync.adminTeamsSettingsInfo(r -> r.teamId(teamId)).get();
             assertThat(info.getError(), is(nullValue()));
 
-            List<String> channelIds = slack.methods(teamAdminUserToken).conversationsList(r -> r
+            List<String> channelIds = slack.methods(orgAdminUserToken).conversationsList(r -> r
+                    .teamId(teamId)
                     .excludeArchived(true)
                     .types(Arrays.asList(ConversationType.PUBLIC_CHANNEL))
                     .limit(2)
