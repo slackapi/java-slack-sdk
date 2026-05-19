@@ -329,7 +329,6 @@ public class Actions {
         public static final String pref_slackbot_ai_canvas_write_enabled_changed = "pref.slackbot_ai_canvas_write_enabled_changed";
         public static final String pref_show_join_leave_changed = "pref.show_join_leave_changed";
         public static final String pref_show_join_leave_welcome_party_changed = "pref.show_join_leave_welcome_party_changed";
-        public static final String pref_allow_slack_ai_changed = "pref.allow_slack_ai_changed";
     }
 
     public static class User {
