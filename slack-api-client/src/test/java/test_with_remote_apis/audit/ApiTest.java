@@ -293,6 +293,18 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> legalHoldNames = getAllPublicStaticFieldValues(Actions.LegalHold.class);
+        for (String action : actions.getLegalHold()) {
+            if (!legalHoldNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
+        List<String> slackFirstCrmNames = getAllPublicStaticFieldValues(Actions.SlackFirstCrm.class);
+        for (String action : actions.getSlackFirstCrm()) {
+            if (!slackFirstCrmNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test
@@ -370,6 +382,8 @@ public class ApiTest {
             verifyAllActions(orgAdminUserToken, Actions.AppApprovalAutomationRule.class);
             verifyAllActions(orgAdminUserToken, Actions.SalesElevate.class);
             verifyAllActions(orgAdminUserToken, Actions.NativeDlp.class);
+            verifyAllActions(orgAdminUserToken, Actions.LegalHold.class);
+            verifyAllActions(orgAdminUserToken, Actions.SlackFirstCrm.class);
 
             // As all the properties are available in LogsResponse class,
             // we'll re-generate the sample JSON file.
