@@ -518,7 +518,15 @@
       "agentforce_agent_metadata_updated",
       "agentforce_agent_slack_deleted",
       "child_app_auto_installed",
-      "child_app_auto_install_denied"
+      "child_app_auto_install_denied",
+      "child_app_auto_install_rule_created",
+      "child_app_manifest_created",
+      "child_app_manifest_updated",
+      "child_app_manifest_deleted",
+      "child_app_manifest_exported",
+      "app_mcp_server_added",
+      "app_mcp_server_updated",
+      "app_mcp_server_removed"
     ],
     "workflow_builder": [
       "workflow_created",
