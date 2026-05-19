@@ -209,7 +209,7 @@ public class AdminApi_users_Test {
 
     private List<String> findUserIds(int num, List<String> idsToSkip) throws Exception {
         List<String> userIds = new ArrayList<>();
-        UsersListResponse usersListResponse = slack.methodsAsync(orgAdminUserToken).usersList(req -> req.teamId(teamId)).get();
+        UsersListResponse usersListResponse = slack.methodsAsync(teamAdminUserToken).usersList(req -> req).get();
         assertThat(usersListResponse.getError(), is(nullValue()));
         List<User> members = usersListResponse.getMembers();
         for (User member : members) {
