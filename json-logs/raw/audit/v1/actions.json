@@ -318,7 +318,9 @@
       "slack_connect_guidelines_changed",
       "slack_connect_pref_set",
       "slack_connect_pref_removed",
-      "slack_connect_pref_migrated"
+      "slack_connect_pref_migrated",
+      "slack_ai_mcp_resource_read",
+      "slack_ai_mcp_message_sent"
     ],
     "user": [
       "custom_tos_accepted",
