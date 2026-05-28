@@ -93,11 +93,7 @@
           {
             "type": "",
             "label": "",
-            "id": "",
-            "data": {
-              "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
-            }
+            "id": ""
           }
         ],
         "tabz": [
@@ -112,13 +108,7 @@
             "is_disabled": false
           },
           {
-            "type": "",
-            "id": "",
-            "data": {
-              "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
-            },
-            "label": ""
+            "type": ""
           }
         ],
         "meeting_notes": {
