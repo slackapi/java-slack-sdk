@@ -51,6 +51,8 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -1163,6 +1165,45 @@ public class RequestFormBuilder {
             setIfNotNull("scopes", req.getScopes().stream().collect(joining(",")), form);
         }
         setIfNotNull("user", req.getUser(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AssistantSearchContextRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("query", req.getQuery(), form);
+        setIfNotNull("action_token", req.getActionToken(), form);
+        if (req.getChannelTypes() != null) {
+            setIfNotNull("channel_types", req.getChannelTypes().stream().collect(joining(",")), form);
+        }
+        if (req.getContentTypes() != null) {
+            setIfNotNull("content_types", req.getContentTypes().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("include_bots", req.getIncludeBots(), form);
+        setIfNotNull("include_deleted_users", req.getIncludeDeletedUsers(), form);
+        setIfNotNull("before", req.getBefore(), form);
+        setIfNotNull("after", req.getAfter(), form);
+        setIfNotNull("include_context_messages", req.getIncludeContextMessages(), form);
+        setIfNotNull("context_channel_id", req.getContextChannelId(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        setIfNotNull("include_message_blocks", req.getIncludeMessageBlocks(), form);
+        setIfNotNull("highlight", req.getHighlight(), form);
+        if (req.getKeywordsClauses() != null) {
+            setIfNotNull("keywords_clauses", GSON.toJson(req.getKeywordsClauses()), form);
+        }
+        if (req.getTermClauses() != null) {
+            setIfNotNull("term_clauses", GSON.toJson(req.getTermClauses()), form);
+        }
+        setIfNotNull("modifiers", req.getModifiers(), form);
+        setIfNotNull("include_archived_channels", req.getIncludeArchivedChannels(), form);
+        setIfNotNull("disable_semantic_search", req.getDisableSemanticSearch(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AssistantSearchInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
         return form;
     }
 

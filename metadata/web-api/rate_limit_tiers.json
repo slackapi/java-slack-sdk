@@ -114,6 +114,8 @@
   "apps.permissions.users.request": "Tier2",
   "apps.uninstall": "Tier1",
   "apps.user.connection.update": "Tier2",
+  "assistant.search.context": "SpecialTier_assistant_search_context",
+  "assistant.search.info": "Tier2",
   "assistant.threads.setStatus": "SpecialTier_assistant_threads_setStatus",
   "assistant.threads.setSuggestedPrompts": "Tier3",
   "assistant.threads.setTitle": "Tier3",
