@@ -2,6 +2,7 @@ package com.slack.api.methods.impl;
 
 import com.slack.api.RequestConfigurator;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.AsyncChatStream;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
@@ -1751,6 +1752,11 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ChatStopStreamResponse> chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req) {
         return chatStopStream(req.configure(ChatStopStreamRequest.builder()).build());
+    }
+
+    @Override
+    public AsyncChatStream chatStream(RequestConfigurator<AsyncChatStream.AsyncChatStreamBuilder> req) {
+        return req.configure(AsyncChatStream.builder().client(this)).build();
     }
 
     @Override

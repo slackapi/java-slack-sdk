@@ -1673,6 +1673,8 @@ public interface MethodsClient {
 
     ChatStopStreamResponse chatStopStream(RequestConfigurator<ChatStopStreamRequest.ChatStopStreamRequestBuilder> req) throws IOException, SlackApiException;
 
+    ChatStream chatStream(RequestConfigurator<ChatStream.ChatStreamBuilder> req);
+
     ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
 
     ChatUpdateResponse chatUpdate(RequestConfigurator<ChatUpdateRequest.ChatUpdateRequestBuilder> req)
