@@ -316,6 +316,7 @@ public class Actions {
         public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
         public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
         public static final String slack_ai_mcp_connector_changed = "slack_ai_mcp_connector_changed";
+        public static final String slack_ai_mcp_resource_read = "slack_ai_mcp_resource_read";
         public static final String custom_tos_link_clicked = "custom_tos_link_clicked";
         public static final String prefs_setting_changed = "prefs_setting_changed";
         public static final String auth_policy_created = "auth_policy_created";
