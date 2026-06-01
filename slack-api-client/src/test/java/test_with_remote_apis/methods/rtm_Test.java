@@ -305,6 +305,7 @@ public class rtm_Test {
     }
 
 
+    @Ignore // "method_deprecated" 2025-03-31 https://docs.slack.dev/changelog/2024-09-legacy-custom-bots-classic-apps-deprecation/
     @Test
     public void ping_pong() throws Exception {
 
