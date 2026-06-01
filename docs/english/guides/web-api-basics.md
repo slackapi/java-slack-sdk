@@ -479,4 +479,4 @@ config.getHttpClientResponseHandlers().add(new ResponsePrettyPrintingListener())
 Slack slack = Slack.getInstance(config);
 ```
 
-You may encounter situations where more configurable options or flexibilities while making real-world applications would be helpful. If you have feature requests, go to our [GitHub Issue Tracker](http://github.com/slackapi/java-slack-sdk/issues) and tell us about it.
+You may encounter situations where more configurable options or flexibilities while making real-world applications would be helpful. If you have feature requests, go to our [GitHub Issue Tracker](https://github.com/slackapi/java-slack-sdk/issues) and tell us about it.
