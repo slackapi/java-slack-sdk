@@ -404,6 +404,7 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> functionsAdded;
         private List<String> workflowsAdded;
         private List<String> datastoresAdded;
+        private ConversationPref whoCanDmAnyone;
     }
 
     @Data
