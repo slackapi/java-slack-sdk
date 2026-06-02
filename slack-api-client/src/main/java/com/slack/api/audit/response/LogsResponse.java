@@ -397,6 +397,7 @@ public class LogsResponse implements AuditApiResponse {
         @SerializedName("is_ext_shared")
         private Boolean extShared;
         private List<String> teamsSharedWith;
+        private String folderBookmarkId;
     }
 
     @Data
