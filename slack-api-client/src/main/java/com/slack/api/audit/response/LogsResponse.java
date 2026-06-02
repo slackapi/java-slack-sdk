@@ -389,6 +389,7 @@ public class LogsResponse implements AuditApiResponse {
         private String providerKey;
         private String policyName;
         private String authenticationMode;
+        private java.util.List<String> entityIds;
     }
 
     @Data
