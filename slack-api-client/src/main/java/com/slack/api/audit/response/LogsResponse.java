@@ -377,6 +377,13 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean slackProvidedTemplate;
         private String templateTitle;
         private String threadTs;
+        private String status;
+        private String entityTeam;
+        @SerializedName("is_external_user")
+        private Boolean externalUser;
+        private String salesforceOrgId;
+        private String salesforceEdition;
+        private Object salesforceOrgConfig;
     }
 
     @Data
