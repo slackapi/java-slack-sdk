@@ -402,6 +402,7 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean allowed;
         private List<String> variableNames;
         private List<String> functionsAdded;
+        private List<String> workflowsAdded;
     }
 
     @Data
