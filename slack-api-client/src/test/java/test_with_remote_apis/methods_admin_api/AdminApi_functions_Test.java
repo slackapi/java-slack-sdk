@@ -2,6 +2,7 @@ package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsSetRequest;
 import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
 import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsLookupResponse;
 import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsSetResponse;
@@ -13,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,18 +55,33 @@ public class AdminApi_functions_Test {
             String userId = methodsAsync.authTest(r -> r).get().getUserId();
             AdminFunctionsPermissionsSetResponse set = methodsAsync.adminFunctionsPermissionsSet(r -> r
                     .functionId(functionIds.get(0))
-                    .userIds(Arrays.asList(userId))
-                    .visibility("named_entities")
+                    .permissions(Collections.singletonList(
+                            AdminFunctionsPermissionsSetRequest.Permission.builder()
+                                    .visibility("named_entities")
+                                    .permissionType("slack_function")
+                                    .userIds(Arrays.asList(userId))
+                                    .build()
+                    ))
             ).get();
             assertThat(set.getError(), is(nullValue()));
             set = methodsAsync.adminFunctionsPermissionsSet(r -> r
                     .functionId(functionIds.get(0))
-                    .visibility("no_one")
+                    .permissions(Collections.singletonList(
+                            AdminFunctionsPermissionsSetRequest.Permission.builder()
+                                    .visibility("no_one")
+                                    .permissionType("slack_function")
+                                    .build()
+                    ))
             ).get();
             assertThat(set.getError(), is(nullValue()));
             set = methodsAsync.adminFunctionsPermissionsSet(r -> r
                     .functionId(functionIds.get(0))
-                    .visibility("everyone")
+                    .permissions(Collections.singletonList(
+                            AdminFunctionsPermissionsSetRequest.Permission.builder()
+                                    .visibility("everyone")
+                                    .permissionType("slack_function")
+                                    .build()
+                    ))
             ).get();
             assertThat(set.getError(), is(nullValue()));
 
