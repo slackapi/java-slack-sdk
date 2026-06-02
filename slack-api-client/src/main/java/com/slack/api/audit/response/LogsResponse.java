@@ -400,6 +400,7 @@ public class LogsResponse implements AuditApiResponse {
         private String folderBookmarkId;
         @SerializedName("is_allowed")
         private Boolean allowed;
+        private List<String> variableNames;
     }
 
     @Data
