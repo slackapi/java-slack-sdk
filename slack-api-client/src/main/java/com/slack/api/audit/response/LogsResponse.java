@@ -401,6 +401,7 @@ public class LogsResponse implements AuditApiResponse {
         @SerializedName("is_allowed")
         private Boolean allowed;
         private List<String> variableNames;
+        private List<String> functionsAdded;
     }
 
     @Data
