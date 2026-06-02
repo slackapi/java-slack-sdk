@@ -396,6 +396,7 @@ public class LogsResponse implements AuditApiResponse {
         private String md5Hash;
         @SerializedName("is_ext_shared")
         private Boolean extShared;
+        private List<String> teamsSharedWith;
     }
 
     @Data
