@@ -393,16 +393,17 @@ public class LogsResponse implements AuditApiResponse {
         private String prefName;
         private String email;
         private Object md;
-        private String md5Hash;
+        private String md5Hash; // file_shared
         @SerializedName("is_ext_shared")
-        private Boolean extShared;
-        private List<String> teamsSharedWith;
-        private String folderBookmarkId;
+        private Boolean extShared; // channel sharing
+        private List<String> teamsSharedWith; // channel sharing
+        private String folderBookmarkId; // bookmark_added
         @SerializedName("is_allowed")
-        private Boolean allowed;
-        private List<String> variableNames;
-        private List<String> functionsAdded;
-        private List<String> workflowsAdded;
+        private Boolean allowed; // app_allowlist
+        private List<String> variableNames; // app_manifest_created/updated
+        private List<String> functionsAdded; // app_manifest_created/updated
+        private List<String> workflowsAdded; // app_manifest_created/updated
+        private List<String> datastoresAdded; // app_manifest_created/updated
     }
 
     @Data
