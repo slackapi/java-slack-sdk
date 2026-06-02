@@ -388,6 +388,7 @@ public class LogsResponse implements AuditApiResponse {
         private Object affectedUsers;
         private String providerKey;
         private String policyName;
+        private String authenticationMode;
     }
 
     @Data
