@@ -92,10 +92,11 @@
             "is_disabled": false
           },
           {
-            "type": "",
-            "label": "",
             "id": "",
+            "label": "",
+            "type": "",
             "data": {
+              "folder_bookmark_id": "",
               "file_id": "F00000000",
               "shared_ts": "0000000000.000000"
             }
@@ -114,13 +115,14 @@
             "is_disabled": false
           },
           {
-            "type": "",
             "id": "",
+            "label": "",
+            "type": "",
             "data": {
+              "folder_bookmark_id": "",
               "file_id": "F00000000",
               "shared_ts": "0000000000.000000"
-            },
-            "label": ""
+            }
           }
         ],
         "meeting_notes": {
