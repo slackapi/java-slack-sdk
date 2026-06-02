@@ -86,14 +86,19 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           },
           {
             "type": "",
             "label": "",
-            "id": ""
+            "id": "",
+            "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000"
+            }
           }
         ],
         "tabz": [
@@ -103,12 +108,19 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           },
           {
-            "type": ""
+            "type": "",
+            "id": "",
+            "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000"
+            },
+            "label": ""
           }
         ],
         "meeting_notes": {

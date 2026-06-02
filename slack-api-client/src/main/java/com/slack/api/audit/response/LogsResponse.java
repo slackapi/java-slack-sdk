@@ -72,6 +72,8 @@ public class LogsResponse implements AuditApiResponse {
         private InformationBarrier barrier;
         private WorkflowV2 workflowV2;
         private SlackList list;
+        private Object externalAuthOauth2Token;
+        private Object function;
     }
 
     @Data
@@ -250,7 +252,7 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String botId;
         private List<String> channels;
-        private List<Permission> permissions;
+        private Object permissions;
         private String sharedTo; // channel_workspaces_updated
         private String reason;
         @SerializedName("is_internal_integration")
@@ -367,6 +369,14 @@ public class LogsResponse implements AuditApiResponse {
         private String user; // list_access_added
         private String fileId;
         private String triggerId; // workflow_trigger_permission_set, workflow_trigger_permission_added
+        private Object triggerConfig;
+        private String permissionType;
+        private java.util.List<String> channelIds;
+        private java.util.List<String> userIds;
+        @SerializedName("is_slack_provided_template")
+        private Boolean slackProvidedTemplate;
+        private String templateTitle;
+        private String threadTs;
     }
 
     @Data

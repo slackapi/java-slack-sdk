@@ -10,6 +10,7 @@ public class AppFunctionPermissions {
     private Distribution distribution;
     private AllowedEntities allowedEntities;
     private AllowedByAdmin allowedByAdmin;
+    private Object privateChannelAccess;
 
     @Data
     public static class Distribution {

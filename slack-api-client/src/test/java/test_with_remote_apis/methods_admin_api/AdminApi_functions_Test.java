@@ -31,6 +31,7 @@ public class AdminApi_functions_Test {
     }
 
     static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
+    static String gridTeamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
     @Test
@@ -39,6 +40,7 @@ public class AdminApi_functions_Test {
             final List<String> appIds = Arrays.asList(System.getenv(Constants.SLACK_SDK_TEST_GRID_APP_IDS).split(","));
             AdminFunctionsListResponse response = methodsAsync.adminFunctionsList(r -> r
                     .appIds(appIds)
+                    .teamId(gridTeamId)
                     .limit(1000)
             ).get();
             assertThat(response.getError(), is(nullValue()));
@@ -72,6 +74,7 @@ public class AdminApi_functions_Test {
                 final String _nextCursor = nextCursor;
                 response = methodsAsync.adminFunctionsList(req -> req
                         .appIds(appIds)
+                        .teamId(gridTeamId)
                         .limit(1000)
                         .cursor(_nextCursor)
                 ).get();
