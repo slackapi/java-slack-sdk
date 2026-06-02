@@ -10,7 +10,7 @@ public class AppFunctionPermissions {
     private Distribution distribution;
     private AllowedEntities allowedEntities;
     private AllowedByAdmin allowedByAdmin;
-    private Object privateChannelAccess;
+    private PrivateChannelAccess privateChannelAccess;
 
     @Data
     public static class Distribution {
@@ -31,5 +31,13 @@ public class AppFunctionPermissions {
     public static class AllowedByAdmin {
         private String type;
         private List<String> userIds;
+    }
+
+    @Data
+    public static class PrivateChannelAccess {
+        private String permission;
+        private List<String> userIds;
+        private List<String> teamIds;
+        private List<String> orgIds;
     }
 }
