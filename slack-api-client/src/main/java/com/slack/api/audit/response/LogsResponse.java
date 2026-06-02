@@ -391,6 +391,7 @@ public class LogsResponse implements AuditApiResponse {
         private String authenticationMode;
         private Object entityIds;
         private String prefName;
+        private String email;
     }
 
     @Data
