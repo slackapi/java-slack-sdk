@@ -1,6 +1,8 @@
 package test_locally.sample_json_generation;
 
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
@@ -167,6 +169,28 @@ public class MethodsResponseDumpTest {
             ObjectInitializer.initProperties(response);
             dumper.dump("admin.apps.uninstall", response);
         }
+    }
+
+    @Test
+    public void assistant_search() throws Exception {
+        AssistantSearchContextResponse searchContext = new AssistantSearchContextResponse();
+        AssistantSearchContextResponse.ContextMessages contextMessages = new AssistantSearchContextResponse.ContextMessages();
+        contextMessages.setBefore(Arrays.asList(ObjectInitializer.initProperties(new AssistantSearchContextResponse.ContextMessage())));
+        contextMessages.setAfter(Arrays.asList(ObjectInitializer.initProperties(new AssistantSearchContextResponse.ContextMessage())));
+        AssistantSearchContextResponse.MessageResult message = new AssistantSearchContextResponse.MessageResult();
+        message.setContextMessages(contextMessages);
+        AssistantSearchContextResponse.Results results = new AssistantSearchContextResponse.Results();
+        results.setMessages(Arrays.asList(ObjectInitializer.initProperties(message)));
+        results.setFiles(Arrays.asList(ObjectInitializer.initProperties(new AssistantSearchContextResponse.FileResult())));
+        results.setChannels(Arrays.asList(ObjectInitializer.initProperties(new AssistantSearchContextResponse.ChannelResult())));
+        results.setUsers(Arrays.asList(ObjectInitializer.initProperties(new AssistantSearchContextResponse.UserResult())));
+        searchContext.setResults(results);
+        searchContext.setResponseMetadata(responseMetadata);
+        ObjectInitializer.initProperties(searchContext);
+        dumper.dump("assistant.search.context", searchContext);
+        AssistantSearchInfoResponse searchInfo = new AssistantSearchInfoResponse();
+        ObjectInitializer.initProperties(searchInfo);
+        dumper.dump("assistant.search.info", searchInfo);
     }
 
     @Test

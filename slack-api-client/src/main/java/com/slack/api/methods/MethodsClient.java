@@ -50,6 +50,8 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -202,6 +204,8 @@ import com.slack.api.methods.response.apps.permissions.resources.AppsPermissions
 import com.slack.api.methods.response.apps.permissions.scopes.AppsPermissionsScopesListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
@@ -1305,6 +1309,24 @@ public interface MethodsClient {
     // the coming months.
     @Deprecated
     AppsPermissionsUsersRequestResponse appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // assistant.search
+    // ------------------------------
+
+    AssistantSearchContextResponse assistantSearchContext(AssistantSearchContextRequest req)
+            throws IOException, SlackApiException;
+
+    AssistantSearchContextResponse assistantSearchContext(
+            RequestConfigurator<AssistantSearchContextRequest.AssistantSearchContextRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AssistantSearchInfoResponse assistantSearchInfo(AssistantSearchInfoRequest req)
+            throws IOException, SlackApiException;
+
+    AssistantSearchInfoResponse assistantSearchInfo(
+            RequestConfigurator<AssistantSearchInfoRequest.AssistantSearchInfoRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

@@ -42,6 +42,12 @@ public enum MethodsRateLimitTier {
     SpecialTier_auth_test,
 
     /**
+     * assistant.search.context has special rate limiting conditions.
+     * It generally allows 10+ requests per minute for most teams.
+     */
+    SpecialTier_assistant_search_context,
+
+    /**
      * assistant.threads.setStatus has the similar tier with chat.postMessage API.
      */
     SpecialTier_assistant_threads_setStatus,
@@ -69,6 +75,7 @@ public enum MethodsRateLimitTier {
         allowedRequestsPerMinute.put(MethodsRateLimitTier.Tier3, 50);
         allowedRequestsPerMinute.put(MethodsRateLimitTier.Tier4, 100);
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_auth_test, 600);
+        allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_assistant_search_context, 10);
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_chat_getPermalink, 600);
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_chat_postMessage, 60); // per channel
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_assistant_threads_setStatus, 60); // per DM
