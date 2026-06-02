@@ -394,6 +394,8 @@ public class LogsResponse implements AuditApiResponse {
         private String email;
         private Object md;
         private String md5Hash;
+        @SerializedName("is_ext_shared")
+        private Boolean extShared;
     }
 
     @Data
