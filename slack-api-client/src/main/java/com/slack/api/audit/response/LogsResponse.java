@@ -387,6 +387,7 @@ public class LogsResponse implements AuditApiResponse {
         private String salesforceTenantGuid;
         private Object affectedUsers;
         private String providerKey;
+        private String policyName;
     }
 
     @Data
