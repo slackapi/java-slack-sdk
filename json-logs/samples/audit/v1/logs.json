@@ -430,7 +430,11 @@
         "variable_names": [],
         "functions_added": [],
         "workflows_added": [],
-        "datastores_added": []
+        "datastores_added": [],
+        "who_can_dm_anyone": {
+          "type": [],
+          "user": []
+        }
       }
     }
   ]

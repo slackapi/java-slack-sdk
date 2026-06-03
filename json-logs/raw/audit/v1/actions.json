@@ -478,7 +478,9 @@
       "channel_detail_flag_moderated",
       "channel_detail_flag_dismissed",
       "channel_exclude_from_slack_ai_updated",
-      "service_owner_transferred"
+      "service_owner_transferred",
+      "channel_restrict_guests_updated",
+      "channel_restrict_message_and_file_sharing_updated"
     ],
     "app": [
       "app_installed",
