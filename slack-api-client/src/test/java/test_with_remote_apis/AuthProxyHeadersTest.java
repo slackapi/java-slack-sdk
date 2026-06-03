@@ -178,6 +178,7 @@ public class AuthProxyHeadersTest {
             AuthTestResponse apiResponse = slack.methods().authTest(r -> r.token(botToken));
             assertThat(apiResponse.getError(), is(nullValue()));
             assertThat(callCount.get(), is(1));
+            slack.close();
 
         } finally {
             if (originalHttpProxyHost != null) {
