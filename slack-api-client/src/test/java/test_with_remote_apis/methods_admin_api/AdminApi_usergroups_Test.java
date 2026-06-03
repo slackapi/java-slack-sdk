@@ -39,6 +39,7 @@ public class AdminApi_usergroups_Test {
     public void channels() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null && idpUsergroupId != null) {
             List<String> channelIds = slack.methods(teamAdminUserToken).conversationsList(r -> r
+                    .teamId(teamId)
                     .excludeArchived(true)
                     .limit(100)
             ).getChannels().stream()
