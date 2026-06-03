@@ -420,6 +420,7 @@ public class ApiTest {
         }
     }
 
+    @Ignore // pref_who_can_manage_ext_shared_channels audit entries no longer generated
     @Test
     public void getLogs_issue_525()
             throws IOException, AuditApiException {
