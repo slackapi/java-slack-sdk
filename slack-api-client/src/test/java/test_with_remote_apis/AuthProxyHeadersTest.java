@@ -153,6 +153,7 @@ public class AuthProxyHeadersTest {
             }
             // this should be rejected
             assertThat(callCount.get(), is(0));
+            slack.close();
 
             // verify if an invalid host given by system properties is reflected
             System.setProperty("http.proxyHost", "invalid-host");
@@ -162,6 +163,8 @@ public class AuthProxyHeadersTest {
                 fail("A connection failure is expected here");
             } catch (IOException e) {
             }
+            assertThat(callCount.get(), is(0));
+            slack.close();
 
             // verify if the setProxyUrl is prioritized over the system properties
             config = new SlackConfig();
