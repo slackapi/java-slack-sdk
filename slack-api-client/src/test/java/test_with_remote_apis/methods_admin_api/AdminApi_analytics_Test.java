@@ -134,7 +134,7 @@ public class AdminApi_analytics_Test {
     public void getFile_public_channel() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
-                    .date("2025-01-20")
+                    .date("2026-06-01")
                     .type("public_channel")
             ).get();
             assertNull(response.getError());
@@ -170,7 +170,7 @@ public class AdminApi_analytics_Test {
     public void getFile_public_channel_validation() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
-                    .date("2025-01-20")
+                    .date("2026-06-01")
                     .type("public_channel")
             ).get();
             assertNull(response.getError());
