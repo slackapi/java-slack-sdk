@@ -502,6 +502,7 @@ public class Actions {
         public static final String channel_exclude_from_slack_ai_updated = "channel_exclude_from_slack_ai_updated";
         public static final String service_owner_transferred = "service_owner_transferred";
         public static final String channel_restrict_guests_updated = "channel_restrict_guests_updated";
+        public static final String channel_restrict_message_and_file_sharing_updated = "channel_restrict_message_and_file_sharing_updated";
     }
 
     public static class App {
