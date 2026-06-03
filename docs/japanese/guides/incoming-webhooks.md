@@ -4,7 +4,7 @@
 
 ### Slack アプリ設定
 
-この機能を有効にするためには [Slack アプリ管理画面](http://api.slack.com/apps) にアクセスして、そこから開発しているアプリを選択します。そして、左ペインの **Features** > **Incoming Webhooks** に遷移し **Activate Incoming Webhooks** を On に変更して有効化します。
+この機能を有効にするためには [Slack アプリ管理画面](https://api.slack.com/apps) にアクセスして、そこから開発しているアプリを選択します。そして、左ペインの **Features** > **Incoming Webhooks** に遷移し **Activate Incoming Webhooks** を On に変更して有効化します。
 
 その次に、そのアプリを開発用ワークスペース（Development Workspace）にインストールします。アプリをインストールする度に新しい Webhook の URL が発行されます。
 

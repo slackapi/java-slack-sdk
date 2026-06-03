@@ -24,7 +24,7 @@ All three events must be handled for a workflow step to function.
 
 ### Slack app configuration
 
-To enable Steps from Apps, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Workflow Steps** on the left pane. There are two things to do on the page.
+To enable Steps from Apps, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Workflow Steps** on the left pane. There are two things to do on the page.
 
 * Turn on the feature (**Turn on workflow steps**)
 * Click the **Add Step** button and set the name and Callback ID
