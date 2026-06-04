@@ -90,16 +90,6 @@
               "folder_bookmark_id": ""
             },
             "is_disabled": false
-          },
-          {
-            "id": "",
-            "label": "",
-            "type": "",
-            "data": {
-              "folder_bookmark_id": "",
-              "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
-            }
           }
         ],
         "tabz": [
@@ -113,16 +103,6 @@
               "folder_bookmark_id": ""
             },
             "is_disabled": false
-          },
-          {
-            "id": "",
-            "label": "",
-            "type": "",
-            "data": {
-              "folder_bookmark_id": "",
-              "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
-            }
           }
         ],
         "meeting_notes": {

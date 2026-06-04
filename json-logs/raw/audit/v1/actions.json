@@ -321,7 +321,8 @@
       "slack_connect_pref_migrated",
       "slack_ai_mcp_resource_read",
       "slack_ai_mcp_message_sent",
-      "pref.allow_native_giphy_gif_picker"
+      "pref.allow_native_giphy_gif_picker",
+      "slack_ai_mcp_link_opened"
     ],
     "user": [
       "custom_tos_accepted",
