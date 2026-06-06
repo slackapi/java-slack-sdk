@@ -52,6 +52,7 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String email;
         private String team;
+        private String accountType;
     }
 
     @Data
