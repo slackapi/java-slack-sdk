@@ -394,7 +394,8 @@ public class LogsResponse implements AuditApiResponse {
         private String secondaryAuthenticationMethod;
         private String actionTimestamp;
         private String clientJa3Fingerprint;
-        private Location location;
+        private String previousIpAddress;
+        private String location;
         private Object entityIds;
         private String prefName;
         private String email;
