@@ -137,7 +137,6 @@ public class AdminApi_teams_Test {
             assertThat(info.getError(), is(nullValue()));
 
             List<String> channelIds = slack.methods(teamAdminUserToken).conversationsList(r -> r
-                    .teamId(teamId)
                     .excludeArchived(true)
                     .types(Arrays.asList(ConversationType.PUBLIC_CHANNEL))
                     .limit(2)
