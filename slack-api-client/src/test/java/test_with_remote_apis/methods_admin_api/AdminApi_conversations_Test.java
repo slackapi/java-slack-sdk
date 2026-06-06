@@ -244,11 +244,11 @@ public class AdminApi_conversations_Test {
     }
 
     static String getOrCreatePrivateChannel() throws Exception {
-        List<Conversation> privateChannels = slack.methods(orgAdminUserToken).conversationsList(r -> r
+        List<Conversation> privateChannels = slack.methods(teamAdminUserToken).conversationsList(r -> r
                 .teamId(teamId).excludeArchived(true).types(Arrays.asList(ConversationType.PRIVATE_CHANNEL)).limit(1)).getChannels();
         if (privateChannels.size() == 0 || privateChannels.get(0).isShared()) {
             String name = "private-test-" + System.currentTimeMillis();
-            ConversationsCreateResponse creation = slack.methods(orgAdminUserToken).conversationsCreate(r -> r.name(name).teamId(teamId).isPrivate(true));
+            ConversationsCreateResponse creation = slack.methods(teamAdminUserToken).conversationsCreate(r -> r.name(name).teamId(teamId).isPrivate(true));
             return creation.getChannel().getId();
         } else {
             return privateChannels.get(0).getId();
