@@ -34,6 +34,7 @@ public class FieldsTest {
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getActor(), "getAccountType");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getContext(), "getSessionId");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getEntity(),
+                "getAccountType",
                 "getApp",
                 "getEnterprise",
                 "getExternalAuthOauth2Token",
