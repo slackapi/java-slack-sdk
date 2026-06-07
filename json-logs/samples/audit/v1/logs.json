@@ -20,7 +20,8 @@
           "id": "",
           "name": "",
           "email": "",
-          "team": ""
+          "team": "",
+          "account_type": ""
         }
       },
       "entity": {
@@ -42,7 +43,8 @@
           "id": "",
           "name": "",
           "email": "",
-          "team": ""
+          "team": "",
+          "account_type": ""
         },
         "usergroup": {
           "id": "",
@@ -168,7 +170,8 @@
             "id": "",
             "name": "",
             "email": "",
-            "team": ""
+            "team": "",
+            "account_type": ""
           },
           "id": "",
           "name": "",
@@ -181,7 +184,8 @@
             "id": "",
             "name": "",
             "email": "",
-            "team": ""
+            "team": "",
+            "account_type": ""
           },
           "id": "",
           "name": "",
@@ -218,7 +222,7 @@
           }
         ],
         "shared_to": "",
-        "reason": "",
+        "reason": {},
         "is_internal_integration": false,
         "cleared_resolution": "",
         "is_workflow": false,
@@ -418,6 +422,14 @@
         "provider_key": "",
         "policy_name": "",
         "authentication_mode": "",
+        "authentication_method": "",
+        "secondary_authentication_method": "",
+        "action_timestamp": "",
+        "client_ja3_fingerprint": "",
+        "previous_ip_address": "",
+        "previous_ua": "",
+        "user_agent_change_details": {},
+        "location": "",
         "entity_ids": {},
         "pref_name": "",
         "email": "",
