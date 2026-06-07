@@ -396,6 +396,7 @@ public class LogsResponse implements AuditApiResponse {
         private String clientJa3Fingerprint;
         private String previousIpAddress;
         private String previousUa;
+        private Object userAgentChangeDetails;
         private String location;
         private Object entityIds;
         private String prefName;
