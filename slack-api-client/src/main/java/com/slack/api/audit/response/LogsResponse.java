@@ -255,7 +255,7 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> channels;
         private Object permissions;
         private String sharedTo; // channel_workspaces_updated
-        private String reason;
+        private Object reason;
         @SerializedName("is_internal_integration")
         private Boolean internalIntegration; // app_collaborator_added etc.
         private String clearedResolution; // app_removed_from_whitelist
