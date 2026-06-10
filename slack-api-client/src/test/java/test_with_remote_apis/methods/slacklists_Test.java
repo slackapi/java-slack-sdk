@@ -164,8 +164,7 @@ public class slacklists_Test {
         assertThat(createItemResponse.getItem().getFields(), is(notNullValue()));
         assertThat(createItemResponse.getItem().getFields().size(), is(1));
         assertThat(createItemResponse.getItem().getFields().get(0).getColumnId(), is(taskNameColId));
-        assertThat(createItemResponse.getItem().getFields().get(0).getRichText(), is(notNullValue()));
-        assertThat(createItemResponse.getItem().getFields().get(0).getRichText().size(), is(1));
+        assertThat(createItemResponse.getItem().getFields().get(0).getText(), is("Test task item"));
 
         String itemId = createItemResponse.getItem().getId();
         assertThat(itemId, is(notNullValue()));
