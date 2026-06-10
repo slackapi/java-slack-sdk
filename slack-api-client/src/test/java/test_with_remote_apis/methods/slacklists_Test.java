@@ -161,9 +161,11 @@ public class slacklists_Test {
         assertThat(createItemResponse.getError(), is(nullValue()));
         assertThat(createItemResponse.isOk(), is(true));
         assertThat(createItemResponse.getItem(), is(notNullValue()));
-        // Verify initial_fields were actually applied (regression test for #1599)
         assertThat(createItemResponse.getItem().getFields(), is(notNullValue()));
-        assertThat(createItemResponse.getItem().getFields().isEmpty(), is(false));
+        assertThat(createItemResponse.getItem().getFields().size(), is(1));
+        assertThat(createItemResponse.getItem().getFields().get(0).getColumnId(), is(taskNameColId));
+        assertThat(createItemResponse.getItem().getFields().get(0).getRichText(), is(notNullValue()));
+        assertThat(createItemResponse.getItem().getFields().get(0).getRichText().size(), is(1));
 
         String itemId = createItemResponse.getItem().getId();
         assertThat(itemId, is(notNullValue()));
