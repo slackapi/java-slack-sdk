@@ -63,7 +63,10 @@
         "tool_name": "",
         "server_name": "",
         "message": "",
-        "tool_count": 12345
+        "tool_count": 12345,
+        "elapsed_ms": 12345,
+        "error_stage": "",
+        "http_status_code": 12345
       },
       "created": 12345,
       "trace_id": "",
