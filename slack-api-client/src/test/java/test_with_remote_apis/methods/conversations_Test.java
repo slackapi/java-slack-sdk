@@ -228,10 +228,13 @@ public class conversations_Test {
 
             // Using async client to avoid an exception due to rate limited errors
             UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r.token(botToken)).get();
+            // Exclude the userToken's user to avoid cant_kick_self when kicking with userToken
+            String userTokenUserId = slack.methods().authTest(r -> r.token(userToken)).getUserId();
             String invitee_ = null;
             for (User u : usersListResponse.getMembers()) {
                 if (!"USLACKBOT".equals(u.getId())
                         && !u.isBot()
+                        && !u.getId().equals(userTokenUserId)
                         && !membersResponse.getMembers().contains(u.getId())
                         && !u.isRestricted()
                         && !u.isUltraRestricted()) {

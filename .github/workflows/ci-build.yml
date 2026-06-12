@@ -47,6 +47,7 @@ jobs:
         if: ${{ !cancelled() && hashFiles('**/target/surefire-reports/TEST-*.xml') != '' }}
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
+          use_pypi: true # https://github.com/codecov/codecov-action/issues/1955
           directory: .
           files: "**/target/surefire-reports/TEST-*.xml"
           fail_ci_if_error: true
@@ -57,6 +58,7 @@ jobs:
         if: ${{ !cancelled() && startsWith(matrix.java-version, '14') && hashFiles('**/target/site/jacoco/jacoco.xml') != '' }}
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
+          use_pypi: true # https://github.com/codecov/codecov-action/issues/1955
           files: "**/target/site/jacoco/jacoco.xml"
           flags: jdk-${{ matrix.java-version }}
           token: ${{ secrets.CODECOV_TOKEN }}

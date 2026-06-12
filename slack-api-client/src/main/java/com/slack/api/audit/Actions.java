@@ -277,6 +277,62 @@ public class Actions {
         public static final String search_query_audit_logs_export_deleted = "search_query_audit_logs_export_deleted";
         public static final String audit_logs_ai_summary_generated = "audit_logs_ai_summary_generated";
         public static final String search_query_audit_logs_max_rows_failure = "search_query_audit_logs_max_rows_failure";
+        public static final String migration_bulk_email_process_completed = "migration_bulk_email_process_completed";
+        public static final String migration_bulk_user_resolutions_uploaded = "migration_bulk_user_resolutions_uploaded";
+        public static final String migration_bulk_user_resolutions_undone = "migration_bulk_user_resolutions_undone";
+        public static final String migration_bulk_user_resolutions_upload_failed = "migration_bulk_user_resolutions_upload_failed";
+        public static final String data_deletion_date_changed = "data_deletion_date_changed";
+        public static final String slack_ai_message_explanation_generated = "slack_ai_message_explanation_generated";
+        public static final String quip_migration_org_mapping_deleted = "quip_migration_org_mapping_deleted";
+        public static final String quip_migration_org_mapping_updated = "quip_migration_org_mapping_updated";
+        public static final String salesforce_channels_retention_settings_synced = "salesforce_channels_retention_settings_synced";
+        public static final String mcp_slack_read_canvas_tool_called = "mcp_slack_read_canvas_tool_called";
+        public static final String mcp_slack_create_canvas_tool_called = "mcp_slack_create_canvas_tool_called";
+        public static final String mcp_slack_update_canvas_tool_called = "mcp_slack_update_canvas_tool_called";
+        public static final String mcp_slack_read_channel_tool_called = "mcp_slack_read_channel_tool_called";
+        public static final String mcp_slack_read_thread_tool_called = "mcp_slack_read_thread_tool_called";
+        public static final String mcp_slack_search_public_tool_called = "mcp_slack_search_public_tool_called";
+        public static final String mcp_slack_search_channels_tool_called = "mcp_slack_search_channels_tool_called";
+        public static final String mcp_slack_search_public_and_private_tool_called = "mcp_slack_search_public_and_private_tool_called";
+        public static final String mcp_slack_search_users_tool_called = "mcp_slack_search_users_tool_called";
+        public static final String mcp_slack_send_message_tool_called = "mcp_slack_send_message_tool_called";
+        public static final String mcp_slack_read_user_profile_tool_called = "mcp_slack_read_user_profile_tool_called";
+        public static final String mcp_slack_create_draft_tool_called = "mcp_slack_create_draft_tool_called";
+        public static final String mcp_slack_create_draft_message_tool_called = "mcp_slack_create_draft_message_tool_called";
+        public static final String mcp_slack_send_message_draft_tool_called = "mcp_slack_send_message_draft_tool_called";
+        public static final String mcp_slack_schedule_message_tool_called = "mcp_slack_schedule_message_tool_called";
+        public static final String mcp_slack_list_channel_members_tool_called = "mcp_slack_list_channel_members_tool_called";
+        public static final String mcp_slack_mark_read_tool_called = "mcp_slack_mark_read_tool_called";
+        public static final String mcp_slack_search_emojis_tool_called = "mcp_slack_search_emojis_tool_called";
+        public static final String mcp_slack_add_reaction_tool_called = "mcp_slack_add_reaction_tool_called";
+        public static final String mcp_slack_get_reactions_tool_called = "mcp_slack_get_reactions_tool_called";
+        public static final String mcp_slack_create_conversation_tool_called = "mcp_slack_create_conversation_tool_called";
+        public static final String mcp_slack_read_file_tool_called = "mcp_slack_read_file_tool_called";
+        public static final String mcp_slack_get_workflow_details_tool_called = "mcp_slack_get_workflow_details_tool_called";
+        public static final String mcp_slack_get_workflow_execution_status_tool_called = "mcp_slack_get_workflow_execution_status_tool_called";
+        public static final String mcp_slack_canvas_find_replace_tool_called = "mcp_slack_canvas_find_replace_tool_called";
+        public static final String mcp_slack_list_workflows_tool_called = "mcp_slack_list_workflows_tool_called";
+        public static final String mcp_slack_run_workflow_tool_called = "mcp_slack_run_workflow_tool_called";
+        public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
+        public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
+        public static final String slack_ai_mcp_connector_changed = "slack_ai_mcp_connector_changed";
+        public static final String slack_ai_mcp_resource_read = "slack_ai_mcp_resource_read";
+        public static final String slack_ai_mcp_message_sent = "slack_ai_mcp_message_sent";
+        public static final String slack_ai_mcp_link_opened = "slack_ai_mcp_link_opened";
+        public static final String custom_tos_link_clicked = "custom_tos_link_clicked";
+        public static final String prefs_setting_changed = "prefs_setting_changed";
+        public static final String auth_policy_created = "auth_policy_created";
+        public static final String auth_policy_entity_assigned = "auth_policy_entity_assigned";
+        public static final String auth_policy_entity_removed = "auth_policy_entity_removed";
+        public static final String slack_connect_guidelines_changed = "slack_connect_guidelines_changed";
+        public static final String slack_connect_pref_set = "slack_connect_pref_set";
+        public static final String slack_connect_pref_removed = "slack_connect_pref_removed";
+        public static final String slack_connect_pref_migrated = "slack_connect_pref_migrated";
+        public static final String pref_allow_cea_for_hippa_team_changed = "pref.allow_cea_for_hippa_team_changed";
+        public static final String pref_slackbot_ai_canvas_write_enabled_changed = "pref.slackbot_ai_canvas_write_enabled_changed";
+        public static final String pref_show_join_leave_changed = "pref.show_join_leave_changed";
+        public static final String pref_show_join_leave_welcome_party_changed = "pref.show_join_leave_welcome_party_changed";
+        public static final String pref_allow_native_giphy_gif_picker = "pref.allow_native_giphy_gif_picker";
     }
 
     public static class User {
@@ -340,6 +396,15 @@ public class Actions {
         public static final String user_anomaly_event_response_allowlist_changed = "user_anomaly_event_response_allowlist_changed";
         public static final String org_owner_created = "org_owner_created";
         public static final String slackbot_ai_shareable_prompt_created = "slackbot_ai_shareable_prompt_created";
+        public static final String user_merged = "user_merged";
+        public static final String slack_ai_calendar_read = "slack_ai_calendar_read";
+        public static final String slack_ai_calendar_create = "slack_ai_calendar_create";
+        public static final String slack_ai_calendar_update = "slack_ai_calendar_update";
+        public static final String slackbot_ai_canvas_approval_bypassed = "slackbot_ai_canvas_approval_bypassed";
+        public static final String slack_ai_skill_invoked = "slack_ai_skill_invoked";
+        public static final String slack_ai_skill_metadata_updated = "slack_ai_skill_metadata_updated";
+        public static final String slack_ai_skill_auto_enabled = "slack_ai_skill_auto_enabled";
+        public static final String slack_ai_skill_auto_disabled = "slack_ai_skill_auto_disabled";
     }
 
     public static class File {
@@ -435,6 +500,10 @@ public class Actions {
         public static final String channel_detail_flag_unassignment = "channel_detail_flag_unassignment";
         public static final String channel_detail_flag_moderated = "channel_detail_flag_moderated";
         public static final String channel_detail_flag_dismissed = "channel_detail_flag_dismissed";
+        public static final String channel_exclude_from_slack_ai_updated = "channel_exclude_from_slack_ai_updated";
+        public static final String service_owner_transferred = "service_owner_transferred";
+        public static final String channel_restrict_guests_updated = "channel_restrict_guests_updated";
+        public static final String channel_restrict_message_and_file_sharing_updated = "channel_restrict_message_and_file_sharing_updated";
     }
 
     public static class App {
@@ -480,6 +549,16 @@ public class Actions {
         public static final String agentforce_agent_actions_updated = "agentforce_agent_actions_updated";
         public static final String agentforce_agent_metadata_updated = "agentforce_agent_metadata_updated";
         public static final String agentforce_agent_slack_deleted = "agentforce_agent_slack_deleted";
+        public static final String child_app_auto_installed = "child_app_auto_installed";
+        public static final String child_app_auto_install_denied = "child_app_auto_install_denied";
+        public static final String child_app_auto_install_rule_created = "child_app_auto_install_rule_created";
+        public static final String child_app_manifest_created = "child_app_manifest_created";
+        public static final String child_app_manifest_updated = "child_app_manifest_updated";
+        public static final String child_app_manifest_deleted = "child_app_manifest_deleted";
+        public static final String child_app_manifest_exported = "child_app_manifest_exported";
+        public static final String app_mcp_server_added = "app_mcp_server_added";
+        public static final String app_mcp_server_updated = "app_mcp_server_updated";
+        public static final String app_mcp_server_removed = "app_mcp_server_removed";
     }
 
     public static class Message {
@@ -597,6 +676,7 @@ public class Actions {
         public static final String usergroup_section_updated = "usergroup_section_updated";
         public static final String user_add_to_usergroup_failed = "user_add_to_usergroup_failed";
         public static final String usergroup_anomaly_event_response_allowlist_changed = "usergroup_anomaly_event_response_allowlist_changed";
+        public static final String user_bulk_upload_to_usergroup_started = "user_bulk_upload_to_usergroup_started";
     }
 
     public static class AccountTypeRole {
@@ -629,6 +709,10 @@ public class Actions {
         public static final String workflow_trigger_permission_added = "workflow_trigger_permission_added";
         public static final String workflow_trigger_permission_removed = "workflow_trigger_permission_removed";
         public static final String workflow_trigger_suspicious_keyword = "workflow_trigger_suspicious_keyword";
+        public static final String workflow_ai_answer_suspicious_prompt = "workflow_ai_answer_suspicious_prompt";
+        public static final String external_auth_oauth2_token_fetched = "external_auth_oauth2_token_fetched";
+        public static final String external_auth_oauth2_token_refreshed = "external_auth_oauth2_token_refreshed";
+        public static final String external_auth_oauth2_token_deleted = "external_auth_oauth2_token_deleted";
     }
 
     public static class Canvas {
@@ -662,6 +746,9 @@ public class Actions {
         public static final String canvas_converted_to_standalone = "canvas_converted_to_standalone";
         public static final String canvas_quip_migration_undone = "canvas_quip_migration_undone";
         public static final String slack_ai_canvas_content_generated = "slack_ai_canvas_content_generated";
+        public static final String canvas_slack_ai_exclusion_enabled = "canvas_slack_ai_exclusion_enabled";
+        public static final String canvas_slack_ai_exclusion_disabled = "canvas_slack_ai_exclusion_disabled";
+        public static final String canvas_share_limit_reached = "canvas_share_limit_reached";
     }
 
     public static class Function {
@@ -698,6 +785,7 @@ public class Actions {
         public static final String native_dlp_rule_reactivated = "native_dlp_rule_reactivated";
         public static final String native_dlp_rule_edited = "native_dlp_rule_edited";
         public static final String native_dlp_rule_action_applied = "native_dlp_rule_action_applied";
+        public static final String native_dlp_violation_deleted = "native_dlp_violation_deleted";
     }
 
     public static class Template {
@@ -756,5 +844,39 @@ public class Actions {
         public static final String list_restricted_sharing_disabled = "list_restricted_sharing_disabled";
         public static final String list_rows_undeleted = "list_rows_undeleted";
         public static final String list_default_view_updated = "list_default_view_updated";
+        public static final String list_slack_ai_exclusion_enabled = "list_slack_ai_exclusion_enabled";
+        public static final String list_slack_ai_exclusion_disabled = "list_slack_ai_exclusion_disabled";
+        public static final String list_share_limit_reached = "list_share_limit_reached";
+    }
+
+    public static class LegalHold {
+        private LegalHold() {
+        }
+
+        public static final String legal_hold_policy_created = "legal_hold_policy_created";
+        public static final String legal_hold_policy_updated = "legal_hold_policy_updated";
+        public static final String legal_hold_policy_released = "legal_hold_policy_released";
+        public static final String legal_hold_policy_reactivated = "legal_hold_policy_reactivated";
+        public static final String legal_hold_policy_entities_added = "legal_hold_policy_entities_added";
+        public static final String legal_hold_policy_entities_deleted = "legal_hold_policy_entities_deleted";
+        public static final String legal_hold_policy_exclusion_added = "legal_hold_policy_exclusion_added";
+        public static final String legal_hold_policy_exclusion_deleted = "legal_hold_policy_exclusion_deleted";
+    }
+
+    public static class SlackFirstCrm {
+        private SlackFirstCrm() {
+        }
+
+        public static final String contacts_import_initiated = "contacts_import_initiated";
+        public static final String contacts_import_completed = "contacts_import_completed";
+        public static final String contacts_import_failed = "contacts_import_failed";
+        public static final String object_import_initiated = "object_import_initiated";
+        public static final String object_import_completed = "object_import_completed";
+        public static final String object_import_failed = "object_import_failed";
+        public static final String field_created = "field_created";
+        public static final String field_updated = "field_updated";
+        public static final String field_visibility_updated = "field_visibility_updated";
+        public static final String license_assigned = "license_assigned";
+        public static final String license_removed = "license_removed";
     }
 }

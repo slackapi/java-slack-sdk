@@ -31,12 +31,15 @@ public class FieldsTest {
         verifyIfAllGettersReturnNonNull(obj, "getRawBody", "getWarning");
         verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         verifyIfAllGettersReturnNonNull(obj.getEntries().get(0), "getDetails");
-        verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getActor());
+        verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getActor(), "getAccountType");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getContext(), "getSessionId");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getEntity(),
+                "getAccountType",
                 "getApp",
                 "getEnterprise",
+                "getExternalAuthOauth2Token",
                 "getFile",
+                "getFunction",
                 "getUsergroup",
                 "getChannel",
                 "getMessage",

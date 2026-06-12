@@ -318,7 +318,12 @@
       "slack_connect_guidelines_changed",
       "slack_connect_pref_set",
       "slack_connect_pref_removed",
-      "slack_connect_pref_migrated"
+      "slack_connect_pref_migrated",
+      "slack_ai_mcp_resource_read",
+      "slack_ai_mcp_message_sent",
+      "pref.allow_native_giphy_gif_picker",
+      "slack_ai_mcp_link_opened",
+      "slackbot_analytics_export_started"
     ],
     "user": [
       "custom_tos_accepted",
@@ -475,7 +480,10 @@
       "channel_detail_flag_moderated",
       "channel_detail_flag_dismissed",
       "channel_exclude_from_slack_ai_updated",
-      "service_owner_transferred"
+      "service_owner_transferred",
+      "channel_restrict_guests_updated",
+      "channel_restrict_message_and_file_sharing_updated",
+      "channel_properties_updated"
     ],
     "app": [
       "app_installed",
@@ -518,7 +526,15 @@
       "agentforce_agent_metadata_updated",
       "agentforce_agent_slack_deleted",
       "child_app_auto_installed",
-      "child_app_auto_install_denied"
+      "child_app_auto_install_denied",
+      "child_app_auto_install_rule_created",
+      "child_app_manifest_created",
+      "child_app_manifest_updated",
+      "child_app_manifest_deleted",
+      "child_app_manifest_exported",
+      "app_mcp_server_added",
+      "app_mcp_server_updated",
+      "app_mcp_server_removed"
     ],
     "workflow_builder": [
       "workflow_created",

@@ -86,7 +86,8 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           },
@@ -107,7 +108,8 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           },
@@ -125,7 +127,8 @@
           "file_id": "F00000000"
         },
         "is_dormant": false,
-        "use_case": ""
+        "use_case": "",
+        "has_slack_connect_invite_created": false
       }
     }
   ],

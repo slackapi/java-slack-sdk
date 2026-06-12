@@ -20,7 +20,8 @@
           "id": "",
           "name": "",
           "email": "",
-          "team": ""
+          "team": "",
+          "account_type": ""
         }
       },
       "entity": {
@@ -42,7 +43,8 @@
           "id": "",
           "name": "",
           "email": "",
-          "team": ""
+          "team": "",
+          "account_type": ""
         },
         "usergroup": {
           "id": "",
@@ -121,7 +123,9 @@
         },
         "list": {
           "id": ""
-        }
+        },
+        "external_auth_oauth2_token": {},
+        "function": {}
       },
       "context": {
         "session_id": "",
@@ -166,7 +170,8 @@
             "id": "",
             "name": "",
             "email": "",
-            "team": ""
+            "team": "",
+            "account_type": ""
           },
           "id": "",
           "name": "",
@@ -179,7 +184,8 @@
             "id": "",
             "name": "",
             "email": "",
-            "team": ""
+            "team": "",
+            "account_type": ""
           },
           "id": "",
           "name": "",
@@ -216,7 +222,7 @@
           }
         ],
         "shared_to": "",
-        "reason": "",
+        "reason": {},
         "is_internal_integration": false,
         "cleared_resolution": "",
         "is_workflow": false,
@@ -396,7 +402,51 @@
         "cell_date_updated": 123,
         "view_id": "",
         "user": "",
-        "file_id": ""
+        "file_id": "",
+        "trigger_id": "",
+        "trigger_config": {},
+        "permission_type": "",
+        "channel_ids": [],
+        "user_ids": [],
+        "is_slack_provided_template": false,
+        "template_title": "",
+        "thread_ts": "",
+        "status": "",
+        "entity_team": "",
+        "is_external_user": false,
+        "salesforce_org_id": "",
+        "salesforce_edition": "",
+        "salesforce_org_config": {},
+        "salesforce_tenant_guid": "",
+        "affected_users": {},
+        "provider_key": "",
+        "policy_name": "",
+        "authentication_mode": "",
+        "authentication_method": "",
+        "secondary_authentication_method": "",
+        "action_timestamp": "",
+        "client_ja3_fingerprint": "",
+        "previous_ip_address": "",
+        "previous_ua": "",
+        "user_agent_change_details": {},
+        "location": "",
+        "entity_ids": {},
+        "pref_name": "",
+        "email": "",
+        "md": {},
+        "md5_hash": "",
+        "is_ext_shared": false,
+        "teams_shared_with": [],
+        "folder_bookmark_id": "",
+        "is_allowed": false,
+        "variable_names": [],
+        "functions_added": [],
+        "workflows_added": [],
+        "datastores_added": [],
+        "who_can_dm_anyone": {
+          "type": [],
+          "user": []
+        }
       }
     }
   ]

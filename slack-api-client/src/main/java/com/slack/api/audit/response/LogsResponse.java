@@ -52,6 +52,7 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String email;
         private String team;
+        private String accountType;
     }
 
     @Data
@@ -72,6 +73,8 @@ public class LogsResponse implements AuditApiResponse {
         private InformationBarrier barrier;
         private WorkflowV2 workflowV2;
         private SlackList list;
+        private Object externalAuthOauth2Token;
+        private Object function;
     }
 
     @Data
@@ -222,7 +225,7 @@ public class LogsResponse implements AuditApiResponse {
         private String name; // "Collect info in a form"
         private String stepFunctionType; // "Custom", "Builtin"
         private String stepFunctionAppId; // "A05QFAJ8LBA"
-        private String externalAuthConfiguration;
+        private java.util.List<Object> externalAuthConfiguration;
     }
 
     @Data
@@ -250,9 +253,9 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String botId;
         private List<String> channels;
-        private List<Permission> permissions;
+        private Object permissions;
         private String sharedTo; // channel_workspaces_updated
-        private String reason;
+        private Object reason;
         @SerializedName("is_internal_integration")
         private Boolean internalIntegration; // app_collaborator_added etc.
         private String clearedResolution; // app_removed_from_whitelist
@@ -367,6 +370,50 @@ public class LogsResponse implements AuditApiResponse {
         private String user; // list_access_added
         private String fileId;
         private String triggerId; // workflow_trigger_permission_set, workflow_trigger_permission_added
+        private Object triggerConfig;
+        private String permissionType;
+        private java.util.List<String> channelIds;
+        private java.util.List<String> userIds;
+        @SerializedName("is_slack_provided_template")
+        private Boolean slackProvidedTemplate;
+        private String templateTitle;
+        private String threadTs;
+        private String status;
+        private String entityTeam;
+        @SerializedName("is_external_user")
+        private Boolean externalUser;
+        private String salesforceOrgId;
+        private String salesforceEdition;
+        private Object salesforceOrgConfig;
+        private String salesforceTenantGuid;
+        private Object affectedUsers;
+        private String providerKey;
+        private String policyName;
+        private String authenticationMode;
+        private String authenticationMethod;
+        private String secondaryAuthenticationMethod;
+        private String actionTimestamp;
+        private String clientJa3Fingerprint;
+        private String previousIpAddress;
+        private String previousUa;
+        private Object userAgentChangeDetails;
+        private String location;
+        private Object entityIds;
+        private String prefName;
+        private String email;
+        private Object md;
+        private String md5Hash;
+        @SerializedName("is_ext_shared")
+        private Boolean extShared;
+        private List<String> teamsSharedWith;
+        private String folderBookmarkId;
+        @SerializedName("is_allowed")
+        private Boolean allowed;
+        private List<String> variableNames;
+        private List<String> functionsAdded;
+        private List<String> workflowsAdded;
+        private List<String> datastoresAdded;
+        private ConversationPref whoCanDmAnyone;
     }
 
     @Data
