@@ -482,7 +482,8 @@
       "channel_exclude_from_slack_ai_updated",
       "service_owner_transferred",
       "channel_restrict_guests_updated",
-      "channel_restrict_message_and_file_sharing_updated"
+      "channel_restrict_message_and_file_sharing_updated",
+      "channel_properties_updated"
     ],
     "app": [
       "app_installed",
