@@ -323,7 +323,11 @@
       "slack_ai_mcp_message_sent",
       "pref.allow_native_giphy_gif_picker",
       "slack_ai_mcp_link_opened",
-      "slackbot_analytics_export_started"
+      "slackbot_analytics_export_started",
+      "enterprise_managed_auth_enabled",
+      "enterprise_managed_auth_disabled",
+      "enterprise_managed_auth_rebound",
+      "mcp_slack_read_list_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -391,7 +395,9 @@
       "slack_ai_skill_invoked",
       "slack_ai_skill_metadata_updated",
       "slack_ai_skill_auto_enabled",
-      "slack_ai_skill_auto_disabled"
+      "slack_ai_skill_auto_disabled",
+      "slack_ai_skill_share_link_created",
+      "slack_ai_skill_external_copy_added"
     ],
     "file": [
       "file_downloaded",
