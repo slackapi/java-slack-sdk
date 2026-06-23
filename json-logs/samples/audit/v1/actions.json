@@ -71,6 +71,9 @@
     ],
     "legal_hold": [
       ""
+    ],
+    "salesforce_mcp_server": [
+      ""
     ]
   },
   "ok": false,

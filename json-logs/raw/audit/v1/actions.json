@@ -783,6 +783,17 @@
       "legal_hold_policy_entities_deleted",
       "legal_hold_policy_exclusion_added",
       "legal_hold_policy_exclusion_deleted"
+    ],
+    "salesforce_mcp_server": [
+      "salesforce_mcp_server_enabled",
+      "salesforce_mcp_server_disabled",
+      "salesforce_mcp_server_deleted",
+      "salesforce_mcp_server_config_updated",
+      "salesforce_mcp_server_org_disconnected",
+      "salesforce_mcp_server_org_reconnected",
+      "salesforce_mcp_server_workspace_granted",
+      "salesforce_mcp_server_workspace_revoked",
+      "salesforce_mcp_server_acl_updated"
     ]
   }
 }
