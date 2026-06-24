@@ -125,6 +125,8 @@
             "label": "",
             "id": "",
             "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000",
               "folder_bookmark_id": ""
             }
           }
@@ -144,10 +146,12 @@
           {
             "type": "",
             "id": "",
-            "label": "",
             "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000",
               "folder_bookmark_id": ""
-            }
+            },
+            "label": ""
           }
         ],
         "meeting_notes": {
