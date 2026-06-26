@@ -1743,6 +1743,63 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseAlertBlocks() {
+        // https://docs.slack.dev/reference/block-kit/blocks/alert-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"alert\",\n" +
+                "      \"block_id\": \"alert-1\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"mrkdwn\",\n" +
+                "        \"text\": \"Something went *wrong*.\"\n" +
+                "      },\n" +
+                "      \"level\": \"error\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"type\": \"alert\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"A plain text alert with no markup.\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        View view = GsonFactory.createSnakeCase().fromJson(json, View.class);
+        assertNotNull(view);
+        assertEquals(2, view.getBlocks().size());
+
+        AlertBlock errorAlert = (AlertBlock) view.getBlocks().get(0);
+        assertEquals("alert", errorAlert.getType());
+        assertEquals("alert-1", errorAlert.getBlockId());
+        assertEquals("error", errorAlert.getLevel());
+        assertEquals("mrkdwn", errorAlert.getText().getType());
+        assertEquals("Something went *wrong*.", errorAlert.getText().getText());
+
+        AlertBlock defaultAlert = (AlertBlock) view.getBlocks().get(1);
+        assertEquals("plain_text", defaultAlert.getText().getType());
+        assertNull(defaultAlert.getLevel());
+        assertNull(defaultAlert.getBlockId());
+    }
+
+    @Test
+    public void buildAlertBlock() {
+        AlertBlock block = alert(a -> a
+                .blockId("alert-1")
+                .level("info")
+                .text(plainText("Heads up!")));
+        assertNotNull(block);
+        assertEquals("alert", block.getType());
+
+        Gson gson = GsonFactory.createSnakeCase();
+        String output = gson.toJson(block);
+        AlertBlock parsed = gson.fromJson(output, AlertBlock.class);
+        assertEquals("alert-1", parsed.getBlockId());
+        assertEquals("info", parsed.getLevel());
+        assertEquals("Heads up!", parsed.getText().getText());
+    }
+
+    @Test
     public void parseLinkTriggerMessages() {
         // https://tools.slack.dev/deno-slack-sdk/
         String json = "{\n" +

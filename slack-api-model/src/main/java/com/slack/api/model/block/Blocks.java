@@ -129,4 +129,10 @@ public class Blocks {
         return ShareShortcutBlock.builder().build();
     }
 
+    // AlertBlock
+
+    public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
+        return configurator.configure(AlertBlock.builder()).build();
+    }
+
 }
