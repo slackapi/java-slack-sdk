@@ -15,8 +15,10 @@ import java.util.Arrays;
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.element.BlockElements.button;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
 import static com.slack.api.model.block.element.BlockElements.conversationsSelect;
+import static com.slack.api.model.block.element.BlockElements.image;
 import static com.slack.api.model.view.Views.view;
 import static com.slack.api.model.view.Views.viewSubmit;
 import static org.hamcrest.CoreMatchers.*;
@@ -1939,5 +1941,100 @@ public class BlockKitTest {
         assertThat(message.getBlocks().size(), is(1));
         RichTextSectionElement section = (RichTextSectionElement) ((RichTextBlock) message.getBlocks().get(0)).getElements().get(0);
         assertThat(section.getElements().size(), is(10));
+    }
+
+    @Test
+    public void parseCarouselBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/carousel-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"carousel\",\n" +
+                "      \"block_id\": \"carousel-1\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"card\",\n" +
+                "          \"block_id\": \"card-1\",\n" +
+                "          \"title\": \"First card\",\n" +
+                "          \"subtitle\": \"Subtitle one\",\n" +
+                "          \"body\": \"Body of the first card.\",\n" +
+                "          \"hero_image\": {\n" +
+                "            \"type\": \"image\",\n" +
+                "            \"image_url\": \"https://example.com/hero.png\",\n" +
+                "            \"alt_text\": \"hero\"\n" +
+                "          },\n" +
+                "          \"icon\": {\n" +
+                "            \"type\": \"image\",\n" +
+                "            \"image_url\": \"https://example.com/icon.png\",\n" +
+                "            \"alt_text\": \"icon\"\n" +
+                "          },\n" +
+                "          \"actions\": {\n" +
+                "            \"type\": \"actions\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"button\",\n" +
+                "                \"action_id\": \"open\",\n" +
+                "                \"text\": {\"type\": \"plain_text\", \"text\": \"Open\"}\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"card\",\n" +
+                "          \"title\": \"Second card\"\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        CarouselBlock carousel = (CarouselBlock) message.getBlocks().get(0);
+        assertThat(carousel.getType(), is("carousel"));
+        assertThat(carousel.getBlockId(), is("carousel-1"));
+        assertThat(carousel.getElements().size(), is(2));
+
+        CardBlock firstCard = carousel.getElements().get(0);
+        assertThat(firstCard.getType(), is("card"));
+        assertThat(firstCard.getBlockId(), is("card-1"));
+        assertThat(firstCard.getTitle(), is("First card"));
+        assertThat(firstCard.getSubtitle(), is("Subtitle one"));
+        assertThat(firstCard.getBody(), is("Body of the first card."));
+        assertThat(firstCard.getHeroImage().getImageUrl(), is("https://example.com/hero.png"));
+        assertThat(firstCard.getIcon().getImageUrl(), is("https://example.com/icon.png"));
+        assertThat(firstCard.getActions().getElements().size(), is(1));
+
+        CardBlock secondCard = carousel.getElements().get(1);
+        assertThat(secondCard.getTitle(), is("Second card"));
+        assertThat(secondCard.getBlockId(), is(nullValue()));
+    }
+
+    @Test
+    public void buildCarouselBlock() {
+        CarouselBlock block = carousel(c -> c
+                .blockId("carousel-1")
+                .elements(Arrays.asList(
+                        card(card -> card
+                                .blockId("card-1")
+                                .title("Promo")
+                                .body("Check this out")
+                                .heroImage(image(i -> i.imageUrl("https://example.com/hero.png").altText("hero")))
+                                .actions(actions(Arrays.asList(
+                                        button(b -> b.actionId("open").text(plainText("Open"))))))),
+                        card(card -> card.title("Second")))));
+        assertThat(block.getType(), is("carousel"));
+        assertThat(block.getElements().size(), is(2));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        String output = gson.toJson(block);
+        CarouselBlock parsed = gson.fromJson(output, CarouselBlock.class);
+        assertThat(parsed.getBlockId(), is("carousel-1"));
+        assertThat(parsed.getElements().size(), is(2));
+        assertThat(parsed.getElements().get(0).getType(), is("card"));
+        assertThat(parsed.getElements().get(0).getTitle(), is("Promo"));
+        assertThat(parsed.getElements().get(0).getHeroImage().getImageUrl(), is("https://example.com/hero.png"));
+        assertThat(parsed.getElements().get(0).getActions().getElements().size(), is(1));
     }
 }
