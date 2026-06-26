@@ -129,4 +129,10 @@ public class Blocks {
         return ShareShortcutBlock.builder().build();
     }
 
+    // DataVisualizationBlock
+
+    public static DataVisualizationBlock dataVisualization(ModelConfigurator<DataVisualizationBlock.DataVisualizationBlockBuilder> configurator) {
+        return configurator.configure(DataVisualizationBlock.builder()).build();
+    }
+
 }
