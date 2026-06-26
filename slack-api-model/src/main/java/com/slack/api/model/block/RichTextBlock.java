@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RichTextBlock implements LayoutBlock {
+public class RichTextBlock implements LayoutBlock, DataTableCell {
     public static final String TYPE = "rich_text";
     private final String type = TYPE;
     @Builder.Default
