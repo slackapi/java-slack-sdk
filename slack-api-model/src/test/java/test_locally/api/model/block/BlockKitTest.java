@@ -1940,4 +1940,98 @@ public class BlockKitTest {
         RichTextSectionElement section = (RichTextSectionElement) ((RichTextBlock) message.getBlocks().get(0)).getElements().get(0);
         assertThat(section.getElements().size(), is(10));
     }
+
+    @Test
+    public void parseCardBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/card-block
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"card\",\n" +
+                "    \"block_id\": \"card1\",\n" +
+                "    \"icon\": {\n" +
+                "      \"type\": \"image\",\n" +
+                "      \"image_url\": \"https://picsum.photos/36/36\",\n" +
+                "      \"alt_text\": \"Icon\"\n" +
+                "    },\n" +
+                "    \"hero_image\": {\n" +
+                "      \"type\": \"image\",\n" +
+                "      \"image_url\": \"https://picsum.photos/400/300\",\n" +
+                "      \"alt_text\": \"Sample hero image\"\n" +
+                "    },\n" +
+                "    \"title\": {\n" +
+                "      \"type\": \"mrkdwn\",\n" +
+                "      \"text\": \"Lumon Industries\"\n" +
+                "    },\n" +
+                "    \"subtitle\": {\n" +
+                "      \"type\": \"mrkdwn\",\n" +
+                "      \"text\": \"Committed to work-life balance\"\n" +
+                "    },\n" +
+                "    \"body\": {\n" +
+                "      \"type\": \"mrkdwn\",\n" +
+                "      \"text\": \"Please enjoy each card equally.\"\n" +
+                "    },\n" +
+                "    \"actions\": [\n" +
+                "      {\n" +
+                "        \"type\": \"button\",\n" +
+                "        \"text\": {\n" +
+                "          \"type\": \"plain_text\",\n" +
+                "          \"text\": \"Action Button\"\n" +
+                "        },\n" +
+                "        \"action_id\": \"button_action\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        CardBlock card = (CardBlock) message.getBlocks().get(0);
+        assertThat(card.getType(), is("card"));
+        assertThat(card.getBlockId(), is("card1"));
+        assertThat(card.getIcon().getImageUrl(), is("https://picsum.photos/36/36"));
+        assertThat(card.getIcon().getAltText(), is("Icon"));
+        assertThat(card.getHeroImage().getImageUrl(), is("https://picsum.photos/400/300"));
+        assertThat(card.getHeroImage().getAltText(), is("Sample hero image"));
+        assertThat(card.getTitle().getType(), is("mrkdwn"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getTitle()).getText(), is("Lumon Industries"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getSubtitle()).getText(), is("Committed to work-life balance"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getBody()).getText(), is("Please enjoy each card equally."));
+        assertThat(card.getActions().size(), is(1));
+        ButtonElement button = (ButtonElement) card.getActions().get(0);
+        assertThat(button.getActionId(), is("button_action"));
+        assertThat(button.getText().getText(), is("Action Button"));
+
+        // Round-trip back to JSON and ensure the card survives serialization.
+        Message roundTrip = gson.fromJson(gson.toJson(message), Message.class);
+        CardBlock reparsed = (CardBlock) roundTrip.getBlocks().get(0);
+        assertThat(reparsed.getBlockId(), is("card1"));
+        assertThat(reparsed.getActions().size(), is(1));
+        assertThat(((ButtonElement) reparsed.getActions().get(0)).getActionId(), is("button_action"));
+    }
+
+    @Test
+    public void buildCardBlock() {
+        CardBlock card = card(c -> c
+                .blockId("card2")
+                .title(com.slack.api.model.block.composition.MarkdownTextObject.builder().text("Title").build())
+                .body(com.slack.api.model.block.composition.PlainTextObject.builder().text("Body").build())
+                .actions(Arrays.asList(
+                        ButtonElement.builder()
+                                .actionId("a")
+                                .text(plainText("Click"))
+                                .build()
+                ))
+        );
+        assertThat(card.getType(), is("card"));
+        assertThat(card.getBlockId(), is("card2"));
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = new Message();
+        message.setBlocks(asBlocks(card));
+        Message reparsed = gson.fromJson(gson.toJson(message), Message.class);
+        CardBlock parsedCard = (CardBlock) reparsed.getBlocks().get(0);
+        assertThat(parsedCard.getBlockId(), is("card2"));
+        assertThat(parsedCard.getActions().size(), is(1));
+    }
 }
