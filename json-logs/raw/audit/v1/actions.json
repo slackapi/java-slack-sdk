@@ -327,7 +327,8 @@
       "enterprise_managed_auth_enabled",
       "enterprise_managed_auth_disabled",
       "enterprise_managed_auth_rebound",
-      "mcp_slack_read_list_tool_called"
+      "mcp_slack_read_list_tool_called",
+      "mcp_slack_create_list_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
