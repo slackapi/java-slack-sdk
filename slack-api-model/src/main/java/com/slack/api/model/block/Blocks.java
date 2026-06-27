@@ -135,4 +135,10 @@ public class Blocks {
         return configurator.configure(CardBlock.builder()).build();
     }
 
+    // CarouselBlock
+
+    public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
+        return configurator.configure(CarouselBlock.builder()).build();
+    }
+
 }
