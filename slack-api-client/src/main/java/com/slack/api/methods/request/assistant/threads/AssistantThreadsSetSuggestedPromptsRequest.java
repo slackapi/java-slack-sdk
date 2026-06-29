@@ -24,7 +24,7 @@ public class AssistantThreadsSetSuggestedPromptsRequest implements SlackApiReque
     private String channelId;
 
     /**
-     * Message timestamp of the thread of where to set the status.
+     * Message timestamp of the thread. Optional.
      */
     private String threadTs;
 
