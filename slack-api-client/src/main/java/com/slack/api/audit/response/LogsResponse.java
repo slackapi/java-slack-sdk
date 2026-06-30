@@ -443,6 +443,7 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean readOnly;
         private String mcpClientInferredBehavior;
         private Boolean destructive;
+        private String source;
     }
 
     @Data
