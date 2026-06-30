@@ -24,6 +24,10 @@ If you get stuck, we're here to help. The following are the best ways to get ass
 * Visit the [Slack Developer Community](https://slackcommunity.com/) for getting help or for bonding with your fellow Slack developers.
 * [Email](mailto:support@slack.com) our developer support team: `support@slack.com`.
 
+## Release notes
+
+Check out the [Java Slack SDK release notes](https://github.com/SlackAPI/java-slack-sdk/releases) for all the latest happenings.
+
 ## Contributing
 
 These docs live within the [Java Slack SDK](https://github.com/slackapi/java-slack-sdk/) repository and are open source.
