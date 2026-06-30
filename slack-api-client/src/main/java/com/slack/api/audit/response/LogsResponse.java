@@ -73,8 +73,18 @@ public class LogsResponse implements AuditApiResponse {
         private InformationBarrier barrier;
         private WorkflowV2 workflowV2;
         private SlackList list;
+        // Polymorphic per provider/app context (e.g. provider.app.scopes is sometimes a
+        // String, sometimes an array; provider.id overflows int). Needs its own PR with
+        // captured JSON before typing. See deferred conversion notes.
         private Object externalAuthOauth2Token;
-        private Object function;
+        private Function function;
+    }
+
+    @Data
+    public static class Function {
+        private String id;
+        private String appId;
+        private String callbackId;
     }
 
     @Data
@@ -426,6 +436,7 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> datastoresAdded;
         private ConversationPref whoCanDmAnyone;
         private String toolName;
+        private String serviceType;
     }
 
     @Data

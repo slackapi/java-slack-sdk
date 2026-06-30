@@ -333,6 +333,9 @@ public class Actions {
         public static final String pref_show_join_leave_changed = "pref.show_join_leave_changed";
         public static final String pref_show_join_leave_welcome_party_changed = "pref.show_join_leave_welcome_party_changed";
         public static final String pref_allow_native_giphy_gif_picker = "pref.allow_native_giphy_gif_picker";
+        public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
+        public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
+        public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
     }
 
     public static class User {
