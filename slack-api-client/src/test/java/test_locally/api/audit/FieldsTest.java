@@ -32,7 +32,10 @@ public class FieldsTest {
         verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         verifyIfAllGettersReturnNonNull(obj.getEntries().get(0), "getDetails");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getActor(), "getAccountType");
-        verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getContext(), "getSessionId");
+        verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getContext(),
+                "getSessionId",
+                "getActingAgent",
+                "getAgentMessage");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getEntity(),
                 "getAccountType",
                 "getApp",

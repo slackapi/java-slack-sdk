@@ -151,7 +151,25 @@
         "key": "",
         "value": false,
         "checkbox": false,
-        "column_id": ""
+        "column_id": "",
+        "text": "",
+        "rich_text": [
+          {
+            "type": "",
+            "block_id": "",
+            "elements": [
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "text": "",
+                    "type": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ],
     "updated_timestamp": "",

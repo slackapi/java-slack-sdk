@@ -25,9 +25,25 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "",
+            "block_id": "",
+            "elements": [
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "text": "",
+                    "type": ""
+                  }
+                ]
+              }
+            ]
           }
         ],
-        "checkbox": false
+        "checkbox": false,
+        "text": ""
       }
     ],
     "updated_timestamp": ""
