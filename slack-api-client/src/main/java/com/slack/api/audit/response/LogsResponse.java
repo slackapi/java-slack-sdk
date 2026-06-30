@@ -156,6 +156,16 @@ public class LogsResponse implements AuditApiResponse {
         private String ua;
         private String ipAddress;
         private App app;
+        private String actingAgent;
+        private AgentMessage agentMessage;
+    }
+
+    @Data
+    public static class AgentMessage {
+        private String team;
+        private String channelId;
+        private String messageTs;
+        private String threadTs;
     }
 
     @Data
@@ -377,6 +387,7 @@ public class LogsResponse implements AuditApiResponse {
         @SerializedName("is_slack_provided_template")
         private Boolean slackProvidedTemplate;
         private String templateTitle;
+        private String clonedFileId;
         private String threadTs;
         private String status;
         private String entityTeam;
@@ -414,6 +425,7 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> workflowsAdded;
         private List<String> datastoresAdded;
         private ConversationPref whoCanDmAnyone;
+        private String toolName;
     }
 
     @Data

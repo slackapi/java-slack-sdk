@@ -405,6 +405,8 @@ public class Actions {
         public static final String slack_ai_skill_metadata_updated = "slack_ai_skill_metadata_updated";
         public static final String slack_ai_skill_auto_enabled = "slack_ai_skill_auto_enabled";
         public static final String slack_ai_skill_auto_disabled = "slack_ai_skill_auto_disabled";
+        public static final String slack_ai_skill_share_link_created = "slack_ai_skill_share_link_created";
+        public static final String slack_ai_skill_external_copy_added = "slack_ai_skill_external_copy_added";
     }
 
     public static class File {
@@ -504,6 +506,7 @@ public class Actions {
         public static final String service_owner_transferred = "service_owner_transferred";
         public static final String channel_restrict_guests_updated = "channel_restrict_guests_updated";
         public static final String channel_restrict_message_and_file_sharing_updated = "channel_restrict_message_and_file_sharing_updated";
+        public static final String channel_properties_updated = "channel_properties_updated";
     }
 
     public static class App {
