@@ -437,6 +437,7 @@ public class LogsResponse implements AuditApiResponse {
         private ConversationPref whoCanDmAnyone;
         private String toolName;
         private String serviceType;
+        private String serverName;
     }
 
     @Data

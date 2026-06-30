@@ -336,6 +336,7 @@ public class Actions {
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
+        public static final String enterprise_managed_auth_rebound = "enterprise_managed_auth_rebound";
     }
 
     public static class User {
