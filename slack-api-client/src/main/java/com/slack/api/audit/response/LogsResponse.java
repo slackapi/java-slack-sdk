@@ -444,6 +444,7 @@ public class LogsResponse implements AuditApiResponse {
         private String mcpClientInferredBehavior;
         private Boolean destructive;
         private String source;
+        private String decision;
     }
 
     @Data
