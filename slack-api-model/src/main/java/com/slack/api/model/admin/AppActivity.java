@@ -57,6 +57,8 @@ public class AppActivity {
         private String details; // "{\"expression\":\"\",\"expression_attributes\":{},\"expression_values\":{},\"limit\":1000,\"cursor\":\"\"}"
         private String requestType; // "query"
         private String datastoreName;
+
+        private String toolName;
     }
 
     @Data

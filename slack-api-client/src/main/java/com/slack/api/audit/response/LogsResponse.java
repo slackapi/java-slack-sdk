@@ -452,6 +452,7 @@ public class LogsResponse implements AuditApiResponse {
         private String uri;
         private String executorId;
         private String skillId;
+        private List<String> mcpServerAllowlistDomains;
     }
 
     @Data
