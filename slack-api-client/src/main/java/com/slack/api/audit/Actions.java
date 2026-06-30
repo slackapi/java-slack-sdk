@@ -337,7 +337,35 @@ public class Actions {
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
         public static final String enterprise_managed_auth_rebound = "enterprise_managed_auth_rebound";
+        public static final String mcp_slack_read_canvas_tool_called = "mcp_slack_read_canvas_tool_called";
+        public static final String mcp_slack_create_canvas_tool_called = "mcp_slack_create_canvas_tool_called";
+        public static final String mcp_slack_update_canvas_tool_called = "mcp_slack_update_canvas_tool_called";
+        public static final String mcp_slack_read_channel_tool_called = "mcp_slack_read_channel_tool_called";
+        public static final String mcp_slack_read_thread_tool_called = "mcp_slack_read_thread_tool_called";
+        public static final String mcp_slack_search_public_tool_called = "mcp_slack_search_public_tool_called";
+        public static final String mcp_slack_search_channels_tool_called = "mcp_slack_search_channels_tool_called";
+        public static final String mcp_slack_search_public_and_private_tool_called = "mcp_slack_search_public_and_private_tool_called";
+        public static final String mcp_slack_search_users_tool_called = "mcp_slack_search_users_tool_called";
+        public static final String mcp_slack_send_message_tool_called = "mcp_slack_send_message_tool_called";
+        public static final String mcp_slack_read_user_profile_tool_called = "mcp_slack_read_user_profile_tool_called";
+        public static final String mcp_slack_create_draft_tool_called = "mcp_slack_create_draft_tool_called";
+        public static final String mcp_slack_create_draft_message_tool_called = "mcp_slack_create_draft_message_tool_called";
+        public static final String mcp_slack_send_message_draft_tool_called = "mcp_slack_send_message_draft_tool_called";
+        public static final String mcp_slack_schedule_message_tool_called = "mcp_slack_schedule_message_tool_called";
+        public static final String mcp_slack_list_channel_members_tool_called = "mcp_slack_list_channel_members_tool_called";
+        public static final String mcp_slack_mark_read_tool_called = "mcp_slack_mark_read_tool_called";
+        public static final String mcp_slack_search_emojis_tool_called = "mcp_slack_search_emojis_tool_called";
+        public static final String mcp_slack_add_reaction_tool_called = "mcp_slack_add_reaction_tool_called";
+        public static final String mcp_slack_get_reactions_tool_called = "mcp_slack_get_reactions_tool_called";
+        public static final String mcp_slack_create_conversation_tool_called = "mcp_slack_create_conversation_tool_called";
+        public static final String mcp_slack_read_file_tool_called = "mcp_slack_read_file_tool_called";
+        public static final String mcp_slack_get_workflow_details_tool_called = "mcp_slack_get_workflow_details_tool_called";
+        public static final String mcp_slack_get_workflow_execution_status_tool_called = "mcp_slack_get_workflow_execution_status_tool_called";
+        public static final String mcp_slack_canvas_find_replace_tool_called = "mcp_slack_canvas_find_replace_tool_called";
+        public static final String mcp_slack_list_workflows_tool_called = "mcp_slack_list_workflows_tool_called";
+        public static final String mcp_slack_run_workflow_tool_called = "mcp_slack_run_workflow_tool_called";
         public static final String mcp_slack_create_list_tool_called = "mcp_slack_create_list_tool_called";
+        public static final String mcp_slack_read_list_tool_called = "mcp_slack_read_list_tool_called";
     }
 
     public static class User {
