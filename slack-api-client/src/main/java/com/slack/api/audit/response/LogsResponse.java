@@ -440,6 +440,7 @@ public class LogsResponse implements AuditApiResponse {
         private String serverName;
         private Boolean success;
         private List<String> argumentKeys;
+        private Boolean readOnly;
     }
 
     @Data
