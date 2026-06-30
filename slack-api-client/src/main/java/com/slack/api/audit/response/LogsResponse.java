@@ -445,6 +445,7 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean destructive;
         private String source;
         private String decision;
+        private String permissionKey;
     }
 
     @Data
