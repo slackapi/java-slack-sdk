@@ -448,6 +448,7 @@ public class LogsResponse implements AuditApiResponse {
         private String permissionKey;
         private List<String> addedToAllow;
         private List<String> connectorsEnabled;
+        private List<String> connectorsDisabled;
     }
 
     @Data
