@@ -451,6 +451,7 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> connectorsDisabled;
         private String uri;
         private String executorId;
+        private String skillId;
     }
 
     @Data
