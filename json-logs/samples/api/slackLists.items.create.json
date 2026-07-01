@@ -24,22 +24,8 @@
                   }
                 ]
               }
-            ]
-          },
-          {
-            "type": "",
-            "block_id": "",
-            "elements": [
-              {
-                "type": "",
-                "elements": [
-                  {
-                    "text": "",
-                    "type": ""
-                  }
-                ]
-              }
-            ]
+            ],
+            "block_id": ""
           }
         ],
         "checkbox": false,

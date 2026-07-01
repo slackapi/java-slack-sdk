@@ -125,7 +125,11 @@
           "id": ""
         },
         "external_auth_oauth2_token": {},
-        "function": {}
+        "function": {
+          "id": "",
+          "app_id": "",
+          "callback_id": ""
+        }
       },
       "context": {
         "session_id": "",
@@ -147,6 +151,13 @@
           "scopes_bot": [],
           "creator": "",
           "team": ""
+        },
+        "acting_agent": "",
+        "agent_message": {
+          "team": "",
+          "channel_id": "",
+          "message_ts": "",
+          "thread_ts": ""
         }
       },
       "details": {
@@ -410,6 +421,7 @@
         "user_ids": [],
         "is_slack_provided_template": false,
         "template_title": "",
+        "cloned_file_id": "",
         "thread_ts": "",
         "status": "",
         "entity_team": "",
@@ -446,7 +458,25 @@
         "who_can_dm_anyone": {
           "type": [],
           "user": []
-        }
+        },
+        "tool_name": "",
+        "service_type": "",
+        "server_name": "",
+        "success": false,
+        "argument_keys": [],
+        "read_only": false,
+        "mcp_client_inferred_behavior": "",
+        "destructive": false,
+        "source": "",
+        "decision": "",
+        "permission_key": "",
+        "added_to_allow": [],
+        "connectors_enabled": [],
+        "connectors_disabled": [],
+        "uri": "",
+        "executor_id": "",
+        "skill_id": "",
+        "mcp_server_allowlist_domains": []
       }
     }
   ]
