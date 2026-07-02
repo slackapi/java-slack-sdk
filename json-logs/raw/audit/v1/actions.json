@@ -399,7 +399,8 @@
       "slack_ai_skill_auto_disabled",
       "slack_ai_skill_share_link_created",
       "slack_ai_skill_external_copy_added",
-      "user_passkey_removed"
+      "user_passkey_removed",
+      "slack_ai_skill_share_link_revoked"
     ],
     "file": [
       "file_downloaded",
