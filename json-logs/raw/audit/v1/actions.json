@@ -400,7 +400,9 @@
       "slack_ai_skill_share_link_created",
       "slack_ai_skill_external_copy_added",
       "user_passkey_removed",
-      "slack_ai_skill_share_link_revoked"
+      "slack_ai_skill_share_link_revoked",
+      "user_passkey_created",
+      "user_passkey_name_edited"
     ],
     "file": [
       "file_downloaded",
