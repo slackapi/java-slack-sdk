@@ -42,7 +42,8 @@
         "scopes": "",
         "app_id": "",
         "distribution_type": "",
-        "user_ids": ""
+        "user_ids": "",
+        "bot_scopes": ""
       },
       "workflow": {
         "id": "",
