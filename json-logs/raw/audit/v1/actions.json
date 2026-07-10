@@ -545,7 +545,8 @@
       "child_app_manifest_exported",
       "app_mcp_server_added",
       "app_mcp_server_updated",
-      "app_mcp_server_removed"
+      "app_mcp_server_removed",
+      "app_mcp_server_acl_changed"
     ],
     "workflow_builder": [
       "workflow_created",
