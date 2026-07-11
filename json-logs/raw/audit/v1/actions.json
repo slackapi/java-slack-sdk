@@ -573,7 +573,9 @@
       "message_flag_assignment",
       "message_flag_unassignment",
       "thread_hidden",
-      "message_flag_restored"
+      "message_flag_restored",
+      "ai_message_redacted",
+      "ai_message_redaction_restored"
     ],
     "barrier": [
       "barrier_created",
