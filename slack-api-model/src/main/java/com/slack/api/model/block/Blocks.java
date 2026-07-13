@@ -129,4 +129,10 @@ public class Blocks {
         return ShareShortcutBlock.builder().build();
     }
 
+    // TableBlock
+
+    public static TableBlock table(ModelConfigurator<TableBlock.TableBlockBuilder> configurator) {
+        return configurator.configure(TableBlock.builder()).build();
+    }
+
 }
