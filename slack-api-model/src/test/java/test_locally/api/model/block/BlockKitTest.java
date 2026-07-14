@@ -1803,6 +1803,110 @@ public class BlockKitTest {
 
 
     @Test
+    public void parseDataVisualizationPie() {
+        // https://docs.slack.dev/reference/block-kit/blocks/data-visualization-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"data_visualization\",\n" +
+                "      \"block_id\": \"dv1\",\n" +
+                "      \"title\": \"Sales by region\",\n" +
+                "      \"chart\": {\n" +
+                "        \"type\": \"pie\",\n" +
+                "        \"segments\": [\n" +
+                "          { \"label\": \"North\", \"value\": 40 },\n" +
+                "          { \"label\": \"South\", \"value\": 60 }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+        DataVisualizationBlock block = (DataVisualizationBlock) message.getBlocks().get(0);
+        assertThat(block.getType(), is("data_visualization"));
+        assertThat(block.getBlockId(), is("dv1"));
+        assertThat(block.getTitle(), is("Sales by region"));
+        assertThat(block.getChart().getType(), is("pie"));
+        assertThat(block.getChart().getSegments().size(), is(2));
+        assertThat(block.getChart().getSegments().get(0).getLabel(), is("North"));
+        assertThat(block.getChart().getSegments().get(0).getValue(), is(40.0));
+        assertThat(block.getChart().getSeries(), is(nullValue()));
+        assertThat(block.getChart().getAxisConfig(), is(nullValue()));
+    }
+
+    @Test
+    public void parseDataVisualizationBar() {
+        // https://docs.slack.dev/reference/block-kit/blocks/data-visualization-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"data_visualization\",\n" +
+                "      \"title\": \"Revenue\",\n" +
+                "      \"chart\": {\n" +
+                "        \"type\": \"bar\",\n" +
+                "        \"series\": [\n" +
+                "          {\n" +
+                "            \"name\": \"2025\",\n" +
+                "            \"data\": [\n" +
+                "              { \"label\": \"Q1\", \"value\": 100 },\n" +
+                "              { \"label\": \"Q2\", \"value\": -20 }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        ],\n" +
+                "        \"axis_config\": {\n" +
+                "          \"categories\": [\"Q1\", \"Q2\"],\n" +
+                "          \"x_label\": \"Quarter\",\n" +
+                "          \"y_label\": \"USD\"\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+        DataVisualizationBlock block = (DataVisualizationBlock) message.getBlocks().get(0);
+        assertThat(block.getTitle(), is("Revenue"));
+        assertThat(block.getChart().getType(), is("bar"));
+        assertThat(block.getChart().getSeries().size(), is(1));
+        assertThat(block.getChart().getSeries().get(0).getName(), is("2025"));
+        assertThat(block.getChart().getSeries().get(0).getData().size(), is(2));
+        assertThat(block.getChart().getSeries().get(0).getData().get(1).getValue(), is(-20.0));
+        assertThat(block.getChart().getAxisConfig().getCategories(), is(Arrays.asList("Q1", "Q2")));
+        assertThat(block.getChart().getAxisConfig().getXLabel(), is("Quarter"));
+        assertThat(block.getChart().getAxisConfig().getYLabel(), is("USD"));
+        assertThat(block.getChart().getSegments(), is(nullValue()));
+    }
+
+    @Test
+    public void dataVisualizationBuilderRoundTrip() {
+        DataVisualizationBlock block = dataVisualization(dv -> dv
+                .blockId("dv-builder")
+                .title("Sales by region")
+                .chart(DataVisualizationChart.builder()
+                        .type("pie")
+                        .segments(Arrays.asList(
+                                DataVisualizationSegment.builder().label("North").value(40.0).build(),
+                                DataVisualizationSegment.builder().label("South").value(60.0).build()
+                        ))
+                        .build()));
+        assertThat(block, is(notNullValue()));
+        assertThat(block.getType(), is("data_visualization"));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        String output = gson.toJson(block);
+        DataVisualizationBlock parsed = gson.fromJson(output, DataVisualizationBlock.class);
+        assertThat(parsed.getTitle(), is("Sales by region"));
+        assertThat(parsed.getBlockId(), is("dv-builder"));
+        assertThat(parsed.getChart().getType(), is("pie"));
+        assertThat(parsed.getChart().getSegments().size(), is(2));
+        assertThat(parsed.getChart().getSegments().get(1).getLabel(), is("South"));
+        assertThat(parsed.getChart().getSegments().get(1).getValue(), is(60.0));
+    }
+
+    @Test
     public void parseRichTextElements() {
         String json = "{\n" +
                 "  \"blocks\": [\n" +
