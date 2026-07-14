@@ -61,6 +61,7 @@ import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksRemoveRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -1248,6 +1249,14 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("bookmark_id", req.getBookmarkId(), form);
         setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(BlocksValidateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("blocks", req.getBlocks(), form);
+        setIfNotNull("message", req.getMessage(), form);
+        setIfNotNull("view", req.getView(), form);
         return form;
     }
 

@@ -124,6 +124,7 @@
   "bookmarks.edit": "Tier2",
   "bookmarks.list": "Tier3",
   "bookmarks.remove": "Tier2",
+  "blocks.validate": "Tier3",
   "bots.info": "Tier3",
   "calls.add": "Tier2",
   "calls.end": "Tier2",
