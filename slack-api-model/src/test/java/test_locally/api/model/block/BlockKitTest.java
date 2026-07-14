@@ -1743,6 +1743,94 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseDataTableBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/data-table-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"data_table\",\n" +
+                "      \"block_id\": \"bid\",\n" +
+                "      \"caption\": \"Quarterly results\",\n" +
+                "      \"page_size\": 10,\n" +
+                "      \"row_header_column_index\": 0,\n" +
+                "      \"rows\": [\n" +
+                "        [\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Team\" },\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Revenue\" }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [ { \"type\": \"text\", \"text\": \"Platform\" } ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          },\n" +
+                "          { \"type\": \"raw_number\", \"value\": 1234.5, \"text\": \"$1,234.50\" }\n" +
+                "        ]\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        DataTableBlock block = (DataTableBlock) message.getBlocks().get(0);
+        assertThat(block.getType(), is("data_table"));
+        assertThat(block.getBlockId(), is("bid"));
+        assertThat(block.getCaption(), is("Quarterly results"));
+        assertThat(block.getPageSize(), is(10));
+        assertThat(block.getRowHeaderColumnIndex(), is(0));
+        assertThat(block.getRows().size(), is(2));
+
+        RawTextDataTableCell header = (RawTextDataTableCell) block.getRows().get(0).get(0);
+        assertThat(header.getType(), is("raw_text"));
+        assertThat(header.getText(), is("Team"));
+
+        DataTableCell richCell = block.getRows().get(1).get(0);
+        assertTrue(richCell instanceof RichTextBlock);
+        assertThat(richCell.getType(), is("rich_text"));
+
+        RawNumberDataTableCell numberCell = (RawNumberDataTableCell) block.getRows().get(1).get(1);
+        assertThat(numberCell.getType(), is("raw_number"));
+        assertThat(numberCell.getValue(), is(1234.5));
+        assertThat(numberCell.getText(), is("$1,234.50"));
+    }
+
+    @Test
+    public void buildDataTableBlock() {
+        DataTableBlock block = dataTable(t -> t
+                .blockId("bid")
+                .caption("Quarterly results")
+                .pageSize(10)
+                .rowHeaderColumnIndex(0)
+                .rows(Arrays.asList(
+                        Arrays.asList(
+                                RawTextDataTableCell.builder().text("Team").build(),
+                                RawTextDataTableCell.builder().text("Revenue").build()
+                        ),
+                        Arrays.asList(
+                                RawTextDataTableCell.builder().text("Platform").build(),
+                                RawNumberDataTableCell.builder().value(1234.5).text("$1,234.50").build()
+                        )
+                )));
+        assertThat(block, is(notNullValue()));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        String json = gson.toJson(block);
+        DataTableBlock restored = (DataTableBlock) gson.fromJson(json, LayoutBlock.class);
+        assertThat(restored.getType(), is("data_table"));
+        assertThat(restored.getCaption(), is("Quarterly results"));
+        assertThat(restored.getPageSize(), is(10));
+        assertThat(restored.getRows().size(), is(2));
+        RawNumberDataTableCell numberCell = (RawNumberDataTableCell) restored.getRows().get(1).get(1);
+        assertThat(numberCell.getValue(), is(1234.5));
+    }
+
+    @Test
     public void parseLinkTriggerMessages() {
         // https://tools.slack.dev/deno-slack-sdk/
         String json = "{\n" +
