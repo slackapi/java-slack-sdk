@@ -330,7 +330,8 @@
       "mcp_slack_read_list_tool_called",
       "mcp_slack_create_list_tool_called",
       "mcp_slack_get_file_upload_url_tool_called",
-      "mcp_slack_complete_file_upload_tool_called"
+      "mcp_slack_complete_file_upload_tool_called",
+      "mcp_slack_update_list_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -769,7 +770,8 @@
       "list_default_view_updated",
       "list_slack_ai_exclusion_enabled",
       "list_slack_ai_exclusion_disabled",
-      "list_share_limit_reached"
+      "list_share_limit_reached",
+      "list_full_restored"
     ],
     "slack_first_crm": [
       "contacts_import_initiated",
