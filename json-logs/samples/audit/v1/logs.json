@@ -36,6 +36,7 @@
             ""
           ],
           "scopes_bot": [],
+          "bot_scopes": [],
           "creator": "",
           "team": ""
         },
@@ -149,6 +150,7 @@
           "is_workflow_app": false,
           "scopes": [],
           "scopes_bot": [],
+          "bot_scopes": [],
           "creator": "",
           "team": ""
         },
