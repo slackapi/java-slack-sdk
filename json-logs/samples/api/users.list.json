@@ -62,7 +62,8 @@
         "api_app_id": "A00000000",
         "huddle_state": "",
         "huddle_state_expiration_ts": 12345,
-        "start_date": ""
+        "start_date": "",
+        "guest_invited_by": ""
       },
       "has_2fa": false,
       "two_factor_type": "",
