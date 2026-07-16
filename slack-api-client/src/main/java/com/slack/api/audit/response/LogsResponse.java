@@ -99,6 +99,7 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean workflowApp;
         private List<String> scopes;
         private List<String> scopesBot;
+        private List<String> botScopes;
         private String creator; // user ID
         private String team; // team ID
     }

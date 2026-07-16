@@ -60,6 +60,7 @@ public class AppActivity {
 
         private String toolName;
         private String serverName;
+        private Integer toolCount;
     }
 
     @Data
