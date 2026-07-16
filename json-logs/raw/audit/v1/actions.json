@@ -331,7 +331,9 @@
       "mcp_slack_create_list_tool_called",
       "mcp_slack_get_file_upload_url_tool_called",
       "mcp_slack_complete_file_upload_tool_called",
-      "mcp_slack_update_list_tool_called"
+      "mcp_slack_update_list_tool_called",
+      "ip_allowlist_enabled",
+      "ip_allowlist_disabled"
     ],
     "user": [
       "custom_tos_accepted",
@@ -549,7 +551,8 @@
       "app_mcp_server_added",
       "app_mcp_server_updated",
       "app_mcp_server_removed",
-      "app_mcp_server_acl_changed"
+      "app_mcp_server_acl_changed",
+      "child_app_manager_disconnected"
     ],
     "workflow_builder": [
       "workflow_created",
