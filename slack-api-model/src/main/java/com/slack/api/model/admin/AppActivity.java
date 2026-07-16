@@ -59,6 +59,7 @@ public class AppActivity {
         private String datastoreName;
 
         private String toolName;
+        private String serverName;
     }
 
     @Data
