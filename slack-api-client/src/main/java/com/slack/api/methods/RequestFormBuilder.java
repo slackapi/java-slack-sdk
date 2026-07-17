@@ -2880,7 +2880,7 @@ public class RequestFormBuilder {
         setIfNotNull("parent_item_id", req.getParentItemId(), form);
         if (req.getInitialFields() != null) {
             String json = getJsonWithGsonAnonymInnerClassHandling(req.getInitialFields());
-            form.add("intial_fields", json);
+            form.add("initial_fields", json);
         }
         return form;
     }
