@@ -339,6 +339,12 @@ public class Actions {
         public static final String enterprise_managed_auth_rebound = "enterprise_managed_auth_rebound";
         public static final String mcp_slack_create_list_tool_called = "mcp_slack_create_list_tool_called";
         public static final String mcp_slack_read_list_tool_called = "mcp_slack_read_list_tool_called";
+        public static final String mcp_slack_update_list_tool_called = "mcp_slack_update_list_tool_called";
+        public static final String mcp_slack_add_list_record_tool_called = "mcp_slack_add_list_record_tool_called";
+        public static final String mcp_slack_get_file_upload_url_tool_called = "mcp_slack_get_file_upload_url_tool_called";
+        public static final String mcp_slack_complete_file_upload_tool_called = "mcp_slack_complete_file_upload_tool_called";
+        public static final String ip_allowlist_enabled = "ip_allowlist_enabled";
+        public static final String ip_allowlist_disabled = "ip_allowlist_disabled";
     }
 
     public static class User {
@@ -382,6 +388,9 @@ public class Actions {
         public static final String user_profile_updated = "user_profile_updated";
         public static final String user_profile_deleted = "user_profile_deleted";
         public static final String user_password_reset_slack_security = "user_password_reset_slack_security";
+        public static final String user_passkey_created = "user_passkey_created";
+        public static final String user_passkey_removed = "user_passkey_removed";
+        public static final String user_passkey_name_edited = "user_passkey_name_edited";
         public static final String quip_migration_user_mapping_removed = "quip_migration_user_mapping_removed";
         public static final String quip_migration_user_mapping_added = "quip_migration_user_mapping_added";
         public static final String user_sessions_reset_by_circuit_breaker = "user_sessions_reset_by_circuit_breaker";
@@ -594,6 +603,8 @@ public class Actions {
         public static final String message_flag_unassignment = "message_flag_unassignment";
         public static final String thread_hidden = "thread_hidden";
         public static final String message_flag_restored = "message_flag_restored";
+        public static final String ai_message_redacted = "ai_message_redacted";
+        public static final String ai_message_redaction_restored = "ai_message_redaction_restored";
     }
 
     public static class WorkflowBuilder {
@@ -859,6 +870,7 @@ public class Actions {
         public static final String list_slack_ai_exclusion_enabled = "list_slack_ai_exclusion_enabled";
         public static final String list_slack_ai_exclusion_disabled = "list_slack_ai_exclusion_disabled";
         public static final String list_share_limit_reached = "list_share_limit_reached";
+        public static final String list_full_restored = "list_full_restored";
     }
 
     public static class LegalHold {
