@@ -62,6 +62,11 @@ public class AppActivity {
         private String serverName;
         private Integer toolCount;
         private String message;
+
+        // type: mcp_connection_result
+        private Integer elapsedMs;
+        private String errorStage; // "http_non_2xx", "http_request", "token_fetch"
+        private Integer httpStatusCode;
     }
 
     @Data
