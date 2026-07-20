@@ -738,6 +738,21 @@ public class Actions {
         public static final String external_auth_oauth2_token_deleted = "external_auth_oauth2_token_deleted";
     }
 
+    public static class SalesforceMcpServer {
+        private SalesforceMcpServer() {
+        }
+
+        public static final String salesforce_mcp_server_enabled = "salesforce_mcp_server_enabled";
+        public static final String salesforce_mcp_server_disabled = "salesforce_mcp_server_disabled";
+        public static final String salesforce_mcp_server_deleted = "salesforce_mcp_server_deleted";
+        public static final String salesforce_mcp_server_config_updated = "salesforce_mcp_server_config_updated";
+        public static final String salesforce_mcp_server_org_disconnected = "salesforce_mcp_server_org_disconnected";
+        public static final String salesforce_mcp_server_org_reconnected = "salesforce_mcp_server_org_reconnected";
+        public static final String salesforce_mcp_server_workspace_granted = "salesforce_mcp_server_workspace_granted";
+        public static final String salesforce_mcp_server_workspace_revoked = "salesforce_mcp_server_workspace_revoked";
+        public static final String salesforce_mcp_server_acl_updated = "salesforce_mcp_server_acl_updated";
+    }
+
     public static class Canvas {
         private Canvas() {
         }

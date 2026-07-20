@@ -305,6 +305,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> salesforceMcpServerNames = getAllPublicStaticFieldValues(Actions.SalesforceMcpServer.class);
+        for (String action : actions.getSalesforceMcpServer()) {
+            if (!salesforceMcpServerNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test
@@ -384,6 +390,7 @@ public class ApiTest {
             verifyAllActions(orgAdminUserToken, Actions.NativeDlp.class);
             verifyAllActions(orgAdminUserToken, Actions.LegalHold.class);
             verifyAllActions(orgAdminUserToken, Actions.SlackFirstCrm.class);
+            verifyAllActions(orgAdminUserToken, Actions.SalesforceMcpServer.class);
 
             // As all the properties are available in LogsResponse class,
             // we'll re-generate the sample JSON file.
