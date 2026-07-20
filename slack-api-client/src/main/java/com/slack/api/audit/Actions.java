@@ -569,6 +569,7 @@ public class Actions {
         public static final String app_mcp_server_added = "app_mcp_server_added";
         public static final String app_mcp_server_updated = "app_mcp_server_updated";
         public static final String app_mcp_server_removed = "app_mcp_server_removed";
+        public static final String app_mcp_server_acl_changed = "app_mcp_server_acl_changed";
     }
 
     public static class Message {
