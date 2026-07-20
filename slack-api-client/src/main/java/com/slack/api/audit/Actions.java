@@ -412,6 +412,7 @@ public class Actions {
         public static final String slack_ai_skill_auto_enabled = "slack_ai_skill_auto_enabled";
         public static final String slack_ai_skill_auto_disabled = "slack_ai_skill_auto_disabled";
         public static final String slack_ai_skill_share_link_created = "slack_ai_skill_share_link_created";
+        public static final String slack_ai_skill_share_link_revoked = "slack_ai_skill_share_link_revoked";
         public static final String slack_ai_skill_external_copy_added = "slack_ai_skill_external_copy_added";
     }
 
