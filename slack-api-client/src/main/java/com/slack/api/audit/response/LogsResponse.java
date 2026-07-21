@@ -439,6 +439,7 @@ public class LogsResponse implements AuditApiResponse {
         private String toolName;
         private String serviceType;
         private String serverName;
+        private String serverUrl;
         private Boolean success;
         private List<String> argumentKeys;
         private Boolean readOnly;
