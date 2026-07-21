@@ -464,6 +464,7 @@
         "tool_name": "",
         "service_type": "",
         "server_name": "",
+        "server_url": "",
         "success": false,
         "argument_keys": [],
         "read_only": false,
