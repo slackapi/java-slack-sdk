@@ -2034,4 +2034,115 @@ public class BlockKitTest {
         assertThat(parsedCard.getBlockId(), is("card2"));
         assertThat(parsedCard.getActions().size(), is(1));
     }
+
+    @Test
+    public void parseCarouselBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/carousel-block
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"carousel\",\n" +
+                "    \"block_id\": \"carousel1\",\n" +
+                "    \"elements\": [\n" +
+                "      {\n" +
+                "        \"type\": \"card\",\n" +
+                "        \"block_id\": \"card1\",\n" +
+                "        \"title\": {\n" +
+                "          \"type\": \"mrkdwn\",\n" +
+                "          \"text\": \"First card\"\n" +
+                "        },\n" +
+                "        \"body\": {\n" +
+                "          \"type\": \"mrkdwn\",\n" +
+                "          \"text\": \"Body of the first card.\"\n" +
+                "        },\n" +
+                "        \"hero_image\": {\n" +
+                "          \"type\": \"image\",\n" +
+                "          \"image_url\": \"https://picsum.photos/400/300\",\n" +
+                "          \"alt_text\": \"hero\"\n" +
+                "        },\n" +
+                "        \"actions\": [\n" +
+                "          {\n" +
+                "            \"type\": \"button\",\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"Open\"\n" +
+                "            },\n" +
+                "            \"action_id\": \"open\"\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"type\": \"card\",\n" +
+                "        \"title\": {\n" +
+                "          \"type\": \"mrkdwn\",\n" +
+                "          \"text\": \"Second card\"\n" +
+                "        }\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        CarouselBlock carousel = (CarouselBlock) message.getBlocks().get(0);
+        assertThat(carousel.getType(), is("carousel"));
+        assertThat(carousel.getBlockId(), is("carousel1"));
+        assertThat(carousel.getElements().size(), is(2));
+
+        CardBlock firstCard = carousel.getElements().get(0);
+        assertThat(firstCard.getType(), is("card"));
+        assertThat(firstCard.getBlockId(), is("card1"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) firstCard.getTitle()).getText(), is("First card"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) firstCard.getBody()).getText(), is("Body of the first card."));
+        assertThat(firstCard.getHeroImage().getImageUrl(), is("https://picsum.photos/400/300"));
+        assertThat(firstCard.getActions().size(), is(1));
+        ButtonElement button = (ButtonElement) firstCard.getActions().get(0);
+        assertThat(button.getActionId(), is("open"));
+
+        CardBlock secondCard = carousel.getElements().get(1);
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) secondCard.getTitle()).getText(), is("Second card"));
+        assertThat(secondCard.getBlockId(), is(nullValue()));
+
+        // Round-trip back to JSON and ensure the carousel survives serialization.
+        Message roundTrip = gson.fromJson(gson.toJson(message), Message.class);
+        CarouselBlock reparsed = (CarouselBlock) roundTrip.getBlocks().get(0);
+        assertThat(reparsed.getBlockId(), is("carousel1"));
+        assertThat(reparsed.getElements().size(), is(2));
+        assertThat(reparsed.getElements().get(0).getType(), is("card"));
+    }
+
+    @Test
+    public void buildCarouselBlock() {
+        CarouselBlock carousel = carousel(c -> c
+                .blockId("carousel1")
+                .elements(Arrays.asList(
+                        card(card -> card
+                                .blockId("card1")
+                                .title(com.slack.api.model.block.composition.MarkdownTextObject.builder().text("Promo").build())
+                                .body(com.slack.api.model.block.composition.PlainTextObject.builder().text("Check this out").build())
+                                .actions(Arrays.asList(
+                                        ButtonElement.builder()
+                                                .actionId("open")
+                                                .text(plainText("Open"))
+                                                .build()
+                                ))),
+                        card(card -> card
+                                .title(com.slack.api.model.block.composition.MarkdownTextObject.builder().text("Second").build()))
+                ))
+        );
+        assertThat(carousel.getType(), is("carousel"));
+        assertThat(carousel.getElements().size(), is(2));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = new Message();
+        message.setBlocks(asBlocks(carousel));
+        Message reparsed = gson.fromJson(gson.toJson(message), Message.class);
+        CarouselBlock parsedCarousel = (CarouselBlock) reparsed.getBlocks().get(0);
+        assertThat(parsedCarousel.getBlockId(), is("carousel1"));
+        assertThat(parsedCarousel.getElements().size(), is(2));
+        assertThat(parsedCarousel.getElements().get(0).getType(), is("card"));
+        assertThat(parsedCarousel.getElements().get(0).getBlockId(), is("card1"));
+        assertThat(parsedCarousel.getElements().get(0).getActions().size(), is(1));
+    }
 }
