@@ -335,7 +335,9 @@
       "ip_allowlist_enabled",
       "ip_allowlist_disabled",
       "mcp_slack_add_list_record_tool_called",
-      "mcp_slack_list_user_channels_tool_called"
+      "mcp_slack_list_user_channels_tool_called",
+      "team_authorized_ip_range_added",
+      "team_authorized_ip_range_removed"
     ],
     "user": [
       "custom_tos_accepted",
