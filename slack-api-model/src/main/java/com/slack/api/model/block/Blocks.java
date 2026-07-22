@@ -129,4 +129,10 @@ public class Blocks {
         return ShareShortcutBlock.builder().build();
     }
 
+    // CardBlock
+
+    public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
+        return configurator.configure(CardBlock.builder()).build();
+    }
+
 }
