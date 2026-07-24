@@ -337,7 +337,8 @@
       "mcp_slack_add_list_record_tool_called",
       "mcp_slack_list_user_channels_tool_called",
       "team_authorized_ip_range_added",
-      "team_authorized_ip_range_removed"
+      "team_authorized_ip_range_removed",
+      "mcp_slack_update_list_record_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
