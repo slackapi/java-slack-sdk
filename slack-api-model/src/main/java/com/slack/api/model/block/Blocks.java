@@ -129,4 +129,22 @@ public class Blocks {
         return ShareShortcutBlock.builder().build();
     }
 
+    // AlertBlock
+
+    public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
+        return configurator.configure(AlertBlock.builder()).build();
+    }
+
+    // CardBlock
+
+    public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
+        return configurator.configure(CardBlock.builder()).build();
+    }
+
+    // CarouselBlock
+
+    public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
+        return configurator.configure(CarouselBlock.builder()).build();
+    }
+
 }
