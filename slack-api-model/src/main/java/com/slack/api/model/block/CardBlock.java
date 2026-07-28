@@ -1,5 +1,6 @@
 package com.slack.api.model.block;
 
+import com.slack.api.model.block.composition.SlackIconObject;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
@@ -39,10 +40,10 @@ public class CardBlock implements LayoutBlock {
     private ImageElement icon;
 
     /**
-     * The name of a built-in Slack icon displayed next to the title and subtitle.
+     * A built-in Slack icon displayed next to the title and subtitle.
      * Mutually exclusive with {@code icon}.
      */
-    private String slackIcon;
+    private SlackIconObject slackIcon;
 
     /**
      * The title of the card. Maximum length for the text in this field is 150 characters.
