@@ -173,29 +173,9 @@ All dependency versions are managed in root `pom.xml` `<properties>` section.
 
 The `slack-api-model` module contains all core data types. When adding or modifying model objects, follow these patterns.
 
-### Block Kit Elements
+### Block Kit Types
 
-Directory: `slack-api-model/src/main/java/com/slack/api/model/block/element/`
-
-All block elements extend `BlockElement` and use a `TYPE` constant:
-
-```java
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-public class DatePickerElement extends BlockElement {
-    public static final String TYPE = "datepicker";
-    private final String type = TYPE;
-
-    private String actionId;
-    private PlainTextObject placeholder;
-    private String initialDate;
-    private ConfirmationDialogObject confirm;
-    private Boolean focusOnLoad;
-}
-```
+Block Kit layout blocks, elements, and composition objects are defined in this module under `src/main/java/com/slack/api/model/block/`. See `slack-api-model/AGENTS.md` for detailed steps on adding new Block Kit types, covering class definition, Gson factory registration, static helpers, Kotlin DSL support, and tests.
 
 ### Event Types
 
