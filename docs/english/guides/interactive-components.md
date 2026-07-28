@@ -10,7 +10,7 @@ See [Composing messages](/tools/java-slack-sdk/guides/composing-messages) to lea
 
 ### Slack app configuration
 
-To enable interactive components, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
+To enable interactive components, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
 
 * Turn on the feature
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events` (this step is not required for Socket Mode apps)

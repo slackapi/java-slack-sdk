@@ -4,7 +4,7 @@
 
 ### Slack アプリの設定
 
-Home タブを有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **App Home** へ遷移します。画面を少し下スクロールすると見つかる **Home Tab** を有効化します。
+Home タブを有効にするには [Slack アプリ管理画面](https://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **App Home** へ遷移します。画面を少し下スクロールすると見つかる **Home Tab** を有効化します。
 
 イベント API を有効にするには、左ペインの **Features** > **Event Subscriptions** へ遷移します。この画面でいくつかやることがあります。
 

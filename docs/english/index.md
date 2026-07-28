@@ -20,9 +20,13 @@ These docs have lots of information on Bolt for Java and the Java Slack SDK. The
 
 If you get stuck, we're here to help. The following are the best ways to get assistance working through your issue:
 
-* Visit the [Issue Tracker](http://github.com/slackapi/java-slack-sdk/issues) for questions, bug reports, feature requests, and general discussion related to Bolt for Java. Try searching for an existing issue before creating a new one.
+* Visit the [Issue Tracker](https://github.com/slackapi/java-slack-sdk/issues) for questions, bug reports, feature requests, and general discussion related to Bolt for Java. Try searching for an existing issue before creating a new one.
 * Visit the [Slack Developer Community](https://slackcommunity.com/) for getting help or for bonding with your fellow Slack developers.
 * [Email](mailto:support@slack.com) our developer support team: `support@slack.com`.
+
+## Release notes
+
+Check out the [Java Slack SDK release notes](https://github.com/SlackAPI/java-slack-sdk/releases) for all the latest happenings.
 
 ## Contributing
 

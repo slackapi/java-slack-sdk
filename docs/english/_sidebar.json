@@ -137,21 +137,5 @@
 			},
 			"tools/java-slack-sdk/ja-jp/reference"
 		]
-	},
-	{ "type": "html", "value": "<hr>" },
-	{
-		"type": "link",
-		"label": "Release notes",
-		"href": "https://github.com/SlackAPI/java-slack-sdk/releases"
-	},
-	{
-		"type": "link",
-		"label": "Code on GitHub",
-		"href": "https://github.com/SlackAPI/java-slack-sdk"
-	},
-	{
-		"type": "link",
-		"label": "Contributors Guide",
-		"href": "https://github.com/slackapi/java-slack-sdk/blob/main/.github/contributing.md"
 	}
 ]
