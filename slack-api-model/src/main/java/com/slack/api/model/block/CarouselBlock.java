@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,8 +24,7 @@ public class CarouselBlock implements LayoutBlock {
     /**
      * An array of {@link CardBlock card} blocks. Must contain between 1 and 10 cards.
      */
-    @Builder.Default
-    private List<CardBlock> elements = new ArrayList<>();
+    private List<CardBlock> elements;
 
     private String blockId;
 }
