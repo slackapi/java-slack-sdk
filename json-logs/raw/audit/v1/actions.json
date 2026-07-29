@@ -412,7 +412,8 @@
       "user_passkey_removed",
       "slack_ai_skill_share_link_revoked",
       "user_passkey_created",
-      "user_passkey_name_edited"
+      "user_passkey_name_edited",
+      "ip_allowlist_access_denied"
     ],
     "file": [
       "file_downloaded",
@@ -557,7 +558,8 @@
       "app_mcp_server_updated",
       "app_mcp_server_removed",
       "app_mcp_server_acl_changed",
-      "child_app_manager_disconnected"
+      "child_app_manager_disconnected",
+      "app_mcp_server_auth_strategy_set"
     ],
     "workflow_builder": [
       "workflow_created",
