@@ -11,6 +11,7 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
 import com.slack.api.methods.response.admin.users.*;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.model.ConversationType;
 import com.slack.api.model.User;
@@ -136,11 +137,13 @@ public class AdminApi_teams_Test {
             AdminTeamsSettingsInfoResponse info = methodsAsync.adminTeamsSettingsInfo(r -> r.teamId(teamId)).get();
             assertThat(info.getError(), is(nullValue()));
 
-            List<String> channelIds = slack.methods(teamAdminUserToken).conversationsList(r -> r
+            ConversationsListResponse channelsList = slack.methods(teamAdminUserToken).conversationsList(r -> r
                     .excludeArchived(true)
                     .types(Arrays.asList(ConversationType.PUBLIC_CHANNEL))
                     .limit(2)
-            ).getChannels().stream().map(c -> c.getId()).collect(Collectors.toList());
+            );
+            assertThat(channelsList.getError(), is(nullValue()));
+            List<String> channelIds = channelsList.getChannels().stream().map(c -> c.getId()).collect(Collectors.toList());
 
             AdminTeamsSettingsSetDefaultChannelsResponse defaultChannelsFailure = methodsAsync
                     .adminTeamsSettingsSetDefaultChannels(r -> r.teamId(teamId).channelIds(Collections.emptyList())).get();
