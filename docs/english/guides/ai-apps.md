@@ -279,7 +279,7 @@ public class AssistantSimpleApp {
             }
         });
 
-        app.use(assistant);
+        app.assistant(assistant);
 
         app.event(MessageEvent.class, (req, ctx) -> {
             return ctx.ack();
