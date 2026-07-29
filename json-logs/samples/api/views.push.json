@@ -2421,7 +2421,9 @@
             "type": "plain_text",
             "text": "",
             "emoji": false
-          }
+          },
+          "min_lines": 123,
+          "max_lines": 123
         },
         "dispatch_action": false,
         "hint": {
