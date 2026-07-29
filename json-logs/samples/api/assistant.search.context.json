@@ -1,0 +1,88 @@
+{
+  "ok": false,
+  "warning": "",
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "results": {
+    "messages": [
+      {
+        "author_name": "",
+        "author_user_id": "",
+        "team_id": "",
+        "channel_id": "",
+        "channel_name": "",
+        "message_ts": "",
+        "content": "",
+        "is_author_bot": false,
+        "permalink": "",
+        "blocks": [],
+        "context_messages": {
+          "before": [
+            {
+              "text": "",
+              "user_id": "",
+              "ts": "",
+              "blocks": []
+            }
+          ],
+          "after": [
+            {
+              "text": "",
+              "user_id": "",
+              "ts": "",
+              "blocks": []
+            }
+          ]
+        }
+      }
+    ],
+    "files": [
+      {
+        "uploader_user_id": "",
+        "author_user_id": "",
+        "author_name": "",
+        "team_id": "",
+        "file_id": "",
+        "date_created": 123,
+        "date_updated": 123,
+        "title": "",
+        "file_type": "",
+        "permalink": "",
+        "content": ""
+      }
+    ],
+    "channels": [
+      {
+        "team_id": "",
+        "creator_user_id": "",
+        "creator_name": "",
+        "date_created": 123,
+        "date_updated": 123,
+        "name": "",
+        "topic": "",
+        "purpose": "",
+        "permalink": ""
+      }
+    ],
+    "users": [
+      {
+        "team_id": "",
+        "user_id": "",
+        "name": "",
+        "real_name": "",
+        "permalink": "",
+        "content": ""
+      }
+    ]
+  },
+  "response_metadata": {
+    "next_cursor": "",
+    "messages": [
+      ""
+    ],
+    "warnings": [
+      ""
+    ]
+  }
+}
