@@ -341,11 +341,14 @@ public class Actions {
         public static final String mcp_slack_read_list_tool_called = "mcp_slack_read_list_tool_called";
         public static final String mcp_slack_update_list_tool_called = "mcp_slack_update_list_tool_called";
         public static final String mcp_slack_add_list_record_tool_called = "mcp_slack_add_list_record_tool_called";
+        public static final String mcp_slack_update_list_record_tool_called = "mcp_slack_update_list_record_tool_called";
         public static final String mcp_slack_get_file_upload_url_tool_called = "mcp_slack_get_file_upload_url_tool_called";
         public static final String mcp_slack_complete_file_upload_tool_called = "mcp_slack_complete_file_upload_tool_called";
         public static final String mcp_slack_list_user_channels_tool_called = "mcp_slack_list_user_channels_tool_called";
         public static final String ip_allowlist_enabled = "ip_allowlist_enabled";
         public static final String ip_allowlist_disabled = "ip_allowlist_disabled";
+        public static final String team_authorized_ip_range_added = "team_authorized_ip_range_added";
+        public static final String team_authorized_ip_range_removed = "team_authorized_ip_range_removed";
     }
 
     public static class User {
@@ -424,6 +427,7 @@ public class Actions {
         public static final String slack_ai_skill_share_link_created = "slack_ai_skill_share_link_created";
         public static final String slack_ai_skill_share_link_revoked = "slack_ai_skill_share_link_revoked";
         public static final String slack_ai_skill_external_copy_added = "slack_ai_skill_external_copy_added";
+        public static final String ip_allowlist_access_denied = "ip_allowlist_access_denied";
     }
 
     public static class File {
