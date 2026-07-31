@@ -342,6 +342,7 @@ public class Actions {
         public static final String mcp_slack_update_list_tool_called = "mcp_slack_update_list_tool_called";
         public static final String mcp_slack_add_list_record_tool_called = "mcp_slack_add_list_record_tool_called";
         public static final String mcp_slack_update_list_record_tool_called = "mcp_slack_update_list_record_tool_called";
+        public static final String mcp_slack_delete_list_record_tool_called = "mcp_slack_delete_list_record_tool_called";
         public static final String mcp_slack_get_file_upload_url_tool_called = "mcp_slack_get_file_upload_url_tool_called";
         public static final String mcp_slack_complete_file_upload_tool_called = "mcp_slack_complete_file_upload_tool_called";
         public static final String mcp_slack_list_user_channels_tool_called = "mcp_slack_list_user_channels_tool_called";
