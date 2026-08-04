@@ -333,6 +333,7 @@ public class Actions {
         public static final String pref_show_join_leave_changed = "pref.show_join_leave_changed";
         public static final String pref_show_join_leave_welcome_party_changed = "pref.show_join_leave_welcome_party_changed";
         public static final String pref_allow_native_giphy_gif_picker = "pref.allow_native_giphy_gif_picker";
+        public static final String pref_ai_feature_default_access_changed = "pref.ai_feature_default_access_changed";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
@@ -393,6 +394,7 @@ public class Actions {
         public static final String user_profile_updated = "user_profile_updated";
         public static final String user_profile_deleted = "user_profile_deleted";
         public static final String user_password_reset_slack_security = "user_password_reset_slack_security";
+        public static final String user_password_reset_by_admin = "user_password_reset_by_admin";
         public static final String user_passkey_created = "user_passkey_created";
         public static final String user_passkey_removed = "user_passkey_removed";
         public static final String user_passkey_name_edited = "user_passkey_name_edited";
