@@ -414,7 +414,8 @@
       "slack_ai_skill_share_link_revoked",
       "user_passkey_created",
       "user_passkey_name_edited",
-      "ip_allowlist_access_denied"
+      "ip_allowlist_access_denied",
+      "user_password_reset_by_admin"
     ],
     "file": [
       "file_downloaded",
