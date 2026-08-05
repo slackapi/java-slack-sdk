@@ -339,7 +339,8 @@
       "team_authorized_ip_range_added",
       "team_authorized_ip_range_removed",
       "mcp_slack_update_list_record_tool_called",
-      "mcp_slack_delete_list_record_tool_called"
+      "mcp_slack_delete_list_record_tool_called",
+      "pref.ai_feature_default_access_changed"
     ],
     "user": [
       "custom_tos_accepted",
