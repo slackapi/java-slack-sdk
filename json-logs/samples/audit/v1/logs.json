@@ -461,7 +461,9 @@
           "type": [],
           "user": []
         },
+        "tool": "",
         "tool_name": "",
+        "arguments": {},
         "service_type": "",
         "server_name": "",
         "server_url": "",
