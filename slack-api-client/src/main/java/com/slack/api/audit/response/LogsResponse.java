@@ -436,6 +436,7 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> workflowsAdded;
         private List<String> datastoresAdded;
         private ConversationPref whoCanDmAnyone;
+        private String tool;
         private String toolName;
         private String serviceType;
         private String serverName;
