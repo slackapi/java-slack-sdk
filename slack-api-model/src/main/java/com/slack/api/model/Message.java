@@ -269,4 +269,16 @@ public class Message {
     private AssistantAppThread assistantAppThread;
 
     private String streamingState;
+
+    private Language language;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Language {
+        private String locale;
+        @SerializedName("is_reliable")
+        private boolean reliable;
+    }
 }

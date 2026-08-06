@@ -183,6 +183,18 @@
         "id": "string",
         "name": "string"
       }
+    },
+    {
+      "type": "app",
+      "app": {
+        "id": "string",
+        "name": "string",
+        "is_distributed": "bool",
+        "is_directory_approved": "bool",
+        "is_workflow_app": "bool",
+        "scopes": "array",
+        "bot_scopes": "array"
+      }
     }
   ]
 }

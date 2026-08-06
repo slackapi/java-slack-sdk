@@ -101,6 +101,7 @@ public class SchemasResponse implements AuditApiResponse {
         private String isDistributed;
         private String isDirectoryApproved;
         private String scopes;
+        private String botScopes;
         private String distributionType;
         private String userIds;
     }

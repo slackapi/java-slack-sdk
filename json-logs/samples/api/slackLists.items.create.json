@@ -24,10 +24,12 @@
                   }
                 ]
               }
-            ]
+            ],
+            "block_id": ""
           }
         ],
-        "checkbox": false
+        "checkbox": false,
+        "text": ""
       }
     ],
     "updated_timestamp": ""

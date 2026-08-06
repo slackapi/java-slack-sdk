@@ -48,7 +48,8 @@
           "display_url": "",
           "unicode": ""
         }
-      ]
+      ],
+      "start_date": ""
     },
     "is_admin": false,
     "is_owner": false,
@@ -61,7 +62,8 @@
     "has_2fa": false,
     "is_email_confirmed": false,
     "who_can_share_contact_card": "",
-    "is_invited_user": false
+    "is_invited_user": false,
+    "two_factor_type": ""
   },
   "error": "",
   "needed": "",

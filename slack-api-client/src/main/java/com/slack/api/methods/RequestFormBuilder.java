@@ -719,6 +719,9 @@ public class RequestFormBuilder {
         if (req.getUserIds() != null) {
             setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
         }
+        if (req.getPermissions() != null) {
+            setIfNotNull("permissions", GSON.toJson(req.getPermissions()), form);
+        }
         return form;
     }
 

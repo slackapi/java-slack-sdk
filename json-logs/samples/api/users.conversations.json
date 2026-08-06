@@ -86,15 +86,17 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           },
           {
-            "type": "",
-            "label": "",
             "id": "",
+            "label": "",
+            "type": "",
             "data": {
+              "folder_bookmark_id": "",
               "file_id": "F00000000",
               "shared_ts": "0000000000.000000"
             }
@@ -107,25 +109,28 @@
             "type": "",
             "data": {
               "file_id": "F00000000",
-              "shared_ts": "0000000000.000000"
+              "shared_ts": "0000000000.000000",
+              "folder_bookmark_id": ""
             },
             "is_disabled": false
           },
           {
-            "type": "",
             "id": "",
+            "label": "",
+            "type": "",
             "data": {
+              "folder_bookmark_id": "",
               "file_id": "F00000000",
               "shared_ts": "0000000000.000000"
-            },
-            "label": ""
+            }
           }
         ],
         "meeting_notes": {
           "file_id": "F00000000"
         },
         "is_dormant": false,
-        "use_case": ""
+        "use_case": "",
+        "has_slack_connect_invite_created": false
       }
     }
   ],
