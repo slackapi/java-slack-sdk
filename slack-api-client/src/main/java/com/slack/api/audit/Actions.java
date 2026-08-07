@@ -927,4 +927,11 @@ public class Actions {
         public static final String license_assigned = "license_assigned";
         public static final String license_removed = "license_removed";
     }
+
+    public static class WorkObjectRecord {
+        private WorkObjectRecord() {
+        }
+
+        public static final String enterprise_search_email_attachment_downloaded = "enterprise_search_email_attachment_downloaded";
+    }
 }
