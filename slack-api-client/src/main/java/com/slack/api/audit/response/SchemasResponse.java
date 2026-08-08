@@ -43,6 +43,7 @@ public class SchemasResponse implements AuditApiResponse {
         private WorkflowV2 workflowV2;
         private Template template;
         private LegalHoldPolicy legalHoldPolicy;
+        private WorkObjectRecord workObjectRecord;
     }
 
     @Data
@@ -172,5 +173,13 @@ public class SchemasResponse implements AuditApiResponse {
     public static class LegalHoldPolicy {
         private String id;
         private String name;
+    }
+
+    @Data
+    public static class WorkObjectRecord {
+        private String id;
+        private String appId;
+        private String objectId;
+        private String objectType;
     }
 }

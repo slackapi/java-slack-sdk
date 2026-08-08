@@ -74,6 +74,9 @@
     ],
     "salesforce_mcp_server": [
       ""
+    ],
+    "work_object_record": [
+      ""
     ]
   },
   "ok": false,
