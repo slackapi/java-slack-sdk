@@ -59,6 +59,7 @@ import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksRemoveRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -198,6 +199,7 @@ import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksRemoveResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -1518,6 +1520,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(RequestConfigurator<BookmarksRemoveRequest.BookmarksRemoveRequestBuilder> req) {
         return bookmarksRemove(req.configure(BookmarksRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<BlocksValidateResponse> blocksValidate(BlocksValidateRequest req) {
+        return executor.execute(BLOCKS_VALIDATE, toMap(req), () -> methods.blocksValidate(req));
+    }
+
+    @Override
+    public CompletableFuture<BlocksValidateResponse> blocksValidate(RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req) {
+        return blocksValidate(req.configure(BlocksValidateRequest.builder()).build());
     }
 
     @Override

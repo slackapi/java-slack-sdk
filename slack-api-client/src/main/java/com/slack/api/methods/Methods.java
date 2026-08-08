@@ -305,6 +305,12 @@ public class Methods {
     public static final String AUTH_TEAMS_LIST = "auth.teams.list";
 
     // ------------------------------
+    // blocks
+    // ------------------------------
+
+    public static final String BLOCKS_VALIDATE = "blocks.validate";
+
+    // ------------------------------
     // bookmarks
     // ------------------------------
 
