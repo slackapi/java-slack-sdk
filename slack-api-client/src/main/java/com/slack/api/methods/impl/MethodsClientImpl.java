@@ -52,6 +52,8 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -204,6 +206,8 @@ import com.slack.api.methods.response.apps.permissions.resources.AppsPermissions
 import com.slack.api.methods.response.apps.permissions.scopes.AppsPermissionsScopesListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
@@ -1496,6 +1500,26 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AppsPermissionsUsersRequestResponse appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.APPS_PERMISSIONS_USERS_REQUEST, getToken(req), AppsPermissionsUsersRequestResponse.class);
+    }
+
+    @Override
+    public AssistantSearchContextResponse assistantSearchContext(AssistantSearchContextRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ASSISTANT_SEARCH_CONTEXT, getToken(req), AssistantSearchContextResponse.class);
+    }
+
+    @Override
+    public AssistantSearchContextResponse assistantSearchContext(RequestConfigurator<AssistantSearchContextRequest.AssistantSearchContextRequestBuilder> req) throws IOException, SlackApiException {
+        return assistantSearchContext(req.configure(AssistantSearchContextRequest.builder()).build());
+    }
+
+    @Override
+    public AssistantSearchInfoResponse assistantSearchInfo(AssistantSearchInfoRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ASSISTANT_SEARCH_INFO, getToken(req), AssistantSearchInfoResponse.class);
+    }
+
+    @Override
+    public AssistantSearchInfoResponse assistantSearchInfo(RequestConfigurator<AssistantSearchInfoRequest.AssistantSearchInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return assistantSearchInfo(req.configure(AssistantSearchInfoRequest.builder()).build());
     }
 
     @Override

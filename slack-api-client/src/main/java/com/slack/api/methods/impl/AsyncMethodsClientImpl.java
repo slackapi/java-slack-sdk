@@ -49,6 +49,8 @@ import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -188,6 +190,8 @@ import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenRespon
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
@@ -1415,6 +1419,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req) {
         return appsManifestValidate(req.configure(AppsManifestValidateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AssistantSearchContextResponse> assistantSearchContext(AssistantSearchContextRequest req) {
+        return executor.execute(ASSISTANT_SEARCH_CONTEXT, toMap(req), () -> methods.assistantSearchContext(req));
+    }
+
+    @Override
+    public CompletableFuture<AssistantSearchContextResponse> assistantSearchContext(RequestConfigurator<AssistantSearchContextRequest.AssistantSearchContextRequestBuilder> req) {
+        return assistantSearchContext(req.configure(AssistantSearchContextRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AssistantSearchInfoResponse> assistantSearchInfo(AssistantSearchInfoRequest req) {
+        return executor.execute(ASSISTANT_SEARCH_INFO, toMap(req), () -> methods.assistantSearchInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<AssistantSearchInfoResponse> assistantSearchInfo(RequestConfigurator<AssistantSearchInfoRequest.AssistantSearchInfoRequestBuilder> req) {
+        return assistantSearchInfo(req.configure(AssistantSearchInfoRequest.builder()).build());
     }
 
     @Override

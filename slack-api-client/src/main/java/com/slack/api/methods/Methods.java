@@ -284,6 +284,13 @@ public class Methods {
     public static final String APPS_PERMISSIONS_USERS_REQUEST = "apps.permissions.users.request";
 
     // ------------------------------
+    // assistant.search
+    // ------------------------------
+
+    public static final String ASSISTANT_SEARCH_CONTEXT = "assistant.search.context";
+    public static final String ASSISTANT_SEARCH_INFO = "assistant.search.info";
+
+    // ------------------------------
     // assistant.threads
     // ------------------------------
 

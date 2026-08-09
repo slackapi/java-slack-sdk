@@ -1,6 +1,7 @@
 package test_locally.api.methods;
 
 import com.slack.api.methods.RequestFormBuilder;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
@@ -164,6 +165,115 @@ public class RequestFormBuilderTest {
         final int userAuthBlocksIndexInFrom = 0;
         assertThat(form.name(userAuthBlocksIndexInFrom), is("unfurls"));
         assertThat(form.value(userAuthBlocksIndexInFrom), is("{\"key\":{}}"));
+    }
+
+    @Test
+    public void testAssistantSearchContextSerialization() {
+        // GIVEN
+        AssistantSearchContextRequest request = AssistantSearchContextRequest.builder()
+                .query("project gizmo")
+                .actionToken("xoxe-123")
+                .channelTypes(new ArrayList<String>() {{
+                    add("public_channel");
+                    add("private_channel");
+                }})
+                .contentTypes(new ArrayList<String>() {{
+                    add("messages");
+                    add("files");
+                }})
+                .includeBots(true)
+                .includeDeletedUsers(false)
+                .before(1717200000)
+                .after(1717113600)
+                .includeContextMessages(true)
+                .contextChannelId("C12345678")
+                .cursor("dXNlcjpVMDYxTkZUVDI=")
+                .limit(10)
+                .sort("timestamp")
+                .sortDir("desc")
+                .includeMessageBlocks(true)
+                .highlight(false)
+                .keywordsClauses(new ArrayList<List<String>>() {{
+                    add(new ArrayList<String>() {{
+                        add("project");
+                        add("gizmo");
+                    }});
+                    add(new ArrayList<String>() {{
+                        add("roadmap");
+                    }});
+                }})
+                .termClauses(new ArrayList<String>() {{
+                    add("launch");
+                    add("milestone");
+                }})
+                .modifiers("from:@sergei")
+                .includeArchivedChannels(true)
+                .disableSemanticSearch(false)
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.size(), is(21));
+        assertThat(form.name(0), is("query"));
+        assertThat(form.value(0), is("project gizmo"));
+        assertThat(form.name(1), is("action_token"));
+        assertThat(form.value(1), is("xoxe-123"));
+        assertThat(form.name(2), is("channel_types"));
+        assertThat(form.value(2), is("public_channel,private_channel"));
+        assertThat(form.name(3), is("content_types"));
+        assertThat(form.value(3), is("messages,files"));
+        assertThat(form.name(4), is("include_bots"));
+        assertThat(form.value(4), is("1"));
+        assertThat(form.name(5), is("include_deleted_users"));
+        assertThat(form.value(5), is("0"));
+        assertThat(form.name(6), is("before"));
+        assertThat(form.value(6), is("1717200000"));
+        assertThat(form.name(7), is("after"));
+        assertThat(form.value(7), is("1717113600"));
+        assertThat(form.name(8), is("include_context_messages"));
+        assertThat(form.value(8), is("1"));
+        assertThat(form.name(9), is("context_channel_id"));
+        assertThat(form.value(9), is("C12345678"));
+        assertThat(form.name(10), is("cursor"));
+        assertThat(form.value(10), is("dXNlcjpVMDYxTkZUVDI="));
+        assertThat(form.name(11), is("limit"));
+        assertThat(form.value(11), is("10"));
+        assertThat(form.name(12), is("sort"));
+        assertThat(form.value(12), is("timestamp"));
+        assertThat(form.name(13), is("sort_dir"));
+        assertThat(form.value(13), is("desc"));
+        assertThat(form.name(14), is("include_message_blocks"));
+        assertThat(form.value(14), is("1"));
+        assertThat(form.name(15), is("highlight"));
+        assertThat(form.value(15), is("0"));
+        assertThat(form.name(16), is("keywords_clauses"));
+        assertThat(form.value(16), is("[[\"project\",\"gizmo\"],[\"roadmap\"]]"));
+        assertThat(form.name(17), is("term_clauses"));
+        assertThat(form.value(17), is("[\"launch\",\"milestone\"]"));
+        assertThat(form.name(18), is("modifiers"));
+        assertThat(form.value(18), is("from:@sergei"));
+        assertThat(form.name(19), is("include_archived_channels"));
+        assertThat(form.value(19), is("1"));
+        assertThat(form.name(20), is("disable_semantic_search"));
+        assertThat(form.value(20), is("0"));
+    }
+
+    @Test
+    public void testAssistantSearchContextSkipsNullJsonClauses() {
+        // GIVEN
+        AssistantSearchContextRequest request = AssistantSearchContextRequest.builder()
+                .query("project gizmo")
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.size(), is(1));
+        assertThat(form.name(0), is("query"));
+        assertThat(form.value(0), is("project gizmo"));
     }
 
     @Data
