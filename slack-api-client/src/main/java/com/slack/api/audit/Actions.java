@@ -312,6 +312,7 @@ public class Actions {
         public static final String mcp_slack_get_workflow_execution_status_tool_called = "mcp_slack_get_workflow_execution_status_tool_called";
         public static final String mcp_slack_canvas_find_replace_tool_called = "mcp_slack_canvas_find_replace_tool_called";
         public static final String mcp_slack_list_workflows_tool_called = "mcp_slack_list_workflows_tool_called";
+        public static final String mcp_slack_activity_list_tool_called = "mcp_slack_activity_list_tool_called";
         public static final String mcp_slack_run_workflow_tool_called = "mcp_slack_run_workflow_tool_called";
         public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
         public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
