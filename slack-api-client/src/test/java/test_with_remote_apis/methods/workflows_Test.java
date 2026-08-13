@@ -1,6 +1,8 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.workflows.WorkflowsFeaturedAddResponse;
 import com.slack.api.methods.response.workflows.WorkflowsFeaturedListResponse;
 import com.slack.api.methods.response.workflows.WorkflowsFeaturedRemoveResponse;
@@ -8,6 +10,7 @@ import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
+import com.slack.api.model.Conversation;
 import com.slack.api.model.workflow.WorkflowStepInput;
 import com.slack.api.model.workflow.WorkflowStepOutput;
 import config.Constants;
@@ -24,8 +27,11 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
 
 @Slf4j
 public class workflows_Test {
@@ -58,15 +64,48 @@ public class workflows_Test {
         assertThat(workflowsFeaturedAddResponse.getError(), is(notNullValue()));
     }
 
+    private String findChannelId() throws Exception {
+        ConversationsListResponse channels = slack.methods(botToken).conversationsList(r -> r
+                .excludeArchived(true).limit(100));
+        assertThat(channels.getError(), is(nullValue()));
+        for (Conversation channel : channels.getChannels()) {
+            if (channel.getName().equals("random")) {
+                return channel.getId();
+            }
+        }
+        return channels.getChannels().isEmpty() ? null : channels.getChannels().get(0).getId();
+    }
+
     @Test
-    public void workflowsFeaturedList() throws ExecutionException, InterruptedException {
-        List<String> channelIds = new ArrayList<>();
-        channelIds.add("dummy-channel-id");
-        WorkflowsFeaturedListResponse workflowsFeaturedListResponse = slack.methodsAsync(botToken)
-                .workflowsFeaturedList(r -> r
-                        .channelIds(channelIds)
-                ).get();
-        assertThat(workflowsFeaturedListResponse.getError(), is(notNullValue()));
+    public void workflowsFeaturedList() throws Exception {
+        String triggerId = System.getenv(Constants.SLACK_SDK_TEST_WORKFLOW_TRIGGER_ID);
+        if (triggerId == null) {
+            return;
+        }
+        String channelId = findChannelId();
+        if (channelId == null) {
+            return;
+        }
+        List<String> triggerIds = new ArrayList<>();
+        triggerIds.add(triggerId);
+
+        WorkflowsFeaturedAddResponse added = slack.methodsAsync(botToken)
+                .workflowsFeaturedAdd(r -> r.channelId(channelId).triggerIds(triggerIds)).get();
+        assertThat(added.getError(), is(nullValue()));
+        try {
+            List<String> channelIds = new ArrayList<>();
+            channelIds.add(channelId);
+            WorkflowsFeaturedListResponse listed = slack.methodsAsync(botToken)
+                    .workflowsFeaturedList(r -> r.channelIds(channelIds)).get();
+            assertThat(listed.getError(), is(nullValue()));
+            assertThat(listed.getFeaturedWorkflows(), is(notNullValue()));
+            assertThat(listed.getFeaturedWorkflows(), is(not(empty())));
+            assertThat(listed.getFeaturedWorkflows().get(0).getChannelId(), is(notNullValue()));
+        } finally {
+            WorkflowsFeaturedRemoveResponse removed = slack.methodsAsync(botToken)
+                    .workflowsFeaturedRemove(r -> r.channelId(channelId).triggerIds(triggerIds)).get();
+            assertThat(removed.getError(), is(nullValue()));
+        }
     }
 
     @Test
