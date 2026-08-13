@@ -17,6 +17,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -79,13 +80,9 @@ public class workflows_Test {
     @Test
     public void workflowsFeaturedList() throws Exception {
         String triggerId = System.getenv(Constants.SLACK_SDK_TEST_WORKFLOW_TRIGGER_ID);
-        if (triggerId == null) {
-            return;
-        }
+        Assume.assumeTrue(triggerId != null);
         String channelId = findChannelId();
-        if (channelId == null) {
-            return;
-        }
+        Assume.assumeTrue(channelId != null);
         List<String> triggerIds = new ArrayList<>();
         triggerIds.add(triggerId);
 
