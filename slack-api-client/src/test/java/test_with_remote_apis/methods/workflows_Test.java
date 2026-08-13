@@ -51,6 +51,7 @@ public class workflows_Test {
     }
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
     public void workflowsFeaturedAdd() throws ExecutionException, InterruptedException {
@@ -81,25 +82,28 @@ public class workflows_Test {
     public void workflowsFeaturedList() throws Exception {
         String triggerId = System.getenv(Constants.SLACK_SDK_TEST_WORKFLOW_TRIGGER_ID);
         Assume.assumeTrue(triggerId != null);
+        // Featuring a workflow requires a caller with manage-workflows permission in the
+        // channel; a bot token is denied with "restricted_action". Use the user token.
+        Assume.assumeTrue(userToken != null);
         String channelId = findChannelId();
         Assume.assumeTrue(channelId != null);
         List<String> triggerIds = new ArrayList<>();
         triggerIds.add(triggerId);
 
-        WorkflowsFeaturedAddResponse added = slack.methodsAsync(botToken)
+        WorkflowsFeaturedAddResponse added = slack.methodsAsync(userToken)
                 .workflowsFeaturedAdd(r -> r.channelId(channelId).triggerIds(triggerIds)).get();
         assertThat(added.getError(), is(nullValue()));
         try {
             List<String> channelIds = new ArrayList<>();
             channelIds.add(channelId);
-            WorkflowsFeaturedListResponse listed = slack.methodsAsync(botToken)
+            WorkflowsFeaturedListResponse listed = slack.methodsAsync(userToken)
                     .workflowsFeaturedList(r -> r.channelIds(channelIds)).get();
             assertThat(listed.getError(), is(nullValue()));
             assertThat(listed.getFeaturedWorkflows(), is(notNullValue()));
             assertThat(listed.getFeaturedWorkflows(), is(not(empty())));
             assertThat(listed.getFeaturedWorkflows().get(0).getChannelId(), is(notNullValue()));
         } finally {
-            WorkflowsFeaturedRemoveResponse removed = slack.methodsAsync(botToken)
+            WorkflowsFeaturedRemoveResponse removed = slack.methodsAsync(userToken)
                     .workflowsFeaturedRemove(r -> r.channelId(channelId).triggerIds(triggerIds)).get();
             assertThat(removed.getError(), is(nullValue()));
         }
