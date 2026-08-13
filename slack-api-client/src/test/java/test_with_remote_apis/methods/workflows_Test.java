@@ -66,15 +66,24 @@ public class workflows_Test {
         assertThat(workflowsFeaturedAddResponse.getError(), is(notNullValue()));
     }
 
+    // Resolve #general with the user token: featuring runs on the user token, so the
+    // channel must be listed from the acting identity (the bot's list can differ). Page
+    // through instead of a single limited request so #general isn't missed by truncation.
     private String findChannelId() throws Exception {
-        ConversationsListResponse channels = slack.methods(botToken).conversationsList(r -> r
-                .excludeArchived(true).limit(100));
-        assertThat(channels.getError(), is(nullValue()));
-        for (Conversation channel : channels.getChannels()) {
-            if (channel.getName().equals("general")) {
-                return channel.getId();
+        String cursor = null;
+        do {
+            final String c = cursor;
+            ConversationsListResponse channels = slack.methods(userToken).conversationsList(r -> r
+                    .excludeArchived(true).limit(200).cursor(c));
+            assertThat(channels.getError(), is(nullValue()));
+            for (Conversation channel : channels.getChannels()) {
+                if (channel.getName().equals("general")) {
+                    return channel.getId();
+                }
             }
-        }
+            cursor = channels.getResponseMetadata() == null
+                    ? null : channels.getResponseMetadata().getNextCursor();
+        } while (cursor != null && !cursor.isEmpty());
         return null;
     }
 
