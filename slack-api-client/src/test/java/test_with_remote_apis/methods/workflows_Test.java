@@ -70,11 +70,11 @@ public class workflows_Test {
                 .excludeArchived(true).limit(100));
         assertThat(channels.getError(), is(nullValue()));
         for (Conversation channel : channels.getChannels()) {
-            if (channel.getName().equals("random")) {
+            if (channel.getName().equals("general")) {
                 return channel.getId();
             }
         }
-        return channels.getChannels().isEmpty() ? null : channels.getChannels().get(0).getId();
+        return null;
     }
 
     @Test
