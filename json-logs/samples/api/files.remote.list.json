@@ -26,6 +26,7 @@
       ],
       "edit_timestamp": 123,
       "alt_txt": "",
+      "canvas_readtime": 12.3,
       "subtype": "",
       "transcription": {
         "status": "",
@@ -44,6 +45,7 @@
       "thumb_video_w": 123,
       "thumb_video_h": 123,
       "original_attachment_count": 123,
+      "inline_attachment_count": 123,
       "is_external": false,
       "external_type": "",
       "external_id": "",
@@ -147,7 +149,8 @@
               "team_id": "",
               "access": "",
               "source": "",
-              "date_last_shared": 123
+              "date_last_shared": 123,
+              "is_silent_share": false
             }
           ],
           "C03E94MKU_": [
@@ -165,7 +168,8 @@
               "team_id": "",
               "access": "",
               "source": "",
-              "date_last_shared": 123
+              "date_last_shared": 123,
+              "is_silent_share": false
             }
           ]
         },
@@ -185,7 +189,8 @@
               "team_id": "",
               "access": "",
               "source": "",
-              "date_last_shared": 123
+              "date_last_shared": 123,
+              "is_silent_share": false
             }
           ],
           "C03E94MKU_": [
@@ -203,31 +208,36 @@
               "team_id": "",
               "access": "",
               "source": "",
-              "date_last_shared": 123
+              "date_last_shared": 123,
+              "is_silent_share": false
             }
           ]
         }
       },
       "has_more_shares": false,
+      "skipped_shares": false,
       "to": [
         {
           "address": "",
           "name": "",
-          "original": ""
+          "original": "",
+          "slack_user_id": ""
         }
       ],
       "from": [
         {
           "address": "",
           "name": "",
-          "original": ""
+          "original": "",
+          "slack_user_id": ""
         }
       ],
       "cc": [
         {
           "address": "",
           "name": "",
-          "original": ""
+          "original": "",
+          "slack_user_id": ""
         }
       ],
       "channel_actions_ts": "",
@@ -239,6 +249,7 @@
         "message_id": ""
       },
       "simplified_html": "",
+      "app_provides_file_work_objects": false,
       "media_progress": {
         "offset_ms": 123,
         "max_offset_ms": 123,
@@ -1216,6 +1227,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1228,6 +1240,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1241,6 +1254,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1253,6 +1267,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1266,6 +1281,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -1283,6 +1299,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1296,6 +1313,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1308,6 +1326,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1320,6 +1339,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1333,6 +1353,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -1355,6 +1376,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1367,6 +1389,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1380,6 +1403,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1392,6 +1416,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1405,6 +1430,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -1422,6 +1448,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1435,6 +1462,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1447,6 +1475,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1459,6 +1488,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1472,6 +1502,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -1491,6 +1522,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1503,6 +1535,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1516,6 +1549,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1528,6 +1562,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1541,6 +1576,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -1558,6 +1594,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1571,6 +1608,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1583,6 +1621,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1595,6 +1634,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1608,6 +1648,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -1627,6 +1668,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1639,6 +1681,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1652,6 +1695,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1664,6 +1708,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1677,6 +1722,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -1694,6 +1740,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1707,6 +1754,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1719,6 +1767,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1731,6 +1780,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1744,6 +1794,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -1771,6 +1822,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1783,6 +1835,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1796,6 +1849,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1808,6 +1862,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1821,6 +1876,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -1838,6 +1894,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1851,6 +1908,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1863,6 +1921,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1875,6 +1934,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1888,6 +1948,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -1910,6 +1971,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1922,6 +1984,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1935,6 +1998,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1947,6 +2011,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -1960,6 +2025,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -1977,6 +2043,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -1990,6 +2057,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2002,6 +2070,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2014,6 +2083,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2027,6 +2097,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -2046,6 +2117,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2058,6 +2130,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2071,6 +2144,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2083,6 +2157,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2096,6 +2171,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -2113,6 +2189,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2126,6 +2203,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2138,6 +2216,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2150,6 +2229,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2163,6 +2243,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -2182,6 +2263,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2194,6 +2276,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2207,6 +2290,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2219,6 +2303,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2232,6 +2317,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -2249,6 +2335,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2262,6 +2349,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2274,6 +2362,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2286,6 +2375,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2299,6 +2389,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -2323,6 +2414,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2335,6 +2427,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2348,6 +2441,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2360,6 +2454,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2373,6 +2468,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -2390,6 +2486,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2403,6 +2500,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2415,6 +2513,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2427,6 +2526,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2440,6 +2540,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -2462,6 +2563,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2474,6 +2576,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2487,6 +2590,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2499,6 +2603,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2512,6 +2617,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -2529,6 +2635,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2542,6 +2649,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2554,6 +2662,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2566,6 +2675,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2579,6 +2689,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -2598,6 +2709,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2610,6 +2722,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2623,6 +2736,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2635,6 +2749,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2648,6 +2763,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -2665,6 +2781,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2678,6 +2795,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2690,6 +2808,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2702,6 +2821,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2715,6 +2835,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -2734,6 +2855,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2746,6 +2868,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2759,6 +2882,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2771,6 +2895,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2784,6 +2909,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -2801,6 +2927,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2814,6 +2941,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2826,6 +2954,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2838,6 +2967,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2851,6 +2981,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -2875,6 +3006,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2887,6 +3019,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2900,6 +3033,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2912,6 +3046,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2925,6 +3060,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -2942,6 +3078,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -2955,6 +3092,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2967,6 +3105,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2979,6 +3118,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -2992,6 +3132,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -3014,6 +3155,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3026,6 +3168,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -3039,6 +3182,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3051,6 +3195,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3064,6 +3209,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -3081,6 +3227,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -3094,6 +3241,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3106,6 +3254,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3118,6 +3267,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3131,6 +3281,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -3150,6 +3301,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3162,6 +3314,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -3175,6 +3328,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3187,6 +3341,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3200,6 +3355,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -3217,6 +3373,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -3230,6 +3387,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3242,6 +3400,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3254,6 +3413,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3267,6 +3427,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -3286,6 +3447,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3298,6 +3460,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -3311,6 +3474,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3323,6 +3487,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3336,6 +3501,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       },
@@ -3353,6 +3519,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false,
                         "code": false
                       }
@@ -3366,6 +3533,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3378,6 +3546,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3390,6 +3559,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       }
                     },
@@ -3403,6 +3573,7 @@
                         "strike": false,
                         "highlight": false,
                         "client_highlight": false,
+                        "underline": false,
                         "unlink": false
                       },
                       "unicode": ""
@@ -4706,6 +4877,7 @@
       "template_title": "",
       "template_description": "",
       "template_icon": "",
+      "canvas_creator_id": "",
       "team_pref_version_history_enabled": false,
       "show_badge": false,
       "favorites": [
@@ -4746,7 +4918,9 @@
               "default_value_typed": {
                 "select": [
                   ""
-                ]
+                ],
+                "user": [],
+                "channel": []
               },
               "emoji": "",
               "max": 123,
@@ -4774,6 +4948,7 @@
             }
           }
         ],
+        "subtask_schema": [],
         "views": [
           {
             "id": "",
@@ -4787,7 +4962,8 @@
                 "key": "",
                 "id": "",
                 "position": "",
-                "width": 123
+                "width": 123,
+                "should_wrap_text": false
               }
             ],
             "date_created": 123,
@@ -5775,6 +5951,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5787,6 +5964,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -5800,6 +5978,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5812,6 +5991,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5825,6 +6005,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -5842,6 +6023,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -5855,6 +6037,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5867,6 +6050,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5879,6 +6063,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5892,6 +6077,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -5914,6 +6100,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5926,6 +6113,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -5939,6 +6127,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5951,6 +6140,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -5964,6 +6154,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -5981,6 +6172,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -5994,6 +6186,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6006,6 +6199,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6018,6 +6212,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6031,6 +6226,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -6050,6 +6246,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6062,6 +6259,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6075,6 +6273,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6087,6 +6286,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6100,6 +6300,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -6117,6 +6318,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6130,6 +6332,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6142,6 +6345,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6154,6 +6358,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6167,6 +6372,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -6186,6 +6392,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6198,6 +6405,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6211,6 +6419,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6223,6 +6432,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6236,6 +6446,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -6253,6 +6464,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6266,6 +6478,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6278,6 +6491,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6290,6 +6504,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6303,6 +6518,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -6330,6 +6546,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6342,6 +6559,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6355,6 +6573,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6367,6 +6586,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6380,6 +6600,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -6397,6 +6618,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6410,6 +6632,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6422,6 +6645,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6434,6 +6658,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6447,6 +6672,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -6469,6 +6695,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6481,6 +6708,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6494,6 +6722,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6506,6 +6735,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6519,6 +6749,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -6536,6 +6767,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6549,6 +6781,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6561,6 +6794,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6573,6 +6807,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6586,6 +6821,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -6605,6 +6841,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6617,6 +6854,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6630,6 +6868,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6642,6 +6881,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6655,6 +6895,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -6672,6 +6913,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6685,6 +6927,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6697,6 +6940,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6709,6 +6953,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6722,6 +6967,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -6741,6 +6987,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6753,6 +7000,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6766,6 +7014,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6778,6 +7027,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6791,6 +7041,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -6808,6 +7059,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6821,6 +7073,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6833,6 +7086,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6845,6 +7099,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6858,6 +7113,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -6882,6 +7138,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6894,6 +7151,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6907,6 +7165,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6919,6 +7178,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6932,6 +7192,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -6949,6 +7210,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -6962,6 +7224,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6974,6 +7237,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6986,6 +7250,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -6999,6 +7264,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -7021,6 +7287,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7033,6 +7300,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7046,6 +7314,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7058,6 +7327,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7071,6 +7341,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -7088,6 +7359,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7101,6 +7373,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7113,6 +7386,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7125,6 +7399,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7138,6 +7413,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -7157,6 +7433,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7169,6 +7446,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7182,6 +7460,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7194,6 +7473,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7207,6 +7487,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -7224,6 +7505,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7237,6 +7519,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7249,6 +7532,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7261,6 +7545,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7274,6 +7559,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -7293,6 +7579,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7305,6 +7592,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7318,6 +7606,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7330,6 +7619,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7343,6 +7633,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -7360,6 +7651,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7373,6 +7665,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7385,6 +7678,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7397,6 +7691,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7410,6 +7705,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -7434,6 +7730,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7446,6 +7743,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7459,6 +7757,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7471,6 +7770,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7484,6 +7784,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -7501,6 +7802,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7514,6 +7816,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7526,6 +7829,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7538,6 +7842,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7551,6 +7856,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -7573,6 +7879,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7585,6 +7892,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7598,6 +7906,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7610,6 +7919,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7623,6 +7933,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -7640,6 +7951,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7653,6 +7965,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7665,6 +7978,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7677,6 +7991,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7690,6 +8005,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -7709,6 +8025,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7721,6 +8038,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7734,6 +8052,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7746,6 +8065,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7759,6 +8079,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -7776,6 +8097,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7789,6 +8111,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7801,6 +8124,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7813,6 +8137,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7826,6 +8151,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -7845,6 +8171,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7857,6 +8184,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7870,6 +8198,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7882,6 +8211,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7895,6 +8225,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         },
@@ -7912,6 +8243,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false,
                           "code": false
                         }
@@ -7925,6 +8257,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7937,6 +8270,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7949,6 +8283,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         }
                       },
@@ -7962,6 +8297,7 @@
                           "strike": false,
                           "highlight": false,
                           "client_highlight": false,
+                          "underline": false,
                           "unlink": false
                         },
                         "unicode": ""
@@ -9248,12 +9584,15 @@
             },
             "expand": false
           }
-        ]
+        ],
+        "default_view": "",
+        "todo_mode": false
       },
       "list_limits": {
         "over_row_maximum": false,
         "row_count_limit": 123,
         "row_count": 123,
+        "archived_row_count": 123,
         "over_column_maximum": false,
         "column_count": 123,
         "column_count_limit": 123,
@@ -9266,6 +9605,8 @@
       "can_toggle_canvas_lock": false,
       "is_restricted_sharing_enabled": false,
       "canvas_printing_enabled": false,
+      "is_ai_suggested": false,
+      "is_modified_by_ai": false,
       "bot_id": "",
       "initial_comment": {
         "id": "",
@@ -9299,5 +9640,6 @@
   },
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "warning": ""
 }
