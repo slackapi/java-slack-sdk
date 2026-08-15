@@ -242,7 +242,7 @@ public class MethodsRateLimits {
         setRateLimitTier(BOOKMARKS_LIST, Tier3);
         setRateLimitTier(BOOKMARKS_REMOVE, Tier2);
 
-        setRateLimitTier(BLOCKS_VALIDATE, Tier3);
+        setRateLimitTier(BLOCKS_VALIDATE, SpecialTier_blocks_validate);
 
         setRateLimitTier(BOTS_INFO, Tier3);
 
