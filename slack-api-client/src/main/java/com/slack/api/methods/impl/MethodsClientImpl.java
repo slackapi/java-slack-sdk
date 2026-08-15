@@ -1562,7 +1562,7 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public BlocksValidateResponse blocksValidate(BlocksValidateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.BLOCKS_VALIDATE, getToken(req), BlocksValidateResponse.class);
+        return postFormAndParseResponse(toForm(req), Methods.BLOCKS_VALIDATE, BlocksValidateResponse.class);
     }
 
     @Override
