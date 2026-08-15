@@ -56,11 +56,11 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksRemoveRequest;
-import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -209,11 +209,11 @@ import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitl
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksRemoveResponse;
-import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;

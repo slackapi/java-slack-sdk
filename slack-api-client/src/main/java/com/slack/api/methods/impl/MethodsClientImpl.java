@@ -58,11 +58,11 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksRemoveRequest;
-import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -211,11 +211,11 @@ import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitl
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksRemoveResponse;
-import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -1561,6 +1561,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public BlocksValidateResponse blocksValidate(BlocksValidateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.BLOCKS_VALIDATE, getToken(req), BlocksValidateResponse.class);
+    }
+
+    @Override
+    public BlocksValidateResponse blocksValidate(RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req) throws IOException, SlackApiException {
+        return blocksValidate(req.configure(BlocksValidateRequest.builder()).build());
+    }
+
+    @Override
     public BookmarksAddResponse bookmarksAdd(BookmarksAddRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.BOOKMARKS_ADD, getToken(req), BookmarksAddResponse.class);
     }
@@ -1598,16 +1608,6 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public BookmarksRemoveResponse bookmarksRemove(RequestConfigurator<BookmarksRemoveRequest.BookmarksRemoveRequestBuilder> req) throws IOException, SlackApiException {
         return bookmarksRemove(req.configure(BookmarksRemoveRequest.builder()).build());
-    }
-
-    @Override
-    public BlocksValidateResponse blocksValidate(BlocksValidateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.BLOCKS_VALIDATE, getToken(req), BlocksValidateResponse.class);
-    }
-
-    @Override
-    public BlocksValidateResponse blocksValidate(RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req) throws IOException, SlackApiException {
-        return blocksValidate(req.configure(BlocksValidateRequest.builder()).build());
     }
 
     @Override
