@@ -590,6 +590,7 @@ public class Actions {
         public static final String app_mcp_server_removed = "app_mcp_server_removed";
         public static final String app_mcp_server_acl_changed = "app_mcp_server_acl_changed";
         public static final String app_mcp_server_auth_strategy_set = "app_mcp_server_auth_strategy_set";
+        public static final String app_mcp_tool_acl_changed = "app_mcp_tool_acl_changed";
     }
 
     public static class Message {
