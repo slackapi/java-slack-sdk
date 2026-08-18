@@ -563,7 +563,8 @@
       "app_mcp_server_removed",
       "app_mcp_server_acl_changed",
       "child_app_manager_disconnected",
-      "app_mcp_server_auth_strategy_set"
+      "app_mcp_server_auth_strategy_set",
+      "app_mcp_tool_acl_changed"
     ],
     "workflow_builder": [
       "workflow_created",
