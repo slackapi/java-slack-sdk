@@ -822,7 +822,8 @@
       "salesforce_mcp_server_org_reconnected",
       "salesforce_mcp_server_workspace_granted",
       "salesforce_mcp_server_workspace_revoked",
-      "salesforce_mcp_server_acl_updated"
+      "salesforce_mcp_server_acl_updated",
+      "salesforce_mcp_server_tool_acl_updated"
     ],
     "work_object_record": [
       "enterprise_search_email_attachment_downloaded"
