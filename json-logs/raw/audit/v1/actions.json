@@ -566,7 +566,8 @@
       "app_mcp_server_auth_strategy_set",
       "app_mcp_tool_acl_changed",
       "app_dwa_domain_added",
-      "app_dwa_domain_removed"
+      "app_dwa_domain_removed",
+      "app_mcp_tool_default_acl_changed"
     ],
     "workflow_builder": [
       "workflow_created",
