@@ -764,6 +764,7 @@ public class Actions {
         public static final String salesforce_mcp_server_workspace_granted = "salesforce_mcp_server_workspace_granted";
         public static final String salesforce_mcp_server_workspace_revoked = "salesforce_mcp_server_workspace_revoked";
         public static final String salesforce_mcp_server_acl_updated = "salesforce_mcp_server_acl_updated";
+        public static final String salesforce_mcp_server_tool_acl_updated = "salesforce_mcp_server_tool_acl_updated";
     }
 
     public static class Canvas {
