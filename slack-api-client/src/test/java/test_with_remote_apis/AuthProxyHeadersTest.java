@@ -198,7 +198,9 @@ public class AuthProxyHeadersTest {
     public void rtm() throws Exception {
         Slack slack = Slack.getInstance(config);
         final AtomicBoolean received = new AtomicBoolean(false);
-        try (RTMClient rtm = slack.rtmConnect(rtmBotToken)) { // slack-msgs.com
+        // fullUserInfoRequired=false: skip the extra users.info call so the proxy sees exactly
+        // two connections (rtm.connect + websocket), otherwise a third tunnel can be opened
+        try (RTMClient rtm = slack.rtmConnect(rtmBotToken, false)) { // slack-msgs.com
             rtm.addMessageHandler((msg) -> {
                 log.info("Got a message - {}", msg);
                 received.set(true);

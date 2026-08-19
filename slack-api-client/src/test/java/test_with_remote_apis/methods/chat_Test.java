@@ -1158,6 +1158,7 @@ public class chat_Test {
                 ));
         assertThat(stops.isOk(), is(true));
         assertThat(stops.getError(), is(nullValue()));
+        assertThat(stops.getMessage(), is(notNullValue()));
     }
 
     // https://github.com/slackapi/java-slack-sdk/issues/415

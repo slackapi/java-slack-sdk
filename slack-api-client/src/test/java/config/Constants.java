@@ -40,6 +40,9 @@ public class Constants {
     // https://api.slack.com/apps?new_classic_app=1
     public static final String SLACK_SDK_TEST_CLASSIC_APP_BOT_TOKEN = "SLACK_SDK_TEST_CLASSIC_APP_BOT_TOKEN";
 
+    // featured workflows tests
+    public static final String SLACK_SDK_TEST_WORKFLOW_TRIGGER_ID = "SLACK_SDK_TEST_WORKFLOW_TRIGGER_ID";
+
     // shared channel tests
     public static final String SLACK_SDK_TEST_SHARED_CHANNEL_ID = "SLACK_SDK_TEST_SHARED_CHANNEL_ID";
     public static final String SLACK_SDK_TEST_INCOMING_WEBHOOK_URL = "SLACK_SDK_TEST_INCOMING_WEBHOOK_URL";

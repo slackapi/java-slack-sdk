@@ -91,6 +91,8 @@ public class Message {
 
     private String lastRead;
 
+    private String permalink;
+
     // this field exists only when posting the message with "reply_broadcast": true
     private MessageRoot root;
 

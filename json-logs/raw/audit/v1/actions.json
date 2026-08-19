@@ -340,7 +340,8 @@
       "team_authorized_ip_range_removed",
       "mcp_slack_update_list_record_tool_called",
       "mcp_slack_delete_list_record_tool_called",
-      "pref.ai_feature_default_access_changed"
+      "pref.ai_feature_default_access_changed",
+      "mcp_slack_activity_list_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -562,7 +563,11 @@
       "app_mcp_server_removed",
       "app_mcp_server_acl_changed",
       "child_app_manager_disconnected",
-      "app_mcp_server_auth_strategy_set"
+      "app_mcp_server_auth_strategy_set",
+      "app_mcp_tool_acl_changed",
+      "app_dwa_domain_added",
+      "app_dwa_domain_removed",
+      "app_mcp_tool_default_acl_changed"
     ],
     "workflow_builder": [
       "workflow_created",
@@ -818,7 +823,11 @@
       "salesforce_mcp_server_org_reconnected",
       "salesforce_mcp_server_workspace_granted",
       "salesforce_mcp_server_workspace_revoked",
-      "salesforce_mcp_server_acl_updated"
+      "salesforce_mcp_server_acl_updated",
+      "salesforce_mcp_server_tool_acl_updated"
+    ],
+    "work_object_record": [
+      "enterprise_search_email_attachment_downloaded"
     ]
   }
 }

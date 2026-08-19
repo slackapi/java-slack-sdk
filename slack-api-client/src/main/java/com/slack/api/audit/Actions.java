@@ -312,6 +312,7 @@ public class Actions {
         public static final String mcp_slack_get_workflow_execution_status_tool_called = "mcp_slack_get_workflow_execution_status_tool_called";
         public static final String mcp_slack_canvas_find_replace_tool_called = "mcp_slack_canvas_find_replace_tool_called";
         public static final String mcp_slack_list_workflows_tool_called = "mcp_slack_list_workflows_tool_called";
+        public static final String mcp_slack_activity_list_tool_called = "mcp_slack_activity_list_tool_called";
         public static final String mcp_slack_run_workflow_tool_called = "mcp_slack_run_workflow_tool_called";
         public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
         public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
@@ -589,6 +590,9 @@ public class Actions {
         public static final String app_mcp_server_removed = "app_mcp_server_removed";
         public static final String app_mcp_server_acl_changed = "app_mcp_server_acl_changed";
         public static final String app_mcp_server_auth_strategy_set = "app_mcp_server_auth_strategy_set";
+        public static final String app_mcp_tool_acl_changed = "app_mcp_tool_acl_changed";
+        public static final String app_dwa_domain_added = "app_dwa_domain_added";
+        public static final String app_dwa_domain_removed = "app_dwa_domain_removed";
     }
 
     public static class Message {
@@ -760,6 +764,7 @@ public class Actions {
         public static final String salesforce_mcp_server_workspace_granted = "salesforce_mcp_server_workspace_granted";
         public static final String salesforce_mcp_server_workspace_revoked = "salesforce_mcp_server_workspace_revoked";
         public static final String salesforce_mcp_server_acl_updated = "salesforce_mcp_server_acl_updated";
+        public static final String salesforce_mcp_server_tool_acl_updated = "salesforce_mcp_server_tool_acl_updated";
     }
 
     public static class Canvas {
@@ -926,5 +931,12 @@ public class Actions {
         public static final String field_visibility_updated = "field_visibility_updated";
         public static final String license_assigned = "license_assigned";
         public static final String license_removed = "license_removed";
+    }
+
+    public static class WorkObjectRecord {
+        private WorkObjectRecord() {
+        }
+
+        public static final String enterprise_search_email_attachment_downloaded = "enterprise_search_email_attachment_downloaded";
     }
 }
