@@ -63,10 +63,35 @@ public class slacklists_Test {
                 .primaryColumn(true)
                 .build();
 
+        // A date column with a dateFormat option so the response echoes back date_format
         ListColumn dueDateCol = ListColumn.builder()
                 .key("due_date")
                 .name("Due Date")
                 .type("date")
+                .options(ListColumnOptions.builder()
+                        .dateFormat("MM/DD/YYYY")
+                        .build())
+                .build();
+
+        // A number column with precision so the response echoes back precision
+        ListColumn estimateCol = ListColumn.builder()
+                .key("estimate")
+                .name("Estimate")
+                .type("number")
+                .options(ListColumnOptions.builder()
+                        .precision(2)
+                        .build())
+                .build();
+
+        // A rating column with emoji/max so the response echoes back emoji and max
+        ListColumn ratingCol = ListColumn.builder()
+                .key("priority")
+                .name("Priority")
+                .type("rating")
+                .options(ListColumnOptions.builder()
+                        .emoji(":star:")
+                        .max(5)
+                        .build())
                 .build();
 
         ListColumnOptions.Choice choice1 = ListColumnOptions.Choice.builder()
@@ -115,7 +140,7 @@ public class slacklists_Test {
                                         .build()))
                                 .build()))
                         .build()))
-                .schema(Arrays.asList(taskNameCol, dueDateCol, statusCol, assigneeCol)));
+                .schema(Arrays.asList(taskNameCol, dueDateCol, estimateCol, ratingCol, statusCol, assigneeCol)));
 
         assertThat(createResponse.getError(), is(nullValue()));
         assertThat(createResponse.isOk(), is(true));
