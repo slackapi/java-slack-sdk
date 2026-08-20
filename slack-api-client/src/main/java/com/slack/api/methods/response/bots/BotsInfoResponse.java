@@ -19,6 +19,8 @@ public class BotsInfoResponse implements SlackApiTextResponse {
         private boolean deleted;
         private Integer updated;
         private BotIcons icons;
+        // Returned as true for Slack-certified Workflow Builder connector apps.
+        private Boolean isConnectorBot;
     }
 
     private boolean ok;
