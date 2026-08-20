@@ -4980,7 +4980,7 @@
               "grouping": {
                 "group_by": "",
                 "group_by_column_id": "",
-                "order": ""
+                "order": []
               },
               "filters": [
                 {
@@ -4992,7 +4992,17 @@
                   "typed_values": [],
                   "column_id": ""
                 }
-              ]
+              ],
+              "sorts": [],
+              "info_column_filters": [],
+              "calculations": [],
+              "options": {
+                "cover_field": "",
+                "cover_fit": "",
+                "calendar_field": ""
+              },
+              "is_template_initial_view": false,
+              "row_height": 123
             }
           ],
           "integrations": [
@@ -17891,7 +17901,7 @@
                     "grouping": {
                       "group_by": "",
                       "group_by_column_id": "",
-                      "order": ""
+                      "order": []
                     },
                     "filters": [
                       {
@@ -17903,7 +17913,17 @@
                         "typed_values": [],
                         "column_id": ""
                       }
-                    ]
+                    ],
+                    "sorts": [],
+                    "info_column_filters": [],
+                    "calculations": [],
+                    "options": {
+                      "cover_field": "",
+                      "cover_fit": "",
+                      "calendar_field": ""
+                    },
+                    "is_template_initial_view": false,
+                    "row_height": 123
                   }
                 ],
                 "integrations": [
@@ -32595,7 +32615,7 @@
                   "grouping": {
                     "group_by": "",
                     "group_by_column_id": "",
-                    "order": ""
+                    "order": []
                   },
                   "filters": [
                     {
@@ -32607,7 +32627,17 @@
                       "typed_values": [],
                       "column_id": ""
                     }
-                  ]
+                  ],
+                  "sorts": [],
+                  "info_column_filters": [],
+                  "calculations": [],
+                  "options": {
+                    "cover_field": "",
+                    "cover_fit": "",
+                    "calendar_field": ""
+                  },
+                  "is_template_initial_view": false,
+                  "row_height": 123
                 }
               ],
               "integrations": [
@@ -48330,7 +48360,7 @@
                     "grouping": {
                       "group_by": "",
                       "group_by_column_id": "",
-                      "order": ""
+                      "order": []
                     },
                     "filters": [
                       {
@@ -48342,7 +48372,17 @@
                         "typed_values": [],
                         "column_id": ""
                       }
-                    ]
+                    ],
+                    "sorts": [],
+                    "info_column_filters": [],
+                    "calculations": [],
+                    "options": {
+                      "cover_field": "",
+                      "cover_fit": "",
+                      "calendar_field": ""
+                    },
+                    "is_template_initial_view": false,
+                    "row_height": 123
                   }
                 ],
                 "integrations": [
@@ -48470,7 +48510,7 @@
               "grouping": {
                 "group_by": "",
                 "group_by_column_id": "",
-                "order": ""
+                "order": []
               },
               "filters": [
                 {
@@ -48482,7 +48522,17 @@
                   "typed_values": [],
                   "column_id": ""
                 }
-              ]
+              ],
+              "sorts": [],
+              "info_column_filters": [],
+              "calculations": [],
+              "options": {
+                "cover_field": "",
+                "cover_fit": "",
+                "calendar_field": ""
+              },
+              "is_template_initial_view": false,
+              "row_height": 123
             },
             "files": [
               {
@@ -53460,7 +53510,7 @@
                       "grouping": {
                         "group_by": "",
                         "group_by_column_id": "",
-                        "order": ""
+                        "order": []
                       },
                       "filters": [
                         {
@@ -53472,7 +53522,17 @@
                           "typed_values": [],
                           "column_id": ""
                         }
-                      ]
+                      ],
+                      "sorts": [],
+                      "info_column_filters": [],
+                      "calculations": [],
+                      "options": {
+                        "cover_field": "",
+                        "cover_fit": "",
+                        "calendar_field": ""
+                      },
+                      "is_template_initial_view": false,
+                      "row_height": 123
                     }
                   ],
                   "integrations": [
