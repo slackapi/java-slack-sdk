@@ -341,7 +341,8 @@
       "mcp_slack_update_list_record_tool_called",
       "mcp_slack_delete_list_record_tool_called",
       "pref.ai_feature_default_access_changed",
-      "mcp_slack_activity_list_tool_called"
+      "mcp_slack_activity_list_tool_called",
+      "mcp_slack_todos_list_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -824,7 +825,9 @@
       "salesforce_mcp_server_workspace_granted",
       "salesforce_mcp_server_workspace_revoked",
       "salesforce_mcp_server_acl_updated",
-      "salesforce_mcp_server_tool_acl_updated"
+      "salesforce_mcp_server_tool_acl_updated",
+      "salesforce_mcp_server_tool_default_updated",
+      "salesforce_mcp_server_tool_permissions_deleted"
     ],
     "work_object_record": [
       "enterprise_search_email_attachment_downloaded"

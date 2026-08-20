@@ -37,7 +37,11 @@
                 "label": "",
                 "color": ""
               }
-            ]
+            ],
+            "date_format": "",
+            "precision": 12345,
+            "emoji": "",
+            "max": 12345
           }
         }
       ],
