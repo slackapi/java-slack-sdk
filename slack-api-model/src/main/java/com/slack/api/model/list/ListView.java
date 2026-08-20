@@ -29,6 +29,12 @@ public class ListView {
     private Boolean showCompletedItems;
     private Grouping grouping;
     private List<Filter> filters;
+    private List<Sort> sorts;
+    private List<InfoColumnFilter> infoColumnFilters;
+    private List<Calculation> calculations;
+    private Options options;
+    private Boolean isTemplateInitialView;
+    private Integer rowHeight;
 
     @Data
     @Builder
@@ -37,7 +43,26 @@ public class ListView {
     public static class Grouping {
         private String groupBy;
         private String groupByColumnId;
-        private String order;
+        // Ordered group values; each entry carries the typed value(s) for its group.
+        private List<GroupingOrder> order;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class GroupingOrder {
+        private List<String> select;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Sort {
+        private String key;
+        private Boolean ascending;
+        private String columnId;
     }
 
     @Data
@@ -50,6 +75,37 @@ public class ListView {
         private List<String> values;
         private List<TypedValue> typedValues;
         private String columnId;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class InfoColumnFilter {
+        private String key;
+        private String operator;
+        private List<String> values;
+        private List<TypedValue> typedValues;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Calculation {
+        private String key;
+        private String operator;
+        private String columnId;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Options {
+        private String coverField;
+        private String coverFit;
+        private String calendarField;
     }
 
     @Data
