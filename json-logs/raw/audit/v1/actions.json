@@ -342,7 +342,8 @@
       "mcp_slack_delete_list_record_tool_called",
       "pref.ai_feature_default_access_changed",
       "mcp_slack_activity_list_tool_called",
-      "mcp_slack_todos_list_tool_called"
+      "mcp_slack_todos_list_tool_called",
+      "slack_ai_mcp_model_context_updated"
     ],
     "user": [
       "custom_tos_accepted",

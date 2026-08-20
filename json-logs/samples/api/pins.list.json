@@ -47085,6 +47085,13 @@
                   "language": {
                     "locale": "",
                     "is_reliable": false
+                  },
+                  "agent_session": {
+                    "status": "",
+                    "agent_bot_user_ids": [],
+                    "agent_statuses": [],
+                    "title": "",
+                    "date_status_processing_expire": 123
                   }
                 }
               }
@@ -47624,6 +47631,13 @@
                       "language": {
                         "locale": "",
                         "is_reliable": false
+                      },
+                      "agent_session": {
+                        "status": "",
+                        "agent_bot_user_ids": [],
+                        "agent_statuses": [],
+                        "title": "",
+                        "date_status_processing_expire": 123
                       }
                     },
                     "number": [],
@@ -48212,6 +48226,13 @@
                       "language": {
                         "locale": "",
                         "is_reliable": false
+                      },
+                      "agent_session": {
+                        "status": "",
+                        "agent_bot_user_ids": [],
+                        "agent_statuses": [],
+                        "title": "",
+                        "date_status_processing_expire": 123
                       }
                     },
                     "number": [],
