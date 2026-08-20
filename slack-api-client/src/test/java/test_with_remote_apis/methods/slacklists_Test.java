@@ -2,6 +2,7 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessDeleteResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessSetResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsCreateResponse;
@@ -55,6 +56,14 @@ public class slacklists_Test {
 
     @Test
     public void fullSlackListsWorkflow() throws IOException, SlackApiException {
+        // Resolve a real user id and team id so the schema can carry
+        // default_value_typed (user) and emoji_team_id, which the API only
+        // echoes back when populated with valid values.
+        AuthTestResponse auth = slack.methods(botToken).authTest(r -> r);
+        assertThat(auth.getError(), is(nullValue()));
+        String selfUserId = auth.getUserId();
+        String teamId = auth.getTeamId();
+
         // Build schema columns
         ListColumn taskNameCol = ListColumn.builder()
                 .key("task_name")
@@ -83,7 +92,7 @@ public class slacklists_Test {
                         .build())
                 .build();
 
-        // A rating column with emoji/max so the response echoes back emoji and max
+        // A rating column with emoji/max/emoji_team_id so the response echoes those back
         ListColumn ratingCol = ListColumn.builder()
                 .key("priority")
                 .name("Priority")
@@ -91,6 +100,7 @@ public class slacklists_Test {
                 .options(ListColumnOptions.builder()
                         .emoji(":star:")
                         .max(5)
+                        .emojiTeamId(teamId)
                         .build())
                 .build();
 
@@ -123,10 +133,19 @@ public class slacklists_Test {
                 .options(statusOptions)
                 .build();
 
+        // A user column with notify_users and a typed default so the response
+        // echoes back notify_users and default_value_typed (the user variant;
+        // the select variant is rejected by slackLists.create).
         ListColumn assigneeCol = ListColumn.builder()
                 .key("assignee")
                 .name("Assignee")
                 .type("user")
+                .options(ListColumnOptions.builder()
+                        .notifyUsers(true)
+                        .defaultValueTyped(ListColumnOptions.DefaultValue.builder()
+                                .user(Arrays.asList(selfUserId))
+                                .build())
+                        .build())
                 .build();
 
         // create list
