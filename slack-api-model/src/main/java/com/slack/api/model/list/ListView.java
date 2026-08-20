@@ -37,6 +37,7 @@ public class ListView {
     public static class Grouping {
         private String groupBy;
         private String groupByColumnId;
+        private String order;
     }
 
     @Data
