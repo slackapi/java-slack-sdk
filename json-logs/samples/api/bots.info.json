@@ -13,7 +13,8 @@
       "image_72": "https://www.example.com/"
     },
     "is_workflow_bot": false,
-    "is_legacy_workflow_bot": false
+    "is_legacy_workflow_bot": false,
+    "is_connector_bot": false
   },
   "error": "",
   "needed": "",
