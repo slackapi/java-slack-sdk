@@ -206,9 +206,14 @@ public class slacklists_Test {
         assertThat(createItemResponse.isOk(), is(true));
         assertThat(createItemResponse.getItem(), is(notNullValue()));
         assertThat(createItemResponse.getItem().getFields(), is(notNullValue()));
-        assertThat(createItemResponse.getItem().getFields().size(), is(1));
-        assertThat(createItemResponse.getItem().getFields().get(0).getColumnId(), is(taskNameColId));
-        assertThat(createItemResponse.getItem().getFields().get(0).getText(), is("Test task item"));
+        // Columns with typed defaults (e.g. the user column) may also come back populated,
+        // so locate the task_name field by column id rather than asserting an exact count.
+        ListRecord.Field taskNameField = createItemResponse.getItem().getFields().stream()
+                .filter(f -> taskNameColId.equals(f.getColumnId()))
+                .findFirst()
+                .orElse(null);
+        assertThat(taskNameField, is(notNullValue()));
+        assertThat(taskNameField.getText(), is("Test task item"));
 
         String itemId = createItemResponse.getItem().getId();
         assertThat(itemId, is(notNullValue()));

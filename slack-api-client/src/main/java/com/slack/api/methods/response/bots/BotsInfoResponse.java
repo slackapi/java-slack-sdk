@@ -21,6 +21,10 @@ public class BotsInfoResponse implements SlackApiTextResponse {
         private BotIcons icons;
         // Returned as true for Slack-certified Workflow Builder connector apps.
         private Boolean isConnectorBot;
+        // Returned as true for bots backing Workflow Builder workflows.
+        private Boolean isWorkflowBot;
+        // Returned as true for bots backing legacy (steps-from-apps) workflows.
+        private Boolean isLegacyWorkflowBot;
     }
 
     private boolean ok;
