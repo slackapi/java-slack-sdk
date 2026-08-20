@@ -98,6 +98,8 @@
   "admin.workflows.permissions.lookup": "Tier2",
   "admin.workflows.search": "Tier2",
   "admin.workflows.unpublish": "Tier2",
+  "agents.sessions.rename": "Tier3",
+  "agents.sessions.setStatus": "Tier3",
   "api.test": "Tier4",
   "apps.connections.open": "Tier1",
   "apps.event.authorizations.list": "Tier4",
