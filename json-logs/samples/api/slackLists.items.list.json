@@ -36,25 +36,7 @@
           "key": "",
           "value": false,
           "checkbox": false,
-          "column_id": "",
-          "text": "",
-          "rich_text": [
-            {
-              "type": "",
-              "block_id": "",
-              "elements": [
-                {
-                  "type": "",
-                  "elements": [
-                    {
-                      "text": "",
-                      "type": ""
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "column_id": ""
         }
       ],
       "updated_timestamp": ""

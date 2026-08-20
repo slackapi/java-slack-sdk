@@ -29,7 +29,10 @@
           }
         ],
         "checkbox": false,
-        "text": ""
+        "text": "",
+        "user": [
+          "U00000000"
+        ]
       }
     ],
     "updated_timestamp": ""
