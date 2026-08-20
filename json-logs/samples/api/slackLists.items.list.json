@@ -30,7 +30,10 @@
             }
           ],
           "checkbox": false,
-          "text": ""
+          "text": "",
+          "user": [
+            "U00000000"
+          ]
         },
         {
           "key": "",
