@@ -1741,6 +1741,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
             log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
         }
+        setIfNotNull("session_status", req.getSessionStatus(), form);
         return form;
     }
 
