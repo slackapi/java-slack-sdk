@@ -320,6 +320,7 @@ public class Actions {
         public static final String slack_ai_mcp_resource_read = "slack_ai_mcp_resource_read";
         public static final String slack_ai_mcp_message_sent = "slack_ai_mcp_message_sent";
         public static final String slack_ai_mcp_link_opened = "slack_ai_mcp_link_opened";
+        public static final String slack_ai_mcp_model_context_updated = "slack_ai_mcp_model_context_updated";
         public static final String custom_tos_link_clicked = "custom_tos_link_clicked";
         public static final String prefs_setting_changed = "prefs_setting_changed";
         public static final String auth_policy_created = "auth_policy_created";
@@ -348,6 +349,7 @@ public class Actions {
         public static final String mcp_slack_get_file_upload_url_tool_called = "mcp_slack_get_file_upload_url_tool_called";
         public static final String mcp_slack_complete_file_upload_tool_called = "mcp_slack_complete_file_upload_tool_called";
         public static final String mcp_slack_list_user_channels_tool_called = "mcp_slack_list_user_channels_tool_called";
+        public static final String mcp_slack_todos_list_tool_called = "mcp_slack_todos_list_tool_called";
         public static final String ip_allowlist_enabled = "ip_allowlist_enabled";
         public static final String ip_allowlist_disabled = "ip_allowlist_disabled";
         public static final String team_authorized_ip_range_added = "team_authorized_ip_range_added";
@@ -591,6 +593,7 @@ public class Actions {
         public static final String app_mcp_server_acl_changed = "app_mcp_server_acl_changed";
         public static final String app_mcp_server_auth_strategy_set = "app_mcp_server_auth_strategy_set";
         public static final String app_mcp_tool_acl_changed = "app_mcp_tool_acl_changed";
+        public static final String app_mcp_tool_default_acl_changed = "app_mcp_tool_default_acl_changed";
         public static final String app_dwa_domain_added = "app_dwa_domain_added";
         public static final String app_dwa_domain_removed = "app_dwa_domain_removed";
     }
@@ -765,6 +768,8 @@ public class Actions {
         public static final String salesforce_mcp_server_workspace_revoked = "salesforce_mcp_server_workspace_revoked";
         public static final String salesforce_mcp_server_acl_updated = "salesforce_mcp_server_acl_updated";
         public static final String salesforce_mcp_server_tool_acl_updated = "salesforce_mcp_server_tool_acl_updated";
+        public static final String salesforce_mcp_server_tool_default_updated = "salesforce_mcp_server_tool_default_updated";
+        public static final String salesforce_mcp_server_tool_permissions_deleted = "salesforce_mcp_server_tool_permissions_deleted";
     }
 
     public static class Canvas {

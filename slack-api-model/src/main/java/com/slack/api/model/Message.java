@@ -283,4 +283,30 @@ public class Message {
         @SerializedName("is_reliable")
         private boolean reliable;
     }
+
+    private AgentSession agentSession;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AgentSession {
+        private String status;
+        private List<String> agentBotUserIds;
+        private List<AgentStatus> agentStatuses;
+        private String title;
+        private Long dateStatusProcessingExpire;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AgentStatus {
+        private String agentBotUserId;
+        private String status;
+        @SerializedName("is_stoppable")
+        private boolean stoppable;
+        private Long dateStatusProcessingExpire;
+    }
 }

@@ -5012,6 +5012,7 @@
                     "channel": []
                   },
                   "emoji": "",
+                  "emoji_url": "",
                   "max": 123,
                   "precision": 123,
                   "show_member_name": false,
@@ -5063,7 +5064,8 @@
                 "show_completed_items": false,
                 "grouping": {
                   "group_by": "",
-                  "group_by_column_id": ""
+                  "group_by_column_id": "",
+                  "order": []
                 },
                 "filters": [
                   {
@@ -5075,7 +5077,17 @@
                     "typed_values": [],
                     "column_id": ""
                   }
-                ]
+                ],
+                "sorts": [],
+                "info_column_filters": [],
+                "calculations": [],
+                "options": {
+                  "cover_field": "",
+                  "cover_fit": "",
+                  "calendar_field": ""
+                },
+                "is_template_initial_view": false,
+                "row_height": 123
               }
             ],
             "integrations": [
@@ -17913,6 +17925,7 @@
                       "channel": []
                     },
                     "emoji": "",
+                    "emoji_url": "",
                     "max": 123,
                     "precision": 123,
                     "show_member_name": false,
@@ -17964,7 +17977,8 @@
                   "show_completed_items": false,
                   "grouping": {
                     "group_by": "",
-                    "group_by_column_id": ""
+                    "group_by_column_id": "",
+                    "order": []
                   },
                   "filters": [
                     {
@@ -17976,7 +17990,17 @@
                       "typed_values": [],
                       "column_id": ""
                     }
-                  ]
+                  ],
+                  "sorts": [],
+                  "info_column_filters": [],
+                  "calculations": [],
+                  "options": {
+                    "cover_field": "",
+                    "cover_fit": "",
+                    "calendar_field": ""
+                  },
+                  "is_template_initial_view": false,
+                  "row_height": 123
                 }
               ],
               "integrations": [
@@ -37408,6 +37432,13 @@
                 "language": {
                   "locale": "",
                   "is_reliable": false
+                },
+                "agent_session": {
+                  "status": "",
+                  "agent_bot_user_ids": [],
+                  "agent_statuses": [],
+                  "title": "",
+                  "date_status_processing_expire": 123
                 }
               }
             }
@@ -37947,6 +37978,13 @@
                     "language": {
                       "locale": "",
                       "is_reliable": false
+                    },
+                    "agent_session": {
+                      "status": "",
+                      "agent_bot_user_ids": [],
+                      "agent_statuses": [],
+                      "title": "",
+                      "date_status_processing_expire": 123
                     }
                   },
                   "number": [],
@@ -37990,6 +38028,7 @@
                     "channel": []
                   },
                   "emoji": "",
+                  "emoji_url": "",
                   "max": 123,
                   "precision": 123,
                   "show_member_name": false,
@@ -38534,6 +38573,13 @@
                     "language": {
                       "locale": "",
                       "is_reliable": false
+                    },
+                    "agent_session": {
+                      "status": "",
+                      "agent_bot_user_ids": [],
+                      "agent_statuses": [],
+                      "title": "",
+                      "date_status_processing_expire": 123
                     }
                   },
                   "number": [],
@@ -38629,6 +38675,7 @@
                       "channel": []
                     },
                     "emoji": "",
+                    "emoji_url": "",
                     "max": 123,
                     "precision": 123,
                     "show_member_name": false,
@@ -38680,7 +38727,8 @@
                   "show_completed_items": false,
                   "grouping": {
                     "group_by": "",
-                    "group_by_column_id": ""
+                    "group_by_column_id": "",
+                    "order": []
                   },
                   "filters": [
                     {
@@ -38692,7 +38740,17 @@
                       "typed_values": [],
                       "column_id": ""
                     }
-                  ]
+                  ],
+                  "sorts": [],
+                  "info_column_filters": [],
+                  "calculations": [],
+                  "options": {
+                    "cover_field": "",
+                    "cover_fit": "",
+                    "calendar_field": ""
+                  },
+                  "is_template_initial_view": false,
+                  "row_height": 123
                 }
               ],
               "integrations": [
@@ -38769,6 +38827,7 @@
                   "channel": []
                 },
                 "emoji": "",
+                "emoji_url": "",
                 "max": 123,
                 "precision": 123,
                 "show_member_name": false,
@@ -38818,7 +38877,8 @@
             "show_completed_items": false,
             "grouping": {
               "group_by": "",
-              "group_by_column_id": ""
+              "group_by_column_id": "",
+              "order": []
             },
             "filters": [
               {
@@ -38830,7 +38890,17 @@
                 "typed_values": [],
                 "column_id": ""
               }
-            ]
+            ],
+            "sorts": [],
+            "info_column_filters": [],
+            "calculations": [],
+            "options": {
+              "cover_field": "",
+              "cover_fit": "",
+              "calendar_field": ""
+            },
+            "is_template_initial_view": false,
+            "row_height": 123
           },
           "files": [
             {
@@ -43755,6 +43825,7 @@
                         "channel": []
                       },
                       "emoji": "",
+                      "emoji_url": "",
                       "max": 123,
                       "precision": 123,
                       "show_member_name": false,
@@ -43806,7 +43877,8 @@
                     "show_completed_items": false,
                     "grouping": {
                       "group_by": "",
-                      "group_by_column_id": ""
+                      "group_by_column_id": "",
+                      "order": []
                     },
                     "filters": [
                       {
@@ -43818,7 +43890,17 @@
                         "typed_values": [],
                         "column_id": ""
                       }
-                    ]
+                    ],
+                    "sorts": [],
+                    "info_column_filters": [],
+                    "calculations": [],
+                    "options": {
+                      "cover_field": "",
+                      "cover_fit": "",
+                      "calendar_field": ""
+                    },
+                    "is_template_initial_view": false,
+                    "row_height": 123
                   }
                 ],
                 "integrations": [
@@ -61272,6 +61354,7 @@
                         "channel": []
                       },
                       "emoji": "",
+                      "emoji_url": "",
                       "max": 123,
                       "precision": 123,
                       "show_member_name": false,
@@ -61323,7 +61406,8 @@
                     "show_completed_items": false,
                     "grouping": {
                       "group_by": "",
-                      "group_by_column_id": ""
+                      "group_by_column_id": "",
+                      "order": []
                     },
                     "filters": [
                       {
@@ -61335,7 +61419,17 @@
                         "typed_values": [],
                         "column_id": ""
                       }
-                    ]
+                    ],
+                    "sorts": [],
+                    "info_column_filters": [],
+                    "calculations": [],
+                    "options": {
+                      "cover_field": "",
+                      "cover_fit": "",
+                      "calendar_field": ""
+                    },
+                    "is_template_initial_view": false,
+                    "row_height": 123
                   }
                 ],
                 "integrations": [
@@ -70975,6 +71069,28 @@
       "language": {
         "locale": "",
         "is_reliable": false
+      },
+      "hidden": false,
+      "agent_session": {
+        "status": "",
+        "agent_bot_user_ids": [
+          "U00000000"
+        ],
+        "agent_statuses": [
+          {
+            "agent_bot_user_id": "U00000000",
+            "status": "",
+            "is_stoppable": false,
+            "date_status_processing_expire": 12345
+          },
+          {
+            "agent_bot_user_id": "U00000000",
+            "status": "",
+            "is_stoppable": false
+          }
+        ],
+        "title": "",
+        "date_status_processing_expire": 12345
       }
     }
   ],

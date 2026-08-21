@@ -1329,4 +1329,69 @@ public class files_Test {
         assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
     }
 
+    @Test
+    public void sharedFileWithReply_recordsReplyShareDetail() throws Exception {
+        // Upload a file into a channel, reply in its thread, then read files.info so the
+        // recorded shares.public entry carries the reply-dependent detail (latest_reply,
+        // reply_count, reply_users, reply_users_count). Without a reply these fields are
+        // absent, so the generated response types would otherwise miss them.
+        File file = new File("src/test/resources/sample.txt");
+        FilesUploadV2Response upload = slack.methods(botToken).filesUploadV2(r -> r
+                .file(file)
+                .channel(channelId)
+                .filename("sample.txt")
+                .title("shared file with reply"));
+        assertThat(upload.getError(), is(nullValue()));
+        assertThat(upload.isOk(), is(true));
+
+        String fileId = upload.getFile().getId();
+
+        // The share ts may not be present immediately after upload; poll files.info for it.
+        String shareTs = null;
+        for (int i = 0; i < 10 && shareTs == null; i++) {
+            com.slack.api.model.File fileObj =
+                    slack.methods(botToken).filesInfo(r -> r.file(fileId)).getFile();
+            if (fileObj.getShares() != null
+                    && fileObj.getShares().getPublicChannels() != null
+                    && fileObj.getShares().getPublicChannels().get(channelId) != null) {
+                shareTs = fileObj.getShares().getPublicChannels().get(channelId).get(0).getTs();
+            }
+            if (shareTs == null) {
+                Thread.sleep(2000L);
+            }
+        }
+        assertThat(shareTs, is(notNullValue()));
+
+        // Reply in the shared message's thread so the API populates the reply detail.
+        final String threadTs = shareTs;
+        ChatPostMessageResponse reply = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(channelId)
+                .threadTs(threadTs)
+                .text("a reply to the shared file"));
+        assertThat(reply.getError(), is(nullValue()));
+        assertThat(reply.isOk(), is(true));
+
+        // Poll files.info until the share detail reflects the reply.
+        com.slack.api.model.File.ShareDetail detail = null;
+        for (int i = 0; i < 10; i++) {
+            com.slack.api.model.File fileObj =
+                    slack.methods(botToken).filesInfo(r -> r.file(fileId)).getFile();
+            com.slack.api.model.File.ShareDetail d =
+                    fileObj.getShares().getPublicChannels().get(channelId).get(0);
+            if (d.getLatestReply() != null) {
+                detail = d;
+                break;
+            }
+            Thread.sleep(2000L);
+        }
+        assertThat(detail, is(notNullValue()));
+        assertThat(detail.getLatestReply(), is(notNullValue()));
+        assertThat(detail.getReplyCount(), is(notNullValue()));
+        assertThat(detail.getReplyUsers(), is(notNullValue()));
+        assertThat(detail.getReplyUsersCount(), is(notNullValue()));
+
+        FilesDeleteResponse deletion = slack.methods(botToken).filesDelete(r -> r.file(fileId));
+        assertThat(deletion.getError(), is(nullValue()));
+    }
+
 }
