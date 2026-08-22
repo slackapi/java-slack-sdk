@@ -419,7 +419,8 @@
       "user_passkey_created",
       "user_passkey_name_edited",
       "ip_allowlist_access_denied",
-      "user_password_reset_by_admin"
+      "user_password_reset_by_admin",
+      "slackbot_ai_agent_prompt_submitted"
     ],
     "file": [
       "file_downloaded",
