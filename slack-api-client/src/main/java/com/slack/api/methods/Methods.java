@@ -220,6 +220,13 @@ public class Methods {
     public static final String ADMIN_WORKFLOWS_UNPUBLISH = "admin.workflows.unpublish";
 
     // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    public static final String AGENTS_SESSIONS_RENAME = "agents.sessions.rename";
+    public static final String AGENTS_SESSIONS_SET_STATUS = "agents.sessions.setStatus";
+
+    // ------------------------------
     // api
     // ------------------------------
 
