@@ -596,6 +596,7 @@ public class Actions {
         public static final String app_mcp_tool_default_acl_changed = "app_mcp_tool_default_acl_changed";
         public static final String app_dwa_domain_added = "app_dwa_domain_added";
         public static final String app_dwa_domain_removed = "app_dwa_domain_removed";
+        public static final String slackbot_ai_agent_prompt_submitted = "slackbot_ai_agent_prompt_submitted";
     }
 
     public static class Message {
