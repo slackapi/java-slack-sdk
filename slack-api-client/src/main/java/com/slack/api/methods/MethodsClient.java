@@ -38,6 +38,8 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -191,6 +193,8 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
@@ -1131,6 +1135,24 @@ public interface MethodsClient {
 
     AdminWorkflowsUnpublishResponse adminWorkflowsUnpublish(
             RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    AgentsSessionsRenameResponse agentsSessionsRename(AgentsSessionsRenameRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsRenameResponse agentsSessionsRename(
+            RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(
+            RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

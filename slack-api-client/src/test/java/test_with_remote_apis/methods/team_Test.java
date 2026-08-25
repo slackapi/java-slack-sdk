@@ -163,7 +163,7 @@ public class team_Test {
     @Test
     public void teamInfo_EnterpriseGrid() throws Exception {
         MethodsClient client = slack.methods(gridWorkspaceUserToken);
-        TeamInfoResponse response = client.teamInfo(r -> r);
+        TeamInfoResponse response = client.teamInfo(r -> r.team(gridTeamId));
         assertThat(response.getError(), is(nullValue()));
 
         TeamInfoResponse domainResponse = client.teamInfo(r -> r

@@ -39,6 +39,8 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -720,6 +722,9 @@ public class RequestFormBuilder {
         if (req.getUserIds() != null) {
             setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
         }
+        if (req.getPermissions() != null) {
+            setIfNotNull("permissions", GSON.toJson(req.getPermissions()), form);
+        }
         return form;
     }
 
@@ -1043,6 +1048,27 @@ public class RequestFormBuilder {
         if (req.getWorkflowIds() != null && req.getWorkflowIds().size() > 0) {
             setIfNotNull("workflow_ids", req.getWorkflowIds().stream().collect(joining(",")), form);
         }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsSessionsRenameRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsSessionsSetStatusRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("status", req.getStatus(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("initiator_user_id", req.getInitiatorUserId(), form);
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("username", req.getUsername(), form);
         return form;
     }
 

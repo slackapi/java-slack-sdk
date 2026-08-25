@@ -223,6 +223,9 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_MANIFEST_VALIDATE, Tier3);
         setRateLimitTier(TOOLING_TOKENS_ROTATE, Tier1); // TODO: change this when the "special" tier is clearly explained in the document
 
+        setRateLimitTier(AGENTS_SESSIONS_RENAME, Tier3);
+        setRateLimitTier(AGENTS_SESSIONS_SET_STATUS, Tier3);
+
         setRateLimitTier(API_TEST, Tier4);
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);
         setRateLimitTier(APPS_UNINSTALL, Tier1);

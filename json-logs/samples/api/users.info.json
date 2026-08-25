@@ -52,7 +52,8 @@
           "unicode": ""
         }
       ],
-      "start_date": ""
+      "start_date": "",
+      "guest_expiration_ts": 12345
     },
     "is_admin": false,
     "is_owner": false,
