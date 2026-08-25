@@ -1,6 +1,6 @@
 {
   "ok": false,
-  "error": "invalid_blocks",
+  "error": "",
   "response_metadata": {
     "messages": [
       ""
@@ -10,24 +10,15 @@
   "provided": "",
   "errors": [
     {
-      "code": "failed_constraint",
-      "message": "failed to match all allowed schemas",
-      "pointer": "/0/text",
+      "code": "",
+      "message": "",
+      "pointer": "",
       "constraint": {
-        "type": "all_of"
-      }
-    },
-    {
-      "code": "failed_constraint",
-      "message": "unsupported type: invalid",
-      "pointer": "/0/text/type",
-      "constraint": {
-        "type": "enum",
+        "type": "",
         "expected": [
-          "plain_text",
-          "mrkdwn"
+          ""
         ],
-        "got": "invalid"
+        "got": ""
       }
     }
   ],
