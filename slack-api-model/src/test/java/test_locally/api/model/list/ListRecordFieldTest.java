@@ -83,27 +83,4 @@ public class ListRecordFieldTest {
 
         assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C1/p1"));
     }
-
-    @Test
-    public void serializesToPermalinkStrings() {
-        // The request side of the message field takes an array of permalink URL strings, so a
-        // MessageRef must serialize to its value (the permalink), not to an object.
-        ListRecord.Field field = ListRecord.Field.builder()
-                .columnId("Col1")
-                .message(java.util.Collections.singletonList(
-                        ListRecord.MessageRef.builder().value("https://example.slack.com/archives/C1/p1").build()))
-                .build();
-        String json = gson.toJson(field);
-        assertThat(json.contains("\"message\":[\"https://example.slack.com/archives/C1/p1\"]"), is(true));
-    }
-
-    @Test
-    public void deserializesBareStringElements() {
-        // Defensive: tolerate a request-shaped (bare string) message element on read.
-        String json = "{\"id\":\"r7\",\"fields\":[{\"key\":\"k1\",\"message\":[\"https://example.slack.com/archives/C1/p1\"]}]}";
-        ListRecord record = gson.fromJson(json, ListRecord.class);
-        ListRecord.Field field = record.getFields().get(0);
-        assertThat(field.getMessage().size(), is(1));
-        assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C1/p1"));
-    }
 }

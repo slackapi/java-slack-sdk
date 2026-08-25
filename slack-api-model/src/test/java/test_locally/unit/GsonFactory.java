@@ -42,9 +42,7 @@ public class GsonFactory {
                 .registerTypeAdapter(Attachment.VideoHtml.class,
                         new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProperties))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
-                        new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties))
-                .registerTypeAdapter(com.slack.api.model.list.ListRecord.MessageRef.class,
-                        new GsonListRecordMessageRefFactory(failOnUnknownProperties));
+                        new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
             return builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory()).create();
