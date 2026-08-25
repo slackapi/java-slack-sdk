@@ -60,8 +60,8 @@ public enum MethodsRateLimitTier {
     SpecialTier_chat_getPermalink,
 
     /**
-     * blocks.validate has special rate limiting conditions rather than a standard tier.
-     * See https://docs.slack.dev/reference/methods/blocks.validate.
+     * blocks.validate requires no token, so it has special rate limiting conditions rather than a
+     * standard tier. See https://docs.slack.dev/reference/methods/blocks.validate.
      */
     SpecialTier_blocks_validate;
 
