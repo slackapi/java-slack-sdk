@@ -324,15 +324,6 @@ public class JsonDataRecorder {
                 }
                 array.add(gson.toJsonTree(initProperties(new Bookmark())));
 
-            } else if (path.startsWith("/api/slackLists.")
-                    && name != null && (name.equals("message") || name.equals("messages"))) {
-                // Lists message fields return message objects; an empty live value masks to
-                // [""] and generates the wrong sample type. Inject a populated Message. (#2598)
-                while (!array.isEmpty()) {
-                    array.remove(0);
-                }
-                array.add(gson.toJsonTree(initProperties(new Message())));
-
             } else if (path.startsWith("/api/admin.conversations.") && name != null && name.equals("not_added")) {
                 while (!array.isEmpty()) {
                     array.remove(0);
