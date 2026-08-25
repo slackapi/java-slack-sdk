@@ -9,6 +9,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * https://docs.slack.dev/reference/methods/blocks.validate
+ */
 @Data
 @Builder
 public class BlocksValidateRequest implements SlackApiRequest {
@@ -43,10 +46,6 @@ public class BlocksValidateRequest implements SlackApiRequest {
      */
     private String viewAsString;
 
-    /**
-     * blocks.validate requires no token or scopes.
-     * See https://docs.slack.dev/reference/methods/blocks.validate.
-     */
     @Override
     public String getToken() {
         return null;
