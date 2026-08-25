@@ -70052,11 +70052,6 @@
             "status": "",
             "is_stoppable": false,
             "date_status_processing_expire": 12345
-          },
-          {
-            "agent_bot_user_id": "U00000000",
-            "status": "",
-            "is_stoppable": false
           }
         ],
         "title": "",
