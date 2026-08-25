@@ -1,5 +1,6 @@
 package com.slack.api.methods.response.blocks;
 
+import com.google.gson.JsonElement;
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
@@ -30,9 +31,13 @@ public class BlocksValidateResponse implements SlackApiTextResponse {
 
         @Data
         public static class Constraint {
+            // the constraint kind, e.g. "enum", "min_length", "max_length", "max_items", "all_of"
             private String type;
-            private List<String> expected;
-            private String got;
+            // the accepted value(s); shape varies by constraint type: an array of strings for
+            // "enum", a number for length/count constraints, or absent (e.g. for "all_of")
+            private JsonElement expected;
+            // the offending value that was supplied; likewise a string, number, or absent
+            private JsonElement got;
         }
     }
 }

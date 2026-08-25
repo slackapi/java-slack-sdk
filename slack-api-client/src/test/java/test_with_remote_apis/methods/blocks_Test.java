@@ -2,10 +2,13 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.response.blocks.BlocksValidateResponse;
+import com.slack.api.model.block.DividerBlock;
+import com.slack.api.model.block.LayoutBlock;
 import config.SlackTestConfig;
 import org.junit.AfterClass;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,5 +51,22 @@ public class blocks_Test {
         assertThat(first.getPointer(), is(notNullValue()));
         assertThat(first.getCode(), is(notNullValue()));
         assertThat(first.getMessage(), is(notNullValue()));
+    }
+
+    @Test
+    public void validate_numericConstraint() throws Exception {
+        // Exceeding the block limit returns a max_items constraint whose expected/got are numbers,
+        // not the enum case's string array — exercising the polymorphic constraint fields.
+        List<LayoutBlock> tooMany = new ArrayList<>();
+        for (int i = 0; i < 60; i++) {
+            tooMany.add(DividerBlock.builder().build());
+        }
+        BlocksValidateResponse response = slack.methods().blocksValidate(r -> r.blocks(tooMany));
+        assertThat(response.isOk(), is(false));
+        assertThat(response.getError(), is("invalid_blocks"));
+        BlocksValidateResponse.Error.Constraint constraint = response.getErrors().get(0).getConstraint();
+        assertThat(constraint, is(notNullValue()));
+        assertThat(constraint.getExpected().getAsInt(), is(50));
+        assertThat(constraint.getGot().getAsInt(), is(60));
     }
 }
