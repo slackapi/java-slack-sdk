@@ -3,11 +3,17 @@ package test_locally.api.methods;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.blocks.BlocksValidateResponse;
+import com.slack.api.model.block.LayoutBlock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static com.slack.api.model.block.Blocks.section;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,7 +24,9 @@ public class BlocksTest {
     SlackConfig config = new SlackConfig();
     Slack slack = Slack.getInstance(config);
 
-    private static final String BLOCKS =
+    private static final List<LayoutBlock> BLOCKS = Arrays.asList(
+            section(s -> s.text(plainText("Hello world"))));
+    private static final String BLOCKS_AS_STRING =
             "[{\"type\":\"section\",\"text\":{\"type\":\"plain_text\",\"text\":\"Hello world\"}}]";
 
     @Before
@@ -43,7 +51,8 @@ public class BlocksTest {
 
     @Test
     public void validate_async() throws Exception {
-        BlocksValidateResponse response = slack.methodsAsync().blocksValidate(r -> r.blocks(BLOCKS)).get();
+        BlocksValidateResponse response = slack.methodsAsync()
+                .blocksValidate(r -> r.blocksAsString(BLOCKS_AS_STRING)).get();
         assertThat(response.isOk(), is(true));
         assertThat(response.getErrors(), is(notNullValue()));
         BlocksValidateResponse.Error error = response.getErrors().get(0);

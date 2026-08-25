@@ -1245,7 +1245,14 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(BlocksValidateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("blocks", req.getBlocks(), form);
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            form.add("blocks", getJsonWithGsonAnonymInnerClassHandling(req.getBlocks()));
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
         setIfNotNull("message", req.getMessage(), form);
         setIfNotNull("view", req.getView(), form);
         return form;

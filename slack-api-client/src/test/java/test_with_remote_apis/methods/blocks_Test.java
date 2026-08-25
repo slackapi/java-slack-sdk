@@ -6,8 +6,11 @@ import config.SlackTestConfig;
 import org.junit.AfterClass;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
+import static com.slack.api.model.block.Blocks.section;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -25,8 +28,8 @@ public class blocks_Test {
 
     @Test
     public void validate_wellFormed() throws Exception {
-        String validBlocks = "[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"Hello\"}}]";
-        BlocksValidateResponse response = slack.methods().blocksValidate(r -> r.blocks(validBlocks));
+        BlocksValidateResponse response = slack.methods().blocksValidate(r -> r
+                .blocks(Arrays.asList(section(s -> s.text(markdownText("Hello"))))));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getErrors() == null || response.getErrors().isEmpty(), is(true));
@@ -35,7 +38,7 @@ public class blocks_Test {
     @Test
     public void validate_malformed() throws Exception {
         String invalidBlocks = "[{\"type\":\"section\",\"text\":{\"type\":\"invalid\",\"text\":\"Hello\"}}]";
-        BlocksValidateResponse response = slack.methods().blocksValidate(r -> r.blocks(invalidBlocks));
+        BlocksValidateResponse response = slack.methods().blocksValidate(r -> r.blocksAsString(invalidBlocks));
         assertThat(response.isOk(), is(false));
         assertThat(response.getError(), is("invalid_blocks"));
         List<BlocksValidateResponse.Error> errors = response.getErrors();
