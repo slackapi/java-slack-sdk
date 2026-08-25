@@ -29,14 +29,12 @@ public class BlocksValidateResponse implements SlackApiTextResponse {
         private String message;
         private Constraint constraint;
 
+        // expected/got are JsonElement because their shape varies by constraint type
+        // (a string array for "enum", a number for length/count constraints, or absent).
         @Data
         public static class Constraint {
-            // the constraint kind, e.g. "enum", "min_length", "max_length", "max_items", "all_of"
             private String type;
-            // the accepted value(s); shape varies by constraint type: an array of strings for
-            // "enum", a number for length/count constraints, or absent (e.g. for "all_of")
             private JsonElement expected;
-            // the offending value that was supplied; likewise a string, number, or absent
             private JsonElement got;
         }
     }
