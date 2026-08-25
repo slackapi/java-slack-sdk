@@ -28,7 +28,9 @@ public class blocks_Test {
 
     @Test
     public void validate_wellFormed() throws Exception {
-        // A well-formed block payload should validate without errors.
+        // A well-formed blocks payload validates cleanly: ok=true, no top-level error, and an
+        // empty (or absent) errors[]. See the "Typical success response" in the method reference:
+        // https://docs.slack.dev/reference/methods/blocks.validate#response
         String validBlocks = "[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"Hello\"}}]";
         BlocksValidateResponse response = slack.methods(botToken).blocksValidate(r -> r.blocks(validBlocks));
         assertThat(response.getError(), is(nullValue()));
@@ -38,23 +40,27 @@ public class blocks_Test {
 
     @Test
     public void validate_malformed() throws Exception {
-        // A malformed block payload (a section with neither text nor fields) should surface
-        // validation feedback. This test records the live contract rather than asserting a fixed
-        // shape: blocks.validate may return ok=false with an error, or ok=true with a populated
-        // errors[] carrying code/message/pointer/relatedComponent.
+        // A malformed blocks payload (a section with neither text nor fields) surfaces validation
+        // feedback. This test records the live contract rather than asserting a fixed shape:
+        // blocks.validate may answer with ok=false and error="invalid_blocks" plus a populated
+        // errors[], or (defensively) ok=true with errors[]. Each Error mirrors the documented
+        // contract — pointer / code / message / constraint — where constraint is a structured
+        // object (e.g. {"type":"enum","expected":["plain_text","mrkdwn"]}), NOT a flat string.
+        // https://docs.slack.dev/reference/methods/blocks.validate#validation-errors
         String invalidBlocks = "[{\"type\":\"section\"}]";
         BlocksValidateResponse response = slack.methods(botToken).blocksValidate(r -> r.blocks(invalidBlocks));
-        if (response.isOk()) {
-            List<BlocksValidateResponse.Error> errors = response.getErrors();
-            assertThat(errors, is(notNullValue()));
-            assertThat(errors.isEmpty(), is(false));
-            BlocksValidateResponse.Error first = errors.get(0);
-            // The error entry carries the structured validation feedback contract.
-            assertThat(first.getCode(), is(notNullValue()));
-            assertThat(first.getMessage(), is(notNullValue()));
-            assertThat(first.getPointer(), is(notNullValue()));
-        } else {
-            assertThat(response.getError(), is(notNullValue()));
+        List<BlocksValidateResponse.Error> errors = response.getErrors();
+        if (!response.isOk()) {
+            // Failed validation reports "invalid_blocks" and enumerates each issue in errors[].
+            assertThat(response.getError(), is("invalid_blocks"));
         }
+        // Whether ok is true or false, a malformed payload should enumerate at least one issue.
+        assertThat(errors, is(notNullValue()));
+        assertThat(errors.isEmpty(), is(false));
+        BlocksValidateResponse.Error first = errors.get(0);
+        // The three always-present fields of the structured validation feedback contract.
+        assertThat(first.getPointer(), is(notNullValue()));
+        assertThat(first.getCode(), is(notNullValue()));
+        assertThat(first.getMessage(), is(notNullValue()));
     }
 }

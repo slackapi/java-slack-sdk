@@ -1,6 +1,6 @@
 {
   "ok": false,
-  "error": "",
+  "error": "invalid_blocks",
   "response_metadata": {
     "messages": [
       ""
@@ -10,10 +10,16 @@
   "provided": "",
   "errors": [
     {
-      "code": "",
-      "message": "",
-      "pointer": "",
-      "related_component": ""
+      "code": "failed_constraint",
+      "message": "unsupported type: invalid",
+      "pointer": "/0/text/type",
+      "constraint": {
+        "type": "enum",
+        "expected": [
+          "plain_text",
+          "mrkdwn"
+        ]
+      }
     }
   ],
   "warning": ""
