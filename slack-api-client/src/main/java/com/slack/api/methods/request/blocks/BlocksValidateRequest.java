@@ -1,7 +1,9 @@
 package com.slack.api.methods.request.blocks;
 
 import com.slack.api.methods.SlackApiRequest;
+import com.slack.api.model.Attachment;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.view.View;
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,14 +24,24 @@ public class BlocksValidateRequest implements SlackApiRequest {
     private String blocksAsString;
 
     /**
-     * A JSON-encoded string of a message payload to validate.
+     * A message payload to validate.
      */
-    private String message;
+    private MessagePayload message;
 
     /**
-     * A JSON-encoded string of a view payload to validate.
+     * A message payload to validate, as a JSON-encoded string.
      */
-    private String view;
+    private String messageAsString;
+
+    /**
+     * A view payload to validate.
+     */
+    private View view;
+
+    /**
+     * A view payload to validate, as a JSON-encoded string.
+     */
+    private String viewAsString;
 
     /**
      * blocks.validate requires no token or scopes.
@@ -38,5 +50,12 @@ public class BlocksValidateRequest implements SlackApiRequest {
     @Override
     public String getToken() {
         return null;
+    }
+
+    @Data
+    @Builder
+    public static class MessagePayload {
+        private List<LayoutBlock> blocks;
+        private List<Attachment> attachments;
     }
 }
