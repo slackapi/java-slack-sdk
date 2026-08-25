@@ -14,8 +14,6 @@ import com.slack.api.model.block.element.RichTextElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.util.json.*;
-import com.slack.api.model.list.ListRecord;
-import com.slack.api.util.json.GsonListRecordFieldFactory;
 
 public class GsonFactory {
     private GsonFactory() {
@@ -45,7 +43,8 @@ public class GsonFactory {
                         new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProperties))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
                         new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties))
-                .registerTypeAdapter(ListRecord.Field.class, new GsonListRecordFieldFactory(failOnUnknownProperties));
+                .registerTypeAdapter(com.slack.api.model.list.ListRecord.MessageRef.class,
+                        new GsonListRecordMessageRefFactory(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
             return builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory()).create();
