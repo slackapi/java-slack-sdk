@@ -20,23 +20,19 @@ public class BlocksValidateResponse implements SlackApiTextResponse {
     private ResponseMetadata responseMetadata;
     private List<Error> errors;
 
+    // https://docs.slack.dev/reference/methods/blocks.validate#validation-errors
     @Data
     public static class Error {
-        // The fields below mirror the documented errors[] contract:
-        // https://docs.slack.dev/reference/methods/blocks.validate#validation-errors
-        // a JSON pointer path to the invalid element (e.g. "/0/text/type")
         private String pointer;
-        // the error code (e.g. "failed_constraint")
         private String code;
-        // a human-readable description of the issue
         private String message;
-        // structured details about what was expected (e.g. {"type": "enum", "expected": ["plain_text", "mrkdwn"]})
         private Constraint constraint;
 
         @Data
         public static class Constraint {
             private String type;
             private List<String> expected;
+            private String got;
         }
     }
 }
