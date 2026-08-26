@@ -60,6 +60,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -214,6 +215,7 @@ import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitl
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
@@ -1580,6 +1582,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AuthTeamsListResponse authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req) throws IOException, SlackApiException {
         return authTeamsList(req.configure(AuthTeamsListRequest.builder()).build());
+    }
+
+    @Override
+    public BlocksValidateResponse blocksValidate(BlocksValidateRequest req) throws IOException, SlackApiException {
+        return postFormAndParseResponse(toForm(req), Methods.BLOCKS_VALIDATE, BlocksValidateResponse.class);
+    }
+
+    @Override
+    public BlocksValidateResponse blocksValidate(RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req) throws IOException, SlackApiException {
+        return blocksValidate(req.configure(BlocksValidateRequest.builder()).build());
     }
 
     @Override
