@@ -240,6 +240,8 @@ public class MethodsRateLimits {
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);
         setRateLimitTier(AUTH_TEAMS_LIST, Tier2);
 
+        setRateLimitTier(BLOCKS_VALIDATE, SpecialTier_blocks_validate);
+
         setRateLimitTier(BOOKMARKS_ADD, Tier2);
         setRateLimitTier(BOOKMARKS_EDIT, Tier2);
         setRateLimitTier(BOOKMARKS_LIST, Tier3);
