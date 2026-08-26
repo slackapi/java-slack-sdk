@@ -39,6 +39,8 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -57,6 +59,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -1048,6 +1051,27 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AgentsSessionsRenameRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsSessionsSetStatusRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("status", req.getStatus(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("initiator_user_id", req.getInitiatorUserId(), form);
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("username", req.getUsername(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(ApiTestRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("foo", req.getFoo(), form);
@@ -1216,6 +1240,35 @@ public class RequestFormBuilder {
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("include_icon", req.getIncludeIcon(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(BlocksValidateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            form.add("blocks", getJsonWithGsonAnonymInnerClassHandling(req.getBlocks()));
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+        if (req.getMessageAsString() != null) {
+            form.add("message", req.getMessageAsString());
+        } else if (req.getMessage() != null) {
+            form.add("message", GSON.toJson(req.getMessage()));
+        }
+        if (req.getMessageAsString() != null && req.getMessage() != null) {
+            log.warn("Although you set both messageAsString and message, only messageAsString was used.");
+        }
+        if (req.getViewAsString() != null) {
+            form.add("view", req.getViewAsString());
+        } else if (req.getView() != null) {
+            form.add("view", GSON.toJson(req.getView()));
+        }
+        if (req.getViewAsString() != null && req.getView() != null) {
+            log.warn("Although you set both viewAsString and view, only viewAsString was used.");
+        }
         return form;
     }
 

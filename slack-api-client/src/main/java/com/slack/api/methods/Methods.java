@@ -220,6 +220,13 @@ public class Methods {
     public static final String ADMIN_WORKFLOWS_UNPUBLISH = "admin.workflows.unpublish";
 
     // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    public static final String AGENTS_SESSIONS_RENAME = "agents.sessions.rename";
+    public static final String AGENTS_SESSIONS_SET_STATUS = "agents.sessions.setStatus";
+
+    // ------------------------------
     // api
     // ------------------------------
 
@@ -303,6 +310,12 @@ public class Methods {
     // ------------------------------
 
     public static final String AUTH_TEAMS_LIST = "auth.teams.list";
+
+    // ------------------------------
+    // blocks
+    // ------------------------------
+
+    public static final String BLOCKS_VALIDATE = "blocks.validate";
 
     // ------------------------------
     // bookmarks
