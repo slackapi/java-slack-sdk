@@ -9740,7 +9740,12 @@
             "canvas_printing_enabled": false,
             "is_ai_suggested": false,
             "is_modified_by_ai": false,
-            "ai_summary": {},
+            "ai_summary": {
+              "id": "",
+              "unfurl_enabled": false,
+              "status": "",
+              "content": ""
+            },
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -22654,7 +22659,12 @@
               "canvas_printing_enabled": false,
               "is_ai_suggested": false,
               "is_modified_by_ai": false,
-              "ai_summary": {},
+              "ai_summary": {
+                "id": "",
+                "unfurl_enabled": false,
+                "status": "",
+                "content": ""
+              },
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -37212,7 +37222,12 @@
                     "canvas_printing_enabled": false,
                     "is_ai_suggested": false,
                     "is_modified_by_ai": false,
-                    "ai_summary": {},
+                    "ai_summary": {
+                      "id": "",
+                      "unfurl_enabled": false,
+                      "status": "",
+                      "content": ""
+                    },
                     "bot_id": "",
                     "initial_comment": {
                       "id": "",
@@ -37759,7 +37774,12 @@
                         "canvas_printing_enabled": false,
                         "is_ai_suggested": false,
                         "is_modified_by_ai": false,
-                        "ai_summary": {},
+                        "ai_summary": {
+                          "id": "",
+                          "unfurl_enabled": false,
+                          "status": "",
+                          "content": ""
+                        },
                         "bot_id": "",
                         "initial_comment": {
                           "id": "",
@@ -38355,7 +38375,12 @@
                         "canvas_printing_enabled": false,
                         "is_ai_suggested": false,
                         "is_modified_by_ai": false,
-                        "ai_summary": {},
+                        "ai_summary": {
+                          "id": "",
+                          "unfurl_enabled": false,
+                          "status": "",
+                          "content": ""
+                        },
                         "bot_id": "",
                         "initial_comment": {
                           "id": "",
@@ -48558,7 +48583,12 @@
                 "canvas_printing_enabled": false,
                 "is_ai_suggested": false,
                 "is_modified_by_ai": false,
-                "ai_summary": {},
+                "ai_summary": {
+                  "id": "",
+                  "unfurl_enabled": false,
+                  "status": "",
+                  "content": ""
+                },
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -66088,7 +66118,12 @@
                 "canvas_printing_enabled": false,
                 "is_ai_suggested": false,
                 "is_modified_by_ai": false,
-                "ai_summary": {},
+                "ai_summary": {
+                  "id": "",
+                  "unfurl_enabled": false,
+                  "status": "",
+                  "content": ""
+                },
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
