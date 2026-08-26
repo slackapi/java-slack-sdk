@@ -393,6 +393,7 @@ public class File {
 
     private boolean isAiSuggested;
     private boolean isModifiedByAi;
+    private String aiSummary;
 
     // ---------------------------------------
     // file comments

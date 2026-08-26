@@ -435,6 +435,7 @@ public class Actions {
         public static final String slack_ai_skill_external_copy_added = "slack_ai_skill_external_copy_added";
         public static final String ip_allowlist_access_denied = "ip_allowlist_access_denied";
         public static final String team_ip_allowlist_access_denied = "team_ip_allowlist_access_denied";
+        public static final String team_ip_allowlist_range_added = "team_ip_allowlist_range_added";
         public static final String slackbot_ai_agent_prompt_submitted = "slackbot_ai_agent_prompt_submitted";
     }
 
