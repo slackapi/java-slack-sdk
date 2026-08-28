@@ -28,6 +28,30 @@ public class Blocks {
     public static ActionsBlock actions(String blockId, List<BlockElement> elements) {
         return ActionsBlock.builder().blockId(blockId).elements(elements).build();
     }
+  
+    // AlertBlock
+
+    public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
+        return configurator.configure(AlertBlock.builder()).build();
+    }
+  
+    // CallBlock
+
+    public static CallBlock call(ModelConfigurator<CallBlock.CallBlockBuilder> configurator) {
+        return configurator.configure(CallBlock.builder()).build();
+    }
+  
+    // CardBlock
+
+    public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
+        return configurator.configure(CardBlock.builder()).build();
+    }
+
+    // CarouselBlock
+
+    public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
+        return configurator.configure(CarouselBlock.builder()).build();
+    }
 
     // ContextBlock
 
@@ -70,23 +94,17 @@ public class Blocks {
     public static DividerBlock divider() {
         return DividerBlock.builder().build();
     }
+  
+    // FileBlock
+
+    public static FileBlock file(ModelConfigurator<FileBlock.FileBlockBuilder> configurator) {
+        return configurator.configure(FileBlock.builder()).build();
+    }
 
     // HeaderBlock
 
     public static HeaderBlock header(ModelConfigurator<HeaderBlock.HeaderBlockBuilder> configurator) {
         return configurator.configure(HeaderBlock.builder()).build();
-    }
-
-    // CallBlock
-
-    public static CallBlock call(ModelConfigurator<CallBlock.CallBlockBuilder> configurator) {
-        return configurator.configure(CallBlock.builder()).build();
-    }
-
-    // FileBlock
-
-    public static FileBlock file(ModelConfigurator<FileBlock.FileBlockBuilder> configurator) {
-        return configurator.configure(FileBlock.builder()).build();
     }
 
     // ImageBlock
@@ -119,32 +137,22 @@ public class Blocks {
         return configurator.configure(SectionBlock.builder()).build();
     }
 
-    // VideoBlock
-    public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
-        return configurator.configure(VideoBlock.builder()).build();
-    }
-
     // ShareShortcutBlock
+
     public static ShareShortcutBlock shareShortcut() {
         return ShareShortcutBlock.builder().build();
     }
 
-    // AlertBlock
+    // TableBlock
 
-    public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
-        return configurator.configure(AlertBlock.builder()).build();
+    public static TableBlock table(ModelConfigurator<TableBlock.TableBlockBuilder> configurator) {
+        return configurator.configure(TableBlock.builder()).build();
     }
 
-    // CardBlock
+    // VideoBlock
 
-    public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
-        return configurator.configure(CardBlock.builder()).build();
-    }
-
-    // CarouselBlock
-
-    public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
-        return configurator.configure(CarouselBlock.builder()).build();
+    public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
+        return configurator.configure(VideoBlock.builder()).build();
     }
 
 }
