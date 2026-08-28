@@ -1999,40 +1999,6 @@ public class BlockKitTest {
     }
 
     @Test
-    public void parseTableBlock() {
-        // https://docs.slack.dev/reference/block-kit/blocks/table-block
-        String json = "{\n" +
-                "  \"blocks\": [\n" +
-                "    {\n" +
-                "      \"type\": \"table\",\n" +
-                "      \"block_id\": \"table1\",\n" +
-                "      \"column_settings\": [\n" +
-                "        { \"align\": \"left\", \"is_wrapped\": false },\n" +
-                "        { \"align\": \"right\", \"is_wrapped\": true }\n" +
-                "      ],\n" +
-                "      \"rows\": [\n" +
-                "        [\n" +
-                "          { \"type\": \"raw_text\", \"text\": \"Item\" },\n" +
-                "          { \"type\": \"raw_text\", \"text\": \"Cost\" }\n" +
-                "        ],\n" +
-                "        [\n" +
-                "          {\n" +
-                "            \"type\": \"rich_text\",\n" +
-                "            \"elements\": [\n" +
-                "              {\n" +
-                "                \"type\": \"rich_text_section\",\n" +
-                "                \"elements\": [\n" +
-                "                  { \"type\": \"text\", \"text\": \"Rent\", \"style\": { \"bold\": true } }\n" +
-                "                ]\n" +
-                "              }\n" +
-                "            ]\n" +
-                "          },\n" +
-                "          { \"type\": \"raw_number\", \"value\": 400, \"text\": \"$400\" }\n" +
-                "        ]\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";
     public void parseCardBlock() {
         // https://docs.slack.dev/reference/block-kit/blocks/card-block
         String json = "{\"blocks\":[\n" +
@@ -2078,6 +2044,70 @@ public class BlockKitTest {
         assertThat(message, is(notNullValue()));
         assertThat(message.getBlocks().size(), is(1));
 
+        CardBlock card = (CardBlock) message.getBlocks().get(0);
+        assertThat(card.getType(), is("card"));
+        assertThat(card.getBlockId(), is("card1"));
+        assertThat(card.getIcon().getImageUrl(), is("https://picsum.photos/36/36"));
+        assertThat(card.getIcon().getAltText(), is("Icon"));
+        assertThat(card.getHeroImage().getImageUrl(), is("https://picsum.photos/400/300"));
+        assertThat(card.getHeroImage().getAltText(), is("Sample hero image"));
+        assertThat(card.getTitle().getType(), is("mrkdwn"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getTitle()).getText(), is("Lumon Industries"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getSubtitle()).getText(), is("Committed to work-life balance"));
+        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getBody()).getText(), is("Please enjoy each card equally."));
+        assertThat(card.getActions().size(), is(1));
+        ButtonElement button = (ButtonElement) card.getActions().get(0);
+        assertThat(button.getActionId(), is("button_action"));
+        assertThat(button.getText().getText(), is("Action Button"));
+
+        // Round-trip back to JSON and ensure the card survives serialization.
+        Message roundTrip = gson.fromJson(gson.toJson(message), Message.class);
+        CardBlock reparsed = (CardBlock) roundTrip.getBlocks().get(0);
+        assertThat(reparsed.getBlockId(), is("card1"));
+        assertThat(reparsed.getActions().size(), is(1));
+        assertThat(((ButtonElement) reparsed.getActions().get(0)).getActionId(), is("button_action"));
+    }
+
+    @Test
+    public void parseTableBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/table-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"table\",\n" +
+                "      \"block_id\": \"table1\",\n" +
+                "      \"column_settings\": [\n" +
+                "        { \"align\": \"left\", \"is_wrapped\": false },\n" +
+                "        { \"align\": \"right\", \"is_wrapped\": true }\n" +
+                "      ],\n" +
+                "      \"rows\": [\n" +
+                "        [\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Item\" },\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Cost\" }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [\n" +
+                "                  { \"type\": \"text\", \"text\": \"Rent\", \"style\": { \"bold\": true } }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          },\n" +
+                "          { \"type\": \"raw_number\", \"value\": 400, \"text\": \"$400\" }\n" +
+                "        ]\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
         TableBlock table = (TableBlock) message.getBlocks().get(0);
         assertThat(table.getType(), is("table"));
         assertThat(table.getBlockId(), is("table1"));
@@ -2108,9 +2138,9 @@ public class BlockKitTest {
 
         // round-trips back to a table block
         String output = gson.toJson(table);
-        TableBlock reparsed = gson.fromJson(output, TableBlock.class);
-        assertThat(reparsed.getRows().size(), is(2));
-        assertThat(((RawTextTableCell) reparsed.getRows().get(0).get(1)).getText(), is("Cost"));
+        TableBlock reparsedTable = gson.fromJson(output, TableBlock.class);
+        assertThat(reparsedTable.getRows().size(), is(2));
+        assertThat(((RawTextTableCell) reparsedTable.getRows().get(0).get(1)).getText(), is("Cost"));
     }
 
     @Test
@@ -2126,28 +2156,6 @@ public class BlockKitTest {
         assertThat(table, is(notNullValue()));
         assertThat(table.getType(), is("table"));
         assertThat(table.getRows().get(0).size(), is(2));
-        CardBlock card = (CardBlock) message.getBlocks().get(0);
-        assertThat(card.getType(), is("card"));
-        assertThat(card.getBlockId(), is("card1"));
-        assertThat(card.getIcon().getImageUrl(), is("https://picsum.photos/36/36"));
-        assertThat(card.getIcon().getAltText(), is("Icon"));
-        assertThat(card.getHeroImage().getImageUrl(), is("https://picsum.photos/400/300"));
-        assertThat(card.getHeroImage().getAltText(), is("Sample hero image"));
-        assertThat(card.getTitle().getType(), is("mrkdwn"));
-        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getTitle()).getText(), is("Lumon Industries"));
-        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getSubtitle()).getText(), is("Committed to work-life balance"));
-        assertThat(((com.slack.api.model.block.composition.MarkdownTextObject) card.getBody()).getText(), is("Please enjoy each card equally."));
-        assertThat(card.getActions().size(), is(1));
-        ButtonElement button = (ButtonElement) card.getActions().get(0);
-        assertThat(button.getActionId(), is("button_action"));
-        assertThat(button.getText().getText(), is("Action Button"));
-
-        // Round-trip back to JSON and ensure the card survives serialization.
-        Message roundTrip = gson.fromJson(gson.toJson(message), Message.class);
-        CardBlock reparsed = (CardBlock) roundTrip.getBlocks().get(0);
-        assertThat(reparsed.getBlockId(), is("card1"));
-        assertThat(reparsed.getActions().size(), is(1));
-        assertThat(((ButtonElement) reparsed.getActions().get(0)).getActionId(), is("button_action"));
     }
 
     @Test

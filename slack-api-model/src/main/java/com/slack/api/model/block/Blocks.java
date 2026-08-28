@@ -151,5 +151,6 @@ public class Blocks {
 
     public static TableBlock table(ModelConfigurator<TableBlock.TableBlockBuilder> configurator) {
         return configurator.configure(TableBlock.builder()).build();
+    }
 
 }
