@@ -63,7 +63,7 @@ If instead you would prefer to use the `Java-WebSocket` implementation, swap its
 <dependency>
   <groupId>org.java-websocket</groupId>
   <artifactId>Java-WebSocket</artifactId>
-  <version>1.5.1</version>
+  <version>1.6.0</version>
 </dependency>
 ```
 
@@ -329,8 +329,8 @@ The default constructor expects the following two environment variables to exist
 
 |Env Variable|Description|
 |-|-|
-|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, install your Slack app that has a bot user to your development workspace. Visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/tools/java-slack-sdk/guides/app-distribution) for further information.|
-|`SLACK_SIGNING_SECRET`|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [Verifying requests from Slack](/authentication/verifying-requests-from-slack) for more information.|
+|`SLACK_BOT_TOKEN`|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, install your Slack app that has a bot user to your development workspace. Visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](/reference/scopes/app_mentions.read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)](/tools/java-slack-sdk/guides/app-distribution) for further information.|
+|`SLACK_SIGNING_SECRET`|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [Verifying requests from Slack](/authentication/verifying-requests-from-slack) for more information.|
 
 If you prefer configuring an `App` in a different way, write some code to initialize `AppConfig` on your own.
 

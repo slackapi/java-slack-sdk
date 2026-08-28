@@ -38,6 +38,8 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -50,6 +52,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -177,6 +180,8 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
@@ -189,6 +194,7 @@ import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitl
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
@@ -795,6 +801,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminWorkflowsUnpublishResponse> adminWorkflowsUnpublish(RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req);
 
     // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(AgentsSessionsRenameRequest req);
+
+    CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req);
+
+    CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req);
+
+    CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req);
+
+    // ------------------------------
     // api
     // ------------------------------
 
@@ -894,6 +912,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<AuthTeamsListResponse> authTeamsList(AuthTeamsListRequest req);
 
     CompletableFuture<AuthTeamsListResponse> authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req);
+
+    // ------------------------------
+    // blocks
+    // ------------------------------
+
+    CompletableFuture<BlocksValidateResponse> blocksValidate(BlocksValidateRequest req);
+
+    CompletableFuture<BlocksValidateResponse> blocksValidate(RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req);
 
     // ------------------------------
     // bookmarks

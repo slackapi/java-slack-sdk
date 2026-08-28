@@ -71,6 +71,7 @@ public class GsonFileFactory implements JsonDeserializer<File>, JsonSerializer<F
 
     @Override
     public JsonElement serialize(File src, Type typeOfSrc, JsonSerializationContext context) {
-        return context.serialize(src);
+        // To prevent StackOverflowError here, serialize as File's subclass (see deserialize above).
+        return context.serialize(src, NormalizedFile.class);
     }
 }

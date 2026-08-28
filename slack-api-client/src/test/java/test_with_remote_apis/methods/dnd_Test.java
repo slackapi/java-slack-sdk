@@ -52,7 +52,12 @@ public class dnd_Test {
         {
             List<String> users = new ArrayList<>();
             for (User member : members) {
-                users.add(member.getId());
+                if (!member.isDeleted()) {
+                    users.add(member.getId());
+                }
+                if (users.size() >= 50) {
+                    break;
+                }
             }
             DndTeamInfoResponse response = slack.methods().dndTeamInfo(r -> r.token(botToken).users(users));
             assertThat(response.getError(), is(nullValue()));
