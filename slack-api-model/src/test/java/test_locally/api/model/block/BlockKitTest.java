@@ -2202,4 +2202,80 @@ public class BlockKitTest {
         assertThat(parsedCarousel.getElements().get(0).getBlockId(), is("card1"));
         assertThat(parsedCarousel.getElements().get(0).getActions().size(), is(1));
     }
+
+    @Test
+    public void parseTaskCardBlock() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"task_card\",\n" +
+                "      \"task_id\": \"task_1\",\n" +
+                "      \"title\": \"Fetching weather data\",\n" +
+                "      \"status\": \"pending\",\n" +
+                "      \"output\": {\n" +
+                "        \"type\": \"rich_text\",\n" +
+                "        \"elements\": [\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text_section\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"text\",\n" +
+                "                \"text\": \"Found weather data for Chicago from 2 sources\"\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      \"sources\": [\n" +
+                "        {\n" +
+                "          \"type\": \"url\",\n" +
+                "          \"url\": \"https://weather.com/\",\n" +
+                "          \"text\": \"weather.com\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"url\",\n" +
+                "          \"url\": \"https://www.accuweather.com/\",\n" +
+                "          \"text\": \"accuweather.com\"\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        TaskCardBlock taskCard = (TaskCardBlock) message.getBlocks().get(0);
+        assertThat(taskCard.getType(), is("task_card"));
+        assertThat(taskCard.getTaskId(), is("task_1"));
+        assertThat(taskCard.getTitle(), is("Fetching weather data"));
+        assertThat(taskCard.getStatus(), is("pending"));
+
+        assertThat(taskCard.getOutput(), is(notNullValue()));
+        assertThat(taskCard.getOutput().getType(), is("rich_text"));
+
+        assertThat(taskCard.getSources().size(), is(2));
+        assertThat(taskCard.getSources().get(0).getType(), is("url"));
+        assertThat(taskCard.getSources().get(0).getUrl(), is("https://weather.com/"));
+        assertThat(taskCard.getSources().get(0).getText(), is("weather.com"));
+        assertThat(taskCard.getSources().get(1).getUrl(), is("https://www.accuweather.com/"));
+        assertThat(taskCard.getSources().get(1).getText(), is("accuweather.com"));
+    }
+
+    @Test
+    public void buildTaskCardBlock() {
+        TaskCardBlock taskCard = Blocks.taskCard(t -> t
+                .taskId("task_42")
+                .title("Processing data")
+                .status("in_progress")
+                .sources(Arrays.asList(
+                        UrlSourceElement.builder().url("https://example.com").text("example").build())));
+        assertThat(taskCard, is(notNullValue()));
+        assertThat(taskCard.getType(), is("task_card"));
+        assertThat(taskCard.getTaskId(), is("task_42"));
+        assertThat(taskCard.getTitle(), is("Processing data"));
+        assertThat(taskCard.getStatus(), is("in_progress"));
+        assertThat(taskCard.getSources().size(), is(1));
+    }
 }
