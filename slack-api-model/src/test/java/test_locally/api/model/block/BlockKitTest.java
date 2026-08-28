@@ -2069,96 +2069,6 @@ public class BlockKitTest {
     }
 
     @Test
-    public void parseTableBlock() {
-        // https://docs.slack.dev/reference/block-kit/blocks/table-block
-        String json = "{\n" +
-                "  \"blocks\": [\n" +
-                "    {\n" +
-                "      \"type\": \"table\",\n" +
-                "      \"block_id\": \"table1\",\n" +
-                "      \"column_settings\": [\n" +
-                "        { \"align\": \"left\", \"is_wrapped\": false },\n" +
-                "        { \"align\": \"right\", \"is_wrapped\": true }\n" +
-                "      ],\n" +
-                "      \"rows\": [\n" +
-                "        [\n" +
-                "          { \"type\": \"raw_text\", \"text\": \"Item\" },\n" +
-                "          { \"type\": \"raw_text\", \"text\": \"Cost\" }\n" +
-                "        ],\n" +
-                "        [\n" +
-                "          {\n" +
-                "            \"type\": \"rich_text\",\n" +
-                "            \"elements\": [\n" +
-                "              {\n" +
-                "                \"type\": \"rich_text_section\",\n" +
-                "                \"elements\": [\n" +
-                "                  { \"type\": \"text\", \"text\": \"Rent\", \"style\": { \"bold\": true } }\n" +
-                "                ]\n" +
-                "              }\n" +
-                "            ]\n" +
-                "          },\n" +
-                "          { \"type\": \"raw_number\", \"value\": 400, \"text\": \"$400\" }\n" +
-                "        ]\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";
-        Gson gson = GsonFactory.createSnakeCase();
-        Message message = gson.fromJson(json, Message.class);
-        assertThat(message, is(notNullValue()));
-        assertThat(message.getBlocks().size(), is(1));
-
-        TableBlock table = (TableBlock) message.getBlocks().get(0);
-        assertThat(table.getType(), is("table"));
-        assertThat(table.getBlockId(), is("table1"));
-
-        assertThat(table.getColumnSettings().size(), is(2));
-        assertThat(table.getColumnSettings().get(0).getAlign(), is("left"));
-        assertThat(table.getColumnSettings().get(0).getIsWrapped(), is(false));
-        assertThat(table.getColumnSettings().get(1).getAlign(), is("right"));
-        assertThat(table.getColumnSettings().get(1).getIsWrapped(), is(true));
-
-        assertThat(table.getRows().size(), is(2));
-
-        RawTextTableCell header0 = (RawTextTableCell) table.getRows().get(0).get(0);
-        assertThat(header0.getType(), is(RawTextTableCell.TYPE));
-        assertThat(header0.getText(), is("Item"));
-
-        RichTextBlock richCell = (RichTextBlock) table.getRows().get(1).get(0);
-        assertThat(richCell.getType(), is(RichTextBlock.TYPE));
-        RichTextSectionElement richSection = (RichTextSectionElement) richCell.getElements().get(0);
-        RichTextSectionElement.Text richText = (RichTextSectionElement.Text) richSection.getElements().get(0);
-        assertThat(richText.getText(), is("Rent"));
-        assertThat(richText.getStyle().isBold(), is(true));
-
-        RawNumberTableCell numberCell = (RawNumberTableCell) table.getRows().get(1).get(1);
-        assertThat(numberCell.getType(), is(RawNumberTableCell.TYPE));
-        assertThat(numberCell.getValue(), is(400.0));
-        assertThat(numberCell.getText(), is("$400"));
-
-        // round-trips back to a table block
-        String output = gson.toJson(table);
-        TableBlock reparsedTable = gson.fromJson(output, TableBlock.class);
-        assertThat(reparsedTable.getRows().size(), is(2));
-        assertThat(((RawTextTableCell) reparsedTable.getRows().get(0).get(1)).getText(), is("Cost"));
-    }
-
-    @Test
-    public void buildTableBlock() {
-        TableBlock table = Blocks.table(t -> t
-                .blockId("b")
-                .columnSettings(Arrays.asList(
-                        TableColumnSetting.builder().align("center").isWrapped(true).build()))
-                .rows(Arrays.asList(
-                        Arrays.asList(
-                                RawTextTableCell.builder().text("Header").build(),
-                                RawNumberTableCell.builder().value(1.0).text("1").build()))));
-        assertThat(table, is(notNullValue()));
-        assertThat(table.getType(), is("table"));
-        assertThat(table.getRows().get(0).size(), is(2));
-    }
-
-    @Test
     public void buildCardBlock() {
         CardBlock card = card(c -> c
                 .blockId("card2")
@@ -2291,5 +2201,95 @@ public class BlockKitTest {
         assertThat(parsedCarousel.getElements().get(0).getType(), is("card"));
         assertThat(parsedCarousel.getElements().get(0).getBlockId(), is("card1"));
         assertThat(parsedCarousel.getElements().get(0).getActions().size(), is(1));
+    }
+
+    @Test
+    public void parseTableBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/table-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"table\",\n" +
+                "      \"block_id\": \"table1\",\n" +
+                "      \"column_settings\": [\n" +
+                "        { \"align\": \"left\", \"is_wrapped\": false },\n" +
+                "        { \"align\": \"right\", \"is_wrapped\": true }\n" +
+                "      ],\n" +
+                "      \"rows\": [\n" +
+                "        [\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Item\" },\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Cost\" }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [\n" +
+                "                  { \"type\": \"text\", \"text\": \"Rent\", \"style\": { \"bold\": true } }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          },\n" +
+                "          { \"type\": \"raw_number\", \"value\": 400, \"text\": \"$400\" }\n" +
+                "        ]\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        TableBlock table = (TableBlock) message.getBlocks().get(0);
+        assertThat(table.getType(), is("table"));
+        assertThat(table.getBlockId(), is("table1"));
+
+        assertThat(table.getColumnSettings().size(), is(2));
+        assertThat(table.getColumnSettings().get(0).getAlign(), is("left"));
+        assertThat(table.getColumnSettings().get(0).getIsWrapped(), is(false));
+        assertThat(table.getColumnSettings().get(1).getAlign(), is("right"));
+        assertThat(table.getColumnSettings().get(1).getIsWrapped(), is(true));
+
+        assertThat(table.getRows().size(), is(2));
+
+        RawTextTableCell header0 = (RawTextTableCell) table.getRows().get(0).get(0);
+        assertThat(header0.getType(), is(RawTextTableCell.TYPE));
+        assertThat(header0.getText(), is("Item"));
+
+        RichTextBlock richCell = (RichTextBlock) table.getRows().get(1).get(0);
+        assertThat(richCell.getType(), is(RichTextBlock.TYPE));
+        RichTextSectionElement richSection = (RichTextSectionElement) richCell.getElements().get(0);
+        RichTextSectionElement.Text richText = (RichTextSectionElement.Text) richSection.getElements().get(0);
+        assertThat(richText.getText(), is("Rent"));
+        assertThat(richText.getStyle().isBold(), is(true));
+
+        RawNumberTableCell numberCell = (RawNumberTableCell) table.getRows().get(1).get(1);
+        assertThat(numberCell.getType(), is(RawNumberTableCell.TYPE));
+        assertThat(numberCell.getValue(), is(400.0));
+        assertThat(numberCell.getText(), is("$400"));
+
+        // round-trips back to a table block
+        String output = gson.toJson(table);
+        TableBlock reparsedTable = gson.fromJson(output, TableBlock.class);
+        assertThat(reparsedTable.getRows().size(), is(2));
+        assertThat(((RawTextTableCell) reparsedTable.getRows().get(0).get(1)).getText(), is("Cost"));
+    }
+
+    @Test
+    public void buildTableBlock() {
+        TableBlock table = Blocks.table(t -> t
+                .blockId("b")
+                .columnSettings(Arrays.asList(
+                        TableColumnSetting.builder().align("center").isWrapped(true).build()))
+                .rows(Arrays.asList(
+                        Arrays.asList(
+                                RawTextTableCell.builder().text("Header").build(),
+                                RawNumberTableCell.builder().value(1.0).text("1").build()))));
+        assertThat(table, is(notNullValue()));
+        assertThat(table.getType(), is("table"));
+        assertThat(table.getRows().get(0).size(), is(2));
     }
 }

@@ -137,12 +137,8 @@ public class Blocks {
         return configurator.configure(SectionBlock.builder()).build();
     }
 
-    // VideoBlock
-    public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
-        return configurator.configure(VideoBlock.builder()).build();
-    }
-
     // ShareShortcutBlock
+
     public static ShareShortcutBlock shareShortcut() {
         return ShareShortcutBlock.builder().build();
     }
@@ -151,6 +147,12 @@ public class Blocks {
 
     public static TableBlock table(ModelConfigurator<TableBlock.TableBlockBuilder> configurator) {
         return configurator.configure(TableBlock.builder()).build();
+    }
+
+    // VideoBlock
+
+    public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
+        return configurator.configure(VideoBlock.builder()).build();
     }
 
 }
