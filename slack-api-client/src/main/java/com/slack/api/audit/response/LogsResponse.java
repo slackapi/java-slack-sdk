@@ -345,7 +345,10 @@ public class LogsResponse implements AuditApiResponse {
         private String enterprise; // usergroup_updated
         private String team; // usergroup_updated
         private String subteam; // usergroup_updated
-        private String action; // usergroup_updated
+        // Polymorphic: a plain string for some actions (e.g. usergroup_updated -> "update")
+        // and a structured object for others (e.g. app_allowlist_rule_created).
+        // GsonAuditLogsDetailsActionFactory handles both patterns under the hood.
+        private DetailsAction action;
         private Integer idpGroupMemberCount; // usergroup_updated
         private Integer workspaceMemberCount; // usergroup_updated
         private Integer addedUserCount; // usergroup_updated
@@ -595,6 +598,23 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class AAARuleActionNotify {
         private String entityType;
+        private List<String> values;
+    }
+
+    /**
+     * The data structure for details.action is polymorphic. For some actions it is a
+     * plain string (e.g. usergroup_updated returns "update"); for others it is a
+     * structured object (e.g. app_allowlist_rule_created returns a resolution/notify
+     * object). This class supports both patterns; GsonAuditLogsDetailsActionFactory
+     * populates the relevant field under the hood.
+     */
+    @Data
+    public static class DetailsAction {
+        // e.g., "update" (usergroup_updated)
+        private String stringValue;
+        // object form (e.g., app_allowlist_rule_created)
+        private AAARuleActionResolution resolution;
+        private List<AAARuleActionNotify> notify;
     }
     @Data
     public static class AAARuleCondition {
