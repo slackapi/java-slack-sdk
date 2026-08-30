@@ -1,5 +1,10 @@
 {
   "ok": false,
+  "content": "",
+  "is_truncated": false,
+  "content_highlight_html": "",
+  "content_highlight_css": "",
+  "content_highlight_html_truncated": false,
   "file": {
     "id": "",
     "created": 123,
@@ -9651,10 +9656,6 @@
     ],
     "comments_count": 123
   },
-  "content": "",
-  "is_truncated": false,
-  "content_highlight_html": "",
-  "content_highlight_css": "",
   "comments": [
     {
       "id": "",
@@ -9666,18 +9667,11 @@
       "is_intro": false
     }
   ],
-  "paging": {
-    "count": 12345,
-    "total": 12345,
-    "page": 12345,
-    "pages": 12345
-  },
-  "error": "",
-  "needed": "",
-  "provided": "",
-  "content_highlight_html_truncated": false,
   "response_metadata": {
     "next_cursor": ""
   },
-  "warning": ""
+  "warning": "",
+  "error": "",
+  "needed": "",
+  "provided": ""
 }
