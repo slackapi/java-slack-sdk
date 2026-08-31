@@ -95,4 +95,11 @@ interface LayoutBlockDsl {
      * @see <a href="https://tools.slack.dev/deno-slack-sdk/">Next generation platform</a>
      */
     fun shareShortcut(builder: ShareShortcutBlockBuilder.() -> Unit)
+
+    /**
+     * A container block groups related blocks together into a visually distinct section.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/container-block">Container documentation</a>
+     */
+    fun container(builder: ContainerBlockBuilder.() -> Unit)
 }

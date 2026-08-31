@@ -147,4 +147,10 @@ public class Blocks {
         return configurator.configure(CarouselBlock.builder()).build();
     }
 
+    // ContainerBlock
+
+    public static ContainerBlock container(ModelConfigurator<ContainerBlock.ContainerBlockBuilder> configurator) {
+        return configurator.configure(ContainerBlock.builder()).build();
+    }
+
 }
