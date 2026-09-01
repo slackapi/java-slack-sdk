@@ -345,6 +345,7 @@ public class Actions {
         public static final String pref_display_pronouns = "pref.display_pronouns";
         public static final String pref_list_restricted_sharing_enabled = "pref.list_restricted_sharing_enabled";
         public static final String pref_mobile_block_message_copy = "pref.mobile_block_message_copy";
+        public static final String pref_sso_change_email = "pref.sso_change_email";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
