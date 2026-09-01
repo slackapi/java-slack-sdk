@@ -84,6 +84,8 @@ public class AppActivity {
         private String name;
         private String description;
         private Object schema; // TODO: typing
+        // TODO: complete typing for the value
+        private Map<String, Object> functionInputs;
     }
 
     @Data
