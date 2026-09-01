@@ -384,6 +384,7 @@ public class LogsResponse implements AuditApiResponse {
         private AAARule matchedRule; // app_allowlist_rule_matched
         private AAARequest request; // app_allowlist_rule_matched
         private List<AAARule> rulesChecked; // app_allowlist_rule_matched
+        private AAARuleCondition condition; // app_allowlist_rule_created etc.
         private String disconnectingTeam; // external_shared_channel_disconnected
         private Boolean isChannelCanvas; // canvas_opened
         private String linkedChannelId; // canvas_opened

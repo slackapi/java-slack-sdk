@@ -337,6 +337,7 @@ public class Actions {
         public static final String pref_allow_native_giphy_gif_picker = "pref.allow_native_giphy_gif_picker";
         public static final String pref_ai_feature_default_access_changed = "pref.ai_feature_default_access_changed";
         public static final String pref_allow_workflow_export = "pref.allow_workflow_export";
+        public static final String pref_alt_text_reminders = "pref.alt_text_reminders";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
