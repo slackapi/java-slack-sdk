@@ -151,6 +151,10 @@ public class Blocks {
 
     public static ContainerBlock container(ModelConfigurator<ContainerBlock.ContainerBlockBuilder> configurator) {
         return configurator.configure(ContainerBlock.builder()).build();
+    // TaskCardBlock
+
+    public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {
+        return configurator.configure(TaskCardBlock.builder()).build();
     }
 
 }

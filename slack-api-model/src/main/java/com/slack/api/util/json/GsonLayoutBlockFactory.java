@@ -33,42 +33,42 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
 
     private Class<? extends LayoutBlock> getLayoutClassInstance(String typeName) {
         switch (typeName) {
-            case SectionBlock.TYPE:
-                return SectionBlock.class;
-            case DividerBlock.TYPE:
-                return DividerBlock.class;
-            case ImageBlock.TYPE:
-                return ImageBlock.class;
-            case ContextBlock.TYPE:
-                return ContextBlock.class;
-            case ContextActionsBlock.TYPE:
-                return ContextActionsBlock.class;
-            case CallBlock.TYPE:
-                return CallBlock.class;
             case ActionsBlock.TYPE:
                 return ActionsBlock.class;
-            case FileBlock.TYPE:
-                return FileBlock.class;
-            case InputBlock.TYPE:
-                return InputBlock.class;
-            case HeaderBlock.TYPE:
-                return HeaderBlock.class;
-            case MarkdownBlock.TYPE:
-                return MarkdownBlock.class;
-            case VideoBlock.TYPE:
-                return VideoBlock.class;
-            case RichTextBlock.TYPE:
-                return RichTextBlock.class;
-            case ShareShortcutBlock.TYPE:
-                return ShareShortcutBlock.class;
             case AlertBlock.TYPE:
                 return AlertBlock.class;
+            case CallBlock.TYPE:
+                return CallBlock.class;
             case CardBlock.TYPE:
                 return CardBlock.class;
             case CarouselBlock.TYPE:
                 return CarouselBlock.class;
-            case ContainerBlock.TYPE:
-                return ContainerBlock.class;
+            case ContextActionsBlock.TYPE:
+                return ContextActionsBlock.class;
+            case ContextBlock.TYPE:
+                return ContextBlock.class;
+            case DividerBlock.TYPE:
+                return DividerBlock.class;
+            case FileBlock.TYPE:
+                return FileBlock.class;
+            case HeaderBlock.TYPE:
+                return HeaderBlock.class;
+            case ImageBlock.TYPE:
+                return ImageBlock.class;
+            case InputBlock.TYPE:
+                return InputBlock.class;
+            case MarkdownBlock.TYPE:
+                return MarkdownBlock.class;
+            case RichTextBlock.TYPE:
+                return RichTextBlock.class;
+            case SectionBlock.TYPE:
+                return SectionBlock.class;
+            case ShareShortcutBlock.TYPE:
+                return ShareShortcutBlock.class;
+            case TaskCardBlock.TYPE:
+                return TaskCardBlock.class;
+            case VideoBlock.TYPE:
+                return VideoBlock.class;
             default:
                 if (failOnUnknownProperties) {
                     throw new JsonParseException("Unsupported layout block type: " + typeName);

@@ -162,6 +162,11 @@ public class BlocksTest {
     }
 
     @Test
+    public void testTaskCard() {
+        assertThat(taskCard(t -> t.taskId("task_1").title("Do thing").status("complete")), is(notNullValue()));
+    }
+
+    @Test
     public void testDateTimePicker() {
         assertThat(datetimePicker(h -> h.actionId("block-id").initialDateTime(12345)), is(notNullValue()));
     }
