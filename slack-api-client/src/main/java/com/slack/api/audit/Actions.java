@@ -339,6 +339,7 @@ public class Actions {
         public static final String pref_allow_workflow_export = "pref.allow_workflow_export";
         public static final String pref_alt_text_reminders = "pref.alt_text_reminders";
         public static final String pref_canvas_printing_enabled = "pref.canvas_printing_enabled";
+        public static final String pref_canvas_restricted_sharing_enabled = "pref.canvas_restricted_sharing_enabled";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
