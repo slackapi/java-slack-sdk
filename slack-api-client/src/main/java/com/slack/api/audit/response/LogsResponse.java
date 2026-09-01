@@ -465,6 +465,7 @@ public class LogsResponse implements AuditApiResponse {
         @SerializedName("is_enabled")
         private Boolean enabled;
         private String title; // list_title_updated etc.
+        private List<String> changedFields;
     }
 
     @Data
