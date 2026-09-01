@@ -86,6 +86,7 @@ public class AppActivity {
         private Object schema; // TODO: typing
         // TODO: complete typing for the value
         private Map<String, Object> functionInputs;
+        private String triggerTypeId; // "Ftt0101" etc.
     }
 
     @Data
