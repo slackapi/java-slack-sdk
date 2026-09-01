@@ -2250,7 +2250,7 @@ public class BlockKitTest {
         assertThat(taskCard.getType(), is("task_card"));
         assertThat(taskCard.getTaskId(), is("task_1"));
         assertThat(taskCard.getTitle(), is("Fetching weather data"));
-        assertThat(taskCard.getStatus(), is("pending"));
+        assertThat(taskCard.getStatus(), is("in_progress"));
 
         assertThat(taskCard.getOutput(), is(notNullValue()));
         assertThat(taskCard.getOutput().getType(), is("rich_text"));
