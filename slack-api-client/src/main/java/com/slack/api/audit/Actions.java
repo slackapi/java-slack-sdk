@@ -349,6 +349,7 @@ public class Actions {
         public static final String pref_sso_choose_username = "pref.sso_choose_username";
         public static final String pref_use_workspace_icon_for_single_workspace_users = "pref.use_workspace_icon_for_single_workspace_users";
         public static final String pref_warn_before_at_channel = "pref.warn_before_at_channel";
+        public static final String pref_wfb_default_connector_visibility = "pref.wfb_default_connector_visibility";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
