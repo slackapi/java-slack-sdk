@@ -351,6 +351,7 @@ public class Actions {
         public static final String pref_warn_before_at_channel = "pref.warn_before_at_channel";
         public static final String pref_wfb_default_connector_visibility = "pref.wfb_default_connector_visibility";
         public static final String pref_workflow_message_edit_delete_enabled = "pref.workflow_message_edit_delete_enabled";
+        public static final String pref_workflows_export_csv_enabled = "pref.workflows_export_csv_enabled";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
