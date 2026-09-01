@@ -343,6 +343,7 @@ public class Actions {
         public static final String pref_disable_email_ingestion = "pref.disable_email_ingestion";
         public static final String pref_display_email_addresses = "pref.display_email_addresses";
         public static final String pref_display_pronouns = "pref.display_pronouns";
+        public static final String pref_list_restricted_sharing_enabled = "pref.list_restricted_sharing_enabled";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
