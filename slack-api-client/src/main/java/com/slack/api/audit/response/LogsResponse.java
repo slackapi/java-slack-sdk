@@ -462,6 +462,8 @@ public class LogsResponse implements AuditApiResponse {
         private String skillId;
         private List<String> mcpServerAllowlistDomains;
         private String ruleId;
+        @SerializedName("is_enabled")
+        private Boolean enabled;
     }
 
     @Data
