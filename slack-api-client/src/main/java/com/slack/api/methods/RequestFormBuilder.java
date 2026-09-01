@@ -59,6 +59,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -1242,6 +1243,35 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(BlocksValidateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            form.add("blocks", getJsonWithGsonAnonymInnerClassHandling(req.getBlocks()));
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+        if (req.getMessageAsString() != null) {
+            form.add("message", req.getMessageAsString());
+        } else if (req.getMessage() != null) {
+            form.add("message", GSON.toJson(req.getMessage()));
+        }
+        if (req.getMessageAsString() != null && req.getMessage() != null) {
+            log.warn("Although you set both messageAsString and message, only messageAsString was used.");
+        }
+        if (req.getViewAsString() != null) {
+            form.add("view", req.getViewAsString());
+        } else if (req.getView() != null) {
+            form.add("view", GSON.toJson(req.getView()));
+        }
+        if (req.getViewAsString() != null && req.getView() != null) {
+            log.warn("Although you set both viewAsString and view, only viewAsString was used.");
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(BookmarksAddRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
@@ -1764,6 +1794,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
             log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
         }
+        setIfNotNull("session_status", req.getSessionStatus(), form);
         return form;
     }
 

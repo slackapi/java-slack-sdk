@@ -122,6 +122,7 @@
   "auth.revoke": "Tier3",
   "auth.teams.list": "Tier2",
   "auth.test": "SpecialTier_auth_test",
+  "blocks.validate": "SpecialTier_blocks_validate",
   "bookmarks.add": "Tier2",
   "bookmarks.edit": "Tier2",
   "bookmarks.list": "Tier3",

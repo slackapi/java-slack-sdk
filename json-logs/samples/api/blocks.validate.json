@@ -1,0 +1,26 @@
+{
+  "ok": false,
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "needed": "",
+  "provided": "",
+  "errors": [
+    {
+      "code": "",
+      "message": "",
+      "pointer": "",
+      "constraint": {
+        "type": "",
+        "expected": [
+          ""
+        ],
+        "got": ""
+      }
+    }
+  ],
+  "warning": ""
+}

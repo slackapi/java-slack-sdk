@@ -58,6 +58,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -212,6 +213,7 @@ import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitl
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
@@ -1375,6 +1377,16 @@ public interface MethodsClient {
     AuthTeamsListResponse authTeamsList(AuthTeamsListRequest req) throws IOException, SlackApiException;
 
     AuthTeamsListResponse authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // blocks
+    // ------------------------------
+
+    BlocksValidateResponse blocksValidate(BlocksValidateRequest req) throws IOException, SlackApiException;
+
+    BlocksValidateResponse blocksValidate(
+            RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------
