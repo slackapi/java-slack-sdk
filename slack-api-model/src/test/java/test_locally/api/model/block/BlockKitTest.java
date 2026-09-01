@@ -2211,7 +2211,7 @@ public class BlockKitTest {
                 "      \"type\": \"task_card\",\n" +
                 "      \"task_id\": \"task_1\",\n" +
                 "      \"title\": \"Fetching weather data\",\n" +
-                "      \"status\": \"pending\",\n" +
+                "      \"status\": \"in_progress\",\n" +
                 "      \"output\": {\n" +
                 "        \"type\": \"rich_text\",\n" +
                 "        \"elements\": [\n" +
