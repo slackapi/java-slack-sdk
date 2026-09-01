@@ -118,11 +118,6 @@ public class BlocksTest {
     }
 
     @Test
-    public void testTaskCard() {
-        assertThat(taskCard(t -> t.taskId("task_1").title("Do thing").status("complete")), is(notNullValue()));
-    }
-
-    @Test
     public void testImage() {
         assertThat(Blocks.image(i -> i.blockId("block-id").imageUrl("https://www.example.com/")), is(notNullValue()));
         assertThat(Blocks.image(i -> i
@@ -156,6 +151,11 @@ public class BlocksTest {
                 .blockId("block-id")
                 .elements(asElements(button(b -> b.value("v"))))
         ), is(notNullValue()));
+    }
+
+    @Test
+    public void testTaskCard() {
+        assertThat(taskCard(t -> t.taskId("task_1").title("Do thing").status("complete")), is(notNullValue()));
     }
 
     @Test
