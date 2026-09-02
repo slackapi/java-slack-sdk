@@ -2317,6 +2317,14 @@ public class RequestFormBuilder {
         }
         setIfNotNull("initial_comment", req.getInitialComment(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            form.add("blocks", getJsonWithGsonAnonymInnerClassHandling(req.getBlocks()));
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
         return form;
     }
 
