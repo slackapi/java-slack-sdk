@@ -363,7 +363,9 @@
       "pref.warn_before_at_channel",
       "pref.wfb_default_connector_visibility",
       "pref.workflow_message_edit_delete_enabled",
-      "pref.workflows_export_csv_enabled"
+      "pref.workflows_export_csv_enabled",
+      "mcp_slack_unreads_list_tool_called",
+      "pref.slackbot_ai_in_channels_enabled_changed"
     ],
     "user": [
       "custom_tos_accepted",
