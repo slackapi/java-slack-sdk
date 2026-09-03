@@ -90,11 +90,6 @@
               "folder_bookmark_id": ""
             },
             "is_disabled": false
-          },
-          {
-            "type": "",
-            "label": "",
-            "id": ""
           }
         ],
         "tabz": [
@@ -108,9 +103,6 @@
               "folder_bookmark_id": ""
             },
             "is_disabled": false
-          },
-          {
-            "type": ""
           }
         ],
         "meeting_notes": {
