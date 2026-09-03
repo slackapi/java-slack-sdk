@@ -315,6 +315,7 @@ public class Actions {
         public static final String mcp_slack_activity_list_tool_called = "mcp_slack_activity_list_tool_called";
         public static final String mcp_slack_run_workflow_tool_called = "mcp_slack_run_workflow_tool_called";
         public static final String mcp_slack_unreads_list_tool_called = "mcp_slack_unreads_list_tool_called";
+        public static final String mcp_slack_create_conversations_tool_called = "mcp_slack_create_conversations_tool_called";
         public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
         public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
         public static final String slack_ai_mcp_connector_changed = "slack_ai_mcp_connector_changed";
@@ -353,6 +354,8 @@ public class Actions {
         public static final String pref_wfb_default_connector_visibility = "pref.wfb_default_connector_visibility";
         public static final String pref_workflow_message_edit_delete_enabled = "pref.workflow_message_edit_delete_enabled";
         public static final String pref_workflows_export_csv_enabled = "pref.workflows_export_csv_enabled";
+        public static final String pref_slackbot_ai_in_channels_enabled_changed = "pref.slackbot_ai_in_channels_enabled_changed";
+        public static final String pref_wfb_allow_third_party_ai_writes = "pref.wfb_allow_third_party_ai_writes";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
@@ -478,6 +481,7 @@ public class Actions {
         public static final String slack_ai_file_summary_generated = "slack_ai_file_summary_generated";
         public static final String slack_ai_file_summary_deleted = "slack_ai_file_summary_deleted";
         public static final String slack_ai_file_summary_translation_generated = "slack_ai_file_summary_translation_generated";
+        public static final String slack_ai_file_context_read = "slack_ai_file_context_read";
     }
 
     public static class Channel {
