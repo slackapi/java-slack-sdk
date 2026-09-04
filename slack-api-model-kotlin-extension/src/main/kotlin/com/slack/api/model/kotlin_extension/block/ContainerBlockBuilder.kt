@@ -29,7 +29,7 @@ class ContainerBlockBuilder : Builder<ContainerBlock> {
         title = PlainTextObject(text, emoji)
     }
 
-    fun title(textObject: TextObject) {
+    fun title(textObject: PlainTextObject) {
         title = textObject
     }
 

@@ -1,5 +1,6 @@
 package com.slack.api.model.block;
 
+import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.ImageElement;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class ContainerBlock implements LayoutBlock {
     public static final String TYPE = "container";
     private final String type = TYPE;
 
-    private TextObject title;
+    private PlainTextObject title;
 
     private RichTextBlock richTextTitle;
 
