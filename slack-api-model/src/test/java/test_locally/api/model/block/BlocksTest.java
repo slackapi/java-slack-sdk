@@ -118,6 +118,14 @@ public class BlocksTest {
     }
 
     @Test
+    public void testContainer() {
+        assertThat(container(c -> c.blockId("container-1")
+                .title(com.slack.api.model.block.composition.PlainTextObject.builder().text("Title").build())
+                .childBlocks(Arrays.asList(divider()))
+        ), is(notNullValue()));
+    }
+
+    @Test
     public void testImage() {
         assertThat(Blocks.image(i -> i.blockId("block-id").imageUrl("https://www.example.com/")), is(notNullValue()));
         assertThat(Blocks.image(i -> i
