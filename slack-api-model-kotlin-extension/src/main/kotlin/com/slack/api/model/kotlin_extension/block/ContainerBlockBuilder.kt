@@ -11,7 +11,7 @@ import com.slack.api.model.kotlin_extension.block.container.MultiLayoutBlockCont
 @BlockLayoutBuilder
 class ContainerBlockBuilder : Builder<ContainerBlock> {
     private var blockId: String? = null
-    private var title: TextObject? = null
+    private var title: PlainTextObject? = null
     private var richTextTitle: RichTextBlock? = null
     private var subtitle: TextObject? = null
     private var childBlocks: List<LayoutBlock>? = null
