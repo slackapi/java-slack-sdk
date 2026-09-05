@@ -343,7 +343,31 @@
       "pref.ai_feature_default_access_changed",
       "mcp_slack_activity_list_tool_called",
       "mcp_slack_todos_list_tool_called",
-      "slack_ai_mcp_model_context_updated"
+      "slack_ai_mcp_model_context_updated",
+      "team_ip_allowlist_range_added",
+      "team_ip_allowlist_range_removed",
+      "team_ip_allowlist_enabled",
+      "team_ip_allowlist_disabled",
+      "pref.allow_workflow_export",
+      "pref.alt_text_reminders",
+      "pref.canvas_printing_enabled",
+      "pref.canvas_restricted_sharing_enabled",
+      "pref.disable_email_ingestion",
+      "pref.display_email_addresses",
+      "pref.display_pronouns",
+      "pref.list_restricted_sharing_enabled",
+      "pref.mobile_block_message_copy",
+      "pref.sso_change_email",
+      "pref.sso_choose_username",
+      "pref.use_workspace_icon_for_single_workspace_users",
+      "pref.warn_before_at_channel",
+      "pref.wfb_default_connector_visibility",
+      "pref.workflow_message_edit_delete_enabled",
+      "pref.workflows_export_csv_enabled",
+      "mcp_slack_unreads_list_tool_called",
+      "pref.slackbot_ai_in_channels_enabled_changed",
+      "pref.wfb_allow_third_party_ai_writes",
+      "mcp_slack_create_todos_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -419,7 +443,9 @@
       "user_passkey_created",
       "user_passkey_name_edited",
       "ip_allowlist_access_denied",
-      "user_password_reset_by_admin"
+      "user_password_reset_by_admin",
+      "slackbot_ai_agent_prompt_submitted",
+      "team_ip_allowlist_access_denied"
     ],
     "file": [
       "file_downloaded",
@@ -436,7 +462,8 @@
       "file_owner_reassigned_for_quip_migration",
       "slack_ai_file_summary_generated",
       "slack_ai_file_summary_deleted",
-      "slack_ai_file_summary_translation_generated"
+      "slack_ai_file_summary_translation_generated",
+      "slack_ai_file_context_read"
     ],
     "channel": [
       "user_channel_join",

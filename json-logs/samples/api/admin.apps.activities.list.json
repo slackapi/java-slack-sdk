@@ -34,7 +34,28 @@
             "name": "",
             "description": "",
             "schema": {},
-            "event_type": ""
+            "event_type": "",
+            "function_inputs": {
+              "repository": {
+                "label": {
+                  "https://api.github.com/repos/zimeg/blog": ""
+                },
+                "value": "https://www.example.com/",
+                "hidden": false,
+                "locked": false
+              },
+              "github_access_token": {
+                "value": {
+                  "credential_source": "",
+                  "external_token_id": "",
+                  "user_context_source": ""
+                },
+                "hidden": false,
+                "locked": false
+              }
+            },
+            "trigger_type_id": 12345,
+            "trigger_type_app_id": 12345
           },
           "trip_information": {
             "user_id": "W00000000",

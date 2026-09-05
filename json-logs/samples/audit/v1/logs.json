@@ -407,6 +407,12 @@
           "team_id": ""
         },
         "rules_checked": [],
+        "condition": {
+          "datatype": "",
+          "operator": "",
+          "values": [],
+          "entity_type": ""
+        },
         "disconnecting_team": "",
         "is_channel_canvas": false,
         "linked_channel_id": "",
@@ -481,7 +487,11 @@
         "uri": "",
         "executor_id": "",
         "skill_id": "",
-        "mcp_server_allowlist_domains": []
+        "mcp_server_allowlist_domains": [],
+        "rule_id": "",
+        "is_enabled": false,
+        "title": "",
+        "changed_fields": []
       }
     }
   ]

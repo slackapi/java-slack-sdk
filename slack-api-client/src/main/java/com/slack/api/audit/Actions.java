@@ -314,6 +314,8 @@ public class Actions {
         public static final String mcp_slack_list_workflows_tool_called = "mcp_slack_list_workflows_tool_called";
         public static final String mcp_slack_activity_list_tool_called = "mcp_slack_activity_list_tool_called";
         public static final String mcp_slack_run_workflow_tool_called = "mcp_slack_run_workflow_tool_called";
+        public static final String mcp_slack_unreads_list_tool_called = "mcp_slack_unreads_list_tool_called";
+        public static final String mcp_slack_create_conversations_tool_called = "mcp_slack_create_conversations_tool_called";
         public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
         public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
         public static final String slack_ai_mcp_connector_changed = "slack_ai_mcp_connector_changed";
@@ -336,6 +338,24 @@ public class Actions {
         public static final String pref_show_join_leave_welcome_party_changed = "pref.show_join_leave_welcome_party_changed";
         public static final String pref_allow_native_giphy_gif_picker = "pref.allow_native_giphy_gif_picker";
         public static final String pref_ai_feature_default_access_changed = "pref.ai_feature_default_access_changed";
+        public static final String pref_allow_workflow_export = "pref.allow_workflow_export";
+        public static final String pref_alt_text_reminders = "pref.alt_text_reminders";
+        public static final String pref_canvas_printing_enabled = "pref.canvas_printing_enabled";
+        public static final String pref_canvas_restricted_sharing_enabled = "pref.canvas_restricted_sharing_enabled";
+        public static final String pref_disable_email_ingestion = "pref.disable_email_ingestion";
+        public static final String pref_display_email_addresses = "pref.display_email_addresses";
+        public static final String pref_display_pronouns = "pref.display_pronouns";
+        public static final String pref_list_restricted_sharing_enabled = "pref.list_restricted_sharing_enabled";
+        public static final String pref_mobile_block_message_copy = "pref.mobile_block_message_copy";
+        public static final String pref_sso_change_email = "pref.sso_change_email";
+        public static final String pref_sso_choose_username = "pref.sso_choose_username";
+        public static final String pref_use_workspace_icon_for_single_workspace_users = "pref.use_workspace_icon_for_single_workspace_users";
+        public static final String pref_warn_before_at_channel = "pref.warn_before_at_channel";
+        public static final String pref_wfb_default_connector_visibility = "pref.wfb_default_connector_visibility";
+        public static final String pref_workflow_message_edit_delete_enabled = "pref.workflow_message_edit_delete_enabled";
+        public static final String pref_workflows_export_csv_enabled = "pref.workflows_export_csv_enabled";
+        public static final String pref_slackbot_ai_in_channels_enabled_changed = "pref.slackbot_ai_in_channels_enabled_changed";
+        public static final String pref_wfb_allow_third_party_ai_writes = "pref.wfb_allow_third_party_ai_writes";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
@@ -352,6 +372,10 @@ public class Actions {
         public static final String mcp_slack_todos_list_tool_called = "mcp_slack_todos_list_tool_called";
         public static final String ip_allowlist_enabled = "ip_allowlist_enabled";
         public static final String ip_allowlist_disabled = "ip_allowlist_disabled";
+        public static final String team_ip_allowlist_range_added = "team_ip_allowlist_range_added";
+        public static final String team_ip_allowlist_range_removed = "team_ip_allowlist_range_removed";
+        public static final String team_ip_allowlist_enabled = "team_ip_allowlist_enabled";
+        public static final String team_ip_allowlist_disabled = "team_ip_allowlist_disabled";
         public static final String team_authorized_ip_range_added = "team_authorized_ip_range_added";
         public static final String team_authorized_ip_range_removed = "team_authorized_ip_range_removed";
     }
@@ -434,6 +458,8 @@ public class Actions {
         public static final String slack_ai_skill_share_link_revoked = "slack_ai_skill_share_link_revoked";
         public static final String slack_ai_skill_external_copy_added = "slack_ai_skill_external_copy_added";
         public static final String ip_allowlist_access_denied = "ip_allowlist_access_denied";
+        public static final String team_ip_allowlist_access_denied = "team_ip_allowlist_access_denied";
+        public static final String slackbot_ai_agent_prompt_submitted = "slackbot_ai_agent_prompt_submitted";
     }
 
     public static class File {
@@ -455,6 +481,7 @@ public class Actions {
         public static final String slack_ai_file_summary_generated = "slack_ai_file_summary_generated";
         public static final String slack_ai_file_summary_deleted = "slack_ai_file_summary_deleted";
         public static final String slack_ai_file_summary_translation_generated = "slack_ai_file_summary_translation_generated";
+        public static final String slack_ai_file_context_read = "slack_ai_file_context_read";
     }
 
     public static class Channel {
