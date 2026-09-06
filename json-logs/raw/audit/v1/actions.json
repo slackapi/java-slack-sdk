@@ -367,7 +367,9 @@
       "mcp_slack_unreads_list_tool_called",
       "pref.slackbot_ai_in_channels_enabled_changed",
       "pref.wfb_allow_third_party_ai_writes",
-      "mcp_slack_create_todos_tool_called"
+      "mcp_slack_create_todos_tool_called",
+      "mcp_slack_list_activity_tool_called",
+      "mcp_slack_list_todos_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -859,6 +861,13 @@
     ],
     "work_object_record": [
       "enterprise_search_email_attachment_downloaded"
+    ],
+    "surface": [
+      "surface_created",
+      "surface_shared",
+      "surface_downloaded",
+      "surface_opened",
+      "surface_deleted"
     ]
   }
 }
