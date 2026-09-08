@@ -2170,6 +2170,154 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseContainerBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/container-block
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"container\",\n" +
+                "    \"block_id\": \"container1\",\n" +
+                "    \"title\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Container Title\"\n" +
+                "    },\n" +
+                "    \"subtitle\": {\n" +
+                "      \"type\": \"mrkdwn\",\n" +
+                "      \"text\": \"*Bold* subtitle\"\n" +
+                "    },\n" +
+                "    \"width\": \"wide\",\n" +
+                "    \"is_collapsible\": true,\n" +
+                "    \"default_collapsed\": false,\n" +
+                "    \"icon\": {\n" +
+                "      \"type\": \"image\",\n" +
+                "      \"image_url\": \"https://example.com/icon.png\",\n" +
+                "      \"alt_text\": \"icon\"\n" +
+                "    },\n" +
+                "    \"child_blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"section\",\n" +
+                "        \"text\": {\n" +
+                "          \"type\": \"mrkdwn\",\n" +
+                "          \"text\": \"Section inside container.\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"type\": \"divider\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        ContainerBlock container = (ContainerBlock) message.getBlocks().get(0);
+        assertThat(container.getType(), is("container"));
+        assertThat(container.getBlockId(), is("container1"));
+        assertThat(container.getTitle().getType(), is("plain_text"));
+        assertThat(container.getTitle().getText(), is("Container Title"));
+        assertThat(container.getSubtitle().getType(), is("mrkdwn"));
+        assertThat(container.getWidth(), is("wide"));
+        assertThat(container.getIsCollapsible(), is(true));
+        assertThat(container.getDefaultCollapsed(), is(false));
+        assertThat(container.getIcon().getImageUrl(), is("https://example.com/icon.png"));
+        assertThat(container.getChildBlocks().size(), is(2));
+        assertThat(container.getChildBlocks().get(0), is(instanceOf(SectionBlock.class)));
+        assertThat(container.getChildBlocks().get(1), is(instanceOf(DividerBlock.class)));
+
+        // Round-trip
+        Message roundTrip = gson.fromJson(gson.toJson(message), Message.class);
+        ContainerBlock reparsed = (ContainerBlock) roundTrip.getBlocks().get(0);
+        assertThat(reparsed.getBlockId(), is("container1"));
+        assertThat(reparsed.getChildBlocks().size(), is(2));
+    }
+
+    @Test
+    public void parseContainerBlockWithRichTextTitle() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"container\",\n" +
+                "    \"rich_text_title\": {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"Rich Title\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    \"child_blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"divider\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        ContainerBlock container = (ContainerBlock) message.getBlocks().get(0);
+        assertThat(container.getRichTextTitle(), is(notNullValue()));
+        assertThat(container.getRichTextTitle().getType(), is("rich_text"));
+        assertThat(container.getRichTextTitle().getElements().size(), is(1));
+        assertThat(container.getTitle(), is(nullValue()));
+    }
+
+    @Test
+    public void parseContainerBlockWithHeaderDivider() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"container\",\n" +
+                "    \"title\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"With divider\"\n" +
+                "    },\n" +
+                "    \"has_header_divider\": true,\n" +
+                "    \"child_blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"divider\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        ContainerBlock container = (ContainerBlock) message.getBlocks().get(0);
+        assertThat(container.getHasHeaderDivider(), is(true));
+        assertThat(container.getIsCollapsible(), is(nullValue()));
+    }
+
+    @Test
+    public void buildContainerBlock() {
+        ContainerBlock container = container(c -> c
+                .blockId("container1")
+                .title(com.slack.api.model.block.composition.PlainTextObject.builder().text("Title").build())
+                .width("wide")
+                .isCollapsible(true)
+                .childBlocks(Arrays.asList(
+                        divider()
+                ))
+        );
+        assertThat(container.getType(), is("container"));
+        assertThat(container.getBlockId(), is("container1"));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = new Message();
+        message.setBlocks(asBlocks(container));
+        Message reparsed = gson.fromJson(gson.toJson(message), Message.class);
+        ContainerBlock parsedContainer = (ContainerBlock) reparsed.getBlocks().get(0);
+        assertThat(parsedContainer.getBlockId(), is("container1"));
+        assertThat(parsedContainer.getWidth(), is("wide"));
+        assertThat(parsedContainer.getIsCollapsible(), is(true));
+        assertThat(parsedContainer.getChildBlocks().size(), is(1));
+    }
+
+    @Test
     public void buildCarouselBlock() {
         CarouselBlock carousel = carousel(c -> c
                 .blockId("carousel1")
