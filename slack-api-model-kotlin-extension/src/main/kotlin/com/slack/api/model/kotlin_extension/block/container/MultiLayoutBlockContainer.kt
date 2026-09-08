@@ -28,6 +28,10 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
         underlying += ActionsBlockBuilder().apply(builder).build()
     }
 
+    override fun container(builder: ContainerBlockBuilder.() -> Unit) {
+        underlying += ContainerBlockBuilder().apply(builder).build()
+    }
+
     override fun context(builder: ContextBlockBuilder.() -> Unit) {
         underlying += ContextBlockBuilder().apply(builder).build()
     }
@@ -66,9 +70,5 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
 
     override fun shareShortcut(builder: ShareShortcutBlockBuilder.() -> Unit) {
         underlying += ShareShortcutBlockBuilder().apply(builder).build()
-    }
-
-    override fun container(builder: ContainerBlockBuilder.() -> Unit) {
-        underlying += ContainerBlockBuilder().apply(builder).build()
     }
 }
