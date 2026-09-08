@@ -147,4 +147,10 @@ public class Blocks {
         return configurator.configure(CarouselBlock.builder()).build();
     }
 
+    // TaskCardBlock
+
+    public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {
+        return configurator.configure(TaskCardBlock.builder()).build();
+    }
+
 }
