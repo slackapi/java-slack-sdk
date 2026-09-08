@@ -1,7 +1,7 @@
-package com.slack.api.model.block;
+package com.slack.api.model.block.composition;
 
 /**
- * A single cell within a {@link TableBlock} row. A cell can be one of:
+ * A single cell within a table or data table row. A cell can be one of:
  *
  * <ul>
  *   <li>{@link RawTextTableCell} ({@code raw_text})</li>
@@ -10,6 +10,7 @@ package com.slack.api.model.block;
  * </ul>
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
+ * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 public interface TableCell {
 

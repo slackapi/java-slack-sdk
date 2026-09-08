@@ -1,4 +1,4 @@
-package com.slack.api.model.block;
+package com.slack.api.model.block.composition;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
  * field carries the display representation of the value (for example a formatted string).
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
+ * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 @Data
 @Builder

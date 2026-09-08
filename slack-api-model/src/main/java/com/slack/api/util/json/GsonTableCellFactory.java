@@ -1,10 +1,10 @@
 package com.slack.api.util.json;
 
 import com.google.gson.*;
-import com.slack.api.model.block.RawNumberTableCell;
-import com.slack.api.model.block.RawTextTableCell;
 import com.slack.api.model.block.RichTextBlock;
-import com.slack.api.model.block.TableCell;
+import com.slack.api.model.block.composition.RawNumberTableCell;
+import com.slack.api.model.block.composition.RawTextTableCell;
+import com.slack.api.model.block.composition.TableCell;
 
 import java.lang.reflect.Type;
 

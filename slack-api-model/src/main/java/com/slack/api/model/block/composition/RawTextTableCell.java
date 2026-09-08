@@ -1,4 +1,4 @@
-package com.slack.api.model.block;
+package com.slack.api.model.block.composition;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
  * A {@code raw_text} table cell, holding unformatted plain text.
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
+ * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 @Data
 @Builder

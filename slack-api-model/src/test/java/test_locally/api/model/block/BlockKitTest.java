@@ -5,6 +5,8 @@ import com.google.gson.JsonParseException;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.RawNumberTableCell;
+import com.slack.api.model.block.composition.RawTextTableCell;
 import com.slack.api.model.block.element.*;
 import com.slack.api.model.view.View;
 import org.junit.Test;
