@@ -1,5 +1,6 @@
 package com.slack.api.model.block;
 
+import com.slack.api.model.block.composition.TableCell;
 import com.slack.api.model.block.element.BlockElement;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RichTextBlock implements LayoutBlock {
+public class RichTextBlock implements LayoutBlock, TableCell {
     public static final String TYPE = "rich_text";
     private final String type = TYPE;
     @Builder.Default
