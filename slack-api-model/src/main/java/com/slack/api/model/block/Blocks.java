@@ -119,12 +119,6 @@ public class Blocks {
         return configurator.configure(SectionBlock.builder()).build();
     }
 
-    // DataTableBlock
-
-    public static DataTableBlock dataTable(ModelConfigurator<DataTableBlock.DataTableBlockBuilder> configurator) {
-        return configurator.configure(DataTableBlock.builder()).build();
-    }
-
     // VideoBlock
     public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
         return configurator.configure(VideoBlock.builder()).build();
@@ -157,6 +151,12 @@ public class Blocks {
 
     public static ContainerBlock container(ModelConfigurator<ContainerBlock.ContainerBlockBuilder> configurator) {
         return configurator.configure(ContainerBlock.builder()).build();
+    }
+
+    // DataTableBlock
+
+    public static DataTableBlock dataTable(ModelConfigurator<DataTableBlock.DataTableBlockBuilder> configurator) {
+        return configurator.configure(DataTableBlock.builder()).build();
     }
 
     // TaskCardBlock
