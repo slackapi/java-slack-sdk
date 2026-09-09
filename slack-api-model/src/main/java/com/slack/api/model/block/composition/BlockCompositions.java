@@ -60,7 +60,7 @@ public class BlockCompositions {
         return configurator.configure(RawNumberObject.builder()).build();
     }
 
-    public static RawNumberObject rawNumber(double value, String text) {
+    public static RawNumberObject rawNumber(Double value, String text) {
         return RawNumberObject.builder().value(value).text(text).build();
     }
 
