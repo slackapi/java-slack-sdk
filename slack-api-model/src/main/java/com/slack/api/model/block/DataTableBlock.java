@@ -9,14 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Displays a sortable, paginated grid of tabular data.
- *
- * <p>Each row is a list of {@link DataTableCell cells}; a cell may be a
- * {@link RawTextDataTableCell} ({@code raw_text}), {@link RawNumberDataTableCell}
- * ({@code raw_number}), or a {@link RichTextBlock} ({@code rich_text}). The first
- * row is the header row; header cells cannot use {@code rich_text}. A data table
- * supports 1-20 columns and up to 100 data rows (101 rows including the header),
- * with all rows sharing the same column count.</p>
+ * Displays rich tables that support pagination, sorting, filtering, and interactivity.
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
@@ -29,25 +22,24 @@ public class DataTableBlock implements LayoutBlock {
     private final String type = TYPE;
 
     /**
-     * The rows of the table. Each row is a list of cells. The first row is the header row.
-     * Minimum 2 rows (header plus one data row); maximum 101 rows. Every row must contain
-     * the same number of cells (1-20).
+     * An array consisting of table rows.
      */
     @Builder.Default
     private List<List<DataTableCell>> rows = new ArrayList<>();
 
     /**
-     * Required. The caption describing the table, used as the caption of the rendered HTML element.
+     * A caption for the table; used as the value for the HTML caption element.
      */
     private String caption;
 
     /**
-     * The number of rows shown per page. Valid range 1-100; defaults to 5 when omitted.
+     * Number of rows per page. Min {@code 1}, Max {@code 100}. Defaults to {@code 5} if omitted.
      */
     private Integer pageSize;
 
     /**
-     * Zero-based index of the column that identifies each row. Defaults to 0 when omitted.
+     * The 0-based index of the column that uniquely identifies each row (the row header). This column
+     * is treated as the row's primary identifier for screen readers. Defaults to {@code 0} if omitted.
      */
     private Integer rowHeaderColumnIndex;
 

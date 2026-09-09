@@ -9,8 +9,6 @@ package com.slack.api.model.block;
  *   <li>{@link com.slack.api.model.block.RichTextBlock RichTextBlock} ({@code rich_text})</li>
  * </ul>
  *
- * <p>Header cells (those in the first row) cannot use the {@code rich_text} type.</p>
- *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 public interface DataTableCell {
