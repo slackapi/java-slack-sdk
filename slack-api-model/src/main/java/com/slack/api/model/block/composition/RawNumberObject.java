@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * A {@code raw_number} table cell, holding a numeric value. The {@code text} field carries
- * the text used to display the value and must be at least one character long.
+ * Defines an object containing a numeric value.
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
@@ -19,6 +18,14 @@ import lombok.NoArgsConstructor;
 public class RawNumberObject implements TableCell {
     public static final String TYPE = "raw_number";
     private final String type = TYPE;
+
+    /**
+     * The numeric value.
+     */
     private Double value;
+
+    /**
+     * The text used to display the value. The minimum length is 1 character.
+     */
     private String text;
 }
