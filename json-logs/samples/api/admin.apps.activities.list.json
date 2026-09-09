@@ -59,7 +59,17 @@
           "message_ts": "0000000000.000000"
         },
         "code": "",
-        "app_id": "A00000000"
+        "app_id": "A00000000",
+        "tool_name": "",
+        "server_name": "",
+        "message": "",
+        "tool_count": 12345,
+        "elapsed_ms": 12345,
+        "error_stage": "",
+        "http_status_code": 12345,
+        "provider_key": "",
+        "tokens_checked": 12345,
+        "extra_message": ""
       },
       "created": 12345,
       "trace_id": "",

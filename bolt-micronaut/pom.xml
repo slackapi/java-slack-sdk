@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.49.1-SNAPSHOT</version>
+        <version>1.51.1-SNAPSHOT</version>
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -14,7 +14,7 @@
     <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
     <properties>
-        <micronaut.version>4.8.3</micronaut.version>
+        <micronaut.version>4.10.24</micronaut.version>
         <micronaut-test-junit5.version>4.7.0</micronaut-test-junit5.version>
         <micronaut-rxjava3.version>3.7.0</micronaut-rxjava3.version>
         <junit5-jupiter.version>5.11.4</junit5-jupiter.version>
@@ -29,7 +29,7 @@
     </properties>
 
     <artifactId>bolt-micronaut</artifactId>
-    <version>1.49.1-SNAPSHOT</version>
+    <version>1.51.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>

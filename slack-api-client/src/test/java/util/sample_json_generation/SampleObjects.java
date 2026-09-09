@@ -253,6 +253,8 @@ public class SampleObjects {
             .placeholder(initProperties(PlainTextObject.builder().build()))
             .initialValue(RichTextBlock)
             .dispatchActionConfig(initProperties(DispatchActionConfig.builder().triggerActionsOn(Arrays.asList("")).build()))
+            .minLines(3)
+            .maxLines(20)
             .build());
 
     public static RadioButtonsElement radioButtonsElement = initProperties(RadioButtonsElement.builder()

@@ -5,6 +5,7 @@ import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
+import com.slack.api.methods.response.users.UsersConversationsResponse;
 import com.slack.api.model.admin.RoleAssignment;
 import config.Constants;
 import config.SlackTestConfig;
@@ -54,9 +55,11 @@ public class AdminApi_roles_Test {
     public void addAndRemoveAssignments() throws Exception {
         if (orgAdminUserToken != null) {
             String userId = orgAdminMethodsAsync.authTest(r -> r).get().getUserId();
-            String channelId = workspaceAdminMethodsAsync.usersConversations(r -> r
+            UsersConversationsResponse conversations = workspaceAdminMethodsAsync.usersConversations(r -> r
                     .user(userId).excludeArchived(true).limit(1)
-            ).get().getChannels().get(0).getId();
+            ).get();
+            assertThat(conversations.getError(), is(nullValue()));
+            String channelId = conversations.getChannels().get(0).getId();
             AdminRolesAddAssignmentsResponse addition = orgAdminMethodsAsync.adminRolesAddAssignments(r -> r
                     .roleId("Rl0A")
                     .entityIds(Arrays.asList(channelId))

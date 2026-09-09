@@ -101,6 +101,31 @@ public class BlocksTest {
     }
 
     @Test
+    public void testAlert() {
+        assertThat(alert(a -> a.blockId("alert-1").level("warning").text(plainText("Watch out!"))), is(notNullValue()));
+    }
+
+    @Test
+    public void testCard() {
+        assertThat(card(c -> c.blockId("card-1").title(com.slack.api.model.block.composition.MarkdownTextObject.builder().text("Title").build())), is(notNullValue()));
+    }
+
+    @Test
+    public void testCarousel() {
+        assertThat(carousel(c -> c.blockId("carousel-1").elements(Arrays.asList(
+                card(card -> card.title(com.slack.api.model.block.composition.MarkdownTextObject.builder().text("Card 1").build()))
+        ))), is(notNullValue()));
+    }
+
+    @Test
+    public void testContainer() {
+        assertThat(container(c -> c.blockId("container-1")
+                .title(com.slack.api.model.block.composition.PlainTextObject.builder().text("Title").build())
+                .childBlocks(Arrays.asList(divider()))
+        ), is(notNullValue()));
+    }
+
+    @Test
     public void testImage() {
         assertThat(Blocks.image(i -> i.blockId("block-id").imageUrl("https://www.example.com/")), is(notNullValue()));
         assertThat(Blocks.image(i -> i
@@ -134,6 +159,11 @@ public class BlocksTest {
                 .blockId("block-id")
                 .elements(asElements(button(b -> b.value("v"))))
         ), is(notNullValue()));
+    }
+
+    @Test
+    public void testTaskCard() {
+        assertThat(taskCard(t -> t.taskId("task_1").title("Do thing").status("complete")), is(notNullValue()));
     }
 
     @Test

@@ -37,6 +37,13 @@ interface LayoutBlockDsl {
     fun actions(builder: ActionsBlockBuilder.() -> Unit)
 
     /**
+     * A container block groups related blocks together into a visually distinct section.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/container-block">Container documentation</a>
+     */
+    fun container(builder: ContainerBlockBuilder.() -> Unit)
+
+    /**
      * Displays message context, which can include both images and text.
      *
      * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/context-block">Context documentation</a>

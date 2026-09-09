@@ -227,8 +227,9 @@ The simplest way is to have some code that initializes the **App** instance in a
 package hello;
 
 import com.slack.api.bolt.App;
+import com.slack.api.bolt.AppConfig;
 import io.micronaut.context.annotation.Factory;
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Factory
 public class AppFactory {

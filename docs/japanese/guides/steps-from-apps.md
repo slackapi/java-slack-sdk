@@ -14,7 +14,7 @@
 
 ### Slack アプリの設定
 
-ワークフローステップを有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Workflow Steps** へ遷移します。このページで以下の設定を行います。
+ワークフローステップを有効にするには [Slack アプリ管理画面](https://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Workflow Steps** へ遷移します。このページで以下の設定を行います。
 
 * 機能を有効にします (**Turn on workflow steps**)
 * **Add Step** ボタンをクリックして、ステップの **Name** と **Callback ID** を設定します。

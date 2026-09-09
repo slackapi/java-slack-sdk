@@ -15,6 +15,8 @@ class RichTextInputElementBuilder : Builder<RichTextInputElement> {
     private var initialValue: RichTextBlock? = null
     private var dispatchActionConfig: DispatchActionConfig? = null
     private var _focusOnLoad: Boolean? = null
+    private var minLines: Int? = null
+    private var maxLines: Int? = null
 
     /**
      * An identifier for the input value when the parent modal is submitted. You can use this when you receive a
@@ -62,6 +64,25 @@ class RichTextInputElementBuilder : Builder<RichTextInputElement> {
         _focusOnLoad = focusOnLoad
     }
 
+    /**
+     * The minimum number of lines of text shown in the input. Must be between 1 and 100.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/rich-text-input-element/">Rich text input documentation</a>
+     */
+    fun minLines(lines: Int) {
+        minLines = lines
+    }
+
+    /**
+     * The maximum number of lines of text shown in the input before it scrolls.
+     * Must be between 1 and 100. Defaults to 8 when not specified.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/rich-text-input-element/">Rich text input documentation</a>
+     */
+    fun maxLines(lines: Int) {
+        maxLines = lines
+    }
+
     override fun build(): RichTextInputElement {
         return RichTextInputElement.builder()
             .actionId(actionId)
@@ -69,6 +90,8 @@ class RichTextInputElementBuilder : Builder<RichTextInputElement> {
             .initialValue(initialValue)
             .dispatchActionConfig(dispatchActionConfig)
             .focusOnLoad(_focusOnLoad)
+            .minLines(minLines)
+            .maxLines(maxLines)
             .build()
     }
 }
