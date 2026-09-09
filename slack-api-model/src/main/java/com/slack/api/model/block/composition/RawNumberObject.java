@@ -6,8 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * A {@code raw_number} table cell, holding a numeric value. The optional {@code text}
- * field carries the display representation of the value (for example a formatted string).
+ * A {@code raw_number} table cell, holding a numeric value. The {@code text} field carries
+ * the text used to display the value (for example a formatted string) and must be at least
+ * one character long.
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
