@@ -1,5 +1,6 @@
 package com.slack.api.model.block;
 
+import com.slack.api.model.block.composition.TableCell;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class DataTableBlock implements LayoutBlock {
      * An array consisting of table rows.
      */
     @Builder.Default
-    private List<List<DataTableCell>> rows = new ArrayList<>();
+    private List<List<TableCell>> rows = new ArrayList<>();
 
     /**
      * A caption for the table; used as the value for the HTML caption element.
