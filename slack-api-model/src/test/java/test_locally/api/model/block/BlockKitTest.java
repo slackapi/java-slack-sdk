@@ -5,8 +5,8 @@ import com.google.gson.JsonParseException;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
-import com.slack.api.model.block.composition.RawNumberTableCell;
-import com.slack.api.model.block.composition.RawTextTableCell;
+import com.slack.api.model.block.composition.RawNumberObject;
+import com.slack.api.model.block.composition.RawTextObject;
 import com.slack.api.model.block.composition.TableCell;
 import com.slack.api.model.block.element.*;
 import com.slack.api.model.view.View;
@@ -1789,7 +1789,7 @@ public class BlockKitTest {
         assertThat(block.getRowHeaderColumnIndex(), is(0));
         assertThat(block.getRows().size(), is(2));
 
-        RawTextTableCell header = (RawTextTableCell) block.getRows().get(0).get(0);
+        RawTextObject header = (RawTextObject) block.getRows().get(0).get(0);
         assertThat(header.getType(), is("raw_text"));
         assertThat(header.getText(), is("Team"));
 
@@ -1797,7 +1797,7 @@ public class BlockKitTest {
         assertTrue(richCell instanceof RichTextBlock);
         assertThat(richCell.getType(), is("rich_text"));
 
-        RawNumberTableCell numberCell = (RawNumberTableCell) block.getRows().get(1).get(1);
+        RawNumberObject numberCell = (RawNumberObject) block.getRows().get(1).get(1);
         assertThat(numberCell.getType(), is("raw_number"));
         assertThat(numberCell.getValue(), is(1234.5));
         assertThat(numberCell.getText(), is("$1,234.50"));
@@ -1812,12 +1812,12 @@ public class BlockKitTest {
                 .rowHeaderColumnIndex(0)
                 .rows(Arrays.asList(
                         Arrays.asList(
-                                RawTextTableCell.builder().text("Team").build(),
-                                RawTextTableCell.builder().text("Revenue").build()
+                                RawTextObject.builder().text("Team").build(),
+                                RawTextObject.builder().text("Revenue").build()
                         ),
                         Arrays.asList(
-                                RawTextTableCell.builder().text("Platform").build(),
-                                RawNumberTableCell.builder().value(1234.5).text("$1,234.50").build()
+                                RawTextObject.builder().text("Platform").build(),
+                                RawNumberObject.builder().value(1234.5).text("$1,234.50").build()
                         )
                 )));
         assertThat(block, is(notNullValue()));
@@ -1829,7 +1829,7 @@ public class BlockKitTest {
         assertThat(restored.getCaption(), is("Quarterly results"));
         assertThat(restored.getPageSize(), is(10));
         assertThat(restored.getRows().size(), is(2));
-        RawNumberTableCell numberCell = (RawNumberTableCell) restored.getRows().get(1).get(1);
+        RawNumberObject numberCell = (RawNumberObject) restored.getRows().get(1).get(1);
         assertThat(numberCell.getValue(), is(1234.5));
     }
 

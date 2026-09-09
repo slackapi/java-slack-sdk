@@ -2,8 +2,8 @@ package com.slack.api.util.json;
 
 import com.google.gson.*;
 import com.slack.api.model.block.RichTextBlock;
-import com.slack.api.model.block.composition.RawNumberTableCell;
-import com.slack.api.model.block.composition.RawTextTableCell;
+import com.slack.api.model.block.composition.RawNumberObject;
+import com.slack.api.model.block.composition.RawTextObject;
 import com.slack.api.model.block.composition.TableCell;
 
 import java.lang.reflect.Type;
@@ -43,10 +43,10 @@ public class GsonTableCellFactory implements JsonDeserializer<TableCell>, JsonSe
 
     private Class<? extends TableCell> getTableCellClassInstance(String typeName) {
         switch (typeName) {
-            case RawTextTableCell.TYPE:
-                return RawTextTableCell.class;
-            case RawNumberTableCell.TYPE:
-                return RawNumberTableCell.class;
+            case RawTextObject.TYPE:
+                return RawTextObject.class;
+            case RawNumberObject.TYPE:
+                return RawNumberObject.class;
             case RichTextBlock.TYPE:
                 return RichTextBlock.class;
             default:

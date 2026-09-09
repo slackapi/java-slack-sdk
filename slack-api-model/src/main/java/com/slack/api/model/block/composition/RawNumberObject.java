@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RawNumberTableCell implements TableCell {
+public class RawNumberObject implements TableCell {
     public static final String TYPE = "raw_number";
     private final String type = TYPE;
     private Double value;

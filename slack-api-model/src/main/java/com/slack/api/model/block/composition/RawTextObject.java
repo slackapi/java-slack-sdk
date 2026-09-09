@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RawTextTableCell implements TableCell {
+public class RawTextObject implements TableCell {
     public static final String TYPE = "raw_text";
     private final String type = TYPE;
     private String text;
