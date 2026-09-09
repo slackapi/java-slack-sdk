@@ -54,6 +54,26 @@ public class BlockCompositions {
         return MarkdownTextObject.builder().text(text).build();
     }
 
+    // RawNumberObject
+
+    public static RawNumberObject rawNumber(ModelConfigurator<RawNumberObject.RawNumberObjectBuilder> configurator) {
+        return configurator.configure(RawNumberObject.builder()).build();
+    }
+
+    public static RawNumberObject rawNumber(double value, String text) {
+        return RawNumberObject.builder().value(value).text(text).build();
+    }
+
+    // RawTextObject
+
+    public static RawTextObject rawText(ModelConfigurator<RawTextObject.RawTextObjectBuilder> configurator) {
+        return configurator.configure(RawTextObject.builder()).build();
+    }
+
+    public static RawTextObject rawText(String text) {
+        return RawTextObject.builder().text(text).build();
+    }
+
     // OptionGroupObject
 
     public static OptionGroupObject optionGroup(ModelConfigurator<OptionGroupObject.OptionGroupObjectBuilder> configurator) {
