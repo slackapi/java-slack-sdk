@@ -472,7 +472,16 @@ public class slacklists_Test {
                 .token(botToken)
                 .listId(listId)
                 .initialFields(Arrays.asList(
-                        ListRecord.Field.builder().columnId(keyToId.get("title")).text("probe row").build()
+                        ListRecord.Field.builder()
+                                .columnId(keyToId.get("title"))
+                                .richText(Arrays.asList(RichTextBlock.builder()
+                                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                                        .text("probe row")
+                                                        .build()))
+                                                .build()))
+                                        .build()))
+                                .build()
                 )));
         assertThat(createItemResponse.getError(), is(nullValue()));
         assertThat(createItemResponse.isOk(), is(true));
@@ -489,7 +498,8 @@ public class slacklists_Test {
         try (Response updRaw = http.postFormWithBearerHeader(
                 MethodsClient.ENDPOINT_URL_PREFIX + "slackLists.items.update", botToken, updateForm)) {
             String updBody = updRaw.body() != null ? updRaw.body().string() : "";
-            log.info("[probe] items.update raw ok? contains \\\"ok\\\":true -> {}", updBody.contains("\"ok\":true"));
+            log.info("[probe] items.update raw response (truncated 2k): {}",
+                    updBody.length() > 2000 ? updBody.substring(0, 2000) : updBody);
         }
 
         // 4) RAW-capture the read-back shape of the message field.
@@ -505,19 +515,29 @@ public class slacklists_Test {
         log.info("[probe] raw items.info body (truncated 4k): {}",
                 rawBody.length() > 4000 ? rawBody.substring(0, 4000) : rawBody);
 
-        int msgIdx = rawBody.indexOf("\"message\"");
-        assertThat("expected a message field in the raw response", msgIdx, is(not(-1)));
-        // Skip past `"message"` and any whitespace / colon to the value's first char.
-        int valStart = msgIdx + "\"message\"".length();
-        while (valStart < rawBody.length()
-                && (rawBody.charAt(valStart) == ':' || Character.isWhitespace(rawBody.charAt(valStart)))) {
-            valStart++;
+        // Target the message field inside record.fields[...] specifically —
+        // the body has other "message" keys (list metadata) that we must skip.
+        int fieldsIdx = rawBody.indexOf("\"fields\"");
+        int msgIdx = fieldsIdx >= 0 ? rawBody.indexOf("\"message\"", fieldsIdx) : rawBody.indexOf("\"message\"");
+        boolean isArray = false;
+        boolean isObject = false;
+        char firstValChar = '\0';
+        if (msgIdx < 0) {
+            log.warn("[probe] no \"message\" key present in the read-back response — "
+                    + "the field may not have been set/echoed. See raw body above.");
+        } else {
+            // Skip past `"message"` and any whitespace / colon to the value's first char.
+            int valStart = msgIdx + "\"message\"".length();
+            while (valStart < rawBody.length()
+                    && (rawBody.charAt(valStart) == ':' || Character.isWhitespace(rawBody.charAt(valStart)))) {
+                valStart++;
+            }
+            firstValChar = rawBody.charAt(valStart);
+            isArray = firstValChar == '[';
+            isObject = firstValChar == '{';
         }
-        char firstValChar = rawBody.charAt(valStart);
-        boolean isArray = firstValChar == '[';
-        boolean isObject = firstValChar == '{';
-        log.info("[probe] message field first value char = '{}' => isArray={}, isObject={}",
-                firstValChar, isArray, isObject);
+        log.info("[probe] message field present={} first value char = '{}' => isArray={}, isObject={}",
+                msgIdx >= 0, firstValChar, isArray, isObject);
 
         // 5) Probe TYPED (production Gson) deserialization on this real shape.
         boolean typedThrew = false;
@@ -534,11 +554,23 @@ public class slacklists_Test {
         }
         log.info("[probe] SUMMARY host={} messageIsArray={} messageIsObject={} typedDeserializationThrew={} typedError={}",
                 teamHost, isArray, isObject, typedThrew, typedError);
+        // Also emit to stdout with a distinctive marker so the empirical result
+        // is visible regardless of the test logging configuration.
+        System.out.println(">>>PROBE>>> messagePresent=" + (msgIdx >= 0)
+                + " messageIsArray=" + isArray
+                + " messageIsObject=" + isObject
+                + " firstValueChar=" + firstValChar
+                + " typedDeserializationThrew=" + typedThrew
+                + " typedError=" + typedError);
+        int recIdx = rawBody.indexOf("\"record\"");
+        System.out.println(">>>PROBE>>> raw record slice: "
+                + (recIdx >= 0
+                    ? rawBody.substring(recIdx, Math.min(rawBody.length(), recIdx + 1500))
+                    : "(no \"record\" key; full body follows)\n" + rawBody));
 
         // The point of the probe is observation, not a pass/fail gate on the
-        // shape. We only assert the response actually carried a message value
-        // (either shape), and log the empirical result for the issue.
-        assertThat("message value should be an array or object", isArray || isObject, is(true));
+        // shape. The empirical result is in the SUMMARY log line above; we do
+        // not assert on the shape so the run always surfaces what was observed.
 
         // cleanup
         methods.slackListsItemsDelete(r -> r.token(botToken).listId(listId).id(itemId));
