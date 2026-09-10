@@ -369,7 +369,9 @@
       "pref.wfb_allow_third_party_ai_writes",
       "mcp_slack_create_todos_tool_called",
       "mcp_slack_list_activity_tool_called",
-      "mcp_slack_list_todos_tool_called"
+      "mcp_slack_list_todos_tool_called",
+      "slack_ai_api_tool_called",
+      "pref.slackbot_ai_channel_default_instructions_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -867,7 +869,9 @@
       "surface_shared",
       "surface_downloaded",
       "surface_opened",
-      "surface_deleted"
+      "surface_deleted",
+      "surface_refreshed",
+      "surface_edited"
     ]
   }
 }
