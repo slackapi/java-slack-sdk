@@ -438,7 +438,7 @@ class ActionsBlockTest {
                 checkboxes {
                     options {
                         option {
-                            description("I accept the terms and conditions")
+                            markdownDescription("*I accept the terms and conditions*")
                             value("tac-accept")
                         }
                         option {
@@ -481,8 +481,8 @@ class ActionsBlockTest {
                         {
                           "value": "tac-accept",
                           "description": {
-                            "type": "plain_text",
-                            "text": "I accept the terms and conditions"
+                            "type": "mrkdwn",
+                            "text": "*I accept the terms and conditions*"
                           }
                         },
                         {
@@ -490,71 +490,6 @@ class ActionsBlockTest {
                           "description": {
                             "type": "plain_text",
                             "text": "I have read the privacy policy"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-        """.trimIndent()
-        val json = gson.fromJson(original, JsonElement::class.java)
-        val expected = json.asJsonObject["blocks"]
-        val actual = gson.toJsonTree(blocks)
-        assertEquals(expected, actual, "\n$expected\n$actual")
-    }
-
-    @Test
-    fun `checkboxes with mrkdwn option description`() {
-        val gson = GsonFactory.createSnakeCase()
-        val blocks = withBlocks {
-            actions {
-                checkboxes {
-                    options {
-                        option {
-                            plainText("Checkbox 1")
-                            markdownDescription("*bold* description")
-                            value("mrkdwn-desc")
-                        }
-                        option {
-                            plainText("Checkbox 2")
-                            description("plain description")
-                            value("plain-desc")
-                        }
-                    }
-                }
-            }
-        }
-        val original = """
-            {
-              "blocks": [
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "checkboxes",
-                      "options": [
-                        {
-                          "text": {
-                            "type": "plain_text",
-                            "text": "Checkbox 1"
-                          },
-                          "value": "mrkdwn-desc",
-                          "description": {
-                            "type": "mrkdwn",
-                            "text": "*bold* description"
-                          }
-                        },
-                        {
-                          "text": {
-                            "type": "plain_text",
-                            "text": "Checkbox 2"
-                          },
-                          "value": "plain-desc",
-                          "description": {
-                            "type": "plain_text",
-                            "text": "plain description"
                           }
                         }
                       ]
