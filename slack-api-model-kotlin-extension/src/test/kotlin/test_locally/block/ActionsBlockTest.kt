@@ -504,4 +504,69 @@ class ActionsBlockTest {
         val actual = gson.toJsonTree(blocks)
         assertEquals(expected, actual, "\n$expected\n$actual")
     }
+
+    @Test
+    fun `checkboxes with mrkdwn option description`() {
+        val gson = GsonFactory.createSnakeCase()
+        val blocks = withBlocks {
+            actions {
+                checkboxes {
+                    options {
+                        option {
+                            plainText("Checkbox 1")
+                            markdownDescription("*bold* description")
+                            value("mrkdwn-desc")
+                        }
+                        option {
+                            plainText("Checkbox 2")
+                            description("plain description")
+                            value("plain-desc")
+                        }
+                    }
+                }
+            }
+        }
+        val original = """
+            {
+              "blocks": [
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "checkboxes",
+                      "options": [
+                        {
+                          "text": {
+                            "type": "plain_text",
+                            "text": "Checkbox 1"
+                          },
+                          "value": "mrkdwn-desc",
+                          "description": {
+                            "type": "mrkdwn",
+                            "text": "*bold* description"
+                          }
+                        },
+                        {
+                          "text": {
+                            "type": "plain_text",
+                            "text": "Checkbox 2"
+                          },
+                          "value": "plain-desc",
+                          "description": {
+                            "type": "plain_text",
+                            "text": "plain description"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+        """.trimIndent()
+        val json = gson.fromJson(original, JsonElement::class.java)
+        val expected = json.asJsonObject["blocks"]
+        val actual = gson.toJsonTree(blocks)
+        assertEquals(expected, actual, "\n$expected\n$actual")
+    }
 }

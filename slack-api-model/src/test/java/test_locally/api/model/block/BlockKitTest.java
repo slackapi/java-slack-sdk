@@ -5,6 +5,9 @@ import com.google.gson.JsonParseException;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.MarkdownTextObject;
+import com.slack.api.model.block.composition.OptionObject;
+import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.*;
 import com.slack.api.model.view.View;
 import org.junit.Test;
@@ -1042,6 +1045,10 @@ public class BlockKitTest {
                 "              \"text\": \"*this is plain_text text*\",\n" +
                 "              \"emoji\": true\n" +
                 "            },\n" +
+                "            \"description\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"this is a plain_text description\"\n" +
+                "            },\n" +
                 "            \"value\": \"value-0\"\n" +
                 "          },\n" +
                 "          {\n" +
@@ -1123,9 +1130,19 @@ public class BlockKitTest {
         CheckboxesElement checkboxes1 = (CheckboxesElement) input.getElement();
         assertThat(checkboxes1.getActionId(), is("input-action-id"));
 
+        OptionObject plainOption = checkboxes1.getOptions().get(0);
+        assertThat(plainOption.getDescription(), instanceOf(PlainTextObject.class));
+        assertThat(plainOption.getDescription().getType(), is("plain_text"));
+        assertThat(((PlainTextObject) plainOption.getDescription()).getText(), is("this is a plain_text description"));
+
         SectionBlock block = (SectionBlock) message.getBlocks().get(1);
         CheckboxesElement checkboxes2 = (CheckboxesElement) block.getAccessory();
         assertThat(checkboxes2.getActionId(), is("section-action-id"));
+
+        OptionObject mrkdwnOption = checkboxes2.getOptions().get(0);
+        assertThat(mrkdwnOption.getDescription(), instanceOf(MarkdownTextObject.class));
+        assertThat(mrkdwnOption.getDescription().getType(), is("mrkdwn"));
+        assertThat(((MarkdownTextObject) mrkdwnOption.getDescription()).getText(), is("*this is mrkdwn text*"));
     }
 
     @Test
