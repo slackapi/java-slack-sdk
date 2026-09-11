@@ -371,7 +371,8 @@
       "mcp_slack_list_activity_tool_called",
       "mcp_slack_list_todos_tool_called",
       "slack_ai_api_tool_called",
-      "pref.slackbot_ai_channel_default_instructions_changed"
+      "pref.slackbot_ai_channel_default_instructions_changed",
+      "team_ip_allowlist_sessions_invalidated"
     ],
     "user": [
       "custom_tos_accepted",
