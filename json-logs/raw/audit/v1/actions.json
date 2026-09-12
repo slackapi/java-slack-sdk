@@ -372,7 +372,8 @@
       "mcp_slack_list_todos_tool_called",
       "slack_ai_api_tool_called",
       "pref.slackbot_ai_channel_default_instructions_changed",
-      "team_ip_allowlist_sessions_invalidated"
+      "team_ip_allowlist_sessions_invalidated",
+      "mcp_slack_update_todos_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -468,7 +469,8 @@
       "slack_ai_file_summary_generated",
       "slack_ai_file_summary_deleted",
       "slack_ai_file_summary_translation_generated",
-      "slack_ai_file_context_read"
+      "slack_ai_file_context_read",
+      "slack_ai_file_image_description_generated"
     ],
     "channel": [
       "user_channel_join",
