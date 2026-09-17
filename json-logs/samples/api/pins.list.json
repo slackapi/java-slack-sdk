@@ -62873,6 +62873,23 @@
             "image_72": "https://www.example.com/"
           },
           "team_id": "T00000000"
+        },
+        "language": {
+          "locale": "",
+          "is_reliable": false
+        },
+        "agent_session": {
+          "status": "",
+          "agent_bot_user_ids": [
+            "U00000000"
+          ],
+          "agent_statuses": [
+            {
+              "agent_bot_user_id": "U00000000",
+              "status": "",
+              "is_stoppable": false
+            }
+          ]
         }
       }
     }
