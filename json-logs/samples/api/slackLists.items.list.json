@@ -40,9 +40,6 @@
           "value": false,
           "checkbox": false,
           "column_id": "",
-          "user": [
-            "U00000000"
-          ],
           "text": "",
           "rich_text": [
             {
@@ -60,6 +57,9 @@
                 }
               ]
             }
+          ],
+          "user": [
+            "U00000000"
           ]
         }
       ],

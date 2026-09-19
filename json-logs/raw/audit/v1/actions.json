@@ -609,7 +609,8 @@
       "app_dwa_domain_removed",
       "app_mcp_tool_default_acl_changed",
       "app_user_connection_added",
-      "app_user_connection_removed"
+      "app_user_connection_removed",
+      "child_app_manager_connected"
     ],
     "workflow_builder": [
       "workflow_created",
