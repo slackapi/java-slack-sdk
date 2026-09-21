@@ -23,7 +23,6 @@ public class EqualityTest {
                 .message("")
                 .build();
 
-        assertEquals(new MethodsCompletionException(null, null, null), new MethodsCompletionException(null, null, null));
-        assertEquals(new SlackApiException(response, ""), new SlackApiException(response, ""));
+        assertEquals(new MethodsCompletionException(new SlackApiException(response, "")), new MethodsCompletionException(new SlackApiException(response, "")));
     }
 }
