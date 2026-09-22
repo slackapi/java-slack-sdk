@@ -326,6 +326,7 @@ public class Actions {
         public static final String slack_ai_mcp_message_sent = "slack_ai_mcp_message_sent";
         public static final String slack_ai_mcp_link_opened = "slack_ai_mcp_link_opened";
         public static final String slack_ai_mcp_model_context_updated = "slack_ai_mcp_model_context_updated";
+        public static final String slack_ai_api_tool_called = "slack_ai_api_tool_called";
         public static final String custom_tos_link_clicked = "custom_tos_link_clicked";
         public static final String prefs_setting_changed = "prefs_setting_changed";
         public static final String auth_policy_created = "auth_policy_created";
@@ -359,6 +360,8 @@ public class Actions {
         public static final String pref_workflows_export_csv_enabled = "pref.workflows_export_csv_enabled";
         public static final String pref_slackbot_ai_in_channels_enabled_changed = "pref.slackbot_ai_in_channels_enabled_changed";
         public static final String pref_wfb_allow_third_party_ai_writes = "pref.wfb_allow_third_party_ai_writes";
+        public static final String pref_grace_period_early_opt_in_changed = "pref.grace_period_early_opt_in_changed";
+        public static final String pref_slackbot_ai_channel_default_instructions_changed = "pref.slackbot_ai_channel_default_instructions_changed";
         public static final String slackbot_analytics_export_started = "slackbot_analytics_export_started";
         public static final String enterprise_managed_auth_enabled = "enterprise_managed_auth_enabled";
         public static final String enterprise_managed_auth_disabled = "enterprise_managed_auth_disabled";
@@ -373,12 +376,14 @@ public class Actions {
         public static final String mcp_slack_complete_file_upload_tool_called = "mcp_slack_complete_file_upload_tool_called";
         public static final String mcp_slack_list_user_channels_tool_called = "mcp_slack_list_user_channels_tool_called";
         public static final String mcp_slack_todos_list_tool_called = "mcp_slack_todos_list_tool_called";
+        public static final String mcp_slack_update_todos_tool_called = "mcp_slack_update_todos_tool_called";
         public static final String ip_allowlist_enabled = "ip_allowlist_enabled";
         public static final String ip_allowlist_disabled = "ip_allowlist_disabled";
         public static final String team_ip_allowlist_range_added = "team_ip_allowlist_range_added";
         public static final String team_ip_allowlist_range_removed = "team_ip_allowlist_range_removed";
         public static final String team_ip_allowlist_enabled = "team_ip_allowlist_enabled";
         public static final String team_ip_allowlist_disabled = "team_ip_allowlist_disabled";
+        public static final String team_ip_allowlist_sessions_invalidated = "team_ip_allowlist_sessions_invalidated";
         public static final String team_authorized_ip_range_added = "team_authorized_ip_range_added";
         public static final String team_authorized_ip_range_removed = "team_authorized_ip_range_removed";
     }
@@ -463,6 +468,7 @@ public class Actions {
         public static final String ip_allowlist_access_denied = "ip_allowlist_access_denied";
         public static final String team_ip_allowlist_access_denied = "team_ip_allowlist_access_denied";
         public static final String slackbot_ai_agent_prompt_submitted = "slackbot_ai_agent_prompt_submitted";
+        public static final String frontline_access_pause_blocked = "frontline_access_pause_blocked";
     }
 
     public static class File {
@@ -485,6 +491,7 @@ public class Actions {
         public static final String slack_ai_file_summary_deleted = "slack_ai_file_summary_deleted";
         public static final String slack_ai_file_summary_translation_generated = "slack_ai_file_summary_translation_generated";
         public static final String slack_ai_file_context_read = "slack_ai_file_context_read";
+        public static final String slack_ai_file_image_description_generated = "slack_ai_file_image_description_generated";
     }
 
     public static class Channel {
@@ -564,6 +571,9 @@ public class Actions {
         public static final String channel_restrict_guests_updated = "channel_restrict_guests_updated";
         public static final String channel_restrict_message_and_file_sharing_updated = "channel_restrict_message_and_file_sharing_updated";
         public static final String channel_properties_updated = "channel_properties_updated";
+        public static final String slack_ai_channel_knowledge_enabled = "slack_ai_channel_knowledge_enabled";
+        public static final String slack_ai_channel_knowledge_disabled = "slack_ai_channel_knowledge_disabled";
+        public static final String slack_ai_channel_knowledge_refreshed = "slack_ai_channel_knowledge_refreshed";
     }
 
     public static class App {
@@ -619,6 +629,7 @@ public class Actions {
         public static final String child_app_manager_disconnected = "child_app_manager_disconnected";
         public static final String child_app_manager_connected = "child_app_manager_connected";
         public static final String app_user_connection_added = "app_user_connection_added";
+        public static final String app_user_connection_removed = "app_user_connection_removed";
         public static final String app_mcp_server_added = "app_mcp_server_added";
         public static final String app_mcp_server_updated = "app_mcp_server_updated";
         public static final String app_mcp_server_removed = "app_mcp_server_removed";
