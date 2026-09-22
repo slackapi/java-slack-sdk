@@ -452,7 +452,8 @@
       "ip_allowlist_access_denied",
       "user_password_reset_by_admin",
       "slackbot_ai_agent_prompt_submitted",
-      "team_ip_allowlist_access_denied"
+      "team_ip_allowlist_access_denied",
+      "frontline_access_pause_blocked"
     ],
     "file": [
       "file_downloaded",

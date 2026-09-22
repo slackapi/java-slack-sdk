@@ -78,7 +78,16 @@
                 "team_id": "T00000000",
                 "share_user_id": "U00000000",
                 "source": "",
-                "access": ""
+                "access": "",
+                "is_silent_share": false
+              },
+              {
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000",
+                "share_user_id": "U00000000",
+                "source": "",
+                "is_silent_share": false
               }
             ],
             "C00000001": [
@@ -93,14 +102,22 @@
                 "team_id": "T00000000",
                 "share_user_id": "U00000000",
                 "source": "",
-                "access": ""
+                "access": "",
+                "is_silent_share": false
+              },
+              {
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000",
+                "share_user_id": "U00000000",
+                "source": "",
+                "is_silent_share": false
               }
             ]
           }
         },
         "channels": [
-          "C00000000",
-          ""
+          "C00000000"
         ],
         "groups": [
           ""
