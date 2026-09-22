@@ -618,6 +618,7 @@ public class Actions {
         public static final String child_app_manifest_exported = "child_app_manifest_exported";
         public static final String child_app_manager_disconnected = "child_app_manager_disconnected";
         public static final String child_app_manager_connected = "child_app_manager_connected";
+        public static final String app_user_connection_added = "app_user_connection_added";
         public static final String app_mcp_server_added = "app_mcp_server_added";
         public static final String app_mcp_server_updated = "app_mcp_server_updated";
         public static final String app_mcp_server_removed = "app_mcp_server_removed";
