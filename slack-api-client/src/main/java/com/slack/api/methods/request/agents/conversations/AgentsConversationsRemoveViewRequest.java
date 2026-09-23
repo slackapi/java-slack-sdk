@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.removeView
  * <p>
- * Remove a view from a code channel. Requires the bot scope {@code code_channels:manage}.
+ * Remove a view from a code channel.
  * <p>
  * NOTE: This method is part of the Slack Code / code channels feature, which is in a developer-GA state.
  * The request/response shapes may change before general availability.

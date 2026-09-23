@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.create
  * <p>
- * Create a dedicated code channel for an agent session. Requires the bot scope {@code code_channels:manage}.
+ * Create a dedicated code channel for an agent session.
  * <p>
  * NOTE: This method is part of the Slack Code / code channels feature, which is in a developer-GA state.
  * The request/response shapes may change before general availability.

@@ -7,8 +7,7 @@ import lombok.Data;
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.setCanvasContent
  * <p>
- * Replace the full markdown content of a plan canvas attached to a code channel. Requires the bot scope
- * {@code code_channels:manage}.
+ * Replace the full markdown content of a plan canvas attached to a code channel.
  * <p>
  * NOTE: This method is part of the Slack Code / code channels feature, which is in a developer-GA state.
  * The request/response shapes may change before general availability.
@@ -20,8 +19,7 @@ public class AgentsConversationsSetCanvasContentRequest implements SlackApiReque
     private String token;
 
     /**
-     * ID of the agent session channel the canvas is attached to. Note: this method uses the "channel" argument, not
-     * "channel_id".
+     * ID of the agent session channel the canvas is attached to.
      */
     private String channel;
 

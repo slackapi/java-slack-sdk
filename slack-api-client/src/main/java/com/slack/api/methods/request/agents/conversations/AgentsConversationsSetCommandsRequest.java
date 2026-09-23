@@ -7,8 +7,7 @@ import lombok.Data;
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.setCommands
  * <p>
- * Register the set of agent-defined slash commands for the calling agent in a code channel. Requires the bot scope
- * {@code code_channels:manage}.
+ * Register the set of agent-defined slash commands for the calling agent in a code channel.
  * <p>
  * NOTE: This method is part of the Slack Code / code channels feature, which is in a developer-GA state.
  * The request/response shapes may change before general availability. The {@code commands} array is passed as a

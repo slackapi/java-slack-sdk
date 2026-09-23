@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.setView
  * <p>
- * Create or update a view in a code channel. Requires the bot scope {@code code_channels:manage}.
+ * Create or update a view in a code channel.
  * <p>
  * NOTE: This method is part of the Slack Code / code channels feature, which is in a developer-GA state.
  * The request/response shapes may change before general availability. The {@code csp} object argument is passed as a
