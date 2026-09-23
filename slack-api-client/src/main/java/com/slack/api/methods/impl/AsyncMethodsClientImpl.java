@@ -43,6 +43,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.conversations.*;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
@@ -185,6 +186,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
+import com.slack.api.methods.response.agents.conversations.*;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
@@ -1341,6 +1343,96 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req) {
         return agentsSessionsSetStatus(req.configure(AgentsSessionsSetStatusRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(AgentsConversationsCreateRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_CREATE, toMap(req), () -> methods.agentsConversationsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req) {
+        return agentsConversationsCreate(req.configure(AgentsConversationsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(AgentsConversationsArchiveRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_ARCHIVE, toMap(req), () -> methods.agentsConversationsArchive(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(RequestConfigurator<AgentsConversationsArchiveRequest.AgentsConversationsArchiveRequestBuilder> req) {
+        return agentsConversationsArchive(req.configure(AgentsConversationsArchiveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_PROPERTIES, toMap(req), () -> methods.agentsConversationsSetProperties(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req) {
+        return agentsConversationsSetProperties(req.configure(AgentsConversationsSetPropertiesRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(AgentsConversationsSetViewRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_VIEW, toMap(req), () -> methods.agentsConversationsSetView(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req) {
+        return agentsConversationsSetView(req.configure(AgentsConversationsSetViewRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_COMMANDS, toMap(req), () -> methods.agentsConversationsSetCommands(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req) {
+        return agentsConversationsSetCommands(req.configure(AgentsConversationsSetCommandsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsListViewsResponse> agentsConversationsListViews(AgentsConversationsListViewsRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_LIST_VIEWS, toMap(req), () -> methods.agentsConversationsListViews(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsListViewsResponse> agentsConversationsListViews(RequestConfigurator<AgentsConversationsListViewsRequest.AgentsConversationsListViewsRequestBuilder> req) {
+        return agentsConversationsListViews(req.configure(AgentsConversationsListViewsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsRemoveViewResponse> agentsConversationsRemoveView(AgentsConversationsRemoveViewRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_REMOVE_VIEW, toMap(req), () -> methods.agentsConversationsRemoveView(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsRemoveViewResponse> agentsConversationsRemoveView(RequestConfigurator<AgentsConversationsRemoveViewRequest.AgentsConversationsRemoveViewRequestBuilder> req) {
+        return agentsConversationsRemoveView(req.configure(AgentsConversationsRemoveViewRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_GET_CANVAS, toMap(req), () -> methods.agentsConversationsGetCanvas(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req) {
+        return agentsConversationsGetCanvas(req.configure(AgentsConversationsGetCanvasRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(AgentsConversationsSetCanvasContentRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT, toMap(req), () -> methods.agentsConversationsSetCanvasContent(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(RequestConfigurator<AgentsConversationsSetCanvasContentRequest.AgentsConversationsSetCanvasContentRequestBuilder> req) {
+        return agentsConversationsSetCanvasContent(req.configure(AgentsConversationsSetCanvasContentRequest.builder()).build());
     }
 
     @Override

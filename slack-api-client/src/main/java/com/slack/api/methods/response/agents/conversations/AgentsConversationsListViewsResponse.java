@@ -1,0 +1,26 @@
+package com.slack.api.methods.response.agents.conversations;
+
+import com.slack.api.methods.SlackApiTextResponse;
+import lombok.Data;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Response for agents.conversations.listViews.
+ * <p>
+ * NOTE: Slack Code / code channels is in a developer-GA state; only the common top-level fields are modeled here.
+ * The list of views is not yet typed because the view item shape is not documented in the API reference; it can be
+ * added in a future revision once stabilized.
+ */
+@Data
+public class AgentsConversationsListViewsResponse implements SlackApiTextResponse {
+
+    private boolean ok;
+    private String warning;
+    private String error;
+    private String needed;
+    private String provided;
+
+    private transient Map<String, List<String>> httpResponseHeaders;
+}
