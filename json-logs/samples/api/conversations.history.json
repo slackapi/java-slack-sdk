@@ -53183,6 +53183,7 @@
           "size": 123,
           "mimetype": "",
           "url": "",
+          "media_type": "",
           "metadata": {
             "thumb_64": false,
             "thumb_80": false,
@@ -71124,6 +71125,11 @@
             "status": "",
             "is_stoppable": false,
             "date_status_processing_expire": 12345
+          },
+          {
+            "agent_bot_user_id": "U00000000",
+            "status": "",
+            "is_stoppable": false
           }
         ],
         "title": "",

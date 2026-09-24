@@ -25592,6 +25592,7 @@
               "size": 123,
               "mimetype": "",
               "url": "",
+              "media_type": "",
               "metadata": {
                 "thumb_64": false,
                 "thumb_80": false,
@@ -69058,6 +69059,7 @@
               "size": 123,
               "mimetype": "",
               "url": "",
+              "media_type": "",
               "metadata": {
                 "thumb_64": false,
                 "thumb_80": false,
@@ -130423,6 +130425,7 @@
             "size": 123,
             "mimetype": "",
             "url": "",
+            "media_type": "",
             "metadata": {
               "thumb_64": false,
               "thumb_80": false,
