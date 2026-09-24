@@ -415,6 +415,7 @@ public class Actions {
         public static final String user_logout_compromised = "user_logout_compromised";
         public static final String user_session_reset_by_admin = "user_session_reset_by_admin";
         public static final String user_logout_non_compliant_mobile_app_version = "user_logout_non_compliant_mobile_app_version";
+        public static final String user_logout_invalid_dbsc_cookie = "user_logout_invalid_dbsc_cookie";
         public static final String user_force_upgrade_non_compliant_mobile_app_version = "user_force_upgrade_non_compliant_mobile_app_version";
         public static final String connect_dm_invite_generated = "connect_dm_invite_generated";
         public static final String connect_dm_invite_revoked = "connect_dm_invite_revoked";
