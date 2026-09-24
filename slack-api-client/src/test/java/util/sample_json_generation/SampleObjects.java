@@ -262,10 +262,10 @@ public class SampleObjects {
                     .text(initProperties(PlainTextObject.builder().build()))
                     .build()))
             .options(Arrays.asList(
-                    initProperties(OptionObject.builder().text(initProperties(PlainTextObject.builder().build())).build()),
-                    initProperties(OptionObject.builder().text(initProperties(MarkdownTextObject.builder().build())).build())
+                    initProperties(OptionObject.builder().text(initProperties(PlainTextObject.builder().build())).description(initProperties(PlainTextObject.builder().build())).build()),
+                    initProperties(OptionObject.builder().text(initProperties(MarkdownTextObject.builder().build())).description(initProperties(MarkdownTextObject.builder().build())).build())
             ))
-            .initialOption(initProperties(OptionObject.builder().text(initProperties(PlainTextObject.builder().build())).build()))
+            .initialOption(initProperties(OptionObject.builder().text(initProperties(PlainTextObject.builder().build())).description(initProperties(PlainTextObject.builder().build())).build()))
             .build());
 
     public static List<LayoutBlock> ModalBlocks = asBlocks(
