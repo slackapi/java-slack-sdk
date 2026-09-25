@@ -6,8 +6,6 @@ import lombok.Data;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.setCommands
- * <p>
- * Register the set of agent-defined slash commands for the calling agent in a code channel.
  */
 @Data
 @Builder

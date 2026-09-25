@@ -9,8 +9,6 @@ import java.util.List;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.setView
- * <p>
- * Create or update a view in a code channel.
  */
 @Data
 @Builder

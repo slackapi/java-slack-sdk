@@ -6,8 +6,6 @@ import lombok.Data;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.create
- * <p>
- * Create a dedicated code channel for an agent session.
  */
 @Data
 @Builder

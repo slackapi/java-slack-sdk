@@ -6,8 +6,6 @@ import lombok.Data;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.archive
- * <p>
- * Archive a code channel.
  */
 @Data
 @Builder

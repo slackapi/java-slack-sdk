@@ -6,8 +6,6 @@ import lombok.Data;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.setCanvasContent
- * <p>
- * Replace the full markdown content of a plan canvas attached to a code channel.
  */
 @Data
 @Builder

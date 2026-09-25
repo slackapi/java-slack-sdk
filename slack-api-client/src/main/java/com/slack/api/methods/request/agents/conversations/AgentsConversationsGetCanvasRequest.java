@@ -6,8 +6,6 @@ import lombok.Data;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.getCanvas
- * <p>
- * Fetch a canvas attached to a code channel.
  */
 @Data
 @Builder

@@ -6,8 +6,6 @@ import lombok.Data;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.setProperties
- * <p>
- * Set properties on a code channel.
  */
 @Data
 @Builder

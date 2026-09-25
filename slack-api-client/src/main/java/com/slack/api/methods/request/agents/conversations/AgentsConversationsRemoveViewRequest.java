@@ -6,8 +6,6 @@ import lombok.Data;
 
 /**
  * https://docs.slack.dev/reference/methods/agents.conversations.removeView
- * <p>
- * Remove a view from a code channel.
  */
 @Data
 @Builder
