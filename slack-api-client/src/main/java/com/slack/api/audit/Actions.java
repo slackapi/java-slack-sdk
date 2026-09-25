@@ -342,6 +342,7 @@ public class Actions {
         public static final String pref_show_join_leave_welcome_party_changed = "pref.show_join_leave_welcome_party_changed";
         public static final String pref_allow_native_giphy_gif_picker = "pref.allow_native_giphy_gif_picker";
         public static final String pref_ai_feature_default_access_changed = "pref.ai_feature_default_access_changed";
+        public static final String pref_ai_guardrail_sensitivity = "pref.ai_guardrail_sensitivity";
         public static final String pref_allow_workflow_export = "pref.allow_workflow_export";
         public static final String pref_alt_text_reminders = "pref.alt_text_reminders";
         public static final String pref_canvas_printing_enabled = "pref.canvas_printing_enabled";
