@@ -29,6 +29,7 @@ public class AgentsConversationsListViewsResponse implements SlackApiTextRespons
         private String fileId;
         private String viewKey;
         private String name;
+        private String label;
         private Integer dateAdded;
         private Integer contentVersion;
     }

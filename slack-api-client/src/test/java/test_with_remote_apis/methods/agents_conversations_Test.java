@@ -91,14 +91,22 @@ public class agents_conversations_Test {
                     .title("Remote test title")
                     .status("processing")), is(notNullValue()));
 
-            // setView: attach the real canvas as a canvas-type view in the code channel.
+            // setView: attach an HTML view (keyed by view_key) that we later list and remove.
             AgentsConversationsSetViewResponse setView = client.agentsConversationsSetView(r -> r
                     .channelId(codeChannelId)
-                    .type("canvas")
                     .viewKey(viewKey)
-                    .name("Plan")
-                    .canvasId(canvasId));
+                    .name("Coverage")
+                    .content("<!doctype html><html><head></head><body></body></html>")
+                    .cspAsString("{\"resource_domains\":[\"https://cdn.jsdelivr.net\"]}"));
             assertThat(setView.getError(), is(nullValue()));
+
+            // setView: also attach the real canvas as a canvas-type view for the canvas methods.
+            assertThat(client.agentsConversationsSetView(r -> r
+                    .channelId(codeChannelId)
+                    .type("canvas")
+                    .viewKey(viewKey + "-canvas")
+                    .name("Plan")
+                    .canvasId(canvasId)), is(notNullValue()));
 
             // listViews: list the views attached to the code channel.
             assertThat(client.agentsConversationsListViews(r -> r
@@ -120,12 +128,10 @@ public class agents_conversations_Test {
                     .channelId(codeChannelId)
                     .commandsAsString("[]")), is(notNullValue()));
 
-            // removeView: exercise the call to record its API log. Live behavior: views created
-            // via setView are not currently returned by listViews (empty array) nor locatable by
-            // removeView (view_not_found), so we assert the call round-trips rather than ok.
+            // removeView: remove the HTML view we attached (by the view id setView returned).
             assertThat(client.agentsConversationsRemoveView(r -> r
                     .channelId(codeChannelId)
-                    .viewId(setView.getViewId())), is(notNullValue()));
+                    .viewId(setView.getViewId())).getError(), is(nullValue()));
 
             // archive: archive the code channel.
             assertThat(client.agentsConversationsArchive(r -> r

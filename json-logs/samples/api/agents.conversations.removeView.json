@@ -3,5 +3,7 @@
   "error": "",
   "warning": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "channel_id": "C00000000",
+  "view_id": ""
 }

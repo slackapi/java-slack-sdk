@@ -18,5 +18,8 @@ public class AgentsConversationsRemoveViewResponse implements SlackApiTextRespon
     private String needed;
     private String provided;
 
+    private String channelId;
+    private String viewId;
+
     private transient Map<String, List<String>> httpResponseHeaders;
 }
