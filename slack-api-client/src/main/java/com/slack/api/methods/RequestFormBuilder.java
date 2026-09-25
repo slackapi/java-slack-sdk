@@ -1083,8 +1083,22 @@ public class RequestFormBuilder {
         setIfNotNull("channel_id", req.getChannelId(), form);
         setIfNotNull("title", req.getTitle(), form);
         setIfNotNull("status", req.getStatus(), form);
-        setIfNotNull("code_channel", req.getCodeChannelAsString(), form);
-        setIfNotNull("agent_resource", req.getAgentResourceAsString(), form);
+        if (req.getCodeChannelAsString() != null) {
+            form.add("code_channel", req.getCodeChannelAsString());
+        } else if (req.getCodeChannel() != null) {
+            form.add("code_channel", GSON.toJson(req.getCodeChannel()));
+        }
+        if (req.getCodeChannelAsString() != null && req.getCodeChannel() != null) {
+            log.warn("Although you set both codeChannelAsString and codeChannel, only codeChannelAsString was used.");
+        }
+        if (req.getAgentResourceAsString() != null) {
+            form.add("agent_resource", req.getAgentResourceAsString());
+        } else if (req.getAgentResource() != null) {
+            form.add("agent_resource", GSON.toJson(req.getAgentResource()));
+        }
+        if (req.getAgentResourceAsString() != null && req.getAgentResource() != null) {
+            log.warn("Although you set both agentResourceAsString and agentResource, only agentResourceAsString was used.");
+        }
         return form;
     }
 
@@ -1110,14 +1124,28 @@ public class RequestFormBuilder {
         setIfNotNull("head_branch", req.getHeadBranch(), form);
         setIfNotNull("name", req.getName(), form);
         setIfNotNull("label", req.getLabel(), form);
-        setIfNotNull("csp", req.getCspAsString(), form);
+        if (req.getCspAsString() != null) {
+            form.add("csp", req.getCspAsString());
+        } else if (req.getCsp() != null) {
+            form.add("csp", GSON.toJson(req.getCsp()));
+        }
+        if (req.getCspAsString() != null && req.getCsp() != null) {
+            log.warn("Although you set both cspAsString and csp, only cspAsString was used.");
+        }
         return form;
     }
 
     public static FormBody.Builder toForm(AgentsConversationsSetCommandsRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
-        setIfNotNull("commands", req.getCommandsAsString(), form);
+        if (req.getCommandsAsString() != null) {
+            form.add("commands", req.getCommandsAsString());
+        } else if (req.getCommands() != null) {
+            form.add("commands", getJsonWithGsonAnonymInnerClassHandling(req.getCommands()));
+        }
+        if (req.getCommandsAsString() != null && req.getCommands() != null) {
+            log.warn("Although you set both commandsAsString and commands, only commandsAsString was used.");
+        }
         return form;
     }
 
