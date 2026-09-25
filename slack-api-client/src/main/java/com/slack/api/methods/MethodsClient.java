@@ -1156,24 +1156,6 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
-    // agents.sessions
-    // ------------------------------
-
-    AgentsSessionsRenameResponse agentsSessionsRename(AgentsSessionsRenameRequest req)
-            throws IOException, SlackApiException;
-
-    AgentsSessionsRenameResponse agentsSessionsRename(
-            RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req)
-            throws IOException, SlackApiException;
-
-    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req)
-            throws IOException, SlackApiException;
-
-    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(
-            RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req)
-            throws IOException, SlackApiException;
-
-    // ------------------------------
     // agents.conversations
     // ------------------------------
 
@@ -1238,6 +1220,24 @@ public interface MethodsClient {
 
     AgentsConversationsSetViewResponse agentsConversationsSetView(
             RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    AgentsSessionsRenameResponse agentsSessionsRename(AgentsSessionsRenameRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsRenameResponse agentsSessionsRename(
+            RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(
+            RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

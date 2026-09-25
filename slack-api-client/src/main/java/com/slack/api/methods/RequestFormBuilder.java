@@ -1060,27 +1060,6 @@ public class RequestFormBuilder {
         return form;
     }
 
-    public static FormBody.Builder toForm(AgentsSessionsRenameRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel_id", req.getChannelId(), form);
-        setIfNotNull("title", req.getTitle(), form);
-        setIfNotNull("thread_ts", req.getThreadTs(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(AgentsSessionsSetStatusRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel_id", req.getChannelId(), form);
-        setIfNotNull("status", req.getStatus(), form);
-        setIfNotNull("thread_ts", req.getThreadTs(), form);
-        setIfNotNull("title", req.getTitle(), form);
-        setIfNotNull("initiator_user_id", req.getInitiatorUserId(), form);
-        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
-        setIfNotNull("icon_url", req.getIconUrl(), form);
-        setIfNotNull("username", req.getUsername(), form);
-        return form;
-    }
-
     public static FormBody.Builder toForm(AgentsConversationsCreateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
@@ -1170,6 +1149,27 @@ public class RequestFormBuilder {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("canvas_id", req.getCanvasId(), form);
         setIfNotNull("content", req.getContent(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsSessionsRenameRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsSessionsSetStatusRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("status", req.getStatus(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("initiator_user_id", req.getInitiatorUserId(), form);
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("username", req.getUsername(), form);
         return form;
     }
 

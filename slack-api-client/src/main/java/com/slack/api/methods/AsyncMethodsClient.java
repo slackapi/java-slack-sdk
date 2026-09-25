@@ -819,18 +819,6 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminWorkflowsUnpublishResponse> adminWorkflowsUnpublish(RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req);
 
     // ------------------------------
-    // agents.sessions
-    // ------------------------------
-
-    CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(AgentsSessionsRenameRequest req);
-
-    CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req);
-
-    CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req);
-
-    CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req);
-
-    // ------------------------------
     // agents.conversations
     // ------------------------------
 
@@ -869,6 +857,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(AgentsConversationsSetViewRequest req);
 
     CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req);
+
+    // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(AgentsSessionsRenameRequest req);
+
+    CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req);
+
+    CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req);
+
+    CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req);
 
     // ------------------------------
     // api

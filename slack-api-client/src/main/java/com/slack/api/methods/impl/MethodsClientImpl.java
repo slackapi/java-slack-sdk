@@ -1383,26 +1383,6 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AgentsSessionsRenameResponse agentsSessionsRename(AgentsSessionsRenameRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_SESSIONS_RENAME, getToken(req), AgentsSessionsRenameResponse.class);
-    }
-
-    @Override
-    public AgentsSessionsRenameResponse agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req) throws IOException, SlackApiException {
-        return agentsSessionsRename(req.configure(AgentsSessionsRenameRequest.builder()).build());
-    }
-
-    @Override
-    public AgentsSessionsSetStatusResponse agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_SESSIONS_SET_STATUS, getToken(req), AgentsSessionsSetStatusResponse.class);
-    }
-
-    @Override
-    public AgentsSessionsSetStatusResponse agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req) throws IOException, SlackApiException {
-        return agentsSessionsSetStatus(req.configure(AgentsSessionsSetStatusRequest.builder()).build());
-    }
-
-    @Override
     public AgentsConversationsArchiveResponse agentsConversationsArchive(AgentsConversationsArchiveRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_ARCHIVE, getToken(req), AgentsConversationsArchiveResponse.class);
     }
@@ -1490,6 +1470,26 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AgentsConversationsSetViewResponse agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req) throws IOException, SlackApiException {
         return agentsConversationsSetView(req.configure(AgentsConversationsSetViewRequest.builder()).build());
+    }
+
+    @Override
+    public AgentsSessionsRenameResponse agentsSessionsRename(AgentsSessionsRenameRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_SESSIONS_RENAME, getToken(req), AgentsSessionsRenameResponse.class);
+    }
+
+    @Override
+    public AgentsSessionsRenameResponse agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return agentsSessionsRename(req.configure(AgentsSessionsRenameRequest.builder()).build());
+    }
+
+    @Override
+    public AgentsSessionsSetStatusResponse agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_SESSIONS_SET_STATUS, getToken(req), AgentsSessionsSetStatusResponse.class);
+    }
+
+    @Override
+    public AgentsSessionsSetStatusResponse agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req) throws IOException, SlackApiException {
+        return agentsSessionsSetStatus(req.configure(AgentsSessionsSetStatusRequest.builder()).build());
     }
 
     @Override

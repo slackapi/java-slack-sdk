@@ -223,9 +223,6 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_MANIFEST_VALIDATE, Tier3);
         setRateLimitTier(TOOLING_TOKENS_ROTATE, Tier1); // TODO: change this when the "special" tier is clearly explained in the document
 
-        setRateLimitTier(AGENTS_SESSIONS_RENAME, Tier3);
-        setRateLimitTier(AGENTS_SESSIONS_SET_STATUS, Tier3);
-
         setRateLimitTier(AGENTS_CONVERSATIONS_ARCHIVE, Tier2);
         setRateLimitTier(AGENTS_CONVERSATIONS_CREATE, Tier2);
         setRateLimitTier(AGENTS_CONVERSATIONS_GET_CANVAS, Tier3);
@@ -235,6 +232,9 @@ public class MethodsRateLimits {
         setRateLimitTier(AGENTS_CONVERSATIONS_SET_COMMANDS, Tier1);
         setRateLimitTier(AGENTS_CONVERSATIONS_SET_PROPERTIES, Tier3);
         setRateLimitTier(AGENTS_CONVERSATIONS_SET_VIEW, Tier3);
+
+        setRateLimitTier(AGENTS_SESSIONS_RENAME, Tier3);
+        setRateLimitTier(AGENTS_SESSIONS_SET_STATUS, Tier3);
 
         setRateLimitTier(API_TEST, Tier4);
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);

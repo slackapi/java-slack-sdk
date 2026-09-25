@@ -1342,26 +1342,6 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
-    public CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(AgentsSessionsRenameRequest req) {
-        return executor.execute(AGENTS_SESSIONS_RENAME, toMap(req), () -> methods.agentsSessionsRename(req));
-    }
-
-    @Override
-    public CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req) {
-        return agentsSessionsRename(req.configure(AgentsSessionsRenameRequest.builder()).build());
-    }
-
-    @Override
-    public CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req) {
-        return executor.execute(AGENTS_SESSIONS_SET_STATUS, toMap(req), () -> methods.agentsSessionsSetStatus(req));
-    }
-
-    @Override
-    public CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req) {
-        return agentsSessionsSetStatus(req.configure(AgentsSessionsSetStatusRequest.builder()).build());
-    }
-
-    @Override
     public CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(AgentsConversationsArchiveRequest req) {
         return executor.execute(AGENTS_CONVERSATIONS_ARCHIVE, toMap(req), () -> methods.agentsConversationsArchive(req));
     }
@@ -1449,6 +1429,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req) {
         return agentsConversationsSetView(req.configure(AgentsConversationsSetViewRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(AgentsSessionsRenameRequest req) {
+        return executor.execute(AGENTS_SESSIONS_RENAME, toMap(req), () -> methods.agentsSessionsRename(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req) {
+        return agentsSessionsRename(req.configure(AgentsSessionsRenameRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req) {
+        return executor.execute(AGENTS_SESSIONS_SET_STATUS, toMap(req), () -> methods.agentsSessionsSetStatus(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req) {
+        return agentsSessionsSetStatus(req.configure(AgentsSessionsSetStatusRequest.builder()).build());
     }
 
     @Override
