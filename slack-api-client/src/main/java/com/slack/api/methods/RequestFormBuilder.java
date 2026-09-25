@@ -39,7 +39,15 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
-import com.slack.api.methods.request.agents.conversations.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;

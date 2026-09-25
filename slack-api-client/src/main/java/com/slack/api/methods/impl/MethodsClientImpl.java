@@ -40,7 +40,15 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
-import com.slack.api.methods.request.agents.conversations.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
@@ -196,7 +204,15 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
-import com.slack.api.methods.response.agents.conversations.*;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsArchiveResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsListViewsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsRemoveViewResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCanvasContentResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCommandsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetPropertiesResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
@@ -1387,16 +1403,6 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AgentsConversationsCreateResponse agentsConversationsCreate(AgentsConversationsCreateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_CREATE, getToken(req), AgentsConversationsCreateResponse.class);
-    }
-
-    @Override
-    public AgentsConversationsCreateResponse agentsConversationsCreate(RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req) throws IOException, SlackApiException {
-        return agentsConversationsCreate(req.configure(AgentsConversationsCreateRequest.builder()).build());
-    }
-
-    @Override
     public AgentsConversationsArchiveResponse agentsConversationsArchive(AgentsConversationsArchiveRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_ARCHIVE, getToken(req), AgentsConversationsArchiveResponse.class);
     }
@@ -1407,33 +1413,23 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_SET_PROPERTIES, getToken(req), AgentsConversationsSetPropertiesResponse.class);
+    public AgentsConversationsCreateResponse agentsConversationsCreate(AgentsConversationsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_CREATE, getToken(req), AgentsConversationsCreateResponse.class);
     }
 
     @Override
-    public AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req) throws IOException, SlackApiException {
-        return agentsConversationsSetProperties(req.configure(AgentsConversationsSetPropertiesRequest.builder()).build());
+    public AgentsConversationsCreateResponse agentsConversationsCreate(RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return agentsConversationsCreate(req.configure(AgentsConversationsCreateRequest.builder()).build());
     }
 
     @Override
-    public AgentsConversationsSetViewResponse agentsConversationsSetView(AgentsConversationsSetViewRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_SET_VIEW, getToken(req), AgentsConversationsSetViewResponse.class);
+    public AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_GET_CANVAS, getToken(req), AgentsConversationsGetCanvasResponse.class);
     }
 
     @Override
-    public AgentsConversationsSetViewResponse agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req) throws IOException, SlackApiException {
-        return agentsConversationsSetView(req.configure(AgentsConversationsSetViewRequest.builder()).build());
-    }
-
-    @Override
-    public AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_SET_COMMANDS, getToken(req), AgentsConversationsSetCommandsResponse.class);
-    }
-
-    @Override
-    public AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req) throws IOException, SlackApiException {
-        return agentsConversationsSetCommands(req.configure(AgentsConversationsSetCommandsRequest.builder()).build());
+    public AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req) throws IOException, SlackApiException {
+        return agentsConversationsGetCanvas(req.configure(AgentsConversationsGetCanvasRequest.builder()).build());
     }
 
     @Override
@@ -1457,16 +1453,6 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_GET_CANVAS, getToken(req), AgentsConversationsGetCanvasResponse.class);
-    }
-
-    @Override
-    public AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req) throws IOException, SlackApiException {
-        return agentsConversationsGetCanvas(req.configure(AgentsConversationsGetCanvasRequest.builder()).build());
-    }
-
-    @Override
     public AgentsConversationsSetCanvasContentResponse agentsConversationsSetCanvasContent(AgentsConversationsSetCanvasContentRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT, getToken(req), AgentsConversationsSetCanvasContentResponse.class);
     }
@@ -1474,6 +1460,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AgentsConversationsSetCanvasContentResponse agentsConversationsSetCanvasContent(RequestConfigurator<AgentsConversationsSetCanvasContentRequest.AgentsConversationsSetCanvasContentRequestBuilder> req) throws IOException, SlackApiException {
         return agentsConversationsSetCanvasContent(req.configure(AgentsConversationsSetCanvasContentRequest.builder()).build());
+    }
+
+    @Override
+    public AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_SET_COMMANDS, getToken(req), AgentsConversationsSetCommandsResponse.class);
+    }
+
+    @Override
+    public AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req) throws IOException, SlackApiException {
+        return agentsConversationsSetCommands(req.configure(AgentsConversationsSetCommandsRequest.builder()).build());
+    }
+
+    @Override
+    public AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_SET_PROPERTIES, getToken(req), AgentsConversationsSetPropertiesResponse.class);
+    }
+
+    @Override
+    public AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req) throws IOException, SlackApiException {
+        return agentsConversationsSetProperties(req.configure(AgentsConversationsSetPropertiesRequest.builder()).build());
+    }
+
+    @Override
+    public AgentsConversationsSetViewResponse agentsConversationsSetView(AgentsConversationsSetViewRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AGENTS_CONVERSATIONS_SET_VIEW, getToken(req), AgentsConversationsSetViewResponse.class);
+    }
+
+    @Override
+    public AgentsConversationsSetViewResponse agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req) throws IOException, SlackApiException {
+        return agentsConversationsSetView(req.configure(AgentsConversationsSetViewRequest.builder()).build());
     }
 
     @Override

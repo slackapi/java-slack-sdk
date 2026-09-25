@@ -8,10 +8,6 @@ import java.util.Map;
 
 /**
  * Response for agents.conversations.getCanvas.
- * <p>
- * NOTE: Slack Code / code channels is in a developer-GA state; only the common top-level fields are modeled here.
- * The fetched canvas content is not yet typed because the response shape is not documented in the API reference; it
- * can be added in a future revision once stabilized.
  */
 @Data
 public class AgentsConversationsGetCanvasResponse implements SlackApiTextResponse {

@@ -8,8 +8,6 @@ import java.util.Map;
 
 /**
  * Response for agents.conversations.setCommands.
- * <p>
- * NOTE: Slack Code / code channels is in a developer-GA state; only the common top-level fields are modeled here.
  */
 @Data
 public class AgentsConversationsSetCommandsResponse implements SlackApiTextResponse {

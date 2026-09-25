@@ -38,7 +38,15 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
-import com.slack.api.methods.request.agents.conversations.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
@@ -194,7 +202,15 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
-import com.slack.api.methods.response.agents.conversations.*;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsArchiveResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsListViewsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsRemoveViewResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCanvasContentResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCommandsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetPropertiesResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
@@ -1158,15 +1174,8 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
-    // agents.conversations (Slack Code / code channels — developer-GA)
+    // agents.conversations
     // ------------------------------
-
-    AgentsConversationsCreateResponse agentsConversationsCreate(AgentsConversationsCreateRequest req)
-            throws IOException, SlackApiException;
-
-    AgentsConversationsCreateResponse agentsConversationsCreate(
-            RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req)
-            throws IOException, SlackApiException;
 
     AgentsConversationsArchiveResponse agentsConversationsArchive(AgentsConversationsArchiveRequest req)
             throws IOException, SlackApiException;
@@ -1175,25 +1184,18 @@ public interface MethodsClient {
             RequestConfigurator<AgentsConversationsArchiveRequest.AgentsConversationsArchiveRequestBuilder> req)
             throws IOException, SlackApiException;
 
-    AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req)
+    AgentsConversationsCreateResponse agentsConversationsCreate(AgentsConversationsCreateRequest req)
             throws IOException, SlackApiException;
 
-    AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(
-            RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req)
+    AgentsConversationsCreateResponse agentsConversationsCreate(
+            RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req)
             throws IOException, SlackApiException;
 
-    AgentsConversationsSetViewResponse agentsConversationsSetView(AgentsConversationsSetViewRequest req)
+    AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req)
             throws IOException, SlackApiException;
 
-    AgentsConversationsSetViewResponse agentsConversationsSetView(
-            RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req)
-            throws IOException, SlackApiException;
-
-    AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req)
-            throws IOException, SlackApiException;
-
-    AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(
-            RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req)
+    AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(
+            RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req)
             throws IOException, SlackApiException;
 
     AgentsConversationsListViewsResponse agentsConversationsListViews(AgentsConversationsListViewsRequest req)
@@ -1210,18 +1212,32 @@ public interface MethodsClient {
             RequestConfigurator<AgentsConversationsRemoveViewRequest.AgentsConversationsRemoveViewRequestBuilder> req)
             throws IOException, SlackApiException;
 
-    AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req)
-            throws IOException, SlackApiException;
-
-    AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(
-            RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req)
-            throws IOException, SlackApiException;
-
     AgentsConversationsSetCanvasContentResponse agentsConversationsSetCanvasContent(AgentsConversationsSetCanvasContentRequest req)
             throws IOException, SlackApiException;
 
     AgentsConversationsSetCanvasContentResponse agentsConversationsSetCanvasContent(
             RequestConfigurator<AgentsConversationsSetCanvasContentRequest.AgentsConversationsSetCanvasContentRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(
+            RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(
+            RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetViewResponse agentsConversationsSetView(AgentsConversationsSetViewRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetViewResponse agentsConversationsSetView(
+            RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

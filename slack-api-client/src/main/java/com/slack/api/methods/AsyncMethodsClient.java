@@ -38,7 +38,15 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
-import com.slack.api.methods.request.agents.conversations.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
@@ -181,7 +189,15 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
-import com.slack.api.methods.response.agents.conversations.*;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsArchiveResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsListViewsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsRemoveViewResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCanvasContentResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCommandsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetPropertiesResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
@@ -815,28 +831,20 @@ public interface AsyncMethodsClient {
     CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req);
 
     // ------------------------------
-    // agents.conversations (Slack Code / code channels — developer-GA)
+    // agents.conversations
     // ------------------------------
-
-    CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(AgentsConversationsCreateRequest req);
-
-    CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req);
 
     CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(AgentsConversationsArchiveRequest req);
 
     CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(RequestConfigurator<AgentsConversationsArchiveRequest.AgentsConversationsArchiveRequestBuilder> req);
 
-    CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req);
+    CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(AgentsConversationsCreateRequest req);
 
-    CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req);
+    CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req);
 
-    CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(AgentsConversationsSetViewRequest req);
+    CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req);
 
-    CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req);
-
-    CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req);
-
-    CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req);
+    CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req);
 
     CompletableFuture<AgentsConversationsListViewsResponse> agentsConversationsListViews(AgentsConversationsListViewsRequest req);
 
@@ -846,13 +854,21 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AgentsConversationsRemoveViewResponse> agentsConversationsRemoveView(RequestConfigurator<AgentsConversationsRemoveViewRequest.AgentsConversationsRemoveViewRequestBuilder> req);
 
-    CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req);
-
-    CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req);
-
     CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(AgentsConversationsSetCanvasContentRequest req);
 
     CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(RequestConfigurator<AgentsConversationsSetCanvasContentRequest.AgentsConversationsSetCanvasContentRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req);
+
+    CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req);
+
+    CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(AgentsConversationsSetViewRequest req);
+
+    CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req);
 
     // ------------------------------
     // api
