@@ -6,9 +6,6 @@ import lombok.Data;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Response for agents.conversations.getCanvas.
- */
 @Data
 public class AgentsConversationsGetCanvasResponse implements SlackApiTextResponse {
 
