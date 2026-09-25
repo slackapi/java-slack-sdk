@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.ConversationsCreateResponse;
@@ -91,12 +92,13 @@ public class agents_conversations_Test {
                     .status("processing")), is(notNullValue()));
 
             // setView: attach the real canvas as a canvas-type view in the code channel.
-            assertThat(client.agentsConversationsSetView(r -> r
+            AgentsConversationsSetViewResponse setView = client.agentsConversationsSetView(r -> r
                     .channelId(codeChannelId)
                     .type("canvas")
                     .viewKey(viewKey)
                     .name("Plan")
-                    .canvasId(canvasId)), is(notNullValue()));
+                    .canvasId(canvasId));
+            assertThat(setView.getError(), is(nullValue()));
 
             // listViews: list the views attached to the code channel.
             assertThat(client.agentsConversationsListViews(r -> r
@@ -118,10 +120,12 @@ public class agents_conversations_Test {
                     .channelId(codeChannelId)
                     .commandsAsString("[]")), is(notNullValue()));
 
-            // removeView: remove the canvas view we attached (by its agent-assigned key).
+            // removeView: exercise the call to record its API log. Live behavior: views created
+            // via setView are not currently returned by listViews (empty array) nor locatable by
+            // removeView (view_not_found), so we assert the call round-trips rather than ok.
             assertThat(client.agentsConversationsRemoveView(r -> r
                     .channelId(codeChannelId)
-                    .viewKey(viewKey)), is(notNullValue()));
+                    .viewId(setView.getViewId())), is(notNullValue()));
 
             // archive: archive the code channel.
             assertThat(client.agentsConversationsArchive(r -> r
