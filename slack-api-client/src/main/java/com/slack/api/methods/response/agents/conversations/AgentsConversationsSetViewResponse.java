@@ -18,5 +18,12 @@ public class AgentsConversationsSetViewResponse implements SlackApiTextResponse 
     private String needed;
     private String provided;
 
+    private String channelId;
+    private String viewId;
+    private String fileId;
+    private Integer contentVersion;
+    private String type;
+    private String canvasId;
+
     private transient Map<String, List<String>> httpResponseHeaders;
 }

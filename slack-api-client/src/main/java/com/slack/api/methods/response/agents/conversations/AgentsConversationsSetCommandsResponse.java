@@ -18,5 +18,8 @@ public class AgentsConversationsSetCommandsResponse implements SlackApiTextRespo
     private String needed;
     private String provided;
 
+    private String channelId;
+    private Integer commandCount;
+
     private transient Map<String, List<String>> httpResponseHeaders;
 }

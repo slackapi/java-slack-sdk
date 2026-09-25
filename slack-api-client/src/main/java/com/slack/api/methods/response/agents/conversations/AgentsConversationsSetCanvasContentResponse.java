@@ -18,5 +18,8 @@ public class AgentsConversationsSetCanvasContentResponse implements SlackApiText
     private String needed;
     private String provided;
 
+    private String canvasId;
+    private Integer sectionsChangedCount;
+
     private transient Map<String, List<String>> httpResponseHeaders;
 }

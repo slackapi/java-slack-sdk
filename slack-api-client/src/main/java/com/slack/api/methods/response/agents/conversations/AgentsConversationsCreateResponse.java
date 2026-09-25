@@ -18,5 +18,7 @@ public class AgentsConversationsCreateResponse implements SlackApiTextResponse {
     private String needed;
     private String provided;
 
+    private String channelId;
+
     private transient Map<String, List<String>> httpResponseHeaders;
 }

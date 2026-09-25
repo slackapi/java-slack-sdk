@@ -18,5 +18,15 @@ public class AgentsConversationsGetCanvasResponse implements SlackApiTextRespons
     private String needed;
     private String provided;
 
+    private String canvasId;
+    private String title;
+    private String content;
+    private List<Comment> comments;
+    private boolean hasMoreComments;
+
     private transient Map<String, List<String>> httpResponseHeaders;
+
+    @Data
+    public static class Comment {
+    }
 }

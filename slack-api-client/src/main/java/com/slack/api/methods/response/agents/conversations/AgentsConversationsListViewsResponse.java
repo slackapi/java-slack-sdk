@@ -18,5 +18,18 @@ public class AgentsConversationsListViewsResponse implements SlackApiTextRespons
     private String needed;
     private String provided;
 
+    private List<View> views;
+
     private transient Map<String, List<String>> httpResponseHeaders;
+
+    @Data
+    public static class View {
+        private String viewId;
+        private String type;
+        private String fileId;
+        private String viewKey;
+        private String name;
+        private Integer dateAdded;
+        private Integer contentVersion;
+    }
 }

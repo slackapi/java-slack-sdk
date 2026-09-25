@@ -3,6 +3,7 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.ConversationsCreateResponse;
@@ -74,20 +75,24 @@ public class agents_conversations_Test {
 
         try {
             // create: create a dedicated code channel for the agent session, linked to the origin message.
-            assertThat(client.agentsConversationsCreate(r -> r
+            // The subsequent calls operate on the code channel this returns, not the origin channel.
+            AgentsConversationsCreateResponse create = client.agentsConversationsCreate(r -> r
                     .name("agents-conversations-remote-test")
                     .originChannelId(channelId)
-                    .originMessageTs(originMessageTs)), is(notNullValue()));
+                    .originMessageTs(originMessageTs));
+            assertThat(create.getError(), is(nullValue()));
+            String codeChannelId = create.getChannelId();
+            assertThat(codeChannelId, is(notNullValue()));
 
             // setProperties: update title/status on the code channel.
             assertThat(client.agentsConversationsSetProperties(r -> r
-                    .channelId(channelId)
+                    .channelId(codeChannelId)
                     .title("Remote test title")
                     .status("processing")), is(notNullValue()));
 
             // setView: attach the real canvas as a canvas-type view in the code channel.
             assertThat(client.agentsConversationsSetView(r -> r
-                    .channelId(channelId)
+                    .channelId(codeChannelId)
                     .type("canvas")
                     .viewKey(viewKey)
                     .name("Plan")
@@ -95,32 +100,32 @@ public class agents_conversations_Test {
 
             // listViews: list the views attached to the code channel.
             assertThat(client.agentsConversationsListViews(r -> r
-                    .channelId(channelId)), is(notNullValue()));
+                    .channelId(codeChannelId)), is(notNullValue()));
 
             // getCanvas: fetch the canvas attached to the code channel.
             assertThat(client.agentsConversationsGetCanvas(r -> r
-                    .channel(channelId)
+                    .channel(codeChannelId)
                     .canvasId(canvasId)), is(notNullValue()));
 
             // setCanvasContent: replace the full markdown content of the plan canvas.
             assertThat(client.agentsConversationsSetCanvasContent(r -> r
-                    .channel(channelId)
+                    .channel(codeChannelId)
                     .canvasId(canvasId)
                     .content("# Plan\n\n- [x] initial item\n- [ ] follow-up item\n")), is(notNullValue()));
 
             // setCommands: register the agent's slash commands as a JSON-encoded array string.
             assertThat(client.agentsConversationsSetCommands(r -> r
-                    .channelId(channelId)
+                    .channelId(codeChannelId)
                     .commandsAsString("[]")), is(notNullValue()));
 
             // removeView: remove the canvas view we attached (by its agent-assigned key).
             assertThat(client.agentsConversationsRemoveView(r -> r
-                    .channelId(channelId)
+                    .channelId(codeChannelId)
                     .viewKey(viewKey)), is(notNullValue()));
 
             // archive: archive the code channel.
             assertThat(client.agentsConversationsArchive(r -> r
-                    .channelId(channelId)), is(notNullValue()));
+                    .channelId(codeChannelId)), is(notNullValue()));
         } finally {
             // Clean up the standalone canvas we created for this run, even if an assertion above failed.
             assertThat(client.canvasesDelete(r -> r.canvasId(canvasId)).getError(), is(nullValue()));
