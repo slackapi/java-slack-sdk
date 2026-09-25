@@ -20,7 +20,7 @@ public class AgentsConversationsArchiveRequest implements SlackApiRequest {
 
     /**
      * Timestamp of a message in the code channel to share back as a thread reply on the origin message. Requires the
-     * channel to have an origin link.
+     * channel to have an origin_link set.
      */
     private String summaryMessageTs;
 
