@@ -387,6 +387,13 @@ public class Actions {
         public static final String team_ip_allowlist_sessions_invalidated = "team_ip_allowlist_sessions_invalidated";
         public static final String team_authorized_ip_range_added = "team_authorized_ip_range_added";
         public static final String team_authorized_ip_range_removed = "team_authorized_ip_range_removed";
+        public static final String pref_frontline_access_pause_lockout_message_changed = "pref.frontline_access_pause_lockout_message_changed";
+        public static final String pref_skill_retention_duration_changed = "pref.skill_retention_duration_changed";
+        public static final String pref_skill_retention_changed = "pref.skill_retention_changed";
+        public static final String pref_enforce_oauth_token_rotation = "pref.enforce_oauth_token_rotation";
+        public static final String pref_expire_unused_refresh_tokens = "pref.expire_unused_refresh_tokens";
+        public static final String pref_salesforce_mcp_admin_notifications_changed = "pref.salesforce_mcp_admin_notifications_changed";
+        public static final String pref_salesforce_mcp_server_defaults_changed = "pref.salesforce_mcp_server_defaults_changed";
     }
 
     public static class User {
