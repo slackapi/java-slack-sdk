@@ -1,0 +1,17 @@
+{
+  "ok": false,
+  "error": "",
+  "warning": "",
+  "needed": "",
+  "provided": "",
+  "views": [
+    {
+      "view_id": "",
+      "view_key": "",
+      "file_id": "F00000000",
+      "label": "",
+      "content_version": 12345,
+      "date_added": 12345
+    }
+  ]
+}
