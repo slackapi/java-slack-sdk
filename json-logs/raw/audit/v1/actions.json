@@ -378,7 +378,11 @@
       "pref.ai_guardrail_sensitivity",
       "pref.frontline_access_pause_lockout_message_changed",
       "pref.skill_retention_duration_changed",
-      "pref.skill_retention_changed"
+      "pref.skill_retention_changed",
+      "pref.enforce_oauth_token_rotation",
+      "pref.expire_unused_refresh_tokens",
+      "pref.salesforce_mcp_admin_notifications_changed",
+      "pref.salesforce_mcp_server_defaults_changed"
     ],
     "user": [
       "custom_tos_accepted",
