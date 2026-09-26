@@ -357,6 +357,7 @@ public class Attachment {
     private Integer size;
     private String mimetype;
     private String url;
+    private String mediaType;
     private AttachmentMetadata metadata;
 
     @Getter(AccessLevel.NONE)
