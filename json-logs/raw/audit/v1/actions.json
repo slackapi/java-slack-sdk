@@ -382,7 +382,8 @@
       "pref.enforce_oauth_token_rotation",
       "pref.expire_unused_refresh_tokens",
       "pref.salesforce_mcp_admin_notifications_changed",
-      "pref.salesforce_mcp_server_defaults_changed"
+      "pref.salesforce_mcp_server_defaults_changed",
+      "mcp_slack_send_message_as_agent_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
