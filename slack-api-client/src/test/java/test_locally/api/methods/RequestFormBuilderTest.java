@@ -4,6 +4,7 @@ import com.slack.api.methods.RequestFormBuilder;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
+import com.slack.api.methods.request.files.FilesCompleteUploadExternalRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.CallParticipant;
 import com.slack.api.model.block.LayoutBlock;
@@ -58,6 +59,43 @@ public class RequestFormBuilderTest {
         final int blocksIndexInForm = 2;
         assertThat(form.name(blocksIndexInForm), is("blocks"));
         assertThat(form.value(blocksIndexInForm), is("[]"));
+    }
+
+    @Test
+    public void testFilesCompleteUploadExternalBlocksJsonSerialization() {
+        // GIVEN
+        List<LayoutBlock> blocks = new ArrayList<>();
+        blocks.add(MyTestBlock.builder().build());
+
+        FilesCompleteUploadExternalRequest request = FilesCompleteUploadExternalRequest.builder()
+                .blocks(blocks)
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.name(0), is("blocks"));
+        assertThat(form.value(0), is("[{\"type\":\"myTestBlock\"}]"));
+    }
+
+    @Test
+    public void testFilesCompleteUploadExternalBlocksAsStringTakesPrecedence() {
+        // GIVEN
+        List<LayoutBlock> blocks = new ArrayList<>();
+        blocks.add(MyTestBlock.builder().build());
+
+        FilesCompleteUploadExternalRequest request = FilesCompleteUploadExternalRequest.builder()
+                .blocks(blocks)
+                .blocksAsString("[]")
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.name(0), is("blocks"));
+        assertThat(form.value(0), is("[]"));
     }
 
     @Test
