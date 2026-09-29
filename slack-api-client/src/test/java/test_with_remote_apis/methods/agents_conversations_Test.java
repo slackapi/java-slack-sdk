@@ -3,6 +3,7 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
@@ -16,6 +17,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -85,11 +87,18 @@ public class agents_conversations_Test {
             String codeChannelId = create.getChannelId();
             assertThat(codeChannelId, is(notNullValue()));
 
-            // setProperties: update title/status on the code channel.
+            // setProperties: set the code channel's context bar items.
             assertThat(client.agentsConversationsSetProperties(r -> r
                     .channelId(codeChannelId)
-                    .title("Remote test title")
-                    .status("processing")), is(notNullValue()));
+                    .codeChannel(AgentsConversationsSetPropertiesRequest.CodeChannel.builder()
+                            .contextBarItems(List.of(
+                                    AgentsConversationsSetPropertiesRequest.ContextBarItem.builder()
+                                            .key("repo")
+                                            .label("borant/billing")
+                                            .icon("folder")
+                                            .url("https://github.com/borant/billing")
+                                            .build()))
+                            .build())), is(notNullValue()));
 
             // setView: attach an HTML view (keyed by view_key) that we later list and remove.
             AgentsConversationsSetViewResponse setView = client.agentsConversationsSetView(r -> r

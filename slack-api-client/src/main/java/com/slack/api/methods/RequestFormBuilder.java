@@ -1081,8 +1081,6 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(AgentsConversationsSetPropertiesRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
-        setIfNotNull("title", req.getTitle(), form);
-        setIfNotNull("status", req.getStatus(), form);
         if (req.getCodeChannelAsString() != null) {
             form.add("code_channel", req.getCodeChannelAsString());
         } else if (req.getCodeChannel() != null) {

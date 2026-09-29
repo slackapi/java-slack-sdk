@@ -21,16 +21,6 @@ public class AgentsConversationsSetPropertiesRequest implements SlackApiRequest 
     private String channelId;
 
     /**
-     * New display title for the agent session.
-     */
-    private String title;
-
-    /**
-     * New status for the agent session.
-     */
-    private String status;
-
-    /**
      * Code channel properties to set. Only provided fields are updated.
      */
     private CodeChannel codeChannel;
