@@ -17,7 +17,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -91,7 +91,7 @@ public class agents_conversations_Test {
             assertThat(client.agentsConversationsSetProperties(r -> r
                     .channelId(codeChannelId)
                     .codeChannel(AgentsConversationsSetPropertiesRequest.CodeChannel.builder()
-                            .contextBarItems(List.of(
+                            .contextBarItems(Arrays.asList(
                                     AgentsConversationsSetPropertiesRequest.ContextBarItem.builder()
                                             .key("repo")
                                             .label("borant/billing")
