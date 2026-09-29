@@ -83,17 +83,10 @@ public class AgentsConversationsSetViewRequest implements SlackApiRequest {
     private String headBranch;
 
     /**
-     * Display label for the view tab. Preferred over the legacy 'label' argument (name wins if both are supplied).
-     * Defaults to the last path segment of view_key.
+     * Display label for the view tab. Defaults to the last path segment of view_key, stripped of any .html/.htm
+     * extension.
      */
     private String name;
-
-    /**
-     * Deprecated alias for 'name'. Display label for the view tab. Defaults to the last path segment of view_key,
-     * stripped of any .html/.htm extension.
-     */
-    @Deprecated
-    private String label;
 
     /**
      * Content-Security-Policy domain declarations for the view. Domains are validated server-side (https-only, no

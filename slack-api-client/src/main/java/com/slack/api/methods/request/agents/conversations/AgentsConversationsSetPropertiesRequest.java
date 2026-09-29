@@ -51,6 +51,7 @@ public class AgentsConversationsSetPropertiesRequest implements SlackApiRequest 
     @Builder
     public static class SummaryMessage {
         private String messageTs;
+        private String threadTs;
     }
 
     @Data

@@ -21,8 +21,9 @@ public class AgentsConversationsSetCommandsRequest implements SlackApiRequest {
     private String channelId;
 
     /**
-     * Full set of commands to register for the calling agent in this channel. This replaces that agent's previously
-     * registered set. Pass an empty list to clear the agent's commands. Required.
+     * Full set of commands to register for the calling agent in this channel, replacing that agent's previously
+     * registered set. Pass an empty array to clear the agent's commands. At most 10 commands may exist across all
+     * agents in the channel; names must be unique within the set and must not collide with builtin Slack commands.
      */
     private List<Command> commands;
 

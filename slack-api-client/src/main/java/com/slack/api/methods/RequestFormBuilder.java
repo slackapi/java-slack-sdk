@@ -1060,6 +1060,13 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AgentsConversationsArchiveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("summary_message_ts", req.getSummaryMessageTs(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AgentsConversationsCreateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
@@ -1071,10 +1078,43 @@ public class RequestFormBuilder {
         return form;
     }
 
-    public static FormBody.Builder toForm(AgentsConversationsArchiveRequest req) {
+    public static FormBody.Builder toForm(AgentsConversationsGetCanvasRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("content_format", req.getContentFormat(), form);
+        setIfNotNull("include_resolved", req.getIncludeResolved(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsListViewsRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
-        setIfNotNull("summary_message_ts", req.getSummaryMessageTs(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsRemoveViewRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("view_key", req.getViewKey(), form);
+        setIfNotNull("view_id", req.getViewId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsSetCanvasContentRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("content", req.getContent(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsSetCommandsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getCommands() != null) {
+            form.add("commands", getJsonWithGsonAnonymInnerClassHandling(req.getCommands()));
+        }
         return form;
     }
 
@@ -1111,52 +1151,12 @@ public class RequestFormBuilder {
         setIfNotNull("base_branch", req.getBaseBranch(), form);
         setIfNotNull("head_branch", req.getHeadBranch(), form);
         setIfNotNull("name", req.getName(), form);
-        setIfNotNull("label", req.getLabel(), form);
         if (req.getCsp() != null) {
             form.add("csp", GSON.toJson(req.getCsp()));
         }
         return form;
     }
 
-    public static FormBody.Builder toForm(AgentsConversationsSetCommandsRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel_id", req.getChannelId(), form);
-        if (req.getCommands() != null) {
-            form.add("commands", getJsonWithGsonAnonymInnerClassHandling(req.getCommands()));
-        }
-        return form;
-    }
-
-    public static FormBody.Builder toForm(AgentsConversationsListViewsRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel_id", req.getChannelId(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(AgentsConversationsRemoveViewRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel_id", req.getChannelId(), form);
-        setIfNotNull("view_key", req.getViewKey(), form);
-        setIfNotNull("view_id", req.getViewId(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(AgentsConversationsGetCanvasRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel", req.getChannel(), form);
-        setIfNotNull("canvas_id", req.getCanvasId(), form);
-        setIfNotNull("content_format", req.getContentFormat(), form);
-        setIfNotNull("include_resolved", req.getIncludeResolved(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(AgentsConversationsSetCanvasContentRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel", req.getChannel(), form);
-        setIfNotNull("canvas_id", req.getCanvasId(), form);
-        setIfNotNull("content", req.getContent(), form);
-        return form;
-    }
 
     public static FormBody.Builder toForm(AgentsSessionsRenameRequest req) {
         FormBody.Builder form = new FormBody.Builder();
