@@ -26,12 +26,6 @@ public class AgentsConversationsSetCommandsRequest implements SlackApiRequest {
      */
     private List<Command> commands;
 
-    /**
-     * Full set of commands to register for the calling agent in this channel, as a JSON-encoded string array. This
-     * replaces that agent's previously registered set. Pass an empty array to clear the agent's commands. Required.
-     */
-    private String commandsAsString;
-
     @Data
     @Builder
     public static class Command {

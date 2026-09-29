@@ -3,7 +3,9 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
 import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
@@ -106,7 +108,9 @@ public class agents_conversations_Test {
                     .viewKey(viewKey)
                     .name("Coverage")
                     .content("<!doctype html><html><head></head><body></body></html>")
-                    .cspAsString("{\"resource_domains\":[\"https://cdn.jsdelivr.net\"]}"));
+                    .csp(AgentsConversationsSetViewRequest.Csp.builder()
+                            .resourceDomains(Arrays.asList("https://cdn.jsdelivr.net"))
+                            .build()));
             assertThat(setView.getError(), is(nullValue()));
 
             // setView: also attach the real canvas as a canvas-type view for the canvas methods.
@@ -132,10 +136,14 @@ public class agents_conversations_Test {
                     .canvasId(canvasId)
                     .content("# Plan\n\n- [x] initial item\n- [ ] follow-up item\n")), is(notNullValue()));
 
-            // setCommands: register the agent's slash commands as a JSON-encoded array string.
+            // setCommands: register the agent's slash commands.
             assertThat(client.agentsConversationsSetCommands(r -> r
                     .channelId(codeChannelId)
-                    .commandsAsString("[]")), is(notNullValue()));
+                    .commands(Arrays.asList(
+                            AgentsConversationsSetCommandsRequest.Command.builder()
+                                    .name("summarize")
+                                    .description("Summarize the session so far")
+                                    .build()))).getError(), is(nullValue()));
 
             // removeView: remove the HTML view we attached (by the view id setView returned).
             assertThat(client.agentsConversationsRemoveView(r -> r

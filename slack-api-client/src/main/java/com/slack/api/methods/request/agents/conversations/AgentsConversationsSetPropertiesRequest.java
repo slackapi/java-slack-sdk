@@ -26,19 +26,9 @@ public class AgentsConversationsSetPropertiesRequest implements SlackApiRequest 
     private CodeChannel codeChannel;
 
     /**
-     * Code channel properties to set, as a JSON-encoded string. Only provided fields are updated.
-     */
-    private String codeChannelAsString;
-
-    /**
      * Agent resource properties to set. Only provided fields are updated.
      */
     private AgentResource agentResource;
-
-    /**
-     * Agent resource properties to set, as a JSON-encoded string. Only provided fields are updated.
-     */
-    private String agentResourceAsString;
 
     @Data
     @Builder

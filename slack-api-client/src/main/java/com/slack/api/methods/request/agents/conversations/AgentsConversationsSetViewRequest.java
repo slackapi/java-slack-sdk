@@ -101,12 +101,6 @@ public class AgentsConversationsSetViewRequest implements SlackApiRequest {
      */
     private Csp csp;
 
-    /**
-     * Content-Security-Policy domain declarations for the view, as a JSON-encoded string. Domains are validated
-     * server-side (https-only, no private/internal hosts) and persisted.
-     */
-    private String cspAsString;
-
     @Data
     @Builder
     public static class Csp {
