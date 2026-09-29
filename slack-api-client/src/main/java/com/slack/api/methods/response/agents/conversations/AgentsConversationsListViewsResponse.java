@@ -22,10 +22,8 @@ public class AgentsConversationsListViewsResponse implements SlackApiTextRespons
     @Data
     public static class View {
         private String viewId;
-        private String type;
         private String fileId;
         private String viewKey;
-        private String name;
         private String label;
         private Integer dateAdded;
         private Integer contentVersion;
