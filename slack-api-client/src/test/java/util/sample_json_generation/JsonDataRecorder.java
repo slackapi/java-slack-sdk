@@ -397,6 +397,8 @@ public class JsonDataRecorder {
                     array.remove(0);
                 }
                 array.add(gson.toJsonTree(initProperties(new Message.MessageRootReply())));
+            } else if (path.equals("/api/agents.conversations.getCanvas") && name != null && name.equals("comments")) {
+                // noop: keep the captured value until a real canvas comment is recorded
             } else if (name != null && name.equals("comments")) {
                 while (!array.isEmpty()) {
                     array.remove(0);
@@ -454,6 +456,8 @@ public class JsonDataRecorder {
                     array.add("");
                 } else if (name.equals("replies")) {
                     array.add(gson.toJsonTree(initProperties(new Message.MessageRootReply())));
+                } else if (path.equals("/api/agents.conversations.getCanvas") && name.equals("comments")) {
+                    // noop: keep the captured value until a real canvas comment is recorded
                 } else if (name.equals("comments")) {
                     array.add(gson.toJsonTree(initProperties(new FileComment())));
                 } else if (name.equals("active_incidents")) {
