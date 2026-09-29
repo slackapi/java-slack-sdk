@@ -33,6 +33,7 @@ public class AgentsConversationsSetCommandsRequest implements SlackApiRequest {
         private String name;
         private String description;
         private String argumentHint;
+        private Boolean shouldEscape;
     }
 
 }

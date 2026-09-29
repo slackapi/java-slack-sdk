@@ -143,6 +143,7 @@ public class agents_conversations_Test {
                             AgentsConversationsSetCommandsRequest.Command.builder()
                                     .name("summarize")
                                     .description("Summarize the session so far")
+                                    .shouldEscape(true)
                                     .build()))).getError(), is(nullValue()));
 
             // removeView: remove the HTML view we attached (by the view id setView returned).
