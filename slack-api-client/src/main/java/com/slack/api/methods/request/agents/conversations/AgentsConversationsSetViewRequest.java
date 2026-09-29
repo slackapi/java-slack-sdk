@@ -29,13 +29,16 @@ public class AgentsConversationsSetViewRequest implements SlackApiRequest {
 
     /**
      * Agent-assigned stable identity for the view (e.g. the source file path on the agent's machine). Used as the
-     * upsert key: calls with the same view_key update the existing view.
+     * upsert key: calls with the same view_key update the same view. Required for html, block_kit, and canvas views;
+     * ignored for diff (a diff view is a per-channel singleton).
      */
     private String viewKey;
 
     /**
      * View content. For html, a full self-contained HTML document; for diff, raw unified diff text. Capped at
-     * 1,000,000 bytes.
+     * 1,000,000 bytes — larger content returns content_too_large. The cap is enforced by the handler (not schema
+     * maxLength) so the documented error code actually surfaces instead of a generic argument-validation failure.
+     * Required when type is html or diff.
      */
     private String content;
 
@@ -57,13 +60,14 @@ public class AgentsConversationsSetViewRequest implements SlackApiRequest {
 
     /**
      * For canvas views: access level granted to the channel for the canvas tab. Defaults to write. Use 'comment' to
-     * grant channel members comment access.
+     * grant channel members comment access (read and comment, no editing) so the agent remains the sole author of the
+     * canvas text.
      */
     private String accessLevel;
 
     /**
      * For canvas views: hash of the canvas-derived markdown the agent last wrote, recorded so the agent can later
-     * detect human edits to the canvas.
+     * detect human edits to the canvas. Opaque to the server.
      */
     private String agentContentHash;
 
@@ -90,13 +94,15 @@ public class AgentsConversationsSetViewRequest implements SlackApiRequest {
 
     /**
      * Content-Security-Policy domain declarations for the view. Domains are validated server-side (https-only, no
-     * private/internal hosts) and persisted.
+     * private/internal hosts) and persisted. Only resource_domains is honored at render time today; connect_domains is
+     * accepted and stored for forward-compatibility but NOT honored yet.
      */
     private Csp csp;
 
     @Data
     @Builder
     public static class Csp {
+        private List<String> connectDomains;
         private List<String> resourceDomains;
     }
 

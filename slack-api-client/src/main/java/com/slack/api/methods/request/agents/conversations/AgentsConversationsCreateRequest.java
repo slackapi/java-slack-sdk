@@ -27,7 +27,7 @@ public class AgentsConversationsCreateRequest implements SlackApiRequest {
 
     /**
      * A friendly display name for the code channel. Optional when origin_channel_id and origin_message_ts are
-     * provided — in that case the channel name is named from the origin message and re-titled automatically. Required when no origin link is given.
+     * provided — in that case the channel is named from the origin message and re-titled automatically. Required when no origin link is given.
      */
     private String name;
 
