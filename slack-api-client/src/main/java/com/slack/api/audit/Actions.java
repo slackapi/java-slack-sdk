@@ -328,6 +328,7 @@ public class Actions {
         public static final String slack_ai_mcp_link_opened = "slack_ai_mcp_link_opened";
         public static final String slack_ai_mcp_model_context_updated = "slack_ai_mcp_model_context_updated";
         public static final String slack_ai_api_tool_called = "slack_ai_api_tool_called";
+        public static final String slack_ai_content_safety_hard_block = "slack_ai_content_safety_hard_block";
         public static final String custom_tos_link_clicked = "custom_tos_link_clicked";
         public static final String prefs_setting_changed = "prefs_setting_changed";
         public static final String auth_policy_created = "auth_policy_created";
