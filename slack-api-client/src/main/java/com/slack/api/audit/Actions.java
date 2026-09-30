@@ -396,6 +396,7 @@ public class Actions {
         public static final String pref_expire_unused_refresh_tokens = "pref.expire_unused_refresh_tokens";
         public static final String pref_salesforce_mcp_admin_notifications_changed = "pref.salesforce_mcp_admin_notifications_changed";
         public static final String pref_salesforce_mcp_server_defaults_changed = "pref.salesforce_mcp_server_defaults_changed";
+        public static final String pref_mpdm_add_people_default_exclude_history = "pref.mpdm_add_people_default_exclude_history";
     }
 
     public static class User {
@@ -480,6 +481,8 @@ public class Actions {
         public static final String team_ip_allowlist_access_denied = "team_ip_allowlist_access_denied";
         public static final String slackbot_ai_agent_prompt_submitted = "slackbot_ai_agent_prompt_submitted";
         public static final String frontline_access_pause_blocked = "frontline_access_pause_blocked";
+        public static final String frontline_access_paused = "frontline_access_paused";
+        public static final String frontline_access_resumed = "frontline_access_resumed";
     }
 
     public static class File {
