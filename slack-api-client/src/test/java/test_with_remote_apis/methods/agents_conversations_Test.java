@@ -12,6 +12,7 @@ import com.slack.api.methods.response.agents.conversations.AgentsConversationsSe
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.ConversationsCreateResponse;
+import com.slack.api.methods.response.conversations.ConversationsInfoResponse;
 import com.slack.api.model.canvas.CanvasDocumentContent;
 import config.Constants;
 import config.SlackTestConfig;
@@ -91,6 +92,13 @@ public class agents_conversations_Test {
             String codeChannelId = create.getChannelId();
             assertThat(codeChannelId, is(notNullValue()));
 
+            // conversations.info: record the code channel's properties (record_channel, agent_session, code_channel).
+            // record_channel.record_type is how a code channel is recognized.
+            ConversationsInfoResponse info = client.conversationsInfo(r -> r
+                    .channel(codeChannelId));
+            assertThat(info.getError(), is(nullValue()));
+            assertThat(info.getChannel().getProperties().getRecordChannel().getRecordType(), is("agent_channel"));
+
             // setProperties: set the code channel's context bar items.
             assertThat(client.agentsConversationsSetProperties(r -> r
                     .channelId(codeChannelId)
@@ -103,6 +111,10 @@ public class agents_conversations_Test {
                                             .url("https://github.com/borant/billing")
                                             .build()))
                             .build())), is(notNullValue()));
+
+            // conversations.info: record the code_channel property again now that it has context bar items.
+            assertThat(client.conversationsInfo(r -> r
+                    .channel(codeChannelId)).getError(), is(nullValue()));
 
             // setView: attach an HTML view (keyed by view_key) that we later list and remove.
             AgentsConversationsSetViewResponse setView = client.agentsConversationsSetView(r -> r

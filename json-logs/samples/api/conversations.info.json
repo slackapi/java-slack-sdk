@@ -77,8 +77,40 @@
           "type": ""
         }
       ],
-      "has_slack_connect_invite_created": false
-    }
+      "has_slack_connect_invite_created": false,
+      "record_channel": {
+        "record_id": "",
+        "record_type": "",
+        "record_label": "",
+        "record_label_plural": ""
+      },
+      "code_channel": {
+        "context_bar_items": [
+          {
+            "key": "",
+            "label": "",
+            "icon": "",
+            "url": "https://www.example.com/",
+            "bot_user_id": "U00000000"
+          }
+        ]
+      },
+      "agent_session": {
+        "status": "",
+        "agent_bot_user_ids": [
+          ""
+        ],
+        "encoded_agent_bot_user_ids": [
+          "U00000000"
+        ],
+        "title": "",
+        "origin_link": {
+          "channel_id": "C00000000",
+          "ts": "0000000000.000000"
+        }
+      }
+    },
+    "is_open": false
   },
   "error": "",
   "needed": "",
