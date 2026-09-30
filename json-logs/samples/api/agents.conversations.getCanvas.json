@@ -3,7 +3,24 @@
   "canvas_id": "F00000000",
   "title": "",
   "content": "",
-  "comments": [],
+  "comments": [
+    {
+      "id": "",
+      "ts": "",
+      "user_id": "",
+      "text": "",
+      "quoted_text": "",
+      "is_resolved": false,
+      "replies": [
+        {
+          "ts": "",
+          "user_id": "",
+          "text": ""
+        }
+      ],
+      "has_more_replies": false
+    }
+  ],
   "has_more_comments": false,
   "warning": "",
   "error": "",

@@ -7,6 +7,7 @@ import com.slack.api.methods.request.agents.conversations.AgentsConversationsSet
 import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
 import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -31,6 +32,7 @@ import static org.junit.Assume.assumeNotNull;
 public class agents_conversations_Test {
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String commentsCanvasId = System.getenv(Constants.SLACK_SDK_TEST_AGENTS_CANVAS_ID);
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
@@ -129,6 +131,24 @@ public class agents_conversations_Test {
             assertThat(client.agentsConversationsGetCanvas(r -> r
                     .channel(codeChannelId)
                     .canvasId(canvasId)), is(notNullValue()));
+
+            // getCanvas: read the comment threads from a long-lived canvas that a person commented on. There is no API
+            // to write canvas comments, so this canvas is only attached and read, never rewritten or deleted.
+            if (commentsCanvasId != null) {
+                assertThat(client.agentsConversationsSetView(r -> r
+                        .channelId(codeChannelId)
+                        .type("canvas")
+                        .viewKey(viewKey + "-comments")
+                        .name("Comments")
+                        .canvasId(commentsCanvasId)).getError(), is(nullValue()));
+                AgentsConversationsGetCanvasResponse comments = client.agentsConversationsGetCanvas(r -> r
+                        .channel(codeChannelId)
+                        .canvasId(commentsCanvasId));
+                assertThat(comments.getError(), is(nullValue()));
+                assertThat(comments.getComments().isEmpty(), is(false));
+                assertThat(comments.getComments().stream().anyMatch(c -> !c.getQuotedText().isEmpty()), is(true));
+                assertThat(comments.getComments().stream().anyMatch(c -> !c.getReplies().isEmpty()), is(true));
+            }
 
             // setCanvasContent: replace the full markdown content of the plan canvas.
             assertThat(client.agentsConversationsSetCanvasContent(r -> r

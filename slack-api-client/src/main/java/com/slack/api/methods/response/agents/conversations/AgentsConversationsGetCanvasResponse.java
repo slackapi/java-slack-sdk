@@ -25,5 +25,20 @@ public class AgentsConversationsGetCanvasResponse implements SlackApiTextRespons
 
     @Data
     public static class Comment {
+        private String id;
+        private String ts;
+        private String userId;
+        private String text;
+        private String quotedText;
+        private boolean isResolved;
+        private List<Reply> replies;
+        private boolean hasMoreReplies;
+    }
+
+    @Data
+    public static class Reply {
+        private String ts;
+        private String userId;
+        private String text;
     }
 }
