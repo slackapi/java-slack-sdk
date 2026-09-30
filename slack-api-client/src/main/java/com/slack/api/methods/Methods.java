@@ -220,6 +220,20 @@ public class Methods {
     public static final String ADMIN_WORKFLOWS_UNPUBLISH = "admin.workflows.unpublish";
 
     // ------------------------------
+    // agents.conversations
+    // ------------------------------
+
+    public static final String AGENTS_CONVERSATIONS_ARCHIVE = "agents.conversations.archive";
+    public static final String AGENTS_CONVERSATIONS_CREATE = "agents.conversations.create";
+    public static final String AGENTS_CONVERSATIONS_GET_CANVAS = "agents.conversations.getCanvas";
+    public static final String AGENTS_CONVERSATIONS_LIST_VIEWS = "agents.conversations.listViews";
+    public static final String AGENTS_CONVERSATIONS_REMOVE_VIEW = "agents.conversations.removeView";
+    public static final String AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT = "agents.conversations.setCanvasContent";
+    public static final String AGENTS_CONVERSATIONS_SET_COMMANDS = "agents.conversations.setCommands";
+    public static final String AGENTS_CONVERSATIONS_SET_PROPERTIES = "agents.conversations.setProperties";
+    public static final String AGENTS_CONVERSATIONS_SET_VIEW = "agents.conversations.setView";
+
+    // ------------------------------
     // agents.sessions
     // ------------------------------
 
