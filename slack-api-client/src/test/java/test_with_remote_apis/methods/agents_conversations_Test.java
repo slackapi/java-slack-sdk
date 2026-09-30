@@ -89,12 +89,25 @@ public class agents_conversations_Test {
             String codeChannelId = create.getChannelId();
             assertThat(codeChannelId, is(notNullValue()));
 
-            // setProperties: set the code channel's repo, branch, and context bar items.
+            // setProperties: set every code channel property, including the context bar items.
             assertThat(client.agentsConversationsSetProperties(r -> r
                     .channelId(codeChannelId)
                     .codeChannel(AgentsConversationsSetPropertiesRequest.CodeChannel.builder()
+                            .host("github.com")
                             .repo("borant/billing")
                             .branch("agent/migrate-cron")
+                            .baseBranch("main")
+                            .commitSha("4b825dc642cb6eb9a060e54bf8d69288fbee4904")
+                            .prNumber(42)
+                            .prUrl("https://github.com/borant/billing/pull/42")
+                            .prTitle("Migrate billing cron to Temporal")
+                            .prStatus("open")
+                            .ciUrl("https://github.com/borant/billing/actions/runs/1")
+                            .ciState("pending")
+                            .filePaths(Arrays.asList("cron.py", "workflows/billing.py"))
+                            .language("python")
+                            .upstreamUrl("https://github.com/borant/billing")
+                            .branchUrl("https://github.com/borant/billing/tree/agent/migrate-cron")
                             .contextBarItems(Arrays.asList(
                                     AgentsConversationsSetPropertiesRequest.ContextBarItem.builder()
                                             .key("repo")
