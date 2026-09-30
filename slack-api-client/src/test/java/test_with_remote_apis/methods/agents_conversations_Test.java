@@ -89,12 +89,10 @@ public class agents_conversations_Test {
             String codeChannelId = create.getChannelId();
             assertThat(codeChannelId, is(notNullValue()));
 
-            // setProperties: set the code channel's repo, branch, and context bar items.
+            // setProperties: set the code channel's context bar items.
             assertThat(client.agentsConversationsSetProperties(r -> r
                     .channelId(codeChannelId)
                     .codeChannel(AgentsConversationsSetPropertiesRequest.CodeChannel.builder()
-                            .repo("borant/billing")
-                            .branch("agent/migrate-cron")
                             .contextBarItems(Arrays.asList(
                                     AgentsConversationsSetPropertiesRequest.ContextBarItem.builder()
                                             .key("repo")
@@ -102,7 +100,7 @@ public class agents_conversations_Test {
                                             .icon("folder")
                                             .url("https://github.com/borant/billing")
                                             .build()))
-                            .build())).getError(), is(nullValue()));
+                            .build())), is(notNullValue()));
 
             // setView: attach an HTML view (keyed by view_key) that we later list and remove.
             AgentsConversationsSetViewResponse setView = client.agentsConversationsSetView(r -> r

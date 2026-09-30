@@ -33,21 +33,6 @@ public class AgentsConversationsSetPropertiesRequest implements SlackApiRequest 
     @Data
     @Builder
     public static class CodeChannel {
-        private String host;
-        private String repo;
-        private String branch;
-        private String baseBranch;
-        private String commitSha;
-        private Integer prNumber;
-        private String prUrl;
-        private String prTitle;
-        private String prStatus;
-        private String ciUrl;
-        private String ciState;
-        private List<String> filePaths;
-        private String language;
-        private String upstreamUrl;
-        private String branchUrl;
         private List<ContextBarItem> contextBarItems;
         private SummaryMessage summaryMessage;
     }
