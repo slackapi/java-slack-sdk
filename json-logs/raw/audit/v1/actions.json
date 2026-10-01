@@ -385,7 +385,9 @@
       "pref.salesforce_mcp_server_defaults_changed",
       "mcp_slack_send_message_as_agent_tool_called",
       "slack_ai_content_safety_hard_block",
-      "pref.mpdm_add_people_default_exclude_history"
+      "pref.mpdm_add_people_default_exclude_history",
+      "mcp_slack_read_list_comments_tool_called",
+      "mcp_slack_add_list_comment_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
