@@ -388,7 +388,8 @@
       "pref.mpdm_add_people_default_exclude_history",
       "mcp_slack_read_list_comments_tool_called",
       "mcp_slack_add_list_comment_tool_called",
-      "pref.slackbot_ai_fedramp_web_search_enabled_changed"
+      "pref.slackbot_ai_fedramp_web_search_enabled_changed",
+      "mcp_slack_create_code_channel_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
@@ -471,7 +472,8 @@
       "user_logout_invalid_dbsc_cookie",
       "frontline_access_paused",
       "frontline_access_resumed",
-      "user_passkey_removed_by_admin"
+      "user_passkey_removed_by_admin",
+      "user_logout_invalid_dpop_proof"
     ],
     "file": [
       "file_downloaded",
