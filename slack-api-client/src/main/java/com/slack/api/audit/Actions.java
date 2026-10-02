@@ -320,6 +320,8 @@ public class Actions {
         public static final String mcp_slack_list_todos_tool_called = "mcp_slack_list_todos_tool_called";
         public static final String mcp_slack_create_todos_tool_called = "mcp_slack_create_todos_tool_called";
         public static final String mcp_slack_send_message_as_agent_tool_called = "mcp_slack_send_message_as_agent_tool_called";
+        public static final String mcp_slack_read_list_comments_tool_called = "mcp_slack_read_list_comments_tool_called";
+        public static final String mcp_slack_add_list_comment_tool_called = "mcp_slack_add_list_comment_tool_called";
         public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
         public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
         public static final String slack_ai_mcp_connector_changed = "slack_ai_mcp_connector_changed";
@@ -397,6 +399,7 @@ public class Actions {
         public static final String pref_salesforce_mcp_admin_notifications_changed = "pref.salesforce_mcp_admin_notifications_changed";
         public static final String pref_salesforce_mcp_server_defaults_changed = "pref.salesforce_mcp_server_defaults_changed";
         public static final String pref_mpdm_add_people_default_exclude_history = "pref.mpdm_add_people_default_exclude_history";
+        public static final String pref_slackbot_ai_fedramp_web_search_enabled_changed = "pref.slackbot_ai_fedramp_web_search_enabled_changed";
     }
 
     public static class User {
@@ -483,6 +486,7 @@ public class Actions {
         public static final String frontline_access_pause_blocked = "frontline_access_pause_blocked";
         public static final String frontline_access_paused = "frontline_access_paused";
         public static final String frontline_access_resumed = "frontline_access_resumed";
+        public static final String user_passkey_removed_by_admin = "user_passkey_removed_by_admin";
     }
 
     public static class File {
