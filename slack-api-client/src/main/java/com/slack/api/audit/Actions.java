@@ -322,6 +322,7 @@ public class Actions {
         public static final String mcp_slack_send_message_as_agent_tool_called = "mcp_slack_send_message_as_agent_tool_called";
         public static final String mcp_slack_read_list_comments_tool_called = "mcp_slack_read_list_comments_tool_called";
         public static final String mcp_slack_add_list_comment_tool_called = "mcp_slack_add_list_comment_tool_called";
+        public static final String mcp_slack_create_code_channel_tool_called = "mcp_slack_create_code_channel_tool_called";
         public static final String slack_ai_mcp_tool_called = "slack_ai_mcp_tool_called";
         public static final String slack_ai_mcp_tool_permission_changed = "slack_ai_mcp_tool_permission_changed";
         public static final String slack_ai_mcp_connector_changed = "slack_ai_mcp_connector_changed";
@@ -487,6 +488,7 @@ public class Actions {
         public static final String frontline_access_paused = "frontline_access_paused";
         public static final String frontline_access_resumed = "frontline_access_resumed";
         public static final String user_passkey_removed_by_admin = "user_passkey_removed_by_admin";
+        public static final String user_logout_invalid_dpop_proof = "user_logout_invalid_dpop_proof";
     }
 
     public static class File {
