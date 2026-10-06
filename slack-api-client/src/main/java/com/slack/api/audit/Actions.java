@@ -164,6 +164,7 @@ public class Actions {
         public static final String pref_enterprise_search_connectors_changed = "pref.enterprise_search_connectors_changed";
         public static final String pref_enterprise_search_enabled_changed = "pref.enterprise_search_enabled_changed";
         public static final String pref_slack_ai_allow_translations_changed = "pref.slack_ai_allow_translations_changed";
+        public static final String pref_slack_ai_allow_automatic_image_alt_text_changed = "pref.slack_ai_allow_automatic_image_alt_text_changed";
         public static final String pref_private_record_channel_retention_duration_changed = "pref.private_record_channel_retention_duration_changed";
         public static final String pref_private_record_channel_retention_changed = "pref.private_record_channel_retention_changed";
         public static final String pref_private_record_channel_redaction_duration_changed = "pref.private_record_channel_redaction_duration_changed";
