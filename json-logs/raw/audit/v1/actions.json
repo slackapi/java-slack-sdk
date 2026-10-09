@@ -390,7 +390,8 @@
       "mcp_slack_add_list_comment_tool_called",
       "pref.slackbot_ai_fedramp_web_search_enabled_changed",
       "mcp_slack_create_code_channel_tool_called",
-      "pref.slack_ai_allow_automatic_image_alt_text_changed"
+      "pref.slack_ai_allow_automatic_image_alt_text_changed",
+      "mcp_slack_list_unreads_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
