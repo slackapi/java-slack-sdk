@@ -836,6 +836,7 @@ public class Actions {
         public static final String salesforce_mcp_server_tool_acl_updated = "salesforce_mcp_server_tool_acl_updated";
         public static final String salesforce_mcp_server_tool_default_updated = "salesforce_mcp_server_tool_default_updated";
         public static final String salesforce_mcp_server_tool_permissions_deleted = "salesforce_mcp_server_tool_permissions_deleted";
+        public static final String salesforce_mcp_server_install_requested = "salesforce_mcp_server_install_requested";
     }
 
     public static class Canvas {
