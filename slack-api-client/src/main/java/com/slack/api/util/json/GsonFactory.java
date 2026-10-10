@@ -86,6 +86,7 @@ public class GsonFactory {
                 .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.DetailsAction.class, new GsonAuditLogsDetailsActionFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps))
                 .registerTypeAdapter(ListView.Grouping.class, new GsonListViewGroupingFactory(failOnUnknownProps));
     }
