@@ -893,7 +893,8 @@
       "salesforce_mcp_server_acl_updated",
       "salesforce_mcp_server_tool_acl_updated",
       "salesforce_mcp_server_tool_default_updated",
-      "salesforce_mcp_server_tool_permissions_deleted"
+      "salesforce_mcp_server_tool_permissions_deleted",
+      "salesforce_mcp_server_install_requested"
     ],
     "work_object_record": [
       "enterprise_search_email_attachment_downloaded"
