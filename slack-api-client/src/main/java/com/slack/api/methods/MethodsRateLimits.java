@@ -240,6 +240,7 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);
         setRateLimitTier(APPS_UNINSTALL, Tier1);
         setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
+        setRateLimitTier(APPS_USER_CONNECTION_BULK_UPDATE, Tier2);
         setRateLimitTier(APPS_USER_CONNECTION_UPDATE, Tier2);
 
         setRateLimitTier(ASSISTANT_THREADS_SET_STATUS, SpecialTier_assistant_threads_setStatus);

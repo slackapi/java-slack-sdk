@@ -53,6 +53,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -217,6 +218,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
@@ -1272,6 +1274,13 @@ public interface MethodsClient {
     // ------------------------------
     // apps.user.connection
     // ------------------------------
+
+    AppsUserConnectionBulkUpdateResponse appsUserConnectionBulkUpdate(AppsUserConnectionBulkUpdateRequest req)
+            throws IOException, SlackApiException;
+
+    AppsUserConnectionBulkUpdateResponse appsUserConnectionBulkUpdate(
+            RequestConfigurator<AppsUserConnectionBulkUpdateRequest.AppsUserConnectionBulkUpdateRequestBuilder> req)
+            throws IOException, SlackApiException;
 
     AppsUserConnectionUpdateResponse appsUserConnectionUpdate(AppsUserConnectionUpdateRequest req)
             throws IOException, SlackApiException;

@@ -59,6 +59,7 @@ import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.manifest.*;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
@@ -210,6 +211,7 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.apps.manifest.*;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
@@ -1479,6 +1481,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AppsConnectionsOpenResponse> appsConnectionsOpen(RequestConfigurator<AppsConnectionsOpenRequest.AppsConnectionsOpenRequestBuilder> req) {
         return appsConnectionsOpen(req.configure(AppsConnectionsOpenRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsUserConnectionBulkUpdateResponse> appsUserConnectionBulkUpdate(AppsUserConnectionBulkUpdateRequest req) {
+        return executor.execute(APPS_USER_CONNECTION_BULK_UPDATE, toMap(req), () -> methods.appsUserConnectionBulkUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsUserConnectionBulkUpdateResponse> appsUserConnectionBulkUpdate(RequestConfigurator<AppsUserConnectionBulkUpdateRequest.AppsUserConnectionBulkUpdateRequestBuilder> req) {
+        return appsUserConnectionBulkUpdate(req.configure(AppsUserConnectionBulkUpdateRequest.builder()).build());
     }
 
     @Override

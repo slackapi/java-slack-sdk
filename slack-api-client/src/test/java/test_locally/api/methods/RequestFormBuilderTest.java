@@ -1,6 +1,7 @@
 package test_locally.api.methods;
 
 import com.slack.api.methods.RequestFormBuilder;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
@@ -15,6 +16,7 @@ import okhttp3.FormBody;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,6 +166,40 @@ public class RequestFormBuilderTest {
         final int userAuthBlocksIndexInFrom = 0;
         assertThat(form.name(userAuthBlocksIndexInFrom), is("unfurls"));
         assertThat(form.value(userAuthBlocksIndexInFrom), is("{\"key\":{}}"));
+    }
+
+    @Test
+    public void testAppsUserConnectionBulkUpdateUserIdsJsonSerialization() {
+        // GIVEN
+        AppsUserConnectionBulkUpdateRequest request = AppsUserConnectionBulkUpdateRequest.builder()
+                .connectedUserIds(Arrays.asList("U1", "U2"))
+                .disconnectedUserIds(Arrays.asList("U3"))
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.size(), is(2));
+        assertThat(form.name(0), is("connected_user_ids"));
+        assertThat(form.value(0), is("[\"U1\",\"U2\"]"));
+        assertThat(form.name(1), is("disconnected_user_ids"));
+        assertThat(form.value(1), is("[\"U3\"]"));
+    }
+
+    @Test
+    public void testAppsUserConnectionBulkUpdateOmitsMissingUserIds() {
+        // GIVEN
+        AppsUserConnectionBulkUpdateRequest request = AppsUserConnectionBulkUpdateRequest.builder()
+                .disconnectedUserIds(Arrays.asList("U3"))
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.size(), is(1));
+        assertThat(form.name(0), is("disconnected_user_ids"));
     }
 
     @Data

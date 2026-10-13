@@ -3,10 +3,13 @@ package test_locally.api.methods;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.metrics.MemoryMetricsDatastore;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
+
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -39,6 +42,22 @@ public class AppsTest {
     public void appsUserConnectionUpdate_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).appsUserConnectionUpdate(r -> r
                 .userId("U12345678").status("connected")).get().isOk(), is(true));
+    }
+
+    @Test
+    public void appsUserConnectionBulkUpdate() throws Exception {
+        AppsUserConnectionBulkUpdateResponse response = slack.methods(ValidToken).appsUserConnectionBulkUpdate(r -> r
+                .connectedUserIds(Arrays.asList("U12345678"))
+                .disconnectedUserIds(Arrays.asList("U87654321")));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getChangedUserIds(), is(Arrays.asList("U00000000")));
+        assertThat(response.getFailures().get(0).getUserId(), is("U00000000"));
+    }
+
+    @Test
+    public void appsUserConnectionBulkUpdate_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsUserConnectionBulkUpdate(r -> r
+                .connectedUserIds(Arrays.asList("U12345678"))).get().isOk(), is(true));
     }
 
     @Test
