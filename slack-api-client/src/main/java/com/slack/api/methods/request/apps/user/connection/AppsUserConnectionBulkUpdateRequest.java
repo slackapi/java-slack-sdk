@@ -17,11 +17,13 @@ public class AppsUserConnectionBulkUpdateRequest implements SlackApiRequest {
 
     /**
      * The user IDs to mark as connected.
+     * At least one of connectedUserIds or disconnectedUserIds is required; combined they may not exceed 1000 users.
      */
     private List<String> connectedUserIds;
 
     /**
      * The user IDs to mark as disconnected.
+     * At least one of connectedUserIds or disconnectedUserIds is required; combined they may not exceed 1000 users.
      */
     private List<String> disconnectedUserIds;
 }

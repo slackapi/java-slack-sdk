@@ -28,7 +28,7 @@ public class AppsUserConnectionRequestAuthRequest implements SlackApiRequest {
     private String userId;
 
     /**
-     * The provider the user is asked to connect.
+     * The provider the user is asked to connect. Required.
      */
     private PrimaryProvider primaryProvider;
     private String primaryProviderAsString;
@@ -38,15 +38,59 @@ public class AppsUserConnectionRequestAuthRequest implements SlackApiRequest {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class PrimaryProvider {
+
+        /**
+         * Unique identifier for this provider within the app, up to 150 characters.
+         * The connect button's action_id is derived from it (auth_provider_connect_{value}). Required.
+         */
         private String value;
+
+        /**
+         * Human-readable name of the provider, up to 75 characters. Required.
+         */
         private PlainTextObject name;
+
+        /**
+         * Whether this provider is currently connected. Required: Slack records this state against the user,
+         * so an omitted value is rejected with invalid_arguments instead of defaulting to false.
+         */
         private Boolean isConnected;
+
+        /**
+         * Brief description of what this connection enables, up to 150 characters.
+         */
         private PlainTextObject description;
+
+        /**
+         * URL for the provider icon image. Must be https. Defaults to the app's avatar.
+         */
         private String iconUrl;
+
+        /**
+         * OAuth redirect URL opened when the user clicks Connect.
+         * Must be https, on a host registered in the app manifest's features.user_connections.auth_hosts.
+         */
         private String authUrl;
+
+        /**
+         * URL opened when the user clicks Disconnect.
+         * Must be https, on a host registered in the app manifest's features.user_connections.auth_hosts.
+         */
         private String disconnectUrl;
+
+        /**
+         * Display name of the connected account, up to 75 characters. Shown when isConnected is true.
+         */
         private PlainTextObject connectedIdentity;
+
+        /**
+         * Additional context about the connection (e.g., org or workspace name), up to 75 characters.
+         */
         private PlainTextObject connectedContext;
+
+        /**
+         * Overflow menu shown when connected (e.g., Switch accounts, Disconnect).
+         */
         private OverflowMenuElement accessory;
     }
 }
