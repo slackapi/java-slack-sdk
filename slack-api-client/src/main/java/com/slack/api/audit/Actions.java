@@ -403,6 +403,7 @@ public class Actions {
         public static final String pref_salesforce_mcp_server_defaults_changed = "pref.salesforce_mcp_server_defaults_changed";
         public static final String pref_mpdm_add_people_default_exclude_history = "pref.mpdm_add_people_default_exclude_history";
         public static final String pref_slackbot_ai_fedramp_web_search_enabled_changed = "pref.slackbot_ai_fedramp_web_search_enabled_changed";
+        public static final String pref_slackbot_ai_channel_settings_access = "pref.slackbot_ai_channel_settings_access";
     }
 
     public static class User {
