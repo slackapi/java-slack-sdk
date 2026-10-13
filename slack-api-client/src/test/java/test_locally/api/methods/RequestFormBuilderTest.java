@@ -2,12 +2,15 @@ package test_locally.api.methods;
 
 import com.slack.api.methods.RequestFormBuilder;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.CallParticipant;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.element.OverflowMenuElement;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -200,6 +203,54 @@ public class RequestFormBuilderTest {
         // THEN
         assertThat(form.size(), is(1));
         assertThat(form.name(0), is("disconnected_user_ids"));
+    }
+
+    @Test
+    public void testAppsUserConnectionRequestAuthPrimaryProviderJsonSerialization() {
+        // GIVEN
+        AppsUserConnectionRequestAuthRequest request = AppsUserConnectionRequestAuthRequest.builder()
+                .triggerId("T1")
+                .primaryProvider(AppsUserConnectionRequestAuthRequest.PrimaryProvider.builder()
+                        .value("github")
+                        .name(PlainTextObject.builder().text("GitHub").build())
+                        .isConnected(false)
+                        .connectedIdentity(PlainTextObject.builder().text("octocat").build())
+                        .accessory(OverflowMenuElement.builder().actionId("menu").build())
+                        .build())
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.size(), is(2));
+        assertThat(form.name(0), is("trigger_id"));
+        assertThat(form.value(0), is("T1"));
+        assertThat(form.name(1), is("primary_provider"));
+        assertThat(form.value(1), is("{\"value\":\"github\","
+                + "\"name\":{\"type\":\"plain_text\",\"text\":\"GitHub\"},"
+                + "\"is_connected\":false,"
+                + "\"connected_identity\":{\"type\":\"plain_text\",\"text\":\"octocat\"},"
+                + "\"accessory\":{\"type\":\"overflow\",\"action_id\":\"menu\"}}"));
+    }
+
+    @Test
+    public void testAppsUserConnectionRequestAuthPrimaryProviderAsStringTakesPrecedence() {
+        // GIVEN
+        AppsUserConnectionRequestAuthRequest request = AppsUserConnectionRequestAuthRequest.builder()
+                .userId("U1")
+                .primaryProvider(AppsUserConnectionRequestAuthRequest.PrimaryProvider.builder().value("ignored").build())
+                .primaryProviderAsString("{\"value\":\"github\"}")
+                .build();
+
+        // WHEN
+        FormBody form = RequestFormBuilder.toForm(request).build();
+
+        // THEN
+        assertThat(form.size(), is(2));
+        assertThat(form.name(0), is("user_id"));
+        assertThat(form.name(1), is("primary_provider"));
+        assertThat(form.value(1), is("{\"value\":\"github\"}"));
     }
 
     @Data

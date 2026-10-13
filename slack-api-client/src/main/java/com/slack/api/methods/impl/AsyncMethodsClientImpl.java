@@ -60,6 +60,7 @@ import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
@@ -212,6 +213,7 @@ import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenRespon
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
@@ -1491,6 +1493,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AppsUserConnectionBulkUpdateResponse> appsUserConnectionBulkUpdate(RequestConfigurator<AppsUserConnectionBulkUpdateRequest.AppsUserConnectionBulkUpdateRequestBuilder> req) {
         return appsUserConnectionBulkUpdate(req.configure(AppsUserConnectionBulkUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsUserConnectionRequestAuthResponse> appsUserConnectionRequestAuth(AppsUserConnectionRequestAuthRequest req) {
+        return executor.execute(APPS_USER_CONNECTION_REQUEST_AUTH, toMap(req), () -> methods.appsUserConnectionRequestAuth(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsUserConnectionRequestAuthResponse> appsUserConnectionRequestAuth(RequestConfigurator<AppsUserConnectionRequestAuthRequest.AppsUserConnectionRequestAuthRequestBuilder> req) {
+        return appsUserConnectionRequestAuth(req.configure(AppsUserConnectionRequestAuthRequest.builder()).build());
     }
 
     @Override

@@ -263,6 +263,7 @@ public class Methods {
     // ------------------------------
 
     public static final String APPS_USER_CONNECTION_BULK_UPDATE = "apps.user.connection.bulkUpdate";
+    public static final String APPS_USER_CONNECTION_REQUEST_AUTH = "apps.user.connection.requestAuth";
     public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
 
     // ------------------------------

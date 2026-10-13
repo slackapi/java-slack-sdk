@@ -3,7 +3,11 @@ package test_locally.api.methods;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.metrics.MemoryMetricsDatastore;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.element.OverflowMenuElement;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,6 +62,32 @@ public class AppsTest {
     public void appsUserConnectionBulkUpdate_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).appsUserConnectionBulkUpdate(r -> r
                 .connectedUserIds(Arrays.asList("U12345678"))).get().isOk(), is(true));
+    }
+
+    @Test
+    public void appsUserConnectionRequestAuth() throws Exception {
+        AppsUserConnectionRequestAuthResponse response = slack.methods(ValidToken).appsUserConnectionRequestAuth(r -> r
+                .triggerId("T12345678")
+                .primaryProvider(githubProvider()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getResponseMetadata().getWarnings(), is(Arrays.asList("")));
+    }
+
+    @Test
+    public void appsUserConnectionRequestAuth_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsUserConnectionRequestAuth(r -> r
+                .userId("U12345678")
+                .primaryProvider(githubProvider())).get().isOk(), is(true));
+    }
+
+    private static AppsUserConnectionRequestAuthRequest.PrimaryProvider githubProvider() {
+        return AppsUserConnectionRequestAuthRequest.PrimaryProvider.builder()
+                .value("github")
+                .name(PlainTextObject.builder().text("GitHub").build())
+                .isConnected(true)
+                .connectedIdentity(PlainTextObject.builder().text("octocat").build())
+                .accessory(OverflowMenuElement.builder().actionId("provider-menu").build())
+                .build();
     }
 
     @Test
