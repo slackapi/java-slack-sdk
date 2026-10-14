@@ -20,5 +20,10 @@ public class AppsUserConnectionRequestAuthResponse implements SlackApiTextRespon
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
+    /**
+     * `warnings` reports the outcome: `connection_status_out_of_date` when a modal opened by `trigger_id` shows a
+     * different `is_connected` than Slack has recorded for the user; `auth_modal_not_found` plus one of
+     * `connection_status_recorded` or `connection_status_unchanged` when a `user_id` call finds no open modal.
+     */
     private ResponseMetadata responseMetadata;
 }
