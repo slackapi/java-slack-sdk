@@ -9,6 +9,7 @@ import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.CallParticipant;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.OverflowMenuElement;
 import lombok.AllArgsConstructor;
@@ -215,7 +216,12 @@ public class RequestFormBuilderTest {
                         .name(PlainTextObject.builder().text("GitHub").build())
                         .isConnected(false)
                         .connectedIdentity(PlainTextObject.builder().text("octocat").build())
-                        .accessory(OverflowMenuElement.builder().actionId("menu").build())
+                        .accessory(OverflowMenuElement.builder()
+                                .actionId("menu")
+                                .options(Arrays.asList(
+                                        OptionObject.builder().text(PlainTextObject.builder().text("Switch").build()).value("switch").build(),
+                                        OptionObject.builder().text(PlainTextObject.builder().text("Disconnect").build()).value("disconnect").build()))
+                                .build())
                         .build())
                 .build();
 
@@ -231,7 +237,9 @@ public class RequestFormBuilderTest {
                 + "\"name\":{\"type\":\"plain_text\",\"text\":\"GitHub\"},"
                 + "\"is_connected\":false,"
                 + "\"connected_identity\":{\"type\":\"plain_text\",\"text\":\"octocat\"},"
-                + "\"accessory\":{\"type\":\"overflow\",\"action_id\":\"menu\"}}"));
+                + "\"accessory\":{\"type\":\"overflow\",\"action_id\":\"menu\",\"options\":["
+                + "{\"text\":{\"type\":\"plain_text\",\"text\":\"Switch\"},\"value\":\"switch\"},"
+                + "{\"text\":{\"type\":\"plain_text\",\"text\":\"Disconnect\"},\"value\":\"disconnect\"}]}}"));
     }
 
     @Test

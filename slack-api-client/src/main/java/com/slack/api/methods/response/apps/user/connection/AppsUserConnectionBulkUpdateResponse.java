@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.apps.user.connection;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class AppsUserConnectionBulkUpdateResponse implements SlackApiTextRespons
     private String needed;
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
+
+    private ResponseMetadata responseMetadata;
 
     /**
      * Users whose stored status changed. Users already at the requested status are omitted.

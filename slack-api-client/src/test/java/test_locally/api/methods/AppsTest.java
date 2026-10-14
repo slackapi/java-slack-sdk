@@ -6,6 +6,7 @@ import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
+import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.OverflowMenuElement;
 import org.junit.After;
@@ -56,6 +57,7 @@ public class AppsTest {
         assertThat(response.isOk(), is(true));
         assertThat(response.getChangedUserIds(), is(Arrays.asList("U00000000")));
         assertThat(response.getFailures().get(0).getUserId(), is("U00000000"));
+        assertThat(response.getResponseMetadata().getMessages(), is(Arrays.asList("")));
     }
 
     @Test
@@ -67,7 +69,7 @@ public class AppsTest {
     @Test
     public void appsUserConnectionRequestAuth() throws Exception {
         AppsUserConnectionRequestAuthResponse response = slack.methods(ValidToken).appsUserConnectionRequestAuth(r -> r
-                .triggerId("T12345678")
+                .triggerId("1234567890.1234567890.abcdef0123456789")
                 .primaryProvider(githubProvider()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getResponseMetadata().getWarnings(), is(Arrays.asList("")));
@@ -86,7 +88,12 @@ public class AppsTest {
                 .name(PlainTextObject.builder().text("GitHub").build())
                 .isConnected(true)
                 .connectedIdentity(PlainTextObject.builder().text("octocat").build())
-                .accessory(OverflowMenuElement.builder().actionId("provider-menu").build())
+                .accessory(OverflowMenuElement.builder()
+                        .actionId("provider-menu")
+                        .options(Arrays.asList(
+                                OptionObject.builder().text(PlainTextObject.builder().text("Switch accounts").build()).value("switch").build(),
+                                OptionObject.builder().text(PlainTextObject.builder().text("Disconnect").build()).value("disconnect").build()))
+                        .build())
                 .build();
     }
 
