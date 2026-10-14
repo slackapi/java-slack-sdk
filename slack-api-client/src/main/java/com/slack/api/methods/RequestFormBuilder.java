@@ -54,6 +54,8 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -1195,6 +1197,29 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(AppsConnectionsOpenRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsUserConnectionBulkUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getConnectedUserIds() != null) {
+            setIfNotNull("connected_user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getConnectedUserIds()), form);
+        }
+        if (req.getDisconnectedUserIds() != null) {
+            setIfNotNull("disconnected_user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getDisconnectedUserIds()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsUserConnectionRequestAuthRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        if (req.getPrimaryProviderAsString() != null) {
+            setIfNotNull("primary_provider", req.getPrimaryProviderAsString(), form);
+        } else if (req.getPrimaryProvider() != null) {
+            setIfNotNull("primary_provider", GSON.toJson(req.getPrimaryProvider()), form);
+        }
         return form;
     }
 

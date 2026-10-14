@@ -55,6 +55,8 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -219,6 +221,8 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
@@ -1520,6 +1524,26 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AppsConnectionsOpenResponse appsConnectionsOpen(RequestConfigurator<AppsConnectionsOpenRequest.AppsConnectionsOpenRequestBuilder> req) throws IOException, SlackApiException {
         return appsConnectionsOpen(req.configure(AppsConnectionsOpenRequest.builder()).build());
+    }
+
+    @Override
+    public AppsUserConnectionBulkUpdateResponse appsUserConnectionBulkUpdate(AppsUserConnectionBulkUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.APPS_USER_CONNECTION_BULK_UPDATE, getToken(req), AppsUserConnectionBulkUpdateResponse.class);
+    }
+
+    @Override
+    public AppsUserConnectionBulkUpdateResponse appsUserConnectionBulkUpdate(RequestConfigurator<AppsUserConnectionBulkUpdateRequest.AppsUserConnectionBulkUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return appsUserConnectionBulkUpdate(req.configure(AppsUserConnectionBulkUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public AppsUserConnectionRequestAuthResponse appsUserConnectionRequestAuth(AppsUserConnectionRequestAuthRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.APPS_USER_CONNECTION_REQUEST_AUTH, getToken(req), AppsUserConnectionRequestAuthResponse.class);
+    }
+
+    @Override
+    public AppsUserConnectionRequestAuthResponse appsUserConnectionRequestAuth(RequestConfigurator<AppsUserConnectionRequestAuthRequest.AppsUserConnectionRequestAuthRequestBuilder> req) throws IOException, SlackApiException {
+        return appsUserConnectionRequestAuth(req.configure(AppsUserConnectionRequestAuthRequest.builder()).build());
     }
 
     @Override
