@@ -28,6 +28,10 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
         underlying += ActionsBlockBuilder().apply(builder).build()
     }
 
+    override fun authProvider(builder: AuthProviderBlockBuilder.() -> Unit) {
+        underlying += AuthProviderBlockBuilder().apply(builder).build()
+    }
+
     override fun container(builder: ContainerBlockBuilder.() -> Unit) {
         underlying += ContainerBlockBuilder().apply(builder).build()
     }

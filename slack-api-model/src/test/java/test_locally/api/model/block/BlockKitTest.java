@@ -14,9 +14,11 @@ import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
+import static com.slack.api.model.block.composition.BlockCompositions.option;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
 import static com.slack.api.model.block.element.BlockElements.conversationsSelect;
+import static com.slack.api.model.block.element.BlockElements.overflowMenu;
 import static com.slack.api.model.view.Views.view;
 import static com.slack.api.model.view.Views.viewSubmit;
 import static org.hamcrest.CoreMatchers.*;
@@ -1797,6 +1799,100 @@ public class BlockKitTest {
         assertEquals("alert-1", parsed.getBlockId());
         assertEquals("info", parsed.getLevel());
         assertEquals("Heads up!", parsed.getText().getText());
+    }
+
+    @Test
+    public void parseAuthProviderBlocks() {
+        // https://docs.slack.dev/reference/block-kit/blocks/auth-provider-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"auth_provider\",\n" +
+                "      \"block_id\": \"auth-1\",\n" +
+                "      \"value\": \"acme\",\n" +
+                "      \"name\": {\"type\": \"plain_text\", \"text\": \"Acme\"},\n" +
+                "      \"description\": {\"type\": \"plain_text\", \"text\": \"Search your Acme docs\"},\n" +
+                "      \"icon_url\": \"https://acme.example.com/icon.png\",\n" +
+                "      \"auth_url\": \"https://acme.example.com/oauth\",\n" +
+                "      \"disconnect_url\": \"https://acme.example.com/disconnect\",\n" +
+                "      \"is_connected\": true,\n" +
+                "      \"connected_identity\": {\"type\": \"plain_text\", \"text\": \"jane@acme.example.com\"},\n" +
+                "      \"connected_context\": {\"type\": \"plain_text\", \"text\": \"Acme Corp\"},\n" +
+                "      \"accessory\": {\n" +
+                "        \"type\": \"overflow\",\n" +
+                "        \"action_id\": \"acme-menu\",\n" +
+                "        \"options\": [\n" +
+                "          {\"text\": {\"type\": \"plain_text\", \"text\": \"Switch accounts\"}, \"value\": \"switch\"},\n" +
+                "          {\"text\": {\"type\": \"plain_text\", \"text\": \"Disconnect\"}, \"value\": \"disconnect\"}\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      \"fallback\": [\n" +
+                "        {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"Connected to *Acme*\"}}\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"type\": \"auth_provider\",\n" +
+                "      \"value\": \"globex\",\n" +
+                "      \"name\": {\"type\": \"plain_text\", \"text\": \"Globex\"},\n" +
+                "      \"is_connected\": false\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        View view = GsonFactory.createSnakeCase().fromJson(json, View.class);
+        assertNotNull(view);
+        assertEquals(2, view.getBlocks().size());
+
+        AuthProviderBlock connected = (AuthProviderBlock) view.getBlocks().get(0);
+        assertEquals("auth_provider", connected.getType());
+        assertEquals("auth-1", connected.getBlockId());
+        assertEquals("acme", connected.getValue());
+        assertEquals("Acme", connected.getName().getText());
+        assertEquals("Search your Acme docs", connected.getDescription().getText());
+        assertEquals("https://acme.example.com/icon.png", connected.getIconUrl());
+        assertEquals("https://acme.example.com/oauth", connected.getAuthUrl());
+        assertEquals("https://acme.example.com/disconnect", connected.getDisconnectUrl());
+        assertEquals(true, connected.getIsConnected());
+        assertEquals("jane@acme.example.com", connected.getConnectedIdentity().getText());
+        assertEquals("Acme Corp", connected.getConnectedContext().getText());
+        assertEquals("acme-menu", connected.getAccessory().getActionId());
+        assertEquals(2, connected.getAccessory().getOptions().size());
+        assertEquals(1, connected.getFallback().size());
+        assertThat(connected.getFallback().get(0), is(instanceOf(SectionBlock.class)));
+
+        AuthProviderBlock disconnected = (AuthProviderBlock) view.getBlocks().get(1);
+        assertEquals("globex", disconnected.getValue());
+        assertEquals(false, disconnected.getIsConnected());
+        assertNull(disconnected.getBlockId());
+        assertNull(disconnected.getAccessory());
+        assertNull(disconnected.getFallback());
+    }
+
+    @Test
+    public void buildAuthProviderBlock() {
+        AuthProviderBlock block = authProvider(a -> a
+                .blockId("auth-1")
+                .value("acme")
+                .name(plainText("Acme"))
+                .isConnected(false)
+                .authUrl("https://acme.example.com/oauth")
+                .accessory(overflowMenu(o -> o
+                        .actionId("acme-menu")
+                        .options(Arrays.asList(
+                                option(plainText("Switch accounts"), "switch"),
+                                option(plainText("Disconnect"), "disconnect"))))));
+        assertNotNull(block);
+        assertEquals("auth_provider", block.getType());
+
+        Gson gson = GsonFactory.createSnakeCase();
+        String output = gson.toJson(block);
+        assertThat(output, containsString("\"is_connected\":false"));
+        AuthProviderBlock parsed = gson.fromJson(output, AuthProviderBlock.class);
+        assertEquals("auth-1", parsed.getBlockId());
+        assertEquals("acme", parsed.getValue());
+        assertEquals("Acme", parsed.getName().getText());
+        assertEquals(false, parsed.getIsConnected());
+        assertEquals("https://acme.example.com/oauth", parsed.getAuthUrl());
+        assertEquals("acme-menu", parsed.getAccessory().getActionId());
     }
 
     @Test
