@@ -405,6 +405,7 @@ public class Actions {
         public static final String pref_slackbot_ai_fedramp_web_search_enabled_changed = "pref.slackbot_ai_fedramp_web_search_enabled_changed";
         public static final String pref_slackbot_ai_channel_settings_access = "pref.slackbot_ai_channel_settings_access";
         public static final String mcp_slack_agentic_search_tool_called = "mcp_slack_agentic_search_tool_called";
+        public static final String mcp_servers_analytics_export_started = "mcp_servers_analytics_export_started";
     }
 
     public static class User {
@@ -493,6 +494,7 @@ public class Actions {
         public static final String frontline_access_resumed = "frontline_access_resumed";
         public static final String user_passkey_removed_by_admin = "user_passkey_removed_by_admin";
         public static final String user_logout_invalid_dpop_proof = "user_logout_invalid_dpop_proof";
+        public static final String frontline_fallback_email_updated = "frontline_fallback_email_updated";
     }
 
     public static class File {
