@@ -2426,4 +2426,89 @@ public class BlockKitTest {
         assertThat(taskCard.getStatus(), is("in_progress"));
         assertThat(taskCard.getSources().size(), is(1));
     }
+
+    @Test
+    public void parseAuthProviderBlock() {
+        String json = "{\"type\":\"home\",\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"auth_provider\",\n" +
+                "    \"block_id\": \"auth1\",\n" +
+                "    \"value\": \"acme\",\n" +
+                "    \"name\": {\"type\": \"plain_text\", \"text\": \"Acme\"},\n" +
+                "    \"is_connected\": true,\n" +
+                "    \"description\": {\"type\": \"plain_text\", \"text\": \"Search Acme docs\"},\n" +
+                "    \"icon_url\": \"https://acme.example.com/icon.png\",\n" +
+                "    \"auth_url\": \"https://acme.example.com/oauth\",\n" +
+                "    \"disconnect_url\": \"https://acme.example.com/disconnect\",\n" +
+                "    \"connected_identity\": {\"type\": \"plain_text\", \"text\": \"jane@acme.example.com\"},\n" +
+                "    \"connected_context\": {\"type\": \"plain_text\", \"text\": \"Acme Corp\"},\n" +
+                "    \"accessory\": {\n" +
+                "      \"type\": \"overflow\",\n" +
+                "      \"action_id\": \"acme_menu\",\n" +
+                "      \"options\": [\n" +
+                "        {\"text\": {\"type\": \"plain_text\", \"text\": \"Switch accounts\"}, \"value\": \"switch\"},\n" +
+                "        {\"text\": {\"type\": \"plain_text\", \"text\": \"Disconnect\"}, \"value\": \"disconnect\"}\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    \"fallback\": [\n" +
+                "      {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"Connected to Acme\"}}\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        View view = gson.fromJson(json, View.class);
+        assertThat(view.getBlocks().size(), is(1));
+
+        AuthProviderBlock authProvider = (AuthProviderBlock) view.getBlocks().get(0);
+        assertThat(authProvider.getType(), is("auth_provider"));
+        assertThat(authProvider.getBlockId(), is("auth1"));
+        assertThat(authProvider.getValue(), is("acme"));
+        assertThat(authProvider.getName().getText(), is("Acme"));
+        assertThat(authProvider.getIsConnected(), is(true));
+        assertThat(authProvider.getDescription().getText(), is("Search Acme docs"));
+        assertThat(authProvider.getIconUrl(), is("https://acme.example.com/icon.png"));
+        assertThat(authProvider.getAuthUrl(), is("https://acme.example.com/oauth"));
+        assertThat(authProvider.getDisconnectUrl(), is("https://acme.example.com/disconnect"));
+        assertThat(authProvider.getConnectedIdentity().getText(), is("jane@acme.example.com"));
+        assertThat(authProvider.getConnectedContext().getText(), is("Acme Corp"));
+        assertThat(authProvider.getAccessory().getActionId(), is("acme_menu"));
+        assertThat(authProvider.getAccessory().getOptions().size(), is(2));
+        assertThat(authProvider.getFallback().size(), is(1));
+        assertThat(authProvider.getFallback().get(0), is(instanceOf(SectionBlock.class)));
+
+        View roundTrip = gson.fromJson(gson.toJson(view), View.class);
+        assertThat(roundTrip.getBlocks().get(0), is(authProvider));
+    }
+
+    @Test
+    public void parseAuthProviderBlockWithRequiredFieldsOnly() {
+        String json = "{\"type\":\"home\",\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"auth_provider\",\n" +
+                "    \"value\": \"acme\",\n" +
+                "    \"name\": {\"type\": \"plain_text\", \"text\": \"Acme\"},\n" +
+                "    \"is_connected\": false\n" +
+                "  }\n" +
+                "]}";
+        View view = GsonFactory.createSnakeCase().fromJson(json, View.class);
+
+        AuthProviderBlock authProvider = (AuthProviderBlock) view.getBlocks().get(0);
+        assertThat(authProvider.getIsConnected(), is(false));
+        assertThat(authProvider.getAccessory(), is(nullValue()));
+        assertThat(authProvider.getFallback(), is(nullValue()));
+    }
+
+    @Test
+    public void buildAuthProviderBlock() {
+        AuthProviderBlock authProvider = authProvider(a -> a
+                .value("acme")
+                .name(plainText("Acme"))
+                .isConnected(false)
+                .authUrl("https://acme.example.com/oauth"));
+
+        String json = GsonFactory.createSnakeCase().toJson(authProvider);
+        assertThat(json, is("{\"type\":\"auth_provider\",\"value\":\"acme\"," +
+                "\"name\":{\"type\":\"plain_text\",\"text\":\"Acme\"}," +
+                "\"is_connected\":false,\"auth_url\":\"https://acme.example.com/oauth\"}"));
+    }
 }
