@@ -393,7 +393,8 @@
       "pref.slack_ai_allow_automatic_image_alt_text_changed",
       "mcp_slack_list_unreads_tool_called",
       "pref.slackbot_ai_channel_settings_access",
-      "mcp_slack_agentic_search_tool_called"
+      "mcp_slack_agentic_search_tool_called",
+      "mcp_servers_analytics_export_started"
     ],
     "user": [
       "custom_tos_accepted",
@@ -477,7 +478,8 @@
       "frontline_access_paused",
       "frontline_access_resumed",
       "user_passkey_removed_by_admin",
-      "user_logout_invalid_dpop_proof"
+      "user_logout_invalid_dpop_proof",
+      "frontline_fallback_email_updated"
     ],
     "file": [
       "file_downloaded",
