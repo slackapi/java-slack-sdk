@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Displays an authentication provider with its icon, name, and connection state, plus a Connect or
- * Disconnect button that Slack renders.
+ * Displays authentication provider information, including its icon, name, and connection state.
  *
  * https://docs.slack.dev/reference/block-kit/blocks/auth-provider-block
  */
@@ -24,30 +23,33 @@ public class AuthProviderBlock implements LayoutBlock {
     private final String type = TYPE;
 
     /**
-     * Unique identifier for this provider within the app, up to 150 characters. Included in interaction
-     * payloads; the connect button's {@code action_id} is derived from it ({@code auth_provider_connect_<value>}).
-     * Required.
+     * Unique identifier for this provider within the app. Included in interaction payloads and used to derive
+     * the connect button's {@code action_id} ({@code auth_provider_connect_<value>}).
+     * Maximum length for this field is 150 characters.
      */
     private String value;
 
     /**
-     * Human-readable name of the provider, up to 75 characters. Required.
+     * Human-readable name of the provider.
+     * Maximum length for the text in this field is 75 characters.
      */
     private PlainTextObject name;
 
     /**
-     * Whether this provider is currently connected. Required: Slack records this state for the user,
-     * so an omitted value would read as disconnected.
+     * Whether this provider is currently connected or disconnected. Slack records this state for the user,
+     * so an omitted value is indistinguishable from an explicit false and silently marks the user as disconnected.
      */
     private Boolean isConnected;
 
     /**
-     * Brief description of what this connection enables, up to 150 characters.
+     * Brief description of what this connection enables.
+     * Maximum length for the text in this field is 150 characters.
      */
     private PlainTextObject description;
 
     /**
-     * URL for the provider icon image, up to 3000 characters. Must be https. Defaults to the app's avatar.
+     * URL for the provider icon image. Must be https. Falls back to the app's avatar when absent.
+     * Maximum length for this field is 3000 characters.
      */
     private String iconUrl;
 
@@ -58,8 +60,9 @@ public class AuthProviderBlock implements LayoutBlock {
     private String authUrl;
 
     /**
-     * URL opened when the user clicks Disconnect, up to 3000 characters. Must be https, on a host listed
-     * in the app manifest's {@code features.user_connections.auth_hosts}.
+     * URL opened when the user clicks Disconnect. Must be https, on a host listed in the
+     * app manifest's {@code features.user_connections.auth_hosts}.
+     * Maximum length for this field is 3000 characters.
      */
     private String disconnectUrl;
 
@@ -74,12 +77,13 @@ public class AuthProviderBlock implements LayoutBlock {
     private PlainTextObject connectedContext;
 
     /**
-     * Overflow menu shown when connected (e.g., Re-authenticate, Disconnect).
+     * Overflow menu shown when connected (e.g., Disconnect, Re-authenticate).
      */
     private OverflowMenuElement accessory;
 
     /**
-     * Blocks rendered by clients that don't recognize {@code auth_provider}, spliced into the parent blocks array.
+     * Stable blocks rendered by clients that don't recognize {@code auth_provider}, spliced into the parent
+     * blocks array.
      */
     private List<LayoutBlock> fallback;
 

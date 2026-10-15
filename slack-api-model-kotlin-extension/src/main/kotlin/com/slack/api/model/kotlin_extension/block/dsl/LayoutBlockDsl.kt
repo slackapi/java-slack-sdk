@@ -44,7 +44,7 @@ interface LayoutBlockDsl {
     fun container(builder: ContainerBlockBuilder.() -> Unit)
 
     /**
-     * Displays an authentication provider with its icon, name, and connection state.
+     * Displays authentication provider information, including its icon, name, and connection state.
      *
      * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/auth-provider-block">Auth provider documentation</a>
      */
