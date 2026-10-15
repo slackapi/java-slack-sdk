@@ -36,8 +36,7 @@ public class AuthProviderBlock implements LayoutBlock {
     private PlainTextObject name;
 
     /**
-     * Whether this provider is currently connected or disconnected. Slack records this state for the user,
-     * so an omitted value is indistinguishable from an explicit false and silently marks the user as disconnected.
+     * Whether this provider is currently connected. Slack records this state for the user.
      */
     private Boolean isConnected;
 
@@ -56,6 +55,7 @@ public class AuthProviderBlock implements LayoutBlock {
     /**
      * OAuth redirect URL opened when the user clicks Connect. Must be https, on a host listed in the
      * app manifest's {@code features.user_connections.auth_hosts}.
+     * Maximum length for this field is 3000 characters.
      */
     private String authUrl;
 
@@ -68,11 +68,13 @@ public class AuthProviderBlock implements LayoutBlock {
 
     /**
      * Display name of the connected account, shown when {@code is_connected} is true.
+     * Maximum length for the text in this field is 75 characters.
      */
     private PlainTextObject connectedIdentity;
 
     /**
      * Additional context about the connection (e.g., org or workspace name).
+     * Maximum length for the text in this field is 75 characters.
      */
     private PlainTextObject connectedContext;
 
