@@ -438,7 +438,7 @@ class ActionsBlockTest {
                 checkboxes {
                     options {
                         option {
-                            description("I accept the terms and conditions")
+                            markdownDescription("*I accept the terms and conditions*")
                             value("tac-accept")
                         }
                         option {
@@ -481,8 +481,8 @@ class ActionsBlockTest {
                         {
                           "value": "tac-accept",
                           "description": {
-                            "type": "plain_text",
-                            "text": "I accept the terms and conditions"
+                            "type": "mrkdwn",
+                            "text": "*I accept the terms and conditions*"
                           }
                         },
                         {
