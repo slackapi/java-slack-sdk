@@ -394,7 +394,8 @@
       "mcp_slack_list_unreads_tool_called",
       "pref.slackbot_ai_channel_settings_access",
       "mcp_slack_agentic_search_tool_called",
-      "mcp_servers_analytics_export_started"
+      "mcp_servers_analytics_export_started",
+      "pref.slackbot_ai_image_generation_enabled_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -576,7 +577,8 @@
       "channel_properties_updated",
       "slack_ai_channel_knowledge_enabled",
       "slack_ai_channel_knowledge_disabled",
-      "slack_ai_channel_knowledge_refreshed"
+      "slack_ai_channel_knowledge_refreshed",
+      "channel_exclude_from_slackbot_in_channels_updated"
     ],
     "app": [
       "app_installed",
@@ -781,7 +783,9 @@
       "slack_ai_canvas_content_generated",
       "canvas_slack_ai_exclusion_enabled",
       "canvas_slack_ai_exclusion_disabled",
-      "canvas_share_limit_reached"
+      "canvas_share_limit_reached",
+      "canvas_converted_to_skill",
+      "canvas_skill_reverted"
     ],
     "function": [
       "function_distribution_permission_added",
