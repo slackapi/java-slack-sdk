@@ -118,6 +118,15 @@ public class BlocksTest {
     }
 
     @Test
+    public void testAuthProvider() {
+        assertThat(authProvider(a -> a
+                .value("acme")
+                .name(plainText("Acme"))
+                .isConnected(false)
+        ), is(notNullValue()));
+    }
+
+    @Test
     public void testContainer() {
         assertThat(container(c -> c.blockId("container-1")
                 .title(com.slack.api.model.block.composition.PlainTextObject.builder().text("Title").build())
