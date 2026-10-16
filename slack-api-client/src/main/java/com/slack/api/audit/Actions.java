@@ -406,6 +406,7 @@ public class Actions {
         public static final String pref_slackbot_ai_channel_settings_access = "pref.slackbot_ai_channel_settings_access";
         public static final String mcp_slack_agentic_search_tool_called = "mcp_slack_agentic_search_tool_called";
         public static final String mcp_servers_analytics_export_started = "mcp_servers_analytics_export_started";
+        public static final String pref_slackbot_ai_image_generation_enabled_changed = "pref.slackbot_ai_image_generation_enabled_changed";
     }
 
     public static class User {
@@ -600,6 +601,7 @@ public class Actions {
         public static final String slack_ai_channel_knowledge_enabled = "slack_ai_channel_knowledge_enabled";
         public static final String slack_ai_channel_knowledge_disabled = "slack_ai_channel_knowledge_disabled";
         public static final String slack_ai_channel_knowledge_refreshed = "slack_ai_channel_knowledge_refreshed";
+        public static final String channel_exclude_from_slackbot_in_channels_updated = "channel_exclude_from_slackbot_in_channels_updated";
     }
 
     public static class App {
@@ -877,6 +879,8 @@ public class Actions {
         public static final String canvas_slack_ai_exclusion_enabled = "canvas_slack_ai_exclusion_enabled";
         public static final String canvas_slack_ai_exclusion_disabled = "canvas_slack_ai_exclusion_disabled";
         public static final String canvas_share_limit_reached = "canvas_share_limit_reached";
+        public static final String canvas_converted_to_skill = "canvas_converted_to_skill";
+        public static final String canvas_skill_reverted = "canvas_skill_reverted";
     }
 
     public static class Function {
