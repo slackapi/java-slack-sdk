@@ -153,6 +153,12 @@ public class Blocks {
         return configurator.configure(ContainerBlock.builder()).build();
     }
 
+    // DataTableBlock
+
+    public static DataTableBlock dataTable(ModelConfigurator<DataTableBlock.DataTableBlockBuilder> configurator) {
+        return configurator.configure(DataTableBlock.builder()).build();
+    }
+
     // TaskCardBlock
 
     public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {
