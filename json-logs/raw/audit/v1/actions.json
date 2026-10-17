@@ -480,7 +480,8 @@
       "frontline_access_resumed",
       "user_passkey_removed_by_admin",
       "user_logout_invalid_dpop_proof",
-      "frontline_fallback_email_updated"
+      "frontline_fallback_email_updated",
+      "slack_ai_calendar_delete"
     ],
     "file": [
       "file_downloaded",
