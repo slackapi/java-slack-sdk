@@ -479,6 +479,7 @@ public class Actions {
         public static final String slack_ai_calendar_read = "slack_ai_calendar_read";
         public static final String slack_ai_calendar_create = "slack_ai_calendar_create";
         public static final String slack_ai_calendar_update = "slack_ai_calendar_update";
+        public static final String slack_ai_calendar_delete = "slack_ai_calendar_delete";
         public static final String slackbot_ai_canvas_approval_bypassed = "slackbot_ai_canvas_approval_bypassed";
         public static final String slack_ai_skill_invoked = "slack_ai_skill_invoked";
         public static final String slack_ai_skill_metadata_updated = "slack_ai_skill_metadata_updated";
