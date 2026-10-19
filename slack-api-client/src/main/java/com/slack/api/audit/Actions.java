@@ -407,6 +407,7 @@ public class Actions {
         public static final String mcp_slack_agentic_search_tool_called = "mcp_slack_agentic_search_tool_called";
         public static final String mcp_servers_analytics_export_started = "mcp_servers_analytics_export_started";
         public static final String pref_slackbot_ai_image_generation_enabled_changed = "pref.slackbot_ai_image_generation_enabled_changed";
+        public static final String pref_allow_channel_visitors = "pref.allow_channel_visitors";
     }
 
     public static class User {
