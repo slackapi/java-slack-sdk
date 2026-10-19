@@ -1,12 +1,9 @@
 package test_locally.api.model.list;
 
 import com.google.gson.Gson;
-import com.slack.api.model.Message;
 import com.slack.api.model.list.ListRecord;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
-
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,48 +12,29 @@ public class ListRecordFieldTest {
 
     private final Gson gson = GsonFactory.createSnakeCase();
 
+    // The Lists message field is an array of message references. Verified against the live
+    // API (slackLists.items.list and the conversations.replies/history nested list_record
+    // path both return List<{value, channel_id, ts, thread_ts?}>). thread_ts is present only
+    // for threaded replies. There is no single-object form on these endpoints.
+
     @Test
-    public void messageAsObject() {
+    public void messageArray() {
         String json = "{\"id\":\"r1\",\"fields\":[{" +
-            "\"key\":\"k1\"," + "\"message\":{\"text\":\"hello\",\"ts\":\"1.0\"}" +
-            "}]}";
+            "\"key\":\"k1\",\"message\":[" +
+                "{\"value\":\"https://example.slack.com/archives/C1/p1\",\"channel_id\":\"C1\",\"ts\":\"1.0\"}," +
+                "{\"value\":\"https://example.slack.com/archives/C1/p2?thread_ts=0.5\",\"channel_id\":\"C1\",\"ts\":\"2.0\",\"thread_ts\":\"0.5\"}" +
+            "]}]}";
         ListRecord record = gson.fromJson(json, ListRecord.class);
         ListRecord.Field field = record.getFields().get(0);
 
-        // Old API works
         assertThat(field.getMessage(), is(notNullValue()));
-        assertThat(field.getMessage().getText(), is("hello"));
-
-        // New API works
-        assertThat(field.getMessages(), is(notNullValue()));
-        assertThat(field.getMessages().size(), is(1));
-
-        assertThat(field.getMessages().get(0).getText(), is("hello"));
-    }
-
-    @Test
-    public void messageAsArray() {
-        String json = "{\"id\":\"r2\",\"fields\":[{" +
-            "\"key\":\"k1\"," +
-            "\"message\":[" +
-                " {\"text\":\"first\",\"ts\":\"1.0\"}," +
-                " {\"text\":\"second\",\"ts\":\"2.0\"}" +
-            "]" +
-        "}]}";
-
-        ListRecord record = gson.fromJson(json, ListRecord.class);
-        ListRecord.Field field = record.getFields().get(0);
-
-        // Old API returns first
-        assertThat(field.getMessage(), is(notNullValue()));
-        assertThat(field.getMessage().getText(), is("first"));
-
-        // New API returns all
-        assertThat(field.getMessages().size(), is(2));
-
-        assertThat(field.getMessages().get(0).getText(), is("first"));
-
-        assertThat(field.getMessages().get(1).getText(), is("second"));
+        assertThat(field.getMessage().size(), is(2));
+        assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C1/p1"));
+        assertThat(field.getMessage().get(0).getChannelId(), is("C1"));
+        assertThat(field.getMessage().get(0).getTs(), is("1.0"));
+        assertThat(field.getMessage().get(0).getThreadTs(), is(nullValue()));
+        // thread_ts is populated only for a threaded reply reference
+        assertThat(field.getMessage().get(1).getThreadTs(), is("0.5"));
     }
 
     @Test
@@ -66,17 +44,6 @@ public class ListRecordFieldTest {
         ListRecord.Field field = record.getFields().get(0);
 
         assertThat(field.getMessage(), is(nullValue()));
-        assertThat(field.getMessages(), is(nullValue()));
-    }
-
-    @Test
-    public void messageNull() {
-        String json = "{\"id\":\"r4\",\"fields\":[{\"key\":\"k1\",\"message\":null}]}";
-        ListRecord record = gson.fromJson(json, ListRecord.class);
-        ListRecord.Field field = record.getFields().get(0);
-
-        assertThat(field.getMessage(), is(nullValue()));
-        assertThat(field.getMessages(), is(nullValue()));
     }
 
     @Test
@@ -85,32 +52,58 @@ public class ListRecordFieldTest {
         ListRecord record = gson.fromJson(json, ListRecord.class);
         ListRecord.Field field = record.getFields().get(0);
 
-        assertThat(field.getMessage(), is(nullValue()));
-        assertThat(field.getMessages(), is(notNullValue()));
-        assertThat(field.getMessages().size(), is(0));
+        assertThat(field.getMessage(), is(notNullValue()));
+        assertThat(field.getMessage().size(), is(0));
     }
 
     @Test
-    public void serializeSingleMessage() {
-        String json = "{\"id\":\"r6\",\"fields\":[{\"key\":\"k1\",\"message\":{\"text\":\"hi\"}}]}";
+    public void roundTrip() {
+        String json = "{\"id\":\"r6\",\"fields\":[{\"key\":\"k1\",\"message\":[" +
+            "{\"value\":\"https://example.slack.com/archives/C1/p1\",\"channel_id\":\"C1\",\"ts\":\"1.0\"}]}]}";
         ListRecord record = gson.fromJson(json, ListRecord.class);
         String output = gson.toJson(record);
 
-        // Round-trips cleanly
         ListRecord reparsed = gson.fromJson(output, ListRecord.class);
-        assertThat(reparsed.getFields().get(0).getMessage().getText(), is("hi"));
+        assertThat(reparsed.getFields().get(0).getMessage().get(0).getValue(),
+                is("https://example.slack.com/archives/C1/p1"));
     }
 
     @Test
     public void builder() {
-        Message msg = new Message();
-        msg.setText("built");
+        ListRecord.MessageRef ref = ListRecord.MessageRef.builder()
+                .value("https://example.slack.com/archives/C1/p1")
+                .channelId("C1")
+                .ts("1.0")
+                .build();
 
         ListRecord.Field field = ListRecord.Field.builder()
                 .key("k1")
-                .message(msg)
+                .message(java.util.Collections.singletonList(ref))
                 .build();
 
-        assertThat(field.getMessage().getText(), is("built"));
+        assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C1/p1"));
+    }
+
+    @Test
+    public void serializesToPermalinkStrings() {
+        // The request side of the message field takes an array of permalink URL strings, so a
+        // MessageRef must serialize to its value (the permalink), not to an object.
+        ListRecord.Field field = ListRecord.Field.builder()
+                .columnId("Col1")
+                .message(java.util.Collections.singletonList(
+                        ListRecord.MessageRef.builder().value("https://example.slack.com/archives/C1/p1").build()))
+                .build();
+        String json = gson.toJson(field);
+        assertThat(json.contains("\"message\":[\"https://example.slack.com/archives/C1/p1\"]"), is(true));
+    }
+
+    @Test
+    public void deserializesBareStringElements() {
+        // Defensive: tolerate a request-shaped (bare string) message element on read.
+        String json = "{\"id\":\"r7\",\"fields\":[{\"key\":\"k1\",\"message\":[\"https://example.slack.com/archives/C1/p1\"]}]}";
+        ListRecord record = gson.fromJson(json, ListRecord.class);
+        ListRecord.Field field = record.getFields().get(0);
+        assertThat(field.getMessage().size(), is(1));
+        assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C1/p1"));
     }
 }
