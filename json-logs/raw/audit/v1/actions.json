@@ -397,7 +397,9 @@
       "mcp_servers_analytics_export_started",
       "pref.slackbot_ai_image_generation_enabled_changed",
       "pref.allow_channel_visitors",
-      "pref.skill_categories"
+      "pref.skill_categories",
+      "pref.slackbot_ai_calendar_tools_enabled_changed",
+      "pref.slackbot_ai_compose_email_enabled_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -483,7 +485,12 @@
       "user_passkey_removed_by_admin",
       "user_logout_invalid_dpop_proof",
       "frontline_fallback_email_updated",
-      "slack_ai_calendar_delete"
+      "slack_ai_calendar_delete",
+      "frontline_created",
+      "frontline_deactivated",
+      "frontline_reactivated",
+      "role_change_to_frontline",
+      "role_change_from_frontline"
     ],
     "file": [
       "file_downloaded",
