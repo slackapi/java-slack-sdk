@@ -409,6 +409,8 @@ public class Actions {
         public static final String pref_slackbot_ai_image_generation_enabled_changed = "pref.slackbot_ai_image_generation_enabled_changed";
         public static final String pref_allow_channel_visitors = "pref.allow_channel_visitors";
         public static final String pref_skill_categories = "pref.skill_categories";
+        public static final String pref_slackbot_ai_calendar_tools_enabled_changed = "pref.slackbot_ai_calendar_tools_enabled_changed";
+        public static final String pref_slackbot_ai_compose_email_enabled_changed = "pref.slackbot_ai_compose_email_enabled_changed";
     }
 
     public static class User {
@@ -499,6 +501,11 @@ public class Actions {
         public static final String user_passkey_removed_by_admin = "user_passkey_removed_by_admin";
         public static final String user_logout_invalid_dpop_proof = "user_logout_invalid_dpop_proof";
         public static final String frontline_fallback_email_updated = "frontline_fallback_email_updated";
+        public static final String frontline_created = "frontline_created";
+        public static final String frontline_deactivated = "frontline_deactivated";
+        public static final String frontline_reactivated = "frontline_reactivated";
+        public static final String role_change_to_frontline = "role_change_to_frontline";
+        public static final String role_change_from_frontline = "role_change_from_frontline";
     }
 
     public static class File {
