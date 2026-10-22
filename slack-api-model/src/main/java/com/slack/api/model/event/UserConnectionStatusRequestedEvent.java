@@ -15,4 +15,5 @@ public class UserConnectionStatusRequestedEvent implements Event {
 
     private final String type = TYPE_NAME;
     private String user;
+    private String eventTs;
 }

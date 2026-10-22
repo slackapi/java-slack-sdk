@@ -17,11 +17,12 @@ public class UserConnectionStatusRequestedEventTest {
 
     @Test
     public void deserialize() {
-        String json = "{\"type\":\"user_connection_status_requested\",\"user\":\"U123ABC456\"}";
+        String json = "{\"type\":\"user_connection_status_requested\",\"user\":\"U123ABC456\",\"event_ts\":\"1764264284.841251\"}";
         UserConnectionStatusRequestedEvent event =
                 GsonFactory.createSnakeCase().fromJson(json, UserConnectionStatusRequestedEvent.class);
         assertThat(event.getType(), is("user_connection_status_requested"));
         assertThat(event.getUser(), is("U123ABC456"));
+        assertThat(event.getEventTs(), is("1764264284.841251"));
     }
 
     @Test
