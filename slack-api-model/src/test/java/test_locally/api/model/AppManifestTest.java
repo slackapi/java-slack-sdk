@@ -2,6 +2,7 @@ package test_locally.api.model;
 
 import com.google.gson.Gson;
 import com.slack.api.model.manifest.AppManifest;
+import com.slack.api.model.manifest.AppManifestParams;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
@@ -134,5 +135,21 @@ public class AppManifestTest {
         String serialized = gson.toJson(appManifest);
         assertThat(serialized, containsString(
                 "\"user_connections\":{\"is_enabled\":true,\"auth_hosts\":[\"example.com\",\"auth.example.com\"]}"));
+    }
+
+    @Test
+    public void userConnectionsParams() {
+        AppManifestParams params = AppManifestParams.builder()
+                .features(AppManifestParams.Features.builder()
+                        .userConnections(AppManifestParams.UserConnections.builder()
+                                .isEnabled(false)
+                                .authHosts(Arrays.asList("example.com"))
+                                .build())
+                        .build())
+                .build();
+
+        String serialized = GsonFactory.createSnakeCase(true, true).toJson(params);
+        assertThat(serialized, containsString(
+                "\"user_connections\":{\"is_enabled\":false,\"auth_hosts\":[\"example.com\"]}"));
     }
 }
