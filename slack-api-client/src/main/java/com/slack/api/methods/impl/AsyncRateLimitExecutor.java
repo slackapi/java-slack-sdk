@@ -130,7 +130,7 @@ public class AsyncRateLimitExecutor {
             return handleIOException(teamId, methodName, e);
         } catch (SlackApiException e) {
             logSlackApiException(teamId, methodName, e);
-            throw new MethodsCompletionException(null, e, null);
+            throw new MethodsCompletionException(e);
         }
     }
 
@@ -171,7 +171,7 @@ public class AsyncRateLimitExecutor {
             if (e.getResponse().code() == 429) {
                 return enqueueThenRun(messageId, teamId, methodName, params, methodsSupplier);
             }
-            throw new MethodsCompletionException(null, e, null);
+            throw new MethodsCompletionException(e);
         } catch (InterruptedException e) {
             log.error("Got an InterruptedException (error: {})", e.getMessage(), e);
             throw new RuntimeException(e);
@@ -180,12 +180,12 @@ public class AsyncRateLimitExecutor {
 
     private static <T extends SlackApiTextResponse> T handleRuntimeException(String teamId, String methodName, RuntimeException e) {
         log.error("Got an exception while calling {} API (team: {}, error: {})", methodName, teamId, e.getMessage(), e);
-        throw new MethodsCompletionException(null, null, e);
+        throw new MethodsCompletionException(e);
     }
 
     private static <T extends SlackApiTextResponse> T handleIOException(String teamId, String methodName, IOException e) {
         log.error("Failed to connect to {} API (team: {}, error: {})", methodName, teamId, e.getMessage(), e);
-        throw new MethodsCompletionException(e, null, null);
+        throw new MethodsCompletionException(e);
     }
 
     private static void logSlackApiException(String teamId, String methodName, SlackApiException e) {
