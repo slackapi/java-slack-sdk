@@ -399,7 +399,9 @@
       "pref.allow_channel_visitors",
       "pref.skill_categories",
       "pref.slackbot_ai_calendar_tools_enabled_changed",
-      "pref.slackbot_ai_compose_email_enabled_changed"
+      "pref.slackbot_ai_compose_email_enabled_changed",
+      "pref.app_update_notifications_enabled",
+      "pref.slackbot_ai_task_tool_auto_approval_enabled_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -924,7 +926,9 @@
       "surface_opened",
       "surface_deleted",
       "surface_refreshed",
-      "surface_edited"
+      "surface_edited",
+      "surface_sources_shared",
+      "surface_sources_unshared"
     ]
   }
 }
