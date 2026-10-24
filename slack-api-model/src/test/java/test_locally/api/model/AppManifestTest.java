@@ -1,9 +1,14 @@
 package test_locally.api.model;
 
+import com.google.gson.Gson;
 import com.slack.api.model.manifest.AppManifest;
+import com.slack.api.model.manifest.AppManifestParams;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
+import java.util.Arrays;
+
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -102,5 +107,49 @@ public class AppManifestTest {
         AppManifest appManifest = GsonFactory.createSnakeCase(true, true)
                 .fromJson(json, AppManifest.class);
         assertThat(appManifest.getSettings(), is(notNullValue()));
+    }
+
+    @Test
+    public void userConnections() {
+        String json = "{\n" +
+                "    \"display_information\": {\n" +
+                "        \"name\": \"connector\"\n" +
+                "    },\n" +
+                "    \"features\": {\n" +
+                "        \"user_connections\": {\n" +
+                "            \"is_enabled\": true,\n" +
+                "            \"auth_hosts\": [\n" +
+                "                \"example.com\",\n" +
+                "                \"auth.example.com\"\n" +
+                "            ]\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+
+        Gson gson = GsonFactory.createSnakeCase(true, true);
+        AppManifest appManifest = gson.fromJson(json, AppManifest.class);
+        AppManifest.UserConnections userConnections = appManifest.getFeatures().getUserConnections();
+        assertThat(userConnections.getIsEnabled(), is(true));
+        assertThat(userConnections.getAuthHosts(), is(Arrays.asList("example.com", "auth.example.com")));
+
+        String serialized = gson.toJson(appManifest);
+        assertThat(serialized, containsString(
+                "\"user_connections\":{\"is_enabled\":true,\"auth_hosts\":[\"example.com\",\"auth.example.com\"]}"));
+    }
+
+    @Test
+    public void userConnectionsParams() {
+        AppManifestParams params = AppManifestParams.builder()
+                .features(AppManifestParams.Features.builder()
+                        .userConnections(AppManifestParams.UserConnections.builder()
+                                .isEnabled(false)
+                                .authHosts(Arrays.asList("example.com"))
+                                .build())
+                        .build())
+                .build();
+
+        String serialized = GsonFactory.createSnakeCase(true, true).toJson(params);
+        assertThat(serialized, containsString(
+                "\"user_connections\":{\"is_enabled\":false,\"auth_hosts\":[\"example.com\"]}"));
     }
 }
