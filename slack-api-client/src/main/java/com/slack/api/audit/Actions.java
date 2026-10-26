@@ -411,6 +411,8 @@ public class Actions {
         public static final String pref_skill_categories = "pref.skill_categories";
         public static final String pref_slackbot_ai_calendar_tools_enabled_changed = "pref.slackbot_ai_calendar_tools_enabled_changed";
         public static final String pref_slackbot_ai_compose_email_enabled_changed = "pref.slackbot_ai_compose_email_enabled_changed";
+        public static final String pref_app_update_notifications_enabled = "pref.app_update_notifications_enabled";
+        public static final String pref_slackbot_ai_task_tool_auto_approval_enabled_changed = "pref.slackbot_ai_task_tool_auto_approval_enabled_changed";
     }
 
     public static class User {
