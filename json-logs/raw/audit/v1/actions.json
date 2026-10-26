@@ -401,7 +401,10 @@
       "pref.slackbot_ai_calendar_tools_enabled_changed",
       "pref.slackbot_ai_compose_email_enabled_changed",
       "pref.app_update_notifications_enabled",
-      "pref.slackbot_ai_task_tool_auto_approval_enabled_changed"
+      "pref.slackbot_ai_task_tool_auto_approval_enabled_changed",
+      "mcp_slack_search_workflow_steps_tool_called",
+      "app_governance_export_started",
+      "app_governance_export_completed"
     ],
     "user": [
       "custom_tos_accepted",
