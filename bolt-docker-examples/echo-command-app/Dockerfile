@@ -3,7 +3,6 @@ COPY . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build
 
-# Debian 13 base, since gcr.io/distroless/java:11 (Debian 11) no longer gets ca-certificates fixes.
 FROM gcr.io/distroless/java17-debian13
 COPY --from=build /home/gradle/src/build/libs /app
 EXPOSE 8080
