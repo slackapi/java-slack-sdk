@@ -68,7 +68,13 @@
       ],
       "unfurl_domains": [
         ""
-      ]
+      ],
+      "user_connections": {
+        "is_enabled": false,
+        "auth_hosts": [
+          ""
+        ]
+      }
     },
     "oauth_config": {
       "scopes": {
