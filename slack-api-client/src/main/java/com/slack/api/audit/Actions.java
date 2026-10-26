@@ -413,6 +413,9 @@ public class Actions {
         public static final String pref_slackbot_ai_compose_email_enabled_changed = "pref.slackbot_ai_compose_email_enabled_changed";
         public static final String pref_app_update_notifications_enabled = "pref.app_update_notifications_enabled";
         public static final String pref_slackbot_ai_task_tool_auto_approval_enabled_changed = "pref.slackbot_ai_task_tool_auto_approval_enabled_changed";
+        public static final String mcp_slack_search_workflow_steps_tool_called = "mcp_slack_search_workflow_steps_tool_called";
+        public static final String app_governance_export_started = "app_governance_export_started";
+        public static final String app_governance_export_completed = "app_governance_export_completed";
     }
 
     public static class User {
