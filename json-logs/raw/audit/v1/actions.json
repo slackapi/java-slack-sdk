@@ -495,7 +495,9 @@
       "frontline_deactivated",
       "frontline_reactivated",
       "role_change_to_frontline",
-      "role_change_from_frontline"
+      "role_change_from_frontline",
+      "slack_ai_skill_deactivated",
+      "slack_ai_skill_reactivated"
     ],
     "file": [
       "file_downloaded",
@@ -932,6 +934,10 @@
       "surface_edited",
       "surface_sources_shared",
       "surface_sources_unshared"
+    ],
+    "slackbot_task_tool_approval": [
+      "slackbot_task_tool_approval_granted",
+      "slackbot_task_tool_approval_revoked"
     ]
   }
 }
