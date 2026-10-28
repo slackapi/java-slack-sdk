@@ -1313,6 +1313,35 @@ public class BlockKitTest {
         assertEquals(Arrays.asList("USLACKBOT", "U0123456789"), iconButton.getVisibleToUserIds());
     }
 
+    @Test
+    public void parseButtonWithAgentPrompt() {
+        String json = "{\n" +
+                "  \"type\": \"actions\",\n" +
+                "  \"elements\": [\n" +
+                "    {\n" +
+                "      \"type\": \"button\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Summarize with Slackbot\"\n" +
+                "      },\n" +
+                "      \"action_id\": \"summarize_incident\",\n" +
+                "      \"agent_prompt\": \"Summarize this incident and suggest next steps.\",\n" +
+                "      \"agent_prompt_display\": \"Summarize this incident\",\n" +
+                "      \"visible_to_user_ids\": [\"U123456\"]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        ActionsBlock block = GsonFactory.createSnakeCase().fromJson(json, ActionsBlock.class);
+        ButtonElement button = (ButtonElement) block.getElements().get(0);
+        assertEquals("Summarize this incident and suggest next steps.", button.getAgentPrompt());
+        assertEquals("Summarize this incident", button.getAgentPromptDisplay());
+        assertEquals(Arrays.asList("U123456"), button.getVisibleToUserIds());
+        String serialized = GsonFactory.createSnakeCase().toJson(block);
+        assertThat(serialized, containsString("\"agent_prompt\":\"Summarize this incident and suggest next steps.\""));
+        assertThat(serialized, containsString("\"agent_prompt_display\":\"Summarize this incident\""));
+        assertThat(serialized, containsString("\"visible_to_user_ids\":[\"U123456\"]"));
+    }
+
     String richTextSkinTone = "{ \"blocks\": [\n" +
             "  {\n" +
             "    \"type\": \"rich_text\",\n" +
