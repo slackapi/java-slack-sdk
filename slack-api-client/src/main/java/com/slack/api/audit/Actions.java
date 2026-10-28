@@ -511,6 +511,8 @@ public class Actions {
         public static final String frontline_reactivated = "frontline_reactivated";
         public static final String role_change_to_frontline = "role_change_to_frontline";
         public static final String role_change_from_frontline = "role_change_from_frontline";
+        public static final String slack_ai_skill_deactivated = "slack_ai_skill_deactivated";
+        public static final String slack_ai_skill_reactivated = "slack_ai_skill_reactivated";
     }
 
     public static class File {
