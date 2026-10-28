@@ -1459,6 +1459,7 @@ public class RequestFormBuilder {
                     .build();
             setIfNotNull("document_content", GSON.toJson(documentContent), form);
         }
+        setIfNotNull("channel_id", req.getChannelId(), form);
         return form;
     }
 
