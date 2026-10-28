@@ -37,7 +37,18 @@
                 "label": "",
                 "color": ""
               }
-            ]
+            ],
+            "date_format": "",
+            "precision": 12345,
+            "emoji": "",
+            "max": 12345,
+            "emoji_team_id": "T00000000",
+            "default_value_typed": {
+              "user": [
+                "U00000000"
+              ]
+            },
+            "notify_users": false
           }
         }
       ],
@@ -151,7 +162,28 @@
         "key": "",
         "value": false,
         "checkbox": false,
-        "column_id": ""
+        "column_id": "",
+        "text": "",
+        "rich_text": [
+          {
+            "type": "",
+            "block_id": "",
+            "elements": [
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "text": "",
+                    "type": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "user": [
+          "U00000000"
+        ]
       }
     ],
     "updated_timestamp": "",

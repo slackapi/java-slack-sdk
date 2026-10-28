@@ -2,6 +2,7 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessDeleteResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessSetResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsCreateResponse;
@@ -55,6 +56,14 @@ public class slacklists_Test {
 
     @Test
     public void fullSlackListsWorkflow() throws IOException, SlackApiException {
+        // Resolve a real user id and team id so the schema can carry
+        // default_value_typed (user) and emoji_team_id, which the API only
+        // echoes back when populated with valid values.
+        AuthTestResponse auth = slack.methods(botToken).authTest(r -> r);
+        assertThat(auth.getError(), is(nullValue()));
+        String selfUserId = auth.getUserId();
+        String teamId = auth.getTeamId();
+
         // Build schema columns
         ListColumn taskNameCol = ListColumn.builder()
                 .key("task_name")
@@ -63,10 +72,36 @@ public class slacklists_Test {
                 .primaryColumn(true)
                 .build();
 
+        // A date column with a dateFormat option so the response echoes back date_format
         ListColumn dueDateCol = ListColumn.builder()
                 .key("due_date")
                 .name("Due Date")
                 .type("date")
+                .options(ListColumnOptions.builder()
+                        .dateFormat("MM/DD/YYYY")
+                        .build())
+                .build();
+
+        // A number column with precision so the response echoes back precision
+        ListColumn estimateCol = ListColumn.builder()
+                .key("estimate")
+                .name("Estimate")
+                .type("number")
+                .options(ListColumnOptions.builder()
+                        .precision(2)
+                        .build())
+                .build();
+
+        // A rating column with emoji/max/emoji_team_id so the response echoes those back
+        ListColumn ratingCol = ListColumn.builder()
+                .key("priority")
+                .name("Priority")
+                .type("rating")
+                .options(ListColumnOptions.builder()
+                        .emoji(":star:")
+                        .max(5)
+                        .emojiTeamId(teamId)
+                        .build())
                 .build();
 
         ListColumnOptions.Choice choice1 = ListColumnOptions.Choice.builder()
@@ -98,10 +133,19 @@ public class slacklists_Test {
                 .options(statusOptions)
                 .build();
 
+        // A user column with notify_users and a typed default so the response
+        // echoes back notify_users and default_value_typed (the user variant;
+        // the select variant is rejected by slackLists.create).
         ListColumn assigneeCol = ListColumn.builder()
                 .key("assignee")
                 .name("Assignee")
                 .type("user")
+                .options(ListColumnOptions.builder()
+                        .notifyUsers(true)
+                        .defaultValueTyped(ListColumnOptions.DefaultValue.builder()
+                                .user(Arrays.asList(selfUserId))
+                                .build())
+                        .build())
                 .build();
 
         // create list
@@ -115,7 +159,7 @@ public class slacklists_Test {
                                         .build()))
                                 .build()))
                         .build()))
-                .schema(Arrays.asList(taskNameCol, dueDateCol, statusCol, assigneeCol)));
+                .schema(Arrays.asList(taskNameCol, dueDateCol, estimateCol, ratingCol, statusCol, assigneeCol)));
 
         assertThat(createResponse.getError(), is(nullValue()));
         assertThat(createResponse.isOk(), is(true));
@@ -162,9 +206,14 @@ public class slacklists_Test {
         assertThat(createItemResponse.isOk(), is(true));
         assertThat(createItemResponse.getItem(), is(notNullValue()));
         assertThat(createItemResponse.getItem().getFields(), is(notNullValue()));
-        assertThat(createItemResponse.getItem().getFields().size(), is(1));
-        assertThat(createItemResponse.getItem().getFields().get(0).getColumnId(), is(taskNameColId));
-        assertThat(createItemResponse.getItem().getFields().get(0).getText(), is("Test task item"));
+        // Columns with typed defaults (e.g. the user column) may also come back populated,
+        // so locate the task_name field by column id rather than asserting an exact count.
+        ListRecord.Field taskNameField = createItemResponse.getItem().getFields().stream()
+                .filter(f -> taskNameColId.equals(f.getColumnId()))
+                .findFirst()
+                .orElse(null);
+        assertThat(taskNameField, is(notNullValue()));
+        assertThat(taskNameField.getText(), is("Test task item"));
 
         String itemId = createItemResponse.getItem().getId();
         assertThat(itemId, is(notNullValue()));

@@ -42,7 +42,8 @@
         "scopes": "",
         "app_id": "",
         "distribution_type": "",
-        "user_ids": ""
+        "user_ids": "",
+        "bot_scopes": ""
       },
       "workflow": {
         "id": "",
@@ -97,6 +98,12 @@
       "legal_hold_policy": {
         "id": "",
         "name": ""
+      },
+      "work_object_record": {
+        "id": "",
+        "app_id": "",
+        "object_id": "",
+        "object_type": ""
       }
     }
   ],

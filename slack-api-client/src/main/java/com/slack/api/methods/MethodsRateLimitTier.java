@@ -57,7 +57,13 @@ public enum MethodsRateLimitTier {
     /**
      * This method allows hundreds of requests per minute. Use it as often as is reasonably required.
      */
-    SpecialTier_chat_getPermalink;
+    SpecialTier_chat_getPermalink,
+
+    /**
+     * blocks.validate requires no token, so it has special rate limiting conditions rather than a
+     * standard tier. See https://docs.slack.dev/reference/methods/blocks.validate.
+     */
+    SpecialTier_blocks_validate;
 
     // --------------------------------------------------------------------------------------------
 
@@ -72,6 +78,7 @@ public enum MethodsRateLimitTier {
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_chat_getPermalink, 600);
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_chat_postMessage, 60); // per channel
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_assistant_threads_setStatus, 60); // per DM
+        allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_blocks_validate, 60);
     }
 
     public static Integer getAllowedRequestsPerMinute(MethodsRateLimitTier tier) {

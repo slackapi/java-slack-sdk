@@ -2170,6 +2170,154 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseContainerBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/container-block
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"container\",\n" +
+                "    \"block_id\": \"container1\",\n" +
+                "    \"title\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Container Title\"\n" +
+                "    },\n" +
+                "    \"subtitle\": {\n" +
+                "      \"type\": \"mrkdwn\",\n" +
+                "      \"text\": \"*Bold* subtitle\"\n" +
+                "    },\n" +
+                "    \"width\": \"wide\",\n" +
+                "    \"is_collapsible\": true,\n" +
+                "    \"default_collapsed\": false,\n" +
+                "    \"icon\": {\n" +
+                "      \"type\": \"image\",\n" +
+                "      \"image_url\": \"https://example.com/icon.png\",\n" +
+                "      \"alt_text\": \"icon\"\n" +
+                "    },\n" +
+                "    \"child_blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"section\",\n" +
+                "        \"text\": {\n" +
+                "          \"type\": \"mrkdwn\",\n" +
+                "          \"text\": \"Section inside container.\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"type\": \"divider\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        ContainerBlock container = (ContainerBlock) message.getBlocks().get(0);
+        assertThat(container.getType(), is("container"));
+        assertThat(container.getBlockId(), is("container1"));
+        assertThat(container.getTitle().getType(), is("plain_text"));
+        assertThat(container.getTitle().getText(), is("Container Title"));
+        assertThat(container.getSubtitle().getType(), is("mrkdwn"));
+        assertThat(container.getWidth(), is("wide"));
+        assertThat(container.getIsCollapsible(), is(true));
+        assertThat(container.getDefaultCollapsed(), is(false));
+        assertThat(container.getIcon().getImageUrl(), is("https://example.com/icon.png"));
+        assertThat(container.getChildBlocks().size(), is(2));
+        assertThat(container.getChildBlocks().get(0), is(instanceOf(SectionBlock.class)));
+        assertThat(container.getChildBlocks().get(1), is(instanceOf(DividerBlock.class)));
+
+        // Round-trip
+        Message roundTrip = gson.fromJson(gson.toJson(message), Message.class);
+        ContainerBlock reparsed = (ContainerBlock) roundTrip.getBlocks().get(0);
+        assertThat(reparsed.getBlockId(), is("container1"));
+        assertThat(reparsed.getChildBlocks().size(), is(2));
+    }
+
+    @Test
+    public void parseContainerBlockWithRichTextTitle() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"container\",\n" +
+                "    \"rich_text_title\": {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"Rich Title\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    \"child_blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"divider\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        ContainerBlock container = (ContainerBlock) message.getBlocks().get(0);
+        assertThat(container.getRichTextTitle(), is(notNullValue()));
+        assertThat(container.getRichTextTitle().getType(), is("rich_text"));
+        assertThat(container.getRichTextTitle().getElements().size(), is(1));
+        assertThat(container.getTitle(), is(nullValue()));
+    }
+
+    @Test
+    public void parseContainerBlockWithHeaderDivider() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"container\",\n" +
+                "    \"title\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"With divider\"\n" +
+                "    },\n" +
+                "    \"has_header_divider\": true,\n" +
+                "    \"child_blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"divider\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        ContainerBlock container = (ContainerBlock) message.getBlocks().get(0);
+        assertThat(container.getHasHeaderDivider(), is(true));
+        assertThat(container.getIsCollapsible(), is(nullValue()));
+    }
+
+    @Test
+    public void buildContainerBlock() {
+        ContainerBlock container = container(c -> c
+                .blockId("container1")
+                .title(com.slack.api.model.block.composition.PlainTextObject.builder().text("Title").build())
+                .width("wide")
+                .isCollapsible(true)
+                .childBlocks(Arrays.asList(
+                        divider()
+                ))
+        );
+        assertThat(container.getType(), is("container"));
+        assertThat(container.getBlockId(), is("container1"));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = new Message();
+        message.setBlocks(asBlocks(container));
+        Message reparsed = gson.fromJson(gson.toJson(message), Message.class);
+        ContainerBlock parsedContainer = (ContainerBlock) reparsed.getBlocks().get(0);
+        assertThat(parsedContainer.getBlockId(), is("container1"));
+        assertThat(parsedContainer.getWidth(), is("wide"));
+        assertThat(parsedContainer.getIsCollapsible(), is(true));
+        assertThat(parsedContainer.getChildBlocks().size(), is(1));
+    }
+
+    @Test
     public void buildCarouselBlock() {
         CarouselBlock carousel = carousel(c -> c
                 .blockId("carousel1")
@@ -2201,5 +2349,166 @@ public class BlockKitTest {
         assertThat(parsedCarousel.getElements().get(0).getType(), is("card"));
         assertThat(parsedCarousel.getElements().get(0).getBlockId(), is("card1"));
         assertThat(parsedCarousel.getElements().get(0).getActions().size(), is(1));
+    }
+
+    @Test
+    public void parseTaskCardBlock() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"task_card\",\n" +
+                "      \"task_id\": \"task_1\",\n" +
+                "      \"title\": \"Fetching weather data\",\n" +
+                "      \"status\": \"in_progress\",\n" +
+                "      \"output\": {\n" +
+                "        \"type\": \"rich_text\",\n" +
+                "        \"elements\": [\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text_section\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"text\",\n" +
+                "                \"text\": \"Found weather data for Chicago from 2 sources\"\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      \"sources\": [\n" +
+                "        {\n" +
+                "          \"type\": \"url\",\n" +
+                "          \"url\": \"https://weather.com/\",\n" +
+                "          \"text\": \"weather.com\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"url\",\n" +
+                "          \"url\": \"https://www.accuweather.com/\",\n" +
+                "          \"text\": \"accuweather.com\"\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        TaskCardBlock taskCard = (TaskCardBlock) message.getBlocks().get(0);
+        assertThat(taskCard.getType(), is("task_card"));
+        assertThat(taskCard.getTaskId(), is("task_1"));
+        assertThat(taskCard.getTitle(), is("Fetching weather data"));
+        assertThat(taskCard.getStatus(), is("in_progress"));
+
+        assertThat(taskCard.getOutput(), is(notNullValue()));
+        assertThat(taskCard.getOutput().getType(), is("rich_text"));
+
+        assertThat(taskCard.getSources().size(), is(2));
+        assertThat(taskCard.getSources().get(0).getType(), is("url"));
+        assertThat(taskCard.getSources().get(0).getUrl(), is("https://weather.com/"));
+        assertThat(taskCard.getSources().get(0).getText(), is("weather.com"));
+        assertThat(taskCard.getSources().get(1).getUrl(), is("https://www.accuweather.com/"));
+        assertThat(taskCard.getSources().get(1).getText(), is("accuweather.com"));
+    }
+
+    @Test
+    public void buildTaskCardBlock() {
+        TaskCardBlock taskCard = Blocks.taskCard(t -> t
+                .taskId("task_42")
+                .title("Processing data")
+                .status("in_progress")
+                .sources(Arrays.asList(
+                        UrlSourceElement.builder().url("https://example.com").text("example").build())));
+        assertThat(taskCard, is(notNullValue()));
+        assertThat(taskCard.getType(), is("task_card"));
+        assertThat(taskCard.getTaskId(), is("task_42"));
+        assertThat(taskCard.getTitle(), is("Processing data"));
+        assertThat(taskCard.getStatus(), is("in_progress"));
+        assertThat(taskCard.getSources().size(), is(1));
+    }
+
+    @Test
+    public void parseAuthProviderBlock() {
+        String json = "{\"type\":\"home\",\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"auth_provider\",\n" +
+                "    \"block_id\": \"auth1\",\n" +
+                "    \"value\": \"acme\",\n" +
+                "    \"name\": {\"type\": \"plain_text\", \"text\": \"Acme\"},\n" +
+                "    \"is_connected\": true,\n" +
+                "    \"description\": {\"type\": \"plain_text\", \"text\": \"Search Acme docs\"},\n" +
+                "    \"icon_url\": \"https://acme.example.com/icon.png\",\n" +
+                "    \"auth_url\": \"https://acme.example.com/oauth\",\n" +
+                "    \"disconnect_url\": \"https://acme.example.com/disconnect\",\n" +
+                "    \"connected_identity\": {\"type\": \"plain_text\", \"text\": \"jane@acme.example.com\"},\n" +
+                "    \"connected_context\": {\"type\": \"plain_text\", \"text\": \"Acme Corp\"},\n" +
+                "    \"accessory\": {\n" +
+                "      \"type\": \"overflow\",\n" +
+                "      \"action_id\": \"acme_menu\",\n" +
+                "      \"options\": [\n" +
+                "        {\"text\": {\"type\": \"plain_text\", \"text\": \"Switch accounts\"}, \"value\": \"switch\"},\n" +
+                "        {\"text\": {\"type\": \"plain_text\", \"text\": \"Disconnect\"}, \"value\": \"disconnect\"}\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    \"fallback\": [\n" +
+                "      {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"Connected to Acme\"}}\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]}";
+        Gson gson = GsonFactory.createSnakeCase();
+        View view = gson.fromJson(json, View.class);
+        assertThat(view.getBlocks().size(), is(1));
+
+        AuthProviderBlock authProvider = (AuthProviderBlock) view.getBlocks().get(0);
+        assertThat(authProvider.getType(), is("auth_provider"));
+        assertThat(authProvider.getBlockId(), is("auth1"));
+        assertThat(authProvider.getValue(), is("acme"));
+        assertThat(authProvider.getName().getText(), is("Acme"));
+        assertThat(authProvider.getIsConnected(), is(true));
+        assertThat(authProvider.getDescription().getText(), is("Search Acme docs"));
+        assertThat(authProvider.getIconUrl(), is("https://acme.example.com/icon.png"));
+        assertThat(authProvider.getAuthUrl(), is("https://acme.example.com/oauth"));
+        assertThat(authProvider.getDisconnectUrl(), is("https://acme.example.com/disconnect"));
+        assertThat(authProvider.getConnectedIdentity().getText(), is("jane@acme.example.com"));
+        assertThat(authProvider.getConnectedContext().getText(), is("Acme Corp"));
+        assertThat(authProvider.getAccessory().getActionId(), is("acme_menu"));
+        assertThat(authProvider.getAccessory().getOptions().size(), is(2));
+        assertThat(authProvider.getFallback().size(), is(1));
+        assertThat(authProvider.getFallback().get(0), is(instanceOf(SectionBlock.class)));
+
+        View roundTrip = gson.fromJson(gson.toJson(view), View.class);
+        assertThat(roundTrip.getBlocks().get(0), is(authProvider));
+    }
+
+    @Test
+    public void parseAuthProviderBlockWithRequiredFieldsOnly() {
+        String json = "{\"type\":\"home\",\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"auth_provider\",\n" +
+                "    \"value\": \"acme\",\n" +
+                "    \"name\": {\"type\": \"plain_text\", \"text\": \"Acme\"},\n" +
+                "    \"is_connected\": false\n" +
+                "  }\n" +
+                "]}";
+        View view = GsonFactory.createSnakeCase().fromJson(json, View.class);
+
+        AuthProviderBlock authProvider = (AuthProviderBlock) view.getBlocks().get(0);
+        assertThat(authProvider.getIsConnected(), is(false));
+        assertThat(authProvider.getAccessory(), is(nullValue()));
+        assertThat(authProvider.getFallback(), is(nullValue()));
+    }
+
+    @Test
+    public void buildAuthProviderBlock() {
+        AuthProviderBlock authProvider = authProvider(a -> a
+                .value("acme")
+                .name(plainText("Acme"))
+                .isConnected(false)
+                .authUrl("https://acme.example.com/oauth"));
+
+        String json = GsonFactory.createSnakeCase().toJson(authProvider);
+        assertThat(json, is("{\"type\":\"auth_provider\",\"value\":\"acme\"," +
+                "\"name\":{\"type\":\"plain_text\",\"text\":\"Acme\"}," +
+                "\"is_connected\":false,\"auth_url\":\"https://acme.example.com/oauth\"}"));
     }
 }

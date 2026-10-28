@@ -16,6 +16,7 @@ import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.RichTextElement;
 import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.model.event.MessageChangedEvent;
+import com.slack.api.model.list.ListView;
 
 import java.time.Instant;
 
@@ -85,6 +86,7 @@ public class GsonFactory {
                 .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
-                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
+                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps))
+                .registerTypeAdapter(ListView.Grouping.class, new GsonListViewGroupingFactory(failOnUnknownProps));
     }
 }

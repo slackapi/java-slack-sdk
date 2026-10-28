@@ -223,10 +223,25 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_MANIFEST_VALIDATE, Tier3);
         setRateLimitTier(TOOLING_TOKENS_ROTATE, Tier1); // TODO: change this when the "special" tier is clearly explained in the document
 
+        setRateLimitTier(AGENTS_CONVERSATIONS_ARCHIVE, Tier2);
+        setRateLimitTier(AGENTS_CONVERSATIONS_CREATE, Tier2);
+        setRateLimitTier(AGENTS_CONVERSATIONS_GET_CANVAS, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_LIST_VIEWS, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_REMOVE_VIEW, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_COMMANDS, Tier1);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_PROPERTIES, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_VIEW, Tier3);
+
+        setRateLimitTier(AGENTS_SESSIONS_RENAME, Tier3);
+        setRateLimitTier(AGENTS_SESSIONS_SET_STATUS, Tier3);
+
         setRateLimitTier(API_TEST, Tier4);
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);
         setRateLimitTier(APPS_UNINSTALL, Tier1);
         setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
+        setRateLimitTier(APPS_USER_CONNECTION_BULK_UPDATE, Tier2);
+        setRateLimitTier(APPS_USER_CONNECTION_REQUEST_AUTH, Tier2);
         setRateLimitTier(APPS_USER_CONNECTION_UPDATE, Tier2);
 
         setRateLimitTier(ASSISTANT_THREADS_SET_STATUS, SpecialTier_assistant_threads_setStatus);
@@ -236,6 +251,8 @@ public class MethodsRateLimits {
         setRateLimitTier(AUTH_REVOKE, Tier3);
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);
         setRateLimitTier(AUTH_TEAMS_LIST, Tier2);
+
+        setRateLimitTier(BLOCKS_VALIDATE, SpecialTier_blocks_validate);
 
         setRateLimitTier(BOOKMARKS_ADD, Tier2);
         setRateLimitTier(BOOKMARKS_EDIT, Tier2);

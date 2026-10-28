@@ -91,6 +91,7 @@ public class AppManifest {
         private List<Shortcut> shortcuts;
         private List<SlashCommand> slashCommands;
         private List<String> unfurlDomains;
+        private UserConnections userConnections;
     }
 
     @Data
@@ -110,6 +111,15 @@ public class AppManifest {
     public static class BotUser {
         private String displayName;
         private Boolean alwaysOnline;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UserConnections {
+        private Boolean isEnabled;
+        private List<String> authHosts;
     }
 
     @Data

@@ -220,6 +220,27 @@ public class Methods {
     public static final String ADMIN_WORKFLOWS_UNPUBLISH = "admin.workflows.unpublish";
 
     // ------------------------------
+    // agents.conversations
+    // ------------------------------
+
+    public static final String AGENTS_CONVERSATIONS_ARCHIVE = "agents.conversations.archive";
+    public static final String AGENTS_CONVERSATIONS_CREATE = "agents.conversations.create";
+    public static final String AGENTS_CONVERSATIONS_GET_CANVAS = "agents.conversations.getCanvas";
+    public static final String AGENTS_CONVERSATIONS_LIST_VIEWS = "agents.conversations.listViews";
+    public static final String AGENTS_CONVERSATIONS_REMOVE_VIEW = "agents.conversations.removeView";
+    public static final String AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT = "agents.conversations.setCanvasContent";
+    public static final String AGENTS_CONVERSATIONS_SET_COMMANDS = "agents.conversations.setCommands";
+    public static final String AGENTS_CONVERSATIONS_SET_PROPERTIES = "agents.conversations.setProperties";
+    public static final String AGENTS_CONVERSATIONS_SET_VIEW = "agents.conversations.setView";
+
+    // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    public static final String AGENTS_SESSIONS_RENAME = "agents.sessions.rename";
+    public static final String AGENTS_SESSIONS_SET_STATUS = "agents.sessions.setStatus";
+
+    // ------------------------------
     // api
     // ------------------------------
 
@@ -241,6 +262,8 @@ public class Methods {
     // apps.user.connection
     // ------------------------------
 
+    public static final String APPS_USER_CONNECTION_BULK_UPDATE = "apps.user.connection.bulkUpdate";
+    public static final String APPS_USER_CONNECTION_REQUEST_AUTH = "apps.user.connection.requestAuth";
     public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
 
     // ------------------------------
@@ -303,6 +326,12 @@ public class Methods {
     // ------------------------------
 
     public static final String AUTH_TEAMS_LIST = "auth.teams.list";
+
+    // ------------------------------
+    // blocks
+    // ------------------------------
+
+    public static final String BLOCKS_VALIDATE = "blocks.validate";
 
     // ------------------------------
     // bookmarks

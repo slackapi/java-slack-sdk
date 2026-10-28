@@ -118,6 +118,23 @@ public class BlocksTest {
     }
 
     @Test
+    public void testAuthProvider() {
+        assertThat(authProvider(a -> a
+                .value("acme")
+                .name(plainText("Acme"))
+                .isConnected(false)
+        ), is(notNullValue()));
+    }
+
+    @Test
+    public void testContainer() {
+        assertThat(container(c -> c.blockId("container-1")
+                .title(com.slack.api.model.block.composition.PlainTextObject.builder().text("Title").build())
+                .childBlocks(Arrays.asList(divider()))
+        ), is(notNullValue()));
+    }
+
+    @Test
     public void testImage() {
         assertThat(Blocks.image(i -> i.blockId("block-id").imageUrl("https://www.example.com/")), is(notNullValue()));
         assertThat(Blocks.image(i -> i
@@ -151,6 +168,11 @@ public class BlocksTest {
                 .blockId("block-id")
                 .elements(asElements(button(b -> b.value("v"))))
         ), is(notNullValue()));
+    }
+
+    @Test
+    public void testTaskCard() {
+        assertThat(taskCard(t -> t.taskId("task_1").title("Do thing").status("complete")), is(notNullValue()));
     }
 
     @Test

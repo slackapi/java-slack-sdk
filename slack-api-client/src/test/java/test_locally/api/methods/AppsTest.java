@@ -3,10 +3,18 @@ package test_locally.api.methods;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.metrics.MemoryMetricsDatastore;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
+import com.slack.api.model.block.composition.OptionObject;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.element.OverflowMenuElement;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
+
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -39,6 +47,54 @@ public class AppsTest {
     public void appsUserConnectionUpdate_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).appsUserConnectionUpdate(r -> r
                 .userId("U12345678").status("connected")).get().isOk(), is(true));
+    }
+
+    @Test
+    public void appsUserConnectionBulkUpdate() throws Exception {
+        AppsUserConnectionBulkUpdateResponse response = slack.methods(ValidToken).appsUserConnectionBulkUpdate(r -> r
+                .connectedUserIds(Arrays.asList("U12345678"))
+                .disconnectedUserIds(Arrays.asList("U87654321")));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getChangedUserIds(), is(Arrays.asList("U00000000")));
+        assertThat(response.getFailures().get(0).getUserId(), is("U00000000"));
+        assertThat(response.getResponseMetadata().getMessages(), is(Arrays.asList("")));
+    }
+
+    @Test
+    public void appsUserConnectionBulkUpdate_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsUserConnectionBulkUpdate(r -> r
+                .connectedUserIds(Arrays.asList("U12345678"))).get().isOk(), is(true));
+    }
+
+    @Test
+    public void appsUserConnectionRequestAuth() throws Exception {
+        AppsUserConnectionRequestAuthResponse response = slack.methods(ValidToken).appsUserConnectionRequestAuth(r -> r
+                .triggerId("1234567890.1234567890.abcdef0123456789")
+                .primaryProvider(githubProvider()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getResponseMetadata().getWarnings(), is(Arrays.asList("")));
+    }
+
+    @Test
+    public void appsUserConnectionRequestAuth_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsUserConnectionRequestAuth(r -> r
+                .userId("U12345678")
+                .primaryProvider(githubProvider())).get().isOk(), is(true));
+    }
+
+    private static AppsUserConnectionRequestAuthRequest.PrimaryProvider githubProvider() {
+        return AppsUserConnectionRequestAuthRequest.PrimaryProvider.builder()
+                .value("github")
+                .name(PlainTextObject.builder().text("GitHub").build())
+                .isConnected(true)
+                .connectedIdentity(PlainTextObject.builder().text("octocat").build())
+                .accessory(OverflowMenuElement.builder()
+                        .actionId("provider-menu")
+                        .options(Arrays.asList(
+                                OptionObject.builder().text(PlainTextObject.builder().text("Switch accounts").build()).value("switch").build(),
+                                OptionObject.builder().text(PlainTextObject.builder().text("Disconnect").build()).value("disconnect").build()))
+                        .build())
+                .build();
     }
 
     @Test

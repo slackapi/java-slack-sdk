@@ -5,7 +5,7 @@
 
     <groupId>com.slack.api</groupId>
     <artifactId>slack-sdk-parent</artifactId>
-    <version>1.49.1-SNAPSHOT</version>
+    <version>1.52.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Java Slack SDK Project</name>
@@ -35,12 +35,6 @@
         <module>bolt-kotlin-examples</module>
         <module>bolt-quarkus-examples</module>
     </modules>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

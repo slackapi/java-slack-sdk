@@ -14,6 +14,7 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.conversations.ConversationsCreateResponse;
 import com.slack.api.methods.response.conversations.ConversationsInfoResponse;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.ConversationType;
@@ -244,8 +245,10 @@ public class AdminApi_conversations_Test {
     }
 
     static String getOrCreatePrivateChannel() throws Exception {
-        List<Conversation> privateChannels = slack.methods(teamAdminUserToken).conversationsList(r -> r
-                .excludeArchived(true).types(Arrays.asList(ConversationType.PRIVATE_CHANNEL)).limit(1)).getChannels();
+        ConversationsListResponse privateChannelsList = slack.methods(teamAdminUserToken).conversationsList(r -> r
+                .excludeArchived(true).types(Arrays.asList(ConversationType.PRIVATE_CHANNEL)).limit(1));
+        assertThat(privateChannelsList.getError(), is(nullValue()));
+        List<Conversation> privateChannels = privateChannelsList.getChannels();
         if (privateChannels.size() == 0 || privateChannels.get(0).isShared()) {
             String name = "private-test-" + System.currentTimeMillis();
             ConversationsCreateResponse creation = slack.methods(teamAdminUserToken).conversationsCreate(r -> r.name(name).isPrivate(true));

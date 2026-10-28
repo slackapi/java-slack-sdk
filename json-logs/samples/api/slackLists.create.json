@@ -18,7 +18,18 @@
               "label": "",
               "color": ""
             }
-          ]
+          ],
+          "date_format": "",
+          "precision": 12345,
+          "emoji": "",
+          "max": 12345,
+          "emoji_team_id": "T00000000",
+          "default_value_typed": {
+            "user": [
+              "U00000000"
+            ]
+          },
+          "notify_users": false
         }
       }
     ],

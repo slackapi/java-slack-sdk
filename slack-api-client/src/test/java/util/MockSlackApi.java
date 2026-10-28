@@ -37,6 +37,7 @@ public class MockSlackApi extends HttpServlet {
         }
         String methodName = req.getRequestURI().replaceFirst("^/api/", "");
         if (!methodName.equals("api.test")
+                && !methodName.equals("blocks.validate")
                 && !methodName.startsWith("oauth.")
                 && !methodName.startsWith("openid.connect.")) {
             String authorizationHeader = req.getHeader("Authorization");

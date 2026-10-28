@@ -128,8 +128,9 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
   * Follow the workflow logs and [publishing](https://central.sonatype.com/publishing/deployments) step with patience to start debugging if errors appear
 * Create a GitHub Release
   * Open https://github.com/slackapi/java-slack-sdk/releases/new?tag=v${version}
+  * Click the "Generate release notes" button to list changes grouped by the labels in [`.github/release.yml`](./release.yml)
+  * Edit the resulting notes to ensure they have decent messaging that is understandable by non-contributors, but each change should still have its own line
   * [Look at previous releases](https://github.com/slackapi/java-slack-sdk/releases) and follow their layouts
-  * Prepare a release note by `git log --pretty=format:'%h %s by %an' --abbrev-commit | grep -v "Merge pull request " | head -50`
 * (Slack Internal) Communicate the release internally. Include a link to the GitHub Release(s).
 * (Slack Internal) Tweet? Not necessary for patch updates, might be needed for minor updates, definitely needed for
    major updates. Include a link to the GitHub Release(s).

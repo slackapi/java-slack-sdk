@@ -40,6 +40,10 @@
       ],
       "photos": [
         {
+          "value": "https://www.example.com/",
+          "type": ""
+        },
+        {
           "value": "",
           "type": ""
         }

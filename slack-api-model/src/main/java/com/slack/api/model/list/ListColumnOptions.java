@@ -18,6 +18,7 @@ public class ListColumnOptions {
     private String defaultValue; // select
     private DefaultValue defaultValueTyped; // select
     private String emoji; // rating, vote
+    private String emojiUrl; // rating, vote
     private Integer max; // rating
     private Integer precision; // number
     private Boolean showMemberName; // channel
