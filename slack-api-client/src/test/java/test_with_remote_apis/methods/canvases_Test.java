@@ -141,6 +141,8 @@ public class canvases_Test {
 
         CanvasesDeleteResponse deletion = client.canvasesDelete(r -> r.canvasId(creation.getCanvasId()));
         assertThat(deletion.getError(), is(nullValue()));
+
+        assertThat(client.conversationsArchive(r -> r.channel(channelId)).getError(), is(nullValue()));
     }
 
     FilesInfoResponse verifyCanvasOps(MethodsClient client, String canvasId, String channelId, List<String> userIds) throws Exception {
