@@ -41,6 +41,8 @@ public class CanvasesTest {
                 CanvasDocumentChange.builder().documentContent(new CanvasDocumentContent()).build()
         ))).isOk(), is(true));
         assertThat(slack.methods(ValidToken).canvasesDelete(r -> r.canvasId("F1111")).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).canvasesGetContent(r -> r.canvasId("F1111")).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).canvasesGetContent(r -> r.canvasId("F1111").contentType("html")).isOk(), is(true));
         assertThat(slack.methods(ValidToken).canvasesAccessSet(r -> r
                 .canvasId("F1111")
                 .channelIds(Arrays.asList("C123"))
@@ -65,6 +67,8 @@ public class CanvasesTest {
                 CanvasDocumentChange.builder().documentContent(new CanvasDocumentContent()).build()
         ))).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).canvasesDelete(r -> r.canvasId("F1111")).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).canvasesGetContent(r -> r.canvasId("F1111")).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).canvasesGetContent(r -> r.canvasId("F1111").contentType("html")).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).canvasesAccessSet(r -> r
                 .canvasId("F1111")
                 .channelIds(Arrays.asList("C123"))

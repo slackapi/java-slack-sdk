@@ -84,6 +84,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -250,6 +251,7 @@ import com.slack.api.methods.response.calls.participants.CallsParticipantsRemove
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
 import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.CanvasesGetContentResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
 import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
@@ -1543,6 +1545,11 @@ public interface MethodsClient {
     CanvasesDeleteResponse canvasesDelete(CanvasesDeleteRequest req) throws IOException, SlackApiException;
 
     CanvasesDeleteResponse canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    CanvasesGetContentResponse canvasesGetContent(CanvasesGetContentRequest req) throws IOException, SlackApiException;
+
+    CanvasesGetContentResponse canvasesGetContent(RequestConfigurator<CanvasesGetContentRequest.CanvasesGetContentRequestBuilder> req)
             throws IOException, SlackApiException;
 
     CanvasesAccessSetResponse canvasesAccessSet(CanvasesAccessSetRequest req) throws IOException, SlackApiException;

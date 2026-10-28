@@ -273,6 +273,7 @@ public class MethodsRateLimits {
         setRateLimitTier(CANVASES_CREATE, Tier2);
         setRateLimitTier(CANVASES_DELETE, Tier3);
         setRateLimitTier(CANVASES_EDIT, Tier3);
+        setRateLimitTier(CANVASES_GET_CONTENT, Tier3);
         setRateLimitTier(CANVASES_SECTIONS_LOOKUP, Tier3);
         setRateLimitTier(CONVERSATIONS_CANVASES_CREATE, Tier2);
 
