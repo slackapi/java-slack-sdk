@@ -150,6 +150,7 @@
   "canvases.create": "Tier2",
   "canvases.delete": "Tier3",
   "canvases.edit": "Tier3",
+  "canvases.getContent": "Tier3",
   "canvases.sections.lookup": "Tier3",
   "channels.archive": "Tier2",
   "channels.create": "Tier2",

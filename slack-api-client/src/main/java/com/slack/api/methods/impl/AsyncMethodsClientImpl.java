@@ -83,6 +83,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -236,6 +237,7 @@ import com.slack.api.methods.response.calls.participants.CallsParticipantsRemove
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
 import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.CanvasesGetContentResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
 import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
@@ -1786,6 +1788,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<CanvasesDeleteResponse> canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req) {
         return canvasesDelete(req.configure(CanvasesDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CanvasesGetContentResponse> canvasesGetContent(CanvasesGetContentRequest req) {
+        return executor.execute(CANVASES_GET_CONTENT, toMap(req), () -> methods.canvasesGetContent(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesGetContentResponse> canvasesGetContent(RequestConfigurator<CanvasesGetContentRequest.CanvasesGetContentRequestBuilder> req) {
+        return canvasesGetContent(req.configure(CanvasesGetContentRequest.builder()).build());
     }
 
     @Override
