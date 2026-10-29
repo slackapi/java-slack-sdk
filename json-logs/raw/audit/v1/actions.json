@@ -404,7 +404,8 @@
       "pref.slackbot_ai_task_tool_auto_approval_enabled_changed",
       "mcp_slack_search_workflow_steps_tool_called",
       "app_governance_export_started",
-      "app_governance_export_completed"
+      "app_governance_export_completed",
+      "mcp_slack_search_conversations_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
