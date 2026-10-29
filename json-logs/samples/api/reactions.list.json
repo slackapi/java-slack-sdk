@@ -37494,7 +37494,8 @@
                     "agent_bot_user_ids": [],
                     "agent_statuses": [],
                     "title": "",
-                    "date_status_processing_expire": 123
+                    "date_status_processing_expire": 123,
+                    "encoded_initiator_user_id": ""
                   }
                 }
               }
@@ -38048,7 +38049,8 @@
                         "agent_bot_user_ids": [],
                         "agent_statuses": [],
                         "title": "",
-                        "date_status_processing_expire": 123
+                        "date_status_processing_expire": 123,
+                        "encoded_initiator_user_id": ""
                       }
                     },
                     "number": [],
@@ -38651,7 +38653,8 @@
                         "agent_bot_user_ids": [],
                         "agent_statuses": [],
                         "title": "",
-                        "date_status_processing_expire": 123
+                        "date_status_processing_expire": 123,
+                        "encoded_initiator_user_id": ""
                       }
                     },
                     "number": [],
