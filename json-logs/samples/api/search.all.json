@@ -8189,6 +8189,8 @@
               "template_description": "",
               "template_icon": "",
               "canvas_creator_id": "",
+              "canvas_agent_creator_id": "",
+              "canvas_default_agent_id": "",
               "team_pref_version_history_enabled": false,
               "show_badge": false,
               "favorites": [
