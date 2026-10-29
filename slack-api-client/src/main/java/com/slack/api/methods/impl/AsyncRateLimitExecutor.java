@@ -191,6 +191,7 @@ public class AsyncRateLimitExecutor {
     private static void logSlackApiException(String teamId, String methodName, SlackApiException e) {
         if (e.getResponse().code() == 429) {
             String retryAfterSeconds = e.getResponse().header("Retry-After");
+            // Retried automatically unless rejectRateLimitedCalls is enabled
             log.warn("Got a rate-limited response from {} API (team: {}, error: {}, retry-after: {})",
                     methodName,
                     teamId,
