@@ -373,6 +373,8 @@ public class File {
     private String templateDescription;
     private String templateIcon;
     private String canvasCreatorId;
+    private String canvasAgentCreatorId;
+    private String canvasDefaultAgentId;
 
     private Boolean teamPrefVersionHistoryEnabled;
 
