@@ -416,6 +416,7 @@ public class Actions {
         public static final String mcp_slack_search_workflow_steps_tool_called = "mcp_slack_search_workflow_steps_tool_called";
         public static final String app_governance_export_started = "app_governance_export_started";
         public static final String app_governance_export_completed = "app_governance_export_completed";
+        public static final String mcp_slack_search_conversations_tool_called = "mcp_slack_search_conversations_tool_called";
     }
 
     public static class User {
