@@ -373,6 +373,7 @@ public class Methods {
     public static final String CANVASES_CREATE = "canvases.create";
     public static final String CANVASES_DELETE = "canvases.delete";
     public static final String CANVASES_EDIT = "canvases.edit";
+    public static final String CANVASES_GET_CONTENT = "canvases.getContent";
     public static final String CANVASES_SECTIONS_LOOKUP = "canvases.sections.lookup";
 
     // ------------------------------

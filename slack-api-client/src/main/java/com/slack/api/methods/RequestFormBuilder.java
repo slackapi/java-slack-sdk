@@ -85,6 +85,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -1458,6 +1459,7 @@ public class RequestFormBuilder {
                     .build();
             setIfNotNull("document_content", GSON.toJson(documentContent), form);
         }
+        setIfNotNull("channel_id", req.getChannelId(), form);
         return form;
     }
 
@@ -1473,6 +1475,13 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(CanvasesDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("canvas_id", req.getCanvasId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesGetContentRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("content_type", req.getContentType(), form);
         return form;
     }
 

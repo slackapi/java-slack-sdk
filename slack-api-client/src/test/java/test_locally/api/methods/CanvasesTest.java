@@ -37,10 +37,13 @@ public class CanvasesTest {
     public void canvases() throws Exception {
         assertThat(slack.methods(ValidToken).canvasesCreate(r -> r.title("test").documentContent(new CanvasDocumentContent())).isOk(), is(true));
         assertThat(slack.methods(ValidToken).canvasesCreate(r -> r.title("test").markdown(">hey")).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).canvasesCreate(r -> r.title("test").markdown(">hey").channelId("C123")).isOk(), is(true));
         assertThat(slack.methods(ValidToken).canvasesEdit(r -> r.canvasId("F1111").changes(Arrays.asList(
                 CanvasDocumentChange.builder().documentContent(new CanvasDocumentContent()).build()
         ))).isOk(), is(true));
         assertThat(slack.methods(ValidToken).canvasesDelete(r -> r.canvasId("F1111")).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).canvasesGetContent(r -> r.canvasId("F1111")).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).canvasesGetContent(r -> r.canvasId("F1111").contentType("html")).isOk(), is(true));
         assertThat(slack.methods(ValidToken).canvasesAccessSet(r -> r
                 .canvasId("F1111")
                 .channelIds(Arrays.asList("C123"))
@@ -61,10 +64,13 @@ public class CanvasesTest {
     public void canvases_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).canvasesCreate(r -> r.title("test").documentContent(new CanvasDocumentContent())).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).canvasesCreate(r -> r.title("test").markdown(">hey")).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).canvasesCreate(r -> r.title("test").markdown(">hey").channelId("C123")).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).canvasesEdit(r -> r.canvasId("F1111").changes(Arrays.asList(
                 CanvasDocumentChange.builder().documentContent(new CanvasDocumentContent()).build()
         ))).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).canvasesDelete(r -> r.canvasId("F1111")).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).canvasesGetContent(r -> r.canvasId("F1111")).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).canvasesGetContent(r -> r.canvasId("F1111").contentType("html")).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).canvasesAccessSet(r -> r
                 .canvasId("F1111")
                 .channelIds(Arrays.asList("C123"))

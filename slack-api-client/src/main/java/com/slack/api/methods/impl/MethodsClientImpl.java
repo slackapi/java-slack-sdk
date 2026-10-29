@@ -86,6 +86,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -252,6 +253,7 @@ import com.slack.api.methods.response.calls.participants.CallsParticipantsRemove
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
 import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.CanvasesGetContentResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
 import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
@@ -1807,6 +1809,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public CanvasesDeleteResponse canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req) throws IOException, SlackApiException {
         return canvasesDelete(req.configure(CanvasesDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CanvasesGetContentResponse canvasesGetContent(CanvasesGetContentRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CANVASES_GET_CONTENT, getToken(req), CanvasesGetContentResponse.class);
+    }
+
+    @Override
+    public CanvasesGetContentResponse canvasesGetContent(RequestConfigurator<CanvasesGetContentRequest.CanvasesGetContentRequestBuilder> req) throws IOException, SlackApiException {
+        return canvasesGetContent(req.configure(CanvasesGetContentRequest.builder()).build());
     }
 
     @Override
