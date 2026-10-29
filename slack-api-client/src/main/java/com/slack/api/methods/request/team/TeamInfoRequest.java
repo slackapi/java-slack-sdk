@@ -26,4 +26,10 @@ public class TeamInfoRequest implements SlackApiRequest {
      */
     private String domain;
 
+    /**
+     * Include advisory Slackbot availability for the caller's own workspace or organization.
+     * Defaults to false. Requires the existing team:read scope.
+     */
+    private Boolean includeSlackbotAvailability;
+
 }

@@ -3163,6 +3163,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team", req.getTeam(), form);
         setIfNotNull("domain", req.getDomain(), form);
+        setIfNotNull("include_slackbot_availability", req.getIncludeSlackbotAvailability(), form);
         return form;
     }
 

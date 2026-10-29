@@ -6,6 +6,7 @@ import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequ
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
+import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.CallParticipant;
 import com.slack.api.model.block.LayoutBlock;
@@ -30,6 +31,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RequestFormBuilderTest {
 
+    @Test
+    public void teamInfoSlackbotAvailability() {
+        FormBody omitted = RequestFormBuilder.toForm(TeamInfoRequest.builder().build()).build();
+        assertThat(omitted.size(), is(0));
+
+        for (Boolean include : Arrays.asList(true, false)) {
+            FormBody form = RequestFormBuilder.toForm(TeamInfoRequest.builder()
+                    .includeSlackbotAvailability(include).build()).build();
+            assertThat(form.size(), is(1));
+            assertThat(form.name(0), is("include_slackbot_availability"));
+            assertThat(form.value(0), is(include ? "1" : "0"));
+        }
+    }
 
     @Test
     public void testBlocksJsonSerialization() {

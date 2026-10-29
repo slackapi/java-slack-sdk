@@ -32,6 +32,13 @@ public class Team {
     private String payProdCur;
     private String locale;
 
+    /**
+     * Advisory Slackbot availability: available, restricted, unavailable, or unknown.
+     * Returned by team.info only when include_slackbot_availability is true for the
+     * caller's own workspace or organization. Does not guarantee individual or app access.
+     */
+    private String slackbotAvailability;
+
     @Data
     public static class Profile {
         private String id;
