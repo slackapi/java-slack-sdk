@@ -296,6 +296,7 @@ public class Message {
         private List<AgentStatus> agentStatuses;
         private String title;
         private Long dateStatusProcessingExpire;
+        private String encodedInitiatorUserId;
     }
 
     @Data
