@@ -4,6 +4,8 @@ import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * https://docs.slack.dev/reference/block-kit/block-elements/button-element
  */
@@ -68,4 +70,21 @@ public class ButtonElement extends BlockElement {
      * Maximum length for this field is 75 characters.
      */
     private String accessibilityLabel;
+
+    /**
+     * A prompt sent to Slackbot when the button is clicked, if Slackbot AI is available to the user.
+     * Maximum length for this field is 4000 characters.
+     */
+    private String agentPrompt;
+
+    /**
+     * Short text shown instead of the full agent_prompt in the user's Slackbot message.
+     * Requires agent_prompt and defaults to the button's text.
+     */
+    private String agentPromptDisplay;
+
+    /**
+     * An array of user IDs for which the button appears. If not provided, the button is visible to all users.
+     */
+    private List<String> visibleToUserIds;
 }
