@@ -117,7 +117,7 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
 * From the upstream repository
 * Preparation
   * `git switch main && git pull origin main`
-  * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions
+  * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions?query=branch%3Amain
 * Set a new version
   * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`) — requires `gnu-sed` on macOS (`brew install gnu-sed`)
   * `git add . -v && git commit -m'version (your version here)'`
