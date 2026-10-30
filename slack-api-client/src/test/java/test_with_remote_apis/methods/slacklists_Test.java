@@ -1,8 +1,14 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.util.http.SlackHttpClient;
+import okhttp3.FormBody;
+import okhttp3.Response;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessDeleteResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessSetResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsCreateResponse;
@@ -386,6 +392,190 @@ public class slacklists_Test {
                 .ids(Arrays.asList(itemId1, itemId2)));
         assertThat(deleteMultipleResponse.getError(), is(nullValue()));
         assertThat(deleteMultipleResponse.isOk(), is(true));
+    }
+
+    // ------------------------------------------------------------------------
+    // EXPERIMENTAL — proof probe for the ListRecord.Field.message wire shape.
+    //
+    // Context: slackapi/java-slack-sdk#1587 reports that when a list item
+    // carries a "message"-type field, the API can return `message` as an ARRAY
+    // of message objects, which the production Gson path fails to deserialize
+    // (JsonSyntaxException: Expected BEGIN_OBJECT but was BEGIN_ARRAY). The
+    // docs (slackLists.items.create#field-types) show only the request shape
+    // (an array of permalink URL strings) and give no response example, so the
+    // response shape is unverified in public. This probe observes the real
+    // production response shape empirically before we commit to a fix.
+    //
+    // It does two independent things:
+    //   1) captures the RAW JSON of slackLists.items.info and asserts whether
+    //      the `message` field value is a JSON array `[` or an object `{`;
+    //   2) attempts the TYPED deserialization via the production client and
+    //      records whether it throws on that real shape.
+    // This method is intentionally standalone and does not modify any SDK
+    // source; it is safe to revert wholesale.
+    // ------------------------------------------------------------------------
+    @Test
+    public void messageFieldArrayShapeProbe() throws IOException, SlackApiException {
+        MethodsClient methods = slack.methods();
+
+        AuthTestResponse auth = methods.authTest(r -> r.token(botToken));
+        assertThat(auth.getError(), is(nullValue()));
+        String teamHost = auth.getUrl(); // e.g. https://<team>.slack.com/
+
+        // 1) Post a real message so we have a genuine permalink to reference.
+        ChatPostMessageResponse posted = methods.chatPostMessage(r -> r
+                .token(botToken)
+                .channel(channelId)
+                .text("List message-field probe " + System.currentTimeMillis()));
+        assertThat(posted.getError(), is(nullValue()));
+        assertThat(posted.isOk(), is(true));
+        String messageTs = posted.getTs();
+
+        ChatGetPermalinkResponse permalinkResp = methods.chatGetPermalink(r -> r
+                .token(botToken)
+                .channel(channelId)
+                .messageTs(messageTs));
+        assertThat(permalinkResp.getError(), is(nullValue()));
+        String permalink = permalinkResp.getPermalink();
+        assertThat(permalink, is(notNullValue()));
+        log.info("[probe] message permalink: {}", permalink);
+
+        // 2) Create a list with a message-type column.
+        ListColumn titleCol = ListColumn.builder()
+                .key("title").name("Title").type("text").primaryColumn(true).build();
+        ListColumn messageCol = ListColumn.builder()
+                .key("linked_message").name("Linked Message").type("message").build();
+
+        SlackListsCreateResponse createResponse = methods.slackListsCreate(r -> r
+                .token(botToken)
+                .name("Message-field probe list")
+                .schema(Arrays.asList(titleCol, messageCol)));
+        assertThat(createResponse.getError(), is(nullValue()));
+        assertThat(createResponse.isOk(), is(true));
+        String listId = createResponse.getListId();
+
+        Map<String, String> keyToId = new HashMap<>();
+        createResponse.getListMetadata().getSchema().forEach(c -> keyToId.put(c.getKey(), c.getId()));
+        String messageColId = keyToId.get("linked_message");
+        assertThat(messageColId, is(notNullValue()));
+
+        // grant the bot's channel write access so items can be created
+        methods.slackListsAccessSet(r -> r
+                .token(botToken).listId(listId).accessLevel("write")
+                .channelIds(Arrays.asList(channelId)));
+
+        // 3) Create an item with a primary text field. The message field is
+        // set separately below via items.update using the docs-correct request
+        // shape (an array of message permalink URL strings), sent as a raw form
+        // param so the request carries exactly `message: ["<permalink>"]`.
+        SlackListsItemsCreateResponse createItemResponse = methods.slackListsItemsCreate(r -> r
+                .token(botToken)
+                .listId(listId)
+                .initialFields(Arrays.asList(
+                        ListRecord.Field.builder()
+                                .columnId(keyToId.get("title"))
+                                .richText(Arrays.asList(RichTextBlock.builder()
+                                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                                        .text("probe row")
+                                                        .build()))
+                                                .build()))
+                                        .build()))
+                                .build()
+                )));
+        assertThat(createItemResponse.getError(), is(nullValue()));
+        assertThat(createItemResponse.isOk(), is(true));
+        String itemId = createItemResponse.getItem().getId();
+
+        // Set the message field on the row via items.update (request = URL array).
+        // Sent as a raw form param so the request carries the exact docs shape.
+        SlackHttpClient http = slack.getHttpClient();
+        FormBody updateForm = new FormBody.Builder()
+                .add("list_id", listId)
+                .add("cells", "[{\"row_id\":\"" + itemId + "\",\"column_id\":\"" + messageColId
+                        + "\",\"message\":[\"" + permalink + "\"]}]")
+                .build();
+        try (Response updRaw = http.postFormWithBearerHeader(
+                MethodsClient.ENDPOINT_URL_PREFIX + "slackLists.items.update", botToken, updateForm)) {
+            String updBody = updRaw.body() != null ? updRaw.body().string() : "";
+            log.info("[probe] items.update raw response (truncated 2k): {}",
+                    updBody.length() > 2000 ? updBody.substring(0, 2000) : updBody);
+        }
+
+        // 4) RAW-capture the read-back shape of the message field.
+        FormBody infoForm = new FormBody.Builder()
+                .add("list_id", listId)
+                .add("id", itemId)
+                .build();
+        String rawBody;
+        try (Response infoRaw = http.postFormWithBearerHeader(
+                MethodsClient.ENDPOINT_URL_PREFIX + "slackLists.items.info", botToken, infoForm)) {
+            rawBody = infoRaw.body() != null ? infoRaw.body().string() : "";
+        }
+        log.info("[probe] raw items.info body (truncated 4k): {}",
+                rawBody.length() > 4000 ? rawBody.substring(0, 4000) : rawBody);
+
+        // Target the message field inside record.fields[...] specifically —
+        // the body has other "message" keys (list metadata) that we must skip.
+        int fieldsIdx = rawBody.indexOf("\"fields\"");
+        int msgIdx = fieldsIdx >= 0 ? rawBody.indexOf("\"message\"", fieldsIdx) : rawBody.indexOf("\"message\"");
+        boolean isArray = false;
+        boolean isObject = false;
+        char firstValChar = '\0';
+        if (msgIdx < 0) {
+            log.warn("[probe] no \"message\" key present in the read-back response — "
+                    + "the field may not have been set/echoed. See raw body above.");
+        } else {
+            // Skip past `"message"` and any whitespace / colon to the value's first char.
+            int valStart = msgIdx + "\"message\"".length();
+            while (valStart < rawBody.length()
+                    && (rawBody.charAt(valStart) == ':' || Character.isWhitespace(rawBody.charAt(valStart)))) {
+                valStart++;
+            }
+            firstValChar = rawBody.charAt(valStart);
+            isArray = firstValChar == '[';
+            isObject = firstValChar == '{';
+        }
+        log.info("[probe] message field present={} first value char = '{}' => isArray={}, isObject={}",
+                msgIdx >= 0, firstValChar, isArray, isObject);
+
+        // 5) Probe TYPED (production Gson) deserialization on this real shape.
+        boolean typedThrew = false;
+        String typedError = null;
+        try {
+            SlackListsItemsInfoResponse typed = methods.slackListsItemsInfo(r -> r
+                    .token(botToken).listId(listId).id(itemId));
+            log.info("[probe] typed items.info deserialized ok={}, error={}",
+                    typed.isOk(), typed.getError());
+        } catch (Exception e) {
+            typedThrew = true;
+            typedError = e.getClass().getSimpleName() + ": " + e.getMessage();
+            log.warn("[probe] typed items.info THREW during deserialization: {}", typedError);
+        }
+        log.info("[probe] SUMMARY host={} messageIsArray={} messageIsObject={} typedDeserializationThrew={} typedError={}",
+                teamHost, isArray, isObject, typedThrew, typedError);
+        // Also emit to stdout with a distinctive marker so the empirical result
+        // is visible regardless of the test logging configuration.
+        System.out.println(">>>PROBE>>> messagePresent=" + (msgIdx >= 0)
+                + " messageIsArray=" + isArray
+                + " messageIsObject=" + isObject
+                + " firstValueChar=" + firstValChar
+                + " typedDeserializationThrew=" + typedThrew
+                + " typedError=" + typedError);
+        int recIdx = rawBody.indexOf("\"record\"");
+        System.out.println(">>>PROBE>>> raw record slice: "
+                + (recIdx >= 0
+                    ? rawBody.substring(recIdx, Math.min(rawBody.length(), recIdx + 1500))
+                    : "(no \"record\" key; full body follows)\n" + rawBody));
+
+        // The point of the probe is observation, not a pass/fail gate on the
+        // shape. The empirical result is in the SUMMARY log line above; we do
+        // not assert on the shape so the run always surfaces what was observed.
+
+        // cleanup
+        methods.slackListsItemsDelete(r -> r.token(botToken).listId(listId).id(itemId));
+        methods.slackListsAccessDelete(r -> r.token(botToken).listId(listId)
+                .channelIds(Arrays.asList(channelId)));
     }
 
 }
