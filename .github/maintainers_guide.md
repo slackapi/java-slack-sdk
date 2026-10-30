@@ -131,7 +131,7 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
   * Click the "Generate release notes" button to list changes grouped by the labels in [`.github/release.yml`](./release.yml)
   * Edit the resulting notes to ensure they have decent messaging that is understandable by non-contributors, but each change should still have its own line
   * [Look at previous releases](https://github.com/slackapi/java-slack-sdk/releases) and follow their layouts
-* (Slack Internal) Communicate the release internally. Include a link to the GitHub Release(s).
+* (Slack Internal) Publishing the GitHub Release runs the [release announcement workflow](./workflows/release-announcement.yml), which posts the release internally. Check that the announcement appears.
 * (Slack Internal) Tweet? Not necessary for patch updates, might be needed for minor updates, definitely needed for
    major updates. Include a link to the GitHub Release(s).
 * Anticipate the next version as a SNAPSHOT
