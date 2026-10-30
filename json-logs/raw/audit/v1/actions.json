@@ -405,7 +405,9 @@
       "mcp_slack_search_workflow_steps_tool_called",
       "app_governance_export_started",
       "app_governance_export_completed",
-      "mcp_slack_search_conversations_tool_called"
+      "mcp_slack_search_conversations_tool_called",
+      "mcp_slack_update_code_channel_tool_called",
+      "pref.ai_inference_region"
     ],
     "user": [
       "custom_tos_accepted",
