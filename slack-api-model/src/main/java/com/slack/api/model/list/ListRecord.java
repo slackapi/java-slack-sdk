@@ -2,7 +2,6 @@ package com.slack.api.model.list;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.File;
-import com.slack.api.model.Message;
 import com.slack.api.model.block.RichTextBlock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +10,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -47,8 +45,12 @@ public class ListRecord {
         private String text;
         @SerializedName("rich_text")
         private List<RichTextBlock> richText;
-        private transient List<Message> messages;
-        private Message message;
+        // The message field is an array of message references, verified against the live
+        // API (slackLists.items.list and the conversations.replies/history nested
+        // list_record path both return List<{value, channel_id, ts, thread_ts?}>).
+        // EXPERIMENTAL: this replaces the earlier Message-typed modeling (#1590), which
+        // did not match the actual response shape. See MessageRef.
+        private List<MessageRef> message;
         private List<Double> number;
         private List<String> select;
         private List<String> date;
@@ -62,20 +64,27 @@ public class ListRecord {
         private List<Integer> timestamp;
         private List<LinkField> link;
         private List<ReferenceField> reference;
+    }
 
-        public List<Message> getMessages() {
-            if (messages == null && message != null) {
-                return Collections.singletonList(message);
-            }
-            return messages;
-        }
-  
-          public void setMessages(List<Message> messages) {
-            this.messages = messages;
-            if (messages != null && !messages.isEmpty()) {
-                this.message = messages.get(0);
-            }
-        }
+    /**
+     * Message field reference for Slack Lists items. The API returns the message field as
+     * an array of these references. Verified against the live API — every element carries
+     * value/channel_id/ts, and thread_ts is present only when the referenced message is a
+     * threaded reply.
+     * EXPERIMENTAL: introduced to replace the earlier Message-typed modeling.
+     */
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MessageRef {
+        // Permalink URL of the referenced message.
+        private String value;
+        @SerializedName("channel_id")
+        private String channelId;
+        private String ts;
+        @SerializedName("thread_ts")
+        private String threadTs;
     }
 
     /**
