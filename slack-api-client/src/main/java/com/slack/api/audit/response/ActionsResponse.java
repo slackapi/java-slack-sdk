@@ -54,5 +54,7 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> legalHold;
         private List<String> salesforceMcpServer;
         private List<String> workObjectRecord;
+        private List<String> surface;
+        private List<String> slackbotTaskToolApproval;
     }
 }

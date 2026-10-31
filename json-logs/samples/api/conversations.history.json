@@ -4967,6 +4967,8 @@
           "template_description": "",
           "template_icon": "",
           "canvas_creator_id": "",
+          "canvas_agent_creator_id": "",
+          "canvas_default_agent_id": "",
           "team_pref_version_history_enabled": false,
           "show_badge": false,
           "favorites": [
@@ -9708,6 +9710,12 @@
           "canvas_printing_enabled": false,
           "is_ai_suggested": false,
           "is_modified_by_ai": false,
+          "ai_summary": {
+            "id": "",
+            "unfurl_enabled": false,
+            "status": "",
+            "content": ""
+          },
           "bot_id": "",
           "initial_comment": {
             "id": "",
@@ -17880,6 +17888,8 @@
             "template_description": "",
             "template_icon": "",
             "canvas_creator_id": "",
+            "canvas_agent_creator_id": "",
+            "canvas_default_agent_id": "",
             "team_pref_version_history_enabled": false,
             "show_badge": false,
             "favorites": [
@@ -22621,6 +22631,12 @@
             "canvas_printing_enabled": false,
             "is_ai_suggested": false,
             "is_modified_by_ai": false,
+            "ai_summary": {
+              "id": "",
+              "unfurl_enabled": false,
+              "status": "",
+              "content": ""
+            },
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -37137,6 +37153,8 @@
                   "template_description": "",
                   "template_icon": "",
                   "canvas_creator_id": "",
+                  "canvas_agent_creator_id": "",
+                  "canvas_default_agent_id": "",
                   "team_pref_version_history_enabled": false,
                   "show_badge": false,
                   "favorites": [],
@@ -37178,6 +37196,12 @@
                   "canvas_printing_enabled": false,
                   "is_ai_suggested": false,
                   "is_modified_by_ai": false,
+                  "ai_summary": {
+                    "id": "",
+                    "unfurl_enabled": false,
+                    "status": "",
+                    "content": ""
+                  },
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -37438,7 +37462,8 @@
                   "agent_bot_user_ids": [],
                   "agent_statuses": [],
                   "title": "",
-                  "date_status_processing_expire": 123
+                  "date_status_processing_expire": 123,
+                  "encoded_initiator_user_id": ""
                 }
               }
             }
@@ -37683,6 +37708,8 @@
                       "template_description": "",
                       "template_icon": "",
                       "canvas_creator_id": "",
+                      "canvas_agent_creator_id": "",
+                      "canvas_default_agent_id": "",
                       "team_pref_version_history_enabled": false,
                       "show_badge": false,
                       "favorites": [],
@@ -37724,6 +37751,12 @@
                       "canvas_printing_enabled": false,
                       "is_ai_suggested": false,
                       "is_modified_by_ai": false,
+                      "ai_summary": {
+                        "id": "",
+                        "unfurl_enabled": false,
+                        "status": "",
+                        "content": ""
+                      },
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -37984,7 +38017,8 @@
                       "agent_bot_user_ids": [],
                       "agent_statuses": [],
                       "title": "",
-                      "date_status_processing_expire": 123
+                      "date_status_processing_expire": 123,
+                      "encoded_initiator_user_id": ""
                     }
                   },
                   "number": [],
@@ -38278,6 +38312,8 @@
                       "template_description": "",
                       "template_icon": "",
                       "canvas_creator_id": "",
+                      "canvas_agent_creator_id": "",
+                      "canvas_default_agent_id": "",
                       "team_pref_version_history_enabled": false,
                       "show_badge": false,
                       "favorites": [],
@@ -38319,6 +38355,12 @@
                       "canvas_printing_enabled": false,
                       "is_ai_suggested": false,
                       "is_modified_by_ai": false,
+                      "ai_summary": {
+                        "id": "",
+                        "unfurl_enabled": false,
+                        "status": "",
+                        "content": ""
+                      },
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -38579,7 +38621,8 @@
                       "agent_bot_user_ids": [],
                       "agent_statuses": [],
                       "title": "",
-                      "date_status_processing_expire": 123
+                      "date_status_processing_expire": 123,
+                      "encoded_initiator_user_id": ""
                     }
                   },
                   "number": [],
@@ -43780,6 +43823,8 @@
               "template_description": "",
               "template_icon": "",
               "canvas_creator_id": "",
+              "canvas_agent_creator_id": "",
+              "canvas_default_agent_id": "",
               "team_pref_version_history_enabled": false,
               "show_badge": false,
               "favorites": [
@@ -48521,6 +48566,12 @@
               "canvas_printing_enabled": false,
               "is_ai_suggested": false,
               "is_modified_by_ai": false,
+              "ai_summary": {
+                "id": "",
+                "unfurl_enabled": false,
+                "status": "",
+                "content": ""
+              },
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -53147,6 +53198,7 @@
           "size": 123,
           "mimetype": "",
           "url": "",
+          "media_type": "",
           "metadata": {
             "thumb_64": false,
             "thumb_80": false,
@@ -61309,6 +61361,8 @@
               "template_description": "",
               "template_icon": "",
               "canvas_creator_id": "",
+              "canvas_agent_creator_id": "",
+              "canvas_default_agent_id": "",
               "team_pref_version_history_enabled": false,
               "show_badge": false,
               "favorites": [
@@ -66050,6 +66104,12 @@
               "canvas_printing_enabled": false,
               "is_ai_suggested": false,
               "is_modified_by_ai": false,
+              "ai_summary": {
+                "id": "",
+                "unfurl_enabled": false,
+                "status": "",
+                "content": ""
+              },
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -71082,15 +71142,11 @@
             "status": "",
             "is_stoppable": false,
             "date_status_processing_expire": 12345
-          },
-          {
-            "agent_bot_user_id": "U00000000",
-            "status": "",
-            "is_stoppable": false
           }
         ],
         "title": "",
-        "date_status_processing_expire": 12345
+        "date_status_processing_expire": 12345,
+        "encoded_initiator_user_id": "U00000000"
       }
     }
   ],

@@ -10,7 +10,7 @@
       "schemas": [
         ""
       ],
-      "id": "W00000000",
+      "id": "U00000000",
       "externalId": "",
       "meta": {
         "created": "",
@@ -58,6 +58,9 @@
           "display": ""
         }
       ],
+      "urn:scim:schemas:extension:slack:profile:1.0": {
+        "startDate": ""
+      },
       "addresses": [
         {},
         {
@@ -95,16 +98,7 @@
       },
       "urn:scim:schemas:extension:slack:guest:1.0": {
         "type": "",
-        "expiration": "",
-        "channels": [
-          {
-            "value": "C00000000",
-            "display": ""
-          }
-        ]
-      },
-      "urn:scim:schemas:extension:slack:profile:1.0": {
-        "startDate": ""
+        "expiration": ""
       }
     }
   ],
