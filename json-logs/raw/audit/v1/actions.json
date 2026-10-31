@@ -407,7 +407,8 @@
       "app_governance_export_completed",
       "mcp_slack_search_conversations_tool_called",
       "mcp_slack_update_code_channel_tool_called",
-      "pref.ai_inference_region"
+      "pref.ai_inference_region",
+      "mcp_slack_add_canvas_comment_tool_called"
     ],
     "user": [
       "custom_tos_accepted",
