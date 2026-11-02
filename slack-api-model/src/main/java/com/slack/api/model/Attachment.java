@@ -391,10 +391,47 @@ public class Attachment {
         @SerializedName("original_h")
         private Integer originalHeight;
 
+        @SerializedName("thumb_360")
+        private Boolean thumb360;
         @SerializedName("thumb_360_w")
         private Integer thumb360Width;
         @SerializedName("thumb_360_h")
         private Integer thumb360Height;
+
+        @SerializedName("thumb_480")
+        private Boolean thumb480;
+        @SerializedName("thumb_480_w")
+        private Integer thumb480Width;
+        @SerializedName("thumb_480_h")
+        private Integer thumb480Height;
+
+        @SerializedName("thumb_720")
+        private Boolean thumb720;
+        @SerializedName("thumb_720_w")
+        private Integer thumb720Width;
+        @SerializedName("thumb_720_h")
+        private Integer thumb720Height;
+
+        @SerializedName("thumb_800")
+        private Boolean thumb800;
+        @SerializedName("thumb_800_w")
+        private Integer thumb800Width;
+        @SerializedName("thumb_800_h")
+        private Integer thumb800Height;
+
+        @SerializedName("thumb_960")
+        private Boolean thumb960;
+        @SerializedName("thumb_960_w")
+        private Integer thumb960Width;
+        @SerializedName("thumb_960_h")
+        private Integer thumb960Height;
+
+        @SerializedName("thumb_1024")
+        private Boolean thumb1024;
+        @SerializedName("thumb_1024_w")
+        private Integer thumb1024Width;
+        @SerializedName("thumb_1024_h")
+        private Integer thumb1024Height;
 
         private String format;
         private String extension;
