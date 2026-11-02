@@ -339,6 +339,7 @@ import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.util.http.RetryAfterUtil;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -4176,9 +4177,8 @@ public class MethodsClientImpl implements MethodsClient {
                 metricsDatastore.incrementFailedCalls(executorName, teamId, methodName);
                 if (e.getResponse().code() == 429) {
                     // rate limited
-                    final String retryAfterSeconds = e.getResponse().header("Retry-After");
-                    if (retryAfterSeconds != null) {
-                        long secondsToWait = Long.valueOf(retryAfterSeconds);
+                    final Long secondsToWait = RetryAfterUtil.parseSeconds(e.getResponse().header("Retry-After"));
+                    if (secondsToWait != null) {
                         long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
                         String key = buildMethodNameAndSuffix(form, methodName);
                         metricsDatastore.setRateLimitedMethodRetryEpochMillis(executorName, teamId, key, epochMillisToRetry);
@@ -4220,9 +4220,8 @@ public class MethodsClientImpl implements MethodsClient {
             }
             if (e.getResponse().code() == 429) {
                 // rate limited
-                final String retryAfterSeconds = e.getResponse().header("Retry-After");
-                if (retryAfterSeconds != null) {
-                    long secondsToWait = Long.valueOf(retryAfterSeconds);
+                final Long secondsToWait = RetryAfterUtil.parseSeconds(e.getResponse().header("Retry-After"));
+                if (secondsToWait != null) {
                     long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
                     metricsDatastore.setRateLimitedMethodRetryEpochMillis(executorName, teamId, methodName, epochMillisToRetry);
                 }
