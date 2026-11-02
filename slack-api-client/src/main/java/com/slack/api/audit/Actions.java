@@ -419,6 +419,7 @@ public class Actions {
         public static final String mcp_slack_search_conversations_tool_called = "mcp_slack_search_conversations_tool_called";
         public static final String mcp_slack_update_code_channel_tool_called = "mcp_slack_update_code_channel_tool_called";
         public static final String pref_ai_inference_region = "pref.ai_inference_region";
+        public static final String mcp_slack_add_canvas_comment_tool_called = "mcp_slack_add_canvas_comment_tool_called";
     }
 
     public static class User {
