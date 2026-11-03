@@ -420,6 +420,10 @@ public class Actions {
         public static final String mcp_slack_update_code_channel_tool_called = "mcp_slack_update_code_channel_tool_called";
         public static final String pref_ai_inference_region = "pref.ai_inference_region";
         public static final String mcp_slack_add_canvas_comment_tool_called = "mcp_slack_add_canvas_comment_tool_called";
+        public static final String mcp_slack_list_developer_sandboxes_tool_called = "mcp_slack_list_developer_sandboxes_tool_called";
+        public static final String pref_channel_ids_to_exclude_from_archive_leave_suggestions = "pref.channel_ids_to_exclude_from_archive_leave_suggestions";
+        public static final String pref_display_real_names_in_mentions = "pref.display_real_names_in_mentions";
+        public static final String mcp_slack_create_developer_sandbox_tool_called = "mcp_slack_create_developer_sandbox_tool_called";
     }
 
     public static class User {
