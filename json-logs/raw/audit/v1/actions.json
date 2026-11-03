@@ -408,7 +408,11 @@
       "mcp_slack_search_conversations_tool_called",
       "mcp_slack_update_code_channel_tool_called",
       "pref.ai_inference_region",
-      "mcp_slack_add_canvas_comment_tool_called"
+      "mcp_slack_add_canvas_comment_tool_called",
+      "mcp_slack_list_developer_sandboxes_tool_called",
+      "pref.channel_ids_to_exclude_from_archive_leave_suggestions",
+      "pref.display_real_names_in_mentions",
+      "mcp_slack_create_developer_sandbox_tool_called"
     ],
     "user": [
       "custom_tos_accepted",

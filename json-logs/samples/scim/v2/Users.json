@@ -37,10 +37,6 @@
       ],
       "photos": [
         {
-          "value": "https://www.example.com/",
-          "type": ""
-        },
-        {
           "value": "",
           "type": ""
         }
@@ -81,10 +77,6 @@
         "manager": {}
       },
       "groups": [
-        {
-          "value": "S00000000",
-          "display": ""
-        },
         {
           "value": "",
           "display": ""
