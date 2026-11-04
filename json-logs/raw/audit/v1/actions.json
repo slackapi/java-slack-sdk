@@ -412,7 +412,9 @@
       "mcp_slack_list_developer_sandboxes_tool_called",
       "pref.channel_ids_to_exclude_from_archive_leave_suggestions",
       "pref.display_real_names_in_mentions",
-      "mcp_slack_create_developer_sandbox_tool_called"
+      "mcp_slack_create_developer_sandbox_tool_called",
+      "pref.enable_dbsc_enforcement",
+      "pref.slackbot_ai_fedramp_web_search_consented_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -505,7 +507,8 @@
       "role_change_to_frontline",
       "role_change_from_frontline",
       "slack_ai_skill_deactivated",
-      "slack_ai_skill_reactivated"
+      "slack_ai_skill_reactivated",
+      "user_logout_dbsc_keyless_session"
     ],
     "file": [
       "file_downloaded",
