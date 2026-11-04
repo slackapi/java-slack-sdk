@@ -8,11 +8,14 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.conversations.ConversationsInfoResponse;
 import com.slack.api.util.http.listener.HttpResponseListener;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.servlet.ServletHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApi;
-import util.MockSlackApiServer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,24 +34,30 @@ import static util.MockSlackApi.ValidToken;
 public class MethodsClientImplTest {
 
     private volatile String responseBody;
-
-    MockSlackApiServer slackApiServer = new MockSlackApiServer(new MockSlackApi() {
-        @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-            if (responseBody == null) {
-                super.doPost(request, response);
-            } else {
-                response.setStatus(200);
-                response.setContentType("application/json");
-                response.setHeader("X-Slack-Req-Id", "null-response-test");
-                response.getWriter().write(responseBody);
-            }
-        }
-    });
+    private Server slackApiServer;
+    private String methodsEndpointPrefix;
 
     @Before
     public void setup() throws Exception {
+        slackApiServer = new Server(0);
+        ServletHandler handler = new ServletHandler();
+        handler.addServletWithMapping(new ServletHolder(new MockSlackApi() {
+            @Override
+            protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+                if (responseBody == null) {
+                    super.doPost(request, response);
+                } else {
+                    response.setStatus(200);
+                    response.setContentType("application/json");
+                    response.setHeader("X-Slack-Req-Id", "null-response-test");
+                    response.getWriter().write(responseBody);
+                }
+            }
+        }), "/*");
+        slackApiServer.setHandler(handler);
         slackApiServer.start();
+        methodsEndpointPrefix = "http://127.0.0.1:"
+                + ((ServerConnector) slackApiServer.getConnectors()[0]).getLocalPort() + "/api/";
     }
 
     @After
@@ -59,7 +68,7 @@ public class MethodsClientImplTest {
     @Test
     public void postFormAndParseResponse() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix);
         MethodsClient client = Slack.getInstance(config).methods();
         ApiTestResponse response = client.postFormAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -72,7 +81,7 @@ public class MethodsClientImplTest {
     @Test(expected = IOException.class)
     public void postFormAndParseResponse_IOException() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix().replaceFirst(":\\d+/api/$", ":7777/api/")); // invalid
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix.replaceFirst(":\\d+/api/$", ":7777/api/")); // invalid
         MethodsClient client = Slack.getInstance(config).methods();
         client.postFormAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -84,7 +93,7 @@ public class MethodsClientImplTest {
     @Test
     public void postFormWithAuthorizationHeaderAndParseResponse() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix);
         MethodsClient client = Slack.getInstance(config).methods();
         ConversationsInfoResponse response = client.postFormWithAuthorizationHeaderAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -99,7 +108,7 @@ public class MethodsClientImplTest {
     @Test(expected = IOException.class)
     public void postFormWithAuthorizationHeaderAndParseResponse_IOException() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix().replaceFirst(":\\d+/api/$", ":7777/api/")); // invalid
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix.replaceFirst(":\\d+/api/$", ":7777/api/")); // invalid
         MethodsClient client = Slack.getInstance(config).methods();
         client.postFormWithAuthorizationHeaderAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -112,7 +121,7 @@ public class MethodsClientImplTest {
     @Test(expected = SlackApiException.class)
     public void postFormWithAuthorizationHeaderAndParseResponse_SlackApiException() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix() + "invalid-path"); // invalid
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix + "invalid-path"); // invalid
         MethodsClient client = Slack.getInstance(config).methods();
         client.postFormWithAuthorizationHeaderAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -125,7 +134,7 @@ public class MethodsClientImplTest {
     @Test
     public void postFormWithTokenAndParseResponse() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix);
         MethodsClient client = Slack.getInstance(config).methods();
         ConversationsInfoResponse response = client.postFormWithTokenAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -140,7 +149,7 @@ public class MethodsClientImplTest {
     @Test(expected = IOException.class)
     public void postFormWithTokenAndParseResponse_IOException() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix().replaceFirst(":\\d+/api/$", ":7777/api/")); // invalid
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix.replaceFirst(":\\d+/api/$", ":7777/api/")); // invalid
         MethodsClient client = Slack.getInstance(config).methods();
         client.postFormWithTokenAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -153,7 +162,7 @@ public class MethodsClientImplTest {
     @Test(expected = SlackApiException.class)
     public void postFormWithTokenAndParseResponse_SlackApiException() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix() + "invalid-path"); // invalid
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix + "invalid-path"); // invalid
         MethodsClient client = Slack.getInstance(config).methods();
         client.postFormWithTokenAndParseResponse(
                 form -> form.add("foo", "bar"),
@@ -182,7 +191,7 @@ public class MethodsClientImplTest {
         responseBody = body;
         List<HttpResponseListener.State> responses = new ArrayList<>();
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+        config.setMethodsEndpointUrlPrefix(methodsEndpointPrefix);
         config.getMethodsConfig().setStatsEnabled(false);
         config.getHttpClientResponseHandlers().add(new HttpResponseListener() {
             @Override

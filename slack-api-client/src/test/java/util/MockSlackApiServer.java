@@ -2,9 +2,7 @@ package util;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
 
-import javax.servlet.http.HttpServlet;
 import java.net.SocketException;
 
 /**
@@ -14,22 +12,12 @@ public class MockSlackApiServer {
 
     private int port;
     private Server server;
-    private final HttpServlet servlet;
 
     public MockSlackApiServer() {
         this(PortProvider.getPort(MockSlackApiServer.class.getName()));
     }
 
     public MockSlackApiServer(int port) {
-        this(port, new MockSlackApi());
-    }
-
-    public MockSlackApiServer(HttpServlet servlet) {
-        this(PortProvider.getPort(MockSlackApiServer.class.getName()), servlet);
-    }
-
-    private MockSlackApiServer(int port, HttpServlet servlet) {
-        this.servlet = servlet;
         setup(port);
     }
 
@@ -38,7 +26,7 @@ public class MockSlackApiServer {
         this.server = new Server(this.port);
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
-        handler.addServletWithMapping(new ServletHolder(servlet), "/*");
+        handler.addServletWithMapping(MockSlackApi.class, "/*");
     }
 
     public String getMethodsEndpointPrefix() {
