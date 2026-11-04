@@ -424,6 +424,8 @@ public class Actions {
         public static final String pref_channel_ids_to_exclude_from_archive_leave_suggestions = "pref.channel_ids_to_exclude_from_archive_leave_suggestions";
         public static final String pref_display_real_names_in_mentions = "pref.display_real_names_in_mentions";
         public static final String mcp_slack_create_developer_sandbox_tool_called = "mcp_slack_create_developer_sandbox_tool_called";
+        public static final String pref_enable_dbsc_enforcement = "pref.enable_dbsc_enforcement";
+        public static final String pref_slackbot_ai_fedramp_web_search_consented_changed = "pref.slackbot_ai_fedramp_web_search_consented_changed";
     }
 
     public static class User {
@@ -521,6 +523,7 @@ public class Actions {
         public static final String role_change_from_frontline = "role_change_from_frontline";
         public static final String slack_ai_skill_deactivated = "slack_ai_skill_deactivated";
         public static final String slack_ai_skill_reactivated = "slack_ai_skill_reactivated";
+        public static final String user_logout_dbsc_keyless_session = "user_logout_dbsc_keyless_session";
     }
 
     public static class File {
