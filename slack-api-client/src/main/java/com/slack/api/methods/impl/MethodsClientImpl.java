@@ -1,6 +1,5 @@
 package com.slack.api.methods.impl;
 
-import com.google.gson.Gson;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
@@ -4063,9 +4062,8 @@ public class MethodsClientImpl implements MethodsClient {
             String body = response.body().string();
             if (response.isSuccessful()) {
                 try {
-                    Gson gson = GsonFactory.createSnakeCase(slackHttpClient.getConfig());
                     AdminAnalyticsGetFileResponse apiResponse =
-                            gson.fromJson(body, AdminAnalyticsGetFileResponse.class);
+                            parseJsonResponse(response, body, AdminAnalyticsGetFileResponse.class);
                     apiResponse.setHttpResponseHeaders(toLowerCasedKeyMap(response.headers()));
                     return apiResponse;
                 } finally {
@@ -4269,7 +4267,7 @@ public class MethodsClientImpl implements MethodsClient {
         String body = response.body().string();
         if (response.isSuccessful()) {
             try {
-                T apiResponse = GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+                T apiResponse = parseJsonResponse(response, body, clazz);
                 if (teamId != null) {
                     if (apiResponse.isOk()) {
                         metricsDatastore.incrementSuccessfulCalls(executorName, teamId, methodName);
@@ -4287,6 +4285,15 @@ public class MethodsClientImpl implements MethodsClient {
         }
     }
 
+    private <T extends SlackApiResponse> T parseJsonResponse(
+            Response response, String body, Class<T> clazz) throws SlackApiException {
+        T apiResponse = GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+        if (apiResponse == null) {
+            // Gson returns null for an empty body, whitespace, or a JSON null value.
+            throw new SlackApiException(slackHttpClient.getConfig(), response, body);
+        }
+        return apiResponse;
+    }
 
     void runListenersForBinaryResponse(
             Response response) throws SlackApiException {
