@@ -630,6 +630,7 @@ public class Actions {
         public static final String slack_ai_channel_knowledge_disabled = "slack_ai_channel_knowledge_disabled";
         public static final String slack_ai_channel_knowledge_refreshed = "slack_ai_channel_knowledge_refreshed";
         public static final String channel_exclude_from_slackbot_in_channels_updated = "channel_exclude_from_slackbot_in_channels_updated";
+        public static final String channel_discoverability_updated = "channel_discoverability_updated";
     }
 
     public static class App {
