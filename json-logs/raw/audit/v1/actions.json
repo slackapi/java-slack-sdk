@@ -606,7 +606,8 @@
       "slack_ai_channel_knowledge_enabled",
       "slack_ai_channel_knowledge_disabled",
       "slack_ai_channel_knowledge_refreshed",
-      "channel_exclude_from_slackbot_in_channels_updated"
+      "channel_exclude_from_slackbot_in_channels_updated",
+      "channel_discoverability_updated"
     ],
     "app": [
       "app_installed",
