@@ -5,6 +5,8 @@ import com.slack.api.audit.response.LogsResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class GsonAuditLogsDetailsActionFactory implements JsonDeserializer<LogsResponse.DetailsAction>, JsonSerializer<LogsResponse.DetailsAction> {
@@ -30,15 +32,21 @@ public class GsonAuditLogsDetailsActionFactory implements JsonDeserializer<LogsR
             return result;
         } else if (json.isJsonObject()) {
             JsonObject obj = json.getAsJsonObject();
+            if (failOnUnknownProperties) {
+                for (String name : obj.keySet()) {
+                    if (!name.equals("resolution") && !name.equals("notify")) {
+                        String message = "An unknown property (" + name + ") is detected. " + REPORT_THIS;
+                        throw new JsonParseException(message);
+                    }
+                }
+            }
             JsonElement resolution = obj.get("resolution");
             if (resolution != null && !resolution.isJsonNull()) {
                 result.setResolution(context.deserialize(resolution, LogsResponse.AAARuleActionResolution.class));
             }
             JsonElement notify = obj.get("notify");
             if (notify != null && !notify.isJsonNull()) {
-                Type notifyType = new com.google.gson.reflect.TypeToken<java.util.List<LogsResponse.AAARuleActionNotify>>() {
-                }.getType();
-                result.setNotify(context.deserialize(notify, notifyType));
+                result.setNotify(parseNotify(notify, context));
             }
             return result;
         } else {
@@ -48,6 +56,29 @@ public class GsonAuditLogsDetailsActionFactory implements JsonDeserializer<LogsR
             }
         }
         return result;
+    }
+
+    private List<LogsResponse.AAARuleActionNotify> parseNotify(JsonElement json, JsonDeserializationContext context)
+            throws JsonParseException {
+        List<LogsResponse.AAARuleActionNotify> values = new ArrayList<>();
+        if (!json.isJsonArray()) {
+            if (failOnUnknownProperties) {
+                String message = "A non-array value (" + json + ") for notify is detected. " + REPORT_THIS;
+                throw new JsonParseException(message);
+            }
+            return values;
+        }
+        for (JsonElement elem : json.getAsJsonArray()) {
+            if (elem.isJsonObject()) {
+                values.add(context.deserialize(elem, LogsResponse.AAARuleActionNotify.class));
+            } else {
+                if (failOnUnknownProperties) {
+                    String message = "An unexpected element (" + elem + ") in an array is detected. " + REPORT_THIS;
+                    throw new JsonParseException(message);
+                }
+            }
+        }
+        return values;
     }
 
     @Override
