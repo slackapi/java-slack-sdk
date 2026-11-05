@@ -37,16 +37,20 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
                 return ActionsBlock.class;
             case AlertBlock.TYPE:
                 return AlertBlock.class;
+            case AuthProviderBlock.TYPE:
+                return AuthProviderBlock.class;
             case CallBlock.TYPE:
                 return CallBlock.class;
             case CardBlock.TYPE:
                 return CardBlock.class;
             case CarouselBlock.TYPE:
                 return CarouselBlock.class;
-            case ContextBlock.TYPE:
-                return ContextBlock.class;
+            case ContainerBlock.TYPE:
+                return ContainerBlock.class;
             case ContextActionsBlock.TYPE:
                 return ContextActionsBlock.class;
+            case ContextBlock.TYPE:
+                return ContextBlock.class;
             case DividerBlock.TYPE:
                 return DividerBlock.class;
             case FileBlock.TYPE:
@@ -67,6 +71,8 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
                 return ShareShortcutBlock.class;
             case TableBlock.TYPE:
                 return TableBlock.class;
+            case TaskCardBlock.TYPE:
+                return TaskCardBlock.class;
             case VideoBlock.TYPE:
                 return VideoBlock.class;
             default:

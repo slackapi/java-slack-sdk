@@ -28,19 +28,25 @@ public class Blocks {
     public static ActionsBlock actions(String blockId, List<BlockElement> elements) {
         return ActionsBlock.builder().blockId(blockId).elements(elements).build();
     }
-  
+
     // AlertBlock
 
     public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
         return configurator.configure(AlertBlock.builder()).build();
     }
-  
+
+    // AuthProviderBlock
+
+    public static AuthProviderBlock authProvider(ModelConfigurator<AuthProviderBlock.AuthProviderBlockBuilder> configurator) {
+        return configurator.configure(AuthProviderBlock.builder()).build();
+    }
+
     // CallBlock
 
     public static CallBlock call(ModelConfigurator<CallBlock.CallBlockBuilder> configurator) {
         return configurator.configure(CallBlock.builder()).build();
     }
-  
+
     // CardBlock
 
     public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
@@ -51,6 +57,12 @@ public class Blocks {
 
     public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
         return configurator.configure(CarouselBlock.builder()).build();
+    }
+
+    // ContainerBlock
+
+    public static ContainerBlock container(ModelConfigurator<ContainerBlock.ContainerBlockBuilder> configurator) {
+        return configurator.configure(ContainerBlock.builder()).build();
     }
 
     // ContextBlock
@@ -94,7 +106,7 @@ public class Blocks {
     public static DividerBlock divider() {
         return DividerBlock.builder().build();
     }
-  
+
     // FileBlock
 
     public static FileBlock file(ModelConfigurator<FileBlock.FileBlockBuilder> configurator) {
@@ -147,6 +159,12 @@ public class Blocks {
 
     public static TableBlock table(ModelConfigurator<TableBlock.TableBlockBuilder> configurator) {
         return configurator.configure(TableBlock.builder()).build();
+    }
+
+    // TaskCardBlock
+
+    public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {
+        return configurator.configure(TaskCardBlock.builder()).build();
     }
 
     // VideoBlock
