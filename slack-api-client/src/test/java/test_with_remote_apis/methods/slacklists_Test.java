@@ -3,6 +3,8 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessDeleteResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsAccessSetResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsCreateResponse;
@@ -148,6 +150,14 @@ public class slacklists_Test {
                         .build())
                 .build();
 
+        // A message column so the response echoes back the message-reference shape
+        // ({value, channel_id, ts, thread_ts?}). A message column cannot be primary.
+        ListColumn relatedMessageCol = ListColumn.builder()
+                .key("related_message")
+                .name("Related Message")
+                .type("message")
+                .build();
+
         // create list
         SlackListsCreateResponse createResponse = slack.methods().slackListsCreate(r -> r
                 .token(botToken)
@@ -159,7 +169,7 @@ public class slacklists_Test {
                                         .build()))
                                 .build()))
                         .build()))
-                .schema(Arrays.asList(taskNameCol, dueDateCol, estimateCol, ratingCol, statusCol, assigneeCol)));
+                .schema(Arrays.asList(taskNameCol, dueDateCol, estimateCol, ratingCol, statusCol, assigneeCol, relatedMessageCol)));
 
         assertThat(createResponse.getError(), is(nullValue()));
         assertThat(createResponse.isOk(), is(true));
@@ -174,9 +184,10 @@ public class slacklists_Test {
                 keyToId.put(col.getKey(), col.getId());
             });
         }
-        String taskNameColId = keyToId.get("task_name");  
-      
-        // set access 
+        String taskNameColId = keyToId.get("task_name");
+        String relatedMessageColId = keyToId.get("related_message");
+
+        // set access
         SlackListsAccessSetResponse accessSetResponse = slack.methods().slackListsAccessSet(r -> r
                 .token(botToken)
                 .listId(listId)
@@ -184,6 +195,24 @@ public class slacklists_Test {
                 .channelIds(Arrays.asList(channelId)));
         assertThat(accessSetResponse.getError(), is(nullValue()));
         assertThat(accessSetResponse.isOk(), is(true));
+
+        // Post a message and resolve its permalink so the item can reference it in the message
+        // field. The message field takes an array of permalink URL strings on the request side
+        // (a MessageRef serializes to its value) and echoes back {value, channel_id, ts,
+        // thread_ts?} objects on the response side.
+        ChatPostMessageResponse relatedMessage = slack.methods().chatPostMessage(r -> r
+                .token(botToken)
+                .channel(channelId)
+                .text("Related message for the SlackLists remote test"));
+        assertThat(relatedMessage.getError(), is(nullValue()));
+        assertThat(relatedMessage.isOk(), is(true));
+        ChatGetPermalinkResponse relatedPermalink = slack.methods().chatGetPermalink(r -> r
+                .token(botToken)
+                .channel(channelId)
+                .messageTs(relatedMessage.getTs()));
+        assertThat(relatedPermalink.getError(), is(nullValue()));
+        String relatedMessageUrl = relatedPermalink.getPermalink();
+        assertThat(relatedMessageUrl, is(notNullValue()));
 
         // Build initial fields for item creation
         ListRecord.Field field = ListRecord.Field.builder()
@@ -196,12 +225,18 @@ public class slacklists_Test {
                                 .build()))
                         .build()))
                 .build();
+        // The message field references the posted message by permalink. On the request the
+        // MessageRef serializes to the permalink string; the response echoes the full reference.
+        ListRecord.Field messageField = ListRecord.Field.builder()
+                .columnId(relatedMessageColId)
+                .message(Arrays.asList(ListRecord.MessageRef.builder().value(relatedMessageUrl).build()))
+                .build();
 
         // create an item
         SlackListsItemsCreateResponse createItemResponse = slack.methods().slackListsItemsCreate(r -> r
                 .token(botToken)
                 .listId(listId)
-                .initialFields(Arrays.asList(field)));
+                .initialFields(Arrays.asList(field, messageField)));
         assertThat(createItemResponse.getError(), is(nullValue()));
         assertThat(createItemResponse.isOk(), is(true));
         assertThat(createItemResponse.getItem(), is(notNullValue()));
@@ -214,6 +249,16 @@ public class slacklists_Test {
                 .orElse(null);
         assertThat(taskNameField, is(notNullValue()));
         assertThat(taskNameField.getText(), is("Test task item"));
+
+        // The message field should echo back the reference object shape.
+        ListRecord.Field echoedMessageField = createItemResponse.getItem().getFields().stream()
+                .filter(f -> relatedMessageColId.equals(f.getColumnId()))
+                .findFirst()
+                .orElse(null);
+        assertThat(echoedMessageField, is(notNullValue()));
+        assertThat(echoedMessageField.getMessage(), is(notNullValue()));
+        assertThat(echoedMessageField.getMessage().isEmpty(), is(false));
+        assertThat(echoedMessageField.getMessage().get(0).getValue(), is(notNullValue()));
 
         String itemId = createItemResponse.getItem().getId();
         assertThat(itemId, is(notNullValue()));
