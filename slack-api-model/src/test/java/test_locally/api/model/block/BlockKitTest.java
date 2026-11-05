@@ -2,12 +2,15 @@ package test_locally.api.model.block;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
+import com.slack.api.model.block.composition.ActionCellObject;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.RawNumberObject;
 import com.slack.api.model.block.composition.RawTextObject;
 import com.slack.api.model.block.composition.TableCell;
+import com.slack.api.model.block.composition.UnknownTableCell;
 import com.slack.api.model.block.element.*;
 import com.slack.api.model.view.View;
 import org.junit.Test;
@@ -16,8 +19,11 @@ import test_locally.unit.GsonFactory;
 import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.actionCell;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.composition.BlockCompositions.rawText;
+import static com.slack.api.model.block.element.BlockElements.button;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
 import static com.slack.api.model.block.element.BlockElements.conversationsSelect;
 import static com.slack.api.model.view.Views.view;
@@ -1860,6 +1866,113 @@ public class BlockKitTest {
         assertThat(restored.getRows().size(), is(2));
         RawNumberObject numberCell = (RawNumberObject) restored.getRows().get(1).get(1);
         assertThat(numberCell.getValue(), is(1234.5));
+    }
+
+    // https://docs.slack.dev/reference/block-kit/blocks/data-table-block#schema-action-cell
+    String dataTableActionCellJson(String actionCell) {
+        return "{\n" +
+                "  \"type\": \"data_table\",\n" +
+                "  \"rows\": [\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Action\" }\n" +
+                "    ],\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
+                "      " + actionCell + "\n" +
+                "    ]\n" +
+                "  ]\n" +
+                "}";
+    }
+
+    @Test
+    public void parseDataTableBlockActionCell() {
+        String actionCell = "{  \"type\": \"action_cell\",  \"element\": {    \"type\": \"button\",    \"text\": {      \"type\": \"plain_text\",      \"text\": \"Mark done\"    },    \"action_id\": \"mark_done\",    \"value\": \"task_123\"  },  \"fallback\": {    \"type\": \"raw_text\",    \"text\": \"Open\"  }}";
+        String json = dataTableActionCellJson(actionCell);
+        Gson gson = GsonFactory.createSnakeCase();
+        DataTableBlock block = (DataTableBlock) gson.fromJson(json, LayoutBlock.class);
+        ActionCellObject cell = (ActionCellObject) block.getRows().get(1).get(1);
+        assertThat(cell.getType(), is("action_cell"));
+        assertThat(cell.getElement().getType(), is("button"));
+        assertThat(cell.getElement().getText().getText(), is("Mark done"));
+        assertThat(cell.getElement().getActionId(), is("mark_done"));
+        assertThat(cell.getElement().getValue(), is("task_123"));
+        RawTextObject fallback = (RawTextObject) cell.getFallback();
+        assertThat(fallback.getType(), is("raw_text"));
+        assertThat(fallback.getText(), is("Open"));
+        assertEquals(JsonParser.parseString(json), JsonParser.parseString(gson.toJson(block)));
+    }
+
+    @Test
+    public void parseDataTableBlockActionCellWithoutFallback() {
+        String actionCell = "{  \"type\": \"action_cell\",  \"element\": {    \"type\": \"button\",    \"text\": {      \"type\": \"plain_text\",      \"text\": \"Mark done\"    },    \"action_id\": \"mark_done\",    \"value\": \"task_123\"  }}";
+        String json = dataTableActionCellJson(actionCell);
+        Gson gson = GsonFactory.createSnakeCase();
+        DataTableBlock block = (DataTableBlock) gson.fromJson(json, LayoutBlock.class);
+        ActionCellObject cell = (ActionCellObject) block.getRows().get(1).get(1);
+        assertThat(cell.getElement().getActionId(), is("mark_done"));
+        assertThat(cell.getFallback(), is(nullValue()));
+        assertEquals(JsonParser.parseString(json), JsonParser.parseString(gson.toJson(block)));
+    }
+
+    @Test
+    public void buildDataTableBlockActionCell() {
+        DataTableBlock block = dataTable(t -> t
+                .rows(Arrays.asList(
+                        Arrays.asList(
+                                rawText("Task"),
+                                rawText("Action")
+                        ),
+                        Arrays.asList(
+                                rawText("Write docs"),
+                                actionCell(c -> c
+                                        .element(button(b -> b
+                                                .text(plainText("Mark done"))
+                                                .actionId("mark_done")
+                                                .value("task_123")
+                                        ))
+                                        .fallback(rawText("Open"))
+                                )
+                        )
+                )));
+        String actionCell = "{  \"type\": \"action_cell\",  \"element\": {    \"type\": \"button\",    \"text\": {      \"type\": \"plain_text\",      \"text\": \"Mark done\"    },    \"action_id\": \"mark_done\",    \"value\": \"task_123\"  },  \"fallback\": {    \"type\": \"raw_text\",    \"text\": \"Open\"  }}";
+        String expected = dataTableActionCellJson(actionCell);
+        assertEquals(JsonParser.parseString(expected), JsonParser.parseString(GsonFactory.createSnakeCase().toJson(block)));
+    }
+
+    String unknownTableCellJson = "{\n" +
+            "  \"type\": \"data_table\",\n" +
+            "  \"rows\": [\n" +
+            "    [\n" +
+            "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
+            "      { \"type\": \"raw_text\", \"text\": \"Owner\" }\n" +
+            "    ],\n" +
+            "    [\n" +
+            "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
+            "      { \"type\": \"unknown_cell_in_the_future\", \"user_id\": \"U123456\" }\n" +
+            "    ]\n" +
+            "  ]\n" +
+            "}";
+
+    @Test
+    public void data_table_default_behavior_with_unknown_cell() {
+        Gson prodGson = GsonFactory.createSnakeCase(false, false);
+        DataTableBlock block = (DataTableBlock) prodGson.fromJson(unknownTableCellJson, LayoutBlock.class);
+        assertThat(block.getRows().get(1).size(), is(2));
+        TableCell cell = block.getRows().get(1).get(1);
+        assertTrue(cell instanceof UnknownTableCell);
+        assertThat(cell.getType(), is("unknown_cell_in_the_future"));
+    }
+
+    @Test
+    public void data_table_fail_on_unknown_cell() {
+        try {
+            GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                    .fromJson(unknownTableCellJson, LayoutBlock.class);
+            fail("throwing JsonParseException is expected here");
+        } catch (JsonParseException e) {
+            assertThat(e.getMessage(), is("Unknown table cell type: unknown_cell_in_the_future"));
+        }
     }
 
     @Test
