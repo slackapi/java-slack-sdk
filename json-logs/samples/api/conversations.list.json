@@ -71361,7 +71361,19 @@
         ""
       ],
       "channel_email_addresses": [
-        ""
+        {
+          "team_id": "T00000000",
+          "user_id": "W00000000",
+          "conversation_id": "C00000000",
+          "date_created": 12345,
+          "address": "",
+          "name": "",
+          "icons": {
+            "image_36": "https://www.example.com/",
+            "image_48": "https://www.example.com/",
+            "image_72": "https://www.example.com/"
+          }
+        }
       ],
       "is_read_only": false,
       "is_thread_only": false,
