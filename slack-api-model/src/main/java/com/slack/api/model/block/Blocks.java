@@ -159,6 +159,12 @@ public class Blocks {
         return configurator.configure(ContainerBlock.builder()).build();
     }
 
+    // DataVisualizationBlock
+
+    public static DataVisualizationBlock dataVisualization(ModelConfigurator<DataVisualizationBlock.DataVisualizationBlockBuilder> configurator) {
+        return configurator.configure(DataVisualizationBlock.builder()).build();
+    }
+
     // TaskCardBlock
 
     public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {
