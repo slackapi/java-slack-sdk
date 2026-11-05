@@ -426,6 +426,7 @@ public class Actions {
         public static final String mcp_slack_create_developer_sandbox_tool_called = "mcp_slack_create_developer_sandbox_tool_called";
         public static final String pref_enable_dbsc_enforcement = "pref.enable_dbsc_enforcement";
         public static final String pref_slackbot_ai_fedramp_web_search_consented_changed = "pref.slackbot_ai_fedramp_web_search_consented_changed";
+        public static final String mcp_slack_update_list_comment_tool_called = "mcp_slack_update_list_comment_tool_called";
     }
 
     public static class User {
