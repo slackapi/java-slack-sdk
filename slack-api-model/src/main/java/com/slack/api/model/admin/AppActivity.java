@@ -68,6 +68,7 @@ public class AppActivity {
         private String errorStage; // "http_non_2xx", "http_request", "token_fetch"
         private Integer httpStatusCode;
         private String providerKey; // "mcp_dcr_notion" etc.
+        private Integer tokensChecked;
     }
 
     @Data
