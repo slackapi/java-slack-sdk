@@ -38,7 +38,7 @@
             "function_inputs": {
               "repository": {
                 "label": {
-                  "https://api.github.com/repos/zimeg/blog": ""
+                  "https://www.example.com/": ""
                 },
                 "value": "https://www.example.com/",
                 "hidden": false,
