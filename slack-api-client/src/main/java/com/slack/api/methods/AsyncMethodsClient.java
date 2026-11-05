@@ -38,12 +38,23 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
 import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
@@ -67,6 +78,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -180,12 +192,23 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsArchiveResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsListViewsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsRemoveViewResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCanvasContentResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCommandsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetPropertiesResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
 import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
@@ -209,6 +232,7 @@ import com.slack.api.methods.response.calls.participants.CallsParticipantsRemove
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
 import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.CanvasesGetContentResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
 import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
@@ -801,6 +825,46 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminWorkflowsUnpublishResponse> adminWorkflowsUnpublish(RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req);
 
     // ------------------------------
+    // agents.conversations
+    // ------------------------------
+
+    CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(AgentsConversationsArchiveRequest req);
+
+    CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(RequestConfigurator<AgentsConversationsArchiveRequest.AgentsConversationsArchiveRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(AgentsConversationsCreateRequest req);
+
+    CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req);
+
+    CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsListViewsResponse> agentsConversationsListViews(AgentsConversationsListViewsRequest req);
+
+    CompletableFuture<AgentsConversationsListViewsResponse> agentsConversationsListViews(RequestConfigurator<AgentsConversationsListViewsRequest.AgentsConversationsListViewsRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsRemoveViewResponse> agentsConversationsRemoveView(AgentsConversationsRemoveViewRequest req);
+
+    CompletableFuture<AgentsConversationsRemoveViewResponse> agentsConversationsRemoveView(RequestConfigurator<AgentsConversationsRemoveViewRequest.AgentsConversationsRemoveViewRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(AgentsConversationsSetCanvasContentRequest req);
+
+    CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(RequestConfigurator<AgentsConversationsSetCanvasContentRequest.AgentsConversationsSetCanvasContentRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req);
+
+    CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req);
+
+    CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req);
+
+    CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(AgentsConversationsSetViewRequest req);
+
+    CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req);
+
+    // ------------------------------
     // agents.sessions
     // ------------------------------
 
@@ -839,6 +903,14 @@ public interface AsyncMethodsClient {
     // ------------------------------
     // apps.user.connection
     // ------------------------------
+
+    CompletableFuture<AppsUserConnectionBulkUpdateResponse> appsUserConnectionBulkUpdate(AppsUserConnectionBulkUpdateRequest req);
+
+    CompletableFuture<AppsUserConnectionBulkUpdateResponse> appsUserConnectionBulkUpdate(RequestConfigurator<AppsUserConnectionBulkUpdateRequest.AppsUserConnectionBulkUpdateRequestBuilder> req);
+
+    CompletableFuture<AppsUserConnectionRequestAuthResponse> appsUserConnectionRequestAuth(AppsUserConnectionRequestAuthRequest req);
+
+    CompletableFuture<AppsUserConnectionRequestAuthResponse> appsUserConnectionRequestAuth(RequestConfigurator<AppsUserConnectionRequestAuthRequest.AppsUserConnectionRequestAuthRequestBuilder> req);
 
     CompletableFuture<AppsUserConnectionUpdateResponse> appsUserConnectionUpdate(AppsUserConnectionUpdateRequest req);
 
@@ -996,6 +1068,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<CanvasesDeleteResponse> canvasesDelete(CanvasesDeleteRequest req);
 
     CompletableFuture<CanvasesDeleteResponse> canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req);
+
+    CompletableFuture<CanvasesGetContentResponse> canvasesGetContent(CanvasesGetContentRequest req);
+
+    CompletableFuture<CanvasesGetContentResponse> canvasesGetContent(RequestConfigurator<CanvasesGetContentRequest.CanvasesGetContentRequestBuilder> req);
 
     CompletableFuture<CanvasesAccessSetResponse> canvasesAccessSet(CanvasesAccessSetRequest req);
 

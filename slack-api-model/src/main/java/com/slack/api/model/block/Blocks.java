@@ -135,6 +135,12 @@ public class Blocks {
         return configurator.configure(AlertBlock.builder()).build();
     }
 
+    // AuthProviderBlock
+
+    public static AuthProviderBlock authProvider(ModelConfigurator<AuthProviderBlock.AuthProviderBlockBuilder> configurator) {
+        return configurator.configure(AuthProviderBlock.builder()).build();
+    }
+
     // CardBlock
 
     public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {

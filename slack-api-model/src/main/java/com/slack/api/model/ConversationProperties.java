@@ -26,6 +26,9 @@ public class ConversationProperties {
     private List<ChannelWorkflow> channelWorkflows;
     private Boolean isDormant;
     private Boolean hasSlackConnectInviteCreated;
+    private RecordChannel recordChannel;
+    private CodeChannel codeChannel;
+    private AgentSession agentSession;
 
     @Data
     @Builder
@@ -114,5 +117,57 @@ public class ConversationProperties {
     public static class ChannelWorkflow {
         private String workflowTriggerId;
         private String title;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class RecordChannel {
+        private String recordId;
+        private String recordType;
+        private String recordLabel;
+        private String recordLabelPlural;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CodeChannel {
+        private List<ContextBarItem> contextBarItems;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ContextBarItem {
+        private String key;
+        private String label;
+        private String icon;
+        private String url;
+        private String botUserId;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AgentSession {
+        private String status;
+        private List<String> agentBotUserIds;
+        private List<String> encodedAgentBotUserIds;
+        private String title;
+        private OriginLink originLink;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class OriginLink {
+        private String channelId;
+        private String ts;
     }
 }
