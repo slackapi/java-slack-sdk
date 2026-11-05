@@ -161,9 +161,9 @@ public interface SocketModeClient extends Closeable {
             int num = i;
             messageProcessorExecutor.scheduleAtFixedRate(() -> {
                 try {
-                    String message = getMessageQueue().poll();
+                    SocketModeMessage message = getMessageQueue().pollMessage();
                     if (message != null) {
-                        processMessage(message);
+                        SocketModeMessageContext.process(this, message);
                     }
                 } catch (Exception e) {
                     getLogger().error("Failed to poll a message or run processMessage (error: {})", e.getMessage(), e);
@@ -382,8 +382,9 @@ public interface SocketModeClient extends Closeable {
             return;
         }
 
+        SocketModeMessage receivedMessage = new SocketModeMessage(message, SocketModeMessageContext.receivedAtNanos());
         for (WebSocketMessageListener listener : getWebSocketMessageListeners()) {
-            listener.handle(message);
+            listener.handle(receivedMessage);
         }
         if (type.equals(EventsApiEnvelope.TYPE)) {
             for (EnvelopeListener<EventsApiEnvelope> listener : getEventsApiEnvelopeListeners()) {

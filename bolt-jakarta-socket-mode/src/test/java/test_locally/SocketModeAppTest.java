@@ -6,6 +6,7 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.jakarta_socket_mode.SocketModeApp;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.bolt.socket_mode.listener.SocketModeRequestListener;
 import com.slack.api.model.event.AppMentionEvent;
 import org.junit.After;
 import org.junit.Before;
@@ -16,6 +17,7 @@ import util.socket_mode.MockWebSocketServer;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class SocketModeAppTest {
@@ -54,7 +56,9 @@ public class SocketModeAppTest {
         AtomicBoolean commandCalled = new AtomicBoolean(false);
         AtomicBoolean actionCalled = new AtomicBoolean(false);
         AtomicBoolean eventCalled = new AtomicBoolean(false);
+        AtomicBoolean requestObserved = new AtomicBoolean(false);
         app.command("/hi-socket-mode", (req, ctx) -> {
+            assertTrue(requestObserved.get());
             commandCalled.set(true);
             return ctx.ack("Hello!");
         });
@@ -67,6 +71,16 @@ public class SocketModeAppTest {
             return ctx.ack();
         });
         SocketModeApp socketModeApp = new SocketModeApp(VALID_APP_TOKEN, app);
+        socketModeApp.addRequestListener(new SocketModeRequestListener() {
+            @Override
+            public void accept(State state) {
+                assertNotNull(state.getRequest());
+                assertNotNull(state.getEnvelopeId());
+                assertNotNull(state.getDispatchDelayNanos());
+                assertTrue(state.getDispatchDelayNanos() >= 0);
+                requestObserved.set(true);
+            }
+        });
         socketModeApp.startAsync();
         try {
             Thread.sleep(3_000L);
