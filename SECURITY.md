@@ -62,3 +62,20 @@ This project follows coordinated disclosure:
 
 - Allow a reasonable timeframe for the team to investigate, develop, and release a fix before any public disclosure.
 - Researchers who follow responsible disclosure practices are eligible for recognition and bounty consideration through the Slack HackerOne program.
+
+## Verifying Releases
+
+Release artifacts published to [Maven Central](https://central.sonatype.com/namespace/com.slack.api) are signed with the following PGP key, which is published on [keyserver.ubuntu.com](https://keyserver.ubuntu.com/pks/lookup?search=0xC716D8933EE60B43B1E6B1936D5B6DF8D07BE057&op=index):
+
+```
+C716D8933EE60B43B1E6B1936D5B6DF8D07BE057
+```
+
+Releases starting with `v1.48.1` are signed with this key. If the key changes, this fingerprint is updated and the change is announced in the release notes.
+
+To verify a downloaded artifact, import the key and check the artifact against its `.asc` signature:
+
+```sh
+gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys C716D8933EE60B43B1E6B1936D5B6DF8D07BE057
+gpg --verify slack-api-client-<version>.jar.asc slack-api-client-<version>.jar
+```
