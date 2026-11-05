@@ -17,6 +17,9 @@ class ButtonElementBuilder : Builder<ButtonElement> {
     private var style: String? = null
     private var confirm: ConfirmationDialogObject? = null
     private var accessibilityLabel: String? = null
+    private var agentPrompt: String? = null
+    private var agentPromptDisplay: String? = null
+    private var visibleToUserIds: List<String>? = null
 
     /**
      * An identifier for this action. You can use this when you receive an interaction payload to identify the source
@@ -103,6 +106,44 @@ class ButtonElementBuilder : Builder<ButtonElement> {
         this.accessibilityLabel = accessibilityLabel
     }
 
+    /**
+     * A prompt sent to Slackbot when the button is clicked, if Slackbot AI is available to the user.
+     * Maximum length for this field is 4000 characters.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
+     */
+    fun agentPrompt(agentPrompt: String) {
+        this.agentPrompt = agentPrompt
+    }
+
+    /**
+     * Short text shown instead of the full agent_prompt in the user's Slackbot message.
+     * Requires agent_prompt and defaults to the button's text.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
+     */
+    fun agentPromptDisplay(agentPromptDisplay: String) {
+        this.agentPromptDisplay = agentPromptDisplay
+    }
+
+    /**
+     * An array of user IDs for which the button appears. If not provided, the button is visible to all users.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
+     */
+    fun visibleToUserIds(visibleToUserIds: List<String>) {
+        this.visibleToUserIds = visibleToUserIds
+    }
+
+    /**
+     * An array of user IDs for which the button appears. If not provided, the button is visible to all users.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/button-element">Button element documentation</a>
+     */
+    fun visibleToUserIds(vararg visibleToUserIds: String) {
+        this.visibleToUserIds = visibleToUserIds.toList()
+    }
+
     override fun build(): ButtonElement {
         return ButtonElement.builder()
             .actionId(actionId)
@@ -112,6 +153,9 @@ class ButtonElementBuilder : Builder<ButtonElement> {
             .style(style)
             .confirm(confirm)
             .accessibilityLabel(accessibilityLabel)
+            .agentPrompt(agentPrompt)
+            .agentPromptDisplay(agentPromptDisplay)
+            .visibleToUserIds(visibleToUserIds)
             .build()
     }
 }

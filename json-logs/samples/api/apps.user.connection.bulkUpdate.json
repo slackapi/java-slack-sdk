@@ -1,0 +1,21 @@
+{
+  "ok": false,
+  "changed_user_ids": [
+    "U00000000"
+  ],
+  "failures": [
+    {
+      "user_id": "U00000000",
+      "error": ""
+    }
+  ],
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "needed": "",
+  "provided": "",
+  "warning": ""
+}

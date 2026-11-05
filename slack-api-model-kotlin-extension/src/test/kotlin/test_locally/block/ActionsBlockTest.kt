@@ -32,6 +32,25 @@ class ActionsBlockTest {
     }
 
     @Test
+    fun buttonWithAgentPrompt() {
+        val gson = GsonFactory.createSnakeCase()
+        val blocks = withBlocks {
+            actions {
+                button {
+                    actionId("summarize_incident")
+                    text("Summarize with Slackbot")
+                    agentPrompt("Summarize this incident and suggest next steps.")
+                    agentPromptDisplay("Summarize this incident")
+                    visibleToUserIds("U123456")
+                }
+            }
+        }
+        val result = gson.toJson(blocks)
+        val expected = """[{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","text":"Summarize with Slackbot"},"action_id":"summarize_incident","agent_prompt":"Summarize this incident and suggest next steps.","agent_prompt_display":"Summarize this incident","visible_to_user_ids":["U123456"]}]}]"""
+        assertEquals(expected, result)
+    }
+
+    @Test
     fun `multi-selects`() {
         val gson = GsonFactory.createSnakeCase()
         val blocks = withBlocks {

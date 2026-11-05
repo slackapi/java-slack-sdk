@@ -267,6 +267,36 @@ CompletableFuture<ChatPostMessageResponse> postMessageResult = slack.methodsAsyn
   .chatPostMessage(r -> r.channel("C01ABC123").text("This may be delayed a bit"));
 ```
 
+By default, queued asynchronous Web API calls automatically retry HTTP 429 responses. To handle these responses yourself instead, enable `rejectRateLimitedCalls` before creating the client:
+
+```java
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.methods.MethodsCompletionException;
+import com.slack.api.methods.SlackApiException;
+import java.util.concurrent.CompletionException;
+
+SlackConfig config = new SlackConfig();
+config.getMethodsConfig().setRejectRateLimitedCalls(true);
+Slack slack = Slack.getInstance(config);
+
+slack.methodsAsync("xoxb-...").usersList(r -> r).whenComplete((response, failure) -> {
+  Throwable cause = failure instanceof CompletionException ? failure.getCause() : failure;
+  if (cause instanceof MethodsCompletionException) {
+    SlackApiException apiException = ((MethodsCompletionException) cause).getSlackApiException();
+    if (apiException != null && apiException.getResponse().code() == 429) {
+      String retryAfterSeconds = apiException.getResponse().header("Retry-After");
+      System.err.println("Rate limited; retry after " + retryAfterSeconds + " seconds");
+    }
+  }
+});
+```
+
+With this option enabled, a received HTTP 429 completes the future exceptionally. A `whenComplete` callback receives a `CompletionException` whose cause is a `MethodsCompletionException` wrapping the original `SlackApiException`, including its status code and `Retry-After` header. If you use `future.get()`, the `MethodsCompletionException` is the cause of the resulting `ExecutionException`.
+
+The default value is `false`; leaving it unset or explicitly setting it to `false` preserves automatic retries. This option only changes HTTP 429 retry handling in `methodsAsync`. Queueing and proactive rate limiting still apply, and synchronous `methods` calls, other HTTP errors, and Slack API error responses (HTTP 200 with `ok: false`) keep their existing behavior. It does not configure the SCIM or Audit Logs clients. Methods clients sharing an executor name share its rate-limit configuration, so use a separate executor name if they need different settings.
+
+
 If your app has multiple nodes, it's also possible to specify the number of nodes.
 
 ```java

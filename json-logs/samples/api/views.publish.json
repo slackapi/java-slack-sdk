@@ -2598,7 +2598,10 @@
             },
             "style": ""
           },
-          "accessibility_label": ""
+          "accessibility_label": "",
+          "agent_prompt": "",
+          "agent_prompt_display": "",
+          "visible_to_user_ids": []
         },
         "dispatch_action": false,
         "hint": {
@@ -3205,7 +3208,10 @@
               },
               "style": ""
             },
-            "accessibility_label": ""
+            "accessibility_label": "",
+            "agent_prompt": "",
+            "agent_prompt_display": "",
+            "visible_to_user_ids": []
           },
           {
             "type": "workflow_button",
