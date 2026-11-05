@@ -6,6 +6,7 @@ import com.slack.api.methods.response.admin.conversations.AdminConversationsBulk
 import com.slack.api.methods.response.admin.conversations.AdminConversationsGetConversationPrefsResponse;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSearchResponse;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
@@ -397,6 +398,13 @@ public class JsonDataRecorder {
                     array.remove(0);
                 }
                 array.add(gson.toJsonTree(initProperties(new Message.MessageRootReply())));
+            } else if (path.equals("/api/agents.conversations.getCanvas") && name != null && name.equals("comments")) {
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
+                AgentsConversationsGetCanvasResponse.Comment comment = initProperties(new AgentsConversationsGetCanvasResponse.Comment());
+                comment.setReplies(Arrays.asList(initProperties(new AgentsConversationsGetCanvasResponse.Reply())));
+                array.add(gson.toJsonTree(comment));
             } else if (name != null && name.equals("comments")) {
                 while (!array.isEmpty()) {
                     array.remove(0);

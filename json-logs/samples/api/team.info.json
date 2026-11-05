@@ -31,7 +31,8 @@
       "label": ""
     },
     "pay_prod_cur": "",
-    "locale": ""
+    "locale": "",
+    "slackbot_availability": ""
   },
   "error": "",
   "needed": "",
