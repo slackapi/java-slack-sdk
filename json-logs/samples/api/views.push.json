@@ -2502,9 +2502,9 @@
               },
               "value": "",
               "description": {
-                "type": "plain_text",
+                "type": "mrkdwn",
                 "text": "",
-                "emoji": false
+                "verbatim": false
               },
               "url": ""
             }
