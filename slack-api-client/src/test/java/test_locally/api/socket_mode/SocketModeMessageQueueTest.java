@@ -12,8 +12,7 @@ import com.slack.api.util.thread.ExecutorServiceProvider;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import java.io.IOException;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -64,7 +63,7 @@ public class SocketModeMessageQueueTest {
     }
 
     @Test
-    public void dispatcherPreservesProcessMessageOverridesAndClearsTimingAfterFailure() throws Exception {
+    public void dispatcherPassesMetadataExplicitlyAndSupportsExistingStringListeners() throws Exception {
         ScheduledExecutorService executor = mock(ScheduledExecutorService.class);
         ExecutorServiceProvider provider = mock(ExecutorServiceProvider.class);
         when(provider.createThreadScheduledExecutor(anyString())).thenReturn(executor);
@@ -76,6 +75,7 @@ public class SocketModeMessageQueueTest {
         when(client.getSlack()).thenReturn(slack);
         when(client.getMessageQueue()).thenReturn(new TimedMessageQueue());
         AtomicReference<SocketModeMessage> received = new AtomicReference<>();
+        AtomicReference<String> rawMessage = new AtomicReference<>();
         WebSocketMessageListener listener = new WebSocketMessageListener() {
             @Override
             public void handle(String message) {
@@ -83,28 +83,27 @@ public class SocketModeMessageQueueTest {
             }
 
             @Override
-            public void handle(SocketModeMessage message) {
+            public void handleWithMetadata(SocketModeMessage message) {
                 received.set(message);
             }
         };
-        when(client.getWebSocketMessageListeners()).thenReturn(Collections.singletonList(listener));
+        when(client.getWebSocketMessageListeners()).thenReturn(Arrays.asList(listener, rawMessage::set));
         client.initializeMessageProcessorExecutor(1);
         ArgumentCaptor<Runnable> task = ArgumentCaptor.forClass(Runnable.class);
         verify(executor).scheduleAtFixedRate(task.capture(), eq(0L), eq(10L), eq(TimeUnit.MILLISECONDS));
 
         String payload = "{\"type\":\"hello\"}";
-        doThrow(new IOException("Failed overridden handler")).doCallRealMethod().when(client).processMessage(payload);
         client.enqueueMessage(payload);
         task.getValue().run();
-        verify(client).processMessage(payload);
-
-        // A direct dispatch on the same thread must not inherit the failed delivery's time.
-        client.processMessage(payload);
-        assertNull(received.get().getReceivedAtNanos());
-        client.enqueueMessage(payload);
-        task.getValue().run();
+        ArgumentCaptor<SocketModeMessage> delivery = ArgumentCaptor.forClass(SocketModeMessage.class);
+        verify(client).processMessageWithMetadata(delivery.capture());
+        assertSame(delivery.getValue(), received.get());
         assertNotNull(received.get().getReceivedAtNanos());
+        assertEquals(payload, rawMessage.get());
+
+        // Direct string dispatch has no receive timestamp; no ambient delivery state is needed.
         client.processMessage(payload);
         assertNull(received.get().getReceivedAtNanos());
+        assertEquals(payload, received.get().getPayload());
     }
 }

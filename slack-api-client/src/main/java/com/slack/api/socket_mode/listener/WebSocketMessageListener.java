@@ -8,7 +8,7 @@ public interface WebSocketMessageListener {
     void handle(String message);
 
     /** Receives queue timing when available; existing string listeners continue to work unchanged. */
-    default void handle(SocketModeMessage message) {
+    default void handleWithMetadata(SocketModeMessage message) {
         handle(message.getPayload());
     }
 

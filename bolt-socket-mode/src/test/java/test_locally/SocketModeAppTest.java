@@ -5,7 +5,6 @@ import com.slack.api.SlackConfig;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.response.Response;
-import com.slack.api.bolt.socket_mode.listener.SocketModeRequestListener;
 import com.slack.api.bolt.socket_mode.SocketModeApp;
 import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.socket_mode.SocketModeClient;
@@ -70,15 +69,13 @@ public class SocketModeAppTest {
             return ctx.ack();
         });
         SocketModeApp socketModeApp = new SocketModeApp(VALID_APP_TOKEN, app);
-        socketModeApp.addRequestListener(new SocketModeRequestListener() {
-            @Override
-            public void accept(State state) {
-                assertNotNull(state.getRequest());
-                assertNotNull(state.getEnvelopeId());
-                assertNotNull(state.getDispatchDelayNanos());
-                assertTrue(state.getDispatchDelayNanos() >= 0);
-                requestObserved.set(true);
-            }
+        app.use((request, response, chain) -> {
+            assertTrue(request.isSocketMode());
+            assertNotNull(request.getSocketModeEnvelopeId());
+            assertNotNull(request.getSocketModeDispatchDelayNanos());
+            assertTrue(request.getSocketModeDispatchDelayNanos() >= 0);
+            requestObserved.set(true);
+            return chain.next(request);
         });
         socketModeApp.startAsync();
         try {
@@ -138,15 +135,13 @@ public class SocketModeAppTest {
                 SocketModeClient.Backend.JavaWebSocket,
                 app
         );
-        socketModeApp.addRequestListener(new SocketModeRequestListener() {
-            @Override
-            public void accept(State state) {
-                assertNotNull(state.getRequest());
-                assertNotNull(state.getEnvelopeId());
-                assertNotNull(state.getDispatchDelayNanos());
-                assertTrue(state.getDispatchDelayNanos() >= 0);
-                requestObserved.set(true);
-            }
+        app.use((request, response, chain) -> {
+            assertTrue(request.isSocketMode());
+            assertNotNull(request.getSocketModeEnvelopeId());
+            assertNotNull(request.getSocketModeDispatchDelayNanos());
+            assertTrue(request.getSocketModeDispatchDelayNanos() >= 0);
+            requestObserved.set(true);
+            return chain.next(request);
         });
         socketModeApp.startAsync();
         try {
