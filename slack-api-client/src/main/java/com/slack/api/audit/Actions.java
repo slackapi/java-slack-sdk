@@ -1049,4 +1049,27 @@ public class Actions {
 
         public static final String enterprise_search_email_attachment_downloaded = "enterprise_search_email_attachment_downloaded";
     }
+
+    public static class Surface {
+        private Surface() {
+        }
+
+        public static final String surface_created = "surface_created";
+        public static final String surface_shared = "surface_shared";
+        public static final String surface_downloaded = "surface_downloaded";
+        public static final String surface_opened = "surface_opened";
+        public static final String surface_deleted = "surface_deleted";
+        public static final String surface_refreshed = "surface_refreshed";
+        public static final String surface_edited = "surface_edited";
+        public static final String surface_sources_shared = "surface_sources_shared";
+        public static final String surface_sources_unshared = "surface_sources_unshared";
+    }
+
+    public static class SlackbotTaskToolApproval {
+        private SlackbotTaskToolApproval() {
+        }
+
+        public static final String slackbot_task_tool_approval_granted = "slackbot_task_tool_approval_granted";
+        public static final String slackbot_task_tool_approval_revoked = "slackbot_task_tool_approval_revoked";
+    }
 }
