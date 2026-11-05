@@ -163,7 +163,7 @@ public interface SocketModeClient extends Closeable {
                 try {
                     SocketModeMessage message = getMessageQueue().pollMessage();
                     if (message != null) {
-                        processMessageWithMetadata(message);
+                        SocketModeMessageContext.process(this, message);
                     }
                 } catch (Exception e) {
                     getLogger().error("Failed to poll a message or run processMessage (error: {})", e.getMessage(), e);
@@ -362,17 +362,8 @@ public interface SocketModeClient extends Closeable {
         return GSON;
     }
 
-    /**
-     * Dispatches a raw message without receive timing. Queued deliveries use
-     * {@link #processMessageWithMetadata(SocketModeMessage)}; override that method to intercept them.
-     */
     default void processMessage(String message) throws IOException {
-        processMessageWithMetadata(new SocketModeMessage(message, null));
-    }
-
-    /** Dispatches a queued message, retaining its receive time for metadata-aware listeners. */
-    default void processMessageWithMetadata(SocketModeMessage receivedMessage) throws IOException {
-        String message = receivedMessage.getPayload();
+        SocketModeMessage receivedMessage = SocketModeMessageContext.take(message);
         if (!message.startsWith("{")) {
             return;
         }

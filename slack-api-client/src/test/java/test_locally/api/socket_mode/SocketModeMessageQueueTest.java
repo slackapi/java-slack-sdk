@@ -12,6 +12,7 @@ import com.slack.api.util.thread.ExecutorServiceProvider;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -63,47 +64,90 @@ public class SocketModeMessageQueueTest {
     }
 
     @Test
-    public void dispatcherPassesMetadataExplicitlyAndSupportsExistingStringListeners() throws Exception {
-        ScheduledExecutorService executor = mock(ScheduledExecutorService.class);
-        ExecutorServiceProvider provider = mock(ExecutorServiceProvider.class);
-        when(provider.createThreadScheduledExecutor(anyString())).thenReturn(executor);
-        SlackConfig config = new SlackConfig();
-        config.setExecutorServiceProvider(provider);
-        Slack slack = mock(Slack.class);
-        when(slack.getConfig()).thenReturn(config);
-        SocketModeClient client = mock(SocketModeClient.class, CALLS_REAL_METHODS);
-        when(client.getSlack()).thenReturn(slack);
-        when(client.getMessageQueue()).thenReturn(new TimedMessageQueue());
-        AtomicReference<SocketModeMessage> received = new AtomicReference<>();
-        AtomicReference<String> rawMessage = new AtomicReference<>();
-        WebSocketMessageListener listener = new WebSocketMessageListener() {
-            @Override
-            public void handle(String message) {
-                fail("The dispatcher should supply the message metadata");
-            }
-
-            @Override
-            public void handleWithMetadata(SocketModeMessage message) {
-                received.set(message);
-            }
-        };
-        when(client.getWebSocketMessageListeners()).thenReturn(Arrays.asList(listener, rawMessage::set));
-        client.initializeMessageProcessorExecutor(1);
-        ArgumentCaptor<Runnable> task = ArgumentCaptor.forClass(Runnable.class);
-        verify(executor).scheduleAtFixedRate(task.capture(), eq(0L), eq(10L), eq(TimeUnit.MILLISECONDS));
-
+    public void dispatcherPreservesOverridesAndClearsTimingAfterFailure() throws Exception {
+        Dispatcher dispatcher = new Dispatcher();
+        SocketModeClient client = dispatcher.client;
         String payload = "{\"type\":\"hello\"}";
+        doThrow(new IOException("Failed overridden handler")).doCallRealMethod().when(client).processMessage(payload);
         client.enqueueMessage(payload);
-        task.getValue().run();
-        ArgumentCaptor<SocketModeMessage> delivery = ArgumentCaptor.forClass(SocketModeMessage.class);
-        verify(client).processMessageWithMetadata(delivery.capture());
-        assertSame(delivery.getValue(), received.get());
-        assertNotNull(received.get().getReceivedAtNanos());
-        assertEquals(payload, rawMessage.get());
+        dispatcher.poll.run();
+        verify(client).processMessage(payload);
+        assertNull(dispatcher.received.get());
+        assertNull(dispatcher.rawMessage.get());
 
-        // Direct string dispatch has no receive timestamp; no ambient delivery state is needed.
+        // A direct dispatch must not inherit the failed override's receive time.
         client.processMessage(payload);
-        assertNull(received.get().getReceivedAtNanos());
-        assertEquals(payload, received.get().getPayload());
+        assertNull(dispatcher.received.get().getReceivedAtNanos());
+        assertEquals(payload, dispatcher.rawMessage.get());
+
+        // An override delegating to the default implementation retains queued timing.
+        client.enqueueMessage(payload);
+        dispatcher.poll.run();
+        verify(client, times(3)).processMessage(payload);
+        assertNotNull(dispatcher.received.get().getReceivedAtNanos());
+        assertEquals(payload, dispatcher.rawMessage.get());
+
+        // Timing is also cleared after a successful dispatch.
+        client.processMessage(payload);
+        assertNull(dispatcher.received.get().getReceivedAtNanos());
+        assertEquals(payload, dispatcher.received.get().getPayload());
+    }
+
+    @Test
+    public void nestedDirectDispatchDoesNotInheritQueuedTiming() throws Exception {
+        Dispatcher dispatcher = new Dispatcher();
+        String payload = "{\"type\":\"hello\"}";
+        String nestedPayload = "{\"type\":\"hello\",\"nested\":true}";
+        AtomicReference<SocketModeMessage> queued = new AtomicReference<>();
+        doAnswer(invocation -> {
+            invocation.callRealMethod();
+            queued.set(dispatcher.received.get());
+            // The override is still running, but this is a separate direct delivery.
+            dispatcher.client.processMessage(nestedPayload);
+            return null;
+        }).when(dispatcher.client).processMessage(payload);
+
+        dispatcher.client.enqueueMessage(payload);
+        dispatcher.poll.run();
+
+        assertNotNull(queued.get().getReceivedAtNanos());
+        assertEquals(payload, queued.get().getPayload());
+        assertEquals(nestedPayload, dispatcher.received.get().getPayload());
+        assertNull(dispatcher.received.get().getReceivedAtNanos());
+    }
+
+    private static class Dispatcher {
+        private final SocketModeClient client = mock(SocketModeClient.class, CALLS_REAL_METHODS);
+        private final AtomicReference<SocketModeMessage> received = new AtomicReference<>();
+        private final AtomicReference<String> rawMessage = new AtomicReference<>();
+        private final Runnable poll;
+
+        Dispatcher() {
+            ScheduledExecutorService executor = mock(ScheduledExecutorService.class);
+            ExecutorServiceProvider provider = mock(ExecutorServiceProvider.class);
+            when(provider.createThreadScheduledExecutor(anyString())).thenReturn(executor);
+            SlackConfig config = new SlackConfig();
+            config.setExecutorServiceProvider(provider);
+            Slack slack = mock(Slack.class);
+            when(slack.getConfig()).thenReturn(config);
+            when(client.getSlack()).thenReturn(slack);
+            when(client.getMessageQueue()).thenReturn(new TimedMessageQueue());
+            WebSocketMessageListener listener = new WebSocketMessageListener() {
+                @Override
+                public void handle(String message) {
+                    fail("The dispatcher should supply the message metadata");
+                }
+
+                @Override
+                public void handleWithMetadata(SocketModeMessage message) {
+                    received.set(message);
+                }
+            };
+            when(client.getWebSocketMessageListeners()).thenReturn(Arrays.asList(listener, rawMessage::set));
+            client.initializeMessageProcessorExecutor(1);
+            ArgumentCaptor<Runnable> task = ArgumentCaptor.forClass(Runnable.class);
+            verify(executor).scheduleAtFixedRate(task.capture(), eq(0L), eq(10L), eq(TimeUnit.MILLISECONDS));
+            poll = task.getValue();
+        }
     }
 }
