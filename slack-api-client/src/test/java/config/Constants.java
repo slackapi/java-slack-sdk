@@ -48,6 +48,9 @@ public class Constants {
     public static final String SLACK_SDK_TEST_INCOMING_WEBHOOK_URL = "SLACK_SDK_TEST_INCOMING_WEBHOOK_URL";
     public static final String SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME = "SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME";
 
+    // For agents.conversations: an existing canvas with comments
+    public static final String SLACK_SDK_TEST_AGENTS_CANVAS_ID = "SLACK_SDK_TEST_AGENTS_CANVAS_ID";
+
     // Slack Connect API tests
     // both sender and receiver apps need to be installed into a workspace under Enterprise Grid org
     // {

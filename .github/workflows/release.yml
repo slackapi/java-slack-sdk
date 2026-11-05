@@ -1,12 +1,15 @@
 name: Release
 
 on:
+  release:
+    types:
+      - published
   workflow_dispatch:
 
 jobs:
   publish:
     name: Publish
-    if: github.repository == 'slackapi/java-slack-sdk'
+    if: github.event_name == 'workflow_dispatch' && github.repository == 'slackapi/java-slack-sdk'
     runs-on: ubuntu-latest
     environment: central
     permissions:
@@ -18,15 +21,15 @@ jobs:
           persist-credentials: false
 
       - name: Set up JDK 17
-        uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           java-version: "17"
-          distribution: "adopt"
+          distribution: "zulu"
           server-id: central
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-username-env-var: MAVEN_USERNAME
+          server-password-env-var: MAVEN_PASSWORD
           gpg-private-key: ${{ secrets.GPG_KEY }}
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+          gpg-passphrase-env-var: MAVEN_GPG_PASSPHRASE
 
       - name: Add snapshot server credentials
         run: |
@@ -39,9 +42,9 @@ jobs:
 
       - name: Configure GPG
         run: |
-          echo "use-agent" >> ~/.gnupg/gpg.conf
-          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          echo "use-agent" >> "${GNUPGHOME}/gpg.conf"
+          echo "pinentry-mode loopback" >> "${GNUPGHOME}/gpg.conf"
+          echo "allow-loopback-pinentry" >> "${GNUPGHOME}/gpg-agent.conf"
           echo RELOADAGENT | gpg-connect-agent
 
       - name: Publish to Maven Central
@@ -59,3 +62,20 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           MAVEN_OPTS: "--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
+
+  notify:
+    name: Notify
+    if: github.event_name == 'release' && !github.event.release.prerelease && github.repository == 'slackapi/java-slack-sdk'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
+        with:
+          webhook: ${{ secrets.SLACK_RELEASE_ANNOUNCEMENTS_WEBHOOK_URL }}
+          webhook-type: webhook-trigger
+          payload: |
+            action_url: "${{ github.event.release.html_url }}"
+            message: "java-slack-sdk ${{ github.event.release.tag_name }}"
+            repository: "${{ github.repository }}"
