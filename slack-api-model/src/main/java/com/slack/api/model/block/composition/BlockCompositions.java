@@ -1,6 +1,7 @@
 package com.slack.api.model.block.composition;
 
 import com.slack.api.model.ModelConfigurator;
+import com.slack.api.model.block.element.ButtonElement;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,16 @@ public class BlockCompositions {
 
     public static List<OptionObject> asOptions(OptionObject... options) {
         return Arrays.asList(options);
+    }
+
+    // ActionCellObject
+
+    public static ActionCellObject actionCell(ModelConfigurator<ActionCellObject.ActionCellObjectBuilder> configurator) {
+        return configurator.configure(ActionCellObject.builder()).build();
+    }
+
+    public static ActionCellObject actionCell(ButtonElement element) {
+        return ActionCellObject.builder().element(element).build();
     }
 
     // ConfirmationDialogObject

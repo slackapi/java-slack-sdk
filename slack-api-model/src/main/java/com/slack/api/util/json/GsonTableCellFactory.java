@@ -2,9 +2,11 @@ package com.slack.api.util.json;
 
 import com.google.gson.*;
 import com.slack.api.model.block.RichTextBlock;
+import com.slack.api.model.block.composition.ActionCellObject;
 import com.slack.api.model.block.composition.RawNumberObject;
 import com.slack.api.model.block.composition.RawTextObject;
 import com.slack.api.model.block.composition.TableCell;
+import com.slack.api.model.block.composition.UnknownTableCell;
 
 import java.lang.reflect.Type;
 
@@ -45,6 +47,8 @@ public class GsonTableCellFactory implements JsonDeserializer<TableCell>, JsonSe
 
     private Class<? extends TableCell> getTableCellClassInstance(String typeName) {
         switch (typeName) {
+            case ActionCellObject.TYPE:
+                return ActionCellObject.class;
             case RawTextObject.TYPE:
                 return RawTextObject.class;
             case RawNumberObject.TYPE:
@@ -52,7 +56,11 @@ public class GsonTableCellFactory implements JsonDeserializer<TableCell>, JsonSe
             case RichTextBlock.TYPE:
                 return RichTextBlock.class;
             default:
-                throw new JsonParseException("Unknown table cell type: " + typeName);
+                if (failOnUnknownProperties) {
+                    throw new JsonParseException("Unknown table cell type: " + typeName);
+                } else {
+                    return UnknownTableCell.class;
+                }
         }
     }
 }
