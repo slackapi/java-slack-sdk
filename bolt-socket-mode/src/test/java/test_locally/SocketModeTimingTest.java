@@ -1,6 +1,6 @@
 package test_locally;
 
-import com.google.gson.JsonParser;
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.bolt.App;
@@ -14,8 +14,12 @@ import com.slack.api.socket_mode.impl.SocketModeClientJavaWSImpl;
 import com.slack.api.socket_mode.queue.SocketModeMessageQueue;
 import com.slack.api.socket_mode.queue.impl.ConcurrentLinkedMessageQueue;
 import com.slack.api.socket_mode.queue.impl.TimedMessageQueue;
+import com.slack.api.socket_mode.request.SlashCommandsEnvelope;
+import com.slack.api.socket_mode.response.AckResponse;
+import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import util.socket_mode.MockSocketMode;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
@@ -30,6 +34,8 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 public class SocketModeTimingTest {
+    private static final Gson GSON = GsonFactory.createSnakeCase();
+
     @Test
     public void receiveTimeSurvivesBothQueuesAndTheSdkStillSendsAcknowledgements() throws Exception {
         try (Fixture fixture = new Fixture(new TimedMessageQueue())) {
@@ -72,10 +78,10 @@ public class SocketModeTimingTest {
             });
             try {
                 fixture.socketApp.startAsync();
-                fixture.socket.enqueueMessage(command("first-delivery"));
+                fixture.enqueueCommand("first-delivery");
                 assertTrue(receiverHeld.await(5, TimeUnit.SECONDS));
                 long beforeEnqueue = System.nanoTime();
-                fixture.socket.enqueueMessage(command("queued-delivery"));
+                fixture.enqueueCommand("queued-delivery");
                 long afterEnqueue = System.nanoTime();
                 releaseReceiver.countDown();
                 assertTrue(handlerHeld.await(5, TimeUnit.SECONDS));
@@ -93,8 +99,8 @@ public class SocketModeTimingTest {
                 assertNotNull(state.getDispatchDelayNanos());
                 assertTrue(state.getDispatchDelayNanos() >= handlerReleased - afterEnqueue);
                 assertTrue(state.getDispatchDelayNanos() <= secondStarted.get() - beforeEnqueue);
-                assertEquals("first-delivery", envelopeId(fixture.acknowledgements.poll(5, TimeUnit.SECONDS)));
-                assertEquals("queued-delivery", envelopeId(fixture.acknowledgements.poll(5, TimeUnit.SECONDS)));
+                assertEquals(new AckResponse("first-delivery"), fixture.acknowledgements.poll(5, TimeUnit.SECONDS));
+                assertEquals(new AckResponse("queued-delivery"), fixture.acknowledgements.poll(5, TimeUnit.SECONDS));
             } finally {
                 releaseReceiver.countDown();
                 releaseHandler.countDown();
@@ -119,12 +125,12 @@ public class SocketModeTimingTest {
                 }
             });
             fixture.socketApp.startAsync();
-            fixture.socket.enqueueMessage(command("legacy-delivery"));
+            fixture.enqueueCommand("legacy-delivery");
             SocketModeRequestListener.State state = observed.poll(5, TimeUnit.SECONDS);
             assertNotNull(state);
             assertEquals("legacy-delivery", state.getEnvelopeId());
             assertNull(state.getDispatchDelayNanos());
-            assertEquals("legacy-delivery", envelopeId(fixture.acknowledgements.poll(5, TimeUnit.SECONDS)));
+            assertEquals(new AckResponse("legacy-delivery"), fixture.acknowledgements.poll(5, TimeUnit.SECONDS));
             ArgumentCaptor<Request> request = ArgumentCaptor.forClass(Request.class);
             verify(fixture.app).run(request.capture());
             assertSame(state.getRequest(), request.getValue());
@@ -138,7 +144,7 @@ public class SocketModeTimingTest {
         private final SocketModeClient socket;
         private final App app = mock(App.class);
         private final SocketModeApp socketApp;
-        private final BlockingQueue<String> acknowledgements = new LinkedBlockingQueue<>();
+        private final BlockingQueue<AckResponse> acknowledgements = new LinkedBlockingQueue<>();
 
         Fixture(SocketModeMessageQueue queue) throws Exception {
             socket = spy(new SocketModeClientJavaWSImpl(
@@ -146,13 +152,20 @@ public class SocketModeTimingTest {
             doNothing().when(socket).connectToNewEndpoint();
             doReturn(socket).when(slack).socketMode(anyString(), any(SocketModeClient.Backend.class));
             doAnswer(invocation -> {
-                acknowledgements.add(invocation.getArgument(0));
+                String response = invocation.getArgument(0);
+                acknowledgements.add(GSON.fromJson(response, AckResponse.class));
                 return null;
             }).when(socket).sendSocketModeResponse(anyString());
             when(app.slack()).thenReturn(slack);
             when(app.config()).thenReturn(AppConfig.builder().slack(slack).build());
             when(app.run(any())).thenReturn(Response.ok());
             socketApp = new SocketModeApp("xapp-test", app, SocketModeClient.Backend.JavaWebSocket, 1);
+        }
+
+        void enqueueCommand(String envelopeId) {
+            SlashCommandsEnvelope envelope = GSON.fromJson(MockSocketMode.COMMAND_ENVELOPE, SlashCommandsEnvelope.class);
+            envelope.setEnvelopeId(envelopeId);
+            socket.enqueueMessage(GSON.toJson(envelope));
         }
 
         @Override
@@ -170,17 +183,5 @@ public class SocketModeTimingTest {
             Thread.currentThread().interrupt();
             throw new IllegalStateException(e);
         }
-    }
-
-    private static String envelopeId(String response) {
-        assertNotNull(response);
-        return JsonParser.parseString(response).getAsJsonObject().get("envelope_id").getAsString();
-    }
-
-    private static String command(String envelopeId) {
-        return "{\"type\":\"slash_commands\",\"envelope_id\":\"" + envelopeId
-                + "\",\"accepts_response_payload\":true,\"payload\":{\"command\":\"/test\","
-                + "\"team_id\":\"T123\",\"user_id\":\"U123\",\"channel_id\":\"C123\","
-                + "\"text\":\"\",\"trigger_id\":\"trigger\"}}";
     }
 }
