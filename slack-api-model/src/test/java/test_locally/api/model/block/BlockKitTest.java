@@ -17,6 +17,8 @@ import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
+import static com.slack.api.model.block.composition.BlockCompositions.option;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
 import static com.slack.api.model.block.element.BlockElements.conversationsSelect;
@@ -1143,6 +1145,61 @@ public class BlockKitTest {
         assertThat(mrkdwnOption.getDescription(), instanceOf(MarkdownTextObject.class));
         assertThat(mrkdwnOption.getDescription().getType(), is("mrkdwn"));
         assertThat(((MarkdownTextObject) mrkdwnOption.getDescription()).getText(), is("*this is mrkdwn text*"));
+    }
+
+    @Test
+    public void checkboxesOptionMarkdownDescription() {
+        // https://docs.slack.dev/reference/block-kit/block-elements/checkboxes-element
+        SectionBlock section = section(s -> s
+                .text(plainText("Check out these charming checkboxes"))
+                .accessory(checkboxes(c -> c
+                        .actionId("this_is_an_action_id")
+                        .initialOptions(Arrays.asList(
+                                option(plainText("Checkbox 1"), "A1")
+                        ))
+                        .options(Arrays.asList(
+                                option(plainText("Checkbox 1"), "A1"),
+                                option(o -> o
+                                        .value("A2")
+                                        .text(plainText("Checkbox 2"))
+                                        .description(markdownText("*A description of option two*"))
+                                )
+                        ))
+                ))
+        );
+        Gson gson = GsonFactory.createSnakeCase();
+        String output = gson.toJson(section);
+        assertThat(output, containsString("\"description\":{\"type\":\"mrkdwn\",\"text\":\"*A description of option two*\"}"));
+
+        SectionBlock parsed = gson.fromJson(output, SectionBlock.class);
+        OptionObject option = ((CheckboxesElement) parsed.getAccessory()).getOptions().get(1);
+        assertThat(option.getDescription(), instanceOf(MarkdownTextObject.class));
+        assertThat(((MarkdownTextObject) option.getDescription()).getText(), is("*A description of option two*"));
+    }
+
+    @Test
+    public void checkboxesOptionPlainTextDescription() {
+        SectionBlock section = section(s -> s
+                .text(plainText("Check out these charming checkboxes"))
+                .accessory(checkboxes(c -> c
+                        .actionId("this_is_an_action_id")
+                        .options(Arrays.asList(
+                                option(o -> o
+                                        .value("A2")
+                                        .text(plainText("Checkbox 2"))
+                                        .description(plainText("A description of option two"))
+                                )
+                        ))
+                ))
+        );
+        Gson gson = GsonFactory.createSnakeCase();
+        String output = gson.toJson(section);
+        assertThat(output, containsString("\"description\":{\"type\":\"plain_text\",\"text\":\"A description of option two\"}"));
+
+        SectionBlock parsed = gson.fromJson(output, SectionBlock.class);
+        OptionObject option = ((CheckboxesElement) parsed.getAccessory()).getOptions().get(0);
+        assertThat(option.getDescription(), instanceOf(PlainTextObject.class));
+        assertThat(((PlainTextObject) option.getDescription()).getText(), is("A description of option two"));
     }
 
     @Test
