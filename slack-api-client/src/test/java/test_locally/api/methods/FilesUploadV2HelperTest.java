@@ -8,6 +8,7 @@ import com.slack.api.methods.request.files.FilesUploadV2Request;
 import com.slack.api.methods.response.files.FilesCompleteUploadExternalResponse;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.util.http.SlackHttpClient;
 import okhttp3.OkHttpClient;
 import org.junit.Test;
@@ -38,10 +39,13 @@ public class FilesUploadV2HelperTest {
                 ArgumentCaptor.forClass(RequestConfigurator.class);
         when(client.filesCompleteUploadExternal(captor.capture())).thenReturn(response);
 
-        List<LayoutBlock> blocks = Collections.<LayoutBlock>singletonList(SectionBlock.builder().build());
+        List<LayoutBlock> blocks = Collections.<LayoutBlock>singletonList(SectionBlock.builder()
+                .text(PlainTextObject.builder().text("File uploaded!").build())
+                .build());
+        String blocksAsString = "[{\"type\":\"section\",\"text\":{\"type\":\"plain_text\",\"text\":\"File uploaded!\"}}]";
         FilesUploadV2Request request = FilesUploadV2Request.builder()
                 .blocks(blocks)
-                .blocksAsString("[]")
+                .blocksAsString(blocksAsString)
                 .build();
 
         // WHEN
@@ -52,6 +56,6 @@ public class FilesUploadV2HelperTest {
                 .configure(FilesCompleteUploadExternalRequest.builder())
                 .build();
         assertThat(completeRequest.getBlocks(), is(blocks));
-        assertThat(completeRequest.getBlocksAsString(), is("[]"));
+        assertThat(completeRequest.getBlocksAsString(), is(blocksAsString));
     }
 }
