@@ -8,5 +8,6 @@
       ""
     ]
   },
-  "is_discoverable": false
+  "is_discoverable": false,
+  "warning": ""
 }

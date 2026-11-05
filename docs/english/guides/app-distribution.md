@@ -11,7 +11,7 @@ A newly created Slack app can only be installed in its development workspace in 
 
 ### Slack app configuration
 
-To enable App Distribution, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Manage Distribution** on the left pane, and follow the instructions there.
+To enable App Distribution, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Manage Distribution** on the left pane, and follow the instructions there.
 
 For **Redirect URL**, Bolt apps respond to `https://{your app's public URL domain}/slack/oauth/callback` if you go with recommended settings. To know how to configure such settings, consult the list of the available env variables below in this page.
 
@@ -40,7 +40,6 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.jetty.SlackAppServer;
 import java.util.HashMap;
 import java.util.Map;
-import static java.util.Map.entry;
 
 // API Request Handler App
 //  expected env variables:
@@ -58,10 +57,10 @@ apiApp.command("/hi", (req, ctx) -> {
 App oauthApp = new App().asOAuthApp(true);
 
 // Mount the two apps with their root path
-SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
-  entry("/slack/events", apiApp), // POST /slack/events (incoming API requests from the Slack Platform)
-  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
-)));
+Map<String, App> apps = new HashMap<>();
+apps.put("/slack/events", apiApp); // POST /slack/events (incoming API requests from the Slack Platform)
+apps.put("/slack/oauth", oauthApp); // GET  /slack/oauth/start, /slack/oauth/callback (user access)
+SlackAppServer server = new SlackAppServer(apps);
 
 server.start(); // http://localhost:3000
 ```
@@ -107,7 +106,6 @@ import com.slack.api.bolt.service.builtin.AmazonS3OAuthStateService;
 
 import java.util.HashMap;
 import java.util.Map;
-import static java.util.Map.entry;
 
 // The standard AWS env variables are expected
 // export AWS_REGION=us-east-1
@@ -139,10 +137,10 @@ OAuthStateService stateService = new AmazonS3OAuthStateService(awsS3BucketName);
 oauthApp.service(stateService);
 
 // Mount the two apps with their root path
-SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
-  entry("/slack/events", apiApp), // POST /slack/events (incoming API requests from the Slack Platform)
-  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
-)));
+Map<String, App> apps = new HashMap<>();
+apps.put("/slack/events", apiApp); // POST /slack/events (incoming API requests from the Slack Platform)
+apps.put("/slack/oauth", oauthApp); // GET  /slack/oauth/start, /slack/oauth/callback (user access)
+SlackAppServer server = new SlackAppServer(apps);
 
 server.start(); // http://localhost:3000
 ```
@@ -287,7 +285,7 @@ app.event(TokensRevokedEvent.class, app.defaultTokensRevokedEventHandler());
 app.event(AppUninstalledEvent.class, app.defaultAppUninstalledEventHandler());
 ```
 
-To enable your own custom `InstallationService` classes to work with the built-in event handlers, the classes need to implement the following methods in the [`InstallationService`](https://github.com/seratch/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/service/InstallationService.java) interface:
+To enable your own custom `InstallationService` classes to work with the built-in event handlers, the classes need to implement the following methods in the [`InstallationService`](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/service/InstallationService.java) interface:
 
 * `void deleteBot(Bot bot)`
 * `void deleteInstaller(Installer installer)`

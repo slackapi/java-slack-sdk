@@ -14,5 +14,6 @@ public class WorkflowsStepFailedResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private String reqMethod;
     private transient Map<String, List<String>> httpResponseHeaders;
 }

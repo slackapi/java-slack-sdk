@@ -6,6 +6,7 @@ import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupReq
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
 import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.CanvasesGetContentResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
 import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
@@ -122,6 +123,29 @@ public class canvases_Test {
         }
     }
 
+    @Test
+    public void standalone_canvases_channel_id() throws Exception {
+        MethodsClient client = slack.methods(botToken);
+
+        ConversationsCreateResponse newChannel = client.conversationsCreate(r -> r.name("test-" + System.currentTimeMillis()));
+        assertThat(newChannel.getError(), is(nullValue()));
+        String channelId = newChannel.getChannel().getId();
+
+        Thread.sleep(500L); // To avoid occasional 500 errors
+
+        CanvasesCreateResponse creation = client.canvasesCreate(r -> r
+                .title("My canvas " + System.currentTimeMillis())
+                .markdown("# Tabbed canvas document")
+                .channelId(channelId)
+        );
+        assertThat(creation.getError(), is(nullValue()));
+
+        CanvasesDeleteResponse deletion = client.canvasesDelete(r -> r.canvasId(creation.getCanvasId()));
+        assertThat(deletion.getError(), is(nullValue()));
+
+        assertThat(client.conversationsArchive(r -> r.channel(channelId)).getError(), is(nullValue()));
+    }
+
     FilesInfoResponse verifyCanvasOps(MethodsClient client, String canvasId, String channelId, List<String> userIds) throws Exception {
         CanvasesSectionsLookupResponse lookupResult = client.canvasesSectionsLookup(r -> r
                 .canvasId(canvasId)
@@ -144,6 +168,14 @@ public class canvases_Test {
                 ))
         );
         assertThat(edit.getError(), is(nullValue()));
+
+        CanvasesGetContentResponse markdown = client.canvasesGetContent(r -> r.canvasId(canvasId));
+        assertThat(markdown.getError(), is(nullValue()));
+        assertThat(markdown.getContent(), containsString("After"));
+
+        CanvasesGetContentResponse html = client.canvasesGetContent(r -> r.canvasId(canvasId).contentType("html"));
+        assertThat(html.getError(), is(nullValue()));
+        assertThat(html.getContent(), containsString("After"));
 
         FilesInfoResponse details = client.filesInfo(r -> r.file(canvasId));
         assertThat(details.getError(), is(nullValue()));

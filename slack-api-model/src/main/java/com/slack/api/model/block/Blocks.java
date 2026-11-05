@@ -129,10 +129,46 @@ public class Blocks {
         return ShareShortcutBlock.builder().build();
     }
 
+    // AlertBlock
+
+    public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
+        return configurator.configure(AlertBlock.builder()).build();
+    }
+
+    // AuthProviderBlock
+
+    public static AuthProviderBlock authProvider(ModelConfigurator<AuthProviderBlock.AuthProviderBlockBuilder> configurator) {
+        return configurator.configure(AuthProviderBlock.builder()).build();
+    }
+
+    // CardBlock
+
+    public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
+        return configurator.configure(CardBlock.builder()).build();
+    }
+
+    // CarouselBlock
+
+    public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
+        return configurator.configure(CarouselBlock.builder()).build();
+    }
+
+    // ContainerBlock
+
+    public static ContainerBlock container(ModelConfigurator<ContainerBlock.ContainerBlockBuilder> configurator) {
+        return configurator.configure(ContainerBlock.builder()).build();
+    }
+
     // DataVisualizationBlock
 
     public static DataVisualizationBlock dataVisualization(ModelConfigurator<DataVisualizationBlock.DataVisualizationBlockBuilder> configurator) {
         return configurator.configure(DataVisualizationBlock.builder()).build();
+    }
+
+    // TaskCardBlock
+
+    public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {
+        return configurator.configure(TaskCardBlock.builder()).build();
     }
 
 }

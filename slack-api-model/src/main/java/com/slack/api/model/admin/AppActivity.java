@@ -57,6 +57,17 @@ public class AppActivity {
         private String details; // "{\"expression\":\"\",\"expression_attributes\":{},\"expression_values\":{},\"limit\":1000,\"cursor\":\"\"}"
         private String requestType; // "query"
         private String datastoreName;
+
+        private String toolName;
+        private String serverName;
+        private Integer toolCount;
+        private String message;
+
+        // type: mcp_connection_result
+        private Integer elapsedMs;
+        private String errorStage; // "http_non_2xx", "http_request", "token_fetch"
+        private Integer httpStatusCode;
+        private String providerKey; // "mcp_dcr_notion" etc.
     }
 
     @Data

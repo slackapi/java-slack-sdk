@@ -209,7 +209,7 @@ try {
 
 Slack Web API offers [180+ methods](/reference/methods). The way to use others is almost the same: calling methods in `MethodsClient` with a valid token and sufficient parameters.
 
-A good way to check the entire list of methods available in this SDK is to access [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/methods/MethodsClient.html).
+A good way to check the entire list of methods available in this SDK is to access [the Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/methods/MethodsClient.html).
 
 #### Call unsupported methods
 
@@ -266,6 +266,36 @@ import java.util.concurrent.CompletableFuture;
 CompletableFuture<ChatPostMessageResponse> postMessageResult = slack.methodsAsync("xoxb-`*")
   .chatPostMessage(r -> r.channel("C01ABC123").text("This may be delayed a bit"));
 ```
+
+By default, queued asynchronous Web API calls automatically retry HTTP 429 responses. To handle these responses yourself instead, enable `rejectRateLimitedCalls` before creating the client:
+
+```java
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.methods.MethodsCompletionException;
+import com.slack.api.methods.SlackApiException;
+import java.util.concurrent.CompletionException;
+
+SlackConfig config = new SlackConfig();
+config.getMethodsConfig().setRejectRateLimitedCalls(true);
+Slack slack = Slack.getInstance(config);
+
+slack.methodsAsync("xoxb-...").usersList(r -> r).whenComplete((response, failure) -> {
+  Throwable cause = failure instanceof CompletionException ? failure.getCause() : failure;
+  if (cause instanceof MethodsCompletionException) {
+    SlackApiException apiException = ((MethodsCompletionException) cause).getSlackApiException();
+    if (apiException != null && apiException.getResponse().code() == 429) {
+      String retryAfterSeconds = apiException.getResponse().header("Retry-After");
+      System.err.println("Rate limited; retry after " + retryAfterSeconds + " seconds");
+    }
+  }
+});
+```
+
+With this option enabled, a received HTTP 429 completes the future exceptionally. A `whenComplete` callback receives a `CompletionException` whose cause is a `MethodsCompletionException` wrapping the original `SlackApiException`, including its status code and `Retry-After` header. If you use `future.get()`, the `MethodsCompletionException` is the cause of the resulting `ExecutionException`.
+
+The default value is `false`; leaving it unset or explicitly setting it to `false` preserves automatic retries. This option only changes HTTP 429 retry handling in `methodsAsync`. Queueing and proactive rate limiting still apply, and synchronous `methods` calls, other HTTP errors, and Slack API error responses (HTTP 200 with `ok: false`) keep their existing behavior. It does not configure the SCIM or Audit Logs clients. Methods clients sharing an executor name share its rate-limit configuration, so use a separate executor name if they need different settings.
+
 
 If your app has multiple nodes, it's also possible to specify the number of nodes.
 
@@ -479,4 +509,4 @@ config.getHttpClientResponseHandlers().add(new ResponsePrettyPrintingListener())
 Slack slack = Slack.getInstance(config);
 ```
 
-You may encounter situations where more configurable options or flexibilities while making real-world applications would be helpful. If you have feature requests, go to our [GitHub Issue Tracker](http://github.com/slackapi/java-slack-sdk/issues) and tell us about it.
+You may encounter situations where more configurable options or flexibilities while making real-world applications would be helpful. If you have feature requests, go to our [GitHub Issue Tracker](https://github.com/slackapi/java-slack-sdk/issues) and tell us about it.

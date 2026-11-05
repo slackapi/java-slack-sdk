@@ -153,6 +153,7 @@ public class AuthProxyHeadersTest {
             }
             // this should be rejected
             assertThat(callCount.get(), is(0));
+            slack.close();
 
             // verify if an invalid host given by system properties is reflected
             System.setProperty("http.proxyHost", "invalid-host");
@@ -162,6 +163,8 @@ public class AuthProxyHeadersTest {
                 fail("A connection failure is expected here");
             } catch (IOException e) {
             }
+            assertThat(callCount.get(), is(0));
+            slack.close();
 
             // verify if the setProxyUrl is prioritized over the system properties
             config = new SlackConfig();
@@ -175,6 +178,7 @@ public class AuthProxyHeadersTest {
             AuthTestResponse apiResponse = slack.methods().authTest(r -> r.token(botToken));
             assertThat(apiResponse.getError(), is(nullValue()));
             assertThat(callCount.get(), is(1));
+            slack.close();
 
         } finally {
             if (originalHttpProxyHost != null) {
@@ -194,7 +198,9 @@ public class AuthProxyHeadersTest {
     public void rtm() throws Exception {
         Slack slack = Slack.getInstance(config);
         final AtomicBoolean received = new AtomicBoolean(false);
-        try (RTMClient rtm = slack.rtmConnect(rtmBotToken)) { // slack-msgs.com
+        // fullUserInfoRequired=false: skip the extra users.info call so the proxy sees exactly
+        // two connections (rtm.connect + websocket), otherwise a third tunnel can be opened
+        try (RTMClient rtm = slack.rtmConnect(rtmBotToken, false)) { // slack-msgs.com
             rtm.addMessageHandler((msg) -> {
                 log.info("Got a message - {}", msg);
                 received.set(true);

@@ -8,7 +8,7 @@ With [Socket Mode](/apis/events-api/using-socket-mode), instead of creating a se
 
 ## Slack app configuration
 
-To enable Socket Mode, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** on the left pane. There are a few things to do on the page.
+To enable Socket Mode, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, and go to **Settings** on the left pane. There are a few things to do on the page.
 
 * Go to **Settings** > **Basic Information**
   * Add a new **App-Level Token** with the [`connections:write`](/reference/scopes/connections.write) scope

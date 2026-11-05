@@ -7,7 +7,7 @@
 
 ### Slack アプリの設定
 
-アプリの配布を有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Settings** > **Manage Distribution** へ遷移します。ページの説明に従って設定を行います。
+アプリの配布を有効にするには [Slack アプリ管理画面](https://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Settings** > **Manage Distribution** へ遷移します。ページの説明に従って設定を行います。
 
 **Redirect URL** については Bolt for Java では `https://{あなたのドメイン}/slack/oauth/callback` のような URL で応答します。この URL を変更する方法などはこのページのあとのセクションの一覧を参照してください。
 
@@ -36,7 +36,6 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.jetty.SlackAppServer;
 import java.util.HashMap;
 import java.util.Map;
-import static java.util.Map.entry;
 
 // Slack API からのペイロードリクエストを処理する App
 // 環境変数 SLACK_SIGNING_SECRET が存在する前提
@@ -53,10 +52,10 @@ apiApp.command("/hi", (req, ctx) -> {
 App oauthApp = new App().asOAuthApp(true);
 
 // これら二つの App をルーとパスの指定とともにマウント
-SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
-  entry("/slack/events", apiApp), // POST /slack/events (Slack API からのリクエストのみ)
-  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (ユーザーがブラウザーでアクセス)
-)));
+Map<String, App> apps = new HashMap<>();
+apps.put("/slack/events", apiApp); // POST /slack/events (Slack API からのリクエストのみ)
+apps.put("/slack/oauth", oauthApp); // GET  /slack/oauth/start, /slack/oauth/callback (ユーザーがブラウザーでアクセス)
+SlackAppServer server = new SlackAppServer(apps);
 
 server.start(); // http://localhost:3000
 ```
@@ -102,7 +101,6 @@ import com.slack.api.bolt.service.builtin.AmazonS3OAuthStateService;
 
 import java.util.HashMap;
 import java.util.Map;
-import static java.util.Map.entry;
 
 // 標準的な AWS の環境変数が設定済であることが前提
 // export AWS_REGION=us-east-1
@@ -134,10 +132,10 @@ OAuthStateService stateService = new AmazonS3OAuthStateService(awsS3BucketName);
 oauthApp.service(stateService);
 
 // ルーとパスとともに二つの App をマウント
-SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
-  entry("/slack/events", apiApp), // POST /slack/events (Slack API からのリクエストのみ)
-  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (ユーザーがブラウザーでアクセス)
-)));
+Map<String, App> apps = new HashMap<>();
+apps.put("/slack/events", apiApp); // POST /slack/events (Slack API からのリクエストのみ)
+apps.put("/slack/oauth", oauthApp); // GET  /slack/oauth/start, /slack/oauth/callback (ユーザーがブラウザーでアクセス)
+SlackAppServer server = new SlackAppServer(apps);
 
 server.start(); // http://localhost:3000
 ```
@@ -270,7 +268,7 @@ app.event(TokensRevokedEvent.class, app.defaultTokensRevokedEventHandler());
 app.event(AppUninstalledEvent.class, app.defaultAppUninstalledEventHandler());
 ```
 
-あなたが実装したカスタムの `InstallationService` の実装クラスをこれらの組み込みのイベントハンドラーと連携して動作させるためには、[`InstallationService` インターフェース](https://github.com/seratch/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/service/InstallationService.java)に定義されている以下のメソッドを適切に実装してください：
+あなたが実装したカスタムの `InstallationService` の実装クラスをこれらの組み込みのイベントハンドラーと連携して動作させるためには、[`InstallationService` インターフェース](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/service/InstallationService.java)に定義されている以下のメソッドを適切に実装してください：
 
 * `void deleteBot(Bot bot)`
 * `void deleteInstaller(Installer installer)`

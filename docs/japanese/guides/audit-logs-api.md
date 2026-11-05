@@ -16,7 +16,7 @@ import com.slack.api.Slack;
 import com.slack.api.audit.*;
 
 Slack slack = Slack.getInstance();
-String token = System.getenv("SLACK_ADMIN_ACCESS_TOKN"); // `auditlogs:read` scope が必要
+String token = System.getenv("SLACK_ADMIN_ACCESS_TOKEN"); // `auditlogs:read` scope が必要
 AuditClient audit = slack.audit(token);
 ```
 
@@ -86,7 +86,7 @@ import com.slack.api.audit.*;
 import com.slack.api.audit.response.LogsResponse;
 import java.util.concurrent.CompletableFuture;
 
-String token = System.getenv("SLACK_ADMIN_ACCESS_TOKN"); // `auditlogs:read` scope が必要
+String token = System.getenv("SLACK_ADMIN_ACCESS_TOKEN"); // `auditlogs:read` scope が必要
 AsyncAuditClient audit = Slack.getInstance().auditAsync(token);
 
 CompletableFuture<LogsResponse> response = audit.getLogs(req -> req

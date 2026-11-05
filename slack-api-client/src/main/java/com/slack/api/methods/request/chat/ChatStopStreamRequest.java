@@ -56,4 +56,9 @@ public class ChatStopStreamRequest implements SlackApiRequest {
      * A JSON-based array of structured blocks as a String that will be rendered at the bottom of the finalized message, presented as a URL-encoded string.
      */
     private String blocksAsString;
+
+    /**
+     * The session status to set after stopping the stream. Defaults to `active`.
+     */
+    private String sessionStatus;
 }

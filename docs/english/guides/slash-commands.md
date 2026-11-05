@@ -10,7 +10,7 @@ Responding to slash command invocations is a common use case. Your app has to re
 
 ## Slack app configuration
 
-To enable slash commands, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Slash Commands** on the left pane. There are a few things to do there on the page.
+To enable slash commands, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, go to **Features** > **Slash Commands** on the left pane. There are a few things to do there on the page.
 
 * Click **Create New Command** button
 * Input the command information on the dialog:

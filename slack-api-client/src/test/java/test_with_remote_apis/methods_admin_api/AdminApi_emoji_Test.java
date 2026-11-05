@@ -33,22 +33,23 @@ public class AdminApi_emoji_Test {
     @Test
     public void emoji() throws Exception {
         if (orgAdminUserToken != null) {
-            CompletableFuture<AdminEmojiListResponse> list = methodsAsync.adminEmojiList(r -> r.limit(100));
-            AdminEmojiListResponse emoji = list.get();
-            assertThat(emoji.getEmoji().isEmpty(), is(false));
-
-            Thread.sleep(3000);
+            String name = "java-" + System.currentTimeMillis();
+            String url = "https://emoji.slack-edge.com/T03E94MJU/java/624937af2b22523e.png";
 
             CompletableFuture<AdminEmojiAddResponse> creationError = methodsAsync.adminEmojiAdd(r -> r.name("test"));
             assertThat(creationError.get().getError(), is("invalid_arguments"));
 
             Thread.sleep(10000);
 
-            String name = "java-" + System.currentTimeMillis();
-            String url = "https://emoji.slack-edge.com/T03E94MJU/java/624937af2b22523e.png";
-
             CompletableFuture<AdminEmojiAddResponse> creation = methodsAsync.adminEmojiAdd(r -> r.name(name).url(url));
             assertThat(creation.get().getError(), is(nullValue()));
+
+            Thread.sleep(3000);
+
+            CompletableFuture<AdminEmojiListResponse> list = methodsAsync.adminEmojiList(r -> r.limit(100));
+            AdminEmojiListResponse emoji = list.get();
+            assertThat(emoji.getError(), is(nullValue()));
+            assertThat(emoji.getEmoji().isEmpty(), is(false));
 
             CompletableFuture<AdminEmojiAddAliasResponse> aliasCreationError = methodsAsync.adminEmojiAddAlias(r -> r.name(name));
             assertThat(aliasCreationError.get().getError(), is("invalid_arguments"));

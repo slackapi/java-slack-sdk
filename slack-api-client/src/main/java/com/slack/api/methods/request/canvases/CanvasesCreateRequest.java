@@ -27,4 +27,9 @@ public class CanvasesCreateRequest implements SlackApiRequest {
     // You can pass either markdown or documentContent
     private String markdown;
     private CanvasDocumentContent documentContent;
+
+    /**
+     * Channel ID of the channel the canvas will be tabbed in. This is a required field for free teams.
+     */
+    private String channelId;
 }

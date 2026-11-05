@@ -8,7 +8,7 @@ lang: en
 
 ## Slack app configuration
 
-The first step to use modals in your app is to enable interactive components. Visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
+The first step to use modals in your app is to enable interactive components. Visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
 
 * Turn on the feature
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events` (this step is not required for Socket Mode apps)

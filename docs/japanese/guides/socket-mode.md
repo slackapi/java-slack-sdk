@@ -4,7 +4,7 @@
 
 ### Slack アプリの設定
 
-ソケットモードを有効にするには、[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Settings** へ遷移します。この画面でいくつかやることがあります。
+ソケットモードを有効にするには、[Slack アプリ管理画面](https://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Settings** へ遷移します。この画面でいくつかやることがあります。
 
 * **Settings** > **Basic Information** へ遷移
   * **App-Level Token** に [`connections:write`](/reference/scopes/connections.write) スコープが付与されたものを一つ追加

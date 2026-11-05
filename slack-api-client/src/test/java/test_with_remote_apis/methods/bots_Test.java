@@ -101,4 +101,33 @@ public class bots_Test {
         brokenSlack.methodsAsync(botToken).botsInfo(req -> req.bot(botId)).get();
     }
 
+    @Test
+    public void botsInfo_connectorBot() throws Exception {
+        // is_connector_bot is only returned by bots.info (not users.list/users.info) and
+        // only for Slack-certified Workflow Builder connector apps. Find such a bot, if the
+        // workspace has one installed, so the recorded bots.info sample carries the property.
+        List<User> users = slack.methodsAsync(botToken).usersList(req -> req).get().getMembers();
+        BotsInfoResponse.Bot connectorBot = null;
+        for (User u : users) {
+            if (!u.isBot() || "USLACKBOT".equals(u.getId())) {
+                continue;
+            }
+            String botId = u.getProfile() != null ? u.getProfile().getBotId() : null;
+            if (botId == null) {
+                continue;
+            }
+            BotsInfoResponse response = slack.methodsAsync(botToken).botsInfo(req -> req.bot(botId)).get();
+            if (response.isOk() && response.getBot() != null
+                    && Boolean.TRUE.equals(response.getBot().getIsConnectorBot())) {
+                connectorBot = response.getBot();
+                break;
+            }
+        }
+        if (connectorBot == null) {
+            log.info("No connector bot installed in this workspace; skipping is_connector_bot assertion");
+            return;
+        }
+        assertThat(connectorBot.getIsConnectorBot(), is(true));
+    }
+
 }
