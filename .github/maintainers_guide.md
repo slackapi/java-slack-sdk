@@ -120,6 +120,7 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
   * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions?query=branch%3Amain
 * Set a new version
   * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`) — requires `gnu-sed` on macOS (`brew install gnu-sed`)
+  * If the signing key changed, update the fingerprint in [`SECURITY.md`](../SECURITY.md#verifying-releases) so the tagged commit has the new fingerprint. This is rare: the release workflow signs with the key saved as the `GPG_KEY` and `GPG_PASSPHRASE` secrets in the `central` environment, so it only changes when someone rotates those secrets
   * `git add . -v && git commit -m'version (your version here)'`
   * `git tag v(your version here)`
   * `git push && git push --tags`
@@ -131,6 +132,7 @@ These `-SNAPSHOT` versions are intended to be overwritten. This enables develope
   * Click the "Generate release notes" button to list changes grouped by the labels in [`.github/release.yml`](./release.yml)
   * Edit the resulting notes to ensure they have decent messaging that is understandable by non-contributors, but each change should still have its own line
   * [Look at previous releases](https://github.com/slackapi/java-slack-sdk/releases) and follow their layouts
+  * If the signing key changed, announce the new fingerprint in the release notes
 * (Slack Internal) Publishing the GitHub Release runs the notify job in the [release workflow](./workflows/release.yml), which posts the release internally. Check that the announcement appears.
 * (Slack Internal) Tweet? Not necessary for patch updates, might be needed for minor updates, definitely needed for
    major updates. Include a link to the GitHub Release(s).

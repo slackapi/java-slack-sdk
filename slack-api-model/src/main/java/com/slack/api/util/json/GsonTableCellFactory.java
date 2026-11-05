@@ -2,17 +2,19 @@ package com.slack.api.util.json;
 
 import com.google.gson.*;
 import com.slack.api.model.block.RichTextBlock;
-import com.slack.api.model.block.composition.RawNumberTableCell;
-import com.slack.api.model.block.composition.RawTextTableCell;
+import com.slack.api.model.block.composition.RawNumberObject;
+import com.slack.api.model.block.composition.RawTextObject;
 import com.slack.api.model.block.composition.TableCell;
 
 import java.lang.reflect.Type;
 
 /**
  * Factory for deserializing the cells of a
- * {@link com.slack.api.model.block.TableBlock table block}.
+ * {@link com.slack.api.model.block.TableBlock table block} or a
+ * {@link com.slack.api.model.block.DataTableBlock data table block}.
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
+ * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 public class GsonTableCellFactory implements JsonDeserializer<TableCell>, JsonSerializer<TableCell> {
 
@@ -43,10 +45,10 @@ public class GsonTableCellFactory implements JsonDeserializer<TableCell>, JsonSe
 
     private Class<? extends TableCell> getTableCellClassInstance(String typeName) {
         switch (typeName) {
-            case RawTextTableCell.TYPE:
-                return RawTextTableCell.class;
-            case RawNumberTableCell.TYPE:
-                return RawNumberTableCell.class;
+            case RawTextObject.TYPE:
+                return RawTextObject.class;
+            case RawNumberObject.TYPE:
+                return RawNumberObject.class;
             case RichTextBlock.TYPE:
                 return RichTextBlock.class;
             default:

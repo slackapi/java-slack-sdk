@@ -93,6 +93,12 @@ public class Blocks {
         return ContextActionsBlock.builder().blockId(blockId).elements(elements).build();
     }
 
+    // DataTableBlock
+
+    public static DataTableBlock dataTable(ModelConfigurator<DataTableBlock.DataTableBlockBuilder> configurator) {
+        return configurator.configure(DataTableBlock.builder()).build();
+    }
+
     // DividerBlock
 
     public static DividerBlock divider(ModelConfigurator<DividerBlock.DividerBlockBuilder> configurator) {

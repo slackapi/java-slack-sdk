@@ -4,8 +4,8 @@ package com.slack.api.model.block.composition;
  * A single cell within a table or data table row. A cell can be one of:
  *
  * <ul>
- *   <li>{@link RawTextTableCell} ({@code raw_text})</li>
- *   <li>{@link RawNumberTableCell} ({@code raw_number})</li>
+ *   <li>{@link RawTextObject} ({@code raw_text})</li>
+ *   <li>{@link RawNumberObject} ({@code raw_number})</li>
  *   <li>{@link com.slack.api.model.block.RichTextBlock RichTextBlock} ({@code rich_text})</li>
  * </ul>
  *
