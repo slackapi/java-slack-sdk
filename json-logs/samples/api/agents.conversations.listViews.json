@@ -13,5 +13,17 @@
       "content_version": 12345,
       "date_added": 12345
     }
+  ],
+  "session_views": [
+    {
+      "view_id": "",
+      "type": "",
+      "content_version": 12345,
+      "date_added": 12345,
+      "view_key": "",
+      "name": "",
+      "file_id": "F00000000",
+      "owner_bot_user_id": "U00000000"
+    }
   ]
 }
