@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 /**
  * Defines an object containing a numeric value.
  *
- * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 @Data

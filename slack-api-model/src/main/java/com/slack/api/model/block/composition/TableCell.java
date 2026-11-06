@@ -10,7 +10,6 @@ package com.slack.api.model.block.composition;
  *   <li>{@link com.slack.api.model.block.RichTextBlock RichTextBlock} ({@code rich_text})</li>
  * </ul>
  *
- * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 public interface TableCell {
