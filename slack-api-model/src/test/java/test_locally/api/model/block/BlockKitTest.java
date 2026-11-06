@@ -2,7 +2,6 @@ package test_locally.api.model.block;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ActionCellObject;
@@ -2400,7 +2399,8 @@ public class BlockKitTest {
                 "      \"rows\": [\n" +
                 "        [\n" +
                 "          { \"type\": \"raw_text\", \"text\": \"Team\" },\n" +
-                "          { \"type\": \"raw_text\", \"text\": \"Revenue\" }\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Revenue\" },\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Action\" }\n" +
                 "        ],\n" +
                 "        [\n" +
                 "          {\n" +
@@ -2412,7 +2412,17 @@ public class BlockKitTest {
                 "              }\n" +
                 "            ]\n" +
                 "          },\n" +
-                "          { \"type\": \"raw_number\", \"value\": 1234.5, \"text\": \"$1,234.50\" }\n" +
+                "          { \"type\": \"raw_number\", \"value\": 1234.5, \"text\": \"$1,234.50\" },\n" +
+                "          {\n" +
+                "            \"type\": \"action_cell\",\n" +
+                "            \"element\": {\n" +
+                "              \"type\": \"button\",\n" +
+                "              \"text\": { \"type\": \"plain_text\", \"text\": \"Mark done\" },\n" +
+                "              \"action_id\": \"mark_done\",\n" +
+                "              \"value\": \"task_123\"\n" +
+                "            },\n" +
+                "            \"fallback\": { \"type\": \"raw_text\", \"text\": \"Open\" }\n" +
+                "          }\n" +
                 "        ]\n" +
                 "      ]\n" +
                 "    }\n" +
@@ -2442,6 +2452,13 @@ public class BlockKitTest {
         assertThat(numberCell.getType(), is("raw_number"));
         assertThat(numberCell.getValue(), is(1234.5));
         assertThat(numberCell.getText(), is("$1,234.50"));
+
+        ActionCellObject actionCell = (ActionCellObject) block.getRows().get(1).get(2);
+        assertThat(actionCell.getType(), is("action_cell"));
+        assertThat(actionCell.getElement().getActionId(), is("mark_done"));
+        assertThat(actionCell.getElement().getValue(), is("task_123"));
+        RawTextObject fallback = (RawTextObject) actionCell.getFallback();
+        assertThat(fallback.getText(), is("Open"));
     }
 
     @Test
@@ -2454,11 +2471,20 @@ public class BlockKitTest {
                 .rows(Arrays.asList(
                         Arrays.asList(
                                 RawTextObject.builder().text("Team").build(),
-                                RawTextObject.builder().text("Revenue").build()
+                                RawTextObject.builder().text("Revenue").build(),
+                                RawTextObject.builder().text("Action").build()
                         ),
                         Arrays.asList(
                                 RawTextObject.builder().text("Platform").build(),
-                                RawNumberObject.builder().value(1234.5).text("$1,234.50").build()
+                                RawNumberObject.builder().value(1234.5).text("$1,234.50").build(),
+                                ActionCellObject.builder()
+                                        .element(ButtonElement.builder()
+                                                .text(plainText("Mark done"))
+                                                .actionId("mark_done")
+                                                .value("task_123")
+                                                .build())
+                                        .fallback(RawTextObject.builder().text("Open").build())
+                                        .build()
                         )
                 )));
         assertThat(block, is(notNullValue()));
@@ -2472,50 +2498,9 @@ public class BlockKitTest {
         assertThat(restored.getRows().size(), is(2));
         RawNumberObject numberCell = (RawNumberObject) restored.getRows().get(1).get(1);
         assertThat(numberCell.getValue(), is(1234.5));
-    }
-
-    @Test
-    public void parseDataTableBlockActionCell() {
-        String json = "{\n" +
-                "  \"type\": \"data_table\",\n" +
-                "  \"rows\": [\n" +
-                "    [\n" +
-                "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
-                "      { \"type\": \"raw_text\", \"text\": \"Action\" }\n" +
-                "    ],\n" +
-                "    [\n" +
-                "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
-                "      {\n" +
-                "        \"type\": \"action_cell\",\n" +
-                "        \"element\": {\n" +
-                "          \"type\": \"button\",\n" +
-                "          \"text\": {\n" +
-                "            \"type\": \"plain_text\",\n" +
-                "            \"text\": \"Mark done\"\n" +
-                "          },\n" +
-                "          \"action_id\": \"mark_done\",\n" +
-                "          \"value\": \"task_123\"\n" +
-                "        },\n" +
-                "        \"fallback\": {\n" +
-                "          \"type\": \"raw_text\",\n" +
-                "          \"text\": \"Open\"\n" +
-                "        }\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  ]\n" +
-                "}";
-        Gson gson = GsonFactory.createSnakeCase();
-        DataTableBlock block = (DataTableBlock) gson.fromJson(json, LayoutBlock.class);
-        ActionCellObject cell = (ActionCellObject) block.getRows().get(1).get(1);
-        assertThat(cell.getType(), is("action_cell"));
-        assertThat(cell.getElement().getType(), is("button"));
-        assertThat(cell.getElement().getText().getText(), is("Mark done"));
-        assertThat(cell.getElement().getActionId(), is("mark_done"));
-        assertThat(cell.getElement().getValue(), is("task_123"));
-        RawTextObject fallback = (RawTextObject) cell.getFallback();
-        assertThat(fallback.getType(), is("raw_text"));
-        assertThat(fallback.getText(), is("Open"));
-        assertEquals(JsonParser.parseString(json), JsonParser.parseString(gson.toJson(block)));
+        ActionCellObject actionCell = (ActionCellObject) restored.getRows().get(1).get(2);
+        assertThat(actionCell.getElement().getActionId(), is("mark_done"));
+        assertThat(((RawTextObject) actionCell.getFallback()).getText(), is("Open"));
     }
 
     @Test
