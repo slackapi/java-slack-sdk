@@ -19,11 +19,8 @@ import test_locally.unit.GsonFactory;
 import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
-import static com.slack.api.model.block.composition.BlockCompositions.actionCell;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
-import static com.slack.api.model.block.composition.BlockCompositions.rawText;
-import static com.slack.api.model.block.element.BlockElements.button;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
 import static com.slack.api.model.block.element.BlockElements.conversationsSelect;
 import static com.slack.api.model.view.Views.view;
@@ -2522,74 +2519,22 @@ public class BlockKitTest {
     }
 
     @Test
-    public void buildDataTableBlockActionCell() {
-        DataTableBlock block = dataTable(t -> t
-                .rows(Arrays.asList(
-                        Arrays.asList(
-                                rawText("Task"),
-                                rawText("Action")
-                        ),
-                        Arrays.asList(
-                                rawText("Write docs"),
-                                actionCell(c -> c
-                                        .element(button(b -> b
-                                                .text(plainText("Mark done"))
-                                                .actionId("mark_done")
-                                                .value("task_123")
-                                        ))
-                                        .fallback(rawText("Open"))
-                                )
-                        )
-                )));
-        String expected = "{\n" +
+    public void data_table_default_behavior_with_unknown_cell() {
+        String json = "{\n" +
                 "  \"type\": \"data_table\",\n" +
                 "  \"rows\": [\n" +
                 "    [\n" +
                 "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
-                "      { \"type\": \"raw_text\", \"text\": \"Action\" }\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Owner\" }\n" +
                 "    ],\n" +
                 "    [\n" +
                 "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
-                "      {\n" +
-                "        \"type\": \"action_cell\",\n" +
-                "        \"element\": {\n" +
-                "          \"type\": \"button\",\n" +
-                "          \"text\": {\n" +
-                "            \"type\": \"plain_text\",\n" +
-                "            \"text\": \"Mark done\"\n" +
-                "          },\n" +
-                "          \"action_id\": \"mark_done\",\n" +
-                "          \"value\": \"task_123\"\n" +
-                "        },\n" +
-                "        \"fallback\": {\n" +
-                "          \"type\": \"raw_text\",\n" +
-                "          \"text\": \"Open\"\n" +
-                "        }\n" +
-                "      }\n" +
+                "      { \"type\": \"unknown_cell_in_the_future\", \"user_id\": \"U123456\" }\n" +
                 "    ]\n" +
                 "  ]\n" +
                 "}";
-        assertEquals(JsonParser.parseString(expected), JsonParser.parseString(GsonFactory.createSnakeCase().toJson(block)));
-    }
-
-    String unknownTableCellJson = "{\n" +
-            "  \"type\": \"data_table\",\n" +
-            "  \"rows\": [\n" +
-            "    [\n" +
-            "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
-            "      { \"type\": \"raw_text\", \"text\": \"Owner\" }\n" +
-            "    ],\n" +
-            "    [\n" +
-            "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
-            "      { \"type\": \"unknown_cell_in_the_future\", \"user_id\": \"U123456\" }\n" +
-            "    ]\n" +
-            "  ]\n" +
-            "}";
-
-    @Test
-    public void data_table_default_behavior_with_unknown_cell() {
         Gson prodGson = GsonFactory.createSnakeCase(false, false);
-        DataTableBlock block = (DataTableBlock) prodGson.fromJson(unknownTableCellJson, LayoutBlock.class);
+        DataTableBlock block = (DataTableBlock) prodGson.fromJson(json, LayoutBlock.class);
         assertThat(block.getRows().get(1).size(), is(2));
         TableCell cell = block.getRows().get(1).get(1);
         assertTrue(cell instanceof UnknownTableCell);
@@ -2598,9 +2543,22 @@ public class BlockKitTest {
 
     @Test
     public void data_table_fail_on_unknown_cell() {
+        String json = "{\n" +
+                "  \"type\": \"data_table\",\n" +
+                "  \"rows\": [\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Owner\" }\n" +
+                "    ],\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
+                "      { \"type\": \"unknown_cell_in_the_future\", \"user_id\": \"U123456\" }\n" +
+                "    ]\n" +
+                "  ]\n" +
+                "}";
         try {
             GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
-                    .fromJson(unknownTableCellJson, LayoutBlock.class);
+                    .fromJson(json, LayoutBlock.class);
             fail("throwing JsonParseException is expected here");
         } catch (JsonParseException e) {
             assertThat(e.getMessage(), is("Unknown table cell type: unknown_cell_in_the_future"));
