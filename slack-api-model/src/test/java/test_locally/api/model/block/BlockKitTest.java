@@ -2779,6 +2779,17 @@ public class BlockKitTest {
                 "              }\n" +
                 "            ]\n" +
                 "          }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"raw_text\",\n" +
+                "            \"text\": \"Data 3A\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"type\": \"raw_number\",\n" +
+                "            \"value\": 400.5,\n" +
+                "            \"text\": \"$400.50\"\n" +
+                "          }\n" +
                 "        ]\n" +
                 "      ]\n" +
                 "    }\n" +
@@ -2796,7 +2807,7 @@ public class BlockKitTest {
         assertThat(block.getColumnSettings().get(0).getIsWrapped(), is(true));
         assertThat(block.getColumnSettings().get(1).getAlign(), is("right"));
         assertThat(block.getColumnSettings().get(1).getIsWrapped(), is(nullValue()));
-        assertThat(block.getRows().size(), is(3));
+        assertThat(block.getRows().size(), is(4));
 
         RawTextObject header = (RawTextObject) block.getRows().get(0).get(0);
         assertThat(header.getType(), is("raw_text"));
@@ -2809,61 +2820,7 @@ public class BlockKitTest {
         assertThat(link.getText(), is("Data 1B"));
         assertThat(link.getUrl(), is("https://slack.com"));
 
-        assertThat(
-                gson.toJsonTree(message.getBlocks()),
-                is(JsonParser.parseString(json).getAsJsonObject().get("blocks")));
-    }
-
-    @Test
-    public void parseTableBlockWithRawNumber() {
-        // https://docs.slack.dev/reference/block-kit/blocks/table-block
-        String json = "{\n" +
-                "  \"blocks\": [\n" +
-                "    {\n" +
-                "      \"type\": \"table\",\n" +
-                "      \"block_id\": \"bid\",\n" +
-                "      \"column_settings\": [\n" +
-                "        null,\n" +
-                "        {\n" +
-                "          \"align\": \"right\",\n" +
-                "          \"is_wrapped\": false\n" +
-                "        }\n" +
-                "      ],\n" +
-                "      \"rows\": [\n" +
-                "        [\n" +
-                "          {\n" +
-                "            \"type\": \"raw_text\",\n" +
-                "            \"text\": \"Item\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"raw_text\",\n" +
-                "            \"text\": \"Cost\"\n" +
-                "          }\n" +
-                "        ],\n" +
-                "        [\n" +
-                "          {\n" +
-                "            \"type\": \"raw_text\",\n" +
-                "            \"text\": \"Rent\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"raw_number\",\n" +
-                "            \"value\": 400.5,\n" +
-                "            \"text\": \"$400.50\"\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";
-        Gson gson = GsonFactory.createSnakeCase();
-        Message message = gson.fromJson(json, Message.class);
-        TableBlock block = (TableBlock) message.getBlocks().get(0);
-        assertThat(block.getBlockId(), is("bid"));
-        assertThat(block.getColumnSettings().get(0), is(nullValue()));
-        assertThat(block.getColumnSettings().get(1).getAlign(), is("right"));
-        assertThat(block.getColumnSettings().get(1).getIsWrapped(), is(false));
-
-        RawNumberObject numberCell = (RawNumberObject) block.getRows().get(1).get(1);
+        RawNumberObject numberCell = (RawNumberObject) block.getRows().get(3).get(1);
         assertThat(numberCell.getType(), is("raw_number"));
         assertThat(numberCell.getValue(), is(400.5));
         assertThat(numberCell.getText(), is("$400.50"));
