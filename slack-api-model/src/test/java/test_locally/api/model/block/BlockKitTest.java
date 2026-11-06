@@ -2835,8 +2835,8 @@ public class BlockKitTest {
         TableBlock block = table(t -> t
                 .blockId("bid")
                 .columnSettings(Arrays.asList(
-                        TableColumnSetting.builder().isWrapped(true).build(),
-                        TableColumnSetting.builder().align("right").build()
+                        TableBlock.ColumnSetting.builder().isWrapped(true).build(),
+                        TableBlock.ColumnSetting.builder().align("right").build()
                 ))
                 .rows(Arrays.asList(
                         Arrays.asList(
