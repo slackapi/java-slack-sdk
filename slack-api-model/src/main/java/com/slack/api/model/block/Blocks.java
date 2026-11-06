@@ -29,42 +29,6 @@ public class Blocks {
         return ActionsBlock.builder().blockId(blockId).elements(elements).build();
     }
 
-    // AlertBlock
-
-    public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
-        return configurator.configure(AlertBlock.builder()).build();
-    }
-
-    // AuthProviderBlock
-
-    public static AuthProviderBlock authProvider(ModelConfigurator<AuthProviderBlock.AuthProviderBlockBuilder> configurator) {
-        return configurator.configure(AuthProviderBlock.builder()).build();
-    }
-
-    // CallBlock
-
-    public static CallBlock call(ModelConfigurator<CallBlock.CallBlockBuilder> configurator) {
-        return configurator.configure(CallBlock.builder()).build();
-    }
-
-    // CardBlock
-
-    public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
-        return configurator.configure(CardBlock.builder()).build();
-    }
-
-    // CarouselBlock
-
-    public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
-        return configurator.configure(CarouselBlock.builder()).build();
-    }
-
-    // ContainerBlock
-
-    public static ContainerBlock container(ModelConfigurator<ContainerBlock.ContainerBlockBuilder> configurator) {
-        return configurator.configure(ContainerBlock.builder()).build();
-    }
-
     // ContextBlock
 
     public static ContextBlock context(ModelConfigurator<ContextBlock.ContextBlockBuilder> configurator) {
@@ -93,12 +57,6 @@ public class Blocks {
         return ContextActionsBlock.builder().blockId(blockId).elements(elements).build();
     }
 
-    // DataTableBlock
-
-    public static DataTableBlock dataTable(ModelConfigurator<DataTableBlock.DataTableBlockBuilder> configurator) {
-        return configurator.configure(DataTableBlock.builder()).build();
-    }
-
     // DividerBlock
 
     public static DividerBlock divider(ModelConfigurator<DividerBlock.DividerBlockBuilder> configurator) {
@@ -113,16 +71,22 @@ public class Blocks {
         return DividerBlock.builder().build();
     }
 
-    // FileBlock
-
-    public static FileBlock file(ModelConfigurator<FileBlock.FileBlockBuilder> configurator) {
-        return configurator.configure(FileBlock.builder()).build();
-    }
-
     // HeaderBlock
 
     public static HeaderBlock header(ModelConfigurator<HeaderBlock.HeaderBlockBuilder> configurator) {
         return configurator.configure(HeaderBlock.builder()).build();
+    }
+
+    // CallBlock
+
+    public static CallBlock call(ModelConfigurator<CallBlock.CallBlockBuilder> configurator) {
+        return configurator.configure(CallBlock.builder()).build();
+    }
+
+    // FileBlock
+
+    public static FileBlock file(ModelConfigurator<FileBlock.FileBlockBuilder> configurator) {
+        return configurator.configure(FileBlock.builder()).build();
     }
 
     // ImageBlock
@@ -155,10 +119,50 @@ public class Blocks {
         return configurator.configure(SectionBlock.builder()).build();
     }
 
-    // ShareShortcutBlock
+    // VideoBlock
+    public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
+        return configurator.configure(VideoBlock.builder()).build();
+    }
 
+    // ShareShortcutBlock
     public static ShareShortcutBlock shareShortcut() {
         return ShareShortcutBlock.builder().build();
+    }
+
+    // AlertBlock
+
+    public static AlertBlock alert(ModelConfigurator<AlertBlock.AlertBlockBuilder> configurator) {
+        return configurator.configure(AlertBlock.builder()).build();
+    }
+
+    // AuthProviderBlock
+
+    public static AuthProviderBlock authProvider(ModelConfigurator<AuthProviderBlock.AuthProviderBlockBuilder> configurator) {
+        return configurator.configure(AuthProviderBlock.builder()).build();
+    }
+
+    // CardBlock
+
+    public static CardBlock card(ModelConfigurator<CardBlock.CardBlockBuilder> configurator) {
+        return configurator.configure(CardBlock.builder()).build();
+    }
+
+    // CarouselBlock
+
+    public static CarouselBlock carousel(ModelConfigurator<CarouselBlock.CarouselBlockBuilder> configurator) {
+        return configurator.configure(CarouselBlock.builder()).build();
+    }
+
+    // ContainerBlock
+
+    public static ContainerBlock container(ModelConfigurator<ContainerBlock.ContainerBlockBuilder> configurator) {
+        return configurator.configure(ContainerBlock.builder()).build();
+    }
+
+    // DataTableBlock
+
+    public static DataTableBlock dataTable(ModelConfigurator<DataTableBlock.DataTableBlockBuilder> configurator) {
+        return configurator.configure(DataTableBlock.builder()).build();
     }
 
     // TableBlock
@@ -171,12 +175,6 @@ public class Blocks {
 
     public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {
         return configurator.configure(TaskCardBlock.builder()).build();
-    }
-
-    // VideoBlock
-
-    public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
-        return configurator.configure(VideoBlock.builder()).build();
     }
 
 }
