@@ -62,7 +62,10 @@
               },
               "style": ""
             },
-            "accessibility_label": ""
+            "accessibility_label": "",
+            "agent_prompt": "",
+            "agent_prompt_display": "",
+            "visible_to_user_ids": []
           },
           {
             "type": "workflow_button",
@@ -3596,7 +3599,10 @@
                     },
                     "style": ""
                   },
-                  "accessibility_label": ""
+                  "accessibility_label": "",
+                  "agent_prompt": "",
+                  "agent_prompt_display": "",
+                  "visible_to_user_ids": []
                 },
                 {
                   "type": "workflow_button",
@@ -6951,7 +6957,10 @@
                   },
                   "style": ""
                 },
-                "accessibility_label": ""
+                "accessibility_label": "",
+                "agent_prompt": "",
+                "agent_prompt_display": "",
+                "visible_to_user_ids": []
               },
               "expand": false
             },
@@ -8334,7 +8343,10 @@
                       },
                       "style": ""
                     },
-                    "accessibility_label": ""
+                    "accessibility_label": "",
+                    "agent_prompt": "",
+                    "agent_prompt_display": "",
+                    "visible_to_user_ids": []
                   },
                   {
                     "type": "workflow_button",
@@ -11689,7 +11701,10 @@
                     },
                     "style": ""
                   },
-                  "accessibility_label": ""
+                  "accessibility_label": "",
+                  "agent_prompt": "",
+                  "agent_prompt_display": "",
+                  "visible_to_user_ids": []
                 },
                 "expand": false
               },
@@ -12982,7 +12997,10 @@
                     },
                     "style": ""
                   },
-                  "accessibility_label": ""
+                  "accessibility_label": "",
+                  "agent_prompt": "",
+                  "agent_prompt_display": "",
+                  "visible_to_user_ids": []
                 },
                 {
                   "type": "workflow_button",
@@ -16337,7 +16355,10 @@
                   },
                   "style": ""
                 },
-                "accessibility_label": ""
+                "accessibility_label": "",
+                "agent_prompt": "",
+                "agent_prompt_display": "",
+                "visible_to_user_ids": []
               },
               "expand": false
             },
@@ -17633,6 +17654,9 @@
             "style": ""
           },
           "accessibility_label": "",
+          "agent_prompt": "",
+          "agent_prompt_display": "",
+          "visible_to_user_ids": [],
           "workflow": {
             "trigger": {
               "url": "",
@@ -17798,6 +17822,9 @@
             "style": ""
           },
           "accessibility_label": "",
+          "agent_prompt": "",
+          "agent_prompt_display": "",
+          "visible_to_user_ids": [],
           "workflow": {
             "trigger": {
               "url": "",
@@ -18071,7 +18098,10 @@
                   },
                   "style": ""
                 },
-                "accessibility_label": ""
+                "accessibility_label": "",
+                "agent_prompt": "",
+                "agent_prompt_display": "",
+                "visible_to_user_ids": []
               },
               {
                 "type": "workflow_button",
@@ -21426,7 +21456,10 @@
                 },
                 "style": ""
               },
-              "accessibility_label": ""
+              "accessibility_label": "",
+              "agent_prompt": "",
+              "agent_prompt_display": "",
+              "visible_to_user_ids": []
             },
             "expand": false
           },
@@ -22677,7 +22710,10 @@
                         },
                         "style": ""
                       },
-                      "accessibility_label": ""
+                      "accessibility_label": "",
+                      "agent_prompt": "",
+                      "agent_prompt_display": "",
+                      "visible_to_user_ids": []
                     },
                     {
                       "type": "workflow_button",
@@ -26032,7 +26068,10 @@
                       },
                       "style": ""
                     },
-                    "accessibility_label": ""
+                    "accessibility_label": "",
+                    "agent_prompt": "",
+                    "agent_prompt_display": "",
+                    "visible_to_user_ids": []
                   },
                   "expand": false
                 },
@@ -29533,7 +29572,10 @@
                       },
                       "style": ""
                     },
-                    "accessibility_label": ""
+                    "accessibility_label": "",
+                    "agent_prompt": "",
+                    "agent_prompt_display": "",
+                    "visible_to_user_ids": []
                   },
                   {
                     "type": "workflow_button",
@@ -32888,7 +32930,10 @@
                     },
                     "style": ""
                   },
-                  "accessibility_label": ""
+                  "accessibility_label": "",
+                  "agent_prompt": "",
+                  "agent_prompt_display": "",
+                  "visible_to_user_ids": []
                 },
                 "expand": false
               },
@@ -34271,7 +34316,10 @@
                         },
                         "style": ""
                       },
-                      "accessibility_label": ""
+                      "accessibility_label": "",
+                      "agent_prompt": "",
+                      "agent_prompt_display": "",
+                      "visible_to_user_ids": []
                     },
                     {
                       "type": "workflow_button",
@@ -37626,7 +37674,10 @@
                       },
                       "style": ""
                     },
-                    "accessibility_label": ""
+                    "accessibility_label": "",
+                    "agent_prompt": "",
+                    "agent_prompt_display": "",
+                    "visible_to_user_ids": []
                   },
                   "expand": false
                 },
@@ -38919,7 +38970,10 @@
                       },
                       "style": ""
                     },
-                    "accessibility_label": ""
+                    "accessibility_label": "",
+                    "agent_prompt": "",
+                    "agent_prompt_display": "",
+                    "visible_to_user_ids": []
                   },
                   {
                     "type": "workflow_button",
@@ -42274,7 +42328,10 @@
                     },
                     "style": ""
                   },
-                  "accessibility_label": ""
+                  "accessibility_label": "",
+                  "agent_prompt": "",
+                  "agent_prompt_display": "",
+                  "visible_to_user_ids": []
                 },
                 "expand": false
               },

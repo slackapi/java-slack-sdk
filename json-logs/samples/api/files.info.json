@@ -310,7 +310,10 @@
               },
               "style": ""
             },
-            "accessibility_label": ""
+            "accessibility_label": "",
+            "agent_prompt": "",
+            "agent_prompt_display": "",
+            "visible_to_user_ids": []
           },
           {
             "type": "workflow_button",
@@ -3665,7 +3668,10 @@
             },
             "style": ""
           },
-          "accessibility_label": ""
+          "accessibility_label": "",
+          "agent_prompt": "",
+          "agent_prompt_display": "",
+          "visible_to_user_ids": []
         },
         "expand": false
       },
@@ -4882,6 +4888,8 @@
     "template_description": "",
     "template_icon": "",
     "canvas_creator_id": "",
+    "canvas_agent_creator_id": "",
+    "canvas_default_agent_id": "",
     "team_pref_version_history_enabled": false,
     "show_badge": false,
     "favorites": [
@@ -5046,7 +5054,10 @@
                 },
                 "style": ""
               },
-              "accessibility_label": ""
+              "accessibility_label": "",
+              "agent_prompt": "",
+              "agent_prompt_display": "",
+              "visible_to_user_ids": []
             },
             {
               "type": "workflow_button",
@@ -8401,7 +8412,10 @@
               },
               "style": ""
             },
-            "accessibility_label": ""
+            "accessibility_label": "",
+            "agent_prompt": "",
+            "agent_prompt_display": "",
+            "visible_to_user_ids": []
           },
           "expand": false
         },

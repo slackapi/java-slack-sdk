@@ -107,7 +107,8 @@
         "origin_link": {
           "channel_id": "C00000000",
           "ts": "0000000000.000000"
-        }
+        },
+        "encoded_initiator_user_id": "U00000000"
       }
     },
     "is_open": false
