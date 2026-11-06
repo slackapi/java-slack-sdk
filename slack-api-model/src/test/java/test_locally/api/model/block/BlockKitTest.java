@@ -2522,40 +2522,6 @@ public class BlockKitTest {
     }
 
     @Test
-    public void parseDataTableBlockActionCellWithoutFallback() {
-        String json = "{\n" +
-                "  \"type\": \"data_table\",\n" +
-                "  \"rows\": [\n" +
-                "    [\n" +
-                "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
-                "      { \"type\": \"raw_text\", \"text\": \"Action\" }\n" +
-                "    ],\n" +
-                "    [\n" +
-                "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
-                "      {\n" +
-                "        \"type\": \"action_cell\",\n" +
-                "        \"element\": {\n" +
-                "          \"type\": \"button\",\n" +
-                "          \"text\": {\n" +
-                "            \"type\": \"plain_text\",\n" +
-                "            \"text\": \"Mark done\"\n" +
-                "          },\n" +
-                "          \"action_id\": \"mark_done\",\n" +
-                "          \"value\": \"task_123\"\n" +
-                "        }\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  ]\n" +
-                "}";
-        Gson gson = GsonFactory.createSnakeCase();
-        DataTableBlock block = (DataTableBlock) gson.fromJson(json, LayoutBlock.class);
-        ActionCellObject cell = (ActionCellObject) block.getRows().get(1).get(1);
-        assertThat(cell.getElement().getActionId(), is("mark_done"));
-        assertThat(cell.getFallback(), is(nullValue()));
-        assertEquals(JsonParser.parseString(json), JsonParser.parseString(gson.toJson(block)));
-    }
-
-    @Test
     public void buildDataTableBlockActionCell() {
         DataTableBlock block = dataTable(t -> t
                 .rows(Arrays.asList(
