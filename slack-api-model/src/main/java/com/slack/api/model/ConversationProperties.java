@@ -160,6 +160,7 @@ public class ConversationProperties {
         private List<String> encodedAgentBotUserIds;
         private String title;
         private OriginLink originLink;
+        private String encodedInitiatorUserId;
     }
 
     @Data

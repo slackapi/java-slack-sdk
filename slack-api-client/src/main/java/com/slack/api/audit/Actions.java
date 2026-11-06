@@ -427,6 +427,10 @@ public class Actions {
         public static final String pref_enable_dbsc_enforcement = "pref.enable_dbsc_enforcement";
         public static final String pref_slackbot_ai_fedramp_web_search_consented_changed = "pref.slackbot_ai_fedramp_web_search_consented_changed";
         public static final String mcp_slack_update_list_comment_tool_called = "mcp_slack_update_list_comment_tool_called";
+        public static final String archive_logs_export_started = "archive_logs_export_started";
+        public static final String archive_logs_export_completed = "archive_logs_export_completed";
+        public static final String archive_logs_export_downloaded = "archive_logs_export_downloaded";
+        public static final String archive_logs_export_expired = "archive_logs_export_expired";
     }
 
     public static class User {
