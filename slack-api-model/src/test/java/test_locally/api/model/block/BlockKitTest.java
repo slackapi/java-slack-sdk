@@ -2,6 +2,7 @@ package test_locally.api.model.block;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ActionCellObject;
@@ -2709,5 +2710,157 @@ public class BlockKitTest {
         assertThat(json, is("{\"type\":\"auth_provider\",\"value\":\"acme\"," +
                 "\"name\":{\"type\":\"plain_text\",\"text\":\"Acme\"}," +
                 "\"is_connected\":false,\"auth_url\":\"https://acme.example.com/oauth\"}"));
+    }
+
+    @Test
+    public void parseTableBlock() {
+        // https://docs.slack.dev/reference/block-kit/blocks/table-block
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"table\",\n" +
+                "      \"column_settings\": [\n" +
+                "        {\n" +
+                "          \"is_wrapped\": true\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"align\": \"right\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"rows\": [\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"raw_text\",\n" +
+                "            \"text\": \"Header A\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"type\": \"raw_text\",\n" +
+                "            \"text\": \"Header B\"\n" +
+                "          }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"raw_text\",\n" +
+                "            \"text\": \"Data 1A\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [\n" +
+                "                  {\n" +
+                "                    \"text\": \"Data 1B\",\n" +
+                "                    \"type\": \"link\",\n" +
+                "                    \"url\": \"https://slack.com\"\n" +
+                "                  }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"raw_text\",\n" +
+                "            \"text\": \"Data 2A\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [\n" +
+                "                  {\n" +
+                "                    \"text\": \"Data 2B\",\n" +
+                "                    \"type\": \"link\",\n" +
+                "                    \"url\": \"https://slack.com\"\n" +
+                "                  }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"raw_text\",\n" +
+                "            \"text\": \"Data 3A\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"type\": \"raw_number\",\n" +
+                "            \"value\": 400.5,\n" +
+                "            \"text\": \"$400.50\"\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        TableBlock block = (TableBlock) message.getBlocks().get(0);
+        assertThat(block.getType(), is("table"));
+        assertThat(block.getColumnSettings().size(), is(2));
+        assertThat(block.getColumnSettings().get(0).getAlign(), is(nullValue()));
+        assertThat(block.getColumnSettings().get(0).getIsWrapped(), is(true));
+        assertThat(block.getColumnSettings().get(1).getAlign(), is("right"));
+        assertThat(block.getColumnSettings().get(1).getIsWrapped(), is(nullValue()));
+        assertThat(block.getRows().size(), is(4));
+
+        RawTextObject header = (RawTextObject) block.getRows().get(0).get(0);
+        assertThat(header.getType(), is("raw_text"));
+        assertThat(header.getText(), is("Header A"));
+
+        RichTextBlock richCell = (RichTextBlock) block.getRows().get(1).get(1);
+        assertThat(richCell.getType(), is("rich_text"));
+        RichTextSectionElement section = (RichTextSectionElement) richCell.getElements().get(0);
+        RichTextSectionElement.Link link = (RichTextSectionElement.Link) section.getElements().get(0);
+        assertThat(link.getText(), is("Data 1B"));
+        assertThat(link.getUrl(), is("https://slack.com"));
+
+        RawNumberObject numberCell = (RawNumberObject) block.getRows().get(3).get(1);
+        assertThat(numberCell.getType(), is("raw_number"));
+        assertThat(numberCell.getValue(), is(400.5));
+        assertThat(numberCell.getText(), is("$400.50"));
+
+        assertThat(
+                gson.toJsonTree(message.getBlocks()),
+                is(JsonParser.parseString(json).getAsJsonObject().get("blocks")));
+    }
+
+    @Test
+    public void buildTableBlock() {
+        TableBlock block = table(t -> t
+                .blockId("bid")
+                .columnSettings(Arrays.asList(
+                        TableBlock.ColumnSetting.builder().isWrapped(true).build(),
+                        TableBlock.ColumnSetting.builder().align("right").build()
+                ))
+                .rows(Arrays.asList(
+                        Arrays.asList(
+                                RawTextObject.builder().text("Item").build(),
+                                RawTextObject.builder().text("Cost").build()
+                        ),
+                        Arrays.asList(
+                                RawTextObject.builder().text("Rent").build(),
+                                RawNumberObject.builder().value(400.5).text("$400.50").build()
+                        )
+                )));
+        assertThat(block, is(notNullValue()));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        String json = gson.toJson(block);
+        assertThat(json, is("{\"type\":\"table\"," +
+                "\"rows\":[" +
+                "[{\"type\":\"raw_text\",\"text\":\"Item\"},{\"type\":\"raw_text\",\"text\":\"Cost\"}]," +
+                "[{\"type\":\"raw_text\",\"text\":\"Rent\"},{\"type\":\"raw_number\",\"value\":400.5,\"text\":\"$400.50\"}]" +
+                "]," +
+                "\"column_settings\":[{\"is_wrapped\":true},{\"align\":\"right\"}]," +
+                "\"block_id\":\"bid\"}"));
+
+        TableBlock restored = (TableBlock) gson.fromJson(json, LayoutBlock.class);
+        assertThat(restored, is(block));
     }
 }

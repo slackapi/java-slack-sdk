@@ -12,8 +12,10 @@ import java.lang.reflect.Type;
 
 /**
  * Factory for deserializing the cells of a
+ * {@link com.slack.api.model.block.TableBlock table block} or a
  * {@link com.slack.api.model.block.DataTableBlock data table block}.
  *
+ * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/table-block">Table block</a>
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
 public class GsonTableCellFactory implements JsonDeserializer<TableCell>, JsonSerializer<TableCell> {

@@ -71,6 +71,8 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
                 return SectionBlock.class;
             case ShareShortcutBlock.TYPE:
                 return ShareShortcutBlock.class;
+            case TableBlock.TYPE:
+                return TableBlock.class;
             case TaskCardBlock.TYPE:
                 return TaskCardBlock.class;
             case VideoBlock.TYPE:
