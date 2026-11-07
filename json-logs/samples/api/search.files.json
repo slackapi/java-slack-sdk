@@ -85,6 +85,7 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
+                "access": "",
                 "share_user_id": "U00000000",
                 "source": "",
                 "is_silent_share": false
@@ -109,6 +110,25 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
+                "access": "",
+                "share_user_id": "U00000000",
+                "source": "",
+                "is_silent_share": false
+              }
+            ]
+          },
+          "private": {
+            "D00000000": [
+              {
+                "ts": "0000000000.000000",
+                "share_user_id": "U00000000",
+                "source": "",
+                "is_silent_share": false
+              }
+            ],
+            "D00000001": [
+              {
+                "ts": "0000000000.000000",
                 "share_user_id": "U00000000",
                 "source": "",
                 "is_silent_share": false
@@ -123,7 +143,8 @@
           ""
         ],
         "ims": [
-          ""
+          "",
+          "D00000000"
         ],
         "external_id": "",
         "external_url": "https://www.example.com/",
@@ -182,7 +203,8 @@
         "sent_to_self": false,
         "bot_id": "B00000000",
         "editors": [
-          ""
+          "",
+          "U00000000"
         ],
         "url_static_preview": "https://www.example.com/",
         "quip_thread_id": "",
@@ -43754,7 +43776,11 @@
         ],
         "is_restricted_sharing_enabled": false,
         "canvas_printing_enabled": false,
-        "is_modified_by_ai": false
+        "is_modified_by_ai": false,
+        "canvas_readtime": 12345,
+        "canvas_creator_id": "U00000000",
+        "show_badge": false,
+        "is_ai_suggested": false
       }
     ]
   },
