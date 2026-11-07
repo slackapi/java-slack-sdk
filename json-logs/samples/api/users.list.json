@@ -82,7 +82,8 @@
           ""
         ]
       },
-      "is_invited_user": false
+      "is_invited_user": false,
+      "is_seamless_enabled_app_bot": false
     }
   ],
   "cache_ts": 12345,

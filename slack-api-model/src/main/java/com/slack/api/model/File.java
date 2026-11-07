@@ -335,6 +335,14 @@ public class File {
         private String state;
     }
 
+    @Data
+    public static class AiSummary {
+        private String id;
+        private Boolean unfurlEnabled;
+        private String status;
+        private String content;
+    }
+
     private String quipThreadId;
     @SerializedName("is_channel_space")
     private boolean channelSpace;
@@ -365,6 +373,8 @@ public class File {
     private String templateDescription;
     private String templateIcon;
     private String canvasCreatorId;
+    private String canvasAgentCreatorId;
+    private String canvasDefaultAgentId;
 
     private Boolean teamPrefVersionHistoryEnabled;
 
@@ -393,6 +403,7 @@ public class File {
 
     private boolean isAiSuggested;
     private boolean isModifiedByAi;
+    private AiSummary aiSummary;
 
     // ---------------------------------------
     // file comments
