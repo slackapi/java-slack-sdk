@@ -431,6 +431,14 @@ public class Actions {
         public static final String archive_logs_export_completed = "archive_logs_export_completed";
         public static final String archive_logs_export_downloaded = "archive_logs_export_downloaded";
         public static final String archive_logs_export_expired = "archive_logs_export_expired";
+        public static final String mcp_slack_create_workflow_tool_called = "mcp_slack_create_workflow_tool_called";
+        public static final String mcp_slack_update_workflow_tool_called = "mcp_slack_update_workflow_tool_called";
+        public static final String mcp_slack_set_workflow_trigger_tool_called = "mcp_slack_set_workflow_trigger_tool_called";
+        public static final String mcp_slack_add_workflow_step_tool_called = "mcp_slack_add_workflow_step_tool_called";
+        public static final String mcp_slack_update_workflow_step_tool_called = "mcp_slack_update_workflow_step_tool_called";
+        public static final String mcp_slack_move_workflow_step_tool_called = "mcp_slack_move_workflow_step_tool_called";
+        public static final String mcp_slack_delete_workflow_step_tool_called = "mcp_slack_delete_workflow_step_tool_called";
+        public static final String mcp_slack_publish_workflow_tool_called = "mcp_slack_publish_workflow_tool_called";
     }
 
     public static class User {
