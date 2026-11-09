@@ -35,10 +35,5 @@ public class PlanBlock implements LayoutBlock {
      */
     private List<TaskCardBlock> tasks;
 
-    /**
-     * A unique identifier for a block. If not specified, one will be generated. Maximum length for this field is
-     * 255 characters. {@code block_id} should be unique for each message and each iteration of a message. If a
-     * message is updated, use a new {@code block_id}.
-     */
     private String blockId;
 }
