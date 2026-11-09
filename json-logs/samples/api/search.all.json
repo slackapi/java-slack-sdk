@@ -18044,6 +18044,14 @@
                 "source": "",
                 "is_silent_share": false,
                 "access": ""
+              },
+              {
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000",
+                "share_user_id": "U00000000",
+                "source": "",
+                "is_silent_share": false
               }
             ],
             "C00000001": [
@@ -18055,6 +18063,14 @@
                 "source": "",
                 "is_silent_share": false,
                 "access": ""
+              },
+              {
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000",
+                "share_user_id": "U00000000",
+                "source": "",
+                "is_silent_share": false
               }
             ]
           },
@@ -18085,15 +18101,13 @@
           ""
         ],
         "ims": [
-          "",
-          "D00000000"
+          ""
         ],
         "has_more_shares": false,
         "has_rich_preview": false,
         "file_access": "",
         "editors": [
-          "",
-          "U00000000"
+          ""
         ],
         "media_display_type": "",
         "thumb_64": "https://www.example.com/",
