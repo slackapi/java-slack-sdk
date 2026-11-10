@@ -439,6 +439,8 @@ public class Actions {
         public static final String mcp_slack_move_workflow_step_tool_called = "mcp_slack_move_workflow_step_tool_called";
         public static final String mcp_slack_delete_workflow_step_tool_called = "mcp_slack_delete_workflow_step_tool_called";
         public static final String mcp_slack_publish_workflow_tool_called = "mcp_slack_publish_workflow_tool_called";
+        public static final String pref_override_enforce_sha256_signature = "pref.override_enforce_sha256_signature";
+        public static final String pref_slackbot_ai_voice_mode_enabled_changed = "pref.slackbot_ai_voice_mode_enabled_changed";
     }
 
     public static class User {
