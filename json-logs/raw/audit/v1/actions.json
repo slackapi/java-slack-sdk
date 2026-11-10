@@ -427,7 +427,9 @@
       "mcp_slack_update_workflow_step_tool_called",
       "mcp_slack_move_workflow_step_tool_called",
       "mcp_slack_delete_workflow_step_tool_called",
-      "mcp_slack_publish_workflow_tool_called"
+      "mcp_slack_publish_workflow_tool_called",
+      "pref.override_enforce_sha256_signature",
+      "pref.slackbot_ai_voice_mode_enabled_changed"
     ],
     "user": [
       "custom_tos_accepted",
