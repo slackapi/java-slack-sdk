@@ -82,6 +82,8 @@ public class Conversation {
     private boolean isThreadOnly;
     @SerializedName("is_non_threadable")
     private boolean isNonThreadable;
+    @SerializedName("is_file")
+    private boolean isFile;
     @SerializedName("is_shared")
     private boolean isShared;
     @SerializedName("is_ext_shared")
