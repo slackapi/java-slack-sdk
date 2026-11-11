@@ -441,6 +441,9 @@ public class Actions {
         public static final String mcp_slack_publish_workflow_tool_called = "mcp_slack_publish_workflow_tool_called";
         public static final String pref_override_enforce_sha256_signature = "pref.override_enforce_sha256_signature";
         public static final String pref_slackbot_ai_voice_mode_enabled_changed = "pref.slackbot_ai_voice_mode_enabled_changed";
+        public static final String mcp_slack_add_workflow_branches_tool_called = "mcp_slack_add_workflow_branches_tool_called";
+        public static final String mcp_slack_add_workflow_loop_tool_called = "mcp_slack_add_workflow_loop_tool_called";
+        public static final String pref_sensitivity_labels = "pref.sensitivity_labels";
     }
 
     public static class User {
@@ -1053,6 +1056,7 @@ public class Actions {
         public static final String field_created = "field_created";
         public static final String field_updated = "field_updated";
         public static final String field_visibility_updated = "field_visibility_updated";
+        public static final String field_deleted = "field_deleted";
         public static final String license_assigned = "license_assigned";
         public static final String license_removed = "license_removed";
     }
