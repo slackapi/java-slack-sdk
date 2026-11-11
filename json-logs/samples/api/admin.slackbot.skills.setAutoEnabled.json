@@ -1,0 +1,20 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": "",
+  "invalid_usergroup_ids": [
+    "S00000000"
+  ],
+  "permission_type": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "skill_id": "F00000000",
+  "usergroup_ids": [
+    "S00000000"
+  ]
+}

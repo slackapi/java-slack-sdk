@@ -1,0 +1,40 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "skill": {
+    "access": "",
+    "category": "",
+    "creator_id": "U00000000",
+    "date_created": 12345,
+    "date_updated": 12345,
+    "description": "",
+    "display_name": "",
+    "example_prompt": "",
+    "id": "F00000000",
+    "instructions": "",
+    "is_official": false,
+    "library_count": 12345,
+    "mcp_servers": [
+      {
+        "app_id": "A00000000",
+        "display_name": "",
+        "is_available": false,
+        "server_id": "",
+        "service_type": ""
+      }
+    ],
+    "name": "",
+    "permalink": "",
+    "type": "",
+    "usage_count": 12345,
+    "visibility": ""
+  }
+}

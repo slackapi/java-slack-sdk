@@ -1,0 +1,128 @@
+package test_locally.api.methods;
+
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.model.slackbot.SkillMcpServer;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import util.MockSlackApiServer;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static util.MockSlackApi.ValidToken;
+
+public class SlackbotSkillsTest {
+
+    MockSlackApiServer server = new MockSlackApiServer();
+    SlackConfig config = new SlackConfig();
+    Slack slack = Slack.getInstance(config);
+
+    @Before
+    public void setup() throws Exception {
+        server.start();
+        config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        server.stop();
+    }
+
+    @Test
+    public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).slackbotSkillsCreate(r -> r
+                .category("productivity")
+                .description("Reviews information from Slack and your calendar to suggest priorities for the day.")
+                .displayName("Daily priorities")
+                .examplePrompt("Run {skill} for today")
+                .instructions("# Purpose\nSuggest the three most important things to work on today.")
+                .mcpServers(Arrays.asList(SkillMcpServer.builder()
+                        .appId("A0123ABCD")
+                        .serverId("Amcp0456EFGH")
+                        .serviceType("app")
+                        .build()))
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsCreate(r -> r
+                .canvasId("F0123ABCD")
+                .displayName("Daily priorities")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsDelete(r -> r
+                .skillId("F0123ABCD")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsInfo(r -> r
+                .skillId("F0123ABCD")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsLibraryAdd(r -> r
+                .skillId("F0123ABCD")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsLibraryRemove(r -> r
+                .skillId("F0123ABCD")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsList(r -> r
+                .category("productivity")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .filter("owned")
+                .limit(100)
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsUpdate(r -> r
+                .category("")
+                .description("")
+                .displayName("Daily priorities")
+                .examplePrompt("")
+                .instructions("# Purpose\nSuggest the three most important things to work on today.")
+                .mcpServers(Collections.emptyList())
+                .skillId("F0123ABCD")
+        ).isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsCreate(r -> r
+                .category("productivity")
+                .description("Reviews information from Slack and your calendar to suggest priorities for the day.")
+                .displayName("Daily priorities")
+                .examplePrompt("Run {skill} for today")
+                .instructions("# Purpose\nSuggest the three most important things to work on today.")
+                .mcpServers(Arrays.asList(SkillMcpServer.builder()
+                        .appId("A0123ABCD")
+                        .serverId("Amcp0456EFGH")
+                        .serviceType("app")
+                        .build()))
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsCreate(r -> r
+                .canvasId("F0123ABCD")
+                .displayName("Daily priorities")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsDelete(r -> r
+                .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsInfo(r -> r
+                .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsLibraryAdd(r -> r
+                .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsLibraryRemove(r -> r
+                .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsList(r -> r
+                .category("productivity")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .filter("owned")
+                .limit(100)
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsUpdate(r -> r
+                .category("")
+                .description("")
+                .displayName("Daily priorities")
+                .examplePrompt("")
+                .instructions("# Purpose\nSuggest the three most important things to work on today.")
+                .mcpServers(Collections.emptyList())
+                .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+    }
+}

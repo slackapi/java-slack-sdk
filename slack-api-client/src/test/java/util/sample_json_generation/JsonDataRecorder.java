@@ -12,6 +12,7 @@ import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListR
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.admin.*;
+import com.slack.api.model.slackbot.Skill;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
@@ -458,6 +459,8 @@ public class JsonDataRecorder {
                     array.add(gson.toJsonTree(initProperties(new AppRequest())));
                 } else if (path.equals("/api/chat.scheduledMessages.list") && name.equals("scheduled_messages")) {
                     array.add(gson.toJsonTree(initProperties(new ChatScheduledMessagesListResponse.ScheduledMessage())));
+                } else if (path.startsWith("/api/slackbot.skills.") && name.equals("mcp_servers")) {
+                    array.add(gson.toJsonTree(initProperties(new Skill.McpServer())));
                 } else if (path.equals("/api/team.profile.get") && name.equals("possible_values")) {
                     array.add("");
                 } else if (name.equals("replies")) {

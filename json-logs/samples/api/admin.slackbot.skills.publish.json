@@ -1,0 +1,18 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": "",
+  "failed_skills": [
+    {
+      "error": "",
+      "skill_id": "F00000000"
+    }
+  ],
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  }
+}
