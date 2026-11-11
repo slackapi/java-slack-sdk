@@ -429,7 +429,10 @@
       "mcp_slack_delete_workflow_step_tool_called",
       "mcp_slack_publish_workflow_tool_called",
       "pref.override_enforce_sha256_signature",
-      "pref.slackbot_ai_voice_mode_enabled_changed"
+      "pref.slackbot_ai_voice_mode_enabled_changed",
+      "mcp_slack_add_workflow_branches_tool_called",
+      "mcp_slack_add_workflow_loop_tool_called",
+      "pref.sensitivity_labels"
     ],
     "user": [
       "custom_tos_accepted",
@@ -921,7 +924,8 @@
       "license_removed",
       "object_import_initiated",
       "object_import_completed",
-      "object_import_failed"
+      "object_import_failed",
+      "field_deleted"
     ],
     "legal_hold": [
       "legal_hold_policy_created",
