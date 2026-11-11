@@ -87,11 +87,11 @@ public class ListRecord {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class LinkField {
-        @SerializedName("original_url")
+        @SerializedName(value = "original_url", alternate = "originalUrl")
         private String originalUrl;
-        @SerializedName("display_as_url")
+        @SerializedName(value = "display_as_url", alternate = "displayAsUrl")
         private Boolean displayAsUrl;
-        @SerializedName("display_name")
+        @SerializedName(value = "display_name", alternate = "displayName")
         private String displayName;
     }
 
