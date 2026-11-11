@@ -16,6 +16,7 @@
       "is_mpim": false,
       "is_private": false,
       "is_general": false,
+      "is_file": false,
       "unlinked": 12345,
       "name_normalized": "",
       "is_shared": false,
