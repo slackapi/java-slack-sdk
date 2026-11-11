@@ -2457,6 +2457,151 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parsePlanBlock() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"plan\",\n" +
+                "      \"title\": \"Thinking completed\",\n" +
+                "      \"tasks\": [\n" +
+                "        {\n" +
+                "          \"task_id\": \"call_001\",\n" +
+                "          \"title\": \"Fetched user profile information\",\n" +
+                "          \"status\": \"in_progress\",\n" +
+                "          \"details\": {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"block_id\": \"viMWO\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [\n" +
+                "                  {\n" +
+                "                    \"type\": \"text\",\n" +
+                "                    \"text\": \"Searched database...\"\n" +
+                "                  }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          },\n" +
+                "          \"output\": {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"block_id\": \"viMWO\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [\n" +
+                "                  {\n" +
+                "                    \"type\": \"text\",\n" +
+                "                    \"text\": \"Profile data loaded\"\n" +
+                "                  }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"task_id\": \"call_002\",\n" +
+                "          \"title\": \"Checked user permissions\",\n" +
+                "          \"status\": \"in_progress\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"task_id\": \"call_003\",\n" +
+                "          \"title\": \"Generated comprehensive user report\",\n" +
+                "          \"status\": \"complete\",\n" +
+                "          \"output\": {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"block_id\": \"crsk\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [\n" +
+                "                  {\n" +
+                "                    \"type\": \"text\",\n" +
+                "                    \"text\": \"15 data points compiled\"\n" +
+                "                  }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Gson gson = GsonFactory.createSnakeCase();
+        Message message = gson.fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        PlanBlock plan = (PlanBlock) message.getBlocks().get(0);
+        assertThat(plan.getType(), is("plan"));
+        assertThat(plan.getTitle(), is("Thinking completed"));
+        assertThat(plan.getTasks().size(), is(3));
+
+        assertThat(plan.getTasks().get(0).getTaskId(), is("call_001"));
+        assertThat(plan.getTasks().get(0).getTitle(), is("Fetched user profile information"));
+        assertThat(plan.getTasks().get(0).getStatus(), is("in_progress"));
+        assertThat(plan.getTasks().get(0).getDetails().getBlockId(), is("viMWO"));
+        assertThat(plan.getTasks().get(0).getOutput().getBlockId(), is("viMWO"));
+
+        assertThat(plan.getTasks().get(1).getTaskId(), is("call_002"));
+        assertThat(plan.getTasks().get(1).getTitle(), is("Checked user permissions"));
+        assertThat(plan.getTasks().get(1).getStatus(), is("in_progress"));
+
+        assertThat(plan.getTasks().get(2).getTaskId(), is("call_003"));
+        assertThat(plan.getTasks().get(2).getTitle(), is("Generated comprehensive user report"));
+        assertThat(plan.getTasks().get(2).getStatus(), is("complete"));
+        assertThat(plan.getTasks().get(2).getOutput().getBlockId(), is("crsk"));
+    }
+
+    @Test
+    public void buildPlanBlock() {
+        PlanBlock plan = Blocks.plan(p -> p
+                .title("Thinking completed")
+                .tasks(Arrays.asList(
+                        Blocks.taskCard(t -> t
+                                .taskId("call_001")
+                                .title("Fetched user profile information")
+                                .status("in_progress")
+                                .details(Blocks.richText(r -> r
+                                        .blockId("viMWO")
+                                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                                        .text("Searched database...")
+                                                        .build()))
+                                                .build()))))
+                                .output(Blocks.richText(r -> r
+                                        .blockId("viMWO")
+                                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                                        .text("Profile data loaded")
+                                                        .build()))
+                                                .build()))))),
+                        Blocks.taskCard(t -> t
+                                .taskId("call_002")
+                                .title("Checked user permissions")
+                                .status("in_progress")),
+                        Blocks.taskCard(t -> t
+                                .taskId("call_003")
+                                .title("Generated comprehensive user report")
+                                .status("complete")
+                                .output(Blocks.richText(r -> r
+                                        .blockId("crsk")
+                                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                                        .text("15 data points compiled")
+                                                        .build()))
+                                                .build()))))))));
+        assertThat(plan, is(notNullValue()));
+        assertThat(plan.getType(), is("plan"));
+        assertThat(plan.getTitle(), is("Thinking completed"));
+        assertThat(plan.getTasks().size(), is(3));
+        assertThat(plan.getTasks().get(0).getTaskId(), is("call_001"));
+        assertThat(plan.getTasks().get(1).getTaskId(), is("call_002"));
+        assertThat(plan.getTasks().get(2).getTaskId(), is("call_003"));
+    }
+
+    @Test
     public void parseAuthProviderBlock() {
         String json = "{\"type\":\"home\",\"blocks\":[\n" +
                 "  {\n" +
