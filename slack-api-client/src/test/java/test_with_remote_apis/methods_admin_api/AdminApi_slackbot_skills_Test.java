@@ -5,6 +5,7 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsUnpublishResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import config.Constants;
 import config.SlackTestConfig;
@@ -114,6 +115,10 @@ public class AdminApi_slackbot_skills_Test {
                 assertThat(noOne.getPermissionType(), is("no_one"));
                 assertThat(noOne.getSkillId(), is(skillId));
                 assertThat(noOne.getUsergroupIds(), is(Collections.emptyList()));
+
+                AdminSlackbotSkillsUnpublishResponse unpublication = client.adminSlackbotSkillsUnpublish(r -> r
+                        .skillIds(Collections.singletonList(skillId)));
+                assertThat(unpublication.getError(), is(nullValue()));
             } finally {
                 deleteSkill(client, orgAdminUserToken, skillId);
             }

@@ -30,6 +30,7 @@ import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequ
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsUnpublishRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -854,6 +855,14 @@ public class RequestFormBuilder {
         setIfNotNull("permission_type", req.getPermissionType(), form);
         if (req.getUsergroupIds() != null) {
             setIfNotNull("usergroup_ids", req.getUsergroupIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminSlackbotSkillsUnpublishRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getSkillIds() != null) {
+            setIfNotNull("skill_ids", req.getSkillIds().stream().collect(joining(",")), form);
         }
         return form;
     }

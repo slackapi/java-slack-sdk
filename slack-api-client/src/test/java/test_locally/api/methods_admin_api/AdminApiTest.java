@@ -212,6 +212,7 @@ public class AdminApiTest {
                 .skillId("F0123ABCD")
                 .permissionType("named_entities")
                 .usergroupIds(Arrays.asList("S0123ABCD"))).isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsUnpublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH"))).isOk(), is(true));
     }
 
     @Test
