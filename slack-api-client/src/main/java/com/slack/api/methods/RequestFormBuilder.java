@@ -3071,6 +3071,67 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(SlackbotSkillsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
+        setIfNotNull("instructions", req.getInstructions(), form);
+        if (req.getMcpServers() != null) {
+            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsLibraryAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsLibraryRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("filter", req.getFilter(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
+        setIfNotNull("instructions", req.getInstructions(), form);
+        if (req.getMcpServers() != null) {
+            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
+        }
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(SlackListsAccessDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("list_id", req.getListId(), form);
@@ -3196,67 +3257,6 @@ public class RequestFormBuilder {
             form.add("description_blocks", json);
         }
         setIfNotNull("todo_mode", req.getTodoMode(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsCreateRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("canvas_id", req.getCanvasId(), form);
-        setIfNotNull("category", req.getCategory(), form);
-        setIfNotNull("description", req.getDescription(), form);
-        setIfNotNull("display_name", req.getDisplayName(), form);
-        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
-        setIfNotNull("instructions", req.getInstructions(), form);
-        if (req.getMcpServers() != null) {
-            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
-        }
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsDeleteRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("skill_id", req.getSkillId(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsInfoRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("skill_id", req.getSkillId(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsLibraryAddRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("skill_id", req.getSkillId(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsLibraryRemoveRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("skill_id", req.getSkillId(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsListRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("category", req.getCategory(), form);
-        setIfNotNull("cursor", req.getCursor(), form);
-        setIfNotNull("filter", req.getFilter(), form);
-        setIfNotNull("limit", req.getLimit(), form);
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsUpdateRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("category", req.getCategory(), form);
-        setIfNotNull("description", req.getDescription(), form);
-        setIfNotNull("display_name", req.getDisplayName(), form);
-        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
-        setIfNotNull("instructions", req.getInstructions(), form);
-        if (req.getMcpServers() != null) {
-            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
-        }
-        setIfNotNull("skill_id", req.getSkillId(), form);
         return form;
     }
 

@@ -449,6 +449,14 @@ public class MethodsRateLimits {
         setRateLimitTier(SEARCH_FILES, Tier2);
         setRateLimitTier(SEARCH_MESSAGES, Tier2);
 
+        setRateLimitTier(SLACKBOT_SKILLS_CREATE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILLS_DELETE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILLS_INFO, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_ADD, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_REMOVE, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIST, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_UPDATE, Tier3);
+
         setRateLimitTier(SLACKLISTS_ACCESS_DELETE, Tier3);
         setRateLimitTier(SLACKLISTS_ACCESS_SET, Tier3);
         setRateLimitTier(SLACKLISTS_CREATE, Tier2);
@@ -461,14 +469,6 @@ public class MethodsRateLimits {
         setRateLimitTier(SLACKLISTS_ITEMS_LIST, Tier2);
         setRateLimitTier(SLACKLISTS_ITEMS_UPDATE, Tier3);
         setRateLimitTier(SLACKLISTS_UPDATE, Tier2);
-
-        setRateLimitTier(SLACKBOT_SKILLS_CREATE, Tier2);
-        setRateLimitTier(SLACKBOT_SKILLS_DELETE, Tier2);
-        setRateLimitTier(SLACKBOT_SKILLS_INFO, Tier3);
-        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_ADD, Tier3);
-        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_REMOVE, Tier3);
-        setRateLimitTier(SLACKBOT_SKILLS_LIST, Tier3);
-        setRateLimitTier(SLACKBOT_SKILLS_UPDATE, Tier3);
 
         setRateLimitTier(STARS_ADD, Tier2);
         setRateLimitTier(STARS_LIST, Tier3);
