@@ -28,6 +28,7 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 
 public class RequestFormBuilderTest {
 
@@ -46,21 +47,29 @@ public class RequestFormBuilderTest {
     }
 
     @Test
-    public void testChatPostMessageThreadTsIsSerializedOnce() {
-        String threadTs = "1234567890.123456";
+    public void testChatPostMessageFieldsAreSerializedOnce() {
         FormBody form = RequestFormBuilder.toForm(ChatPostMessageRequest.builder()
                 .channel("C1234567890")
                 .text("A threaded reply")
-                .threadTs(threadTs)
+                .threadTs("1234567890.123456")
+                .parse("none")
+                .metadataAsString("{\"event_type\":\"test\",\"event_payload\":{}}")
+                .blocksAsString("[]")
+                .attachmentsAsString("[]")
+                .username("Test bot")
+                .asUser(false)
+                .iconUrl("https://example.com/icon.png")
+                .iconEmoji(":wave:")
                 .build()).build();
 
-        List<String> threadTimestamps = new ArrayList<>();
+        List<String> fieldNames = new ArrayList<>();
         for (int i = 0; i < form.size(); i++) {
-            if ("thread_ts".equals(form.name(i))) {
-                threadTimestamps.add(form.value(i));
-            }
+            fieldNames.add(form.name(i));
         }
-        assertThat(threadTimestamps, is(Arrays.asList(threadTs)));
+        assertThat(fieldNames, containsInAnyOrder(
+                "channel", "thread_ts", "text", "parse", "link_names", "mrkdwn", "metadata",
+                "blocks", "attachments", "unfurl_links", "unfurl_media", "username", "as_user",
+                "icon_url", "icon_emoji", "reply_broadcast"));
     }
 
     @Test
