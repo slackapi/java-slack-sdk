@@ -148,6 +148,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
@@ -325,6 +326,7 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
@@ -3489,6 +3491,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) throws IOException, SlackApiException {
         return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsDeleteResponse slackbotSkillsDelete(SlackbotSkillsDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_DELETE, getToken(req), SlackbotSkillsDeleteResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsDeleteResponse slackbotSkillsDelete(RequestConfigurator<SlackbotSkillsDeleteRequest.SlackbotSkillsDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsDelete(req.configure(SlackbotSkillsDeleteRequest.builder()).build());
     }
 
     @Override

@@ -7,15 +7,14 @@ import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsP
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsUnpublishResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.FormBody;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -42,11 +41,6 @@ public class AdminApi_slackbot_skills_Test {
 
     static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
     static String usergroupId = System.getenv(Constants.SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID_2);
-
-    // Cleans up test skills with a raw call until slackbot.skills.delete is available
-    static void deleteSkill(MethodsClient client, String token, String skillId) throws IOException {
-        client.runPostFormWithToken(new FormBody.Builder().add("skill_id", skillId), "slackbot.skills.delete", token).close();
-    }
 
     @Test
     public void list() throws Exception {
@@ -120,7 +114,8 @@ public class AdminApi_slackbot_skills_Test {
                         .skillIds(Collections.singletonList(skillId)));
                 assertThat(unpublication.getError(), is(nullValue()));
             } finally {
-                deleteSkill(client, orgAdminUserToken, skillId);
+                SlackbotSkillsDeleteResponse deletion = client.slackbotSkillsDelete(r -> r.skillId(skillId));
+                assertThat(deletion.getError(), is(nullValue()));
             }
         }
     }

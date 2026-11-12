@@ -147,6 +147,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
@@ -3081,6 +3082,12 @@ public class RequestFormBuilder {
         if (req.getMcpServers() != null) {
             setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
         }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
         return form;
     }
 

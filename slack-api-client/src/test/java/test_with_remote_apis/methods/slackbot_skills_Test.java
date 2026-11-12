@@ -5,6 +5,7 @@ import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
@@ -16,12 +17,10 @@ import com.slack.api.model.slackbot.SkillMcpServer;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.FormBody;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -46,11 +45,6 @@ public class slackbot_skills_Test {
     @AfterClass
     public static void tearDown() throws InterruptedException {
         SlackTestConfig.awaitCompletion(testConfig);
-    }
-
-    // Cleans up test skills with a raw call until slackbot.skills.delete is available
-    static void deleteSkill(MethodsClient client, String token, String skillId) throws IOException {
-        client.runPostFormWithToken(new FormBody.Builder().add("skill_id", skillId), "slackbot.skills.delete", token).close();
     }
 
     @Test
@@ -101,7 +95,8 @@ public class slackbot_skills_Test {
             SlackbotSkillsLibraryRemoveResponse removal = client.slackbotSkillsLibraryRemove(r -> r.skillId(skillId));
             assertThat(removal.getError(), is(nullValue()));
         } finally {
-            deleteSkill(client, botToken, skillId);
+            SlackbotSkillsDeleteResponse deletion = client.slackbotSkillsDelete(r -> r.skillId(skillId));
+            assertThat(deletion.getError(), is(nullValue()));
         }
     }
 
@@ -125,7 +120,8 @@ public class slackbot_skills_Test {
 
         Thread.sleep(3000L); // A converted canvas can briefly read as skill_not_found
 
-        deleteSkill(client, botToken, canvasId);
+        SlackbotSkillsDeleteResponse deletion = client.slackbotSkillsDelete(r -> r.skillId(canvasId));
+        assertThat(deletion.getError(), is(nullValue()));
     }
 
     @Test
