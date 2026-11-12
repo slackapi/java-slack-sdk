@@ -228,6 +228,11 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminSlackbotSkillsPublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH")))
                 .get().isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsSetAutoEnabled(r -> r
+                .skillId("F0123ABCD")
+                .permissionType("named_entities")
+                .usergroupIds(Arrays.asList("S0123ABCD")))
+                .get().isOk(), is(true));
     }
 
     @Test

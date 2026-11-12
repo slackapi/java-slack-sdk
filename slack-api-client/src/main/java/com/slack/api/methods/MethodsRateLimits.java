@@ -131,6 +131,7 @@ public class MethodsRateLimits {
 
                 ADMIN_SLACKBOT_SKILLS_LIST,
                 ADMIN_SLACKBOT_SKILLS_PUBLISH,
+                ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED,
 
                 ADMIN_TEAMS_SETTINGS_SET_DEFAULT_CHANNELS,
                 ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION,
