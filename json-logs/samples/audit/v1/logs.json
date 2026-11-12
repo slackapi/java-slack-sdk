@@ -130,6 +130,11 @@
           "id": "",
           "app_id": "",
           "callback_id": ""
+        },
+        "canvas": {
+          "id": "",
+          "title": "",
+          "filetype": ""
         }
       },
       "context": {
@@ -491,7 +496,14 @@
         "rule_id": "",
         "is_enabled": false,
         "title": "",
-        "changed_fields": []
+        "changed_fields": [],
+        "is_skill": false,
+        "organization_id": "",
+        "usergroup_ids": [],
+        "category_changed": false,
+        "description_changed": false,
+        "example_prompt_changed": false,
+        "mcp_servers_changed": false
       }
     }
   ]
