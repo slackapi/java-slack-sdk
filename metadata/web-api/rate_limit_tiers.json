@@ -62,6 +62,7 @@
   "admin.roles.addAssignments": "Tier2",
   "admin.roles.listAssignments": "Tier3",
   "admin.roles.removeAssignments": "Tier2",
+  "admin.slackbot.skills.list": "Tier2",
   "admin.teams.admins.list": "Tier3",
   "admin.teams.create": "Tier1",
   "admin.teams.list": "Tier3",

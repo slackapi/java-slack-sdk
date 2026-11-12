@@ -139,6 +139,12 @@ public class Methods {
     public static final String ADMIN_ROLES_REMOVE_ASSIGNMENTS = "admin.roles.removeAssignments";
 
     // ------------------------------
+    // admin.slackbot.skills
+    // ------------------------------
+
+    public static final String ADMIN_SLACKBOT_SKILLS_LIST = "admin.slackbot.skills.list";
+
+    // ------------------------------
     // admin.teams.admins
     // ------------------------------
 
