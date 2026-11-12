@@ -685,6 +685,12 @@ public class Methods {
     public static final String SEARCH_MESSAGES = "search.messages";
 
     // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    public static final String SLACKBOT_SKILLS_CREATE = "slackbot.skills.create";
+
+    // ------------------------------
     // slackLists
     // ------------------------------
 

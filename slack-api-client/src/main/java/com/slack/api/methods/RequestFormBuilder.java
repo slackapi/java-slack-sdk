@@ -142,6 +142,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -3016,6 +3017,20 @@ public class RequestFormBuilder {
         setIfNotNull("file", req.getFile(), form);
         setIfNotNull("file_comment", req.getFileComment(), form);
         setIfNotNull("timestamp", req.getTimestamp(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("instructions", req.getInstructions(), form);
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
+        if (req.getMcpServers() != null) {
+            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
+        }
         return form;
     }
 
