@@ -5,6 +5,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsUnpublishResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
@@ -225,6 +226,28 @@ public class SlackbotSkillsTest {
         assertThat(errorResponse.isOk(), is(false));
         assertThat(errorResponse.getError(), is("usergroup_not_found"));
         assertThat(errorResponse.getInvalidUsergroupIds(), is(Collections.singletonList("S0456EFGH")));
+    }
+
+    @Test
+    public void adminSlackbotSkillsUnpublishResponse() {
+        SlackConfig strict = new SlackConfig();
+        strict.setFailOnUnknownProperties(true);
+
+        String json = "{" +
+                "  \"ok\": false," +
+                "  \"error\": \"failed_for_some_skills\"," +
+                "  \"failed_skills\": [" +
+                "    {" +
+                "      \"skill_id\": \"F0456EFGH\"," +
+                "      \"error\": \"skill_not_found\"" +
+                "    }" +
+                "  ]" +
+                "}";
+        AdminSlackbotSkillsUnpublishResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, AdminSlackbotSkillsUnpublishResponse.class);
+        assertThat(response.isOk(), is(false));
+        assertThat(response.getError(), is("failed_for_some_skills"));
+        assertThat(response.getFailedSkills().get(0).getSkillId(), is("F0456EFGH"));
+        assertThat(response.getFailedSkills().get(0).getError(), is("skill_not_found"));
     }
 
     @Test
