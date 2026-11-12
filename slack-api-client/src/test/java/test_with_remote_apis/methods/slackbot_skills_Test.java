@@ -6,8 +6,10 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.model.canvas.CanvasDocumentContent;
 import com.slack.api.model.slackbot.Skill;
+import com.slack.api.model.slackbot.SkillMcpServer;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -65,6 +69,23 @@ public class slackbot_skills_Test {
             SlackbotSkillsInfoResponse info = client.slackbotSkillsInfo(r -> r.skillId(skillId));
             assertThat(info.getError(), is(nullValue()));
             assertThat(info.getSkill().getInstructions(), is(notNullValue()));
+
+            SlackbotSkillsUpdateResponse update = client.slackbotSkillsUpdate(r -> r
+                    .skillId(skillId)
+                    .description("Updated test skill for SDK development.")
+                    .mcpServers(Collections.emptyList()));
+            assertThat(update.getError(), is(nullValue()));
+            assertThat(update.getSkill().getDescription(), is("Updated test skill for SDK development."));
+
+            SlackbotSkillsUpdateResponse invalidUpdate = client.slackbotSkillsUpdate(r -> r
+                    .skillId(skillId)
+                    .mcpServers(Arrays.asList(SkillMcpServer.builder()
+                            .serviceType("app")
+                            .appId("A0123ABCD")
+                            .serverId("Amcp0456EFGH")
+                            .build())));
+            assertThat(invalidUpdate.getError(), is("mcp_server_not_found"));
+            assertThat(invalidUpdate.getInvalidMcpServers().get(0).getAppId(), is("A0123ABCD"));
         } finally {
             deleteSkill(client, botToken, skillId);
         }

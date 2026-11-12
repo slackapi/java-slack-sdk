@@ -9,6 +9,7 @@ import org.junit.Test;
 import util.MockSlackApiServer;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -52,6 +53,15 @@ public class SlackbotSkillsTest {
         assertThat(slack.methods(ValidToken).slackbotSkillsInfo(r -> r
                 .skillId("F0123ABCD")
         ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsUpdate(r -> r
+                .skillId("F0123ABCD")
+                .displayName("Daily priorities")
+                .instructions("# Purpose\nSuggest the three most important things to work on today.")
+                .description("")
+                .category("")
+                .examplePrompt("")
+                .mcpServers(Collections.emptyList())
+        ).isOk(), is(true));
     }
 
     @Test
@@ -74,6 +84,15 @@ public class SlackbotSkillsTest {
         ).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).slackbotSkillsInfo(r -> r
                 .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsUpdate(r -> r
+                .skillId("F0123ABCD")
+                .displayName("Daily priorities")
+                .instructions("# Purpose\nSuggest the three most important things to work on today.")
+                .description("")
+                .category("")
+                .examplePrompt("")
+                .mcpServers(Collections.emptyList())
         ).get().isOk(), is(true));
     }
 }
