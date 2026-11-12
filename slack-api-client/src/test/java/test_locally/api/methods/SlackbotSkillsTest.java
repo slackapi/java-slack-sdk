@@ -2,6 +2,7 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
@@ -124,6 +125,50 @@ public class SlackbotSkillsTest {
                 .examplePrompt("")
                 .mcpServers(Collections.emptyList())
         ).get().isOk(), is(true));
+    }
+
+    @Test
+    public void adminSlackbotSkillsListResponse() {
+        SlackConfig strict = new SlackConfig();
+        strict.setFailOnUnknownProperties(true);
+
+        String json = "{" +
+                "  \"ok\": true," +
+                "  \"skills\": [" +
+                "    {" +
+                "      \"id\": \"F0123ABCD\"," +
+                "      \"display_name\": \"Daily priorities\"," +
+                "      \"description\": null," +
+                "      \"category\": null," +
+                "      \"creator_id\": \"U0123ABCD\"," +
+                "      \"date_created\": 1794467171," +
+                "      \"date_updated\": 1794467171," +
+                "      \"visibility\": \"anyone_can_view\"," +
+                "      \"is_official\": true," +
+                "      \"usage_count\": 0," +
+                "      \"library_count\": 1," +
+                "      \"auto_enabled\": {" +
+                "        \"permission_type\": \"named_entities\"," +
+                "        \"usergroup_ids\": [" +
+                "          \"S0123ABCD\"" +
+                "        ]" +
+                "      }" +
+                "    }" +
+                "  ]," +
+                "  \"response_metadata\": {" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"" +
+                "  }" +
+                "}";
+        AdminSlackbotSkillsListResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, AdminSlackbotSkillsListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkills().get(0).getId(), is("F0123ABCD"));
+        assertThat(response.getSkills().get(0).getDescription(), is(nullValue()));
+        assertThat(response.getSkills().get(0).getVisibility(), is("anyone_can_view"));
+        assertThat(response.getSkills().get(0).getIsOfficial(), is(true));
+        assertThat(response.getSkills().get(0).getLibraryCount(), is(1));
+        assertThat(response.getSkills().get(0).getAutoEnabled().getPermissionType(), is("named_entities"));
+        assertThat(response.getSkills().get(0).getAutoEnabled().getUsergroupIds(), is(Collections.singletonList("S0123ABCD")));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
     }
 
     @Test
