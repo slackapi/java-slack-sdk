@@ -46,6 +46,24 @@ public class RequestFormBuilderTest {
     }
 
     @Test
+    public void testChatPostMessageThreadTsIsSerializedOnce() {
+        String threadTs = "1234567890.123456";
+        FormBody form = RequestFormBuilder.toForm(ChatPostMessageRequest.builder()
+                .channel("C1234567890")
+                .text("A threaded reply")
+                .threadTs(threadTs)
+                .build()).build();
+
+        List<String> threadTimestamps = new ArrayList<>();
+        for (int i = 0; i < form.size(); i++) {
+            if ("thread_ts".equals(form.name(i))) {
+                threadTimestamps.add(form.value(i));
+            }
+        }
+        assertThat(threadTimestamps, is(Arrays.asList(threadTs)));
+    }
+
+    @Test
     public void testBlocksJsonSerialization() {
         // GIVEN
         List<LayoutBlock> blocks = new ArrayList<>();
