@@ -53,6 +53,12 @@ public class SlackbotSkillsTest {
         assertThat(slack.methods(ValidToken).slackbotSkillsInfo(r -> r
                 .skillId("F0123ABCD")
         ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsList(r -> r
+                .filter("owned")
+                .category("productivity")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .limit(100)
+        ).isOk(), is(true));
         assertThat(slack.methods(ValidToken).slackbotSkillsUpdate(r -> r
                 .skillId("F0123ABCD")
                 .displayName("Daily priorities")
@@ -84,6 +90,12 @@ public class SlackbotSkillsTest {
         ).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).slackbotSkillsInfo(r -> r
                 .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsList(r -> r
+                .filter("owned")
+                .category("productivity")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .limit(100)
         ).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).slackbotSkillsUpdate(r -> r
                 .skillId("F0123ABCD")
