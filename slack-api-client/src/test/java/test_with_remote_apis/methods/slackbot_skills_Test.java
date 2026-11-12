@@ -8,6 +8,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateRespon
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryAddResponse;
 import com.slack.api.model.canvas.CanvasDocumentContent;
 import com.slack.api.model.slackbot.Skill;
 import com.slack.api.model.slackbot.SkillMcpServer;
@@ -92,6 +93,9 @@ public class slackbot_skills_Test {
             assertThat(owned.getError(), is(nullValue()));
             assertThat(owned.getSkills(), is(notNullValue()));
             assertThat(owned.getResponseMetadata(), is(notNullValue()));
+
+            SlackbotSkillsLibraryAddResponse addition = client.slackbotSkillsLibraryAdd(r -> r.skillId(skillId));
+            assertThat(addition.getError(), is(nullValue()));
         } finally {
             deleteSkill(client, botToken, skillId);
         }
