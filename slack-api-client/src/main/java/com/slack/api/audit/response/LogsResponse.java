@@ -78,6 +78,7 @@ public class LogsResponse implements AuditApiResponse {
         // captured JSON before typing. See deferred conversion notes.
         private Object externalAuthOauth2Token;
         private Function function;
+        private Canvas canvas;
     }
 
     @Data
@@ -130,6 +131,13 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String filetype;
         private String title;
+    }
+
+    @Data
+    public static class Canvas {
+        private String id;
+        private String title;
+        private String filetype;
     }
 
     @Data
@@ -466,6 +474,13 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean enabled;
         private String title; // list_title_updated etc.
         private List<String> changedFields;
+        private Boolean isSkill; // canvas_converted_to_skill etc.
+        private String organizationId; // canvas_linksharing_enabled
+        private List<String> usergroupIds; // slack_ai_skill_auto_enabled etc.
+        private Boolean categoryChanged; // slack_ai_skill_metadata_updated
+        private Boolean descriptionChanged; // slack_ai_skill_metadata_updated
+        private Boolean examplePromptChanged; // slack_ai_skill_metadata_updated
+        private Boolean mcpServersChanged; // slack_ai_skill_metadata_updated
     }
 
     @Data

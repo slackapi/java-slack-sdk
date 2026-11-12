@@ -444,6 +444,8 @@ public class Actions {
         public static final String mcp_slack_add_workflow_branches_tool_called = "mcp_slack_add_workflow_branches_tool_called";
         public static final String mcp_slack_add_workflow_loop_tool_called = "mcp_slack_add_workflow_loop_tool_called";
         public static final String pref_sensitivity_labels = "pref.sensitivity_labels";
+        public static final String mcp_slack_read_developer_doc_tool_called = "mcp_slack_read_developer_doc_tool_called";
+        public static final String pref_slackbot_ai_dm_instructions_changed = "pref.slackbot_ai_dm_instructions_changed";
     }
 
     public static class User {
