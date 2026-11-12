@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.model.slackbot.SkillMcpServer;
 import com.slack.api.util.json.GsonFactory;
@@ -217,6 +218,48 @@ public class SlackbotSkillsTest {
         assertThat(response.getSkill().getMcpServers().get(0).getServerId(), is("Amcp0456EFGH"));
         assertThat(response.getSkill().getMcpServers().get(0).getDisplayName(), is("Google Calendar"));
         assertThat(response.getSkill().getMcpServers().get(0).getIsAvailable(), is(true));
+    }
+
+    @Test
+    public void slackbotSkillsListResponse() {
+        SlackConfig strict = new SlackConfig();
+        strict.setFailOnUnknownProperties(true);
+
+        String json = "{" +
+                "  \"ok\": true," +
+                "  \"skills\": [" +
+                "    {" +
+                "      \"id\": \"F0123ABCD\"," +
+                "      \"type\": \"canvas\"," +
+                "      \"display_name\": \"Daily priorities\"," +
+                "      \"name\": null," +
+                "      \"description\": \"Reviews information from Slack and your calendar to suggest priorities for the day.\"," +
+                "      \"category\": null," +
+                "      \"example_prompt\": \"Run {skill} for today\"," +
+                "      \"instructions\": null," +
+                "      \"visibility\": \"invite_only\"," +
+                "      \"is_official\": false," +
+                "      \"access\": \"owner\"," +
+                "      \"mcp_servers\": []," +
+                "      \"usage_count\": 0," +
+                "      \"library_count\": 1," +
+                "      \"creator_id\": \"U0123ABCD\"," +
+                "      \"date_created\": 1794467151," +
+                "      \"date_updated\": 1794467151," +
+                "      \"permalink\": \"https://example.slack.com/skills/F0123ABCD\"" +
+                "    }" +
+                "  ]," +
+                "  \"response_metadata\": {" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"" +
+                "  }" +
+                "}";
+        SlackbotSkillsListResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, SlackbotSkillsListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkills().get(0).getId(), is("F0123ABCD"));
+        assertThat(response.getSkills().get(0).getCategory(), is(nullValue()));
+        assertThat(response.getSkills().get(0).getMcpServers(), is(Collections.emptyList()));
+        assertThat(response.getSkills().get(0).getLibraryCount(), is(1));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
     }
 
     @Test
