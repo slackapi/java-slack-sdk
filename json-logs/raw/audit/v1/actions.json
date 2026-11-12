@@ -432,7 +432,9 @@
       "pref.slackbot_ai_voice_mode_enabled_changed",
       "mcp_slack_add_workflow_branches_tool_called",
       "mcp_slack_add_workflow_loop_tool_called",
-      "pref.sensitivity_labels"
+      "pref.sensitivity_labels",
+      "mcp_slack_read_developer_doc_tool_called",
+      "pref.slackbot_ai_dm_instructions_changed"
     ],
     "user": [
       "custom_tos_accepted",
