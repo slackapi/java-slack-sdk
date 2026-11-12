@@ -147,6 +147,7 @@ import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryRemoveRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -3045,6 +3046,12 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(SlackbotSkillsLibraryAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsLibraryRemoveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("skill_id", req.getSkillId(), form);
         return form;
