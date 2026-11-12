@@ -689,6 +689,7 @@ public class Methods {
     // ------------------------------
 
     public static final String SLACKBOT_SKILLS_CREATE = "slackbot.skills.create";
+    public static final String SLACKBOT_SKILLS_INFO = "slackbot.skills.info";
 
     // ------------------------------
     // slackLists
