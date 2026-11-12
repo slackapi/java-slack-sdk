@@ -130,6 +130,7 @@ public class MethodsRateLimits {
                 ADMIN_ROLES_REMOVE_ASSIGNMENTS,
 
                 ADMIN_SLACKBOT_SKILLS_LIST,
+                ADMIN_SLACKBOT_SKILLS_PUBLISH,
 
                 ADMIN_TEAMS_SETTINGS_SET_DEFAULT_CHANNELS,
                 ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION,

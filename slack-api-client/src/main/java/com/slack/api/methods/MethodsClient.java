@@ -27,6 +27,7 @@ import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -201,6 +202,7 @@ import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsRespon
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -905,6 +907,11 @@ public interface MethodsClient {
     AdminSlackbotSkillsListResponse adminSlackbotSkillsList(AdminSlackbotSkillsListRequest req) throws IOException, SlackApiException;
 
     AdminSlackbotSkillsListResponse adminSlackbotSkillsList(RequestConfigurator<AdminSlackbotSkillsListRequest.AdminSlackbotSkillsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsPublishResponse adminSlackbotSkillsPublish(AdminSlackbotSkillsPublishRequest req) throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsPublishResponse adminSlackbotSkillsPublish(RequestConfigurator<AdminSlackbotSkillsPublishRequest.AdminSlackbotSkillsPublishRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

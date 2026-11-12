@@ -143,6 +143,7 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_SLACKBOT_SKILLS_LIST = "admin.slackbot.skills.list";
+    public static final String ADMIN_SLACKBOT_SKILLS_PUBLISH = "admin.slackbot.skills.publish";
 
     // ------------------------------
     // admin.teams.admins

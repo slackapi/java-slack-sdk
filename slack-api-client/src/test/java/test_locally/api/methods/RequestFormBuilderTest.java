@@ -1,6 +1,7 @@
 package test_locally.api.methods;
 
 import com.slack.api.methods.RequestFormBuilder;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
@@ -46,6 +47,15 @@ public class RequestFormBuilderTest {
             assertThat(form.name(0), is("include_slackbot_availability"));
             assertThat(form.value(0), is(include ? "1" : "0"));
         }
+    }
+
+    @Test
+    public void adminSlackbotSkillsPublishSkillIds() {
+        FormBody form = RequestFormBuilder.toForm(AdminSlackbotSkillsPublishRequest.builder()
+                .skillIds(Arrays.asList("F0123ABCD", "F0456EFGH")).build()).build();
+        assertThat(form.size(), is(1));
+        assertThat(form.name(0), is("skill_ids"));
+        assertThat(form.value(0), is("F0123ABCD,F0456EFGH"));
     }
 
     @Test
