@@ -116,26 +116,26 @@ public class AdminApiTest {
                 "  \"servers\": [\n" +
                 "    {\n" +
                 "      \"server_id\": \"Amcp0123ABCD\",\n" +
-                "      \"server_name\": \"maintainers-coffee\",\n" +
-                "      \"url\": \"https://maintainers.coffee/mcp\",\n" +
+                "      \"server_name\": \"example-server\",\n" +
+                "      \"url\": \"https://mcp.example.com/mcp\",\n" +
                 "      \"auth_type\": \"no_auth\",\n" +
                 "      \"app_id\": \"A0123ABCD\",\n" +
-                "      \"app_name\": \"Maintainers Coffee\"\n" +
+                "      \"app_name\": \"Example App\"\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"response_metadata\": {\n" +
-                "    \"next_cursor\": \"c2VydmVyX2lkOjExNjQyNTM2NDMzMjk3\"\n" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"\n" +
                 "  }\n" +
                 "}\n";
         AdminAppsMcpServersListResponse response = gson.fromJson(json, AdminAppsMcpServersListResponse.class);
         assertThat(response.isOk(), is(true));
         assertThat(response.getServers().get(0).getServerId(), is("Amcp0123ABCD"));
-        assertThat(response.getServers().get(0).getServerName(), is("maintainers-coffee"));
-        assertThat(response.getServers().get(0).getUrl(), is("https://maintainers.coffee/mcp"));
+        assertThat(response.getServers().get(0).getServerName(), is("example-server"));
+        assertThat(response.getServers().get(0).getUrl(), is("https://mcp.example.com/mcp"));
         assertThat(response.getServers().get(0).getAuthType(), is("no_auth"));
         assertThat(response.getServers().get(0).getAppId(), is("A0123ABCD"));
-        assertThat(response.getServers().get(0).getAppName(), is("Maintainers Coffee"));
-        assertThat(response.getResponseMetadata().getNextCursor(), is("c2VydmVyX2lkOjExNjQyNTM2NDMzMjk3"));
+        assertThat(response.getServers().get(0).getAppName(), is("Example App"));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
     }
 
     @Test
