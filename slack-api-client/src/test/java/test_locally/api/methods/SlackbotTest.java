@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
 
-public class SlackbotSkillsTest {
+public class SlackbotTest {
 
     MockSlackApiServer server = new MockSlackApiServer();
     SlackConfig config = new SlackConfig();
