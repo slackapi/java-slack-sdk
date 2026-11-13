@@ -434,7 +434,9 @@
       "mcp_slack_add_workflow_loop_tool_called",
       "pref.sensitivity_labels",
       "mcp_slack_read_developer_doc_tool_called",
-      "pref.slackbot_ai_dm_instructions_changed"
+      "pref.slackbot_ai_dm_instructions_changed",
+      "mcp_slack_search_developer_docs_tool_called",
+      "pref.slackbot_ai_tool_instructions_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -627,7 +629,8 @@
       "slack_ai_channel_knowledge_disabled",
       "slack_ai_channel_knowledge_refreshed",
       "channel_exclude_from_slackbot_in_channels_updated",
-      "channel_discoverability_updated"
+      "channel_discoverability_updated",
+      "slack_ai_channel_conversations_summarized"
     ],
     "app": [
       "app_installed",
