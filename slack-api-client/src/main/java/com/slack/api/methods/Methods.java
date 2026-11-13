@@ -145,6 +145,7 @@ public class Methods {
     public static final String ADMIN_SLACKBOT_SKILLS_LIST = "admin.slackbot.skills.list";
     public static final String ADMIN_SLACKBOT_SKILLS_PUBLISH = "admin.slackbot.skills.publish";
     public static final String ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED = "admin.slackbot.skills.setAutoEnabled";
+    public static final String ADMIN_SLACKBOT_SKILLS_UNPUBLISH = "admin.slackbot.skills.unpublish";
 
     // ------------------------------
     // admin.teams.admins
