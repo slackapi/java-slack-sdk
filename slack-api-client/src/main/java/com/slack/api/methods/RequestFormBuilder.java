@@ -27,6 +27,7 @@ import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -819,6 +820,21 @@ public class RequestFormBuilder {
         if (req.getUserIds() != null) {
             setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
         }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminSlackbotSkillsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        if (req.getCreatorIds() != null) {
+            setIfNotNull("creator_ids", req.getCreatorIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("publish_status", req.getPublishStatus(), form);
+        setIfNotNull("auto_enabled_status", req.getAutoEnabledStatus(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
         return form;
     }
 

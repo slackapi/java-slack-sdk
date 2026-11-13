@@ -195,6 +195,21 @@ public class AdminApiTest {
     }
 
     @Test
+    public void adminSlackbotSkills() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminSlackbotSkillsList(r -> r
+                .category("productivity")
+                .cursor("xxx")
+                .limit(100)
+                .creatorIds(Arrays.asList("U0123ABCD"))
+                .publishStatus("published")
+                .autoEnabledStatus("enabled")
+                .sort("usage_count")
+                .sortDir("desc")).isOk(), is(true));
+    }
+
+    @Test
     public void adminTeams() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 

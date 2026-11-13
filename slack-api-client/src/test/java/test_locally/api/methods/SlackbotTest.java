@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
@@ -126,6 +127,50 @@ public class SlackbotTest {
                 .examplePrompt("")
                 .mcpServers(Collections.emptyList())
         ).get().isOk(), is(true));
+    }
+
+    @Test
+    public void adminSlackbotSkillsListResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skills\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F0123ABCD\",\n" +
+                "      \"display_name\": \"Daily priorities\",\n" +
+                "      \"description\": null,\n" +
+                "      \"category\": null,\n" +
+                "      \"creator_id\": \"U0123ABCD\",\n" +
+                "      \"date_created\": 1794467171,\n" +
+                "      \"date_updated\": 1794467171,\n" +
+                "      \"visibility\": \"anyone_can_view\",\n" +
+                "      \"is_official\": true,\n" +
+                "      \"usage_count\": 0,\n" +
+                "      \"library_count\": 1,\n" +
+                "      \"auto_enabled\": {\n" +
+                "        \"permission_type\": \"named_entities\",\n" +
+                "        \"usergroup_ids\": [\n" +
+                "          \"S0123ABCD\"\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"\n" +
+                "  }\n" +
+                "}\n";
+        AdminSlackbotSkillsListResponse response = gson.fromJson(json, AdminSlackbotSkillsListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkills().get(0).getId(), is("F0123ABCD"));
+        assertThat(response.getSkills().get(0).getDescription(), is(nullValue()));
+        assertThat(response.getSkills().get(0).getVisibility(), is("anyone_can_view"));
+        assertThat(response.getSkills().get(0).getIsOfficial(), is(true));
+        assertThat(response.getSkills().get(0).getLibraryCount(), is(1));
+        assertThat(response.getSkills().get(0).getAutoEnabled().getPermissionType(), is("named_entities"));
+        assertThat(response.getSkills().get(0).getAutoEnabled().getUsergroupIds(), is(Collections.singletonList("S0123ABCD")));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
     }
 
     @Test
