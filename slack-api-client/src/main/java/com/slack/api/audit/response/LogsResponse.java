@@ -482,6 +482,17 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean examplePromptChanged; // slack_ai_skill_metadata_updated
         private Boolean mcpServersChanged; // slack_ai_skill_metadata_updated
         private Boolean excludeFromSlackAi; // channel_exclude_from_slack_ai_updated
+        private InstallerEmailVerification installerEmailVerification; // app_scopes_expanded
+        private List<String> newBotScopes; // app_approved
+        private List<String> oldBotScopes; // app_approved
+        private String previousPermissionType; // app_mcp_server_acl_changed
+        private String serverId; // app_mcp_server_acl_changed
+    }
+
+    @Data
+    public static class InstallerEmailVerification {
+        private String method;
+        private String email;
     }
 
     @Data
