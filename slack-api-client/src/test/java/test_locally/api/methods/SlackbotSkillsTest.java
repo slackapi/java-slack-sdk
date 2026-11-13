@@ -1,5 +1,6 @@
 package test_locally.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
@@ -11,6 +12,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.util.json.GsonFactory;
+import config.SlackTestConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -197,31 +199,31 @@ public class SlackbotSkillsTest {
 
     @Test
     public void adminSlackbotSkillsSetAutoEnabledResponse() {
-        SlackConfig strict = new SlackConfig();
-        strict.setFailOnUnknownProperties(true);
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
 
-        String json = "{" +
-                "  \"ok\": true," +
-                "  \"skill_id\": \"F0123ABCD\"," +
-                "  \"permission_type\": \"named_entities\"," +
-                "  \"usergroup_ids\": [" +
-                "    \"S0123ABCD\"" +
-                "  ]" +
-                "}";
-        AdminSlackbotSkillsSetAutoEnabledResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, AdminSlackbotSkillsSetAutoEnabledResponse.class);
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skill_id\": \"F0123ABCD\",\n" +
+                "  \"permission_type\": \"named_entities\",\n" +
+                "  \"usergroup_ids\": [\n" +
+                "    \"S0123ABCD\"\n" +
+                "  ]\n" +
+                "}\n";
+        AdminSlackbotSkillsSetAutoEnabledResponse response = gson.fromJson(json, AdminSlackbotSkillsSetAutoEnabledResponse.class);
         assertThat(response.isOk(), is(true));
         assertThat(response.getSkillId(), is("F0123ABCD"));
         assertThat(response.getPermissionType(), is("named_entities"));
         assertThat(response.getUsergroupIds(), is(Collections.singletonList("S0123ABCD")));
 
-        String errorJson = "{" +
-                "  \"ok\": false," +
-                "  \"error\": \"usergroup_not_found\"," +
-                "  \"invalid_usergroup_ids\": [" +
-                "    \"S0456EFGH\"" +
-                "  ]" +
-                "}";
-        AdminSlackbotSkillsSetAutoEnabledResponse errorResponse = GsonFactory.createSnakeCase(strict).fromJson(errorJson, AdminSlackbotSkillsSetAutoEnabledResponse.class);
+        String errorJson = "{\n" +
+                "  \"ok\": false,\n" +
+                "  \"error\": \"usergroup_not_found\",\n" +
+                "  \"invalid_usergroup_ids\": [\n" +
+                "    \"S0456EFGH\"\n" +
+                "  ]\n" +
+                "}\n";
+        AdminSlackbotSkillsSetAutoEnabledResponse errorResponse = gson.fromJson(errorJson, AdminSlackbotSkillsSetAutoEnabledResponse.class);
         assertThat(errorResponse.isOk(), is(false));
         assertThat(errorResponse.getError(), is("usergroup_not_found"));
         assertThat(errorResponse.getInvalidUsergroupIds(), is(Collections.singletonList("S0456EFGH")));
