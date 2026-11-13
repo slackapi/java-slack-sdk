@@ -1542,30 +1542,6 @@ public interface AsyncMethodsClient {
     CompletableFuture<SearchFilesResponse> searchFiles(RequestConfigurator<SearchFilesRequest.SearchFilesRequestBuilder> req);
 
     // ------------------------------
-    // slackbot.skills
-    // ------------------------------
-
-    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req);
-
-    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req);
-
-    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req);
-
-    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req);
-
-    CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req);
-
-    CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req);
-
-    CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(SlackbotSkillsListRequest req);
-
-    CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req);
-
-    CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req);
-
-    CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req);
-
-    // ------------------------------
     // slackLists
     // ------------------------------
     
@@ -1616,6 +1592,30 @@ public interface AsyncMethodsClient {
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req);
 
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req);
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req);
+
+    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req);
+
+    CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(SlackbotSkillsListRequest req);
+
+    CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req);
+
+    CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req);
 
     // ------------------------------
     // stars
