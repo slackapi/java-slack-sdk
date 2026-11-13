@@ -301,6 +301,7 @@
   "slackLists.items.update": "Tier3",
   "slackLists.update": "Tier2",
   "slackbot.skills.create": "Tier2",
+  "slackbot.skills.delete": "Tier2",
   "slackbot.skills.info": "Tier3",
   "slackbot.skills.library.add": "Tier3",
   "slackbot.skills.library.remove": "Tier3",

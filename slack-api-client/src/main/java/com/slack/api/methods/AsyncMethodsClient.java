@@ -134,6 +134,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
@@ -298,6 +299,7 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
@@ -1630,6 +1632,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req);
 
     CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsDeleteResponse> slackbotSkillsDelete(SlackbotSkillsDeleteRequest req);
+
+    CompletableFuture<SlackbotSkillsDeleteResponse> slackbotSkillsDelete(RequestConfigurator<SlackbotSkillsDeleteRequest.SlackbotSkillsDeleteRequestBuilder> req);
 
     CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req);
 
