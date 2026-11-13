@@ -1,9 +1,10 @@
 package com.slack.api.methods.request.slackbot.skills;
 
 import com.slack.api.methods.SlackApiRequest;
-import com.slack.api.model.slackbot.SkillMcpServer;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -53,6 +54,15 @@ public class SlackbotSkillsUpdateRequest implements SlackApiRequest {
     /**
      * Apps the skill needs. Replaces the whole list; send `[]` to clear.
      */
-    private List<SkillMcpServer> mcpServers;
+    private List<McpServer> mcpServers;
 
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class McpServer {
+        private String serviceType;
+        private String appId;
+        private String serverId;
+    }
 }
