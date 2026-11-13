@@ -130,6 +130,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -285,6 +286,7 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -1592,6 +1594,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req);
 
     CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req);
 
     // ------------------------------
     // stars

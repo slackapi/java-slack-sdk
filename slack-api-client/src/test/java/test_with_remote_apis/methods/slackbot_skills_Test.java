@@ -1,9 +1,11 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.model.canvas.CanvasDocumentContent;
 import com.slack.api.model.slackbot.Skill;
 import config.Constants;
@@ -61,7 +63,13 @@ public class slackbot_skills_Test {
 
         Thread.sleep(3000L); // A new skill can briefly read as skill_not_found
 
-        deleteSkill(client, botToken, skillId);
+        try {
+            SlackbotSkillsInfoResponse info = client.slackbotSkillsInfo(r -> r.skillId(skillId));
+            assertThat(info.getError(), is(nullValue()));
+            assertThat(info.getSkill().getInstructions(), is(notNullValue()));
+        } finally {
+            deleteSkill(client, botToken, skillId);
+        }
     }
 
     @Test
@@ -85,5 +93,13 @@ public class slackbot_skills_Test {
         Thread.sleep(3000L); // A converted canvas can briefly read as skill_not_found
 
         deleteSkill(client, botToken, canvasId);
+    }
+
+    @Test
+    public void skills_async() throws Exception {
+        AsyncMethodsClient client = slack.methodsAsync(botToken);
+
+        SlackbotSkillsInfoResponse missing = client.slackbotSkillsInfo(r -> r.skillId("F00000000")).get();
+        assertThat(missing.getError(), is("skill_not_found"));
     }
 }
