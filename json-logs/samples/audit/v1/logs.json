@@ -503,7 +503,8 @@
         "category_changed": false,
         "description_changed": false,
         "example_prompt_changed": false,
-        "mcp_servers_changed": false
+        "mcp_servers_changed": false,
+        "exclude_from_slack_ai": false
       }
     }
   ]

@@ -12939,6 +12939,7 @@
               "status": "",
               "content": ""
             },
+            "is_skill": false,
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -30875,6 +30876,7 @@
                 "status": "",
                 "content": ""
               },
+              "is_skill": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",

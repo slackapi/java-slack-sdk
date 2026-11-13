@@ -630,7 +630,12 @@
       "slack_ai_channel_knowledge_refreshed",
       "channel_exclude_from_slackbot_in_channels_updated",
       "channel_discoverability_updated",
-      "slack_ai_channel_conversations_summarized"
+      "slack_ai_channel_conversations_summarized",
+      "channel_join_request_created",
+      "channel_join_request_approved",
+      "channel_join_request_denied",
+      "channel_join_request_cancelled",
+      "channel_join_request_closed"
     ],
     "app": [
       "app_installed",

@@ -9728,6 +9728,7 @@
             "status": "",
             "content": ""
           },
+          "is_skill": false,
           "bot_id": "",
           "initial_comment": {
             "id": "",
@@ -22664,6 +22665,7 @@
               "status": "",
               "content": ""
             },
+            "is_skill": false,
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -37253,6 +37255,7 @@
                     "status": "",
                     "content": ""
                   },
+                  "is_skill": false,
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -37808,6 +37811,7 @@
                         "status": "",
                         "content": ""
                       },
+                      "is_skill": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -38412,6 +38416,7 @@
                         "status": "",
                         "content": ""
                       },
+                      "is_skill": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -48635,6 +48640,7 @@
                 "status": "",
                 "content": ""
               },
+              "is_skill": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -66210,6 +66216,7 @@
                 "status": "",
                 "content": ""
               },
+              "is_skill": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -71254,11 +71261,6 @@
             "status": "",
             "is_stoppable": false,
             "date_status_processing_expire": 12345
-          },
-          {
-            "agent_bot_user_id": "U00000000",
-            "status": "",
-            "is_stoppable": false
           }
         ],
         "title": "",
