@@ -6,6 +6,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
 import com.slack.api.util.json.GsonFactory;
 import config.SlackTestConfig;
 import org.junit.After;
@@ -14,6 +15,7 @@ import org.junit.Test;
 import util.MockSlackApiServer;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -100,6 +102,8 @@ public class AdminApiTest {
         assertThat(methods.adminAppsMcpServersList(r -> r
                 .limit(100)
                 .cursor("xxx")).isOk(), is(true));
+        assertThat(methods.adminAppsMcpServersPermissionsList(r -> r
+                .appId("A0123ABCD")).isOk(), is(true));
     }
 
     @Test
@@ -132,6 +136,41 @@ public class AdminApiTest {
         assertThat(response.getServers().get(0).getAppId(), is("A0123ABCD"));
         assertThat(response.getServers().get(0).getAppName(), is("Example App"));
         assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
+    }
+
+    @Test
+    public void adminAppsMcpServersPermissionsListResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"servers\": [\n" +
+                "    {\n" +
+                "      \"server_id\": \"Amcp0123ABCD\",\n" +
+                "      \"server_name\": \"example-server\",\n" +
+                "      \"url\": \"https://mcp.example.com/mcp\",\n" +
+                "      \"permission_type\": \"named_entities\",\n" +
+                "      \"is_inherited\": false,\n" +
+                "      \"user_ids\": [\n" +
+                "        \"U0123ABCD\",\n" +
+                "        \"U0456EFGH\"\n" +
+                "      ],\n" +
+                "      \"usergroup_ids\": [\n" +
+                "        \"S0123ABCD\"\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}\n";
+        AdminAppsMcpServersPermissionsListResponse response = gson.fromJson(json, AdminAppsMcpServersPermissionsListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getServers().get(0).getServerId(), is("Amcp0123ABCD"));
+        assertThat(response.getServers().get(0).getServerName(), is("example-server"));
+        assertThat(response.getServers().get(0).getUrl(), is("https://mcp.example.com/mcp"));
+        assertThat(response.getServers().get(0).getPermissionType(), is("named_entities"));
+        assertThat(response.getServers().get(0).getIsInherited(), is(false));
+        assertThat(response.getServers().get(0).getUserIds(), is(Arrays.asList("U0123ABCD", "U0456EFGH")));
+        assertThat(response.getServers().get(0).getUsergroupIds(), is(Collections.singletonList("S0123ABCD")));
     }
 
     @Test

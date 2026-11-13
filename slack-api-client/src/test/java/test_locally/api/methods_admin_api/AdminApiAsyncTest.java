@@ -85,6 +85,9 @@ public class AdminApiAsyncTest {
                 .limit(100)
                 .cursor("xxx"))
                 .get().isOk(), is(true));
+        assertThat(methods.adminAppsMcpServersPermissionsList(r -> r
+                .appId("A0123ABCD"))
+                .get().isOk(), is(true));
     }
 
     @Test

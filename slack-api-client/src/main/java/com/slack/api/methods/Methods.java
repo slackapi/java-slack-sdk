@@ -31,6 +31,7 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_APPS_MCP_SERVERS_LIST = "admin.apps.mcp.servers.list";
+    public static final String ADMIN_APPS_MCP_SERVERS_PERMISSIONS_LIST = "admin.apps.mcp.servers.permissions.list";
 
     // ------------------------------
     // admin.apps.requests
