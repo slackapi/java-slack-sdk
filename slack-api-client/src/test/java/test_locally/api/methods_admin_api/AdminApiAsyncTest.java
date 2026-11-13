@@ -78,6 +78,16 @@ public class AdminApiAsyncTest {
     }
 
     @Test
+    public void adminAppsMcpServers() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminAppsMcpServersList(r -> r
+                .limit(100)
+                .cursor("xxx"))
+                .get().isOk(), is(true));
+    }
+
+    @Test
     public void adminAuthPolicy() throws Exception {
         AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
 

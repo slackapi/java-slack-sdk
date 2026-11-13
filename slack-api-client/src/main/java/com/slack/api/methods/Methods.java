@@ -27,6 +27,12 @@ public class Methods {
     public static final String ADMIN_APPS_CONFIG_SET = "admin.apps.config.set";
 
     // ------------------------------
+    // admin.apps.mcp.servers
+    // ------------------------------
+
+    public static final String ADMIN_APPS_MCP_SERVERS_LIST = "admin.apps.mcp.servers.list";
+
+    // ------------------------------
     // admin.apps.requests
     // ------------------------------
 

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -381,6 +382,13 @@ public class RequestFormBuilder {
             setIfNotNull("domain_restrictions", GSON.toJson(req.getDomainRestrictions()), form);
         }
         setIfNotNull("workflow_auth_strategy", req.getWorkflowAuthStrategy(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsMcpServersListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
         return form;
     }
 
