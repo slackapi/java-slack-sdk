@@ -6,6 +6,7 @@ import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileReques
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -396,6 +397,20 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(AdminAppsMcpServersPermissionsListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("app_id", req.getAppId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsMcpServersPermissionsSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("server_id", req.getServerId(), form);
+        setIfNotNull("permission_type", req.getPermissionType(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        if (req.getUsergroupIds() != null) {
+            setIfNotNull("usergroup_ids", req.getUsergroupIds().stream().collect(joining(",")), form);
+        }
         return form;
     }
 

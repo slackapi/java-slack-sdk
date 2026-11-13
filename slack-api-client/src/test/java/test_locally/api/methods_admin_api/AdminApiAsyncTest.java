@@ -88,6 +88,13 @@ public class AdminApiAsyncTest {
         assertThat(methods.adminAppsMcpServersPermissionsList(r -> r
                 .appId("A0123ABCD"))
                 .get().isOk(), is(true));
+        assertThat(methods.adminAppsMcpServersPermissionsSet(r -> r
+                .appId("A0123ABCD")
+                .serverId("Amcp0123ABCD")
+                .permissionType("named_entities")
+                .userIds(Arrays.asList("U0123ABCD", "U0456EFGH"))
+                .usergroupIds(Arrays.asList("S0123ABCD")))
+                .get().isOk(), is(true));
     }
 
     @Test
