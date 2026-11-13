@@ -404,6 +404,7 @@ public class File {
     private boolean isAiSuggested;
     private boolean isModifiedByAi;
     private AiSummary aiSummary;
+    private Boolean isSkill;
 
     // ---------------------------------------
     // file comments

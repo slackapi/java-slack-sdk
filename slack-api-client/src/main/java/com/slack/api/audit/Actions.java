@@ -446,6 +446,8 @@ public class Actions {
         public static final String pref_sensitivity_labels = "pref.sensitivity_labels";
         public static final String mcp_slack_read_developer_doc_tool_called = "mcp_slack_read_developer_doc_tool_called";
         public static final String pref_slackbot_ai_dm_instructions_changed = "pref.slackbot_ai_dm_instructions_changed";
+        public static final String mcp_slack_search_developer_docs_tool_called = "mcp_slack_search_developer_docs_tool_called";
+        public static final String pref_slackbot_ai_tool_instructions_changed = "pref.slackbot_ai_tool_instructions_changed";
     }
 
     public static class User {
@@ -651,6 +653,7 @@ public class Actions {
         public static final String slack_ai_channel_knowledge_refreshed = "slack_ai_channel_knowledge_refreshed";
         public static final String channel_exclude_from_slackbot_in_channels_updated = "channel_exclude_from_slackbot_in_channels_updated";
         public static final String channel_discoverability_updated = "channel_discoverability_updated";
+        public static final String slack_ai_channel_conversations_summarized = "slack_ai_channel_conversations_summarized";
     }
 
     public static class App {

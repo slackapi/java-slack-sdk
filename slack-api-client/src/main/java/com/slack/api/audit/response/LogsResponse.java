@@ -481,6 +481,7 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean descriptionChanged; // slack_ai_skill_metadata_updated
         private Boolean examplePromptChanged; // slack_ai_skill_metadata_updated
         private Boolean mcpServersChanged; // slack_ai_skill_metadata_updated
+        private Boolean excludeFromSlackAi; // channel_exclude_from_slack_ai_updated
     }
 
     @Data
