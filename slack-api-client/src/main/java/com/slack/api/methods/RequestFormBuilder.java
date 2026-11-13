@@ -3021,26 +3021,6 @@ public class RequestFormBuilder {
         return form;
     }
 
-    public static FormBody.Builder toForm(SlackbotSkillsCreateRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("display_name", req.getDisplayName(), form);
-        setIfNotNull("instructions", req.getInstructions(), form);
-        setIfNotNull("canvas_id", req.getCanvasId(), form);
-        setIfNotNull("description", req.getDescription(), form);
-        setIfNotNull("category", req.getCategory(), form);
-        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
-        if (req.getMcpServers() != null) {
-            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
-        }
-        return form;
-    }
-
-    public static FormBody.Builder toForm(SlackbotSkillsInfoRequest req) {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("skill_id", req.getSkillId(), form);
-        return form;
-    }
-
     public static FormBody.Builder toForm(SlackListsAccessDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("list_id", req.getListId(), form);
@@ -3166,6 +3146,26 @@ public class RequestFormBuilder {
             form.add("description_blocks", json);
         }
         setIfNotNull("todo_mode", req.getTodoMode(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("instructions", req.getInstructions(), form);
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
+        if (req.getMcpServers() != null) {
+            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
         return form;
     }
 

@@ -1536,18 +1536,6 @@ public interface AsyncMethodsClient {
     CompletableFuture<SearchFilesResponse> searchFiles(RequestConfigurator<SearchFilesRequest.SearchFilesRequestBuilder> req);
 
     // ------------------------------
-    // slackbot.skills
-    // ------------------------------
-
-    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req);
-
-    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req);
-
-    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req);
-
-    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req);
-
-    // ------------------------------
     // slackLists
     // ------------------------------
     
@@ -1598,6 +1586,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req);
 
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req);
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req);
+
+    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req);
 
     // ------------------------------
     // stars
