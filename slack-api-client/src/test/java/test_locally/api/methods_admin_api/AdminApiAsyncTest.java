@@ -226,6 +226,8 @@ public class AdminApiAsyncTest {
                 .sort("usage_count")
                 .sortDir("desc"))
                 .get().isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsPublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH")))
+                .get().isOk(), is(true));
     }
 
     @Test

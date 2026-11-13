@@ -3,14 +3,19 @@ package test_with_remote_apis.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.FormBody;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -35,6 +40,11 @@ public class AdminApi_slackbot_skills_Test {
 
     static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
+    // Cleans up test skills with a raw call until slackbot.skills.delete is available
+    static void deleteSkill(MethodsClient client, String token, String skillId) throws IOException {
+        client.runPostFormWithToken(new FormBody.Builder().add("skill_id", skillId), "slackbot.skills.delete", token).close();
+    }
+
     @Test
     public void list() throws Exception {
         if (orgAdminUserToken != null) {
@@ -49,6 +59,37 @@ public class AdminApi_slackbot_skills_Test {
                 assertThat(list.getError(), is(nullValue()));
                 assertThat(list.getSkills(), is(notNullValue()));
                 assertThat(list.getResponseMetadata(), is(notNullValue()));
+            }
+        }
+    }
+
+    @Test
+    public void publishAndAutoEnable() throws Exception {
+        if (orgAdminUserToken != null) {
+            MethodsClient client = slack.methods(orgAdminUserToken);
+
+            SlackbotSkillsCreateResponse creation = client.slackbotSkillsCreate(r -> r
+                    .displayName("java-slack-sdk admin test skill " + System.currentTimeMillis())
+                    .instructions("# Purpose\nTest skill created by the java-slack-sdk tests. Safe to delete.")
+                    .description("Test skill for SDK development.")
+                    .category("engineering"));
+            assertThat(creation.getError(), is(nullValue()));
+            String skillId = creation.getSkill().getId();
+
+            try {
+                Thread.sleep(3000L); // A new skill can briefly read as skill_not_found
+
+                AdminSlackbotSkillsPublishResponse publication = client.adminSlackbotSkillsPublish(r -> r
+                        .skillIds(Collections.singletonList(skillId)));
+                assertThat(publication.getError(), is(nullValue()));
+
+                AdminSlackbotSkillsPublishResponse partialPublication = client.adminSlackbotSkillsPublish(r -> r
+                        .skillIds(Arrays.asList(skillId, "F00000000")));
+                assertThat(partialPublication.getError(), is("failed_for_some_skills"));
+                assertThat(partialPublication.getFailedSkills().get(0).getSkillId(), is("F00000000"));
+                assertThat(partialPublication.getFailedSkills().get(0).getError(), is("skill_not_found"));
+            } finally {
+                deleteSkill(client, orgAdminUserToken, skillId);
             }
         }
     }

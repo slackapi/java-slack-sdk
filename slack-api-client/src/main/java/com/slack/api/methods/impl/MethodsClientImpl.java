@@ -28,6 +28,7 @@ import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -202,6 +203,7 @@ import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsRespon
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -1050,6 +1052,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminSlackbotSkillsListResponse adminSlackbotSkillsList(RequestConfigurator<AdminSlackbotSkillsListRequest.AdminSlackbotSkillsListRequestBuilder> req) throws IOException, SlackApiException {
         return adminSlackbotSkillsList(req.configure(AdminSlackbotSkillsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminSlackbotSkillsPublishResponse adminSlackbotSkillsPublish(AdminSlackbotSkillsPublishRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_SLACKBOT_SKILLS_PUBLISH, getToken(req), AdminSlackbotSkillsPublishResponse.class);
+    }
+
+    @Override
+    public AdminSlackbotSkillsPublishResponse adminSlackbotSkillsPublish(RequestConfigurator<AdminSlackbotSkillsPublishRequest.AdminSlackbotSkillsPublishRequestBuilder> req) throws IOException, SlackApiException {
+        return adminSlackbotSkillsPublish(req.configure(AdminSlackbotSkillsPublishRequest.builder()).build());
     }
 
     @Override

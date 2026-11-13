@@ -207,6 +207,7 @@ public class AdminApiTest {
                 .autoEnabledStatus("enabled")
                 .sort("usage_count")
                 .sortDir("desc")).isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsPublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH"))).isOk(), is(true));
     }
 
     @Test

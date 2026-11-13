@@ -5,6 +5,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
@@ -171,6 +172,28 @@ public class SlackbotTest {
         assertThat(response.getSkills().get(0).getAutoEnabled().getPermissionType(), is("named_entities"));
         assertThat(response.getSkills().get(0).getAutoEnabled().getUsergroupIds(), is(Collections.singletonList("S0123ABCD")));
         assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
+    }
+
+    @Test
+    public void adminSlackbotSkillsPublishResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": false,\n" +
+                "  \"error\": \"failed_for_some_skills\",\n" +
+                "  \"failed_skills\": [\n" +
+                "    {\n" +
+                "      \"skill_id\": \"F0456EFGH\",\n" +
+                "      \"error\": \"skill_not_found\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}\n";
+        AdminSlackbotSkillsPublishResponse response = gson.fromJson(json, AdminSlackbotSkillsPublishResponse.class);
+        assertThat(response.isOk(), is(false));
+        assertThat(response.getError(), is("failed_for_some_skills"));
+        assertThat(response.getFailedSkills().get(0).getSkillId(), is("F0456EFGH"));
+        assertThat(response.getFailedSkills().get(0).getError(), is("skill_not_found"));
     }
 
     @Test
