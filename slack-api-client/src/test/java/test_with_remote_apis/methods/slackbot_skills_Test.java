@@ -6,6 +6,7 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.model.canvas.CanvasDocumentContent;
 import com.slack.api.model.slackbot.Skill;
@@ -88,6 +89,11 @@ public class slackbot_skills_Test {
                             .build())));
             assertThat(invalidUpdate.getError(), is("mcp_server_not_found"));
             assertThat(invalidUpdate.getInvalidMcpServers().get(0).getAppId(), is("A0123ABCD"));
+
+            SlackbotSkillsListResponse owned = client.slackbotSkillsList(r -> r.filter("owned").limit(100));
+            assertThat(owned.getError(), is(nullValue()));
+            assertThat(owned.getSkills(), is(notNullValue()));
+            assertThat(owned.getResponseMetadata(), is(notNullValue()));
         } finally {
             deleteSkill(client, botToken, skillId);
         }
@@ -119,6 +125,12 @@ public class slackbot_skills_Test {
     @Test
     public void skills_async() throws Exception {
         AsyncMethodsClient client = slack.methodsAsync(botToken);
+
+        for (String filter : Arrays.asList("library", "owned", "catalog")) {
+            SlackbotSkillsListResponse list = client.slackbotSkillsList(r -> r.filter(filter).limit(1)).get();
+            assertThat(list.getError(), is(nullValue()));
+            assertThat(list.getSkills(), is(notNullValue()));
+        }
 
         SlackbotSkillsInfoResponse missing = client.slackbotSkillsInfo(r -> r.skillId("F00000000")).get();
         assertThat(missing.getError(), is("skill_not_found"));

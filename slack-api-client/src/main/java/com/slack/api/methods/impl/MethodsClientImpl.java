@@ -145,6 +145,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
@@ -315,6 +316,7 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
@@ -3565,6 +3567,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req) throws IOException, SlackApiException {
         return slackbotSkillsInfo(req.configure(SlackbotSkillsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsListResponse slackbotSkillsList(SlackbotSkillsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_LIST, getToken(req), SlackbotSkillsListResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsListResponse slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsList(req.configure(SlackbotSkillsListRequest.builder()).build());
     }
 
     @Override

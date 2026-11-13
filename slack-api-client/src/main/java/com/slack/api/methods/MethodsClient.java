@@ -147,6 +147,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
@@ -313,6 +314,7 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
@@ -2746,6 +2748,11 @@ public interface MethodsClient {
     SlackbotSkillsInfoResponse slackbotSkillsInfo(SlackbotSkillsInfoRequest req) throws IOException, SlackApiException;
 
     SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsListResponse slackbotSkillsList(SlackbotSkillsListRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsListResponse slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req)
             throws IOException, SlackApiException;
 
     SlackbotSkillsUpdateResponse slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) throws IOException, SlackApiException;

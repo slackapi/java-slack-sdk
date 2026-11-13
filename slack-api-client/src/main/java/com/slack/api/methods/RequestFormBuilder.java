@@ -144,6 +144,7 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
@@ -3167,6 +3168,15 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(SlackbotSkillsInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("filter", req.getFilter(), form);
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
         return form;
     }
 

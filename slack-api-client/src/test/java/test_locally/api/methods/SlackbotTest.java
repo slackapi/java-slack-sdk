@@ -6,6 +6,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.util.json.GsonFactory;
 import config.SlackTestConfig;
@@ -60,6 +61,12 @@ public class SlackbotTest {
         assertThat(slack.methods(ValidToken).slackbotSkillsInfo(r -> r
                 .skillId("F0123ABCD")
         ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillsList(r -> r
+                .filter("owned")
+                .category("productivity")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .limit(100)
+        ).isOk(), is(true));
         assertThat(slack.methods(ValidToken).slackbotSkillsUpdate(r -> r
                 .skillId("F0123ABCD")
                 .displayName("Daily priorities")
@@ -91,6 +98,12 @@ public class SlackbotTest {
         ).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).slackbotSkillsInfo(r -> r
                 .skillId("F0123ABCD")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillsList(r -> r
+                .filter("owned")
+                .category("productivity")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .limit(100)
         ).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).slackbotSkillsUpdate(r -> r
                 .skillId("F0123ABCD")
@@ -207,6 +220,48 @@ public class SlackbotTest {
         assertThat(response.getSkill().getMcpServers().get(0).getServerId(), is("Amcp0456EFGH"));
         assertThat(response.getSkill().getMcpServers().get(0).getDisplayName(), is("Google Calendar"));
         assertThat(response.getSkill().getMcpServers().get(0).getIsAvailable(), is(true));
+    }
+
+    @Test
+    public void slackbotSkillsListResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skills\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F0123ABCD\",\n" +
+                "      \"type\": \"canvas\",\n" +
+                "      \"display_name\": \"Daily priorities\",\n" +
+                "      \"name\": null,\n" +
+                "      \"description\": \"Reviews information from Slack and your calendar to suggest priorities for the day.\",\n" +
+                "      \"category\": null,\n" +
+                "      \"example_prompt\": \"Run {skill} for today\",\n" +
+                "      \"instructions\": null,\n" +
+                "      \"visibility\": \"invite_only\",\n" +
+                "      \"is_official\": false,\n" +
+                "      \"access\": \"owner\",\n" +
+                "      \"mcp_servers\": [],\n" +
+                "      \"usage_count\": 0,\n" +
+                "      \"library_count\": 1,\n" +
+                "      \"creator_id\": \"U0123ABCD\",\n" +
+                "      \"date_created\": 1794467151,\n" +
+                "      \"date_updated\": 1794467151,\n" +
+                "      \"permalink\": \"https://example.slack.com/skills/F0123ABCD\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"\n" +
+                "  }\n" +
+                "}\n";
+        SlackbotSkillsListResponse response = gson.fromJson(json, SlackbotSkillsListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkills().get(0).getId(), is("F0123ABCD"));
+        assertThat(response.getSkills().get(0).getCategory(), is(nullValue()));
+        assertThat(response.getSkills().get(0).getMcpServers(), is(Collections.emptyList()));
+        assertThat(response.getSkills().get(0).getLibraryCount(), is(1));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
     }
 
     @Test
