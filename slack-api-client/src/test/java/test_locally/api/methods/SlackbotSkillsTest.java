@@ -1,5 +1,6 @@
 package test_locally.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
@@ -8,6 +9,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.util.json.GsonFactory;
+import config.SlackTestConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -222,38 +224,38 @@ public class SlackbotSkillsTest {
 
     @Test
     public void slackbotSkillsListResponse() {
-        SlackConfig strict = new SlackConfig();
-        strict.setFailOnUnknownProperties(true);
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
 
-        String json = "{" +
-                "  \"ok\": true," +
-                "  \"skills\": [" +
-                "    {" +
-                "      \"id\": \"F0123ABCD\"," +
-                "      \"type\": \"canvas\"," +
-                "      \"display_name\": \"Daily priorities\"," +
-                "      \"name\": null," +
-                "      \"description\": \"Reviews information from Slack and your calendar to suggest priorities for the day.\"," +
-                "      \"category\": null," +
-                "      \"example_prompt\": \"Run {skill} for today\"," +
-                "      \"instructions\": null," +
-                "      \"visibility\": \"invite_only\"," +
-                "      \"is_official\": false," +
-                "      \"access\": \"owner\"," +
-                "      \"mcp_servers\": []," +
-                "      \"usage_count\": 0," +
-                "      \"library_count\": 1," +
-                "      \"creator_id\": \"U0123ABCD\"," +
-                "      \"date_created\": 1794467151," +
-                "      \"date_updated\": 1794467151," +
-                "      \"permalink\": \"https://example.slack.com/skills/F0123ABCD\"" +
-                "    }" +
-                "  ]," +
-                "  \"response_metadata\": {" +
-                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"" +
-                "  }" +
-                "}";
-        SlackbotSkillsListResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, SlackbotSkillsListResponse.class);
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skills\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F0123ABCD\",\n" +
+                "      \"type\": \"canvas\",\n" +
+                "      \"display_name\": \"Daily priorities\",\n" +
+                "      \"name\": null,\n" +
+                "      \"description\": \"Reviews information from Slack and your calendar to suggest priorities for the day.\",\n" +
+                "      \"category\": null,\n" +
+                "      \"example_prompt\": \"Run {skill} for today\",\n" +
+                "      \"instructions\": null,\n" +
+                "      \"visibility\": \"invite_only\",\n" +
+                "      \"is_official\": false,\n" +
+                "      \"access\": \"owner\",\n" +
+                "      \"mcp_servers\": [],\n" +
+                "      \"usage_count\": 0,\n" +
+                "      \"library_count\": 1,\n" +
+                "      \"creator_id\": \"U0123ABCD\",\n" +
+                "      \"date_created\": 1794467151,\n" +
+                "      \"date_updated\": 1794467151,\n" +
+                "      \"permalink\": \"https://example.slack.com/skills/F0123ABCD\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"\n" +
+                "  }\n" +
+                "}\n";
+        SlackbotSkillsListResponse response = gson.fromJson(json, SlackbotSkillsListResponse.class);
         assertThat(response.isOk(), is(true));
         assertThat(response.getSkills().get(0).getId(), is("F0123ABCD"));
         assertThat(response.getSkills().get(0).getCategory(), is(nullValue()));
