@@ -4,12 +4,15 @@ import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -59,6 +62,47 @@ public class AdminApi_apps_mcp_servers_Test {
                         .appId(server.getAppId()));
                 assertThat(permissions.getError(), is(nullValue()));
                 assertThat(permissions.getServers(), is(notNullValue()));
+            }
+        }
+    }
+
+    @Test
+    public void permissionsSet() throws Exception {
+        if (orgAdminUserToken != null) {
+            MethodsClient client = slack.methods(orgAdminUserToken);
+            AdminAppsMcpServersListResponse list = client.adminAppsMcpServersList(r -> r.limit(1));
+            assertThat(list.getError(), is(nullValue()));
+            AdminAppsMcpServersListResponse.Server server = list.getServers().get(0);
+
+            AdminAppsMcpServersPermissionsListResponse permissions = client.adminAppsMcpServersPermissionsList(r -> r
+                    .appId(server.getAppId()));
+            assertThat(permissions.getError(), is(nullValue()));
+            AdminAppsMcpServersPermissionsListResponse.Server original = permissions.getServers().stream()
+                    .filter(s -> s.getServerId().equals(server.getServerId()))
+                    .findFirst()
+                    .get();
+
+            String userId = client.authTest(r -> r).getUserId();
+            try {
+                AdminAppsMcpServersPermissionsSetResponse namedEntities = client.adminAppsMcpServersPermissionsSet(r -> r
+                        .appId(server.getAppId())
+                        .serverId(server.getServerId())
+                        .permissionType("named_entities")
+                        .userIds(Collections.singletonList(userId)));
+                assertThat(namedEntities.getError(), is(nullValue()));
+                assertThat(namedEntities.getPermissionType(), is("named_entities"));
+                assertThat(namedEntities.getIsInherited(), is(false));
+                assertThat(namedEntities.getUserIds(), is(Collections.singletonList(userId)));
+            } finally {
+                AdminAppsMcpServersPermissionsSetResponse restoration = client.adminAppsMcpServersPermissionsSet(r -> r
+                        .appId(server.getAppId())
+                        .serverId(server.getServerId())
+                        .permissionType(original.getPermissionType())
+                        .userIds(original.getUserIds())
+                        .usergroupIds(original.getUsergroupIds()));
+                assertThat(restoration.getError(), is(nullValue()));
+                assertThat(restoration.getPermissionType(), is(original.getPermissionType()));
+                assertThat(restoration.getIsInherited(), is(original.getIsInherited()));
             }
         }
     }

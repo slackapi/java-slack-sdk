@@ -170,6 +170,7 @@ public class MethodsRateLimits {
         final List<String> adminApiMethods_Tier3 = Arrays.asList(
                 ADMIN_APPS_MCP_SERVERS_LIST,
                 ADMIN_APPS_MCP_SERVERS_PERMISSIONS_LIST,
+                ADMIN_APPS_MCP_SERVERS_PERMISSIONS_SET,
 
                 ADMIN_ROLES_LIST_ASSIGNMENTS,
 

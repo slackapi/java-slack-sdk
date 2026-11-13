@@ -6,6 +6,7 @@ import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileReques
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -186,6 +187,7 @@ import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileRespo
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
@@ -536,6 +538,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAppsMcpServersPermissionsListResponse adminAppsMcpServersPermissionsList(RequestConfigurator<AdminAppsMcpServersPermissionsListRequest.AdminAppsMcpServersPermissionsListRequestBuilder> req) throws IOException, SlackApiException {
         return adminAppsMcpServersPermissionsList(req.configure(AdminAppsMcpServersPermissionsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAppsMcpServersPermissionsSetResponse adminAppsMcpServersPermissionsSet(AdminAppsMcpServersPermissionsSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_MCP_SERVERS_PERMISSIONS_SET, getToken(req), AdminAppsMcpServersPermissionsSetResponse.class);
+    }
+
+    @Override
+    public AdminAppsMcpServersPermissionsSetResponse adminAppsMcpServersPermissionsSet(RequestConfigurator<AdminAppsMcpServersPermissionsSetRequest.AdminAppsMcpServersPermissionsSetRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAppsMcpServersPermissionsSet(req.configure(AdminAppsMcpServersPermissionsSetRequest.builder()).build());
     }
 
     @Override

@@ -8,6 +8,7 @@
   "admin.apps.config.set": "Tier3",
   "admin.apps.mcp.servers.list": "Tier3",
   "admin.apps.mcp.servers.permissions.list": "Tier3",
+  "admin.apps.mcp.servers.permissions.set": "Tier3",
   "admin.apps.requests.cancel": "Tier2",
   "admin.apps.requests.list": "Tier2",
   "admin.apps.restrict": "Tier2",

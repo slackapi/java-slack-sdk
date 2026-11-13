@@ -5,6 +5,7 @@ import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileReques
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -172,6 +173,7 @@ import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileRespo
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
@@ -407,6 +409,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(AdminAppsMcpServersPermissionsListRequest req);
 
     CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(RequestConfigurator<AdminAppsMcpServersPermissionsListRequest.AdminAppsMcpServersPermissionsListRequestBuilder> req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsSetResponse> adminAppsMcpServersPermissionsSet(AdminAppsMcpServersPermissionsSetRequest req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsSetResponse> adminAppsMcpServersPermissionsSet(RequestConfigurator<AdminAppsMcpServersPermissionsSetRequest.AdminAppsMcpServersPermissionsSetRequestBuilder> req);
 
     // ------------------------------
     // admin.apps.requests
