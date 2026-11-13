@@ -149,6 +149,7 @@ import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryAddRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -316,6 +317,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateRespon
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryAddResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -2748,6 +2750,11 @@ public interface MethodsClient {
     SlackbotSkillsInfoResponse slackbotSkillsInfo(SlackbotSkillsInfoRequest req) throws IOException, SlackApiException;
 
     SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req)
             throws IOException, SlackApiException;
 
     SlackbotSkillsListResponse slackbotSkillsList(SlackbotSkillsListRequest req) throws IOException, SlackApiException;
