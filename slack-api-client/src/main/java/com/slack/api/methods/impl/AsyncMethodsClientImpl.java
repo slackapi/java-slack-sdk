@@ -138,6 +138,7 @@ import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryRemoveRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -297,6 +298,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryRemoveResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -2901,6 +2903,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req) {
         return slackbotSkillsLibraryAdd(req.configure(SlackbotSkillsLibraryAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsLibraryRemoveResponse> slackbotSkillsLibraryRemove(SlackbotSkillsLibraryRemoveRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_LIBRARY_REMOVE, toMap(req), () -> methods.slackbotSkillsLibraryRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsLibraryRemoveResponse> slackbotSkillsLibraryRemove(RequestConfigurator<SlackbotSkillsLibraryRemoveRequest.SlackbotSkillsLibraryRemoveRequestBuilder> req) {
+        return slackbotSkillsLibraryRemove(req.configure(SlackbotSkillsLibraryRemoveRequest.builder()).build());
     }
 
     @Override

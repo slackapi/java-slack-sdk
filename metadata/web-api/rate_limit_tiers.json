@@ -299,6 +299,7 @@
   "slackbot.skills.create": "Tier2",
   "slackbot.skills.info": "Tier3",
   "slackbot.skills.library.add": "Tier3",
+  "slackbot.skills.library.remove": "Tier3",
   "slackbot.skills.list": "Tier3",
   "slackbot.skills.update": "Tier3",
   "stars.add": "Tier2",
