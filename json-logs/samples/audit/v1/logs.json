@@ -504,7 +504,15 @@
         "description_changed": false,
         "example_prompt_changed": false,
         "mcp_servers_changed": false,
-        "exclude_from_slack_ai": false
+        "exclude_from_slack_ai": false,
+        "installer_email_verification": {
+          "method": "",
+          "email": ""
+        },
+        "new_bot_scopes": [],
+        "old_bot_scopes": [],
+        "previous_permission_type": "",
+        "server_id": ""
       }
     }
   ]
