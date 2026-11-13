@@ -1,5 +1,6 @@
 package test_locally.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
@@ -7,6 +8,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateRespon
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.util.json.GsonFactory;
+import config.SlackTestConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -209,41 +211,41 @@ public class SlackbotSkillsTest {
 
     @Test
     public void slackbotSkillsUpdateResponse() {
-        SlackConfig strict = new SlackConfig();
-        strict.setFailOnUnknownProperties(true);
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
 
-        String json = "{" +
-                "  \"ok\": true," +
-                "  \"skill\": {" +
-                "    \"id\": \"F0123ABCD\"," +
-                "    \"type\": \"canvas\"," +
-                "    \"display_name\": \"Daily priorities\"," +
-                "    \"name\": null," +
-                "    \"description\": \"Suggests priorities for the day.\"," +
-                "    \"category\": \"productivity\"," +
-                "    \"example_prompt\": \"Run {skill} for today\"," +
-                "    \"instructions\": null," +
-                "    \"visibility\": \"invite_only\"," +
-                "    \"is_official\": false," +
-                "    \"access\": \"owner\"," +
-                "    \"mcp_servers\": [" +
-                "      {" +
-                "        \"service_type\": \"app\"," +
-                "        \"display_name\": \"Google Calendar\"," +
-                "        \"is_available\": true," +
-                "        \"app_id\": \"A0123ABCD\"," +
-                "        \"server_id\": \"Amcp0456EFGH\"" +
-                "      }" +
-                "    ]," +
-                "    \"usage_count\": 0," +
-                "    \"library_count\": 0," +
-                "    \"creator_id\": \"U0123ABCD\"," +
-                "    \"date_created\": 1794467151," +
-                "    \"date_updated\": 1794467151," +
-                "    \"permalink\": \"https://example.slack.com/skills/F0123ABCD\"" +
-                "  }" +
-                "}";
-        SlackbotSkillsUpdateResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, SlackbotSkillsUpdateResponse.class);
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skill\": {\n" +
+                "    \"id\": \"F0123ABCD\",\n" +
+                "    \"type\": \"canvas\",\n" +
+                "    \"display_name\": \"Daily priorities\",\n" +
+                "    \"name\": null,\n" +
+                "    \"description\": \"Suggests priorities for the day.\",\n" +
+                "    \"category\": \"productivity\",\n" +
+                "    \"example_prompt\": \"Run {skill} for today\",\n" +
+                "    \"instructions\": null,\n" +
+                "    \"visibility\": \"invite_only\",\n" +
+                "    \"is_official\": false,\n" +
+                "    \"access\": \"owner\",\n" +
+                "    \"mcp_servers\": [\n" +
+                "      {\n" +
+                "        \"service_type\": \"app\",\n" +
+                "        \"display_name\": \"Google Calendar\",\n" +
+                "        \"is_available\": true,\n" +
+                "        \"app_id\": \"A0123ABCD\",\n" +
+                "        \"server_id\": \"Amcp0456EFGH\"\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"usage_count\": 0,\n" +
+                "    \"library_count\": 0,\n" +
+                "    \"creator_id\": \"U0123ABCD\",\n" +
+                "    \"date_created\": 1794467151,\n" +
+                "    \"date_updated\": 1794467151,\n" +
+                "    \"permalink\": \"https://example.slack.com/skills/F0123ABCD\"\n" +
+                "  }\n" +
+                "}\n";
+        SlackbotSkillsUpdateResponse response = gson.fromJson(json, SlackbotSkillsUpdateResponse.class);
         assertThat(response.isOk(), is(true));
         assertThat(response.getSkill().getDescription(), is("Suggests priorities for the day."));
         assertThat(response.getSkill().getInstructions(), is(nullValue()));
