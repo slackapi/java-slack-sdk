@@ -70,6 +70,7 @@ public class RequestFormBuilderTest {
                 "channel", "thread_ts", "text", "parse", "link_names", "mrkdwn", "metadata",
                 "blocks", "attachments", "unfurl_links", "unfurl_media", "username", "as_user",
                 "icon_url", "icon_emoji", "reply_broadcast"));
+        assertThat(form.value(fieldNames.indexOf("thread_ts")), is("1234567890.123456"));
     }
 
     @Test
