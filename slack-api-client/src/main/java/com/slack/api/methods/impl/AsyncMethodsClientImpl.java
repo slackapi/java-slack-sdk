@@ -2752,46 +2752,6 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
-    public CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req) {
-        return executor.execute(SLACKBOT_SKILLS_CREATE, toMap(req), () -> methods.slackbotSkillsCreate(req));
-    }
-
-    @Override
-    public CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) {
-        return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
-    }
-
-    @Override
-    public CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req) {
-        return executor.execute(SLACKBOT_SKILLS_INFO, toMap(req), () -> methods.slackbotSkillsInfo(req));
-    }
-
-    @Override
-    public CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req) {
-        return slackbotSkillsInfo(req.configure(SlackbotSkillsInfoRequest.builder()).build());
-    }
-
-    @Override
-    public CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(SlackbotSkillsListRequest req) {
-        return executor.execute(SLACKBOT_SKILLS_LIST, toMap(req), () -> methods.slackbotSkillsList(req));
-    }
-
-    @Override
-    public CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req) {
-        return slackbotSkillsList(req.configure(SlackbotSkillsListRequest.builder()).build());
-    }
-
-    @Override
-    public CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) {
-        return executor.execute(SLACKBOT_SKILLS_UPDATE, toMap(req), () -> methods.slackbotSkillsUpdate(req));
-    }
-
-    @Override
-    public CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req) {
-        return slackbotSkillsUpdate(req.configure(SlackbotSkillsUpdateRequest.builder()).build());
-    }
-
-    @Override
     public CompletableFuture<SlackListsAccessDeleteResponse> slackListsAccessDelete(SlackListsAccessDeleteRequest req) {
         return executor.execute(SLACKLISTS_ACCESS_DELETE, toMap(req), () -> methods.slackListsAccessDelete(req));
     }
@@ -2909,6 +2869,46 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) {
         return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_CREATE, toMap(req), () -> methods.slackbotSkillsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) {
+        return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_INFO, toMap(req), () -> methods.slackbotSkillsInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req) {
+        return slackbotSkillsInfo(req.configure(SlackbotSkillsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(SlackbotSkillsListRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_LIST, toMap(req), () -> methods.slackbotSkillsList(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req) {
+        return slackbotSkillsList(req.configure(SlackbotSkillsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_UPDATE, toMap(req), () -> methods.slackbotSkillsUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req) {
+        return slackbotSkillsUpdate(req.configure(SlackbotSkillsUpdateRequest.builder()).build());
     }
 
     @Override
