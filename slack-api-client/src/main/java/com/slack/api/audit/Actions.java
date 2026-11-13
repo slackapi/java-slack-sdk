@@ -654,6 +654,11 @@ public class Actions {
         public static final String channel_exclude_from_slackbot_in_channels_updated = "channel_exclude_from_slackbot_in_channels_updated";
         public static final String channel_discoverability_updated = "channel_discoverability_updated";
         public static final String slack_ai_channel_conversations_summarized = "slack_ai_channel_conversations_summarized";
+        public static final String channel_join_request_created = "channel_join_request_created";
+        public static final String channel_join_request_approved = "channel_join_request_approved";
+        public static final String channel_join_request_denied = "channel_join_request_denied";
+        public static final String channel_join_request_cancelled = "channel_join_request_cancelled";
+        public static final String channel_join_request_closed = "channel_join_request_closed";
     }
 
     public static class App {

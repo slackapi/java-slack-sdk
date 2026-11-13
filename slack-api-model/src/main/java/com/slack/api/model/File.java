@@ -405,6 +405,24 @@ public class File {
     private boolean isModifiedByAi;
     private AiSummary aiSummary;
     private Boolean isSkill;
+    private String skillDescription;
+    private List<String> aiSkillExamplePrompts;
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class AiSkillMcpServer {
+        private String serviceType;
+        private String appId;
+        private String serverId;
+    }
+
+    private List<AiSkillMcpServer> aiSkillMcpServers;
+    private Integer aiSkillUsageCount;
+    private Integer aiSkillLibraryCount;
+    private Integer aiSkillShareLinkCount;
+    private Boolean isSkillAdminDeactivated;
 
     // ---------------------------------------
     // file comments
