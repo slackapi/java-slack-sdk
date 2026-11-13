@@ -148,8 +148,8 @@ public class AdminApiTest {
                 "  \"servers\": [\n" +
                 "    {\n" +
                 "      \"server_id\": \"Amcp0123ABCD\",\n" +
-                "      \"server_name\": \"maintainers-coffee\",\n" +
-                "      \"url\": \"https://maintainers.coffee/mcp\",\n" +
+                "      \"server_name\": \"example-server\",\n" +
+                "      \"url\": \"https://mcp.example.com/mcp\",\n" +
                 "      \"permission_type\": \"named_entities\",\n" +
                 "      \"is_inherited\": false,\n" +
                 "      \"user_ids\": [\n" +
@@ -165,8 +165,8 @@ public class AdminApiTest {
         AdminAppsMcpServersPermissionsListResponse response = gson.fromJson(json, AdminAppsMcpServersPermissionsListResponse.class);
         assertThat(response.isOk(), is(true));
         assertThat(response.getServers().get(0).getServerId(), is("Amcp0123ABCD"));
-        assertThat(response.getServers().get(0).getServerName(), is("maintainers-coffee"));
-        assertThat(response.getServers().get(0).getUrl(), is("https://maintainers.coffee/mcp"));
+        assertThat(response.getServers().get(0).getServerName(), is("example-server"));
+        assertThat(response.getServers().get(0).getUrl(), is("https://mcp.example.com/mcp"));
         assertThat(response.getServers().get(0).getPermissionType(), is("named_entities"));
         assertThat(response.getServers().get(0).getIsInherited(), is(false));
         assertThat(response.getServers().get(0).getUserIds(), is(Arrays.asList("U0123ABCD", "U0456EFGH")));
