@@ -61,6 +61,8 @@ public class slackbot_skills_Test {
         assertThat(skill.getId(), is(notNullValue()));
         String skillId = skill.getId();
 
+        Thread.sleep(3000L); // A new skill can briefly read as skill_not_found
+
         try {
             SlackbotSkillsInfoResponse info = client.slackbotSkillsInfo(r -> r.skillId(skillId));
             assertThat(info.getError(), is(nullValue()));
