@@ -702,6 +702,12 @@ public class Methods {
     public static final String SLACKLISTS_UPDATE = "slackLists.update";
 
     // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    public static final String SLACKBOT_SKILLS_CREATE = "slackbot.skills.create";
+
+    // ------------------------------
     // stars
     // ------------------------------
 

@@ -296,6 +296,7 @@
   "slackLists.items.list": "Tier2",
   "slackLists.items.update": "Tier3",
   "slackLists.update": "Tier2",
+  "slackbot.skills.create": "Tier2",
   "stars.add": "Tier2",
   "stars.list": "Tier3",
   "stars.remove": "Tier2",

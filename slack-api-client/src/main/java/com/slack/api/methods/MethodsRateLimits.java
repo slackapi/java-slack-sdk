@@ -457,6 +457,8 @@ public class MethodsRateLimits {
         setRateLimitTier(SLACKLISTS_ITEMS_UPDATE, Tier3);
         setRateLimitTier(SLACKLISTS_UPDATE, Tier2);
 
+        setRateLimitTier(SLACKBOT_SKILLS_CREATE, Tier2);
+
         setRateLimitTier(STARS_ADD, Tier2);
         setRateLimitTier(STARS_LIST, Tier3);
         setRateLimitTier(STARS_REMOVE, Tier2);
