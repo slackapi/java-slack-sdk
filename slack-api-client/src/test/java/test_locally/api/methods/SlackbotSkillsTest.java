@@ -1,5 +1,6 @@
 package test_locally.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
@@ -9,6 +10,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.util.json.GsonFactory;
+import config.SlackTestConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -129,37 +131,37 @@ public class SlackbotSkillsTest {
 
     @Test
     public void adminSlackbotSkillsListResponse() {
-        SlackConfig strict = new SlackConfig();
-        strict.setFailOnUnknownProperties(true);
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
 
-        String json = "{" +
-                "  \"ok\": true," +
-                "  \"skills\": [" +
-                "    {" +
-                "      \"id\": \"F0123ABCD\"," +
-                "      \"display_name\": \"Daily priorities\"," +
-                "      \"description\": null," +
-                "      \"category\": null," +
-                "      \"creator_id\": \"U0123ABCD\"," +
-                "      \"date_created\": 1794467171," +
-                "      \"date_updated\": 1794467171," +
-                "      \"visibility\": \"anyone_can_view\"," +
-                "      \"is_official\": true," +
-                "      \"usage_count\": 0," +
-                "      \"library_count\": 1," +
-                "      \"auto_enabled\": {" +
-                "        \"permission_type\": \"named_entities\"," +
-                "        \"usergroup_ids\": [" +
-                "          \"S0123ABCD\"" +
-                "        ]" +
-                "      }" +
-                "    }" +
-                "  ]," +
-                "  \"response_metadata\": {" +
-                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"" +
-                "  }" +
-                "}";
-        AdminSlackbotSkillsListResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, AdminSlackbotSkillsListResponse.class);
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skills\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F0123ABCD\",\n" +
+                "      \"display_name\": \"Daily priorities\",\n" +
+                "      \"description\": null,\n" +
+                "      \"category\": null,\n" +
+                "      \"creator_id\": \"U0123ABCD\",\n" +
+                "      \"date_created\": 1794467171,\n" +
+                "      \"date_updated\": 1794467171,\n" +
+                "      \"visibility\": \"anyone_can_view\",\n" +
+                "      \"is_official\": true,\n" +
+                "      \"usage_count\": 0,\n" +
+                "      \"library_count\": 1,\n" +
+                "      \"auto_enabled\": {\n" +
+                "        \"permission_type\": \"named_entities\",\n" +
+                "        \"usergroup_ids\": [\n" +
+                "          \"S0123ABCD\"\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"\n" +
+                "  }\n" +
+                "}\n";
+        AdminSlackbotSkillsListResponse response = gson.fromJson(json, AdminSlackbotSkillsListResponse.class);
         assertThat(response.isOk(), is(true));
         assertThat(response.getSkills().get(0).getId(), is("F0123ABCD"));
         assertThat(response.getSkills().get(0).getDescription(), is(nullValue()));
