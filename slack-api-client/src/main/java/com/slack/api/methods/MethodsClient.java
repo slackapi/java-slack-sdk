@@ -2671,25 +2671,6 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
-    // slackbot.skills
-    // ------------------------------
-
-    SlackbotSkillsCreateResponse slackbotSkillsCreate(SlackbotSkillsCreateRequest req) throws IOException, SlackApiException;
-
-    SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req)
-            throws IOException, SlackApiException;
-
-    SlackbotSkillsInfoResponse slackbotSkillsInfo(SlackbotSkillsInfoRequest req) throws IOException, SlackApiException;
-
-    SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req)
-            throws IOException, SlackApiException;
-
-    SlackbotSkillsUpdateResponse slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) throws IOException, SlackApiException;
-
-    SlackbotSkillsUpdateResponse slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req)
-            throws IOException, SlackApiException;
-
-    // ------------------------------
     // slackLists
     // ------------------------------
     
@@ -2751,6 +2732,25 @@ public interface MethodsClient {
     SlackListsUpdateResponse slackListsUpdate(SlackListsUpdateRequest req) throws IOException, SlackApiException;
 
     SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    SlackbotSkillsCreateResponse slackbotSkillsCreate(SlackbotSkillsCreateRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsInfoResponse slackbotSkillsInfo(SlackbotSkillsInfoRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsUpdateResponse slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsUpdateResponse slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------
