@@ -1,5 +1,6 @@
 package test_locally.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
@@ -12,6 +13,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.util.json.GsonFactory;
+import config.SlackTestConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -230,20 +232,20 @@ public class SlackbotSkillsTest {
 
     @Test
     public void adminSlackbotSkillsUnpublishResponse() {
-        SlackConfig strict = new SlackConfig();
-        strict.setFailOnUnknownProperties(true);
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
 
-        String json = "{" +
-                "  \"ok\": false," +
-                "  \"error\": \"failed_for_some_skills\"," +
-                "  \"failed_skills\": [" +
-                "    {" +
-                "      \"skill_id\": \"F0456EFGH\"," +
-                "      \"error\": \"skill_not_found\"" +
-                "    }" +
-                "  ]" +
-                "}";
-        AdminSlackbotSkillsUnpublishResponse response = GsonFactory.createSnakeCase(strict).fromJson(json, AdminSlackbotSkillsUnpublishResponse.class);
+        String json = "{\n" +
+                "  \"ok\": false,\n" +
+                "  \"error\": \"failed_for_some_skills\",\n" +
+                "  \"failed_skills\": [\n" +
+                "    {\n" +
+                "      \"skill_id\": \"F0456EFGH\",\n" +
+                "      \"error\": \"skill_not_found\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}\n";
+        AdminSlackbotSkillsUnpublishResponse response = gson.fromJson(json, AdminSlackbotSkillsUnpublishResponse.class);
         assertThat(response.isOk(), is(false));
         assertThat(response.getError(), is("failed_for_some_skills"));
         assertThat(response.getFailedSkills().get(0).getSkillId(), is("F0456EFGH"));
