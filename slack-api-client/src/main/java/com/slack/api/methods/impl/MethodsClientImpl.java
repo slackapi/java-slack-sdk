@@ -3424,16 +3424,6 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public SlackbotSkillsCreateResponse slackbotSkillsCreate(SlackbotSkillsCreateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_CREATE, getToken(req), SlackbotSkillsCreateResponse.class);
-    }
-
-    @Override
-    public SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) throws IOException, SlackApiException {
-        return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
-    }
-
-    @Override
     public SlackListsAccessDeleteResponse slackListsAccessDelete(SlackListsAccessDeleteRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ACCESS_DELETE, getToken(req), SlackListsAccessDeleteResponse.class);
     }
@@ -3551,6 +3541,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) throws IOException, SlackApiException {
         return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsCreateResponse slackbotSkillsCreate(SlackbotSkillsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_CREATE, getToken(req), SlackbotSkillsCreateResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
     }
 
     @Override

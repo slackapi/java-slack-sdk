@@ -685,12 +685,6 @@ public class Methods {
     public static final String SEARCH_MESSAGES = "search.messages";
 
     // ------------------------------
-    // slackbot.skills
-    // ------------------------------
-
-    public static final String SLACKBOT_SKILLS_CREATE = "slackbot.skills.create";
-
-    // ------------------------------
     // slackLists
     // ------------------------------
 
@@ -706,6 +700,12 @@ public class Methods {
     public static final String SLACKLISTS_ITEMS_LIST = "slackLists.items.list";
     public static final String SLACKLISTS_ITEMS_UPDATE = "slackLists.items.update";
     public static final String SLACKLISTS_UPDATE = "slackLists.update";
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    public static final String SLACKBOT_SKILLS_CREATE = "slackbot.skills.create";
 
     // ------------------------------
     // stars
