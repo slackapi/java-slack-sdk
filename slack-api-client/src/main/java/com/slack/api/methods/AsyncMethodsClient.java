@@ -4,6 +4,7 @@ import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -170,6 +171,7 @@ import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
@@ -401,6 +403,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(AdminAppsMcpServersListRequest req);
 
     CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(RequestConfigurator<AdminAppsMcpServersListRequest.AdminAppsMcpServersListRequestBuilder> req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(AdminAppsMcpServersPermissionsListRequest req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(RequestConfigurator<AdminAppsMcpServersPermissionsListRequest.AdminAppsMcpServersPermissionsListRequestBuilder> req);
 
     // ------------------------------
     // admin.apps.requests

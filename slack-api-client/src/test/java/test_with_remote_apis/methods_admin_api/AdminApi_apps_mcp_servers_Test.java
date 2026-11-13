@@ -3,6 +3,7 @@ package test_with_remote_apis.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,21 @@ public class AdminApi_apps_mcp_servers_Test {
             AdminAppsMcpServersListResponse next = client.adminAppsMcpServersList(r -> r.limit(1).cursor(cursor));
             assertThat(next.getError(), is(nullValue()));
             assertThat(next.getServers(), is(notNullValue()));
+        }
+    }
+
+    @Test
+    public void permissionsList() throws Exception {
+        if (orgAdminUserToken != null) {
+            MethodsClient client = slack.methods(orgAdminUserToken);
+            AdminAppsMcpServersListResponse list = client.adminAppsMcpServersList(r -> r.limit(100));
+            assertThat(list.getError(), is(nullValue()));
+            for (AdminAppsMcpServersListResponse.Server server : list.getServers()) {
+                AdminAppsMcpServersPermissionsListResponse permissions = client.adminAppsMcpServersPermissionsList(r -> r
+                        .appId(server.getAppId()));
+                assertThat(permissions.getError(), is(nullValue()));
+                assertThat(permissions.getServers(), is(notNullValue()));
+            }
         }
     }
 }
