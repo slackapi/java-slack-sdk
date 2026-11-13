@@ -9644,6 +9644,13 @@
           "content": ""
         },
         "is_skill": false,
+        "skill_description": "",
+        "ai_skill_example_prompts": [],
+        "ai_skill_mcp_servers": [],
+        "ai_skill_usage_count": 123,
+        "ai_skill_library_count": 123,
+        "ai_skill_share_link_count": 123,
+        "is_skill_admin_deactivated": false,
         "bot_id": "",
         "initial_comment": {
           "id": "",
@@ -22589,6 +22596,13 @@
                 "content": ""
               },
               "is_skill": false,
+              "skill_description": "",
+              "ai_skill_example_prompts": [],
+              "ai_skill_mcp_servers": [],
+              "ai_skill_usage_count": 123,
+              "ai_skill_library_count": 123,
+              "ai_skill_share_link_count": 123,
+              "is_skill_admin_deactivated": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -37336,6 +37350,13 @@
               "content": ""
             },
             "is_skill": false,
+            "skill_description": "",
+            "ai_skill_example_prompts": [],
+            "ai_skill_mcp_servers": [],
+            "ai_skill_usage_count": 123,
+            "ai_skill_library_count": 123,
+            "ai_skill_share_link_count": 123,
+            "is_skill_admin_deactivated": false,
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -46930,6 +46951,13 @@
                       "content": ""
                     },
                     "is_skill": false,
+                    "skill_description": "",
+                    "ai_skill_example_prompts": [],
+                    "ai_skill_mcp_servers": [],
+                    "ai_skill_usage_count": 123,
+                    "ai_skill_library_count": 123,
+                    "ai_skill_share_link_count": 123,
+                    "is_skill_admin_deactivated": false,
                     "bot_id": "",
                     "initial_comment": {
                       "id": "",
@@ -47486,6 +47514,13 @@
                           "content": ""
                         },
                         "is_skill": false,
+                        "skill_description": "",
+                        "ai_skill_example_prompts": [],
+                        "ai_skill_mcp_servers": [],
+                        "ai_skill_usage_count": 123,
+                        "ai_skill_library_count": 123,
+                        "ai_skill_share_link_count": 123,
+                        "is_skill_admin_deactivated": false,
                         "bot_id": "",
                         "initial_comment": {
                           "id": "",
@@ -48091,6 +48126,13 @@
                           "content": ""
                         },
                         "is_skill": false,
+                        "skill_description": "",
+                        "ai_skill_example_prompts": [],
+                        "ai_skill_mcp_servers": [],
+                        "ai_skill_usage_count": 123,
+                        "ai_skill_library_count": 123,
+                        "ai_skill_share_link_count": 123,
+                        "is_skill_admin_deactivated": false,
                         "bot_id": "",
                         "initial_comment": {
                           "id": "",
@@ -58315,6 +58357,13 @@
                   "content": ""
                 },
                 "is_skill": false,
+                "skill_description": "",
+                "ai_skill_example_prompts": [],
+                "ai_skill_mcp_servers": [],
+                "ai_skill_usage_count": 123,
+                "ai_skill_library_count": 123,
+                "ai_skill_share_link_count": 123,
+                "is_skill_admin_deactivated": false,
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
