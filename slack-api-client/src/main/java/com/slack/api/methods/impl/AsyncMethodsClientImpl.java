@@ -33,6 +33,7 @@ import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsReques
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -195,6 +196,7 @@ import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsRespo
 import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -1021,6 +1023,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminSlackbotSkillsPublishResponse> adminSlackbotSkillsPublish(RequestConfigurator<AdminSlackbotSkillsPublishRequest.AdminSlackbotSkillsPublishRequestBuilder> req) {
         return adminSlackbotSkillsPublish(req.configure(AdminSlackbotSkillsPublishRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsSetAutoEnabledResponse> adminSlackbotSkillsSetAutoEnabled(AdminSlackbotSkillsSetAutoEnabledRequest req) {
+        return executor.execute(ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED, toMap(req), () -> methods.adminSlackbotSkillsSetAutoEnabled(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsSetAutoEnabledResponse> adminSlackbotSkillsSetAutoEnabled(RequestConfigurator<AdminSlackbotSkillsSetAutoEnabledRequest.AdminSlackbotSkillsSetAutoEnabledRequestBuilder> req) {
+        return adminSlackbotSkillsSetAutoEnabled(req.configure(AdminSlackbotSkillsSetAutoEnabledRequest.builder()).build());
     }
 
     @Override

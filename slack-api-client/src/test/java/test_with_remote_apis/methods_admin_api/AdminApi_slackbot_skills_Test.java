@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import config.Constants;
 import config.SlackTestConfig;
@@ -39,6 +40,7 @@ public class AdminApi_slackbot_skills_Test {
     }
 
     static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
+    static String usergroupId = System.getenv(Constants.SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID_2);
 
     // Cleans up test skills with a raw call until slackbot.skills.delete is available
     static void deleteSkill(MethodsClient client, String token, String skillId) throws IOException {
@@ -88,6 +90,30 @@ public class AdminApi_slackbot_skills_Test {
                 assertThat(partialPublication.getError(), is("failed_for_some_skills"));
                 assertThat(partialPublication.getFailedSkills().get(0).getSkillId(), is("F00000000"));
                 assertThat(partialPublication.getFailedSkills().get(0).getError(), is("skill_not_found"));
+
+                if (usergroupId != null) {
+                    AdminSlackbotSkillsSetAutoEnabledResponse namedEntities = client.adminSlackbotSkillsSetAutoEnabled(r -> r
+                            .skillId(skillId)
+                            .permissionType("named_entities")
+                            .usergroupIds(Collections.singletonList(usergroupId)));
+                    assertThat(namedEntities.getError(), is(nullValue()));
+                    assertThat(namedEntities.getUsergroupIds(), is(Collections.singletonList(usergroupId)));
+                }
+
+                AdminSlackbotSkillsSetAutoEnabledResponse missingUsergroup = client.adminSlackbotSkillsSetAutoEnabled(r -> r
+                        .skillId(skillId)
+                        .permissionType("named_entities")
+                        .usergroupIds(Collections.singletonList("S00000000")));
+                assertThat(missingUsergroup.getError(), is("usergroup_not_found"));
+                assertThat(missingUsergroup.getInvalidUsergroupIds(), is(Collections.singletonList("S00000000")));
+
+                AdminSlackbotSkillsSetAutoEnabledResponse noOne = client.adminSlackbotSkillsSetAutoEnabled(r -> r
+                        .skillId(skillId)
+                        .permissionType("no_one"));
+                assertThat(noOne.getError(), is(nullValue()));
+                assertThat(noOne.getPermissionType(), is("no_one"));
+                assertThat(noOne.getSkillId(), is(skillId));
+                assertThat(noOne.getUsergroupIds(), is(Collections.emptyList()));
             } finally {
                 deleteSkill(client, orgAdminUserToken, skillId);
             }

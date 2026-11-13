@@ -208,6 +208,10 @@ public class AdminApiTest {
                 .sort("usage_count")
                 .sortDir("desc")).isOk(), is(true));
         assertThat(methods.adminSlackbotSkillsPublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH"))).isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsSetAutoEnabled(r -> r
+                .skillId("F0123ABCD")
+                .permissionType("named_entities")
+                .usergroupIds(Arrays.asList("S0123ABCD"))).isOk(), is(true));
     }
 
     @Test
