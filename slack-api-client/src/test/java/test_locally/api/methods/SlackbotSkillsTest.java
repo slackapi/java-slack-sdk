@@ -2,13 +2,13 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
-import com.slack.api.model.slackbot.SkillMcpServer;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.After;
 import org.junit.Before;
@@ -48,7 +48,7 @@ public class SlackbotSkillsTest {
                 .description("Reviews information from Slack and your calendar to suggest priorities for the day.")
                 .category("productivity")
                 .examplePrompt("Run {skill} for today")
-                .mcpServers(Arrays.asList(SkillMcpServer.builder()
+                .mcpServers(Arrays.asList(SlackbotSkillsCreateRequest.McpServer.builder()
                         .serviceType("app")
                         .appId("A0123ABCD")
                         .serverId("Amcp0456EFGH")
@@ -92,7 +92,7 @@ public class SlackbotSkillsTest {
                 .description("Reviews information from Slack and your calendar to suggest priorities for the day.")
                 .category("productivity")
                 .examplePrompt("Run {skill} for today")
-                .mcpServers(Arrays.asList(SkillMcpServer.builder()
+                .mcpServers(Arrays.asList(SlackbotSkillsCreateRequest.McpServer.builder()
                         .serviceType("app")
                         .appId("A0123ABCD")
                         .serverId("Amcp0456EFGH")

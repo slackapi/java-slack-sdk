@@ -15,7 +15,6 @@ import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.OverflowMenuElement;
-import com.slack.api.model.slackbot.SkillMcpServer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -73,7 +72,7 @@ public class RequestFormBuilderTest {
 
         FormBody declared = RequestFormBuilder.toForm(SlackbotSkillsUpdateRequest.builder()
                 .skillId("F0123ABCD")
-                .mcpServers(Arrays.asList(SkillMcpServer.builder()
+                .mcpServers(Arrays.asList(SlackbotSkillsUpdateRequest.McpServer.builder()
                         .serviceType("app")
                         .appId("A0123ABCD")
                         .serverId("Amcp0456EFGH")
