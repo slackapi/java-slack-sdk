@@ -9,7 +9,7 @@ import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
 import com.slack.api.model.canvas.CanvasDocumentContent;
 import com.slack.api.model.slackbot.Skill;
-import com.slack.api.model.slackbot.SkillMcpServer;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -79,7 +79,7 @@ public class slackbot_skills_Test {
 
             SlackbotSkillsUpdateResponse invalidUpdate = client.slackbotSkillsUpdate(r -> r
                     .skillId(skillId)
-                    .mcpServers(Arrays.asList(SkillMcpServer.builder()
+                    .mcpServers(Arrays.asList(SlackbotSkillsUpdateRequest.McpServer.builder()
                             .serviceType("app")
                             .appId("A0123ABCD")
                             .serverId("Amcp0456EFGH")
