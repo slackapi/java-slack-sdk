@@ -7,6 +7,7 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -172,6 +173,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
@@ -477,6 +479,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req) {
         return adminAppsConfigSet(req.configure(AdminAppsConfigSetRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(AdminAppsMcpServersListRequest req) {
+        return executor.execute(ADMIN_APPS_MCP_SERVERS_LIST, toMap(req), () -> methods.adminAppsMcpServersList(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(RequestConfigurator<AdminAppsMcpServersListRequest.AdminAppsMcpServersListRequestBuilder> req) {
+        return adminAppsMcpServersList(req.configure(AdminAppsMcpServersListRequest.builder()).build());
     }
 
     @Override
