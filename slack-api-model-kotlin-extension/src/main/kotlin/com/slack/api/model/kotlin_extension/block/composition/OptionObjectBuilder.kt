@@ -1,7 +1,9 @@
 package com.slack.api.model.kotlin_extension.block.composition
 
+import com.slack.api.model.block.composition.MarkdownTextObject
 import com.slack.api.model.block.composition.OptionObject
 import com.slack.api.model.block.composition.PlainTextObject
+import com.slack.api.model.block.composition.TextObject
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.Builder
 import com.slack.api.model.kotlin_extension.block.composition.container.SingleTextObjectContainer
@@ -14,7 +16,7 @@ class OptionObjectBuilder private constructor(
 ) : Builder<OptionObject>, TextObjectDsl by textContainer {
     private var value: String? = null
     private var url: String? = null
-    private var description: PlainTextObject? = null
+    private var description: TextObject? = null
 
     constructor() : this(SingleTextObjectContainer())
 
@@ -40,13 +42,25 @@ class OptionObjectBuilder private constructor(
     }
 
     /**
-     * a line of descriptive text shown below the text field beside the radio button. Maximum length for the text
-     * object within this field is 75 characters.
+     * A plain_text text object that defines a line of descriptive text shown below the text field beside a single
+     * selectable item in a select menu, multi-select menu, checkbox group, radio button group, or overflow menu.
+     * Maximum length for the text within this field is 75 characters.
      *
      * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/option-object">Option object documentation</a>
      */
     fun description(text: String, emoji: Boolean? = null) {
         description = PlainTextObject(text, emoji)
+    }
+
+    /**
+     * A mrkdwn text object that defines a line of descriptive text shown below the text field beside a single
+     * selectable item. Only checkbox group and radio button group items can use mrkdwn formatting.
+     * Maximum length for the text within this field is 75 characters.
+     *
+     * @see <a href="https://docs.slack.dev/reference/block-kit/composition-objects/option-object">Option object documentation</a>
+     */
+    fun markdownDescription(text: String, verbatim: Boolean? = null) {
+        description = MarkdownTextObject(text, verbatim)
     }
 
     override fun build(): OptionObject {
