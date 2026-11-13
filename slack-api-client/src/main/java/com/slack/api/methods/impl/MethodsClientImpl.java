@@ -3470,66 +3470,6 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public SlackbotSkillsCreateResponse slackbotSkillsCreate(SlackbotSkillsCreateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_CREATE, getToken(req), SlackbotSkillsCreateResponse.class);
-    }
-
-    @Override
-    public SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) throws IOException, SlackApiException {
-        return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
-    }
-
-    @Override
-    public SlackbotSkillsInfoResponse slackbotSkillsInfo(SlackbotSkillsInfoRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_INFO, getToken(req), SlackbotSkillsInfoResponse.class);
-    }
-
-    @Override
-    public SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return slackbotSkillsInfo(req.configure(SlackbotSkillsInfoRequest.builder()).build());
-    }
-
-    @Override
-    public SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_LIBRARY_ADD, getToken(req), SlackbotSkillsLibraryAddResponse.class);
-    }
-
-    @Override
-    public SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req) throws IOException, SlackApiException {
-        return slackbotSkillsLibraryAdd(req.configure(SlackbotSkillsLibraryAddRequest.builder()).build());
-    }
-
-    @Override
-    public SlackbotSkillsLibraryRemoveResponse slackbotSkillsLibraryRemove(SlackbotSkillsLibraryRemoveRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_LIBRARY_REMOVE, getToken(req), SlackbotSkillsLibraryRemoveResponse.class);
-    }
-
-    @Override
-    public SlackbotSkillsLibraryRemoveResponse slackbotSkillsLibraryRemove(RequestConfigurator<SlackbotSkillsLibraryRemoveRequest.SlackbotSkillsLibraryRemoveRequestBuilder> req) throws IOException, SlackApiException {
-        return slackbotSkillsLibraryRemove(req.configure(SlackbotSkillsLibraryRemoveRequest.builder()).build());
-    }
-
-    @Override
-    public SlackbotSkillsListResponse slackbotSkillsList(SlackbotSkillsListRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_LIST, getToken(req), SlackbotSkillsListResponse.class);
-    }
-
-    @Override
-    public SlackbotSkillsListResponse slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req) throws IOException, SlackApiException {
-        return slackbotSkillsList(req.configure(SlackbotSkillsListRequest.builder()).build());
-    }
-
-    @Override
-    public SlackbotSkillsUpdateResponse slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_UPDATE, getToken(req), SlackbotSkillsUpdateResponse.class);
-    }
-
-    @Override
-    public SlackbotSkillsUpdateResponse slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req) throws IOException, SlackApiException {
-        return slackbotSkillsUpdate(req.configure(SlackbotSkillsUpdateRequest.builder()).build());
-    }
-
-    @Override
     public SlackListsAccessDeleteResponse slackListsAccessDelete(SlackListsAccessDeleteRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKLISTS_ACCESS_DELETE, getToken(req), SlackListsAccessDeleteResponse.class);
     }
@@ -3647,6 +3587,66 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) throws IOException, SlackApiException {
         return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsCreateResponse slackbotSkillsCreate(SlackbotSkillsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_CREATE, getToken(req), SlackbotSkillsCreateResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsInfoResponse slackbotSkillsInfo(SlackbotSkillsInfoRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_INFO, getToken(req), SlackbotSkillsInfoResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsInfo(req.configure(SlackbotSkillsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_LIBRARY_ADD, getToken(req), SlackbotSkillsLibraryAddResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsLibraryAdd(req.configure(SlackbotSkillsLibraryAddRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsLibraryRemoveResponse slackbotSkillsLibraryRemove(SlackbotSkillsLibraryRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_LIBRARY_REMOVE, getToken(req), SlackbotSkillsLibraryRemoveResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsLibraryRemoveResponse slackbotSkillsLibraryRemove(RequestConfigurator<SlackbotSkillsLibraryRemoveRequest.SlackbotSkillsLibraryRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsLibraryRemove(req.configure(SlackbotSkillsLibraryRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsListResponse slackbotSkillsList(SlackbotSkillsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_LIST, getToken(req), SlackbotSkillsListResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsListResponse slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsList(req.configure(SlackbotSkillsListRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillsUpdateResponse slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILLS_UPDATE, getToken(req), SlackbotSkillsUpdateResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillsUpdateResponse slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillsUpdate(req.configure(SlackbotSkillsUpdateRequest.builder()).build());
     }
 
     @Override
