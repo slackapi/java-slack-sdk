@@ -33,6 +33,7 @@ then
 elif [[ "${is_jdk_14}" != "" ]];
 then
   ./mvnw \
+    -pl !bolt-jakarta-jetty \
     -pl !bolt-micronaut \
     $MVN_PHASES \
     '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false ${CI_ARGS} \
