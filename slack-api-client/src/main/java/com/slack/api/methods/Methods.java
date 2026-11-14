@@ -27,6 +27,14 @@ public class Methods {
     public static final String ADMIN_APPS_CONFIG_SET = "admin.apps.config.set";
 
     // ------------------------------
+    // admin.apps.mcp.servers
+    // ------------------------------
+
+    public static final String ADMIN_APPS_MCP_SERVERS_LIST = "admin.apps.mcp.servers.list";
+    public static final String ADMIN_APPS_MCP_SERVERS_PERMISSIONS_LIST = "admin.apps.mcp.servers.permissions.list";
+    public static final String ADMIN_APPS_MCP_SERVERS_PERMISSIONS_SET = "admin.apps.mcp.servers.permissions.set";
+
+    // ------------------------------
     // admin.apps.requests
     // ------------------------------
 
@@ -137,6 +145,15 @@ public class Methods {
     public static final String ADMIN_ROLES_LIST_ASSIGNMENTS = "admin.roles.listAssignments";
     public static final String ADMIN_ROLES_ADD_ASSIGNMENTS = "admin.roles.addAssignments";
     public static final String ADMIN_ROLES_REMOVE_ASSIGNMENTS = "admin.roles.removeAssignments";
+
+    // ------------------------------
+    // admin.slackbot.skills
+    // ------------------------------
+
+    public static final String ADMIN_SLACKBOT_SKILLS_LIST = "admin.slackbot.skills.list";
+    public static final String ADMIN_SLACKBOT_SKILLS_PUBLISH = "admin.slackbot.skills.publish";
+    public static final String ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED = "admin.slackbot.skills.setAutoEnabled";
+    public static final String ADMIN_SLACKBOT_SKILLS_UNPUBLISH = "admin.slackbot.skills.unpublish";
 
     // ------------------------------
     // admin.teams.admins
@@ -700,6 +717,18 @@ public class Methods {
     public static final String SLACKLISTS_ITEMS_LIST = "slackLists.items.list";
     public static final String SLACKLISTS_ITEMS_UPDATE = "slackLists.items.update";
     public static final String SLACKLISTS_UPDATE = "slackLists.update";
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    public static final String SLACKBOT_SKILLS_CREATE = "slackbot.skills.create";
+    public static final String SLACKBOT_SKILLS_DELETE = "slackbot.skills.delete";
+    public static final String SLACKBOT_SKILLS_INFO = "slackbot.skills.info";
+    public static final String SLACKBOT_SKILLS_LIBRARY_ADD = "slackbot.skills.library.add";
+    public static final String SLACKBOT_SKILLS_LIBRARY_REMOVE = "slackbot.skills.library.remove";
+    public static final String SLACKBOT_SKILLS_LIST = "slackbot.skills.list";
+    public static final String SLACKBOT_SKILLS_UPDATE = "slackbot.skills.update";
 
     // ------------------------------
     // stars

@@ -1,0 +1,34 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ],
+    "next_cursor": ""
+  },
+  "skills": [
+    {
+      "auto_enabled": {
+        "permission_type": "",
+        "usergroup_ids": [
+          "S00000000"
+        ]
+      },
+      "category": "",
+      "creator_id": "U00000000",
+      "date_created": 12345,
+      "date_updated": 12345,
+      "description": "",
+      "display_name": "",
+      "id": "F00000000",
+      "is_official": false,
+      "library_count": 12345,
+      "usage_count": 12345,
+      "visibility": ""
+    }
+  ]
+}
