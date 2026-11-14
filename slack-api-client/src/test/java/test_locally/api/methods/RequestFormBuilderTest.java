@@ -1,5 +1,6 @@
 package test_locally.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.methods.RequestFormBuilder;
 import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
@@ -9,12 +10,17 @@ import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.team.TeamInfoRequest;
+import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.CallParticipant;
+import com.slack.api.model.EntityMetadata;
+import com.slack.api.model.Message;
+import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.OverflowMenuElement;
+import com.slack.api.util.json.GsonFactory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,17 +28,32 @@ import lombok.NoArgsConstructor;
 import okhttp3.FormBody;
 import org.junit.Test;
 
+import java.beans.Introspector;
+import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.junit.Assert.assertTrue;
 
 public class RequestFormBuilderTest {
+
+    private static final Gson GSON = GsonFactory.createSnakeCase();
 
     @Test
     public void teamInfoSlackbotAvailability() {
@@ -46,6 +67,76 @@ public class RequestFormBuilderTest {
             assertThat(form.name(0), is("include_slackbot_availability"));
             assertThat(form.value(0), is(include ? "1" : "0"));
         }
+    }
+
+    @Test
+    public void testChatPostMessageFieldsAreSerializedOnce() {
+        FormBody form = RequestFormBuilder.toForm(ChatPostMessageRequest.builder()
+                .channel("C1234567890")
+                .text("A threaded reply")
+                .threadTs("1234567890.123456")
+                .parse("none")
+                .metadataAsString("{\"event_type\":\"test\",\"event_payload\":{}}")
+                .blocksAsString("[]")
+                .attachmentsAsString("[]")
+                .username("Test bot")
+                .asUser(false)
+                .iconUrl("https://example.com/icon.png")
+                .iconEmoji(":wave:")
+                .build()).build();
+
+        List<String> fieldNames = new ArrayList<>();
+        for (int i = 0; i < form.size(); i++) {
+            fieldNames.add(form.name(i));
+        }
+        assertThat(fieldNames, containsInAnyOrder(
+                "channel", "thread_ts", "text", "parse", "link_names", "mrkdwn", "metadata",
+                "blocks", "attachments", "unfurl_links", "unfurl_media", "username", "as_user",
+                "icon_url", "icon_emoji", "reply_broadcast"));
+        assertThat(form.value(fieldNames.indexOf("thread_ts")), is("1234567890.123456"));
+    }
+
+    @Test
+    public void testAllFormsSerializeFieldNamesOnce() throws ReflectiveOperationException {
+        int checked = 0;
+        Method[] methods = RequestFormBuilder.class.getDeclaredMethods();
+        Arrays.sort(methods, Comparator.comparing(Method::toString));
+        for (Method method : methods) {
+            if (!method.getName().equals("toForm")) {
+                continue;
+            }
+            checked++;
+            assertUniqueFormFields(method, "all fields", Collections.emptySet());
+
+            // JSON strings take precedence over objects, so an all-fields request skips those object paths.
+            Set<String> jsonFields = new HashSet<>();
+            for (Field field : method.getParameterTypes()[0].getDeclaredFields()) {
+                if (isJsonString(field)) {
+                    jsonFields.add(field.getName());
+                }
+            }
+            if (!jsonFields.isEmpty()) {
+                assertUniqueFormFields(method, "structured inputs", jsonFields);
+            }
+
+            if (method.getParameterTypes()[0] == ChatPostMessageRequest.class) {
+                // Legacy metadata takes precedence over both event-and-entity representations.
+                assertUniqueFormFields(method, "event and entity JSON", new HashSet<>(Arrays.asList(
+                        "metadataAsString", "metadata")));
+                Set<String> omitted = new HashSet<>(jsonFields);
+                omitted.add("metadata");
+                assertUniqueFormFields(method, "event and entity object", omitted);
+            }
+            if (method.getParameterTypes()[0] == UsersProfileSetRequest.class) {
+                assertUniqueFormFields(method, "single profile field", Collections.singleton("profile"));
+            }
+            for (Field field : method.getParameterTypes()[0].getDeclaredFields()) {
+                if (field.getName().equals("documentContent")) {
+                    assertUniqueFormFields(method, "markdown", Collections.singleton("documentContent"));
+                }
+            }
+        }
+        assertTrue("No toForm methods found", checked > 0);
     }
 
     @Test
@@ -310,6 +401,103 @@ public class RequestFormBuilderTest {
         assertThat(form.name(0), is("user_id"));
         assertThat(form.name(1), is("primary_provider"));
         assertThat(form.value(1), is("{\"value\":\"github\"}"));
+    }
+
+    private static void assertUniqueFormFields(Method toForm, String input, Set<String> omittedFields)
+            throws ReflectiveOperationException {
+        Class<?> requestType = toForm.getParameterTypes()[0];
+        Object builder = requestType.getMethod("builder").invoke(null);
+        Object request = builder.getClass().getMethod("build").invoke(builder);
+        for (Field field : requestType.getDeclaredFields()) {
+            if (Modifier.isStatic(field.getModifiers()) || omittedFields.contains(field.getName())) {
+                continue;
+            }
+            field.setAccessible(true);
+            if (isJsonString(field)) {
+                String name = field.getName();
+                String objectFieldName = name.startsWith("raw")
+                        ? Introspector.decapitalize(name.substring(3))
+                        : name.substring(0, name.length() - "AsString".length());
+                Type objectType = requestType.getDeclaredField(objectFieldName).getGenericType();
+                field.set(request, GSON.toJson(sampleValue(objectType)));
+            } else {
+                field.set(request, sampleValue(field.getGenericType()));
+            }
+        }
+
+        FormBody form = FormBody.Builder.class.cast(toForm.invoke(null, request)).build();
+        Set<String> names = new HashSet<>();
+        for (int i = 0; i < form.size(); i++) {
+            assertTrue(requestType.getSimpleName() + " / " + input + ": duplicate form field " + form.name(i),
+                    names.add(form.name(i)));
+        }
+    }
+
+    private static boolean isJsonString(Field field) {
+        return field.getType() == String.class
+                && (field.getName().endsWith("AsString") || field.getName().startsWith("raw"));
+    }
+
+    private static Object sampleValue(Type type) {
+        if (type instanceof ParameterizedType) {
+            ParameterizedType parameterized = (ParameterizedType) type;
+            Type[] arguments = parameterized.getActualTypeArguments();
+            if (parameterized.getRawType() == List.class) {
+                return Collections.singletonList(sampleValue(arguments[0]));
+            }
+            if (parameterized.getRawType() == Map.class) {
+                return Collections.singletonMap(sampleValue(arguments[0]), sampleValue(arguments[1]));
+            }
+        }
+        if (type instanceof WildcardType) {
+            return sampleValue(((WildcardType) type).getUpperBounds()[0]);
+        }
+        if (type == String.class || type == Object.class) {
+            return "value";
+        }
+        if (type == boolean.class || type == Boolean.class) {
+            return true;
+        }
+        if (type == int.class || type == Integer.class) {
+            return 1;
+        }
+        if (type == Long.class) {
+            return 1L;
+        }
+        if (type == byte[].class) {
+            return new byte[] {1};
+        }
+        if (type == File.class) {
+            // FilesUploadRequest also supports multipart; toForm only reads its text fields.
+            return new File("unused-by-toForm");
+        }
+        if (type == LayoutBlock.class) {
+            return DividerBlock.builder().build();
+        }
+        if (type == Attachment.class) {
+            return Attachment.builder().fallback("fallback").build();
+        }
+        if (type == EntityMetadata.class) {
+            return EntityMetadata.builder().entityPayload(EntityMetadata.EntityPayload.builder().build()).build();
+        }
+        if (type == ChatUnfurlRequest.UnfurlMetadata.class) {
+            return ChatUnfurlRequest.UnfurlMetadata.builder().entities(new EntityMetadata[0]).build();
+        }
+        if (type == Message.EventAndEntityMetadata.class) {
+            return Message.EventAndEntityMetadata.builder().entities(new EntityMetadata[0]).build();
+        }
+        if (type instanceof Class) {
+            Class<?> valueType = (Class<?>) type;
+            if (valueType.isEnum()) {
+                return valueType.getEnumConstants()[0];
+            }
+            if (valueType.getName().startsWith("com.slack.api.")
+                    && !valueType.isInterface() && !Modifier.isAbstract(valueType.getModifiers())) {
+                // Nested JSON contents do not affect the outer form's field names.
+                return GSON.fromJson("{}", valueType);
+            }
+        }
+        throw new AssertionError("Add a sample value for request field type: " + type);
     }
 
     @Data
