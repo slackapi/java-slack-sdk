@@ -221,7 +221,7 @@ public class MockSocketMode extends WebSocketAdapter {
             "  \"retry_reason\": \"timeout\"\n" +
             "}\n";
 
-    String commandEnvelope = "{\n" +
+    public static final String COMMAND_ENVELOPE = "{\n" +
             "  \"envelope_id\": \"xxx-11-222-yyy-zzz\",\n" +
             "  \"payload\": {\n" +
             "    \"token\": \"fixed-value\",\n" +
@@ -244,7 +244,7 @@ public class MockSocketMode extends WebSocketAdapter {
     List<String> envelopes = Arrays.asList(
             interactiveEnvelope,
             eventsEnvelope,
-            commandEnvelope
+            COMMAND_ENVELOPE
     );
 
     private SecureRandom random = new SecureRandom();

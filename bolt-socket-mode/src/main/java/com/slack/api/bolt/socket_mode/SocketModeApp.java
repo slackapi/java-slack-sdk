@@ -8,6 +8,8 @@ import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.socket_mode.request.SocketModeRequest;
 import com.slack.api.bolt.socket_mode.request.SocketModeRequestParser;
 import com.slack.api.socket_mode.SocketModeClient;
+import com.slack.api.socket_mode.SocketModeMessage;
+import com.slack.api.socket_mode.listener.WebSocketMessageListener;
 import com.slack.api.socket_mode.response.AckResponse;
 import com.slack.api.util.json.GsonFactory;
 import com.slack.api.util.thread.DaemonThreadExecutorServiceFactory;
@@ -80,14 +82,21 @@ public class SocketModeApp {
                 final SocketModeClient client = app.slack().socketMode(appToken, backend);
                 final SocketModeRequestParser requestParser = new SocketModeRequestParser(app.config());
                 final Gson gson = GsonFactory.createSnakeCase(app.slack().getConfig());
-                client.addWebSocketMessageListener(message -> {
-                    if (executorService != null) {
-                        // asynchronous
-                        executorService.execute(() -> runBoltApp(
-                                message, app, client, requestParser, errorHandler, gson));
-                    } else {
-                        // synchronous
-                        runBoltApp(message, app, client, requestParser, errorHandler, gson);
+                client.addWebSocketMessageListener(new WebSocketMessageListener() {
+                    @Override
+                    public void handle(String message) {
+                        handleWithMetadata(new SocketModeMessage(message, null));
+                    }
+
+                    @Override
+                    public void handleWithMetadata(SocketModeMessage message) {
+                        if (executorService != null) {
+                            // Retain the receive time while this task waits for a worker.
+                            executorService.execute(() -> runBoltApp(
+                                    message, app, client, requestParser, errorHandler, gson));
+                        } else {
+                            runBoltApp(message, app, client, requestParser, errorHandler, gson);
+                        }
                     }
                 });
                 return client;
@@ -99,7 +108,7 @@ public class SocketModeApp {
     }
 
     private static void runBoltApp(
-            String message,
+            SocketModeMessage message,
             App app,
             SocketModeClient client,
             SocketModeRequestParser requestParser,
@@ -107,10 +116,17 @@ public class SocketModeApp {
             Gson gson
     ) {
         long startMillis = System.currentTimeMillis();
-        SocketModeRequest req = requestParser.parse(message);
+        SocketModeRequest req = requestParser.parse(message.getPayload());
         if (req != null) {
+            Request<?> boltRequest = req.getBoltRequest();
+            if (boltRequest != null) {
+                boltRequest.setSocketModeEnvelopeId(req.getEnvelope().getEnvelopeId());
+                Long receivedAtNanos = message.getReceivedAtNanos();
+                boltRequest.setSocketModeDispatchDelayNanos(
+                        receivedAtNanos == null ? null : System.nanoTime() - receivedAtNanos);
+            }
             try {
-                Response boltResponse = app.run(req.getBoltRequest());
+                Response boltResponse = app.run(boltRequest);
                 if (boltResponse.getStatusCode() != 200) {
                     log.warn("Unsuccessful Bolt app execution (status: {}, body: {})",
                             boltResponse.getStatusCode(), boltResponse.getBody());

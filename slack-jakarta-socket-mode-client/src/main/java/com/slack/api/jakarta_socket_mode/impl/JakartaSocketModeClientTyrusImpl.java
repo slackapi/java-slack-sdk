@@ -9,7 +9,7 @@ import com.slack.api.socket_mode.listener.WebSocketCloseListener;
 import com.slack.api.socket_mode.listener.WebSocketErrorListener;
 import com.slack.api.socket_mode.listener.WebSocketMessageListener;
 import com.slack.api.socket_mode.queue.SocketModeMessageQueue;
-import com.slack.api.socket_mode.queue.impl.ConcurrentLinkedMessageQueue;
+import com.slack.api.socket_mode.queue.impl.TimedMessageQueue;
 import com.slack.api.socket_mode.request.EventsApiEnvelope;
 import com.slack.api.socket_mode.request.InteractiveEnvelope;
 import com.slack.api.socket_mode.request.SlashCommandsEnvelope;
@@ -95,7 +95,7 @@ public class JakartaSocketModeClientTyrusImpl implements SocketModeClient {
                 appToken,
                 wssUrl,
                 concurrency,
-                new ConcurrentLinkedMessageQueue(),
+                new TimedMessageQueue(),
                 true,
                 true,
                 DEFAULT_SESSION_MONITOR_INTERVAL_MILLISECONDS

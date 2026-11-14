@@ -1,5 +1,7 @@
 package com.slack.api.socket_mode.queue;
 
+import com.slack.api.socket_mode.SocketModeMessage;
+
 /**
  * Abstraction of a message queue that provides
  * a way to handle multiple messages at the same time in SocketModeClient.
@@ -19,5 +21,14 @@ public interface SocketModeMessageQueue {
      * @return a raw message from the Socket Mode server
      */
     String poll();
+
+    /**
+     * Pops a message with its receive time when the queue records one.
+     * Existing custom queues remain supported and report an unknown receive time.
+     */
+    default SocketModeMessage pollMessage() {
+        String payload = poll();
+        return payload == null ? null : new SocketModeMessage(payload, null);
+    }
 
 }
