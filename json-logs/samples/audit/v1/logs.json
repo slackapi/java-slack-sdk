@@ -130,6 +130,11 @@
           "id": "",
           "app_id": "",
           "callback_id": ""
+        },
+        "canvas": {
+          "id": "",
+          "title": "",
+          "filetype": ""
         }
       },
       "context": {
@@ -407,6 +412,12 @@
           "team_id": ""
         },
         "rules_checked": [],
+        "condition": {
+          "datatype": "",
+          "operator": "",
+          "values": [],
+          "entity_type": ""
+        },
         "disconnecting_team": "",
         "is_channel_canvas": false,
         "linked_channel_id": "",
@@ -481,7 +492,27 @@
         "uri": "",
         "executor_id": "",
         "skill_id": "",
-        "mcp_server_allowlist_domains": []
+        "mcp_server_allowlist_domains": [],
+        "rule_id": "",
+        "is_enabled": false,
+        "title": "",
+        "changed_fields": [],
+        "is_skill": false,
+        "organization_id": "",
+        "usergroup_ids": [],
+        "category_changed": false,
+        "description_changed": false,
+        "example_prompt_changed": false,
+        "mcp_servers_changed": false,
+        "exclude_from_slack_ai": false,
+        "installer_email_verification": {
+          "method": "",
+          "email": ""
+        },
+        "new_bot_scopes": [],
+        "old_bot_scopes": [],
+        "previous_permission_type": "",
+        "server_id": ""
       }
     }
   ]

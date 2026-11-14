@@ -78,6 +78,7 @@ public class LogsResponse implements AuditApiResponse {
         // captured JSON before typing. See deferred conversion notes.
         private Object externalAuthOauth2Token;
         private Function function;
+        private Canvas canvas;
     }
 
     @Data
@@ -130,6 +131,13 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String filetype;
         private String title;
+    }
+
+    @Data
+    public static class Canvas {
+        private String id;
+        private String title;
+        private String filetype;
     }
 
     @Data
@@ -345,7 +353,10 @@ public class LogsResponse implements AuditApiResponse {
         private String enterprise; // usergroup_updated
         private String team; // usergroup_updated
         private String subteam; // usergroup_updated
-        private String action; // usergroup_updated
+        // Polymorphic: a plain string for some actions (e.g. usergroup_updated -> "update")
+        // and a structured object for others (e.g. app_allowlist_rule_created).
+        // GsonAuditLogsDetailsActionFactory handles both patterns under the hood.
+        private DetailsAction action;
         private Integer idpGroupMemberCount; // usergroup_updated
         private Integer workspaceMemberCount; // usergroup_updated
         private Integer addedUserCount; // usergroup_updated
@@ -381,6 +392,7 @@ public class LogsResponse implements AuditApiResponse {
         private AAARule matchedRule; // app_allowlist_rule_matched
         private AAARequest request; // app_allowlist_rule_matched
         private List<AAARule> rulesChecked; // app_allowlist_rule_matched
+        private AAARuleCondition condition; // app_allowlist_rule_created etc.
         private String disconnectingTeam; // external_shared_channel_disconnected
         private Boolean isChannelCanvas; // canvas_opened
         private String linkedChannelId; // canvas_opened
@@ -457,6 +469,30 @@ public class LogsResponse implements AuditApiResponse {
         private String executorId;
         private String skillId;
         private List<String> mcpServerAllowlistDomains;
+        private String ruleId;
+        @SerializedName("is_enabled")
+        private Boolean enabled;
+        private String title; // list_title_updated etc.
+        private List<String> changedFields;
+        private Boolean isSkill; // canvas_converted_to_skill etc.
+        private String organizationId; // canvas_linksharing_enabled
+        private List<String> usergroupIds; // slack_ai_skill_auto_enabled etc.
+        private Boolean categoryChanged; // slack_ai_skill_metadata_updated
+        private Boolean descriptionChanged; // slack_ai_skill_metadata_updated
+        private Boolean examplePromptChanged; // slack_ai_skill_metadata_updated
+        private Boolean mcpServersChanged; // slack_ai_skill_metadata_updated
+        private Boolean excludeFromSlackAi; // channel_exclude_from_slack_ai_updated
+        private InstallerEmailVerification installerEmailVerification; // app_scopes_expanded
+        private List<String> newBotScopes; // app_approved
+        private List<String> oldBotScopes; // app_approved
+        private String previousPermissionType; // app_mcp_server_acl_changed
+        private String serverId; // app_mcp_server_acl_changed
+    }
+
+    @Data
+    public static class InstallerEmailVerification {
+        private String method;
+        private String email;
     }
 
     @Data
@@ -594,6 +630,23 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class AAARuleActionNotify {
         private String entityType;
+        private List<String> values;
+    }
+
+    /**
+     * The data structure for details.action is polymorphic. For some actions it is a
+     * plain string (e.g. usergroup_updated returns "update"); for others it is a
+     * structured object (e.g. app_allowlist_rule_created returns a resolution/notify
+     * object). This class supports both patterns; GsonAuditLogsDetailsActionFactory
+     * populates the relevant field under the hood.
+     */
+    @Data
+    public static class DetailsAction {
+        // e.g., "update" (usergroup_updated)
+        private String stringValue;
+        // object form (e.g., app_allowlist_rule_created)
+        private AAARuleActionResolution resolution;
+        private List<AAARuleActionNotify> notify;
     }
     @Data
     public static class AAARuleCondition {

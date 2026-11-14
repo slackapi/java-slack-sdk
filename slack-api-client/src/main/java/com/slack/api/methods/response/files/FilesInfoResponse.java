@@ -23,6 +23,7 @@ public class FilesInfoResponse implements SlackApiTextResponse {
 
     private File file;
     private String content;
+    private String contentHtml;
     private String contentHighlightHtml;
     private String contentHighlightCss;
     @SerializedName("is_truncated")

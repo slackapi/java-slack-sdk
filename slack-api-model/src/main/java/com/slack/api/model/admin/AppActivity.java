@@ -68,6 +68,7 @@ public class AppActivity {
         private String errorStage; // "http_non_2xx", "http_request", "token_fetch"
         private Integer httpStatusCode;
         private String providerKey; // "mcp_dcr_notion" etc.
+        private Integer tokensChecked;
     }
 
     @Data
@@ -84,6 +85,17 @@ public class AppActivity {
         private String name;
         private String description;
         private Object schema; // TODO: typing
+        private Map<String, FunctionInput> functionInputs;
+        private String triggerTypeId;
+        private String triggerTypeAppId;
+    }
+
+    @Data
+    public static class FunctionInput {
+        private Map<String, String> label; // keyed by the value
+        private Object value; // a string, or an object for credential inputs
+        private Boolean hidden;
+        private Boolean locked;
     }
 
     @Data
