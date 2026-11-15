@@ -546,6 +546,7 @@ public class Actions {
         public static final String slack_ai_skill_deactivated = "slack_ai_skill_deactivated";
         public static final String slack_ai_skill_reactivated = "slack_ai_skill_reactivated";
         public static final String user_logout_dbsc_keyless_session = "user_logout_dbsc_keyless_session";
+        public static final String user_passkeys_bulk_removed_by_admin = "user_passkeys_bulk_removed_by_admin";
     }
 
     public static class File {
