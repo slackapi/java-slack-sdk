@@ -530,7 +530,8 @@
       "role_change_from_frontline",
       "slack_ai_skill_deactivated",
       "slack_ai_skill_reactivated",
-      "user_logout_dbsc_keyless_session"
+      "user_logout_dbsc_keyless_session",
+      "user_passkeys_bulk_removed_by_admin"
     ],
     "file": [
       "file_downloaded",
