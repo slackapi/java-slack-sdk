@@ -448,6 +448,10 @@ public class Actions {
         public static final String pref_slackbot_ai_dm_instructions_changed = "pref.slackbot_ai_dm_instructions_changed";
         public static final String mcp_slack_search_developer_docs_tool_called = "mcp_slack_search_developer_docs_tool_called";
         public static final String pref_slackbot_ai_tool_instructions_changed = "pref.slackbot_ai_tool_instructions_changed";
+        public static final String mcp_slack_delete_workflow_tool_called = "mcp_slack_delete_workflow_tool_called";
+        public static final String mcp_slack_extend_developer_sandbox_tool_called = "mcp_slack_extend_developer_sandbox_tool_called";
+        public static final String mcp_slack_list_developer_skills_tool_called = "mcp_slack_list_developer_skills_tool_called";
+        public static final String mcp_slack_get_developer_skill_tool_called = "mcp_slack_get_developer_skill_tool_called";
     }
 
     public static class User {
