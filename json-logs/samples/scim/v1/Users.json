@@ -98,7 +98,13 @@
       },
       "urn:scim:schemas:extension:slack:guest:1.0": {
         "type": "",
-        "expiration": ""
+        "expiration": "",
+        "channels": [
+          {
+            "value": "C00000000",
+            "display": ""
+          }
+        ]
       }
     }
   ],
