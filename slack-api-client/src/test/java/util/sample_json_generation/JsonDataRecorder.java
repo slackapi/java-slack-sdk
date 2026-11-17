@@ -575,6 +575,16 @@ public class JsonDataRecorder {
                     log.error(e.getMessage(), e);
                 }
             }
+            if (name != null && name.equals("label") && path.equals("/api/admin.apps.activities.list")) {
+                // The keys are the input's values, so they need masking too
+                JsonObject label = element.getAsJsonObject();
+                List<String> oldKeys = new ArrayList<>(label.keySet());
+                for (String key : oldKeys) {
+                    label.remove(key);
+                }
+                label.add("https://www.example.com/", new JsonPrimitive(""));
+                return;
+            }
             if (name != null && name.equals("bookmark")) {
                 if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
                     return;
