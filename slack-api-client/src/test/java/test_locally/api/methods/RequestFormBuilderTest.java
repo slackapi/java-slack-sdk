@@ -1,11 +1,13 @@
 package test_locally.api.methods;
 
 import com.slack.api.methods.RequestFormBuilder;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.CallParticipant;
@@ -22,6 +24,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +46,40 @@ public class RequestFormBuilderTest {
             assertThat(form.name(0), is("include_slackbot_availability"));
             assertThat(form.value(0), is(include ? "1" : "0"));
         }
+    }
+
+    @Test
+    public void adminSlackbotSkillsPublishSkillIds() {
+        FormBody form = RequestFormBuilder.toForm(AdminSlackbotSkillsPublishRequest.builder()
+                .skillIds(Arrays.asList("F0123ABCD", "F0456EFGH")).build()).build();
+        assertThat(form.size(), is(1));
+        assertThat(form.name(0), is("skill_ids"));
+        assertThat(form.value(0), is("F0123ABCD,F0456EFGH"));
+    }
+
+    @Test
+    public void slackbotSkillsUpdateMcpServers() {
+        FormBody omitted = RequestFormBuilder.toForm(SlackbotSkillsUpdateRequest.builder()
+                .skillId("F0123ABCD").build()).build();
+        assertThat(omitted.size(), is(1));
+        assertThat(omitted.name(0), is("skill_id"));
+
+        FormBody cleared = RequestFormBuilder.toForm(SlackbotSkillsUpdateRequest.builder()
+                .skillId("F0123ABCD").mcpServers(Collections.emptyList()).build()).build();
+        assertThat(cleared.size(), is(2));
+        assertThat(cleared.name(1), is("mcp_servers"));
+        assertThat(cleared.value(1), is("[]"));
+
+        FormBody declared = RequestFormBuilder.toForm(SlackbotSkillsUpdateRequest.builder()
+                .skillId("F0123ABCD")
+                .mcpServers(Arrays.asList(SlackbotSkillsUpdateRequest.McpServer.builder()
+                        .serviceType("app")
+                        .appId("A0123ABCD")
+                        .serverId("Amcp0456EFGH")
+                        .build()))
+                .build()).build();
+        assertThat(declared.name(1), is("mcp_servers"));
+        assertThat(declared.value(1), is("[{\"service_type\":\"app\",\"app_id\":\"A0123ABCD\",\"server_id\":\"Amcp0456EFGH\"}]"));
     }
 
     @Test

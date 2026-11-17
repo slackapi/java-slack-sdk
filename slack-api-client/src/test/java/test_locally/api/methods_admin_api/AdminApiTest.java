@@ -1,15 +1,22 @@
 package test_locally.api.methods_admin_api;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
+import com.slack.api.util.json.GsonFactory;
+import config.SlackTestConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -87,6 +94,121 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminAppsUninstall(r -> r.appId("A123").enterpriseId("E111").teamIds(Arrays.asList("T123")))
                 .isOk(), is(true));
+    }
+
+    @Test
+    public void adminAppsMcpServers() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminAppsMcpServersList(r -> r
+                .limit(100)
+                .cursor("xxx")).isOk(), is(true));
+        assertThat(methods.adminAppsMcpServersPermissionsList(r -> r
+                .appId("A0123ABCD")).isOk(), is(true));
+        assertThat(methods.adminAppsMcpServersPermissionsSet(r -> r
+                .appId("A0123ABCD")
+                .serverId("Amcp0123ABCD")
+                .permissionType("named_entities")
+                .userIds(Arrays.asList("U0123ABCD", "U0456EFGH"))
+                .usergroupIds(Arrays.asList("S0123ABCD"))).isOk(), is(true));
+    }
+
+    @Test
+    public void adminAppsMcpServersListResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"servers\": [\n" +
+                "    {\n" +
+                "      \"server_id\": \"Amcp0123ABCD\",\n" +
+                "      \"server_name\": \"example-server\",\n" +
+                "      \"url\": \"https://mcp.example.com/mcp\",\n" +
+                "      \"auth_type\": \"no_auth\",\n" +
+                "      \"app_id\": \"A0123ABCD\",\n" +
+                "      \"app_name\": \"Example App\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"\n" +
+                "  }\n" +
+                "}\n";
+        AdminAppsMcpServersListResponse response = gson.fromJson(json, AdminAppsMcpServersListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getServers().get(0).getServerId(), is("Amcp0123ABCD"));
+        assertThat(response.getServers().get(0).getServerName(), is("example-server"));
+        assertThat(response.getServers().get(0).getUrl(), is("https://mcp.example.com/mcp"));
+        assertThat(response.getServers().get(0).getAuthType(), is("no_auth"));
+        assertThat(response.getServers().get(0).getAppId(), is("A0123ABCD"));
+        assertThat(response.getServers().get(0).getAppName(), is("Example App"));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
+    }
+
+    @Test
+    public void adminAppsMcpServersPermissionsListResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"servers\": [\n" +
+                "    {\n" +
+                "      \"server_id\": \"Amcp0123ABCD\",\n" +
+                "      \"server_name\": \"example-server\",\n" +
+                "      \"url\": \"https://mcp.example.com/mcp\",\n" +
+                "      \"permission_type\": \"named_entities\",\n" +
+                "      \"is_inherited\": false,\n" +
+                "      \"user_ids\": [\n" +
+                "        \"U0123ABCD\",\n" +
+                "        \"U0456EFGH\"\n" +
+                "      ],\n" +
+                "      \"usergroup_ids\": [\n" +
+                "        \"S0123ABCD\"\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}\n";
+        AdminAppsMcpServersPermissionsListResponse response = gson.fromJson(json, AdminAppsMcpServersPermissionsListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getServers().get(0).getServerId(), is("Amcp0123ABCD"));
+        assertThat(response.getServers().get(0).getServerName(), is("example-server"));
+        assertThat(response.getServers().get(0).getUrl(), is("https://mcp.example.com/mcp"));
+        assertThat(response.getServers().get(0).getPermissionType(), is("named_entities"));
+        assertThat(response.getServers().get(0).getIsInherited(), is(false));
+        assertThat(response.getServers().get(0).getUserIds(), is(Arrays.asList("U0123ABCD", "U0456EFGH")));
+        assertThat(response.getServers().get(0).getUsergroupIds(), is(Collections.singletonList("S0123ABCD")));
+    }
+
+    @Test
+    public void adminAppsMcpServersPermissionsSetResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"server_id\": \"Amcp0123ABCD\",\n" +
+                "  \"server_name\": \"example-server\",\n" +
+                "  \"url\": \"https://mcp.example.com/mcp\",\n" +
+                "  \"permission_type\": \"named_entities\",\n" +
+                "  \"is_inherited\": false,\n" +
+                "  \"user_ids\": [\n" +
+                "    \"U0123ABCD\",\n" +
+                "    \"U0456EFGH\"\n" +
+                "  ],\n" +
+                "  \"usergroup_ids\": [\n" +
+                "    \"S0123ABCD\"\n" +
+                "  ]\n" +
+                "}\n";
+        AdminAppsMcpServersPermissionsSetResponse response = gson.fromJson(json, AdminAppsMcpServersPermissionsSetResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getServerId(), is("Amcp0123ABCD"));
+        assertThat(response.getServerName(), is("example-server"));
+        assertThat(response.getUrl(), is("https://mcp.example.com/mcp"));
+        assertThat(response.getPermissionType(), is("named_entities"));
+        assertThat(response.getIsInherited(), is(false));
+        assertThat(response.getUserIds(), is(Arrays.asList("U0123ABCD", "U0456EFGH")));
+        assertThat(response.getUsergroupIds(), is(Collections.singletonList("S0123ABCD")));
     }
 
     @Test
@@ -192,6 +314,27 @@ public class AdminApiTest {
         assertThat(methods.adminRolesAddAssignments(r -> r).isOk(), is(true));
         assertThat(methods.adminRolesListAssignments(r -> r).isOk(), is(true));
         assertThat(methods.adminRolesRemoveAssignments(r -> r).isOk(), is(true));
+    }
+
+    @Test
+    public void adminSlackbotSkills() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminSlackbotSkillsList(r -> r
+                .category("productivity")
+                .cursor("xxx")
+                .limit(100)
+                .creatorIds(Arrays.asList("U0123ABCD"))
+                .publishStatus("published")
+                .autoEnabledStatus("enabled")
+                .sort("usage_count")
+                .sortDir("desc")).isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsPublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH"))).isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsSetAutoEnabled(r -> r
+                .skillId("F0123ABCD")
+                .permissionType("named_entities")
+                .usergroupIds(Arrays.asList("S0123ABCD"))).isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsUnpublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH"))).isOk(), is(true));
     }
 
     @Test

@@ -1,0 +1,22 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": "",
+  "servers": [
+    {
+      "is_inherited": false,
+      "permission_type": "",
+      "server_id": "",
+      "server_name": "",
+      "url": "",
+      "user_ids": [
+        "U00000000"
+      ],
+      "usergroup_ids": [
+        "S00000000"
+      ]
+    }
+  ]
+}
