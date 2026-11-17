@@ -469,11 +469,11 @@ public class LogsResponse implements AuditApiResponse {
         private String executorId;
         private String skillId;
         private List<String> mcpServerAllowlistDomains;
-        private String ruleId;
+        private String ruleId; // app_allowlist_rule_created
         @SerializedName("is_enabled")
-        private Boolean enabled;
+        private Boolean enabled; // app_allowlist_rule_created
         private String title; // list_title_updated etc.
-        private List<String> changedFields;
+        private List<String> changedFields; // app_allowlist_rule_activated
         private Boolean isSkill; // canvas_converted_to_skill etc.
         private String organizationId; // canvas_linksharing_enabled
         private List<String> usergroupIds; // slack_ai_skill_auto_enabled etc.
