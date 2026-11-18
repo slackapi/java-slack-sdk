@@ -247,6 +247,10 @@ public class AdminApiTest {
                 .objectId("0019000000DmehKAAR")
                 .salesforceOrgId("00DGC00000024hsuWY")
                 .inviteObjectTeam(true)).isOk(), is(true));
+        assertThat(methods.adminConversationsLinkObjects(r -> r
+                .channel("C123")
+                .recordId("0019000000DmehKAAR")
+                .salesforceOrgId("00DGC00000024hsuWY")).isOk(), is(true));
     }
 
     @Test

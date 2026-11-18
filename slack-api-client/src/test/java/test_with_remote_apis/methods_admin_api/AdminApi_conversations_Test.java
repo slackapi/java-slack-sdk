@@ -483,6 +483,33 @@ public class AdminApi_conversations_Test {
         }
     }
 
+    @Test
+    public void linkObjects() throws Exception {
+        if (orgAdminUserToken != null) {
+            AsyncMethodsClient orgAdminClient = slack.methodsAsync(orgAdminUserToken);
+            AdminConversationsCreateResponse creation = orgAdminClient.adminConversationsCreate(r -> r
+                    .name("test-channel-" + System.currentTimeMillis())
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation.getError(), is(nullValue()));
+            try {
+                // The record and org IDs are the examples from the docs, so no record is found
+                AdminConversationsLinkObjectsResponse linking = orgAdminClient.adminConversationsLinkObjects(r -> r
+                        .channel(creation.getChannelId())
+                        .recordId("0019000000DmehKAAR")
+                        .salesforceOrgId("00DGC00000024hsuWY")
+                ).get();
+                assertThat(linking.getError(), is("record_not_found"));
+            } finally {
+                AdminConversationsDeleteResponse deletion = orgAdminClient.adminConversationsDelete(r -> r
+                        .channelId(creation.getChannelId())
+                ).get();
+                assertThat(deletion.getError(), is(nullValue()));
+            }
+        }
+    }
+
     private String findUserId(List<String> idsToSkip) throws Exception {
         String userId = null;
         UsersListResponse usersListResponse = slack.methodsAsync(teamAdminUserToken).usersList(req -> req).get();

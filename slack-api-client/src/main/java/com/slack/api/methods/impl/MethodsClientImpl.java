@@ -741,6 +741,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminConversationsLinkObjectsResponse adminConversationsLinkObjects(AdminConversationsLinkObjectsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_LINK_OBJECTS, getToken(req), AdminConversationsLinkObjectsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsLinkObjectsResponse adminConversationsLinkObjects(RequestConfigurator<AdminConversationsLinkObjectsRequest.AdminConversationsLinkObjectsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsLinkObjects(req.configure(AdminConversationsLinkObjectsRequest.builder()).build());
+    }
+
+    @Override
     public AdminConversationsRenameResponse adminConversationsRename(AdminConversationsRenameRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_RENAME, getToken(req), AdminConversationsRenameResponse.class);
     }

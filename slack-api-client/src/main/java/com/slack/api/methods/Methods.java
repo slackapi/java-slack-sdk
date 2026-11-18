@@ -72,6 +72,7 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_GET_CONVERSATION_PREFS = "admin.conversations.getConversationPrefs";
     public static final String ADMIN_CONVERSATIONS_GET_TEAMS = "admin.conversations.getTeams";
     public static final String ADMIN_CONVERSATIONS_INVITE = "admin.conversations.invite";
+    public static final String ADMIN_CONVERSATIONS_LINK_OBJECTS = "admin.conversations.linkObjects";
     public static final String ADMIN_CONVERSATIONS_RENAME = "admin.conversations.rename";
     public static final String ADMIN_CONVERSATIONS_SEARCH = "admin.conversations.search";
     public static final String ADMIN_CONVERSATIONS_SET_CONVERSATION_PREFS = "admin.conversations.setConversationPrefs";

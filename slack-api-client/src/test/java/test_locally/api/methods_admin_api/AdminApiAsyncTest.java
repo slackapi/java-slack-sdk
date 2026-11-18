@@ -152,6 +152,11 @@ public class AdminApiAsyncTest {
                 .salesforceOrgId("00DGC00000024hsuWY")
                 .inviteObjectTeam(true))
                 .get().isOk(), is(true));
+        assertThat(methods.adminConversationsLinkObjects(r -> r
+                .channel("C123")
+                .recordId("0019000000DmehKAAR")
+                .salesforceOrgId("00DGC00000024hsuWY"))
+                .get().isOk(), is(true));
     }
 
     @Test

@@ -667,6 +667,13 @@ public interface MethodsClient {
             RequestConfigurator<AdminConversationsInviteRequest.AdminConversationsInviteRequestBuilder> req)
             throws IOException, SlackApiException;
 
+    AdminConversationsLinkObjectsResponse adminConversationsLinkObjects(AdminConversationsLinkObjectsRequest req)
+            throws IOException, SlackApiException;
+
+    AdminConversationsLinkObjectsResponse adminConversationsLinkObjects(
+            RequestConfigurator<AdminConversationsLinkObjectsRequest.AdminConversationsLinkObjectsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
     AdminConversationsRenameResponse adminConversationsRename(AdminConversationsRenameRequest req)
             throws IOException, SlackApiException;
 

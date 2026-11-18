@@ -736,6 +736,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminConversationsLinkObjectsResponse> adminConversationsLinkObjects(AdminConversationsLinkObjectsRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_LINK_OBJECTS, toMap(req), () -> methods.adminConversationsLinkObjects(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsLinkObjectsResponse> adminConversationsLinkObjects(RequestConfigurator<AdminConversationsLinkObjectsRequest.AdminConversationsLinkObjectsRequestBuilder> req) {
+        return adminConversationsLinkObjects(req.configure(AdminConversationsLinkObjectsRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminConversationsRenameResponse> adminConversationsRename(AdminConversationsRenameRequest req) {
         return executor.execute(ADMIN_CONVERSATIONS_RENAME, toMap(req), () -> methods.adminConversationsRename(req));
     }
