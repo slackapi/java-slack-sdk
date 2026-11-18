@@ -54,6 +54,9 @@ public class EntityPresentCommentsRequest implements SlackApiRequest {
      */
     private String userAuthUrl;
 
-    private String error;
+    /**
+     * Error indicating why the comments cannot be provided. It takes the same object as `entity.presentDetails`.
+     */
+    private EntityPresentDetailsRequest.Error error;
 
 }

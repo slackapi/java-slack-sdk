@@ -8,6 +8,7 @@ import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.model.Attachment;
@@ -119,6 +120,21 @@ public class RequestFormBuilderTest {
         assertThat(form.name(1), is("trigger_id"));
         assertThat(form.name(2), is("can_post_comment"));
         assertThat(form.value(2), is("1"));
+    }
+
+    @Test
+    public void entityPresentCommentsError() {
+        FormBody form = RequestFormBuilder.toForm(EntityPresentCommentsRequest.builder()
+                .comments(Collections.emptyList())
+                .triggerId("1234567890123.1234567890123.abcdef01234567890abcdef012345689")
+                .error(EntityPresentDetailsRequest.Error.builder()
+                        .status("custom")
+                        .customMessage("The comments could not be loaded")
+                        .build())
+                .build()).build();
+        assertThat(form.size(), is(3));
+        assertThat(form.name(2), is("error"));
+        assertThat(form.value(2), is("{\"status\":\"custom\",\"custom_message\":\"The comments could not be loaded\"}"));
     }
 
     @Test

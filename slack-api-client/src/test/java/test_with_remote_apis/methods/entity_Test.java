@@ -1,6 +1,7 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.response.entity.EntityPresentCommentsResponse;
 import com.slack.api.model.EntityComment;
 import com.slack.api.model.EntityMetadata;
@@ -14,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -80,6 +82,20 @@ public class entity_Test {
                 .canPostComment(true)
                 .deleteActionId("your-delete-action-id")
                 .triggerId(triggerId));
+        assertThat(response.getError(), is("invalid_trigger_id"));
+    }
+
+    @Test
+    public void presentCommentsError() throws Exception {
+        // The error is the same object entity.presentDetails takes, and a string returns invalid_arguments
+        EntityPresentCommentsResponse response = slack.methods(botToken).entityPresentComments(r -> r
+                .comments(Collections.emptyList())
+                .triggerId(triggerId)
+                .error(EntityPresentDetailsRequest.Error.builder()
+                        .status("custom")
+                        .customTitle("Comments unavailable")
+                        .customMessage("The comments could not be loaded")
+                        .build()));
         assertThat(response.getError(), is("invalid_trigger_id"));
     }
 }

@@ -2425,7 +2425,9 @@ public class RequestFormBuilder {
         setIfNotNull("delete_action_id", req.getDeleteActionId(), form);
         setIfNotNull("user_auth_required", req.getUserAuthRequired(), form);
         setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
-        setIfNotNull("error", req.getError(), form);
+        if (req.getError() != null) {
+            setIfNotNull("error", GSON.toJson(req.getError()), form);
+        }
         return form;
     }
 
