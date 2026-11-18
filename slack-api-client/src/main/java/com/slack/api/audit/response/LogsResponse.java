@@ -353,9 +353,6 @@ public class LogsResponse implements AuditApiResponse {
         private String enterprise; // usergroup_updated
         private String team; // usergroup_updated
         private String subteam; // usergroup_updated
-        // Polymorphic: a plain string for some actions (e.g. usergroup_updated -> "update")
-        // and a structured object for others (e.g. app_allowlist_rule_created).
-        // GsonAuditLogsDetailsActionFactory handles both patterns under the hood.
         private DetailsAction action;
         private Integer idpGroupMemberCount; // usergroup_updated
         private Integer workspaceMemberCount; // usergroup_updated
