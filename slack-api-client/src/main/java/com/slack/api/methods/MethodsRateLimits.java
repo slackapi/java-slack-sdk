@@ -400,6 +400,8 @@ public class MethodsRateLimits {
 
         setRateLimitTier(EMOJI_LIST, Tier2);
 
+        setRateLimitTier(ENTITY_PRESENT_COMMENTS, Tier3);
+
         setRateLimitTier(FILES_COMMENTS_DELETE, Tier2);
 
         setRateLimitTier(FILES_DELETE, Tier3);

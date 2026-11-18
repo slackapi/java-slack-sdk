@@ -106,6 +106,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
@@ -363,6 +364,7 @@ import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
+import com.slack.api.methods.response.entity.EntityPresentCommentsResponse;
 import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.util.http.SlackHttpClient;
 import okhttp3.FormBody;
@@ -2154,6 +2156,13 @@ public interface MethodsClient {
     // ------------------------------
     // entity
     // ------------------------------
+
+    EntityPresentCommentsResponse entityPresentComments(EntityPresentCommentsRequest req)
+            throws IOException, SlackApiException;
+
+    EntityPresentCommentsResponse entityPresentComments(
+            RequestConfigurator<EntityPresentCommentsRequest.EntityPresentCommentsRequestBuilder> req)
+            throws IOException, SlackApiException;
 
     EntityPresentDetailsResponse entityPresentDetails(EntityPresentDetailsRequest req)
             throws IOException, SlackApiException;

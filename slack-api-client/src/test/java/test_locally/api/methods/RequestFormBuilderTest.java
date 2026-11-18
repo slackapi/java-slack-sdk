@@ -7,14 +7,20 @@ import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequ
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
+import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
+import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.CallParticipant;
+import com.slack.api.model.EntityComment;
+import com.slack.api.model.EntityMetadata;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.OverflowMenuElement;
+import com.slack.api.model.block.element.RichTextSectionElement;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -80,6 +86,55 @@ public class RequestFormBuilderTest {
                 .build()).build();
         assertThat(declared.name(1), is("mcp_servers"));
         assertThat(declared.value(1), is("[{\"service_type\":\"app\",\"app_id\":\"A0123ABCD\",\"server_id\":\"Amcp0456EFGH\"}]"));
+    }
+
+    @Test
+    public void entityPresentCommentsComments() {
+        FormBody form = RequestFormBuilder.toForm(EntityPresentCommentsRequest.builder()
+                .comments(Arrays.asList(EntityComment.builder()
+                        .comment(EntityComment.Content.builder()
+                                .blocks(RichTextBlock.builder()
+                                        .elements(Arrays.asList(RichTextSectionElement.builder()
+                                                .elements(Arrays.asList(RichTextSectionElement.Text.builder()
+                                                        .text("Check out these different block types with paragraph breaks between them:\n\n")
+                                                        .build()))
+                                                .build()))
+                                        .build())
+                                .build())
+                        .id("comment-identifier-001")
+                        .sender(EntityMetadata.EntityPayload.User.builder().userId("U123456789").build())
+                        .timestamp(1741164235)
+                        .replyUsers(Arrays.asList(EntityMetadata.EntityPayload.User.builder().userId("U234567890").build()))
+                        .build()))
+                .triggerId("1234567890123.1234567890123.abcdef01234567890abcdef012345689")
+                .canPostComment(true)
+                .build()).build();
+        assertThat(form.size(), is(3));
+        assertThat(form.name(0), is("comments"));
+        assertThat(form.value(0), is("[{\"comment\":{\"blocks\":{\"type\":\"rich_text\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":["
+                + "{\"type\":\"text\",\"text\":\"Check out these different block types with paragraph breaks between them:\\n\\n\"}]}]}},"
+                + "\"id\":\"comment-identifier-001\","
+                + "\"sender\":{\"user_id\":\"U123456789\"},"
+                + "\"timestamp\":1741164235,"
+                + "\"reply_users\":[{\"user_id\":\"U234567890\"}]}]"));
+        assertThat(form.name(1), is("trigger_id"));
+        assertThat(form.name(2), is("can_post_comment"));
+        assertThat(form.value(2), is("1"));
+    }
+
+    @Test
+    public void entityPresentCommentsError() {
+        FormBody form = RequestFormBuilder.toForm(EntityPresentCommentsRequest.builder()
+                .comments(Collections.emptyList())
+                .triggerId("1234567890123.1234567890123.abcdef01234567890abcdef012345689")
+                .error(EntityPresentDetailsRequest.Error.builder()
+                        .status("custom")
+                        .customMessage("The comments could not be loaded")
+                        .build())
+                .build()).build();
+        assertThat(form.size(), is(3));
+        assertThat(form.name(2), is("error"));
+        assertThat(form.value(2), is("{\"status\":\"custom\",\"custom_message\":\"The comments could not be loaded\"}"));
     }
 
     @Test

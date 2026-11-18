@@ -99,6 +99,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.remote.*;
@@ -267,6 +268,7 @@ import com.slack.api.methods.response.conversations.request_shared_invite.Conver
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.response.entity.EntityPresentCommentsResponse;
 import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.remote.*;
@@ -1372,6 +1374,10 @@ public interface AsyncMethodsClient {
     // ------------------------------
     // entity
     // ------------------------------
+
+    CompletableFuture<EntityPresentCommentsResponse> entityPresentComments(EntityPresentCommentsRequest req);
+
+    CompletableFuture<EntityPresentCommentsResponse> entityPresentComments(RequestConfigurator<EntityPresentCommentsRequest.EntityPresentCommentsRequestBuilder> req);
 
     CompletableFuture<EntityPresentDetailsResponse> entityPresentDetails(EntityPresentDetailsRequest req);
 

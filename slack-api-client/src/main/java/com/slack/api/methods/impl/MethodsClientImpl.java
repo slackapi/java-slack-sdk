@@ -107,6 +107,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
@@ -288,6 +289,7 @@ import com.slack.api.methods.response.conversations.request_shared_invite.Conver
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.response.entity.EntityPresentCommentsResponse;
 import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.comments.FilesCommentsAddResponse;
@@ -2671,6 +2673,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public EmojiListResponse emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException {
         return emojiList(req.configure(EmojiListRequest.builder()).build());
+    }
+
+    @Override
+    public EntityPresentCommentsResponse entityPresentComments(EntityPresentCommentsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ENTITY_PRESENT_COMMENTS, getToken(req), EntityPresentCommentsResponse.class);
+    }
+
+    @Override
+    public EntityPresentCommentsResponse entityPresentComments(RequestConfigurator<EntityPresentCommentsRequest.EntityPresentCommentsRequestBuilder> req) throws IOException, SlackApiException {
+        return entityPresentComments(req.configure(EntityPresentCommentsRequest.builder()).build());
     }
 
     @Override
