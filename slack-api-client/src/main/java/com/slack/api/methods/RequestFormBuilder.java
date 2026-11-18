@@ -516,6 +516,14 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminConversationsCreateForObjectsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("object_id", req.getObjectId(), form);
+        setIfNotNull("salesforce_org_id", req.getSalesforceOrgId(), form);
+        setIfNotNull("invite_object_team", req.getInviteObjectTeam(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminConversationsDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);

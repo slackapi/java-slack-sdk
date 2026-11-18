@@ -676,6 +676,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminConversationsCreateForObjectsResponse> adminConversationsCreateForObjects(AdminConversationsCreateForObjectsRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_CREATE_FOR_OBJECTS, toMap(req), () -> methods.adminConversationsCreateForObjects(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsCreateForObjectsResponse> adminConversationsCreateForObjects(RequestConfigurator<AdminConversationsCreateForObjectsRequest.AdminConversationsCreateForObjectsRequestBuilder> req) {
+        return adminConversationsCreateForObjects(req.configure(AdminConversationsCreateForObjectsRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminConversationsDeleteResponse> adminConversationsDelete(AdminConversationsDeleteRequest req) {
         return executor.execute(ADMIN_CONVERSATIONS_DELETE, toMap(req), () -> methods.adminConversationsDelete(req));
     }

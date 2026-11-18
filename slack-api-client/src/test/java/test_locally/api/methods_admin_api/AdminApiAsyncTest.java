@@ -144,6 +144,17 @@ public class AdminApiAsyncTest {
     }
 
     @Test
+    public void adminConversationsObjects() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminConversationsCreateForObjects(r -> r
+                .objectId("0019000000DmehKAAR")
+                .salesforceOrgId("00DGC00000024hsuWY")
+                .inviteObjectTeam(true))
+                .get().isOk(), is(true));
+    }
+
+    @Test
     public void adminConversationsWhitelist() throws Exception {
         AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
 

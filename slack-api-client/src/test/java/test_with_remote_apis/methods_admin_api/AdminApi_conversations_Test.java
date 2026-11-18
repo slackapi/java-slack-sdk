@@ -470,6 +470,19 @@ public class AdminApi_conversations_Test {
         }
     }
 
+    @Test
+    public void createForObjects() throws Exception {
+        if (orgAdminUserToken != null) {
+            AsyncMethodsClient orgAdminClient = slack.methodsAsync(orgAdminUserToken);
+            // The object and org IDs are the examples from the docs, so no record is found
+            AdminConversationsCreateForObjectsResponse creation = orgAdminClient.adminConversationsCreateForObjects(r -> r
+                    .objectId("0019000000DmehKAAR")
+                    .salesforceOrgId("00DGC00000024hsuWY")
+            ).get();
+            assertThat(creation.getError(), is("record_not_found"));
+        }
+    }
+
     private String findUserId(List<String> idsToSkip) throws Exception {
         String userId = null;
         UsersListResponse usersListResponse = slack.methodsAsync(teamAdminUserToken).usersList(req -> req).get();

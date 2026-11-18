@@ -240,6 +240,16 @@ public class AdminApiTest {
     }
 
     @Test
+    public void adminConversationsObjects() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminConversationsCreateForObjects(r -> r
+                .objectId("0019000000DmehKAAR")
+                .salesforceOrgId("00DGC00000024hsuWY")
+                .inviteObjectTeam(true)).isOk(), is(true));
+    }
+
+    @Test
     public void adminConversationsWhitelist() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 

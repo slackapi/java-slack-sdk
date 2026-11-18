@@ -66,6 +66,7 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_ARCHIVE = "admin.conversations.archive";
     public static final String ADMIN_CONVERSATIONS_CONVERT_TO_PRIVATE = "admin.conversations.convertToPrivate";
     public static final String ADMIN_CONVERSATIONS_CREATE = "admin.conversations.create";
+    public static final String ADMIN_CONVERSATIONS_CREATE_FOR_OBJECTS = "admin.conversations.createForObjects";
     public static final String ADMIN_CONVERSATIONS_DELETE = "admin.conversations.delete";
     public static final String ADMIN_CONVERSATIONS_DISCONNECT_SHARED = "admin.conversations.disconnectShared";
     public static final String ADMIN_CONVERSATIONS_GET_CONVERSATION_PREFS = "admin.conversations.getConversationPrefs";
