@@ -514,6 +514,23 @@
         "previous_permission_type": "",
         "server_id": ""
       }
+    },
+    {
+      "details": {
+        "action": {
+          "resolution": {
+            "value": ""
+          },
+          "notify": [
+            {
+              "entity_type": "",
+              "values": [
+                ""
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }
