@@ -108,6 +108,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
@@ -2410,6 +2411,21 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(EmojiListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("include_categories", req.getIncludeCategories(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(EntityPresentCommentsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getComments() != null) {
+            setIfNotNull("comments", GSON.toJson(req.getComments()), form);
+        }
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("can_post_comment", req.getCanPostComment(), form);
+        setIfNotNull("delete_action_id", req.getDeleteActionId(), form);
+        setIfNotNull("user_auth_required", req.getUserAuthRequired(), form);
+        setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
+        setIfNotNull("error", req.getError(), form);
         return form;
     }
 
