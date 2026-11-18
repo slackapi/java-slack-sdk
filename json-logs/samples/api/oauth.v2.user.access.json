@@ -1,0 +1,17 @@
+{
+  "ok": false,
+  "warning": "",
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "access_token": "",
+  "token_type": "",
+  "id_token": "",
+  "authed_user": {
+    "id": "",
+    "scope": ""
+  },
+  "team": {
+    "id": ""
+  }
+}

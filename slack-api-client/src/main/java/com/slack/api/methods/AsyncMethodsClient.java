@@ -109,6 +109,7 @@ import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
+import com.slack.api.methods.request.oauth.OAuthV2UserAccessRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectTokenRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
 import com.slack.api.methods.request.pins.PinsAddRequest;
@@ -277,6 +278,7 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
+import com.slack.api.methods.response.oauth.OAuthV2UserAccessResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
 import com.slack.api.methods.response.pins.PinsAddResponse;
@@ -1484,6 +1486,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<OAuthV2ExchangeResponse> oauthV2Exchange(OAuthV2ExchangeRequest req);
 
     CompletableFuture<OAuthV2ExchangeResponse> oauthV2Exchange(RequestConfigurator<OAuthV2ExchangeRequest.OAuthV2ExchangeRequestBuilder> req);
+
+    CompletableFuture<OAuthV2UserAccessResponse> oauthV2UserAccess(OAuthV2UserAccessRequest req);
+
+    CompletableFuture<OAuthV2UserAccessResponse> oauthV2UserAccess(RequestConfigurator<OAuthV2UserAccessRequest.OAuthV2UserAccessRequestBuilder> req);
 
     CompletableFuture<OAuthTokenResponse> oauthToken(OAuthTokenRequest req);
 

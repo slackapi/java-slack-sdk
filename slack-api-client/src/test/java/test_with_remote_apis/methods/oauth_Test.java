@@ -6,6 +6,7 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
+import com.slack.api.methods.response.oauth.OAuthV2UserAccessResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -75,6 +76,28 @@ public class oauth_Test {
         );
         assertThat(response.getError(), is(not("invalid_arguments")));
         assertThat(response.isOk(), is(false));
+    }
+
+    @Test
+    public void userAccess() throws IOException, SlackApiException {
+        {
+            OAuthV2UserAccessResponse response = slack.methods().oauthV2UserAccess(r -> r
+                    .clientId("2141029472.691202649728")
+                    .clientSecret("e1b9e11dfcd19c1982d5de12921e17e8c")
+                    .code("")
+                    .redirectUri("http://example.com"));
+            assertThat(response.getError(), is("invalid_code"));
+            assertThat(response.isOk(), is(false));
+        }
+        {
+            // Without a client secret, as with PKCE
+            OAuthV2UserAccessResponse response = slack.methods().oauthV2UserAccess(r -> r
+                    .clientId("2141029472.691202649728")
+                    .code("")
+                    .codeVerifier("secret12345"));
+            assertThat(response.getError(), is("invalid_code"));
+            assertThat(response.isOk(), is(false));
+        }
     }
 
     // TODO: valid test; currently just checking the API access

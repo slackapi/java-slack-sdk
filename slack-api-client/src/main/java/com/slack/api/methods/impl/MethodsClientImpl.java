@@ -123,6 +123,7 @@ import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
+import com.slack.api.methods.request.oauth.OAuthV2UserAccessRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectTokenRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
 import com.slack.api.methods.request.pins.PinsAddRequest;
@@ -304,6 +305,7 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
+import com.slack.api.methods.response.oauth.OAuthV2UserAccessResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
 import com.slack.api.methods.response.pins.PinsAddResponse;
@@ -3287,6 +3289,25 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public OAuthV2ExchangeResponse oauthV2Exchange(RequestConfigurator<OAuthV2ExchangeRequest.OAuthV2ExchangeRequestBuilder> req) throws IOException, SlackApiException {
         return oauthV2Exchange(req.configure(OAuthV2ExchangeRequest.builder()).build());
+    }
+
+    @Override
+    public OAuthV2UserAccessResponse oauthV2UserAccess(OAuthV2UserAccessRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = toForm(req);
+        if (req.getClientSecret() == null) {
+            // Without a client secret, such as with PKCE, the client_id is sent as a parameter
+            if (req.getClientId() != null) {
+                form.add("client_id", req.getClientId());
+            }
+            return postFormAndParseResponse(form, Methods.OAUTH_V2_USER_ACCESS, OAuthV2UserAccessResponse.class);
+        }
+        String authorizationHeader = Credentials.basic(req.getClientId(), req.getClientSecret());
+        return postFormWithAuthorizationHeaderAndParseResponse(form, endpointUrlPrefix + Methods.OAUTH_V2_USER_ACCESS, authorizationHeader, OAuthV2UserAccessResponse.class);
+    }
+
+    @Override
+    public OAuthV2UserAccessResponse oauthV2UserAccess(RequestConfigurator<OAuthV2UserAccessRequest.OAuthV2UserAccessRequestBuilder> req) throws IOException, SlackApiException {
+        return oauthV2UserAccess(req.configure(OAuthV2UserAccessRequest.builder()).build());
     }
 
     @Override

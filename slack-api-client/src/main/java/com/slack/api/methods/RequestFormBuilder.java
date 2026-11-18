@@ -123,6 +123,7 @@ import com.slack.api.methods.request.mpim.*;
 import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
+import com.slack.api.methods.request.oauth.OAuthV2UserAccessRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
 import com.slack.api.methods.request.pins.PinsAddRequest;
 import com.slack.api.methods.request.pins.PinsListRequest;
@@ -2907,6 +2908,17 @@ public class RequestFormBuilder {
         setIfNotNull("client_id", req.getClientId(), form);
         setIfNotNull("client_secret", req.getClientSecret(), form);
         setIfNotNull("token", req.getToken(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(OAuthV2UserAccessRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("code", req.getCode(), form);
+        setIfNotNull("code_verifier", req.getCodeVerifier(), form);
+        setIfNotNull("redirect_uri", req.getRedirectUri(), form);
+        setIfNotNull("grant_type", req.getGrantType(), form);
+        setIfNotNull("refresh_token", req.getRefreshToken(), form);
+        setIfNotNull("assertion", req.getAssertion(), form);
         return form;
     }
 

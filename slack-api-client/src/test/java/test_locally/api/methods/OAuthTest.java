@@ -5,6 +5,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
+import com.slack.api.methods.response.oauth.OAuthV2UserAccessResponse;
 import com.slack.api.util.json.GsonFactory;
 import config.SlackTestConfig;
 import org.junit.After;
@@ -135,6 +136,51 @@ public class OAuthTest {
         assertThat(response.getAccessToken(), is("xoxe.xoxb-1-xxx"));
         assertThat(response.getRefreshToken(), is("xoxe-1-xxx"));
         assertThat(response.getExpiresIn(), is(43200));
+    }
+
+    @Test
+    public void userAccess() throws Exception {
+        assertThat(slack.methods().oauthV2UserAccess(r -> r
+                .clientId("2141029472.691202649728")
+                .clientSecret("e1b9e11dfcd19c1982d5de12921e17e8c")
+                .code("4724469134.4644010092847.232b4e6d82c333b475fc30f5f5a341d294feb1a94392c2fd791f7ab7731a443d1a")
+                .redirectUri("http://example.com")).isOk(), is(true));
+    }
+
+    @Test
+    public void userAccess_async() throws Exception {
+        assertThat(slack.methodsAsync().oauthV2UserAccess(r -> r
+                .clientId("2141029472.691202649728")
+                .code("4724469134.4644010092847.232b4e6d82c333b475fc30f5f5a341d294feb1a94392c2fd791f7ab7731a443d1a")
+                .codeVerifier("secret12345")).get().isOk(), is(true));
+    }
+
+    static String user_access_json = "{\n" +
+            "  \"ok\": true,\n" +
+            "  \"access_token\": \"xoxp-123456789...\",\n" +
+            "  \"token_type\": \"user\",\n" +
+            "  \"id_token\": \"eyJhbGciOiJSUzI1Ni...\",\n" +
+            "  \"authed_user\": {\n" +
+            "    \"id\": \"U12345\",\n" +
+            "    \"scope\": \"openid,email,profile\"\n" +
+            "  },\n" +
+            "  \"team\": {\n" +
+            "    \"id\": \"T012345\"\n" +
+            "  }\n" +
+            "}";
+
+    @Test
+    public void userAccessResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+        OAuthV2UserAccessResponse response = gson.fromJson(user_access_json, OAuthV2UserAccessResponse.class);
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getAccessToken(), is("xoxp-123456789..."));
+        assertThat(response.getTokenType(), is("user"));
+        assertThat(response.getIdToken(), is("eyJhbGciOiJSUzI1Ni..."));
+        assertThat(response.getAuthedUser().getId(), is("U12345"));
+        assertThat(response.getAuthedUser().getScope(), is("openid,email,profile"));
+        assertThat(response.getTeam().getId(), is("T012345"));
     }
 
 }
