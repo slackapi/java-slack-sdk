@@ -5,6 +5,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.methods.response.admin.analytics.members.AdminAnalyticsMembersMetadataResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
@@ -94,6 +95,53 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminAppsUninstall(r -> r.appId("A123").enterpriseId("E111").teamIds(Arrays.asList("T123")))
                 .isOk(), is(true));
+    }
+
+    @Test
+    public void adminAnalyticsMembersMetadata() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminAnalyticsMembersMetadata(r -> r
+                .includeDeactivatedSince("2026-09-30")
+                .memberTypes(Arrays.asList("regular_members", "single_channel_guests"))
+                .query("alex")
+                .limit(100)
+                .cursor("xxx")).isOk(), is(true));
+    }
+
+    @Test
+    public void adminAnalyticsMembersMetadataResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"members\": [\n" +
+                "    {\n" +
+                "      \"user_id\": \"U0123ABCD\",\n" +
+                "      \"team_id\": \"E0123ABCD\",\n" +
+                "      \"username\": \"alex\",\n" +
+                "      \"real_name\": \"Alex Smith\",\n" +
+                "      \"email\": \"alex@example.com\",\n" +
+                "      \"workspaces\": {\n" +
+                "        \"T0123ABCD\": \"Example Workspace\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"total_count\": 1250,\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"Y3Vyc29yX21hcms6QW9JSUtqWTA=\"\n" +
+                "  }\n" +
+                "}\n";
+        AdminAnalyticsMembersMetadataResponse response = gson.fromJson(json, AdminAnalyticsMembersMetadataResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getMembers().get(0).getUserId(), is("U0123ABCD"));
+        assertThat(response.getMembers().get(0).getUsername(), is("alex"));
+        assertThat(response.getMembers().get(0).getRealName(), is("Alex Smith"));
+        assertThat(response.getMembers().get(0).getEmail(), is("alex@example.com"));
+        assertThat(response.getMembers().get(0).getWorkspaces().get("T0123ABCD"), is("Example Workspace"));
+        assertThat(response.getTotalCount(), is(1250));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("Y3Vyc29yX21hcms6QW9JSUtqWTA="));
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.slack.api.methods;
 
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
+import com.slack.api.methods.request.admin.analytics.members.AdminAnalyticsMembersMetadataRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
@@ -184,6 +185,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.methods.response.admin.analytics.members.AdminAnalyticsMembersMetadataResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
@@ -437,6 +439,15 @@ public interface MethodsClient {
 
     AdminAnalyticsGetFileResponse adminAnalyticsGetFile(
             RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.analytics.members
+    // ------------------------------
+
+    AdminAnalyticsMembersMetadataResponse adminAnalyticsMembersMetadata(AdminAnalyticsMembersMetadataRequest req) throws IOException, SlackApiException;
+
+    AdminAnalyticsMembersMetadataResponse adminAnalyticsMembersMetadata(RequestConfigurator<AdminAnalyticsMembersMetadataRequest.AdminAnalyticsMembersMetadataRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------
