@@ -116,4 +116,18 @@ public class AppsTest {
         // assertThat(slack.methodsAsync().toolingTokensRotate(r -> r).get().isOk(), is(true));
     }
 
+    @Test
+    public void appsManagedPermissionsSet() throws Exception {
+        assertThat(slack.methods(ValidToken).appsManagedPermissionsSet(r -> r
+                .appId("A12345678")
+                .permissions("everyone")).isOk(), is(true));
+    }
+
+    @Test
+    public void appsManagedPermissionsSet_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsManagedPermissionsSet(r -> r
+                .appId("A12345678")
+                .permissions("app_owner")).get().isOk(), is(true));
+    }
+
 }

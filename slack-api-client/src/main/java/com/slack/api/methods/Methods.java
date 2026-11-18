@@ -284,6 +284,12 @@ public class Methods {
     public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
 
     // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    public static final String APPS_MANAGED_PERMISSIONS_SET = "apps.managed.permissions.set";
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 
