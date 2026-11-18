@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -26,6 +29,10 @@ import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsUnpublishRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -129,6 +136,13 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryRemoveRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -157,6 +171,9 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
@@ -180,6 +197,10 @@ import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsUnpublishResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -283,6 +304,13 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryRemoveResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -369,6 +397,22 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(AdminAppsConfigSetRequest req);
 
     CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req);
+
+    // ------------------------------
+    // admin.apps.mcp.servers
+    // ------------------------------
+
+    CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(AdminAppsMcpServersListRequest req);
+
+    CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(RequestConfigurator<AdminAppsMcpServersListRequest.AdminAppsMcpServersListRequestBuilder> req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(AdminAppsMcpServersPermissionsListRequest req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(RequestConfigurator<AdminAppsMcpServersPermissionsListRequest.AdminAppsMcpServersPermissionsListRequestBuilder> req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsSetResponse> adminAppsMcpServersPermissionsSet(AdminAppsMcpServersPermissionsSetRequest req);
+
+    CompletableFuture<AdminAppsMcpServersPermissionsSetResponse> adminAppsMcpServersPermissionsSet(RequestConfigurator<AdminAppsMcpServersPermissionsSetRequest.AdminAppsMcpServersPermissionsSetRequestBuilder> req);
 
     // ------------------------------
     // admin.apps.requests
@@ -643,6 +687,26 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminRolesRemoveAssignmentsResponse> adminRolesRemoveAssignments(AdminRolesRemoveAssignmentsRequest req);
 
     CompletableFuture<AdminRolesRemoveAssignmentsResponse> adminRolesRemoveAssignments(RequestConfigurator<AdminRolesRemoveAssignmentsRequest.AdminRolesRemoveAssignmentsRequestBuilder> req);
+
+    // ------------------------------
+    // admin.slackbot.skills
+    // ------------------------------
+
+    CompletableFuture<AdminSlackbotSkillsListResponse> adminSlackbotSkillsList(AdminSlackbotSkillsListRequest req);
+
+    CompletableFuture<AdminSlackbotSkillsListResponse> adminSlackbotSkillsList(RequestConfigurator<AdminSlackbotSkillsListRequest.AdminSlackbotSkillsListRequestBuilder> req);
+
+    CompletableFuture<AdminSlackbotSkillsPublishResponse> adminSlackbotSkillsPublish(AdminSlackbotSkillsPublishRequest req);
+
+    CompletableFuture<AdminSlackbotSkillsPublishResponse> adminSlackbotSkillsPublish(RequestConfigurator<AdminSlackbotSkillsPublishRequest.AdminSlackbotSkillsPublishRequestBuilder> req);
+
+    CompletableFuture<AdminSlackbotSkillsSetAutoEnabledResponse> adminSlackbotSkillsSetAutoEnabled(AdminSlackbotSkillsSetAutoEnabledRequest req);
+
+    CompletableFuture<AdminSlackbotSkillsSetAutoEnabledResponse> adminSlackbotSkillsSetAutoEnabled(RequestConfigurator<AdminSlackbotSkillsSetAutoEnabledRequest.AdminSlackbotSkillsSetAutoEnabledRequestBuilder> req);
+
+    CompletableFuture<AdminSlackbotSkillsUnpublishResponse> adminSlackbotSkillsUnpublish(AdminSlackbotSkillsUnpublishRequest req);
+
+    CompletableFuture<AdminSlackbotSkillsUnpublishResponse> adminSlackbotSkillsUnpublish(RequestConfigurator<AdminSlackbotSkillsUnpublishRequest.AdminSlackbotSkillsUnpublishRequestBuilder> req);
 
     // ------------------------------
     // admin.teams.admins
@@ -1582,6 +1646,38 @@ public interface AsyncMethodsClient {
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req);
 
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req);
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req);
+
+    CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsDeleteResponse> slackbotSkillsDelete(SlackbotSkillsDeleteRequest req);
+
+    CompletableFuture<SlackbotSkillsDeleteResponse> slackbotSkillsDelete(RequestConfigurator<SlackbotSkillsDeleteRequest.SlackbotSkillsDeleteRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req);
+
+    CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req);
+
+    CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsLibraryRemoveResponse> slackbotSkillsLibraryRemove(SlackbotSkillsLibraryRemoveRequest req);
+
+    CompletableFuture<SlackbotSkillsLibraryRemoveResponse> slackbotSkillsLibraryRemove(RequestConfigurator<SlackbotSkillsLibraryRemoveRequest.SlackbotSkillsLibraryRemoveRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(SlackbotSkillsListRequest req);
+
+    CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req);
+
+    CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req);
 
     // ------------------------------
     // stars

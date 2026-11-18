@@ -165,6 +165,12 @@ public class Blocks {
         return configurator.configure(DataTableBlock.builder()).build();
     }
 
+    // PlanBlock
+
+    public static PlanBlock plan(ModelConfigurator<PlanBlock.PlanBlockBuilder> configurator) {
+        return configurator.configure(PlanBlock.builder()).build();
+    }
+
     // TaskCardBlock
 
     public static TaskCardBlock taskCard(ModelConfigurator<TaskCardBlock.TaskCardBlockBuilder> configurator) {

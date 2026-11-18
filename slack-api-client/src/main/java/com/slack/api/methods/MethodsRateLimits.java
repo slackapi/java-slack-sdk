@@ -129,6 +129,11 @@ public class MethodsRateLimits {
                 ADMIN_ROLES_ADD_ASSIGNMENTS,
                 ADMIN_ROLES_REMOVE_ASSIGNMENTS,
 
+                ADMIN_SLACKBOT_SKILLS_LIST,
+                ADMIN_SLACKBOT_SKILLS_PUBLISH,
+                ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED,
+                ADMIN_SLACKBOT_SKILLS_UNPUBLISH,
+
                 ADMIN_TEAMS_SETTINGS_SET_DEFAULT_CHANNELS,
                 ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION,
                 ADMIN_TEAMS_SETTINGS_SET_DISCOVERABILITY,
@@ -163,6 +168,10 @@ public class MethodsRateLimits {
 
         // Tier3
         final List<String> adminApiMethods_Tier3 = Arrays.asList(
+                ADMIN_APPS_MCP_SERVERS_LIST,
+                ADMIN_APPS_MCP_SERVERS_PERMISSIONS_LIST,
+                ADMIN_APPS_MCP_SERVERS_PERMISSIONS_SET,
+
                 ADMIN_ROLES_LIST_ASSIGNMENTS,
 
                 ADMIN_TEAMS_ADMINS_LIST,
@@ -456,6 +465,14 @@ public class MethodsRateLimits {
         setRateLimitTier(SLACKLISTS_ITEMS_LIST, Tier2);
         setRateLimitTier(SLACKLISTS_ITEMS_UPDATE, Tier3);
         setRateLimitTier(SLACKLISTS_UPDATE, Tier2);
+
+        setRateLimitTier(SLACKBOT_SKILLS_CREATE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILLS_DELETE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILLS_INFO, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_ADD, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_REMOVE, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIST, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_UPDATE, Tier3);
 
         setRateLimitTier(STARS_ADD, Tier2);
         setRateLimitTier(STARS_LIST, Tier3);
