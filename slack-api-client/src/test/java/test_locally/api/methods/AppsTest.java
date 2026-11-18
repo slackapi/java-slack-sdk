@@ -116,4 +116,18 @@ public class AppsTest {
         // assertThat(slack.methodsAsync().toolingTokensRotate(r -> r).get().isOk(), is(true));
     }
 
+    @Test
+    public void appsIconSet() throws Exception {
+        assertThat(slack.methods(ValidToken).appsIconSet(r -> r
+                .appId("A12345678")
+                .fileData(new byte[]{1, 2, 3})).isOk(), is(true));
+    }
+
+    @Test
+    public void appsIconSet_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsIconSet(r -> r
+                .appId("A12345678")
+                .url("https://www.example.com/icon.png")).get().isOk(), is(true));
+    }
+
 }
