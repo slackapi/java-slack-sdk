@@ -15,7 +15,8 @@
       "auto_enabled": {
         "permission_type": "",
         "usergroup_ids": [
-          "S00000000"
+          "S00000000",
+          ""
         ]
       },
       "category": "",
