@@ -48,6 +48,7 @@
   "admin.conversations.setCustomRetention": "Tier2",
   "admin.conversations.setTeams": "Tier2",
   "admin.conversations.unarchive": "Tier2",
+  "admin.conversations.unlinkObjects": "Tier2",
   "admin.conversations.whitelist.add": "Tier2",
   "admin.conversations.whitelist.listGroupsLinkedToChannel": "Tier2",
   "admin.conversations.whitelist.remove": "Tier1",
