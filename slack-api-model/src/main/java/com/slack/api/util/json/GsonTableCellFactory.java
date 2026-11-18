@@ -11,8 +11,7 @@ import com.slack.api.model.block.composition.UnknownTableCell;
 import java.lang.reflect.Type;
 
 /**
- * Factory for deserializing the cells of a
- * {@link com.slack.api.model.block.DataTableBlock data table block}.
+ * Factory for deserializing {@link TableCell table cells}.
  *
  * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/data-table-block">Data table block</a>
  */
