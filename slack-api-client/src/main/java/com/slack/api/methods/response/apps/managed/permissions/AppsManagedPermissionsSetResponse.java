@@ -17,5 +17,8 @@ public class AppsManagedPermissionsSetResponse implements SlackApiTextResponse {
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
+    private String permissionType;
+    private String channelRestrictionMode;
+    private List<String> userIds;
     private ErrorResponseMetadata responseMetadata;
 }

@@ -3,6 +3,11 @@
   "error": "",
   "needed": "",
   "provided": "",
+  "permission_type": "",
+  "channel_restriction_mode": "",
+  "user_ids": [
+    "U00000000"
+  ],
   "response_metadata": {
     "messages": [
       ""
