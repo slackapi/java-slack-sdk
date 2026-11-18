@@ -36,6 +36,7 @@
   "admin.conversations.getCustomRetention": "Tier2",
   "admin.conversations.getTeams": "Tier2",
   "admin.conversations.invite": "Tier2",
+  "admin.conversations.linkObjects": "Tier2",
   "admin.conversations.lookup": "Tier2",
   "admin.conversations.removeCustomRetention": "Tier2",
   "admin.conversations.rename": "Tier2",

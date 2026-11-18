@@ -528,6 +528,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminConversationsInviteResponse> adminConversationsInvite(RequestConfigurator<AdminConversationsInviteRequest.AdminConversationsInviteRequestBuilder> req);
 
+    CompletableFuture<AdminConversationsLinkObjectsResponse> adminConversationsLinkObjects(AdminConversationsLinkObjectsRequest req);
+
+    CompletableFuture<AdminConversationsLinkObjectsResponse> adminConversationsLinkObjects(RequestConfigurator<AdminConversationsLinkObjectsRequest.AdminConversationsLinkObjectsRequestBuilder> req);
+
     CompletableFuture<AdminConversationsRenameResponse> adminConversationsRename(AdminConversationsRenameRequest req);
 
     CompletableFuture<AdminConversationsRenameResponse> adminConversationsRename(RequestConfigurator<AdminConversationsRenameRequest.AdminConversationsRenameRequestBuilder> req);
