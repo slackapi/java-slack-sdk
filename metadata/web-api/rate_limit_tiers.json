@@ -120,6 +120,7 @@
   "apps.connections.open": "Tier1",
   "apps.event.authorizations.list": "Tier4",
   "apps.icon.set": "Tier2",
+  "apps.managed.permissions.set": "Tier2",
   "apps.manifest.create": "Tier1",
   "apps.manifest.delete": "Tier1",
   "apps.manifest.export": "Tier3",

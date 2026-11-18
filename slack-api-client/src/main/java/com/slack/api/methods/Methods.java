@@ -290,6 +290,12 @@ public class Methods {
     public static final String APPS_ICON_SET = "apps.icon.set";
 
     // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    public static final String APPS_MANAGED_PERMISSIONS_SET = "apps.managed.permissions.set";
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 
