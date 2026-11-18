@@ -20,6 +20,8 @@ import java.util.Arrays;
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.composition.BlockCompositions.rawNumber;
+import static com.slack.api.model.block.composition.BlockCompositions.rawText;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
 import static com.slack.api.model.block.element.BlockElements.conversationsSelect;
 import static com.slack.api.model.view.Views.view;
@@ -2470,20 +2472,20 @@ public class BlockKitTest {
                 .rowHeaderColumnIndex(0)
                 .rows(Arrays.asList(
                         Arrays.asList(
-                                RawTextObject.builder().text("Team").build(),
-                                RawTextObject.builder().text("Revenue").build(),
-                                RawTextObject.builder().text("Action").build()
+                                rawText("Team"),
+                                rawText("Revenue"),
+                                rawText("Action")
                         ),
                         Arrays.asList(
-                                RawTextObject.builder().text("Platform").build(),
-                                RawNumberObject.builder().value(1234.5).text("$1,234.50").build(),
+                                rawText("Platform"),
+                                rawNumber(1234.5, "$1,234.50"),
                                 ActionCellObject.builder()
                                         .element(ButtonElement.builder()
                                                 .text(plainText("Mark done"))
                                                 .actionId("mark_done")
                                                 .value("task_123")
                                                 .build())
-                                        .fallback(RawTextObject.builder().text("Open").build())
+                                        .fallback(rawText("Open"))
                                         .build()
                         )
                 )));
