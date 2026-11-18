@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GsonListRecordFieldFactoryTest {
@@ -27,10 +28,8 @@ public class GsonListRecordFieldFactoryTest {
         List<ListRecord.Field> fields = response.getMessages().get(0).getAttachments().get(0)
                 .getListRecord().getRecord().getFields();
 
-        assertThat(fields.get(0).getMessage().getText(), is("ok"));
-        assertThat(fields.get(1).getMessage().getText(), is("a"));
-        assertThat(fields.get(1).getMessages().size(), is(2));
-        assertThat(fields.get(1).getMessages().get(1).getText(), is("b"));
+        assertThat(fields.get(0).getMessage().size(), is(1));
+        assertThat(fields.get(1).getMessage().size(), is(2));
     }
 
     @Test
@@ -42,10 +41,12 @@ public class GsonListRecordFieldFactoryTest {
 
         ListRecord.Field field = gson.fromJson(json, ListRecord.Field.class);
 
-        assertThat(field.getMessage().getTs(), is("1700000000.000100"));
-        assertThat(field.getMessages().size(), is(2));
-        assertThat(field.getMessages().get(1).getTs(), is("1700000000.000300"));
-        assertThat(field.getMessages().get(1).getThreadTs(), is("1700000000.000100"));
+        assertThat(field.getMessage().size(), is(2));
+        assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C111/p1700000000000100"));
+        assertThat(field.getMessage().get(0).getChannelId(), is("C111"));
+        assertThat(field.getMessage().get(0).getTs(), is("1700000000.000100"));
+        assertThat(field.getMessage().get(0).getThreadTs(), is(nullValue()));
+        assertThat(field.getMessage().get(1).getThreadTs(), is("1700000000.000100"));
     }
 
     @Test
@@ -56,9 +57,9 @@ public class GsonListRecordFieldFactoryTest {
 
         ListRecord.Field field = gson.fromJson(json, ListRecord.Field.class);
 
-        assertThat(field.getMessage().getTs(), is("1700000000.000100"));
-        assertThat(field.getMessages().size(), is(1));
-        assertThat(field.getMessages().get(0).getTs(), is("1700000000.000100"));
+        assertThat(field.getMessage().size(), is(1));
+        assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C111/p1700000000000100"));
+        assertThat(field.getMessage().get(0).getTs(), is("1700000000.000100"));
     }
 
     @Test
@@ -69,8 +70,7 @@ public class GsonListRecordFieldFactoryTest {
 
         ListRecord.Field field = gson.fromJson(json, ListRecord.Field.class);
 
-        assertThat(field.getMessage().getPermalink(), is("https://example.slack.com/archives/C111/p1700000000000100"));
-        assertThat(field.getMessages().size(), is(1));
-        assertThat(field.getMessages().get(0).getPermalink(), is("https://example.slack.com/archives/C111/p1700000000000100"));
+        assertThat(field.getMessage().size(), is(1));
+        assertThat(field.getMessage().get(0).getValue(), is("https://example.slack.com/archives/C111/p1700000000000100"));
     }
 }
