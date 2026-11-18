@@ -25,8 +25,7 @@ public class apps_managed_permissions_Test {
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
-    // The Luna app is a manager app: it has app_configurations:write and its org is enabled for managed apps
-    static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
+    static String managerAppToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
     @BeforeClass
     public static void setUp() throws Exception {
@@ -40,8 +39,8 @@ public class apps_managed_permissions_Test {
 
     @Test
     public void set() throws Exception {
-        if (orgAdminUserToken != null) {
-            MethodsClient client = slack.methods(orgAdminUserToken);
+        if (managerAppToken != null) {
+            MethodsClient client = slack.methods(managerAppToken);
             // A managed app is one the manager app creates, and its permissions can be set before it's installed
             AppManifestParams manifest = AppManifestParams.builder()
                     .displayInformation(AppManifestParams.DisplayInformation.builder()

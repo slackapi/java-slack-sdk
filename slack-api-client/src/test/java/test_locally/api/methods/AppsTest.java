@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
+import com.slack.api.methods.response.apps.managed.permissions.AppsManagedPermissionsSetResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.model.block.composition.OptionObject;
@@ -132,9 +133,13 @@ public class AppsTest {
 
     @Test
     public void appsManagedPermissionsSet() throws Exception {
-        assertThat(slack.methods(ValidToken).appsManagedPermissionsSet(r -> r
+        AppsManagedPermissionsSetResponse response = slack.methods(ValidToken).appsManagedPermissionsSet(r -> r
                 .appId("A12345678")
-                .permissions("everyone")).isOk(), is(true));
+                .permissions("everyone"));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getPermissionType(), is(""));
+        assertThat(response.getChannelRestrictionMode(), is(""));
+        assertThat(response.getUserIds(), is(Arrays.asList("U00000000")));
     }
 
     @Test
