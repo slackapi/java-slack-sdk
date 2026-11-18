@@ -122,6 +122,7 @@ import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.slack.api.methods.request.oauth.OAuthV2BeginShortTokenRotationRequest;
+import com.slack.api.methods.request.oauth.OAuthV2CompleteShortTokenRotationRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectTokenRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
@@ -303,6 +304,7 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2BeginShortTokenRotationResponse;
+import com.slack.api.methods.response.oauth.OAuthV2CompleteShortTokenRotationResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
@@ -2600,6 +2602,13 @@ public interface MethodsClient {
 
     OAuthV2BeginShortTokenRotationResponse oauthV2BeginShortTokenRotation(
             RequestConfigurator<OAuthV2BeginShortTokenRotationRequest.OAuthV2BeginShortTokenRotationRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    OAuthV2CompleteShortTokenRotationResponse oauthV2CompleteShortTokenRotation(OAuthV2CompleteShortTokenRotationRequest req)
+            throws IOException, SlackApiException;
+
+    OAuthV2CompleteShortTokenRotationResponse oauthV2CompleteShortTokenRotation(
+            RequestConfigurator<OAuthV2CompleteShortTokenRotationRequest.OAuthV2CompleteShortTokenRotationRequestBuilder> req)
             throws IOException, SlackApiException;
 
     OAuthV2ExchangeResponse oauthV2Exchange(OAuthV2ExchangeRequest req) throws IOException, SlackApiException;

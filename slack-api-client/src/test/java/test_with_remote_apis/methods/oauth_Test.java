@@ -6,6 +6,7 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2BeginShortTokenRotationResponse;
+import com.slack.api.methods.response.oauth.OAuthV2CompleteShortTokenRotationResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import config.Constants;
@@ -88,6 +89,18 @@ public class oauth_Test {
                 .clientId("4123121235.9872358710")
                 .clientSecret("e1b9e11dfcd19c1982d5de12921e17e8c")
                 .token(userToken));
+        assertThat(response.getError(), is("invalid_client_id"));
+        assertThat(response.isOk(), is(false));
+    }
+
+    @Test
+    public void completeShortTokenRotation() throws IOException, SlackApiException {
+        // The example client_id from the docs is not the app this token was issued to
+        OAuthV2CompleteShortTokenRotationResponse response = slack.methods().oauthV2CompleteShortTokenRotation(r -> r
+                .clientId("4123121235.9872358710")
+                .clientSecret("e1b9e11dfcd19c1982d5de12921e17e8c")
+                .token(userToken)
+                .newToken("xoxp-12345-67890-1928471-qemwiiwglagjacakvqbvbfkmvbsvsuzn"));
         assertThat(response.getError(), is("invalid_client_id"));
         assertThat(response.isOk(), is(false));
     }

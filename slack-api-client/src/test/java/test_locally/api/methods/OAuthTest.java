@@ -153,4 +153,22 @@ public class OAuthTest {
                 .token("xoxp-12345-67890-1928471-abcdefg")).get().isOk(), is(true));
     }
 
+    @Test
+    public void completeShortTokenRotation() throws Exception {
+        assertThat(slack.methods().oauthV2CompleteShortTokenRotation(r -> r
+                .clientId("4123121235.9872358710")
+                .clientSecret("e1b9e11dfcd19c1982d5de12921e17e8c")
+                .token("xoxp-12345-67890-1928471-abcdefg")
+                .newToken("xoxp-12345-67890-1928471-qemwiiwglagjacakvqbvbfkmvbsvsuzn")).isOk(), is(true));
+    }
+
+    @Test
+    public void completeShortTokenRotation_async() throws Exception {
+        assertThat(slack.methodsAsync().oauthV2CompleteShortTokenRotation(r -> r
+                .clientId("4123121235.9872358710")
+                .clientSecret("e1b9e11dfcd19c1982d5de12921e17e8c")
+                .token("xoxp-12345-67890-1928471-abcdefg")
+                .newToken("xoxp-12345-67890-1928471-qemwiiwglagjacakvqbvbfkmvbsvsuzn")).get().isOk(), is(true));
+    }
+
 }
