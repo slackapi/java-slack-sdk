@@ -548,6 +548,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminConversationsUnarchiveResponse> adminConversationsUnarchive(RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req);
 
+    CompletableFuture<AdminConversationsUnlinkObjectsResponse> adminConversationsUnlinkObjects(AdminConversationsUnlinkObjectsRequest req);
+
+    CompletableFuture<AdminConversationsUnlinkObjectsResponse> adminConversationsUnlinkObjects(RequestConfigurator<AdminConversationsUnlinkObjectsRequest.AdminConversationsUnlinkObjectsRequestBuilder> req);
+
     CompletableFuture<AdminConversationsGetCustomRetentionResponse> adminConversationsGetCustomRetention(RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req);
 
     CompletableFuture<AdminConversationsGetCustomRetentionResponse> adminConversationsGetCustomRetention(AdminConversationsGetCustomRetentionRequest req);

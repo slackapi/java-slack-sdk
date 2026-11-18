@@ -251,6 +251,9 @@ public class AdminApiTest {
                 .channel("C123")
                 .recordId("0019000000DmehKAAR")
                 .salesforceOrgId("00DGC00000024hsuWY")).isOk(), is(true));
+        assertThat(methods.adminConversationsUnlinkObjects(r -> r
+                .channel("C123")
+                .newName("example-unlinked")).isOk(), is(true));
     }
 
     @Test

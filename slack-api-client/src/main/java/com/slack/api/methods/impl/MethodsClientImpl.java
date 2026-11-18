@@ -791,6 +791,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminConversationsUnlinkObjectsResponse adminConversationsUnlinkObjects(AdminConversationsUnlinkObjectsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_UNLINK_OBJECTS, getToken(req), AdminConversationsUnlinkObjectsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsUnlinkObjectsResponse adminConversationsUnlinkObjects(RequestConfigurator<AdminConversationsUnlinkObjectsRequest.AdminConversationsUnlinkObjectsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsUnlinkObjects(req.configure(AdminConversationsUnlinkObjectsRequest.builder()).build());
+    }
+
+    @Override
     public AdminConversationsGetCustomRetentionResponse adminConversationsGetCustomRetention(RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req) throws IOException, SlackApiException {
         return adminConversationsGetCustomRetention(req.configure(AdminConversationsGetCustomRetentionRequest.builder()).build());
     }

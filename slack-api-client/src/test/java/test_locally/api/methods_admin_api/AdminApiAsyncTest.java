@@ -157,6 +157,10 @@ public class AdminApiAsyncTest {
                 .recordId("0019000000DmehKAAR")
                 .salesforceOrgId("00DGC00000024hsuWY"))
                 .get().isOk(), is(true));
+        assertThat(methods.adminConversationsUnlinkObjects(r -> r
+                .channel("C123")
+                .newName("example-unlinked"))
+                .get().isOk(), is(true));
     }
 
     @Test

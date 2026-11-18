@@ -702,6 +702,13 @@ public interface MethodsClient {
             RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req)
             throws IOException, SlackApiException;
 
+    AdminConversationsUnlinkObjectsResponse adminConversationsUnlinkObjects(AdminConversationsUnlinkObjectsRequest req)
+            throws IOException, SlackApiException;
+
+    AdminConversationsUnlinkObjectsResponse adminConversationsUnlinkObjects(
+            RequestConfigurator<AdminConversationsUnlinkObjectsRequest.AdminConversationsUnlinkObjectsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
     AdminConversationsGetCustomRetentionResponse adminConversationsGetCustomRetention(
             RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req)
             throws IOException, SlackApiException;

@@ -786,6 +786,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminConversationsUnlinkObjectsResponse> adminConversationsUnlinkObjects(AdminConversationsUnlinkObjectsRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_UNLINK_OBJECTS, toMap(req), () -> methods.adminConversationsUnlinkObjects(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsUnlinkObjectsResponse> adminConversationsUnlinkObjects(RequestConfigurator<AdminConversationsUnlinkObjectsRequest.AdminConversationsUnlinkObjectsRequestBuilder> req) {
+        return adminConversationsUnlinkObjects(req.configure(AdminConversationsUnlinkObjectsRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminConversationsGetCustomRetentionResponse> adminConversationsGetCustomRetention(RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req) {
         return adminConversationsGetCustomRetention(req.configure(AdminConversationsGetCustomRetentionRequest.builder()).build());
     }

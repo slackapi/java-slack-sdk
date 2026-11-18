@@ -36,8 +36,6 @@ public class MethodsTest {
 
         String[] allMethodNames = methods.split(",");
         List<String> excludedMethodNames = Arrays.asList(
-                // Salesforce channel related APIs
-                "admin.conversations.unlinkObjects",
                 // These next-generation platform related APIs work only on the automation platform.
                 // Thus, we don't have short-term plans to add them to this Java SDK.
                 "apps.auth.external.delete",

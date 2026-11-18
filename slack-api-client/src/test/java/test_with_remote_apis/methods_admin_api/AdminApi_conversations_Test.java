@@ -510,6 +510,33 @@ public class AdminApi_conversations_Test {
         }
     }
 
+    @Test
+    public void unlinkObjects() throws Exception {
+        if (orgAdminUserToken != null) {
+            AsyncMethodsClient orgAdminClient = slack.methodsAsync(orgAdminUserToken);
+            String channelName = "test-channel-" + System.currentTimeMillis();
+            AdminConversationsCreateResponse creation = orgAdminClient.adminConversationsCreate(r -> r
+                    .name(channelName)
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation.getError(), is(nullValue()));
+            try {
+                // The channel is not linked to a Salesforce record, so it cannot be unlinked
+                AdminConversationsUnlinkObjectsResponse unlinking = orgAdminClient.adminConversationsUnlinkObjects(r -> r
+                        .channel(creation.getChannelId())
+                        .newName(channelName + "-unlinked")
+                ).get();
+                assertThat(unlinking.getError(), is("restricted_action"));
+            } finally {
+                AdminConversationsDeleteResponse deletion = orgAdminClient.adminConversationsDelete(r -> r
+                        .channelId(creation.getChannelId())
+                ).get();
+                assertThat(deletion.getError(), is(nullValue()));
+            }
+        }
+    }
+
     private String findUserId(List<String> idsToSkip) throws Exception {
         String userId = null;
         UsersListResponse usersListResponse = slack.methodsAsync(teamAdminUserToken).usersList(req -> req).get();

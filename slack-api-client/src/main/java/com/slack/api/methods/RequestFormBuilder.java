@@ -610,6 +610,13 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminConversationsUnlinkObjectsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("new_name", req.getNewName(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminConversationsBulkArchiveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         if (req.getChannelIds() != null) {
