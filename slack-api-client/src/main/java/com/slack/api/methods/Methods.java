@@ -284,6 +284,18 @@ public class Methods {
     public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
 
     // ------------------------------
+    // apps.icon
+    // ------------------------------
+
+    public static final String APPS_ICON_SET = "apps.icon.set";
+
+    // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    public static final String APPS_MANAGED_PERMISSIONS_SET = "apps.managed.permissions.set";
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 

@@ -531,6 +531,23 @@
           ]
         }
       }
+    },
+    {
+      "details": {
+        "action": {
+          "resolution": {
+            "value": ""
+          },
+          "notify": [
+            {
+              "entity_type": "",
+              "values": [
+                ""
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }
