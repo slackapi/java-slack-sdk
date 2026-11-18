@@ -222,6 +222,7 @@
   "dnd.setSnooze": "Tier2",
   "dnd.teamInfo": "Tier2",
   "emoji.list": "Tier2",
+  "entity.acknowledgeCommentAction": "Tier3",
   "entity.presentComments": "Tier3",
   "files.comments.delete": "Tier2",
   "files.completeUploadExternal": "Tier4",

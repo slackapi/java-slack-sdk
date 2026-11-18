@@ -514,6 +514,7 @@ public class Methods {
     // entity
     // ------------------------------
 
+    public static final String ENTITY_ACKNOWLEDGE_COMMENT_ACTION = "entity.acknowledgeCommentAction";
     public static final String ENTITY_PRESENT_COMMENTS = "entity.presentComments";
     public static final String ENTITY_PRESENT_DETAILS = "entity.presentDetails";
 

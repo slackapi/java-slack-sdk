@@ -1,6 +1,7 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.response.entity.EntityAcknowledgeCommentActionResponse;
 import com.slack.api.methods.response.entity.EntityPresentCommentsResponse;
 import com.slack.api.model.EntityComment;
 import com.slack.api.model.EntityMetadata;
@@ -38,6 +39,19 @@ public class entity_Test {
 
     // A trigger_id comes from a comment action in a work object flexpane, so the example from the docs is not found
     static String triggerId = "1234567890123.1234567890123.abcdef01234567890abcdef012345689";
+
+    @Test
+    public void acknowledgeCommentAction() throws Exception {
+        EntityAcknowledgeCommentActionResponse response = slack.methods(botToken).entityAcknowledgeCommentAction(r -> r
+                .triggerId(triggerId)
+                .comment(EntityComment.builder()
+                        .id("comment-identifier-002")
+                        .sender(EntityMetadata.EntityPayload.User.builder().userId("U123456789").build())
+                        .timestamp(1741164358)
+                        .comment(EntityComment.Content.builder().value("Plain text comment").format("markdown").build())
+                        .build()));
+        assertThat(response.getError(), is("invalid_trigger_id"));
+    }
 
     @Test
     public void presentComments() throws Exception {

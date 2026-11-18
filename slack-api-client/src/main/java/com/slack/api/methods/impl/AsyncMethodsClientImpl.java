@@ -26,6 +26,7 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
+import com.slack.api.methods.request.entity.EntityAcknowledgeCommentActionRequest;
 import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.admin.functions.AdminFunctionsListRequest;
@@ -195,6 +196,7 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
+import com.slack.api.methods.response.entity.EntityAcknowledgeCommentActionResponse;
 import com.slack.api.methods.response.entity.EntityPresentCommentsResponse;
 import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
@@ -2411,6 +2413,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<EmojiListResponse> emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req) {
         return emojiList(req.configure(EmojiListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<EntityAcknowledgeCommentActionResponse> entityAcknowledgeCommentAction(EntityAcknowledgeCommentActionRequest req) {
+        return executor.execute(ENTITY_ACKNOWLEDGE_COMMENT_ACTION, toMap(req), () -> methods.entityAcknowledgeCommentAction(req));
+    }
+
+    @Override
+    public CompletableFuture<EntityAcknowledgeCommentActionResponse> entityAcknowledgeCommentAction(RequestConfigurator<EntityAcknowledgeCommentActionRequest.EntityAcknowledgeCommentActionRequestBuilder> req) {
+        return entityAcknowledgeCommentAction(req.configure(EntityAcknowledgeCommentActionRequest.builder()).build());
     }
 
     @Override

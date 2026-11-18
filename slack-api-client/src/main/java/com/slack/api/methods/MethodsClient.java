@@ -106,6 +106,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityAcknowledgeCommentActionRequest;
 import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
@@ -364,6 +365,7 @@ import com.slack.api.methods.response.workflows.WorkflowsFeaturedSetResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
+import com.slack.api.methods.response.entity.EntityAcknowledgeCommentActionResponse;
 import com.slack.api.methods.response.entity.EntityPresentCommentsResponse;
 import com.slack.api.methods.response.entity.EntityPresentDetailsResponse;
 import com.slack.api.util.http.SlackHttpClient;
@@ -2156,6 +2158,13 @@ public interface MethodsClient {
     // ------------------------------
     // entity
     // ------------------------------
+
+    EntityAcknowledgeCommentActionResponse entityAcknowledgeCommentAction(EntityAcknowledgeCommentActionRequest req)
+            throws IOException, SlackApiException;
+
+    EntityAcknowledgeCommentActionResponse entityAcknowledgeCommentAction(
+            RequestConfigurator<EntityAcknowledgeCommentActionRequest.EntityAcknowledgeCommentActionRequestBuilder> req)
+            throws IOException, SlackApiException;
 
     EntityPresentCommentsResponse entityPresentComments(EntityPresentCommentsRequest req)
             throws IOException, SlackApiException;

@@ -7,6 +7,7 @@ import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequ
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
+import com.slack.api.methods.request.entity.EntityAcknowledgeCommentActionRequest;
 import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.team.TeamInfoRequest;
@@ -85,6 +86,26 @@ public class RequestFormBuilderTest {
                 .build()).build();
         assertThat(declared.name(1), is("mcp_servers"));
         assertThat(declared.value(1), is("[{\"service_type\":\"app\",\"app_id\":\"A0123ABCD\",\"server_id\":\"Amcp0456EFGH\"}]"));
+    }
+
+    @Test
+    public void entityAcknowledgeCommentActionComment() {
+        FormBody form = RequestFormBuilder.toForm(EntityAcknowledgeCommentActionRequest.builder()
+                .triggerId("1234567890123.1234567890123.abcdef01234567890abcdef012345689")
+                .comment(EntityComment.builder()
+                        .id("comment-identifier-002")
+                        .sender(EntityMetadata.EntityPayload.User.builder().userId("U123456789").build())
+                        .timestamp(1741164358)
+                        .comment(EntityComment.Content.builder().value("Plain text comment").format("markdown").build())
+                        .build())
+                .build()).build();
+        assertThat(form.size(), is(2));
+        assertThat(form.name(0), is("trigger_id"));
+        assertThat(form.name(1), is("comment"));
+        assertThat(form.value(1), is("{\"comment\":{\"format\":\"markdown\",\"value\":\"Plain text comment\"},"
+                + "\"id\":\"comment-identifier-002\","
+                + "\"sender\":{\"user_id\":\"U123456789\"},"
+                + "\"timestamp\":1741164358}"));
     }
 
     @Test
