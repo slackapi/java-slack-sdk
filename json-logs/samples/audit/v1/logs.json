@@ -483,6 +483,23 @@
         "skill_id": "",
         "mcp_server_allowlist_domains": []
       }
+    },
+    {
+      "details": {
+        "action": {
+          "resolution": {
+            "value": ""
+          },
+          "notify": [
+            {
+              "entity_type": "",
+              "values": [
+                ""
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }

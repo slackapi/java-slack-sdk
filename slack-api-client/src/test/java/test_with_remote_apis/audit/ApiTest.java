@@ -94,7 +94,18 @@ public class ApiTest {
         details.setCanThread(conversationPref);
         entry.setDetails(details);
 
-        logs.setEntries(Arrays.asList(entry));
+        // details.action can also be an object (e.g., app_allowlist_rule_created)
+        LogsResponse.Entry objectActionEntry = new LogsResponse.Entry();
+        LogsResponse.Details objectActionDetails = new LogsResponse.Details();
+        LogsResponse.DetailsAction objectAction = new LogsResponse.DetailsAction();
+        objectAction.setResolution(ObjectInitializer.initProperties(new LogsResponse.AAARuleActionResolution()));
+        LogsResponse.AAARuleActionNotify notify = ObjectInitializer.initProperties(new LogsResponse.AAARuleActionNotify());
+        notify.setValues(Arrays.asList(""));
+        objectAction.setNotify(Arrays.asList(notify));
+        objectActionDetails.setAction(objectAction);
+        objectActionEntry.setDetails(objectActionDetails);
+
+        logs.setEntries(Arrays.asList(entry, objectActionEntry));
 
         SlackConfig slackConfig = new SlackConfig();
         slackConfig.setPrettyResponseLoggingEnabled(true);
