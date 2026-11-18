@@ -78,6 +78,19 @@ public class AdminApiAsyncTest {
     }
 
     @Test
+    public void adminAnalyticsMembersActivity() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminAnalyticsMembersActivity(r -> r
+                .date("2026-09-30")
+                .memberTypes(Arrays.asList("regular_members", "org_admins"))
+                .userIds(Arrays.asList("U0123ABCD", "U0456EFGH"))
+                .limit(100)
+                .cursor("xxx"))
+                .get().isOk(), is(true));
+    }
+
+    @Test
     public void adminAppsMcpServers() throws Exception {
         AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
 

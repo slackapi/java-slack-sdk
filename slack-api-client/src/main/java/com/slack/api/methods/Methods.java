@@ -13,6 +13,12 @@ public class Methods {
     public static final String ADMIN_ANALYTICS_GET_FILE = "admin.analytics.getFile";
 
     // ------------------------------
+    // admin.analytics.members
+    // ------------------------------
+
+    public static final String ADMIN_ANALYTICS_MEMBERS_ACTIVITY = "admin.analytics.members.activity";
+
+    // ------------------------------
     // admin.apps
     // ------------------------------
 

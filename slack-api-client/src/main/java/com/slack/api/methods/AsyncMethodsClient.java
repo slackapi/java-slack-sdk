@@ -2,6 +2,7 @@ package com.slack.api.methods;
 
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
+import com.slack.api.methods.request.admin.analytics.members.AdminAnalyticsMembersActivityRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
@@ -171,6 +172,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.methods.response.admin.analytics.members.AdminAnalyticsMembersActivityResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
@@ -359,6 +361,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAnalyticsGetFileResponse> adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req);
 
     CompletableFuture<AdminAnalyticsGetFileResponse> adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req);
+
+    // ------------------------------
+    // admin.analytics.members
+    // ------------------------------
+
+    CompletableFuture<AdminAnalyticsMembersActivityResponse> adminAnalyticsMembersActivity(AdminAnalyticsMembersActivityRequest req);
+
+    CompletableFuture<AdminAnalyticsMembersActivityResponse> adminAnalyticsMembersActivity(RequestConfigurator<AdminAnalyticsMembersActivityRequest.AdminAnalyticsMembersActivityRequestBuilder> req);
 
     // ------------------------------
     // admin.apps

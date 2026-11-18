@@ -6,6 +6,7 @@ import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
+import com.slack.api.methods.request.admin.analytics.members.AdminAnalyticsMembersActivityRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
@@ -175,6 +176,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.methods.response.admin.analytics.members.AdminAnalyticsMembersActivityResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
@@ -395,6 +397,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAnalyticsGetFileResponse> adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req) {
         return adminAnalyticsGetFile(req.configure(AdminAnalyticsGetFileRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAnalyticsMembersActivityResponse> adminAnalyticsMembersActivity(AdminAnalyticsMembersActivityRequest req) {
+        return executor.execute(ADMIN_ANALYTICS_MEMBERS_ACTIVITY, toMap(req), () -> methods.adminAnalyticsMembersActivity(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAnalyticsMembersActivityResponse> adminAnalyticsMembersActivity(RequestConfigurator<AdminAnalyticsMembersActivityRequest.AdminAnalyticsMembersActivityRequestBuilder> req) {
+        return adminAnalyticsMembersActivity(req.configure(AdminAnalyticsMembersActivityRequest.builder()).build());
     }
 
     @Override
