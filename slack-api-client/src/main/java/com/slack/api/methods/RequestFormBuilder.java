@@ -3,6 +3,7 @@ package com.slack.api.methods;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
+import com.slack.api.methods.request.admin.analytics.members.AdminAnalyticsMembersActivityRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
@@ -216,6 +217,21 @@ public class RequestFormBuilder {
         setIfNotNull("date", req.getDate(), form);
         setIfNotNull("type", req.getType(), form);
         setIfNotNull("metadata_only", req.getMetadataOnly(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAnalyticsMembersActivityRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("date", req.getDate(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        if (req.getMemberTypes() != null) {
+            setIfNotNull("member_types", req.getMemberTypes().stream().collect(joining(",")), form);
+        }
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
         return form;
     }
 

@@ -3,6 +3,7 @@ package com.slack.api.methods.impl;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
+import com.slack.api.methods.request.admin.analytics.members.AdminAnalyticsMembersActivityRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
 import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
@@ -185,6 +186,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.methods.response.admin.analytics.members.AdminAnalyticsMembersActivityResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
@@ -4267,6 +4269,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req) throws IOException, SlackApiException {
         return adminAnalyticsGetFile(req.configure(AdminAnalyticsGetFileRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAnalyticsMembersActivityResponse adminAnalyticsMembersActivity(AdminAnalyticsMembersActivityRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_ANALYTICS_MEMBERS_ACTIVITY, getToken(req), AdminAnalyticsMembersActivityResponse.class);
+    }
+
+    @Override
+    public AdminAnalyticsMembersActivityResponse adminAnalyticsMembersActivity(RequestConfigurator<AdminAnalyticsMembersActivityRequest.AdminAnalyticsMembersActivityRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAnalyticsMembersActivity(req.configure(AdminAnalyticsMembersActivityRequest.builder()).build());
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.methods.response.admin.analytics.members.AdminAnalyticsMembersActivityResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
 import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
@@ -94,6 +95,68 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminAppsUninstall(r -> r.appId("A123").enterpriseId("E111").teamIds(Arrays.asList("T123")))
                 .isOk(), is(true));
+    }
+
+    @Test
+    public void adminAnalyticsMembersActivity() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminAnalyticsMembersActivity(r -> r
+                .date("2026-09-30")
+                .memberTypes(Arrays.asList("regular_members", "org_admins"))
+                .userIds(Arrays.asList("U0123ABCD", "U0456EFGH"))
+                .limit(100)
+                .cursor("xxx")).isOk(), is(true));
+    }
+
+    @Test
+    public void adminAnalyticsMembersActivityResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"date\": \"2026-09-30\",\n" +
+                "  \"available_date_range\": {\n" +
+                "    \"start_date\": \"2025-11-01\",\n" +
+                "    \"end_date\": \"2026-09-30\"\n" +
+                "  },\n" +
+                "  \"members\": [\n" +
+                "    {\n" +
+                "      \"user_id\": \"U0123ABCD\",\n" +
+                "      \"team_id\": \"E0123ABCD\",\n" +
+                "      \"enterprise_id\": \"E0123ABCD\",\n" +
+                "      \"date_created\": 1600000000,\n" +
+                "      \"account_type\": \"member\",\n" +
+                "      \"is_admin\": false,\n" +
+                "      \"is_owner\": false,\n" +
+                "      \"is_primary_owner\": false,\n" +
+                "      \"is_restricted\": false,\n" +
+                "      \"is_ultra_restricted\": false,\n" +
+                "      \"date_last_active\": 1760054400,\n" +
+                "      \"active_day_count\": 1,\n" +
+                "      \"message_count\": 14,\n" +
+                "      \"reaction_count\": 3,\n" +
+                "      \"ai_usage_count\": 2\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"total_count\": 1250,\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"Y3Vyc29yX21hcms6QW9JSUtqWTA=\"\n" +
+                "  }\n" +
+                "}\n";
+        AdminAnalyticsMembersActivityResponse response = gson.fromJson(json, AdminAnalyticsMembersActivityResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getDate(), is("2026-09-30"));
+        assertThat(response.getAvailableDateRange().getStartDate(), is("2025-11-01"));
+        assertThat(response.getAvailableDateRange().getEndDate(), is("2026-09-30"));
+        assertThat(response.getMembers().get(0).getUserId(), is("U0123ABCD"));
+        assertThat(response.getMembers().get(0).getTeamId(), is("E0123ABCD"));
+        assertThat(response.getMembers().get(0).isAdmin(), is(false));
+        assertThat(response.getMembers().get(0).getActiveDayCount(), is(1));
+        assertThat(response.getMembers().get(0).getMessageCount(), is(14));
+        assertThat(response.getTotalCount(), is(1250));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("Y3Vyc29yX21hcms6QW9JSUtqWTA="));
     }
 
     @Test
