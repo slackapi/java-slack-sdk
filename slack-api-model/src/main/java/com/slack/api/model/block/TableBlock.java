@@ -31,7 +31,7 @@ public class TableBlock implements LayoutBlock {
 
     /**
      * An array describing column behavior. If there are fewer items in the {@code column_settings} array than
-     * there are columns in the table, then the items in the the {@code column_settings} array will describe the
+     * there are columns in the table, then the items in the {@code column_settings} array will describe the
      * same number of columns in the table as there are in the array itself. Any additional columns will have the
      * default behavior. Maximum 20 items.
      */
