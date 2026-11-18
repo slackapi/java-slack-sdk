@@ -108,6 +108,7 @@ import com.slack.api.methods.request.conversations.request_shared_invite.Convers
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
+import com.slack.api.methods.request.entity.EntityAcknowledgeCommentActionRequest;
 import com.slack.api.methods.request.entity.EntityPresentCommentsRequest;
 import com.slack.api.methods.request.entity.EntityPresentDetailsRequest;
 import com.slack.api.methods.request.files.*;
@@ -2411,6 +2412,16 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(EmojiListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("include_categories", req.getIncludeCategories(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(EntityAcknowledgeCommentActionRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        if (req.getComment() != null) {
+            setIfNotNull("comment", GSON.toJson(req.getComment()), form);
+        }
+        setIfNotNull("error", req.getError(), form);
         return form;
     }
 

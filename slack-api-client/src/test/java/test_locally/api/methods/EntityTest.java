@@ -34,6 +34,25 @@ public class EntityTest {
     }
 
     @Test
+    public void entityAcknowledgeCommentAction() throws Exception {
+        assertThat(slack.methods(ValidToken).entityAcknowledgeCommentAction(r -> r
+                .triggerId("1234567890123.1234567890123.abcdef01234567890abcdef012345689")
+                .comment(EntityComment.builder()
+                        .id("comment-identifier-002")
+                        .sender(EntityMetadata.EntityPayload.User.builder().userId("U123456789").build())
+                        .timestamp(1741164358)
+                        .comment(EntityComment.Content.builder().value("Plain text comment").format("markdown").build())
+                        .build())).isOk(), is(true));
+    }
+
+    @Test
+    public void entityAcknowledgeCommentAction_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).entityAcknowledgeCommentAction(r -> r
+                .triggerId("1234567890123.1234567890123.abcdef01234567890abcdef012345689")
+                .error("The comment could not be saved")).get().isOk(), is(true));
+    }
+
+    @Test
     public void entityPresentComments() throws Exception {
         assertThat(slack.methods(ValidToken).entityPresentComments(r -> r
                 .comments(Arrays.asList(EntityComment.builder()
