@@ -272,6 +272,7 @@
   "oauth.token": "Tier4",
   "oauth.v2.access": "Tier4",
   "oauth.v2.exchange": "Tier3",
+  "oauth.v2.user.access": "Tier4",
   "openid.connect.token": "Tier4",
   "openid.connect.userInfo": "Tier3",
   "pins.add": "Tier2",

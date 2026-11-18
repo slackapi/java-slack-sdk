@@ -648,6 +648,7 @@ public class Methods {
     public static final String OAUTH_ACCESS = "oauth.access";
     public static final String OAUTH_V2_ACCESS = "oauth.v2.access";
     public static final String OAUTH_V2_EXCHANGE = "oauth.v2.exchange";
+    public static final String OAUTH_V2_USER_ACCESS = "oauth.v2.user.access";
     public static final String OAUTH_TOKEN = "oauth.token";
 
     // ------------------------------
