@@ -1,8 +1,8 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
-import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
 import com.slack.api.methods.response.apps.icon.AppsIconSetResponse;
 import com.slack.api.methods.response.apps.manifest.AppsManifestCreateResponse;
@@ -73,42 +73,30 @@ public class apps_icon_Test {
             file.deleteOnExit();
             Files.write(file.toPath(), icon.toByteArray());
 
-            AppsIconSetResponse fileData = setIcon(client, AppsIconSetRequest.builder()
+            // Icon changes are rate limited for a short time, and the async client waits out Retry-After
+            AsyncMethodsClient asyncClient = slack.methodsAsync(maybeToken.get().getAccessToken());
+
+            AppsIconSetResponse fileData = asyncClient.appsIconSet(AppsIconSetRequest.builder()
                     .appId(appId)
                     .fileData(icon.toByteArray())
-                    .build());
+                    .build()).get();
             assertThat(fileData.getError(), is(nullValue()));
 
-            AppsIconSetResponse fromFile = setIcon(client, AppsIconSetRequest.builder()
+            AppsIconSetResponse fromFile = asyncClient.appsIconSet(AppsIconSetRequest.builder()
                     .appId(appId)
                     .file(file)
-                    .build());
+                    .build()).get();
             assertThat(fromFile.getError(), is(nullValue()));
 
             // A publicly hosted 560x560px PNG
-            AppsIconSetResponse fromUrl = setIcon(client, AppsIconSetRequest.builder()
+            AppsIconSetResponse fromUrl = asyncClient.appsIconSet(AppsIconSetRequest.builder()
                     .appId(appId)
                     .url("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
-                    .build());
+                    .build()).get();
             assertThat(fromUrl.getError(), is(nullValue()));
         } finally {
             AppsManifestDeleteResponse deletion = client.appsManifestDelete(r -> r.appId(appId));
             assertThat(deletion.getError(), is(nullValue()));
-        }
-    }
-
-    // Icon changes are rate limited for a short time, so wait out Retry-After between them
-    static AppsIconSetResponse setIcon(MethodsClient client, AppsIconSetRequest request) throws Exception {
-        while (true) {
-            try {
-                return client.appsIconSet(request);
-            } catch (SlackApiException e) {
-                if (e.getResponse().code() != 429) {
-                    throw e;
-                }
-                String retryAfter = e.getResponse().header("Retry-After");
-                Thread.sleep((retryAfter == null ? 60 : Long.parseLong(retryAfter)) * 1000L);
-            }
         }
     }
 }
