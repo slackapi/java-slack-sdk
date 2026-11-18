@@ -271,6 +271,7 @@
   "oauth.access": "Tier4",
   "oauth.token": "Tier4",
   "oauth.v2.access": "Tier4",
+  "oauth.v2.beginShortTokenRotation": "Tier2",
   "oauth.v2.exchange": "Tier3",
   "openid.connect.token": "Tier4",
   "openid.connect.userInfo": "Tier3",

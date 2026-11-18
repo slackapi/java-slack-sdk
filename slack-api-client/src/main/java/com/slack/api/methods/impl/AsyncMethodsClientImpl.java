@@ -112,6 +112,7 @@ import com.slack.api.methods.request.migration.MigrationExchangeRequest;
 import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
+import com.slack.api.methods.request.oauth.OAuthV2BeginShortTokenRotationRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectTokenRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
@@ -280,6 +281,7 @@ import com.slack.api.methods.response.migration.MigrationExchangeResponse;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.response.oauth.OAuthV2BeginShortTokenRotationResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
@@ -2625,6 +2627,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<OAuthV2AccessResponse> oauthV2Access(RequestConfigurator<OAuthV2AccessRequest.OAuthV2AccessRequestBuilder> req) {
         return oauthV2Access(req.configure(OAuthV2AccessRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<OAuthV2BeginShortTokenRotationResponse> oauthV2BeginShortTokenRotation(OAuthV2BeginShortTokenRotationRequest req) {
+        return executor.execute(OAUTH_V2_BEGIN_SHORT_TOKEN_ROTATION, toMap(req), () -> methods.oauthV2BeginShortTokenRotation(req));
+    }
+
+    @Override
+    public CompletableFuture<OAuthV2BeginShortTokenRotationResponse> oauthV2BeginShortTokenRotation(RequestConfigurator<OAuthV2BeginShortTokenRotationRequest.OAuthV2BeginShortTokenRotationRequestBuilder> req) {
+        return oauthV2BeginShortTokenRotation(req.configure(OAuthV2BeginShortTokenRotationRequest.builder()).build());
     }
 
     @Override

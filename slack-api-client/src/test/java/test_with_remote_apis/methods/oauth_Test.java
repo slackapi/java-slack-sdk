@@ -5,8 +5,10 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.response.oauth.OAuthV2BeginShortTokenRotationResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
 import com.slack.api.model.ErrorResponseMetadata;
+import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
@@ -74,6 +76,19 @@ public class oauth_Test {
                 .clientSecret("XXXXX")
         );
         assertThat(response.getError(), is(not("invalid_arguments")));
+        assertThat(response.isOk(), is(false));
+    }
+
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+
+    @Test
+    public void beginShortTokenRotation() throws IOException, SlackApiException {
+        // The example client_id from the docs is not the app this token was issued to
+        OAuthV2BeginShortTokenRotationResponse response = slack.methods().oauthV2BeginShortTokenRotation(r -> r
+                .clientId("4123121235.9872358710")
+                .clientSecret("e1b9e11dfcd19c1982d5de12921e17e8c")
+                .token(userToken));
+        assertThat(response.getError(), is("invalid_client_id"));
         assertThat(response.isOk(), is(false));
     }
 

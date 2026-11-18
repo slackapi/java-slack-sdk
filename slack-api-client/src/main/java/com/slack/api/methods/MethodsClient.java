@@ -121,6 +121,7 @@ import com.slack.api.methods.request.mpim.*;
 import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
+import com.slack.api.methods.request.oauth.OAuthV2BeginShortTokenRotationRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectTokenRequest;
 import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
@@ -301,6 +302,7 @@ import com.slack.api.methods.response.mpim.*;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.response.oauth.OAuthV2BeginShortTokenRotationResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
@@ -2591,6 +2593,13 @@ public interface MethodsClient {
     OAuthV2AccessResponse oauthV2Access(OAuthV2AccessRequest req) throws IOException, SlackApiException;
 
     OAuthV2AccessResponse oauthV2Access(RequestConfigurator<OAuthV2AccessRequest.OAuthV2AccessRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    OAuthV2BeginShortTokenRotationResponse oauthV2BeginShortTokenRotation(OAuthV2BeginShortTokenRotationRequest req)
+            throws IOException, SlackApiException;
+
+    OAuthV2BeginShortTokenRotationResponse oauthV2BeginShortTokenRotation(
+            RequestConfigurator<OAuthV2BeginShortTokenRotationRequest.OAuthV2BeginShortTokenRotationRequestBuilder> req)
             throws IOException, SlackApiException;
 
     OAuthV2ExchangeResponse oauthV2Exchange(OAuthV2ExchangeRequest req) throws IOException, SlackApiException;

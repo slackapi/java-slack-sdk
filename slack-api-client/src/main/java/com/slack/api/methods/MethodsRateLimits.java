@@ -426,6 +426,7 @@ public class MethodsRateLimits {
         setRateLimitTier(OAUTH_ACCESS, Tier4);
         setRateLimitTier(OAUTH_TOKEN, Tier4);
         setRateLimitTier(OAUTH_V2_ACCESS, Tier4);
+        setRateLimitTier(OAUTH_V2_BEGIN_SHORT_TOKEN_ROTATION, Tier2);
         setRateLimitTier(OAUTH_V2_EXCHANGE, Tier3);
 
         setRateLimitTier(OPENID_CONNECT_TOKEN, Tier4);
