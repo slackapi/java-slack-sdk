@@ -452,6 +452,12 @@ public class Actions {
         public static final String mcp_slack_extend_developer_sandbox_tool_called = "mcp_slack_extend_developer_sandbox_tool_called";
         public static final String mcp_slack_list_developer_skills_tool_called = "mcp_slack_list_developer_skills_tool_called";
         public static final String mcp_slack_get_developer_skill_tool_called = "mcp_slack_get_developer_skill_tool_called";
+        public static final String mcp_slack_unarchive_developer_sandbox_tool_called = "mcp_slack_unarchive_developer_sandbox_tool_called";
+        public static final String pref_native_dlp_admin_notification_frequency = "pref.native_dlp_admin_notification_frequency";
+        public static final String pref_slackbot_ai_mcp_server_instructions_changed = "pref.slackbot_ai_mcp_server_instructions_changed";
+        public static final String mcp_slack_pin_message_tool_called = "mcp_slack_pin_message_tool_called";
+        public static final String mcp_slack_unpin_message_tool_called = "mcp_slack_unpin_message_tool_called";
+        public static final String mcp_slack_list_pins_tool_called = "mcp_slack_list_pins_tool_called";
     }
 
     public static class User {
