@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
+import com.slack.api.methods.response.apps.managed.permissions.AppsManagedPermissionsSetResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.model.block.composition.OptionObject;
@@ -128,6 +129,24 @@ public class AppsTest {
         assertThat(slack.methodsAsync(ValidToken).appsIconSet(r -> r
                 .appId("A12345678")
                 .url("https://www.example.com/icon.png")).get().isOk(), is(true));
+    }
+
+    @Test
+    public void appsManagedPermissionsSet() throws Exception {
+        AppsManagedPermissionsSetResponse response = slack.methods(ValidToken).appsManagedPermissionsSet(r -> r
+                .appId("A12345678")
+                .permissions("everyone"));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getPermissionType(), is(""));
+        assertThat(response.getChannelRestrictionMode(), is(""));
+        assertThat(response.getUserIds(), is(Arrays.asList("U00000000")));
+    }
+
+    @Test
+    public void appsManagedPermissionsSet_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsManagedPermissionsSet(r -> r
+                .appId("A12345678")
+                .permissions("app_owner")).get().isOk(), is(true));
     }
 
 }

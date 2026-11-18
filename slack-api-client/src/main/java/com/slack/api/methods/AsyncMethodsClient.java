@@ -61,6 +61,7 @@ import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
+import com.slack.api.methods.request.apps.managed.permissions.AppsManagedPermissionsSetRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
@@ -230,6 +231,7 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.apps.icon.AppsIconSetResponse;
+import com.slack.api.methods.response.apps.managed.permissions.AppsManagedPermissionsSetResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
@@ -997,6 +999,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsIconSetResponse> appsIconSet(AppsIconSetRequest req);
 
     CompletableFuture<AppsIconSetResponse> appsIconSet(RequestConfigurator<AppsIconSetRequest.AppsIconSetRequestBuilder> req);
+
+    // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    CompletableFuture<AppsManagedPermissionsSetResponse> appsManagedPermissionsSet(AppsManagedPermissionsSetRequest req);
+
+    CompletableFuture<AppsManagedPermissionsSetResponse> appsManagedPermissionsSet(RequestConfigurator<AppsManagedPermissionsSetRequest.AppsManagedPermissionsSetRequestBuilder> req);
 
     // ------------------------------
     // apps.manifest
