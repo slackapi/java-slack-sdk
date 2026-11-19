@@ -55,17 +55,17 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
             return result;
         } else if (json.isJsonObject()) {
             JsonObject obj = json.getAsJsonObject();
-            if (!obj.has("credential_source") || !hasStringCredentials(obj)) {
-                result.setRawValue(json);
-                return result;
-            }
-            if (failOnUnknownProperties) {
+            if (failOnUnknownProperties && obj.has("credential_source")) {
                 for (String name : obj.keySet()) {
                     if (!CREDENTIAL_PROPERTY_NAMES.contains(name)) {
                         String message = "An unknown property (" + name + ") is detected. " + REPORT_THIS;
                         throw new JsonParseException(message);
                     }
                 }
+            }
+            if (!isCredential(obj)) {
+                result.setRawValue(json);
+                return result;
             }
             result.setCredentialSource(getString(obj, "credential_source"));
             result.setExternalTokenId(getString(obj, "external_token_id"));
@@ -75,11 +75,16 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
         return result;
     }
 
-    private static boolean hasStringCredentials(JsonObject obj) {
-        for (String name : CREDENTIAL_PROPERTY_NAMES) {
+    private static boolean isCredential(JsonObject obj) {
+        if (obj.keySet().isEmpty()) {
+            return false;
+        }
+        for (String name : obj.keySet()) {
             JsonElement value = obj.get(name);
-            if (value != null && !value.isJsonNull()
-                    && !(value.isJsonPrimitive() && value.getAsJsonPrimitive().isString())) {
+            if (!CREDENTIAL_PROPERTY_NAMES.contains(name)) {
+                return false;
+            }
+            if (!value.isJsonNull() && !(value.isJsonPrimitive() && value.getAsJsonPrimitive().isString())) {
                 return false;
             }
         }

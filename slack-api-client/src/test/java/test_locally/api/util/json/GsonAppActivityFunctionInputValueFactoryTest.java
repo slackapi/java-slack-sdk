@@ -76,8 +76,17 @@ public class GsonAppActivityFunctionInputValueFactoryTest {
     @Test
     public void deserialize_unknown_key_lenient() {
         AppActivity.FunctionInputValue value = parse(lenientGson(), unknown_key_value);
-        assertThat(value.getCredentialSource(), is("DEVELOPER"));
-        assertThat(value.getRawValue(), is(nullValue()));
+        assertThat(value.getCredentialSource(), is(nullValue()));
+        assertThat(value.getRawValue().toString(), is("{\"credential_source\":\"DEVELOPER\",\"unknown\":\"value\"}"));
+    }
+
+    @Test
+    public void round_trip_partial_credential() {
+        AppActivity.FunctionInputValue value = new AppActivity.FunctionInputValue();
+        value.setExternalTokenId("Et12345ABCDE");
+        AppActivity.FunctionInputValue parsed = parse(strictGson(), lenientGson().toJson(value));
+        assertThat(parsed.getExternalTokenId(), is("Et12345ABCDE"));
+        assertThat(parsed.getRawValue(), is(nullValue()));
     }
 
     @Test
