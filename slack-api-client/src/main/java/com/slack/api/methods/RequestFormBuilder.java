@@ -1190,9 +1190,6 @@ public class RequestFormBuilder {
         setIfNotNull("sort_dir", req.getSortDir(), form);
         setIfNotNull("include_message_blocks", req.getIncludeMessageBlocks(), form);
         setIfNotNull("highlight", req.getHighlight(), form);
-        if (req.getKeywordsClauses() != null) {
-            setIfNotNull("keywords_clauses", GSON.toJson(req.getKeywordsClauses()), form);
-        }
         if (req.getTermClauses() != null) {
             setIfNotNull("term_clauses", GSON.toJson(req.getTermClauses()), form);
         }

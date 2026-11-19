@@ -193,15 +193,6 @@ public class RequestFormBuilderTest {
                 .sortDir("desc")
                 .includeMessageBlocks(true)
                 .highlight(false)
-                .keywordsClauses(new ArrayList<List<String>>() {{
-                    add(new ArrayList<String>() {{
-                        add("project");
-                        add("gizmo");
-                    }});
-                    add(new ArrayList<String>() {{
-                        add("roadmap");
-                    }});
-                }})
                 .termClauses(new ArrayList<String>() {{
                     add("launch");
                     add("milestone");
@@ -215,7 +206,7 @@ public class RequestFormBuilderTest {
         FormBody form = RequestFormBuilder.toForm(request).build();
 
         // THEN
-        assertThat(form.size(), is(21));
+        assertThat(form.size(), is(20));
         assertThat(form.name(0), is("query"));
         assertThat(form.value(0), is("project gizmo"));
         assertThat(form.name(1), is("action_token"));
@@ -248,16 +239,14 @@ public class RequestFormBuilderTest {
         assertThat(form.value(14), is("1"));
         assertThat(form.name(15), is("highlight"));
         assertThat(form.value(15), is("0"));
-        assertThat(form.name(16), is("keywords_clauses"));
-        assertThat(form.value(16), is("[[\"project\",\"gizmo\"],[\"roadmap\"]]"));
-        assertThat(form.name(17), is("term_clauses"));
-        assertThat(form.value(17), is("[\"launch\",\"milestone\"]"));
-        assertThat(form.name(18), is("modifiers"));
-        assertThat(form.value(18), is("from:@sergei"));
-        assertThat(form.name(19), is("include_archived_channels"));
-        assertThat(form.value(19), is("1"));
-        assertThat(form.name(20), is("disable_semantic_search"));
-        assertThat(form.value(20), is("0"));
+        assertThat(form.name(16), is("term_clauses"));
+        assertThat(form.value(16), is("[\"launch\",\"milestone\"]"));
+        assertThat(form.name(17), is("modifiers"));
+        assertThat(form.value(17), is("from:@sergei"));
+        assertThat(form.name(18), is("include_archived_channels"));
+        assertThat(form.value(18), is("1"));
+        assertThat(form.name(19), is("disable_semantic_search"));
+        assertThat(form.value(19), is("0"));
     }
 
     @Test

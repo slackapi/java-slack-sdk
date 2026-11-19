@@ -96,11 +96,6 @@ public class AssistantSearchContextRequest implements SlackApiRequest {
     private Boolean highlight;
 
     /**
-     * A list of keyword clauses used to match search results.
-     */
-    private List<List<String>> keywordsClauses;
-
-    /**
      * A list of term clauses. Search results returned will match every term clause specified.
      */
     private List<String> termClauses;
