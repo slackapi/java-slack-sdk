@@ -458,6 +458,10 @@ public class Actions {
         public static final String mcp_slack_pin_message_tool_called = "mcp_slack_pin_message_tool_called";
         public static final String mcp_slack_unpin_message_tool_called = "mcp_slack_unpin_message_tool_called";
         public static final String mcp_slack_list_pins_tool_called = "mcp_slack_list_pins_tool_called";
+        public static final String mcp_slack_delete_developer_sandbox_tool_called = "mcp_slack_delete_developer_sandbox_tool_called";
+        public static final String mcp_slack_search_developer_samples_tool_called = "mcp_slack_search_developer_samples_tool_called";
+        public static final String slackbot_feedback_listed = "slackbot_feedback_listed";
+        public static final String slackbot_traces_listed = "slackbot_traces_listed";
     }
 
     public static class User {

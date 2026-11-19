@@ -484,6 +484,7 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> oldBotScopes; // app_approved
         private String previousPermissionType; // app_mcp_server_acl_changed
         private String serverId; // app_mcp_server_acl_changed
+        private String managerAppId; // child_app_manifest_created etc.
     }
 
     @Data
