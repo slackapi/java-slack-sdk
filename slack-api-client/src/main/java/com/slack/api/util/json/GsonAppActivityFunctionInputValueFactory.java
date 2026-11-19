@@ -5,6 +5,7 @@ import com.slack.api.model.admin.AppActivity;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,10 +35,30 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
             throws JsonParseException {
         AppActivity.FunctionInputValue result = new AppActivity.FunctionInputValue();
         if (json.isJsonPrimitive()) {
-            result.setStringValue(json.getAsString());
+            JsonPrimitive primitive = json.getAsJsonPrimitive();
+            if (primitive.isString()) {
+                result.setStringValue(primitive.getAsString());
+            } else {
+                result.setRawValue(context.deserialize(json, Object.class));
+            }
+            return result;
+        } else if (json.isJsonArray()) {
+            List<String> values = new ArrayList<>();
+            for (JsonElement elem : json.getAsJsonArray()) {
+                if (!elem.isJsonPrimitive() || !elem.getAsJsonPrimitive().isString()) {
+                    result.setRawValue(context.deserialize(json, Object.class));
+                    return result;
+                }
+                values.add(elem.getAsString());
+            }
+            result.setStringValues(values);
             return result;
         } else if (json.isJsonObject()) {
             JsonObject obj = json.getAsJsonObject();
+            if (!obj.has("credential_source")) {
+                result.setRawValue(context.deserialize(json, Object.class));
+                return result;
+            }
             if (failOnUnknownProperties) {
                 for (String name : obj.keySet()) {
                     if (!CREDENTIAL_PROPERTY_NAMES.contains(name)) {
@@ -71,6 +92,10 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
     public JsonElement serialize(AppActivity.FunctionInputValue src, Type typeOfSrc, JsonSerializationContext context) {
         if (src.getStringValue() != null) {
             return new JsonPrimitive(src.getStringValue());
+        } else if (src.getStringValues() != null) {
+            return context.serialize(src.getStringValues());
+        } else if (src.getRawValue() != null) {
+            return context.serialize(src.getRawValue());
         } else if (src.getCredentialSource() != null
                 || src.getExternalTokenId() != null
                 || src.getUserContextSource() != null) {

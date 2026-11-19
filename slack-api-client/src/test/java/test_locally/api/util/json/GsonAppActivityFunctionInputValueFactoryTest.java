@@ -7,7 +7,10 @@ import com.slack.api.model.admin.AppActivity;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GsonAppActivityFunctionInputValueFactoryTest {
@@ -45,9 +48,11 @@ public class GsonAppActivityFunctionInputValueFactoryTest {
         AppActivity.FunctionInputValue value = parse(strictGson(), string_value);
         assertThat(value.toString(), is("AppActivity.FunctionInputValue(" +
                 "stringValue=https://www.example.com/, " +
+                "stringValues=null, " +
                 "credentialSource=null, " +
                 "externalTokenId=null, " +
-                "userContextSource=null)"));
+                "userContextSource=null, " +
+                "rawValue=null)"));
     }
 
     @Test
@@ -55,14 +60,48 @@ public class GsonAppActivityFunctionInputValueFactoryTest {
         AppActivity.FunctionInputValue value = parse(strictGson(), credential_value);
         assertThat(value.toString(), is("AppActivity.FunctionInputValue(" +
                 "stringValue=null, " +
+                "stringValues=null, " +
                 "credentialSource=END_USER, " +
                 "externalTokenId=Et12345ABCDE, " +
-                "userContextSource=)"));
+                "userContextSource=, " +
+                "rawValue=null)"));
     }
 
     @Test(expected = JsonParseException.class)
     public void deserialize_unknown_key_strict() {
         parse(strictGson(), unknown_key_value);
+    }
+
+    @Test
+    public void deserialize_unknown_key_lenient() {
+        AppActivity.FunctionInputValue value = parse(lenientGson(), unknown_key_value);
+        assertThat(value.getCredentialSource(), is("DEVELOPER"));
+        assertThat(value.getRawValue(), is(nullValue()));
+    }
+
+    @Test
+    public void deserialize_array() {
+        AppActivity.FunctionInputValue value = parse(lenientGson(), "[\"U12345\", \"U67890\"]");
+        assertThat(value.getStringValues(), is(Arrays.asList("U12345", "U67890")));
+    }
+
+    @Test
+    public void deserialize_boolean() {
+        AppActivity.FunctionInputValue value = parse(lenientGson(), "true");
+        assertThat(value.getStringValue(), is(nullValue()));
+        assertThat(value.getRawValue(), is(true));
+    }
+
+    @Test
+    public void deserialize_object() {
+        AppActivity.FunctionInputValue value = parse(lenientGson(), "{\"user_id\": \"U12345\"}");
+        assertThat(value.getCredentialSource(), is(nullValue()));
+        assertThat(value.getRawValue().toString(), is("{user_id=U12345}"));
+    }
+
+    @Test
+    public void serialize_empty() {
+        assertThat(lenientGson().toJson(new AppActivity.FunctionInputValue()), is("null"));
     }
 
     @Test

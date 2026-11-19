@@ -102,9 +102,12 @@ public class AppActivity {
     @Data
     public static class FunctionInputValue {
         private String stringValue;
+        private List<String> stringValues;
         private String credentialSource;
         private String externalTokenId;
         private String userContextSource;
+        // any other value, such as a boolean, a number, or an object
+        private Object rawValue;
     }
 
     @Data
