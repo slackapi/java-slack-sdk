@@ -55,7 +55,7 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
             return result;
         } else if (json.isJsonObject()) {
             JsonObject obj = json.getAsJsonObject();
-            if (!obj.has("credential_source")) {
+            if (!obj.has("credential_source") || !hasStringCredentials(obj)) {
                 result.setRawValue(context.deserialize(json, Object.class));
                 return result;
             }
@@ -73,6 +73,17 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
             return result;
         }
         return result;
+    }
+
+    private static boolean hasStringCredentials(JsonObject obj) {
+        for (String name : CREDENTIAL_PROPERTY_NAMES) {
+            JsonElement value = obj.get(name);
+            if (value != null && !value.isJsonNull()
+                    && !(value.isJsonPrimitive() && value.getAsJsonPrimitive().isString())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static String getString(JsonObject obj, String name) {

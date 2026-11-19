@@ -86,6 +86,20 @@ public class GsonAppActivityFunctionInputValueFactoryTest {
     }
 
     @Test
+    public void deserialize_mixed_array() {
+        AppActivity.FunctionInputValue value = parse(lenientGson(), "[\"U12345\", 1]");
+        assertThat(value.getStringValues(), is(nullValue()));
+        assertThat(value.getRawValue().toString(), is("[U12345, 1.0]"));
+    }
+
+    @Test
+    public void deserialize_credential_object_value() {
+        AppActivity.FunctionInputValue value = parse(lenientGson(), "{\"credential_source\": {\"type\": \"END_USER\"}}");
+        assertThat(value.getCredentialSource(), is(nullValue()));
+        assertThat(value.getRawValue().toString(), is("{credential_source={type=END_USER}}"));
+    }
+
+    @Test
     public void deserialize_boolean() {
         AppActivity.FunctionInputValue value = parse(lenientGson(), "true");
         assertThat(value.getStringValue(), is(nullValue()));
@@ -109,6 +123,20 @@ public class GsonAppActivityFunctionInputValueFactoryTest {
         AppActivity.FunctionInputValue value = new AppActivity.FunctionInputValue();
         value.setStringValue("https://www.example.com/");
         assertThat(lenientGson().toJson(value), is("\"https://www.example.com/\""));
+    }
+
+    @Test
+    public void serialize_string_values() {
+        AppActivity.FunctionInputValue value = new AppActivity.FunctionInputValue();
+        value.setStringValues(Arrays.asList("U12345", "U67890"));
+        assertThat(lenientGson().toJson(value), is("[\"U12345\",\"U67890\"]"));
+    }
+
+    @Test
+    public void serialize_raw_value() {
+        AppActivity.FunctionInputValue value = new AppActivity.FunctionInputValue();
+        value.setRawValue(true);
+        assertThat(lenientGson().toJson(value), is("true"));
     }
 
     @Test
