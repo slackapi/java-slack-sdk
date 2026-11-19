@@ -446,7 +446,11 @@
       "pref.slackbot_ai_mcp_server_instructions_changed",
       "mcp_slack_pin_message_tool_called",
       "mcp_slack_unpin_message_tool_called",
-      "mcp_slack_list_pins_tool_called"
+      "mcp_slack_list_pins_tool_called",
+      "mcp_slack_delete_developer_sandbox_tool_called",
+      "mcp_slack_search_developer_samples_tool_called",
+      "slackbot_feedback_listed",
+      "slackbot_traces_listed"
     ],
     "user": [
       "custom_tos_accepted",
