@@ -582,7 +582,8 @@ public class JsonDataRecorder {
                 for (String key : oldKeys) {
                     label.remove(key);
                 }
-                label.add("https://www.example.com/", new JsonPrimitive(""));
+                label.add("0000000000", new JsonPrimitive(""));
+                label.add("0000000000_", new JsonPrimitive(""));
                 return;
             }
             if (name != null && name.equals("function_inputs") && path.equals("/api/admin.apps.activities.list")) {
