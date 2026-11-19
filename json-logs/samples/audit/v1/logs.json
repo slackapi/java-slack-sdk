@@ -512,24 +512,8 @@
         "new_bot_scopes": [],
         "old_bot_scopes": [],
         "previous_permission_type": "",
-        "server_id": ""
-      }
-    },
-    {
-      "details": {
-        "action": {
-          "resolution": {
-            "value": ""
-          },
-          "notify": [
-            {
-              "entity_type": "",
-              "values": [
-                ""
-              ]
-            }
-          ]
-        }
+        "server_id": "",
+        "manager_app_id": ""
       }
     },
     {
