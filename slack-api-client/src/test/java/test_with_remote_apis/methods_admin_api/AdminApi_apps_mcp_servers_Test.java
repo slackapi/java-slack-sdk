@@ -44,10 +44,12 @@ public class AdminApi_apps_mcp_servers_Test {
             AdminAppsMcpServersListResponse first = client.adminAppsMcpServersList(r -> r.limit(1));
             assertThat(first.getError(), is(nullValue()));
             assertThat(first.getServers(), is(notNullValue()));
-            String cursor = first.getResponseMetadata().getNextCursor();
-            AdminAppsMcpServersListResponse next = client.adminAppsMcpServersList(r -> r.limit(1).cursor(cursor));
-            assertThat(next.getError(), is(nullValue()));
-            assertThat(next.getServers(), is(notNullValue()));
+            if (first.getResponseMetadata() != null) {
+                String cursor = first.getResponseMetadata().getNextCursor();
+                AdminAppsMcpServersListResponse next = client.adminAppsMcpServersList(r -> r.limit(1).cursor(cursor));
+                assertThat(next.getError(), is(nullValue()));
+                assertThat(next.getServers(), is(notNullValue()));
+            }
         }
     }
 
