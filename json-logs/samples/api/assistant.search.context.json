@@ -48,6 +48,7 @@
         "uploader_user_id": "",
         "author_user_id": "",
         "author_name": "",
+        "author_email": "",
         "team_id": "",
         "file_id": "",
         "date_created": 123,

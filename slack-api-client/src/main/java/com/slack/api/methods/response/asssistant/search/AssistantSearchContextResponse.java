@@ -67,6 +67,7 @@ public class AssistantSearchContextResponse implements SlackApiTextResponse {
         private String uploaderUserId;
         private String authorUserId;
         private String authorName;
+        private String authorEmail;
         private String teamId;
         private String fileId;
         private Integer dateCreated;
