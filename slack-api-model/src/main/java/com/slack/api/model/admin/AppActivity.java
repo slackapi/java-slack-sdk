@@ -1,5 +1,6 @@
 package com.slack.api.model.admin;
 
+import com.google.gson.JsonElement;
 import lombok.Data;
 
 import java.util.List;
@@ -106,7 +107,7 @@ public class AppActivity {
         private String credentialSource;
         private String externalTokenId;
         private String userContextSource;
-        private Object rawValue;
+        private JsonElement rawValue;
     }
 
     @Data

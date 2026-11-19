@@ -39,14 +39,14 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
             if (primitive.isString()) {
                 result.setStringValue(primitive.getAsString());
             } else {
-                result.setRawValue(context.deserialize(json, Object.class));
+                result.setRawValue(json);
             }
             return result;
         } else if (json.isJsonArray()) {
             List<String> values = new ArrayList<>();
             for (JsonElement elem : json.getAsJsonArray()) {
                 if (!elem.isJsonPrimitive() || !elem.getAsJsonPrimitive().isString()) {
-                    result.setRawValue(context.deserialize(json, Object.class));
+                    result.setRawValue(json);
                     return result;
                 }
                 values.add(elem.getAsString());
@@ -56,7 +56,7 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
         } else if (json.isJsonObject()) {
             JsonObject obj = json.getAsJsonObject();
             if (!obj.has("credential_source") || !hasStringCredentials(obj)) {
-                result.setRawValue(context.deserialize(json, Object.class));
+                result.setRawValue(json);
                 return result;
             }
             if (failOnUnknownProperties) {
@@ -101,7 +101,7 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
         } else if (src.getStringValues() != null) {
             return context.serialize(src.getStringValues());
         } else if (src.getRawValue() != null) {
-            return context.serialize(src.getRawValue());
+            return src.getRawValue();
         } else if (src.getCredentialSource() != null
                 || src.getExternalTokenId() != null
                 || src.getUserContextSource() != null) {

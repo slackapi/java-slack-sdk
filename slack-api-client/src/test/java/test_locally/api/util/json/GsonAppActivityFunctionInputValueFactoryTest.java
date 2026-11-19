@@ -2,6 +2,7 @@ package test_locally.api.util.json;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
 import com.slack.api.SlackConfig;
 import com.slack.api.model.admin.AppActivity;
 import com.slack.api.util.json.GsonFactory;
@@ -89,28 +90,34 @@ public class GsonAppActivityFunctionInputValueFactoryTest {
     public void deserialize_mixed_array() {
         AppActivity.FunctionInputValue value = parse(lenientGson(), "[\"U12345\", 1]");
         assertThat(value.getStringValues(), is(nullValue()));
-        assertThat(value.getRawValue().toString(), is("[U12345, 1.0]"));
+        assertThat(value.getRawValue().toString(), is("[\"U12345\",1]"));
     }
 
     @Test
     public void deserialize_credential_object_value() {
         AppActivity.FunctionInputValue value = parse(lenientGson(), "{\"credential_source\": {\"type\": \"END_USER\"}}");
         assertThat(value.getCredentialSource(), is(nullValue()));
-        assertThat(value.getRawValue().toString(), is("{credential_source={type=END_USER}}"));
+        assertThat(value.getRawValue().toString(), is("{\"credential_source\":{\"type\":\"END_USER\"}}"));
     }
 
     @Test
     public void deserialize_boolean() {
         AppActivity.FunctionInputValue value = parse(lenientGson(), "true");
         assertThat(value.getStringValue(), is(nullValue()));
-        assertThat(value.getRawValue(), is(true));
+        assertThat(value.getRawValue().getAsBoolean(), is(true));
+    }
+
+    @Test
+    public void deserialize_number() {
+        AppActivity.FunctionInputValue value = parse(lenientGson(), "9007199254740993");
+        assertThat(value.getRawValue().getAsLong(), is(9007199254740993L));
     }
 
     @Test
     public void deserialize_object() {
         AppActivity.FunctionInputValue value = parse(lenientGson(), "{\"user_id\": \"U12345\"}");
         assertThat(value.getCredentialSource(), is(nullValue()));
-        assertThat(value.getRawValue().toString(), is("{user_id=U12345}"));
+        assertThat(value.getRawValue().toString(), is("{\"user_id\":\"U12345\"}"));
     }
 
     @Test
@@ -135,7 +142,7 @@ public class GsonAppActivityFunctionInputValueFactoryTest {
     @Test
     public void serialize_raw_value() {
         AppActivity.FunctionInputValue value = new AppActivity.FunctionInputValue();
-        value.setRawValue(true);
+        value.setRawValue(new JsonPrimitive(true));
         assertThat(lenientGson().toJson(value), is("true"));
     }
 
