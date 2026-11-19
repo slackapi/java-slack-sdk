@@ -94,9 +94,19 @@ public class AppActivity {
     @Data
     public static class FunctionInput {
         private Map<String, String> label; // keyed by the value
-        private Object value; // a string, or an object for credential inputs
+        private FunctionInputValue value;
         private Boolean hidden;
         private Boolean locked;
+    }
+
+    @Data
+    public static class FunctionInputValue {
+        // e.g., "https://api.github.com/repos/..." for a string input
+        private String stringValue;
+        // credential inputs
+        private String credentialSource;
+        private String externalTokenId;
+        private String userContextSource;
     }
 
     @Data
