@@ -71,11 +71,6 @@ public class GsonAppActivityFunctionInputValueFactory implements JsonDeserialize
             result.setExternalTokenId(getString(obj, "external_token_id"));
             result.setUserContextSource(getString(obj, "user_context_source"));
             return result;
-        } else {
-            if (failOnUnknownProperties) {
-                String message = "The whole value (" + json + ") is unsupported. " + REPORT_THIS;
-                throw new JsonParseException(message);
-            }
         }
         return result;
     }
