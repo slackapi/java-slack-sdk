@@ -22,9 +22,6 @@ public class DataTableBlock implements LayoutBlock {
     public static final String TYPE = "data_table";
     private final String type = TYPE;
 
-    /**
-     * An array consisting of table rows.
-     */
     @Builder.Default
     private List<List<TableCell>> rows = new ArrayList<>();
 

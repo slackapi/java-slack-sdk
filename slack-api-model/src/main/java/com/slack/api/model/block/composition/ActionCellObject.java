@@ -19,9 +19,6 @@ public class ActionCellObject implements TableCell {
     public static final String TYPE = "action_cell";
     private final String type = TYPE;
 
-    /**
-     * A button element.
-     */
     private ButtonElement element;
 
     /**

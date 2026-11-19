@@ -18,9 +18,6 @@ public class RawNumberObject implements TableCell {
     public static final String TYPE = "raw_number";
     private final String type = TYPE;
 
-    /**
-     * The numeric value.
-     */
     private Double value;
 
     /**
