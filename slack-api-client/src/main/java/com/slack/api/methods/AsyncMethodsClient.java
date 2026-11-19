@@ -66,6 +66,8 @@ import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulk
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -236,6 +238,8 @@ import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBul
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
@@ -1032,6 +1036,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(AppsManifestValidateRequest req);
 
     CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req);
+
+    // ------------------------------
+    // assistant.search
+    // ------------------------------
+
+    CompletableFuture<AssistantSearchContextResponse> assistantSearchContext(AssistantSearchContextRequest req);
+
+    CompletableFuture<AssistantSearchContextResponse> assistantSearchContext(RequestConfigurator<AssistantSearchContextRequest.AssistantSearchContextRequestBuilder> req);
+
+    CompletableFuture<AssistantSearchInfoResponse> assistantSearchInfo(AssistantSearchInfoRequest req);
+
+    CompletableFuture<AssistantSearchInfoResponse> assistantSearchInfo(RequestConfigurator<AssistantSearchInfoRequest.AssistantSearchInfoRequestBuilder> req);
 
     // ------------------------------
     // assistant.threads
