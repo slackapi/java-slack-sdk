@@ -20,7 +20,7 @@ import com.slack.api.Slack;
 import com.slack.api.scim.*;
 
 Slack slack = Slack.getInstance();
-String token = System.getenv("SLACK_ADMIN_ACCESS_TOKN"); // `admin` scope required
+String token = System.getenv("SLACK_ADMIN_ACCESS_TOKEN"); // `admin` scope required
 SCIMClient scim = slack.scim(token);
 ```
 

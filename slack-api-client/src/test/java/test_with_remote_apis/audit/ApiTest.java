@@ -94,7 +94,18 @@ public class ApiTest {
         details.setCanThread(conversationPref);
         entry.setDetails(details);
 
-        logs.setEntries(Arrays.asList(entry));
+        // details.action can also be an object (e.g., app_allowlist_rule_created)
+        LogsResponse.Entry objectActionEntry = new LogsResponse.Entry();
+        LogsResponse.Details objectActionDetails = new LogsResponse.Details();
+        LogsResponse.DetailsAction objectAction = new LogsResponse.DetailsAction();
+        objectAction.setResolution(ObjectInitializer.initProperties(new LogsResponse.AAARuleActionResolution()));
+        LogsResponse.AAARuleActionNotify notify = ObjectInitializer.initProperties(new LogsResponse.AAARuleActionNotify());
+        notify.setValues(Arrays.asList(""));
+        objectAction.setNotify(Arrays.asList(notify));
+        objectActionDetails.setAction(objectAction);
+        objectActionEntry.setDetails(objectActionDetails);
+
+        logs.setEntries(Arrays.asList(entry, objectActionEntry));
 
         SlackConfig slackConfig = new SlackConfig();
         slackConfig.setPrettyResponseLoggingEnabled(true);
@@ -293,6 +304,24 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> legalHoldNames = getAllPublicStaticFieldValues(Actions.LegalHold.class);
+        for (String action : actions.getLegalHold()) {
+            if (!legalHoldNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
+        List<String> slackFirstCrmNames = getAllPublicStaticFieldValues(Actions.SlackFirstCrm.class);
+        for (String action : actions.getSlackFirstCrm()) {
+            if (!slackFirstCrmNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
+        List<String> salesforceMcpServerNames = getAllPublicStaticFieldValues(Actions.SalesforceMcpServer.class);
+        for (String action : actions.getSalesforceMcpServer()) {
+            if (!salesforceMcpServerNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test
@@ -370,6 +399,9 @@ public class ApiTest {
             verifyAllActions(orgAdminUserToken, Actions.AppApprovalAutomationRule.class);
             verifyAllActions(orgAdminUserToken, Actions.SalesElevate.class);
             verifyAllActions(orgAdminUserToken, Actions.NativeDlp.class);
+            verifyAllActions(orgAdminUserToken, Actions.LegalHold.class);
+            verifyAllActions(orgAdminUserToken, Actions.SlackFirstCrm.class);
+            verifyAllActions(orgAdminUserToken, Actions.SalesforceMcpServer.class);
 
             // As all the properties are available in LogsResponse class,
             // we'll re-generate the sample JSON file.
@@ -406,6 +438,7 @@ public class ApiTest {
         }
     }
 
+    @Ignore // pref_who_can_manage_ext_shared_channels audit entries no longer generated
     @Test
     public void getLogs_issue_525()
             throws IOException, AuditApiException {

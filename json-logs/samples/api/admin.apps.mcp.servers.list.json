@@ -1,0 +1,23 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ],
+    "next_cursor": ""
+  },
+  "servers": [
+    {
+      "app_id": "A00000000",
+      "app_name": "",
+      "auth_type": "",
+      "server_id": "",
+      "server_name": "",
+      "url": ""
+    }
+  ]
+}

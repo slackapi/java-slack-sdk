@@ -253,6 +253,8 @@ public class SampleObjects {
             .placeholder(initProperties(PlainTextObject.builder().build()))
             .initialValue(RichTextBlock)
             .dispatchActionConfig(initProperties(DispatchActionConfig.builder().triggerActionsOn(Arrays.asList("")).build()))
+            .minLines(3)
+            .maxLines(20)
             .build());
 
     public static RadioButtonsElement radioButtonsElement = initProperties(RadioButtonsElement.builder()
@@ -464,6 +466,9 @@ public class SampleObjects {
                     .shortcuts(Arrays.asList(initProperties(AppManifest.Shortcut.builder().build())))
                     .slashCommands(Arrays.asList(initProperties(AppManifest.SlashCommand.builder().build())))
                     .unfurlDomains(Arrays.asList(""))
+                    .userConnections(initProperties(AppManifest.UserConnections.builder()
+                            .authHosts(Arrays.asList(""))
+                            .build()))
                     .build()))
             .settings(initProperties(AppManifest.Settings.builder()
                     .allowedIpAddressRanges(Arrays.asList(""))

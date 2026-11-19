@@ -129,6 +129,11 @@ public class MethodsRateLimits {
                 ADMIN_ROLES_ADD_ASSIGNMENTS,
                 ADMIN_ROLES_REMOVE_ASSIGNMENTS,
 
+                ADMIN_SLACKBOT_SKILLS_LIST,
+                ADMIN_SLACKBOT_SKILLS_PUBLISH,
+                ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED,
+                ADMIN_SLACKBOT_SKILLS_UNPUBLISH,
+
                 ADMIN_TEAMS_SETTINGS_SET_DEFAULT_CHANNELS,
                 ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION,
                 ADMIN_TEAMS_SETTINGS_SET_DISCOVERABILITY,
@@ -163,6 +168,10 @@ public class MethodsRateLimits {
 
         // Tier3
         final List<String> adminApiMethods_Tier3 = Arrays.asList(
+                ADMIN_APPS_MCP_SERVERS_LIST,
+                ADMIN_APPS_MCP_SERVERS_PERMISSIONS_LIST,
+                ADMIN_APPS_MCP_SERVERS_PERMISSIONS_SET,
+
                 ADMIN_ROLES_LIST_ASSIGNMENTS,
 
                 ADMIN_TEAMS_ADMINS_LIST,
@@ -223,10 +232,27 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_MANIFEST_VALIDATE, Tier3);
         setRateLimitTier(TOOLING_TOKENS_ROTATE, Tier1); // TODO: change this when the "special" tier is clearly explained in the document
 
+        setRateLimitTier(AGENTS_CONVERSATIONS_ARCHIVE, Tier2);
+        setRateLimitTier(AGENTS_CONVERSATIONS_CREATE, Tier2);
+        setRateLimitTier(AGENTS_CONVERSATIONS_GET_CANVAS, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_LIST_VIEWS, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_REMOVE_VIEW, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_COMMANDS, Tier1);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_PROPERTIES, Tier3);
+        setRateLimitTier(AGENTS_CONVERSATIONS_SET_VIEW, Tier3);
+
+        setRateLimitTier(AGENTS_SESSIONS_RENAME, Tier3);
+        setRateLimitTier(AGENTS_SESSIONS_SET_STATUS, Tier3);
+
         setRateLimitTier(API_TEST, Tier4);
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);
         setRateLimitTier(APPS_UNINSTALL, Tier1);
         setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
+        setRateLimitTier(APPS_ICON_SET, Tier2);
+        setRateLimitTier(APPS_MANAGED_PERMISSIONS_SET, Tier2);
+        setRateLimitTier(APPS_USER_CONNECTION_BULK_UPDATE, Tier2);
+        setRateLimitTier(APPS_USER_CONNECTION_REQUEST_AUTH, Tier2);
         setRateLimitTier(APPS_USER_CONNECTION_UPDATE, Tier2);
 
         setRateLimitTier(ASSISTANT_SEARCH_CONTEXT, SpecialTier_assistant_search_context);
@@ -239,6 +265,8 @@ public class MethodsRateLimits {
         setRateLimitTier(AUTH_REVOKE, Tier3);
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);
         setRateLimitTier(AUTH_TEAMS_LIST, Tier2);
+
+        setRateLimitTier(BLOCKS_VALIDATE, SpecialTier_blocks_validate);
 
         setRateLimitTier(BOOKMARKS_ADD, Tier2);
         setRateLimitTier(BOOKMARKS_EDIT, Tier2);
@@ -259,6 +287,7 @@ public class MethodsRateLimits {
         setRateLimitTier(CANVASES_CREATE, Tier2);
         setRateLimitTier(CANVASES_DELETE, Tier3);
         setRateLimitTier(CANVASES_EDIT, Tier3);
+        setRateLimitTier(CANVASES_GET_CONTENT, Tier3);
         setRateLimitTier(CANVASES_SECTIONS_LOOKUP, Tier3);
         setRateLimitTier(CONVERSATIONS_CANVASES_CREATE, Tier2);
 
@@ -441,6 +470,14 @@ public class MethodsRateLimits {
         setRateLimitTier(SLACKLISTS_ITEMS_LIST, Tier2);
         setRateLimitTier(SLACKLISTS_ITEMS_UPDATE, Tier3);
         setRateLimitTier(SLACKLISTS_UPDATE, Tier2);
+
+        setRateLimitTier(SLACKBOT_SKILLS_CREATE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILLS_DELETE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILLS_INFO, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_ADD, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIBRARY_REMOVE, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_LIST, Tier3);
+        setRateLimitTier(SLACKBOT_SKILLS_UPDATE, Tier3);
 
         setRateLimitTier(STARS_ADD, Tier2);
         setRateLimitTier(STARS_LIST, Tier3);

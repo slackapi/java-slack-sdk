@@ -7,6 +7,9 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -31,6 +34,10 @@ import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsUnpublishRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -43,11 +50,26 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
+import com.slack.api.methods.request.apps.managed.permissions.AppsManagedPermissionsSetRequest;
 import com.slack.api.methods.request.apps.manifest.*;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
 import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
@@ -57,6 +79,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -71,6 +94,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -120,6 +144,13 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryRemoveRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -148,6 +179,9 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
@@ -172,6 +206,10 @@ import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsUnpublishResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -184,11 +222,26 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsArchiveResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsListViewsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsRemoveViewResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCanvasContentResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCommandsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetPropertiesResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.icon.AppsIconSetResponse;
+import com.slack.api.methods.response.apps.managed.permissions.AppsManagedPermissionsSetResponse;
 import com.slack.api.methods.response.apps.manifest.*;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
 import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
@@ -198,6 +251,7 @@ import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitl
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
@@ -212,6 +266,7 @@ import com.slack.api.methods.response.calls.participants.CallsParticipantsRemove
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
 import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.CanvasesGetContentResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
 import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
@@ -261,6 +316,13 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryRemoveResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -429,6 +491,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req) {
         return adminAppsConfigSet(req.configure(AdminAppsConfigSetRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(AdminAppsMcpServersListRequest req) {
+        return executor.execute(ADMIN_APPS_MCP_SERVERS_LIST, toMap(req), () -> methods.adminAppsMcpServersList(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersListResponse> adminAppsMcpServersList(RequestConfigurator<AdminAppsMcpServersListRequest.AdminAppsMcpServersListRequestBuilder> req) {
+        return adminAppsMcpServersList(req.configure(AdminAppsMcpServersListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(AdminAppsMcpServersPermissionsListRequest req) {
+        return executor.execute(ADMIN_APPS_MCP_SERVERS_PERMISSIONS_LIST, toMap(req), () -> methods.adminAppsMcpServersPermissionsList(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersPermissionsListResponse> adminAppsMcpServersPermissionsList(RequestConfigurator<AdminAppsMcpServersPermissionsListRequest.AdminAppsMcpServersPermissionsListRequestBuilder> req) {
+        return adminAppsMcpServersPermissionsList(req.configure(AdminAppsMcpServersPermissionsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersPermissionsSetResponse> adminAppsMcpServersPermissionsSet(AdminAppsMcpServersPermissionsSetRequest req) {
+        return executor.execute(ADMIN_APPS_MCP_SERVERS_PERMISSIONS_SET, toMap(req), () -> methods.adminAppsMcpServersPermissionsSet(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsMcpServersPermissionsSetResponse> adminAppsMcpServersPermissionsSet(RequestConfigurator<AdminAppsMcpServersPermissionsSetRequest.AdminAppsMcpServersPermissionsSetRequestBuilder> req) {
+        return adminAppsMcpServersPermissionsSet(req.configure(AdminAppsMcpServersPermissionsSetRequest.builder()).build());
     }
 
     @Override
@@ -962,6 +1054,46 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminSlackbotSkillsListResponse> adminSlackbotSkillsList(AdminSlackbotSkillsListRequest req) {
+        return executor.execute(ADMIN_SLACKBOT_SKILLS_LIST, toMap(req), () -> methods.adminSlackbotSkillsList(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsListResponse> adminSlackbotSkillsList(RequestConfigurator<AdminSlackbotSkillsListRequest.AdminSlackbotSkillsListRequestBuilder> req) {
+        return adminSlackbotSkillsList(req.configure(AdminSlackbotSkillsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsPublishResponse> adminSlackbotSkillsPublish(AdminSlackbotSkillsPublishRequest req) {
+        return executor.execute(ADMIN_SLACKBOT_SKILLS_PUBLISH, toMap(req), () -> methods.adminSlackbotSkillsPublish(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsPublishResponse> adminSlackbotSkillsPublish(RequestConfigurator<AdminSlackbotSkillsPublishRequest.AdminSlackbotSkillsPublishRequestBuilder> req) {
+        return adminSlackbotSkillsPublish(req.configure(AdminSlackbotSkillsPublishRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsSetAutoEnabledResponse> adminSlackbotSkillsSetAutoEnabled(AdminSlackbotSkillsSetAutoEnabledRequest req) {
+        return executor.execute(ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED, toMap(req), () -> methods.adminSlackbotSkillsSetAutoEnabled(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsSetAutoEnabledResponse> adminSlackbotSkillsSetAutoEnabled(RequestConfigurator<AdminSlackbotSkillsSetAutoEnabledRequest.AdminSlackbotSkillsSetAutoEnabledRequestBuilder> req) {
+        return adminSlackbotSkillsSetAutoEnabled(req.configure(AdminSlackbotSkillsSetAutoEnabledRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsUnpublishResponse> adminSlackbotSkillsUnpublish(AdminSlackbotSkillsUnpublishRequest req) {
+        return executor.execute(ADMIN_SLACKBOT_SKILLS_UNPUBLISH, toMap(req), () -> methods.adminSlackbotSkillsUnpublish(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminSlackbotSkillsUnpublishResponse> adminSlackbotSkillsUnpublish(RequestConfigurator<AdminSlackbotSkillsUnpublishRequest.AdminSlackbotSkillsUnpublishRequestBuilder> req) {
+        return adminSlackbotSkillsUnpublish(req.configure(AdminSlackbotSkillsUnpublishRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminTeamsAdminsListResponse> adminTeamsAdminsList(AdminTeamsAdminsListRequest req) {
         return executor.execute(ADMIN_TEAMS_ADMINS_LIST, toMap(req), () -> methods.adminTeamsAdminsList(req));
     }
@@ -1322,6 +1454,116 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(AgentsConversationsArchiveRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_ARCHIVE, toMap(req), () -> methods.agentsConversationsArchive(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsArchiveResponse> agentsConversationsArchive(RequestConfigurator<AgentsConversationsArchiveRequest.AgentsConversationsArchiveRequestBuilder> req) {
+        return agentsConversationsArchive(req.configure(AgentsConversationsArchiveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(AgentsConversationsCreateRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_CREATE, toMap(req), () -> methods.agentsConversationsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsCreateResponse> agentsConversationsCreate(RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req) {
+        return agentsConversationsCreate(req.configure(AgentsConversationsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_GET_CANVAS, toMap(req), () -> methods.agentsConversationsGetCanvas(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsGetCanvasResponse> agentsConversationsGetCanvas(RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req) {
+        return agentsConversationsGetCanvas(req.configure(AgentsConversationsGetCanvasRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsListViewsResponse> agentsConversationsListViews(AgentsConversationsListViewsRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_LIST_VIEWS, toMap(req), () -> methods.agentsConversationsListViews(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsListViewsResponse> agentsConversationsListViews(RequestConfigurator<AgentsConversationsListViewsRequest.AgentsConversationsListViewsRequestBuilder> req) {
+        return agentsConversationsListViews(req.configure(AgentsConversationsListViewsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsRemoveViewResponse> agentsConversationsRemoveView(AgentsConversationsRemoveViewRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_REMOVE_VIEW, toMap(req), () -> methods.agentsConversationsRemoveView(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsRemoveViewResponse> agentsConversationsRemoveView(RequestConfigurator<AgentsConversationsRemoveViewRequest.AgentsConversationsRemoveViewRequestBuilder> req) {
+        return agentsConversationsRemoveView(req.configure(AgentsConversationsRemoveViewRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(AgentsConversationsSetCanvasContentRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT, toMap(req), () -> methods.agentsConversationsSetCanvasContent(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCanvasContentResponse> agentsConversationsSetCanvasContent(RequestConfigurator<AgentsConversationsSetCanvasContentRequest.AgentsConversationsSetCanvasContentRequestBuilder> req) {
+        return agentsConversationsSetCanvasContent(req.configure(AgentsConversationsSetCanvasContentRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_COMMANDS, toMap(req), () -> methods.agentsConversationsSetCommands(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetCommandsResponse> agentsConversationsSetCommands(RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req) {
+        return agentsConversationsSetCommands(req.configure(AgentsConversationsSetCommandsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_PROPERTIES, toMap(req), () -> methods.agentsConversationsSetProperties(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetPropertiesResponse> agentsConversationsSetProperties(RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req) {
+        return agentsConversationsSetProperties(req.configure(AgentsConversationsSetPropertiesRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(AgentsConversationsSetViewRequest req) {
+        return executor.execute(AGENTS_CONVERSATIONS_SET_VIEW, toMap(req), () -> methods.agentsConversationsSetView(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsConversationsSetViewResponse> agentsConversationsSetView(RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req) {
+        return agentsConversationsSetView(req.configure(AgentsConversationsSetViewRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(AgentsSessionsRenameRequest req) {
+        return executor.execute(AGENTS_SESSIONS_RENAME, toMap(req), () -> methods.agentsSessionsRename(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsRenameResponse> agentsSessionsRename(RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req) {
+        return agentsSessionsRename(req.configure(AgentsSessionsRenameRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req) {
+        return executor.execute(AGENTS_SESSIONS_SET_STATUS, toMap(req), () -> methods.agentsSessionsSetStatus(req));
+    }
+
+    @Override
+    public CompletableFuture<AgentsSessionsSetStatusResponse> agentsSessionsSetStatus(RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req) {
+        return agentsSessionsSetStatus(req.configure(AgentsSessionsSetStatusRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<ApiTestResponse> apiTest(ApiTestRequest req) {
         return executor.execute(API_TEST, toMap(req), () -> methods.apiTest(req));
     }
@@ -1352,6 +1594,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AppsUserConnectionBulkUpdateResponse> appsUserConnectionBulkUpdate(AppsUserConnectionBulkUpdateRequest req) {
+        return executor.execute(APPS_USER_CONNECTION_BULK_UPDATE, toMap(req), () -> methods.appsUserConnectionBulkUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsUserConnectionBulkUpdateResponse> appsUserConnectionBulkUpdate(RequestConfigurator<AppsUserConnectionBulkUpdateRequest.AppsUserConnectionBulkUpdateRequestBuilder> req) {
+        return appsUserConnectionBulkUpdate(req.configure(AppsUserConnectionBulkUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsUserConnectionRequestAuthResponse> appsUserConnectionRequestAuth(AppsUserConnectionRequestAuthRequest req) {
+        return executor.execute(APPS_USER_CONNECTION_REQUEST_AUTH, toMap(req), () -> methods.appsUserConnectionRequestAuth(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsUserConnectionRequestAuthResponse> appsUserConnectionRequestAuth(RequestConfigurator<AppsUserConnectionRequestAuthRequest.AppsUserConnectionRequestAuthRequestBuilder> req) {
+        return appsUserConnectionRequestAuth(req.configure(AppsUserConnectionRequestAuthRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AppsUserConnectionUpdateResponse> appsUserConnectionUpdate(AppsUserConnectionUpdateRequest req) {
         return executor.execute(APPS_USER_CONNECTION_UPDATE, toMap(req), () -> methods.appsUserConnectionUpdate(req));
     }
@@ -1369,6 +1631,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AppsEventAuthorizationsListResponse> appsEventAuthorizationsList(RequestConfigurator<AppsEventAuthorizationsListRequest.AppsEventAuthorizationsListRequestBuilder> req) {
         return appsEventAuthorizationsList(req.configure(AppsEventAuthorizationsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsIconSetResponse> appsIconSet(AppsIconSetRequest req) {
+        return executor.execute(APPS_ICON_SET, toMap(req), () -> methods.appsIconSet(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsIconSetResponse> appsIconSet(RequestConfigurator<AppsIconSetRequest.AppsIconSetRequestBuilder> req) {
+        return appsIconSet(req.configure(AppsIconSetRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsManagedPermissionsSetResponse> appsManagedPermissionsSet(AppsManagedPermissionsSetRequest req) {
+        return executor.execute(APPS_MANAGED_PERMISSIONS_SET, toMap(req), () -> methods.appsManagedPermissionsSet(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsManagedPermissionsSetResponse> appsManagedPermissionsSet(RequestConfigurator<AppsManagedPermissionsSetRequest.AppsManagedPermissionsSetRequestBuilder> req) {
+        return appsManagedPermissionsSet(req.configure(AppsManagedPermissionsSetRequest.builder()).build());
     }
 
     @Override
@@ -1502,6 +1784,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AuthTeamsListResponse> authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req) {
         return authTeamsList(req.configure(AuthTeamsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<BlocksValidateResponse> blocksValidate(BlocksValidateRequest req) {
+        return executor.execute(BLOCKS_VALIDATE, toMap(req), () -> methods.blocksValidate(req));
+    }
+
+    @Override
+    public CompletableFuture<BlocksValidateResponse> blocksValidate(RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req) {
+        return blocksValidate(req.configure(BlocksValidateRequest.builder()).build());
     }
 
     @Override
@@ -1642,6 +1934,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<CanvasesDeleteResponse> canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req) {
         return canvasesDelete(req.configure(CanvasesDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CanvasesGetContentResponse> canvasesGetContent(CanvasesGetContentRequest req) {
+        return executor.execute(CANVASES_GET_CONTENT, toMap(req), () -> methods.canvasesGetContent(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesGetContentResponse> canvasesGetContent(RequestConfigurator<CanvasesGetContentRequest.CanvasesGetContentRequestBuilder> req) {
+        return canvasesGetContent(req.configure(CanvasesGetContentRequest.builder()).build());
     }
 
     @Override
@@ -2705,6 +3007,76 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) {
         return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(SlackbotSkillsCreateRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_CREATE, toMap(req), () -> methods.slackbotSkillsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsCreateResponse> slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req) {
+        return slackbotSkillsCreate(req.configure(SlackbotSkillsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsDeleteResponse> slackbotSkillsDelete(SlackbotSkillsDeleteRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_DELETE, toMap(req), () -> methods.slackbotSkillsDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsDeleteResponse> slackbotSkillsDelete(RequestConfigurator<SlackbotSkillsDeleteRequest.SlackbotSkillsDeleteRequestBuilder> req) {
+        return slackbotSkillsDelete(req.configure(SlackbotSkillsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(SlackbotSkillsInfoRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_INFO, toMap(req), () -> methods.slackbotSkillsInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsInfoResponse> slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req) {
+        return slackbotSkillsInfo(req.configure(SlackbotSkillsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_LIBRARY_ADD, toMap(req), () -> methods.slackbotSkillsLibraryAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsLibraryAddResponse> slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req) {
+        return slackbotSkillsLibraryAdd(req.configure(SlackbotSkillsLibraryAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsLibraryRemoveResponse> slackbotSkillsLibraryRemove(SlackbotSkillsLibraryRemoveRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_LIBRARY_REMOVE, toMap(req), () -> methods.slackbotSkillsLibraryRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsLibraryRemoveResponse> slackbotSkillsLibraryRemove(RequestConfigurator<SlackbotSkillsLibraryRemoveRequest.SlackbotSkillsLibraryRemoveRequestBuilder> req) {
+        return slackbotSkillsLibraryRemove(req.configure(SlackbotSkillsLibraryRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(SlackbotSkillsListRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_LIST, toMap(req), () -> methods.slackbotSkillsList(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsListResponse> slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req) {
+        return slackbotSkillsList(req.configure(SlackbotSkillsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) {
+        return executor.execute(SLACKBOT_SKILLS_UPDATE, toMap(req), () -> methods.slackbotSkillsUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillsUpdateResponse> slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req) {
+        return slackbotSkillsUpdate(req.configure(SlackbotSkillsUpdateRequest.builder()).build());
     }
 
     @Override

@@ -8,7 +8,7 @@ An [App Home](/surfaces/app-home) is a private, one-to-one space in Slack shared
 
 ### Slack app configuration
 
-To enable Home tabs, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **App Home** on the left pane, and then turn on **Home Tab**.
+To enable Home tabs, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, go to **Features** > **App Home** on the left pane, and then turn on **Home Tab**.
 
 To enable the Events API, go to **Features** > **Event Subscriptions** on the left pane. There are a few things to do on the page.
 

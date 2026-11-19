@@ -37,4 +37,9 @@ public class MethodsConfigTest {
         MethodsConfig.DEFAULT_SINGLETON.setDefaultThreadPoolSize(123);
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void immutable_singleton_setRejectRateLimitedCalls() {
+        MethodsConfig.DEFAULT_SINGLETON.setRejectRateLimitedCalls(true);
+    }
+
 }

@@ -6,5 +6,16 @@
   "warning": "",
   "invalid_channel_ids": [
     ""
+  ],
+  "featured_workflows": [
+    {
+      "channel_id": "C00000000",
+      "triggers": [
+        {
+          "id": "",
+          "title": ""
+        }
+      ]
+    }
   ]
 }

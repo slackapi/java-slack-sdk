@@ -42,6 +42,7 @@ public class users_Test {
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     String enterpriseGridTeamAdminUserToken = System.getenv(
             Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
+    String gridTeamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
 
     @BeforeClass
     public static void setUp() throws Exception {
@@ -109,7 +110,7 @@ public class users_Test {
         if (enterpriseGridTeamAdminUserToken != null) {
             // Using async client to avoid an exception due to rate limited errors
             UsersListResponse users = slack.methodsAsync(enterpriseGridTeamAdminUserToken)
-                    .usersList(r -> r.includeLocale(true).limit(10)).get();
+                    .usersList(r -> r.teamId(gridTeamId).includeLocale(true).limit(10)).get();
             assertThat(users.getError(), is(nullValue()));
 
             UsersInfoResponse usersInfo = slack.methods(enterpriseGridTeamAdminUserToken)
@@ -330,7 +331,7 @@ public class users_Test {
         List<User> users = usersListResponse.getMembers();
         User randomUserWhoHasEmail = null;
         for (User user : users) {
-            if (user.getProfile() != null && user.getProfile().getEmail() != null) {
+            if (user.getProfile() != null && user.getProfile().getEmail() != null && !user.isDeleted()) {
                 randomUserWhoHasEmail = user;
                 break;
             }
@@ -360,7 +361,7 @@ public class users_Test {
         List<User> users = usersListResponse.getMembers();
         User randomUserWhoHasEmail = null;
         for (User user : users) {
-            if (user.getProfile() != null && user.getProfile().getEmail() != null) {
+            if (user.getProfile() != null && user.getProfile().getEmail() != null && !user.isDeleted()) {
                 randomUserWhoHasEmail = user;
                 break;
             }
@@ -416,6 +417,7 @@ public class users_Test {
         while (cursor != "" && pageNum < 10) {
             UsersConversationsResponse conversations = slack.methods().usersConversations(r -> r
                     .token(enterpriseGridTeamAdminUserToken)
+                    .teamId(gridTeamId)
                     .user(authTestResult.getUserId())
                     .types(Arrays.asList(
                             ConversationType.PUBLIC_CHANNEL,
@@ -465,6 +467,9 @@ public class users_Test {
             UsersListResponse users = client.usersList(usersReq).get();
             assertThat(users.getError(), is(nullValue()));
             for (User user : users.getMembers()) {
+                if (user.isDeleted()) {
+                    continue;
+                }
                 UsersInfoResponse userInfo = client.usersInfo(r -> r.user(user.getId()).includeLocale(true)).get();
                 assertThat(userInfo.getError(), is(nullValue()));
                 // Requires https://docs.slack.dev/reference/scopes/users.read.email

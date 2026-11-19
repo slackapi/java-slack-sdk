@@ -47,4 +47,15 @@ public class RichTextInputElement extends BlockElement {
      * Maximum length for the text in this field is 150 characters.
      */
     private PlainTextObject placeholder;
+
+    /**
+     * The minimum number of lines of text shown in the input. Must be between 1 and 100.
+     */
+    private Integer minLines;
+
+    /**
+     * The maximum number of lines of text shown in the input before it scrolls.
+     * Must be between 1 and 100. Defaults to 8 when not specified.
+     */
+    private Integer maxLines;
 }

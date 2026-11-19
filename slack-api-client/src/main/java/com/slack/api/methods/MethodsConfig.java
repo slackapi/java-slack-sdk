@@ -22,6 +22,18 @@ import java.util.Map;
 public class MethodsConfig {
 
     /**
+     * Creates a configuration with the existing automatic HTTP 429 retry behavior.
+     */
+    public MethodsConfig(boolean statsEnabled, String executorName, int maxIdleMills,
+                         int defaultThreadPoolSize, ExecutorServiceProvider executorServiceProvider,
+                         Map<String, Integer> customThreadPoolSizes, MetricsDatastore metricsDatastore,
+                         MethodsCustomRateLimitResolver customRateLimitResolver) {
+        this(statsEnabled, executorName, maxIdleMills, defaultThreadPoolSize, executorServiceProvider,
+                customThreadPoolSizes, metricsDatastore, customRateLimitResolver, false);
+    }
+
+
+    /**
      * If you don't have a special reason, we recommend going with the singleton executor to track all the traffic
      * your app generated towards the Slack Platform in one place (= in one metrics datastore).
      */
@@ -75,6 +87,11 @@ public class MethodsConfig {
         public void setCustomRateLimitResolver(MethodsCustomRateLimitResolver customRateLimitResolver) {
             throwException();
         }
+
+        @Override
+        public void setRejectRateLimitedCalls(boolean rejectRateLimitedCalls) {
+            throwException();
+        }
     };
 
     @Builder.Default
@@ -118,5 +135,16 @@ public class MethodsConfig {
      */
     @Builder.Default
     private MethodsCustomRateLimitResolver customRateLimitResolver = MethodsCustomRateLimitResolver.DEFAULT;
+
+    /**
+     * When true, asynchronous Web API calls fail on HTTP 429 instead of being retried.
+     * The resulting {@link java.util.concurrent.CompletableFuture} fails with a
+     * {@link MethodsCompletionException} wrapping the {@link SlackApiException},
+     * including the response status and {@code Retry-After} header.
+     * This does not disable queueing or change synchronous API calls.
+     * The default is false, preserving automatic retries for rate-limited calls.
+     */
+    @Builder.Default
+    private boolean rejectRateLimitedCalls = false;
 
 }

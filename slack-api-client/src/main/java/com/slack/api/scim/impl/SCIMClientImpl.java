@@ -7,6 +7,7 @@ import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import com.slack.api.scim.*;
 import com.slack.api.scim.request.*;
 import com.slack.api.scim.response.*;
+import com.slack.api.util.http.RetryAfterUtil;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
 import okhttp3.Request;
@@ -272,9 +273,8 @@ public class SCIMClientImpl implements SCIMClient {
             }
             if (e.getResponse().code() == 429) {
                 // rate limited
-                final String retryAfterSeconds = e.getResponse().header("Retry-After");
-                if (retryAfterSeconds != null) {
-                    long secondsToWait = Long.valueOf(retryAfterSeconds);
+                final Long secondsToWait = RetryAfterUtil.parseSeconds(e.getResponse().header("Retry-After"));
+                if (secondsToWait != null) {
                     long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
                     if (enterpriseId != null) {
                         datastore.setRateLimitedMethodRetryEpochMillis(

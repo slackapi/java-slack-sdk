@@ -30,13 +30,19 @@
             }
           ],
           "checkbox": false,
-          "text": ""
+          "text": "",
+          "user": [
+            "U00000000"
+          ]
         },
         {
           "key": "",
           "value": false,
           "checkbox": false,
           "column_id": "",
+          "user": [
+            "U00000000"
+          ],
           "text": "",
           "rich_text": [
             {

@@ -11,6 +11,7 @@ import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.audit.response.SchemasResponse;
 import com.slack.api.methods.impl.TeamIdCache;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.util.http.RetryAfterUtil;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
 import okhttp3.Response;
@@ -150,9 +151,8 @@ public class AuditClientImpl implements AuditClient {
             }
             if (e.getResponse().code() == 429) {
                 // rate limited
-                final String retryAfterSeconds = e.getResponse().header("Retry-After");
-                if (retryAfterSeconds != null) {
-                    long secondsToWait = Long.valueOf(retryAfterSeconds);
+                final Long secondsToWait = RetryAfterUtil.parseSeconds(e.getResponse().header("Retry-After"));
+                if (secondsToWait != null) {
                     long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
                     if (enterpriseId != null) {
                         datastore.setRateLimitedMethodRetryEpochMillis(executorName, enterpriseId, key, epochMillisToRetry);

@@ -4,6 +4,8 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsConfig;
 import com.slack.api.methods.MethodsCustomRateLimitResolver;
+import com.slack.api.methods.response.team.TeamInfoResponse;
+import com.slack.api.util.json.GsonFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import util.MockSlackApiServer;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
 
@@ -48,6 +51,21 @@ public class TeamTest {
     @After
     public void tearDown() throws Exception {
         server.stop();
+    }
+
+    @Test
+    public void slackbotAvailabilityResponse() {
+        for (String availability : new String[]{"available", "restricted", "unavailable", "unknown", "future_state"}) {
+            TeamInfoResponse response = GsonFactory.createSnakeCase().fromJson(
+                    "{\"ok\":true,\"team\":{\"id\":\"T123\",\"slackbot_availability\":\"" + availability + "\"}}",
+                    TeamInfoResponse.class);
+            assertThat(response.getTeam().getSlackbotAvailability(), is(availability));
+            assertThat(response.getTeam().getId(), is("T123"));
+        }
+
+        TeamInfoResponse response = GsonFactory.createSnakeCase().fromJson(
+                "{\"ok\":true,\"team\":{\"id\":\"T123\"}}", TeamInfoResponse.class);
+        assertThat(response.getTeam().getSlackbotAvailability(), is(nullValue()));
     }
 
     @Test

@@ -52,6 +52,7 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String email;
         private String team;
+        private String accountType;
     }
 
     @Data
@@ -72,6 +73,18 @@ public class LogsResponse implements AuditApiResponse {
         private InformationBarrier barrier;
         private WorkflowV2 workflowV2;
         private SlackList list;
+        // Polymorphic per provider/app context (e.g. provider.app.scopes is sometimes a
+        // String, sometimes an array; provider.id overflows int). Needs its own PR with
+        // captured JSON before typing. See deferred conversion notes.
+        private Object externalAuthOauth2Token;
+        private Function function;
+    }
+
+    @Data
+    public static class Function {
+        private String id;
+        private String appId;
+        private String callbackId;
     }
 
     @Data
@@ -86,6 +99,7 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean workflowApp;
         private List<String> scopes;
         private List<String> scopesBot;
+        private List<String> botScopes;
         private String creator; // user ID
         private String team; // team ID
     }
@@ -153,6 +167,16 @@ public class LogsResponse implements AuditApiResponse {
         private String ua;
         private String ipAddress;
         private App app;
+        private String actingAgent;
+        private AgentMessage agentMessage;
+    }
+
+    @Data
+    public static class AgentMessage {
+        private String team;
+        private String channelId;
+        private String messageTs;
+        private String threadTs;
     }
 
     @Data
@@ -222,7 +246,7 @@ public class LogsResponse implements AuditApiResponse {
         private String name; // "Collect info in a form"
         private String stepFunctionType; // "Custom", "Builtin"
         private String stepFunctionAppId; // "A05QFAJ8LBA"
-        private String externalAuthConfiguration;
+        private java.util.List<Object> externalAuthConfiguration;
     }
 
     @Data
@@ -250,9 +274,9 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String botId;
         private List<String> channels;
-        private List<Permission> permissions;
+        private Object permissions;
         private String sharedTo; // channel_workspaces_updated
-        private String reason;
+        private Object reason;
         @SerializedName("is_internal_integration")
         private Boolean internalIntegration; // app_collaborator_added etc.
         private String clearedResolution; // app_removed_from_whitelist
@@ -321,7 +345,7 @@ public class LogsResponse implements AuditApiResponse {
         private String enterprise; // usergroup_updated
         private String team; // usergroup_updated
         private String subteam; // usergroup_updated
-        private String action; // usergroup_updated
+        private DetailsAction action;
         private Integer idpGroupMemberCount; // usergroup_updated
         private Integer workspaceMemberCount; // usergroup_updated
         private Integer addedUserCount; // usergroup_updated
@@ -367,6 +391,72 @@ public class LogsResponse implements AuditApiResponse {
         private String user; // list_access_added
         private String fileId;
         private String triggerId; // workflow_trigger_permission_set, workflow_trigger_permission_added
+        private Object triggerConfig;
+        private String permissionType;
+        private java.util.List<String> channelIds;
+        private java.util.List<String> userIds;
+        @SerializedName("is_slack_provided_template")
+        private Boolean slackProvidedTemplate;
+        private String templateTitle;
+        private String clonedFileId;
+        private String threadTs;
+        private String status;
+        private String entityTeam;
+        @SerializedName("is_external_user")
+        private Boolean externalUser;
+        private String salesforceOrgId;
+        private String salesforceEdition;
+        private Object salesforceOrgConfig;
+        private String salesforceTenantGuid;
+        private Object affectedUsers;
+        private String providerKey;
+        private String policyName;
+        private String authenticationMode;
+        private String authenticationMethod;
+        private String secondaryAuthenticationMethod;
+        private String actionTimestamp;
+        private String clientJa3Fingerprint;
+        private String previousIpAddress;
+        private String previousUa;
+        private Object userAgentChangeDetails;
+        private String location;
+        private Object entityIds;
+        private String prefName;
+        private String email;
+        private Object md;
+        private String md5Hash;
+        @SerializedName("is_ext_shared")
+        private Boolean extShared;
+        private List<String> teamsSharedWith;
+        private String folderBookmarkId;
+        @SerializedName("is_allowed")
+        private Boolean allowed;
+        private List<String> variableNames;
+        private List<String> functionsAdded;
+        private List<String> workflowsAdded;
+        private List<String> datastoresAdded;
+        private ConversationPref whoCanDmAnyone;
+        private String tool;
+        private String toolName;
+        private Object arguments;
+        private String serviceType;
+        private String serverName;
+        private String serverUrl;
+        private Boolean success;
+        private List<String> argumentKeys;
+        private Boolean readOnly;
+        private String mcpClientInferredBehavior;
+        private Boolean destructive;
+        private String source;
+        private String decision;
+        private String permissionKey;
+        private List<String> addedToAllow;
+        private List<String> connectorsEnabled;
+        private List<String> connectorsDisabled;
+        private String uri;
+        private String executorId;
+        private String skillId;
+        private List<String> mcpServerAllowlistDomains;
     }
 
     @Data
@@ -504,6 +594,23 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class AAARuleActionNotify {
         private String entityType;
+        private List<String> values;
+    }
+
+    /**
+     * The data structure for details.action is polymorphic. For some actions it is a
+     * plain string (e.g. usergroup_updated returns "update"); for others it is a
+     * structured object (e.g. app_allowlist_rule_created returns a resolution/notify
+     * object). This class supports both patterns; GsonAuditLogsDetailsActionFactory
+     * populates the relevant field under the hood.
+     */
+    @Data
+    public static class DetailsAction {
+        // e.g., "update" (usergroup_updated)
+        private String stringValue;
+        // object form (e.g., app_allowlist_rule_created)
+        private AAARuleActionResolution resolution;
+        private List<AAARuleActionNotify> notify;
     }
     @Data
     public static class AAARuleCondition {

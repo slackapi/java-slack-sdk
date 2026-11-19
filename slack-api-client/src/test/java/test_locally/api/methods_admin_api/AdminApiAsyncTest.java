@@ -78,6 +78,26 @@ public class AdminApiAsyncTest {
     }
 
     @Test
+    public void adminAppsMcpServers() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminAppsMcpServersList(r -> r
+                .limit(100)
+                .cursor("xxx"))
+                .get().isOk(), is(true));
+        assertThat(methods.adminAppsMcpServersPermissionsList(r -> r
+                .appId("A0123ABCD"))
+                .get().isOk(), is(true));
+        assertThat(methods.adminAppsMcpServersPermissionsSet(r -> r
+                .appId("A0123ABCD")
+                .serverId("Amcp0123ABCD")
+                .permissionType("named_entities")
+                .userIds(Arrays.asList("U0123ABCD", "U0456EFGH"))
+                .usergroupIds(Arrays.asList("S0123ABCD")))
+                .get().isOk(), is(true));
+    }
+
+    @Test
     public void adminAuthPolicy() throws Exception {
         AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
 
@@ -209,6 +229,31 @@ public class AdminApiAsyncTest {
         assertThat(methods.adminRolesListAssignments(r -> r)
                 .get().isOk(), is(true));
         assertThat(methods.adminRolesRemoveAssignments(r -> r)
+                .get().isOk(), is(true));
+    }
+
+    @Test
+    public void adminSlackbotSkills() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminSlackbotSkillsList(r -> r
+                .category("productivity")
+                .cursor("xxx")
+                .limit(100)
+                .creatorIds(Arrays.asList("U0123ABCD"))
+                .publishStatus("published")
+                .autoEnabledStatus("enabled")
+                .sort("usage_count")
+                .sortDir("desc"))
+                .get().isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsPublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH")))
+                .get().isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsSetAutoEnabled(r -> r
+                .skillId("F0123ABCD")
+                .permissionType("named_entities")
+                .usergroupIds(Arrays.asList("S0123ABCD")))
+                .get().isOk(), is(true));
+        assertThat(methods.adminSlackbotSkillsUnpublish(r -> r.skillIds(Arrays.asList("F0123ABCD", "F0456EFGH")))
                 .get().isOk(), is(true));
     }
 

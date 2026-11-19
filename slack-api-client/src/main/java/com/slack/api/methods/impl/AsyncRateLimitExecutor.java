@@ -168,7 +168,7 @@ public class AsyncRateLimitExecutor {
             return handleIOException(teamId, methodName, e);
         } catch (SlackApiException e) {
             logSlackApiException(teamId, methodName, e);
-            if (e.getResponse().code() == 429) {
+            if (e.getResponse().code() == 429 && !config.isRejectRateLimitedCalls()) {
                 return enqueueThenRun(messageId, teamId, methodName, params, methodsSupplier);
             }
             throw new MethodsCompletionException(null, e, null);
@@ -191,7 +191,7 @@ public class AsyncRateLimitExecutor {
     private static void logSlackApiException(String teamId, String methodName, SlackApiException e) {
         if (e.getResponse().code() == 429) {
             String retryAfterSeconds = e.getResponse().header("Retry-After");
-            // As long as you use this executor, the API client automatically retries the same request for you
+            // Retried automatically unless rejectRateLimitedCalls is enabled
             log.warn("Got a rate-limited response from {} API (team: {}, error: {}, retry-after: {})",
                     methodName,
                     teamId,

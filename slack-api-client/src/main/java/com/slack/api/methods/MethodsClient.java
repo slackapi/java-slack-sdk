@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -26,6 +29,10 @@ import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsUnpublishRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -38,10 +45,25 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
+import com.slack.api.methods.request.apps.managed.permissions.AppsManagedPermissionsSetRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -58,6 +80,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -72,6 +95,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -132,6 +156,13 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryRemoveRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
@@ -157,6 +188,9 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.apps.mcp.servers.AdminAppsMcpServersListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListResponse;
+import com.slack.api.methods.response.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
 import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
@@ -180,6 +214,10 @@ import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsListResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
+import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsUnpublishResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -192,10 +230,25 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.admin.workflows.*;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsArchiveResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsCreateResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsListViewsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsRemoveViewResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCanvasContentResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetCommandsResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetPropertiesResponse;
+import com.slack.api.methods.response.agents.conversations.AgentsConversationsSetViewResponse;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.icon.AppsIconSetResponse;
+import com.slack.api.methods.response.apps.managed.permissions.AppsManagedPermissionsSetResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
+import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
@@ -212,6 +265,7 @@ import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitl
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.blocks.BlocksValidateResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
 import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
@@ -226,6 +280,7 @@ import com.slack.api.methods.response.calls.participants.CallsParticipantsRemove
 import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
 import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
 import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.CanvasesGetContentResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
 import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
 import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
@@ -282,6 +337,13 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
+import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skills.library.SlackbotSkillsLibraryRemoveResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
@@ -444,6 +506,25 @@ public interface MethodsClient {
 
     AdminAppsConfigSetResponse adminAppsConfigSet(
             RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.apps.mcp.servers
+    // ------------------------------
+
+    AdminAppsMcpServersListResponse adminAppsMcpServersList(AdminAppsMcpServersListRequest req) throws IOException, SlackApiException;
+
+    AdminAppsMcpServersListResponse adminAppsMcpServersList(RequestConfigurator<AdminAppsMcpServersListRequest.AdminAppsMcpServersListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminAppsMcpServersPermissionsListResponse adminAppsMcpServersPermissionsList(AdminAppsMcpServersPermissionsListRequest req) throws IOException, SlackApiException;
+
+    AdminAppsMcpServersPermissionsListResponse adminAppsMcpServersPermissionsList(RequestConfigurator<AdminAppsMcpServersPermissionsListRequest.AdminAppsMcpServersPermissionsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminAppsMcpServersPermissionsSetResponse adminAppsMcpServersPermissionsSet(AdminAppsMcpServersPermissionsSetRequest req) throws IOException, SlackApiException;
+
+    AdminAppsMcpServersPermissionsSetResponse adminAppsMcpServersPermissionsSet(RequestConfigurator<AdminAppsMcpServersPermissionsSetRequest.AdminAppsMcpServersPermissionsSetRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------
@@ -859,6 +940,30 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
+    // admin.slackbot.skills
+    // ------------------------------
+
+    AdminSlackbotSkillsListResponse adminSlackbotSkillsList(AdminSlackbotSkillsListRequest req) throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsListResponse adminSlackbotSkillsList(RequestConfigurator<AdminSlackbotSkillsListRequest.AdminSlackbotSkillsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsPublishResponse adminSlackbotSkillsPublish(AdminSlackbotSkillsPublishRequest req) throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsPublishResponse adminSlackbotSkillsPublish(RequestConfigurator<AdminSlackbotSkillsPublishRequest.AdminSlackbotSkillsPublishRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsSetAutoEnabledResponse adminSlackbotSkillsSetAutoEnabled(AdminSlackbotSkillsSetAutoEnabledRequest req) throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsSetAutoEnabledResponse adminSlackbotSkillsSetAutoEnabled(RequestConfigurator<AdminSlackbotSkillsSetAutoEnabledRequest.AdminSlackbotSkillsSetAutoEnabledRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsUnpublishResponse adminSlackbotSkillsUnpublish(AdminSlackbotSkillsUnpublishRequest req) throws IOException, SlackApiException;
+
+    AdminSlackbotSkillsUnpublishResponse adminSlackbotSkillsUnpublish(RequestConfigurator<AdminSlackbotSkillsUnpublishRequest.AdminSlackbotSkillsUnpublishRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
     // admin.teams.admins
     // ------------------------------
 
@@ -1136,6 +1241,91 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
+    // agents.conversations
+    // ------------------------------
+
+    AgentsConversationsArchiveResponse agentsConversationsArchive(AgentsConversationsArchiveRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsArchiveResponse agentsConversationsArchive(
+            RequestConfigurator<AgentsConversationsArchiveRequest.AgentsConversationsArchiveRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsCreateResponse agentsConversationsCreate(AgentsConversationsCreateRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsCreateResponse agentsConversationsCreate(
+            RequestConfigurator<AgentsConversationsCreateRequest.AgentsConversationsCreateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(AgentsConversationsGetCanvasRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsGetCanvasResponse agentsConversationsGetCanvas(
+            RequestConfigurator<AgentsConversationsGetCanvasRequest.AgentsConversationsGetCanvasRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsListViewsResponse agentsConversationsListViews(AgentsConversationsListViewsRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsListViewsResponse agentsConversationsListViews(
+            RequestConfigurator<AgentsConversationsListViewsRequest.AgentsConversationsListViewsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsRemoveViewResponse agentsConversationsRemoveView(AgentsConversationsRemoveViewRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsRemoveViewResponse agentsConversationsRemoveView(
+            RequestConfigurator<AgentsConversationsRemoveViewRequest.AgentsConversationsRemoveViewRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetCanvasContentResponse agentsConversationsSetCanvasContent(AgentsConversationsSetCanvasContentRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetCanvasContentResponse agentsConversationsSetCanvasContent(
+            RequestConfigurator<AgentsConversationsSetCanvasContentRequest.AgentsConversationsSetCanvasContentRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(AgentsConversationsSetCommandsRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetCommandsResponse agentsConversationsSetCommands(
+            RequestConfigurator<AgentsConversationsSetCommandsRequest.AgentsConversationsSetCommandsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(AgentsConversationsSetPropertiesRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetPropertiesResponse agentsConversationsSetProperties(
+            RequestConfigurator<AgentsConversationsSetPropertiesRequest.AgentsConversationsSetPropertiesRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetViewResponse agentsConversationsSetView(AgentsConversationsSetViewRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsConversationsSetViewResponse agentsConversationsSetView(
+            RequestConfigurator<AgentsConversationsSetViewRequest.AgentsConversationsSetViewRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    AgentsSessionsRenameResponse agentsSessionsRename(AgentsSessionsRenameRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsRenameResponse agentsSessionsRename(
+            RequestConfigurator<AgentsSessionsRenameRequest.AgentsSessionsRenameRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(AgentsSessionsSetStatusRequest req)
+            throws IOException, SlackApiException;
+
+    AgentsSessionsSetStatusResponse agentsSessionsSetStatus(
+            RequestConfigurator<AgentsSessionsSetStatusRequest.AgentsSessionsSetStatusRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
     // api
     // ------------------------------
 
@@ -1168,6 +1358,20 @@ public interface MethodsClient {
     // apps.user.connection
     // ------------------------------
 
+    AppsUserConnectionBulkUpdateResponse appsUserConnectionBulkUpdate(AppsUserConnectionBulkUpdateRequest req)
+            throws IOException, SlackApiException;
+
+    AppsUserConnectionBulkUpdateResponse appsUserConnectionBulkUpdate(
+            RequestConfigurator<AppsUserConnectionBulkUpdateRequest.AppsUserConnectionBulkUpdateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AppsUserConnectionRequestAuthResponse appsUserConnectionRequestAuth(AppsUserConnectionRequestAuthRequest req)
+            throws IOException, SlackApiException;
+
+    AppsUserConnectionRequestAuthResponse appsUserConnectionRequestAuth(
+            RequestConfigurator<AppsUserConnectionRequestAuthRequest.AppsUserConnectionRequestAuthRequestBuilder> req)
+            throws IOException, SlackApiException;
+
     AppsUserConnectionUpdateResponse appsUserConnectionUpdate(AppsUserConnectionUpdateRequest req)
             throws IOException, SlackApiException;
 
@@ -1184,6 +1388,26 @@ public interface MethodsClient {
 
     AppsEventAuthorizationsListResponse appsEventAuthorizationsList(
             RequestConfigurator<AppsEventAuthorizationsListRequest.AppsEventAuthorizationsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.icon
+    // ------------------------------
+
+    AppsIconSetResponse appsIconSet(AppsIconSetRequest req) throws IOException, SlackApiException;
+
+    AppsIconSetResponse appsIconSet(RequestConfigurator<AppsIconSetRequest.AppsIconSetRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    AppsManagedPermissionsSetResponse appsManagedPermissionsSet(AppsManagedPermissionsSetRequest req)
+            throws IOException, SlackApiException;
+
+    AppsManagedPermissionsSetResponse appsManagedPermissionsSet(
+            RequestConfigurator<AppsManagedPermissionsSetRequest.AppsManagedPermissionsSetRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------
@@ -1378,6 +1602,16 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
+    // blocks
+    // ------------------------------
+
+    BlocksValidateResponse blocksValidate(BlocksValidateRequest req) throws IOException, SlackApiException;
+
+    BlocksValidateResponse blocksValidate(
+            RequestConfigurator<BlocksValidateRequest.BlocksValidateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
     // bookmarks
     // ------------------------------
 
@@ -1428,6 +1662,11 @@ public interface MethodsClient {
     CanvasesDeleteResponse canvasesDelete(CanvasesDeleteRequest req) throws IOException, SlackApiException;
 
     CanvasesDeleteResponse canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    CanvasesGetContentResponse canvasesGetContent(CanvasesGetContentRequest req) throws IOException, SlackApiException;
+
+    CanvasesGetContentResponse canvasesGetContent(RequestConfigurator<CanvasesGetContentRequest.CanvasesGetContentRequestBuilder> req)
             throws IOException, SlackApiException;
 
     CanvasesAccessSetResponse canvasesAccessSet(CanvasesAccessSetRequest req) throws IOException, SlackApiException;
@@ -2604,6 +2843,45 @@ public interface MethodsClient {
     SlackListsUpdateResponse slackListsUpdate(SlackListsUpdateRequest req) throws IOException, SlackApiException;
 
     SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    SlackbotSkillsCreateResponse slackbotSkillsCreate(SlackbotSkillsCreateRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsCreateResponse slackbotSkillsCreate(RequestConfigurator<SlackbotSkillsCreateRequest.SlackbotSkillsCreateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsDeleteResponse slackbotSkillsDelete(SlackbotSkillsDeleteRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsDeleteResponse slackbotSkillsDelete(RequestConfigurator<SlackbotSkillsDeleteRequest.SlackbotSkillsDeleteRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsInfoResponse slackbotSkillsInfo(SlackbotSkillsInfoRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsInfoResponse slackbotSkillsInfo(RequestConfigurator<SlackbotSkillsInfoRequest.SlackbotSkillsInfoRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(SlackbotSkillsLibraryAddRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsLibraryAddResponse slackbotSkillsLibraryAdd(RequestConfigurator<SlackbotSkillsLibraryAddRequest.SlackbotSkillsLibraryAddRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsLibraryRemoveResponse slackbotSkillsLibraryRemove(SlackbotSkillsLibraryRemoveRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsLibraryRemoveResponse slackbotSkillsLibraryRemove(RequestConfigurator<SlackbotSkillsLibraryRemoveRequest.SlackbotSkillsLibraryRemoveRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsListResponse slackbotSkillsList(SlackbotSkillsListRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsListResponse slackbotSkillsList(RequestConfigurator<SlackbotSkillsListRequest.SlackbotSkillsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillsUpdateResponse slackbotSkillsUpdate(SlackbotSkillsUpdateRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillsUpdateResponse slackbotSkillsUpdate(RequestConfigurator<SlackbotSkillsUpdateRequest.SlackbotSkillsUpdateRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

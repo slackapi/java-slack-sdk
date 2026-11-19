@@ -115,10 +115,10 @@ public class AsyncApiTest {
             slack.scim2Async("dummy").searchUsers(req -> req.count(1000)).get();
         } catch (Exception _e) {
             SCIM2ApiException e = ((SCIM2ApiCompletionException) _e.getCause()).getScimApiException();
-            assertThat(e.getMessage(), is("status: 400, description: unsupported_version"));
+            assertThat(e.getMessage(), is("status: 401, description: invalid_authentication"));
             assertThat(e.getError(), is(notNullValue()));
-            assertThat(e.getError().getErrors().getCode(), is(400));
-            assertThat(e.getError().getErrors().getDescription(), is("unsupported_version"));
+            assertThat(e.getError().getErrors().getCode(), is(401));
+            assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
         }
     }
 
@@ -128,10 +128,10 @@ public class AsyncApiTest {
             slack.scim2Async("dummy").readUser(req -> req.id("U12345678")).get();
         } catch (Exception _e) {
             SCIM2ApiException e = ((SCIM2ApiCompletionException) _e.getCause()).getScimApiException();
-            assertThat(e.getMessage(), is("status: 400, description: unsupported_version"));
+            assertThat(e.getMessage(), is("status: 401, description: invalid_authentication"));
             assertThat(e.getError(), is(notNullValue()));
-            assertThat(e.getError().getErrors().getCode(), is(400));
-            assertThat(e.getError().getErrors().getDescription(), is("unsupported_version"));
+            assertThat(e.getError().getErrors().getCode(), is(401));
+            assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
         }
     }
 
@@ -378,10 +378,10 @@ public class AsyncApiTest {
             slack.scim2Async("dummy").searchGroups(req -> req.count(1000)).get();
         } catch (Exception _e) {
             SCIM2ApiException e = ((SCIM2ApiCompletionException) _e.getCause()).getScimApiException();
-            assertThat(e.getMessage(), is("status: 400, description: unsupported_version"));
+            assertThat(e.getMessage(), is("status: 401, description: invalid_authentication"));
             assertThat(e.getError(), is(notNullValue()));
-            assertThat(e.getError().getErrors().getCode(), is(400));
-            assertThat(e.getError().getErrors().getDescription(), is("unsupported_version"));
+            assertThat(e.getError().getErrors().getCode(), is(401));
+            assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
         }
     }
 

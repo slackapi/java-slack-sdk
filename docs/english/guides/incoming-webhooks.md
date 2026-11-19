@@ -8,7 +8,7 @@ lang: en
 
 ### Slack app configuration
 
-To enable this feature, visit the [Slack app settings page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Incoming Webhooks** on the left pane, and then turn on **Activate Incoming Webhooks**.
+To enable this feature, visit the [Slack app settings page](https://api.slack.com/apps), choose the app you're working on, go to **Features** > **Incoming Webhooks** on the left pane, and then turn on **Activate Incoming Webhooks**.
 
 Then, install the app to your development workspace. Each time your app is installed, a new webhook URL will be generated.
 

@@ -97,6 +97,8 @@ public class FilesUploadV2Helper implements AutoCloseable {
                 .channels(v2Request.getChannels())
                 .initialComment(v2Request.getInitialComment())
                 .threadTs(v2Request.getThreadTs())
+                .blocks(v2Request.getBlocks())
+                .blocksAsString(v2Request.getBlocksAsString())
         );
         underlyingException.setCompleteResponse(response);
         if (!response.isOk()) {

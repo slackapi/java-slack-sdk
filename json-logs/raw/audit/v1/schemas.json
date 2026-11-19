@@ -183,6 +183,27 @@
         "id": "string",
         "name": "string"
       }
+    },
+    {
+      "type": "app",
+      "app": {
+        "id": "string",
+        "name": "string",
+        "is_distributed": "bool",
+        "is_directory_approved": "bool",
+        "is_workflow_app": "bool",
+        "scopes": "array",
+        "bot_scopes": "array"
+      }
+    },
+    {
+      "type": "work_object_record",
+      "work_object_record": {
+        "id": "string",
+        "app_id": "string",
+        "object_id": "string",
+        "object_type": "string"
+      }
     }
   ]
 }

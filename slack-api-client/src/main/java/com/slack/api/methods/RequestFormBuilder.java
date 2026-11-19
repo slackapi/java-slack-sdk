@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.apps.mcp.servers.AdminAppsMcpServersListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsListRequest;
+import com.slack.api.methods.request.admin.apps.mcp.servers.permissions.AdminAppsMcpServersPermissionsSetRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
 import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
@@ -27,6 +30,10 @@ import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsListRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsPublishRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledRequest;
+import com.slack.api.methods.request.admin.slackbot.skills.AdminSlackbotSkillsUnpublishRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -39,10 +46,25 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.admin.workflows.*;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsArchiveRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsCreateRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsGetCanvasRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsListViewsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsRemoveViewRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCanvasContentRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetCommandsRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetPropertiesRequest;
+import com.slack.api.methods.request.agents.conversations.AgentsConversationsSetViewRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsRenameRequest;
+import com.slack.api.methods.request.agents.sessions.AgentsSessionsSetStatusRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
+import com.slack.api.methods.request.apps.managed.permissions.AppsManagedPermissionsSetRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
+import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -59,6 +81,7 @@ import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleR
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.blocks.BlocksValidateRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
 import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
@@ -73,6 +96,7 @@ import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveR
 import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
 import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
 import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.CanvasesGetContentRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
 import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
 import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
@@ -129,6 +153,13 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsListRequest;
+import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skills.library.SlackbotSkillsLibraryRemoveRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
@@ -357,6 +388,33 @@ public class RequestFormBuilder {
             setIfNotNull("domain_restrictions", GSON.toJson(req.getDomainRestrictions()), form);
         }
         setIfNotNull("workflow_auth_strategy", req.getWorkflowAuthStrategy(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsMcpServersListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsMcpServersPermissionsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsMcpServersPermissionsSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("server_id", req.getServerId(), form);
+        setIfNotNull("permission_type", req.getPermissionType(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        if (req.getUsergroupIds() != null) {
+            setIfNotNull("usergroup_ids", req.getUsergroupIds().stream().collect(joining(",")), form);
+        }
         return form;
     }
 
@@ -721,6 +779,9 @@ public class RequestFormBuilder {
         if (req.getUserIds() != null) {
             setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
         }
+        if (req.getPermissions() != null) {
+            setIfNotNull("permissions", GSON.toJson(req.getPermissions()), form);
+        }
         return form;
     }
 
@@ -796,6 +857,47 @@ public class RequestFormBuilder {
         }
         if (req.getUserIds() != null) {
             setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminSlackbotSkillsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        if (req.getCreatorIds() != null) {
+            setIfNotNull("creator_ids", req.getCreatorIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("publish_status", req.getPublishStatus(), form);
+        setIfNotNull("auto_enabled_status", req.getAutoEnabledStatus(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminSlackbotSkillsPublishRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getSkillIds() != null) {
+            setIfNotNull("skill_ids", req.getSkillIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminSlackbotSkillsSetAutoEnabledRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        setIfNotNull("permission_type", req.getPermissionType(), form);
+        if (req.getUsergroupIds() != null) {
+            setIfNotNull("usergroup_ids", req.getUsergroupIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminSlackbotSkillsUnpublishRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getSkillIds() != null) {
+            setIfNotNull("skill_ids", req.getSkillIds().stream().collect(joining(",")), form);
         }
         return form;
     }
@@ -1047,6 +1149,125 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AgentsConversationsArchiveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("summary_message_ts", req.getSummaryMessageTs(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("session_id", req.getSessionId(), form);
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("is_private", req.getIsPrivate(), form);
+        setIfNotNull("origin_channel_id", req.getOriginChannelId(), form);
+        setIfNotNull("origin_message_ts", req.getOriginMessageTs(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsGetCanvasRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("content_format", req.getContentFormat(), form);
+        setIfNotNull("include_resolved", req.getIncludeResolved(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsListViewsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsRemoveViewRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("view_key", req.getViewKey(), form);
+        setIfNotNull("view_id", req.getViewId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsSetCanvasContentRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("content", req.getContent(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsSetCommandsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getCommands() != null) {
+            form.add("commands", getJsonWithGsonAnonymInnerClassHandling(req.getCommands()));
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsSetPropertiesRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getCodeChannel() != null) {
+            form.add("code_channel", GSON.toJson(req.getCodeChannel()));
+        }
+        if (req.getAgentResource() != null) {
+            form.add("agent_resource", GSON.toJson(req.getAgentResource()));
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsConversationsSetViewRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("type", req.getType(), form);
+        setIfNotNull("view_key", req.getViewKey(), form);
+        setIfNotNull("content", req.getContent(), form);
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            form.add("blocks", getJsonWithGsonAnonymInnerClassHandling(req.getBlocks()));
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("access_level", req.getAccessLevel(), form);
+        setIfNotNull("agent_content_hash", req.getAgentContentHash(), form);
+        setIfNotNull("pr_url", req.getPrUrl(), form);
+        setIfNotNull("base_branch", req.getBaseBranch(), form);
+        setIfNotNull("head_branch", req.getHeadBranch(), form);
+        setIfNotNull("name", req.getName(), form);
+        if (req.getCsp() != null) {
+            form.add("csp", GSON.toJson(req.getCsp()));
+        }
+        return form;
+    }
+
+
+    public static FormBody.Builder toForm(AgentsSessionsRenameRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AgentsSessionsSetStatusRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("status", req.getStatus(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("initiator_user_id", req.getInitiatorUserId(), form);
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("username", req.getUsername(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(ApiTestRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("foo", req.getFoo(), form);
@@ -1066,6 +1287,29 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AppsUserConnectionBulkUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getConnectedUserIds() != null) {
+            setIfNotNull("connected_user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getConnectedUserIds()), form);
+        }
+        if (req.getDisconnectedUserIds() != null) {
+            setIfNotNull("disconnected_user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getDisconnectedUserIds()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsUserConnectionRequestAuthRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        if (req.getPrimaryProviderAsString() != null) {
+            setIfNotNull("primary_provider", req.getPrimaryProviderAsString(), form);
+        } else if (req.getPrimaryProvider() != null) {
+            setIfNotNull("primary_provider", GSON.toJson(req.getPrimaryProvider()), form);
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(AppsUserConnectionUpdateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("user_id", req.getUserId(), form);
@@ -1078,6 +1322,27 @@ public class RequestFormBuilder {
         setIfNotNull("event_context", req.getEventContext(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static MultipartBody.Builder toMultipartBody(AppsIconSetRequest req) {
+        MultipartBody.Builder form = new MultipartBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        if (req.getFileData() != null) {
+            RequestBody file = RequestBody.create(req.getFileData(), MultipartBody.FORM);
+            form.addFormDataPart("file", "file", file);
+        } else if (req.getFile() != null) {
+            RequestBody file = RequestBody.create(req.getFile(), MultipartBody.FORM);
+            form.addFormDataPart("file", "file", file);
+        }
+        setIfNotNull("url", req.getUrl(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsManagedPermissionsSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("permissions", req.getPermissions(), form);
         return form;
     }
 
@@ -1254,6 +1519,35 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(BlocksValidateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            form.add("blocks", getJsonWithGsonAnonymInnerClassHandling(req.getBlocks()));
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+        if (req.getMessageAsString() != null) {
+            form.add("message", req.getMessageAsString());
+        } else if (req.getMessage() != null) {
+            form.add("message", GSON.toJson(req.getMessage()));
+        }
+        if (req.getMessageAsString() != null && req.getMessage() != null) {
+            log.warn("Although you set both messageAsString and message, only messageAsString was used.");
+        }
+        if (req.getViewAsString() != null) {
+            form.add("view", req.getViewAsString());
+        } else if (req.getView() != null) {
+            form.add("view", GSON.toJson(req.getView()));
+        }
+        if (req.getViewAsString() != null && req.getView() != null) {
+            log.warn("Although you set both viewAsString and view, only viewAsString was used.");
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(BookmarksAddRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
@@ -1308,6 +1602,7 @@ public class RequestFormBuilder {
                     .build();
             setIfNotNull("document_content", GSON.toJson(documentContent), form);
         }
+        setIfNotNull("channel_id", req.getChannelId(), form);
         return form;
     }
 
@@ -1323,6 +1618,13 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(CanvasesDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("canvas_id", req.getCanvasId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesGetContentRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("content_type", req.getContentType(), form);
         return form;
     }
 
@@ -1776,6 +2078,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
             log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
         }
+        setIfNotNull("session_status", req.getSessionStatus(), form);
         return form;
     }
 
@@ -2298,6 +2601,14 @@ public class RequestFormBuilder {
         }
         setIfNotNull("initial_comment", req.getInitialComment(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
+            form.add("blocks", getJsonWithGsonAnonymInnerClassHandling(req.getBlocks()));
+        }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
         return form;
     }
 
@@ -2918,7 +3229,7 @@ public class RequestFormBuilder {
         setIfNotNull("parent_item_id", req.getParentItemId(), form);
         if (req.getInitialFields() != null) {
             String json = getJsonWithGsonAnonymInnerClassHandling(req.getInitialFields());
-            form.add("intial_fields", json);
+            form.add("initial_fields", json);
         }
         return form;
     }
@@ -2979,6 +3290,67 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(SlackbotSkillsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("instructions", req.getInstructions(), form);
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
+        if (req.getMcpServers() != null) {
+            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsLibraryAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsLibraryRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("filter", req.getFilter(), form);
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillsUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_id", req.getSkillId(), form);
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("instructions", req.getInstructions(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        setIfNotNull("category", req.getCategory(), form);
+        setIfNotNull("example_prompt", req.getExamplePrompt(), form);
+        if (req.getMcpServers() != null) {
+            setIfNotNull("mcp_servers", GSON.toJson(req.getMcpServers()), form);
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(TeamAccessLogsRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("before", req.getBefore(), form);
@@ -3003,6 +3375,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team", req.getTeam(), form);
         setIfNotNull("domain", req.getDomain(), form);
+        setIfNotNull("include_slackbot_availability", req.getIncludeSlackbotAvailability(), form);
         return form;
     }
 

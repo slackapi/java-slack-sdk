@@ -1,6 +1,8 @@
 package test_locally.sample_json_generation;
 
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsRenameResponse;
+import com.slack.api.methods.response.agents.sessions.AgentsSessionsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
 import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
@@ -168,6 +170,20 @@ public class MethodsResponseDumpTest {
             AdminAppsUninstallResponse response = new AdminAppsUninstallResponse();
             ObjectInitializer.initProperties(response);
             dumper.dump("admin.apps.uninstall", response);
+        }
+    }
+
+    @Test
+    public void agents_sessions() throws Exception {
+        {
+            AgentsSessionsRenameResponse response = new AgentsSessionsRenameResponse();
+            ObjectInitializer.initProperties(response);
+            dumper.dump("agents.sessions.rename", response);
+        }
+        {
+            AgentsSessionsSetStatusResponse response = new AgentsSessionsSetStatusResponse();
+            ObjectInitializer.initProperties(response);
+            dumper.dump("agents.sessions.setStatus", response);
         }
     }
 

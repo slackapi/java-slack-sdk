@@ -27,6 +27,14 @@ public class Methods {
     public static final String ADMIN_APPS_CONFIG_SET = "admin.apps.config.set";
 
     // ------------------------------
+    // admin.apps.mcp.servers
+    // ------------------------------
+
+    public static final String ADMIN_APPS_MCP_SERVERS_LIST = "admin.apps.mcp.servers.list";
+    public static final String ADMIN_APPS_MCP_SERVERS_PERMISSIONS_LIST = "admin.apps.mcp.servers.permissions.list";
+    public static final String ADMIN_APPS_MCP_SERVERS_PERMISSIONS_SET = "admin.apps.mcp.servers.permissions.set";
+
+    // ------------------------------
     // admin.apps.requests
     // ------------------------------
 
@@ -139,6 +147,15 @@ public class Methods {
     public static final String ADMIN_ROLES_REMOVE_ASSIGNMENTS = "admin.roles.removeAssignments";
 
     // ------------------------------
+    // admin.slackbot.skills
+    // ------------------------------
+
+    public static final String ADMIN_SLACKBOT_SKILLS_LIST = "admin.slackbot.skills.list";
+    public static final String ADMIN_SLACKBOT_SKILLS_PUBLISH = "admin.slackbot.skills.publish";
+    public static final String ADMIN_SLACKBOT_SKILLS_SET_AUTO_ENABLED = "admin.slackbot.skills.setAutoEnabled";
+    public static final String ADMIN_SLACKBOT_SKILLS_UNPUBLISH = "admin.slackbot.skills.unpublish";
+
+    // ------------------------------
     // admin.teams.admins
     // ------------------------------
 
@@ -220,6 +237,27 @@ public class Methods {
     public static final String ADMIN_WORKFLOWS_UNPUBLISH = "admin.workflows.unpublish";
 
     // ------------------------------
+    // agents.conversations
+    // ------------------------------
+
+    public static final String AGENTS_CONVERSATIONS_ARCHIVE = "agents.conversations.archive";
+    public static final String AGENTS_CONVERSATIONS_CREATE = "agents.conversations.create";
+    public static final String AGENTS_CONVERSATIONS_GET_CANVAS = "agents.conversations.getCanvas";
+    public static final String AGENTS_CONVERSATIONS_LIST_VIEWS = "agents.conversations.listViews";
+    public static final String AGENTS_CONVERSATIONS_REMOVE_VIEW = "agents.conversations.removeView";
+    public static final String AGENTS_CONVERSATIONS_SET_CANVAS_CONTENT = "agents.conversations.setCanvasContent";
+    public static final String AGENTS_CONVERSATIONS_SET_COMMANDS = "agents.conversations.setCommands";
+    public static final String AGENTS_CONVERSATIONS_SET_PROPERTIES = "agents.conversations.setProperties";
+    public static final String AGENTS_CONVERSATIONS_SET_VIEW = "agents.conversations.setView";
+
+    // ------------------------------
+    // agents.sessions
+    // ------------------------------
+
+    public static final String AGENTS_SESSIONS_RENAME = "agents.sessions.rename";
+    public static final String AGENTS_SESSIONS_SET_STATUS = "agents.sessions.setStatus";
+
+    // ------------------------------
     // api
     // ------------------------------
 
@@ -241,7 +279,21 @@ public class Methods {
     // apps.user.connection
     // ------------------------------
 
+    public static final String APPS_USER_CONNECTION_BULK_UPDATE = "apps.user.connection.bulkUpdate";
+    public static final String APPS_USER_CONNECTION_REQUEST_AUTH = "apps.user.connection.requestAuth";
     public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
+
+    // ------------------------------
+    // apps.icon
+    // ------------------------------
+
+    public static final String APPS_ICON_SET = "apps.icon.set";
+
+    // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    public static final String APPS_MANAGED_PERMISSIONS_SET = "apps.managed.permissions.set";
 
     // ------------------------------
     // apps.manifest
@@ -312,6 +364,12 @@ public class Methods {
     public static final String AUTH_TEAMS_LIST = "auth.teams.list";
 
     // ------------------------------
+    // blocks
+    // ------------------------------
+
+    public static final String BLOCKS_VALIDATE = "blocks.validate";
+
+    // ------------------------------
     // bookmarks
     // ------------------------------
 
@@ -351,6 +409,7 @@ public class Methods {
     public static final String CANVASES_CREATE = "canvases.create";
     public static final String CANVASES_DELETE = "canvases.delete";
     public static final String CANVASES_EDIT = "canvases.edit";
+    public static final String CANVASES_GET_CONTENT = "canvases.getContent";
     public static final String CANVASES_SECTIONS_LOOKUP = "canvases.sections.lookup";
 
     // ------------------------------
@@ -677,6 +736,18 @@ public class Methods {
     public static final String SLACKLISTS_ITEMS_LIST = "slackLists.items.list";
     public static final String SLACKLISTS_ITEMS_UPDATE = "slackLists.items.update";
     public static final String SLACKLISTS_UPDATE = "slackLists.update";
+
+    // ------------------------------
+    // slackbot.skills
+    // ------------------------------
+
+    public static final String SLACKBOT_SKILLS_CREATE = "slackbot.skills.create";
+    public static final String SLACKBOT_SKILLS_DELETE = "slackbot.skills.delete";
+    public static final String SLACKBOT_SKILLS_INFO = "slackbot.skills.info";
+    public static final String SLACKBOT_SKILLS_LIBRARY_ADD = "slackbot.skills.library.add";
+    public static final String SLACKBOT_SKILLS_LIBRARY_REMOVE = "slackbot.skills.library.remove";
+    public static final String SLACKBOT_SKILLS_LIST = "slackbot.skills.list";
+    public static final String SLACKBOT_SKILLS_UPDATE = "slackbot.skills.update";
 
     // ------------------------------
     // stars

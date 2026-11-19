@@ -52,5 +52,7 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> template;
         private List<String> list;
         private List<String> legalHold;
+        private List<String> salesforceMcpServer;
+        private List<String> workObjectRecord;
     }
 }

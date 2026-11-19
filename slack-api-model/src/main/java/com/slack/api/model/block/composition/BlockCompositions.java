@@ -87,4 +87,14 @@ public class BlockCompositions {
     public static SlackFileObject slackFile(ModelConfigurator<SlackFileObject.SlackFileObjectBuilder> configurator) {
         return configurator.configure(SlackFileObject.builder()).build();
     }
+
+    // SlackIconObject
+
+    public static SlackIconObject slackIcon(ModelConfigurator<SlackIconObject.SlackIconObjectBuilder> configurator) {
+        return configurator.configure(SlackIconObject.builder()).build();
+    }
+
+    public static SlackIconObject slackIcon(String name) {
+        return SlackIconObject.builder().name(name).build();
+    }
 }
