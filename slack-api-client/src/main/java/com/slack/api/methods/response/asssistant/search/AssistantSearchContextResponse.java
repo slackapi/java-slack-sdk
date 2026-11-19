@@ -32,6 +32,7 @@ public class AssistantSearchContextResponse implements SlackApiTextResponse {
     @Data
     public static class MessageResult {
         private String authorName;
+        private String authorEmail;
         private String authorUserId;
         private String teamId;
         private String channelId;
@@ -42,6 +43,7 @@ public class AssistantSearchContextResponse implements SlackApiTextResponse {
         private String permalink;
         private List<LayoutBlock> blocks;
         private ContextMessages contextMessages;
+        private Integer replyCount;
     }
 
     @Data
@@ -55,6 +57,8 @@ public class AssistantSearchContextResponse implements SlackApiTextResponse {
         private String text;
         private String userId;
         private String ts;
+        private String authorName;
+        private String authorEmail;
         private List<LayoutBlock> blocks;
     }
 
@@ -71,6 +75,7 @@ public class AssistantSearchContextResponse implements SlackApiTextResponse {
         private String fileType;
         private String permalink;
         private String content;
+        private Integer size;
     }
 
     @Data
@@ -84,15 +89,18 @@ public class AssistantSearchContextResponse implements SlackApiTextResponse {
         private String topic;
         private String purpose;
         private String permalink;
+        private Boolean isArchived;
+        private String channelType;
     }
 
     @Data
     public static class UserResult {
-        private String teamId;
         private String userId;
-        private String name;
-        private String realName;
         private String permalink;
-        private String content;
+        private String fullName;
+        private String title;
+        private String timezone;
+        private String email;
+        private String profilePicPermalink;
     }
 }

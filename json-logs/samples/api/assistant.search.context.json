@@ -8,6 +8,7 @@
     "messages": [
       {
         "author_name": "",
+        "author_email": "",
         "author_user_id": "",
         "team_id": "",
         "channel_id": "",
@@ -23,6 +24,8 @@
               "text": "",
               "user_id": "",
               "ts": "",
+              "author_name": "",
+              "author_email": "",
               "blocks": []
             }
           ],
@@ -31,10 +34,13 @@
               "text": "",
               "user_id": "",
               "ts": "",
+              "author_name": "",
+              "author_email": "",
               "blocks": []
             }
           ]
-        }
+        },
+        "reply_count": 123
       }
     ],
     "files": [
@@ -49,7 +55,8 @@
         "title": "",
         "file_type": "",
         "permalink": "",
-        "content": ""
+        "content": "",
+        "size": 123
       }
     ],
     "channels": [
@@ -62,17 +69,20 @@
         "name": "",
         "topic": "",
         "purpose": "",
-        "permalink": ""
+        "permalink": "",
+        "is_archived": false,
+        "channel_type": ""
       }
     ],
     "users": [
       {
-        "team_id": "",
         "user_id": "",
-        "name": "",
-        "real_name": "",
         "permalink": "",
-        "content": ""
+        "full_name": "",
+        "title": "",
+        "timezone": "",
+        "email": "",
+        "profile_pic_permalink": ""
       }
     ]
   },
