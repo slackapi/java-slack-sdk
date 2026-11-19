@@ -18,6 +18,7 @@ import test_locally.unit.GsonFactory;
 import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.actionCell;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.composition.BlockCompositions.rawNumber;
@@ -2479,14 +2480,13 @@ public class BlockKitTest {
                         Arrays.asList(
                                 rawText("Platform"),
                                 rawNumber(1234.5, "$1,234.50"),
-                                ActionCellObject.builder()
+                                actionCell(c -> c
                                         .element(ButtonElement.builder()
                                                 .text(plainText("Mark done"))
                                                 .actionId("mark_done")
                                                 .value("task_123")
                                                 .build())
-                                        .fallback(rawText("Open"))
-                                        .build()
+                                        .fallback(rawText("Open")))
                         )
                 )));
         assertThat(block, is(notNullValue()));
