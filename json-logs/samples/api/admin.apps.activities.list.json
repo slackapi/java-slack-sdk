@@ -36,7 +36,7 @@
             "schema": {},
             "event_type": "",
             "function_inputs": {
-              "repository": {
+              "0000000000": {
                 "label": {
                   "https://www.example.com/": ""
                 },
@@ -44,7 +44,7 @@
                 "hidden": false,
                 "locked": false
               },
-              "github_access_token": {
+              "0000000000_": {
                 "value": {
                   "credential_source": "",
                   "external_token_id": "",

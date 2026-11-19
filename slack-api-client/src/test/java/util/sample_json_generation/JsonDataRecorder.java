@@ -585,6 +585,28 @@ public class JsonDataRecorder {
                 label.add("https://www.example.com/", new JsonPrimitive(""));
                 return;
             }
+            if (name != null && name.equals("function_inputs") && path.equals("/api/admin.apps.activities.list")) {
+                // The keys are the workflow's input names, so keep one string input and one credential input
+                JsonObject functionInputs = element.getAsJsonObject();
+                List<Map.Entry<String, JsonElement>> inputs = new ArrayList<>(functionInputs.entrySet());
+                JsonElement stringInput = null;
+                JsonElement credentialInput = null;
+                for (Map.Entry<String, JsonElement> input : inputs) {
+                    functionInputs.remove(input.getKey());
+                    JsonElement value = input.getValue().isJsonObject() ? input.getValue().getAsJsonObject().get("value") : null;
+                    if (value != null && value.isJsonObject()) {
+                        credentialInput = credentialInput == null ? input.getValue() : credentialInput;
+                    } else {
+                        stringInput = stringInput == null ? input.getValue() : stringInput;
+                    }
+                }
+                if (stringInput != null) {
+                    functionInputs.add("0000000000", stringInput);
+                }
+                if (credentialInput != null) {
+                    functionInputs.add("0000000000_", credentialInput);
+                }
+            }
             if (name != null && name.equals("bookmark")) {
                 if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
                     return;
