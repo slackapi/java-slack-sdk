@@ -101,9 +101,7 @@ public class AppActivity {
 
     @Data
     public static class FunctionInputValue {
-        // e.g., "https://api.github.com/repos/..." for a string input
         private String stringValue;
-        // credential inputs
         private String credentialSource;
         private String externalTokenId;
         private String userContextSource;
