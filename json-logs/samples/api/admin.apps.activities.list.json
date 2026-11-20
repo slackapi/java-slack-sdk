@@ -34,7 +34,29 @@
             "name": "",
             "description": "",
             "schema": {},
-            "event_type": ""
+            "event_type": "",
+            "function_inputs": {
+              "0000000000": {
+                "label": {
+                  "0000000000": "",
+                  "0000000000_": ""
+                },
+                "value": "https://www.example.com/",
+                "hidden": false,
+                "locked": false
+              },
+              "0000000000_": {
+                "value": {
+                  "credential_source": "",
+                  "external_token_id": "",
+                  "user_context_source": ""
+                },
+                "hidden": false,
+                "locked": false
+              }
+            },
+            "trigger_type_id": 12345,
+            "trigger_type_app_id": 12345
           },
           "trip_information": {
             "user_id": "W00000000",
