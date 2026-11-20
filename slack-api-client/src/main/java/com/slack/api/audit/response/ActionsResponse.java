@@ -56,5 +56,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> workObjectRecord;
         private List<String> surface;
         private List<String> slackbotTaskToolApproval;
+        private List<String> salesforceOrg;
     }
 }
