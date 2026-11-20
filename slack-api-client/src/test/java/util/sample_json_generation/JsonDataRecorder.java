@@ -57,6 +57,8 @@ public class JsonDataRecorder {
             } else if (path.equals("/audit/v1/logs")) {
                 // As generating logs.json is not so easy,
                 // test_with_remote_apis.audit.ApiTest generates the file
+            } else if (path.equals("/api/assistant.search.context") || path.equals("/api/assistant.search.info")) {
+                // test_locally.sample_json_generation.MethodsResponseDumpTest generates these files
             } else {
                 writeMergedJsonData(path, body);
             }
@@ -411,8 +413,7 @@ public class JsonDataRecorder {
                     array.remove(0);
                 }
                 array.add(gson.toJsonTree(initProperties(new FileComment())));
-            } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")
-                    && !path.equals("/api/assistant.search.context")) {
+            } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")) {
                 while (!array.isEmpty()) {
                     array.remove(0);
                 }
