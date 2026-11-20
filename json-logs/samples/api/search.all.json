@@ -22,7 +22,7 @@
       {
         "db_message": {},
         "iid": "",
-        "team": "T00000000",
+        "team": "",
         "score": 12345,
         "channel": {
           "id": "C00000000",
@@ -40,14 +40,14 @@
             ""
           ],
           "is_pending_ext_shared": false,
-          "user": "U00000000",
+          "user": "",
           "name_normalized": "",
           "is_file": false
         },
         "type": "",
-        "user": "U00000000",
+        "user": "",
         "username": "",
-        "ts": "0000000000.000000",
+        "ts": "",
         "blocks": [
           {
             "type": "actions",
@@ -17995,9 +17995,9 @@
         "no_reactions": false,
         "previous": {
           "type": "",
-          "user": "U00000000",
+          "user": "",
           "username": "",
-          "ts": "0000000000.000000",
+          "ts": "",
           "text": "",
           "iid": "",
           "permalink": "https://www.example.com/",
@@ -61588,9 +61588,9 @@
         },
         "previous_2": {
           "type": "",
-          "user": "U00000000",
+          "user": "",
           "username": "",
-          "ts": "0000000000.000000",
+          "ts": "",
           "text": "",
           "iid": "",
           "permalink": "https://www.example.com/",
@@ -140524,8 +140524,8 @@
         "mimetype": "",
         "filetype": "",
         "pretty_type": "",
-        "user": "U00000000",
-        "user_team": "T00000000",
+        "user": "",
+        "user_team": "",
         "editable": false,
         "size": 12345,
         "mode": "",
@@ -140552,10 +140552,10 @@
           "public": {
             "C00000000": [
               {
-                "ts": "0000000000.000000",
+                "ts": "",
                 "channel_name": "",
-                "team_id": "T00000000",
-                "share_user_id": "U00000000",
+                "team_id": "",
+                "share_user_id": "",
                 "source": "",
                 "is_silent_share": false,
                 "access": "",
@@ -140566,20 +140566,20 @@
                 "reply_count": 12345
               },
               {
-                "ts": "0000000000.000000",
+                "ts": "",
                 "channel_name": "",
-                "team_id": "T00000000",
-                "share_user_id": "U00000000",
+                "team_id": "",
+                "share_user_id": "",
                 "source": "",
                 "is_silent_share": false
               }
             ],
             "C00000001": [
               {
-                "ts": "0000000000.000000",
+                "ts": "",
                 "channel_name": "",
-                "team_id": "T00000000",
-                "share_user_id": "U00000000",
+                "team_id": "",
+                "share_user_id": "",
                 "source": "",
                 "is_silent_share": false,
                 "access": "",
@@ -140590,10 +140590,10 @@
                 "reply_count": 12345
               },
               {
-                "ts": "0000000000.000000",
+                "ts": "",
                 "channel_name": "",
-                "team_id": "T00000000",
-                "share_user_id": "U00000000",
+                "team_id": "",
+                "share_user_id": "",
                 "source": "",
                 "is_silent_share": false
               }
@@ -140602,16 +140602,16 @@
           "private": {
             "D00000000": [
               {
-                "ts": "0000000000.000000",
-                "share_user_id": "U00000000",
+                "ts": "",
+                "share_user_id": "",
                 "source": "",
                 "is_silent_share": false
               }
             ],
             "D00000001": [
               {
-                "ts": "0000000000.000000",
-                "share_user_id": "U00000000",
+                "ts": "",
+                "share_user_id": "",
                 "source": "",
                 "is_silent_share": false
               }
@@ -140660,7 +140660,7 @@
         "private_channels_with_file_access_count": 12345,
         "dm_mpdm_users_with_file_access": [
           {
-            "user_id": "U00000000",
+            "user_id": "",
             "access": ""
           }
         ],
@@ -158611,7 +158611,7 @@
             "optional": false
           }
         ],
-        "canvas_creator_id": "U00000000",
+        "canvas_creator_id": "",
         "team_pref_version_history_enabled": false,
         "canvas_printing_enabled": false,
         "show_badge": false,
@@ -158633,7 +158633,7 @@
         "external_id": "",
         "external_url": "https://www.example.com/",
         "image_exif_rotation": 12345,
-        "last_editor": "U00000000",
+        "last_editor": "",
         "non_owner_editable": false,
         "thumb_video": "https://www.example.com/",
         "comments_count": 12345,
