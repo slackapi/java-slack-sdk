@@ -16,6 +16,7 @@ public class AgentsConversationsListViewsResponse implements SlackApiTextRespons
     private String provided;
 
     private List<View> views;
+    private List<SessionView> sessionViews;
 
     private transient Map<String, List<String>> httpResponseHeaders;
 
@@ -25,6 +26,18 @@ public class AgentsConversationsListViewsResponse implements SlackApiTextRespons
         private String fileId;
         private String viewKey;
         private String label;
+        private Integer dateAdded;
+        private Integer contentVersion;
+    }
+
+    @Data
+    public static class SessionView {
+        private String viewId;
+        private String type;
+        private String fileId;
+        private String viewKey;
+        private String name;
+        private String ownerBotUserId;
         private Integer dateAdded;
         private Integer contentVersion;
     }

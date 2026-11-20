@@ -78,6 +78,7 @@ public class LogsResponse implements AuditApiResponse {
         // captured JSON before typing. See deferred conversion notes.
         private Object externalAuthOauth2Token;
         private Function function;
+        private Canvas canvas;
     }
 
     @Data
@@ -130,6 +131,13 @@ public class LogsResponse implements AuditApiResponse {
         private String name;
         private String filetype;
         private String title;
+    }
+
+    @Data
+    public static class Canvas {
+        private String id;
+        private String title;
+        private String filetype;
     }
 
     @Data
@@ -381,6 +389,7 @@ public class LogsResponse implements AuditApiResponse {
         private AAARule matchedRule; // app_allowlist_rule_matched
         private AAARequest request; // app_allowlist_rule_matched
         private List<AAARule> rulesChecked; // app_allowlist_rule_matched
+        private AAARuleCondition condition; // app_allowlist_rule_created etc.
         private String disconnectingTeam; // external_shared_channel_disconnected
         private Boolean isChannelCanvas; // canvas_opened
         private String linkedChannelId; // canvas_opened
@@ -457,6 +466,31 @@ public class LogsResponse implements AuditApiResponse {
         private String executorId;
         private String skillId;
         private List<String> mcpServerAllowlistDomains;
+        private String ruleId; // app_allowlist_rule_created
+        @SerializedName("is_enabled")
+        private Boolean enabled; // app_allowlist_rule_created
+        private String title; // list_title_updated etc.
+        private List<String> changedFields; // app_allowlist_rule_activated
+        private Boolean isSkill; // canvas_converted_to_skill etc.
+        private String organizationId; // canvas_linksharing_enabled
+        private List<String> usergroupIds; // slack_ai_skill_auto_enabled etc.
+        private Boolean categoryChanged; // slack_ai_skill_metadata_updated
+        private Boolean descriptionChanged; // slack_ai_skill_metadata_updated
+        private Boolean examplePromptChanged; // slack_ai_skill_metadata_updated
+        private Boolean mcpServersChanged; // slack_ai_skill_metadata_updated
+        private Boolean excludeFromSlackAi; // channel_exclude_from_slack_ai_updated
+        private InstallerEmailVerification installerEmailVerification; // app_scopes_expanded
+        private List<String> newBotScopes; // app_approved
+        private List<String> oldBotScopes; // app_approved
+        private String previousPermissionType; // app_mcp_server_acl_changed
+        private String serverId; // app_mcp_server_acl_changed
+        private String managerAppId; // child_app_manifest_created etc.
+    }
+
+    @Data
+    public static class InstallerEmailVerification {
+        private String method;
+        private String email;
     }
 
     @Data
