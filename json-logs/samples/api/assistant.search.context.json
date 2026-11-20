@@ -63545,7 +63545,17 @@
             "url": ""
           }
         ],
-        "comments_count": 123
+        "comments_count": 123,
+        "uploader_user_id": "",
+        "author_user_id": "",
+        "author_name": "",
+        "author_email": "",
+        "team_id": "",
+        "file_id": "",
+        "date_created": 123,
+        "date_updated": 123,
+        "file_type": "",
+        "content": ""
       }
     ],
     "channels": [

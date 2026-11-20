@@ -411,7 +411,8 @@ public class JsonDataRecorder {
                     array.remove(0);
                 }
                 array.add(gson.toJsonTree(initProperties(new FileComment())));
-            } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")) {
+            } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")
+                    && !path.equals("/api/assistant.search.context")) {
                 while (!array.isEmpty()) {
                     array.remove(0);
                 }
