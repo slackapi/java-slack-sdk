@@ -2390,7 +2390,6 @@ public class BlockKitTest {
 
     @Test
     public void parseDataTableBlock() {
-        // https://docs.slack.dev/reference/block-kit/blocks/data-table-block
         String json = "{\n" +
                 "  \"blocks\": [\n" +
                 "    {\n" +
