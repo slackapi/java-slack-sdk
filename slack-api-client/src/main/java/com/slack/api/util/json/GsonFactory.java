@@ -7,6 +7,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.File;
+import com.slack.api.model.admin.AppActivity;
 import com.slack.api.model.admin.AppWorkflow;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.ContextActionsBlockElement;
@@ -88,6 +89,7 @@ public class GsonFactory {
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
                 .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory(failOnUnknownProps))
+                .registerTypeAdapter(AppActivity.FunctionInputValue.class, new GsonAppActivityFunctionInputValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsAction.class, new GsonAuditLogsDetailsActionFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps))

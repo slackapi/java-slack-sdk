@@ -1,5 +1,6 @@
 package com.slack.api.model.admin;
 
+import com.google.gson.JsonElement;
 import lombok.Data;
 
 import java.util.List;
@@ -94,9 +95,19 @@ public class AppActivity {
     @Data
     public static class FunctionInput {
         private Map<String, String> label; // keyed by the value
-        private Object value; // a string, or an object for credential inputs
+        private FunctionInputValue value;
         private Boolean hidden;
         private Boolean locked;
+    }
+
+    @Data
+    public static class FunctionInputValue {
+        private String stringValue;
+        private List<String> stringValues;
+        private String credentialSource;
+        private String externalTokenId;
+        private String userContextSource;
+        private JsonElement rawValue;
     }
 
     @Data
