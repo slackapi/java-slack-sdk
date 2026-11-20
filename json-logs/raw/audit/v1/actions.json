@@ -823,7 +823,9 @@
       "workflow_ai_answer_suspicious_prompt",
       "external_auth_oauth2_token_fetched",
       "external_auth_oauth2_token_refreshed",
-      "external_auth_oauth2_token_deleted"
+      "external_auth_oauth2_token_deleted",
+      "workflow_v2_unpublished",
+      "workflow_v2_deleted"
     ],
     "canvas": [
       "canvas_access_added",
@@ -994,6 +996,20 @@
     "slackbot_task_tool_approval": [
       "slackbot_task_tool_approval_granted",
       "slackbot_task_tool_approval_revoked"
+    ],
+    "salesforce_org": [
+      "salesforce_org_upserted",
+      "salesforce_org_deleted",
+      "salesforce_org_marked_offline",
+      "salesforce_org_unfurls_config_updated",
+      "salesforce_org_lists_inline_edit_config_updated",
+      "salesforce_org_slackbot_write_permission_updated",
+      "salesforce_org_slackbot_rules_updated",
+      "salesforce_org_slackbot_rules_grid_join_moved",
+      "salesforce_org_slackbot_rules_grid_join_replaced",
+      "salesforce_org_slackbot_rules_grid_join_locked",
+      "salesforce_org_admin_config_deleted",
+      "salesforce_org_edition_updated"
     ]
   }
 }

@@ -83,6 +83,9 @@
     ],
     "slackbot_task_tool_approval": [
       ""
+    ],
+    "salesforce_org": [
+      ""
     ]
   },
   "ok": false,
