@@ -29,11 +29,13 @@ public class OptionObject {
     private String value;
 
     /**
-     * A plain_text only text object that defines a line of descriptive text shown
-     * below the text field beside the radio button.
-     * Maximum length for the text object within this field is 75 characters.
+     * A plain_text text object that defines a line of descriptive text shown below
+     * the text field beside a single selectable item in a select menu, multi-select
+     * menu, checkbox group, radio button group, or overflow menu. Checkbox group and
+     * radio button group items can also use mrkdwn formatting.
+     * Maximum length for the text within this field is 75 characters.
      */
-    private PlainTextObject description;
+    private TextObject description;
 
     /**
      * A URL to load in the user's browser when the option is clicked.
