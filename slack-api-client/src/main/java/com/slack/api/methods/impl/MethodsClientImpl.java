@@ -689,6 +689,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminConversationsCreateForObjectsResponse adminConversationsCreateForObjects(AdminConversationsCreateForObjectsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_CREATE_FOR_OBJECTS, getToken(req), AdminConversationsCreateForObjectsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsCreateForObjectsResponse adminConversationsCreateForObjects(RequestConfigurator<AdminConversationsCreateForObjectsRequest.AdminConversationsCreateForObjectsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsCreateForObjects(req.configure(AdminConversationsCreateForObjectsRequest.builder()).build());
+    }
+
+    @Override
     public AdminConversationsDeleteResponse adminConversationsDelete(AdminConversationsDeleteRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_DELETE, getToken(req), AdminConversationsDeleteResponse.class);
     }

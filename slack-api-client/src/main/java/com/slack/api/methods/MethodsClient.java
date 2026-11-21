@@ -633,6 +633,13 @@ public interface MethodsClient {
             RequestConfigurator<AdminConversationsCreateRequest.AdminConversationsCreateRequestBuilder> req)
             throws IOException, SlackApiException;
 
+    AdminConversationsCreateForObjectsResponse adminConversationsCreateForObjects(AdminConversationsCreateForObjectsRequest req)
+            throws IOException, SlackApiException;
+
+    AdminConversationsCreateForObjectsResponse adminConversationsCreateForObjects(
+            RequestConfigurator<AdminConversationsCreateForObjectsRequest.AdminConversationsCreateForObjectsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
     AdminConversationsDeleteResponse adminConversationsDelete(AdminConversationsDeleteRequest req)
             throws IOException, SlackApiException;
 

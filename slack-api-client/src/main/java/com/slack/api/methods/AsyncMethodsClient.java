@@ -512,6 +512,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminConversationsCreateResponse> adminConversationsCreate(RequestConfigurator<AdminConversationsCreateRequest.AdminConversationsCreateRequestBuilder> req);
 
+    CompletableFuture<AdminConversationsCreateForObjectsResponse> adminConversationsCreateForObjects(AdminConversationsCreateForObjectsRequest req);
+
+    CompletableFuture<AdminConversationsCreateForObjectsResponse> adminConversationsCreateForObjects(RequestConfigurator<AdminConversationsCreateForObjectsRequest.AdminConversationsCreateForObjectsRequestBuilder> req);
+
     CompletableFuture<AdminConversationsDeleteResponse> adminConversationsDelete(AdminConversationsDeleteRequest req);
 
     CompletableFuture<AdminConversationsDeleteResponse> adminConversationsDelete(RequestConfigurator<AdminConversationsDeleteRequest.AdminConversationsDeleteRequestBuilder> req);
