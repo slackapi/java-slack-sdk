@@ -462,6 +462,7 @@ public class Actions {
         public static final String mcp_slack_search_developer_samples_tool_called = "mcp_slack_search_developer_samples_tool_called";
         public static final String slackbot_feedback_listed = "slackbot_feedback_listed";
         public static final String slackbot_traces_listed = "slackbot_traces_listed";
+        public static final String pref_slackbot_ai_memory_enabled_changed = "pref.slackbot_ai_memory_enabled_changed";
     }
 
     public static class User {
