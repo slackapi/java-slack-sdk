@@ -105,4 +105,29 @@ public abstract class Request<CTX extends Context> {
         this.socketMode = socketMode;
     }
 
+    private String socketModeEnvelopeId;
+    private Long socketModeDispatchDelayNanos;
+
+    /** The delivery's envelope ID, or null for requests received outside the Socket Mode adapter. */
+    public String getSocketModeEnvelopeId() {
+        return socketModeEnvelopeId;
+    }
+
+    public void setSocketModeEnvelopeId(String socketModeEnvelopeId) {
+        this.socketModeEnvelopeId = socketModeEnvelopeId;
+    }
+
+    /**
+     * Monotonic elapsed time from entering the Socket Mode receive queue to dispatching this request,
+     * in nanoseconds. Includes both SDK queues and parsing, but excludes Bolt middleware, handlers
+     * and acknowledgement sending. Null means receive timing was unavailable, including for HTTP requests.
+     */
+    public Long getSocketModeDispatchDelayNanos() {
+        return socketModeDispatchDelayNanos;
+    }
+
+    public void setSocketModeDispatchDelayNanos(Long socketModeDispatchDelayNanos) {
+        this.socketModeDispatchDelayNanos = socketModeDispatchDelayNanos;
+    }
+
 }
