@@ -450,7 +450,8 @@
       "mcp_slack_delete_developer_sandbox_tool_called",
       "mcp_slack_search_developer_samples_tool_called",
       "slackbot_feedback_listed",
-      "slackbot_traces_listed"
+      "slackbot_traces_listed",
+      "pref.slackbot_ai_memory_enabled_changed"
     ],
     "user": [
       "custom_tos_accepted",
