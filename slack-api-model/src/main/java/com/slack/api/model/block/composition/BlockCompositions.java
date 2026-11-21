@@ -1,6 +1,7 @@
 package com.slack.api.model.block.composition;
 
 import com.slack.api.model.ModelConfigurator;
+import com.slack.api.model.block.element.ButtonElement;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,16 @@ public class BlockCompositions {
 
     public static List<OptionObject> asOptions(OptionObject... options) {
         return Arrays.asList(options);
+    }
+
+    // ActionCellObject
+
+    public static ActionCellObject actionCell(ModelConfigurator<ActionCellObject.ActionCellObjectBuilder> configurator) {
+        return configurator.configure(ActionCellObject.builder()).build();
+    }
+
+    public static ActionCellObject actionCell(ButtonElement element) {
+        return ActionCellObject.builder().element(element).build();
     }
 
     // ConfirmationDialogObject
@@ -52,6 +63,26 @@ public class BlockCompositions {
 
     public static MarkdownTextObject markdownText(String text) {
         return MarkdownTextObject.builder().text(text).build();
+    }
+
+    // RawNumberObject
+
+    public static RawNumberObject rawNumber(ModelConfigurator<RawNumberObject.RawNumberObjectBuilder> configurator) {
+        return configurator.configure(RawNumberObject.builder()).build();
+    }
+
+    public static RawNumberObject rawNumber(Double value, String text) {
+        return RawNumberObject.builder().value(value).text(text).build();
+    }
+
+    // RawTextObject
+
+    public static RawTextObject rawText(ModelConfigurator<RawTextObject.RawTextObjectBuilder> configurator) {
+        return configurator.configure(RawTextObject.builder()).build();
+    }
+
+    public static RawTextObject rawText(String text) {
+        return RawTextObject.builder().text(text).build();
     }
 
     // OptionGroupObject

@@ -4,7 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
+import com.slack.api.model.block.composition.ActionCellObject;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.RawNumberObject;
+import com.slack.api.model.block.composition.RawTextObject;
+import com.slack.api.model.block.composition.TableCell;
+import com.slack.api.model.block.composition.UnknownTableCell;
 import com.slack.api.model.block.element.*;
 import com.slack.api.model.view.View;
 import org.junit.Test;
@@ -13,8 +18,11 @@ import test_locally.unit.GsonFactory;
 import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.actionCell;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.composition.BlockCompositions.rawNumber;
+import static com.slack.api.model.block.composition.BlockCompositions.rawText;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
 import static com.slack.api.model.block.element.BlockElements.conversationsSelect;
 import static com.slack.api.model.view.Views.view;
@@ -2378,6 +2386,169 @@ public class BlockKitTest {
         assertThat(parsedCarousel.getElements().get(0).getType(), is("card"));
         assertThat(parsedCarousel.getElements().get(0).getBlockId(), is("card1"));
         assertThat(parsedCarousel.getElements().get(0).getActions().size(), is(1));
+    }
+
+    @Test
+    public void parseDataTableBlock() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"data_table\",\n" +
+                "      \"block_id\": \"bid\",\n" +
+                "      \"caption\": \"Quarterly results\",\n" +
+                "      \"page_size\": 10,\n" +
+                "      \"row_header_column_index\": 0,\n" +
+                "      \"rows\": [\n" +
+                "        [\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Team\" },\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Revenue\" },\n" +
+                "          { \"type\": \"raw_text\", \"text\": \"Action\" }\n" +
+                "        ],\n" +
+                "        [\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"rich_text_section\",\n" +
+                "                \"elements\": [ { \"type\": \"text\", \"text\": \"Platform\" } ]\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          },\n" +
+                "          { \"type\": \"raw_number\", \"value\": 1234.5, \"text\": \"$1,234.50\" },\n" +
+                "          {\n" +
+                "            \"type\": \"action_cell\",\n" +
+                "            \"element\": {\n" +
+                "              \"type\": \"button\",\n" +
+                "              \"text\": { \"type\": \"plain_text\", \"text\": \"Mark done\" },\n" +
+                "              \"action_id\": \"mark_done\",\n" +
+                "              \"value\": \"task_123\"\n" +
+                "            },\n" +
+                "            \"fallback\": { \"type\": \"raw_text\", \"text\": \"Open\" }\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+
+        DataTableBlock block = (DataTableBlock) message.getBlocks().get(0);
+        assertThat(block.getType(), is("data_table"));
+        assertThat(block.getBlockId(), is("bid"));
+        assertThat(block.getCaption(), is("Quarterly results"));
+        assertThat(block.getPageSize(), is(10));
+        assertThat(block.getRowHeaderColumnIndex(), is(0));
+        assertThat(block.getRows().size(), is(2));
+
+        RawTextObject header = (RawTextObject) block.getRows().get(0).get(0);
+        assertThat(header.getType(), is("raw_text"));
+        assertThat(header.getText(), is("Team"));
+
+        TableCell richCell = block.getRows().get(1).get(0);
+        assertTrue(richCell instanceof RichTextBlock);
+        assertThat(richCell.getType(), is("rich_text"));
+
+        RawNumberObject numberCell = (RawNumberObject) block.getRows().get(1).get(1);
+        assertThat(numberCell.getType(), is("raw_number"));
+        assertThat(numberCell.getValue(), is(1234.5));
+        assertThat(numberCell.getText(), is("$1,234.50"));
+
+        ActionCellObject actionCell = (ActionCellObject) block.getRows().get(1).get(2);
+        assertThat(actionCell.getType(), is("action_cell"));
+        assertThat(actionCell.getElement().getActionId(), is("mark_done"));
+        assertThat(actionCell.getElement().getValue(), is("task_123"));
+        RawTextObject fallback = (RawTextObject) actionCell.getFallback();
+        assertThat(fallback.getText(), is("Open"));
+    }
+
+    @Test
+    public void buildDataTableBlock() {
+        DataTableBlock block = dataTable(t -> t
+                .blockId("bid")
+                .caption("Quarterly results")
+                .pageSize(10)
+                .rowHeaderColumnIndex(0)
+                .rows(Arrays.asList(
+                        Arrays.asList(
+                                rawText("Team"),
+                                rawText("Revenue"),
+                                rawText("Action")
+                        ),
+                        Arrays.asList(
+                                rawText("Platform"),
+                                rawNumber(1234.5, "$1,234.50"),
+                                actionCell(c -> c
+                                        .element(ButtonElement.builder()
+                                                .text(plainText("Mark done"))
+                                                .actionId("mark_done")
+                                                .value("task_123")
+                                                .build())
+                                        .fallback(rawText("Open")))
+                        )
+                )));
+        assertThat(block, is(notNullValue()));
+
+        Gson gson = GsonFactory.createSnakeCase();
+        String json = gson.toJson(block);
+        DataTableBlock restored = (DataTableBlock) gson.fromJson(json, LayoutBlock.class);
+        assertThat(restored.getType(), is("data_table"));
+        assertThat(restored.getCaption(), is("Quarterly results"));
+        assertThat(restored.getPageSize(), is(10));
+        assertThat(restored.getRows().size(), is(2));
+        RawNumberObject numberCell = (RawNumberObject) restored.getRows().get(1).get(1);
+        assertThat(numberCell.getValue(), is(1234.5));
+        ActionCellObject actionCell = (ActionCellObject) restored.getRows().get(1).get(2);
+        assertThat(actionCell.getElement().getActionId(), is("mark_done"));
+        assertThat(((RawTextObject) actionCell.getFallback()).getText(), is("Open"));
+    }
+
+    @Test
+    public void data_table_default_behavior_with_unknown_cell() {
+        String json = "{\n" +
+                "  \"type\": \"data_table\",\n" +
+                "  \"rows\": [\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Owner\" }\n" +
+                "    ],\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
+                "      { \"type\": \"unknown_cell_in_the_future\", \"user_id\": \"U123456\" }\n" +
+                "    ]\n" +
+                "  ]\n" +
+                "}";
+        Gson prodGson = GsonFactory.createSnakeCase(false, false);
+        DataTableBlock block = (DataTableBlock) prodGson.fromJson(json, LayoutBlock.class);
+        assertThat(block.getRows().get(1).size(), is(2));
+        TableCell cell = block.getRows().get(1).get(1);
+        assertTrue(cell instanceof UnknownTableCell);
+        assertThat(cell.getType(), is("unknown_cell_in_the_future"));
+    }
+
+    @Test
+    public void data_table_fail_on_unknown_cell() {
+        String json = "{\n" +
+                "  \"type\": \"data_table\",\n" +
+                "  \"rows\": [\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Task\" },\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Owner\" }\n" +
+                "    ],\n" +
+                "    [\n" +
+                "      { \"type\": \"raw_text\", \"text\": \"Write docs\" },\n" +
+                "      { \"type\": \"unknown_cell_in_the_future\", \"user_id\": \"U123456\" }\n" +
+                "    ]\n" +
+                "  ]\n" +
+                "}";
+        try {
+            GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                    .fromJson(json, LayoutBlock.class);
+            fail("throwing JsonParseException is expected here");
+        } catch (JsonParseException e) {
+            assertThat(e.getMessage(), is("Unknown table cell type: unknown_cell_in_the_future"));
+        }
     }
 
     @Test
