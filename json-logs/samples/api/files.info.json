@@ -1,10 +1,5 @@
 {
   "ok": false,
-  "content": "",
-  "is_truncated": false,
-  "content_highlight_html": "",
-  "content_highlight_css": "",
-  "content_highlight_html_truncated": false,
   "file": {
     "id": "",
     "created": 123,
@@ -355,6 +350,12 @@
                 },
                 "url": ""
               }
+          : "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
             ],
             "initial_options": [
               {
@@ -648,12 +649,7 @@
           {
             "type": "timepicker",
             "action_id": "",
-            "placeholder": {
-              "type": "plain_text",
-              "text": "",
-              "emoji": false
-            },
-            "initial_time": "",
+     _time": "",
             "timezone": "",
             "confirm": {
               "title": {
@@ -9692,12 +9688,17 @@
   "response_metadata": {
     "next_cursor": ""
   },
+  "content": "",
+  "is_truncated": false,
+  "content_highlight_html": "",
+  "content_highlight_css": "",
+  "content_highlight_html_truncated": false,
+  "content_html": "",
   "warning": "",
   "error": "",
   "needed": "",
-  "provided": "",
-  "content_html": "",
-  "paging": {
+  "provided": ""
+}  "paging": {
     "count": 12345,
     "total": 12345,
     "page": 12345,
