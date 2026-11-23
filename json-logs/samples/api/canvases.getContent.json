@@ -1,9 +1,8 @@
 {
   "ok": false,
   "content": "",
+  "warning": "",
   "error": "",
-  "response_metadata": {},
   "needed": "",
-  "provided": "",
-  "warning": ""
+  "provided": ""
 }
