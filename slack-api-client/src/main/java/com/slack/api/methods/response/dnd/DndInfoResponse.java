@@ -17,9 +17,9 @@ public class DndInfoResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private boolean dndEnabled;
-    private Integer nextDndStartTs;
-    private Integer nextDndEndTs;
+    private Long nextDndStartTs;
+    private Long nextDndEndTs;
     private boolean snoozeEnabled;
-    private Integer snoozeEndtime;
+    private Long snoozeEndtime;
     private Integer snoozeRemaining;
 }

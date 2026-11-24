@@ -17,7 +17,7 @@ public class DndSetSnoozeResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private boolean snoozeEnabled;
-    private Integer snoozeEndtime;
+    private Long snoozeEndtime;
     private Integer snoozeRemaining;
     private boolean snoozeIsIndefinite;
 }
