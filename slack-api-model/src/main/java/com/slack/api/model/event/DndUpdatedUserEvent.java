@@ -20,7 +20,7 @@ public class DndUpdatedUserEvent implements Event {
     @Data
     public static class DndStatus {
         private boolean dndEnabled;
-        private Integer nextDndStartTs;
-        private Integer nextDndEndTs;
+        private Long nextDndStartTs;
+        private Long nextDndEndTs;
     }
 }
