@@ -451,7 +451,8 @@
       "mcp_slack_search_developer_samples_tool_called",
       "slackbot_feedback_listed",
       "slackbot_traces_listed",
-      "pref.slackbot_ai_memory_enabled_changed"
+      "pref.slackbot_ai_memory_enabled_changed",
+      "pref.slackbot_ai_observability_api_enabled_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -713,7 +714,8 @@
       "app_user_connection_added",
       "app_user_connection_removed",
       "child_app_manager_connected",
-      "a2a_agent_invoked"
+      "a2a_agent_invoked",
+      "a2a_agent_oauth_client_updated"
     ],
     "workflow_builder": [
       "workflow_created",
