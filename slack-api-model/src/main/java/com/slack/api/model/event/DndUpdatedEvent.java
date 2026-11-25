@@ -23,10 +23,10 @@ public class DndUpdatedEvent implements Event {
     public static class DndStatus {
         private boolean dndEnabled;
         private Integer snoozeRemaining;
-        private Integer nextDndStartTs;
-        private Integer nextDndEndTs;
+        private Long nextDndStartTs;
+        private Long nextDndEndTs;
         private boolean snoozeEnabled;
         private boolean snoozeIsIndefinite;
-        private Integer snoozeEndtime;
+        private Long snoozeEndtime;
     }
 }

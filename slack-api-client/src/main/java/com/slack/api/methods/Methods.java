@@ -284,6 +284,18 @@ public class Methods {
     public static final String APPS_USER_CONNECTION_UPDATE = "apps.user.connection.update";
 
     // ------------------------------
+    // apps.icon
+    // ------------------------------
+
+    public static final String APPS_ICON_SET = "apps.icon.set";
+
+    // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    public static final String APPS_MANAGED_PERMISSIONS_SET = "apps.managed.permissions.set";
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 
@@ -322,6 +334,13 @@ public class Methods {
     public static final String APPS_PERMISSIONS_USERS_LIST = "apps.permissions.users.list";
     @Deprecated
     public static final String APPS_PERMISSIONS_USERS_REQUEST = "apps.permissions.users.request";
+
+    // ------------------------------
+    // assistant.search
+    // ------------------------------
+
+    public static final String ASSISTANT_SEARCH_CONTEXT = "assistant.search.context";
+    public static final String ASSISTANT_SEARCH_INFO = "assistant.search.info";
 
     // ------------------------------
     // assistant.threads

@@ -60,6 +60,8 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
+import com.slack.api.methods.request.apps.managed.permissions.AppsManagedPermissionsSetRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
@@ -70,6 +72,8 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -241,6 +245,8 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.icon.AppsIconSetResponse;
+import com.slack.api.methods.response.apps.managed.permissions.AppsManagedPermissionsSetResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
@@ -251,6 +257,8 @@ import com.slack.api.methods.response.apps.permissions.resources.AppsPermissions
 import com.slack.api.methods.response.apps.permissions.scopes.AppsPermissionsScopesListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
@@ -1383,6 +1391,26 @@ public interface MethodsClient {
             throws IOException, SlackApiException;
 
     // ------------------------------
+    // apps.icon
+    // ------------------------------
+
+    AppsIconSetResponse appsIconSet(AppsIconSetRequest req) throws IOException, SlackApiException;
+
+    AppsIconSetResponse appsIconSet(RequestConfigurator<AppsIconSetRequest.AppsIconSetRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    AppsManagedPermissionsSetResponse appsManagedPermissionsSet(AppsManagedPermissionsSetRequest req)
+            throws IOException, SlackApiException;
+
+    AppsManagedPermissionsSetResponse appsManagedPermissionsSet(
+            RequestConfigurator<AppsManagedPermissionsSetRequest.AppsManagedPermissionsSetRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 
@@ -1505,6 +1533,24 @@ public interface MethodsClient {
     // the coming months.
     @Deprecated
     AppsPermissionsUsersRequestResponse appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // assistant.search
+    // ------------------------------
+
+    AssistantSearchContextResponse assistantSearchContext(AssistantSearchContextRequest req)
+            throws IOException, SlackApiException;
+
+    AssistantSearchContextResponse assistantSearchContext(
+            RequestConfigurator<AssistantSearchContextRequest.AssistantSearchContextRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AssistantSearchInfoResponse assistantSearchInfo(AssistantSearchInfoRequest req)
+            throws IOException, SlackApiException;
+
+    AssistantSearchInfoResponse assistantSearchInfo(
+            RequestConfigurator<AssistantSearchInfoRequest.AssistantSearchInfoRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

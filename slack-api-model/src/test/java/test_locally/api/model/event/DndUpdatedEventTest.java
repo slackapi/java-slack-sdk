@@ -34,10 +34,10 @@ public class DndUpdatedEventTest {
         assertThat(event.getUser(), is("U1234"));
         assertThat(event.getDndStatus(), is(notNullValue()));
         assertThat(event.getDndStatus().isDndEnabled(), is(true));
-        assertThat(event.getDndStatus().getNextDndStartTs(), is(1450387800));
-        assertThat(event.getDndStatus().getNextDndEndTs(), is(1450423800));
+        assertThat(event.getDndStatus().getNextDndStartTs(), is(1450387800L));
+        assertThat(event.getDndStatus().getNextDndEndTs(), is(1450423800L));
         assertThat(event.getDndStatus().isSnoozeEnabled(), is(true));
-        assertThat(event.getDndStatus().getSnoozeEndtime(), is(1450373897));
+        assertThat(event.getDndStatus().getSnoozeEndtime(), is(1450373897L));
     }
 
     @Test
@@ -49,6 +49,17 @@ public class DndUpdatedEventTest {
         String generatedJson = gson.toJson(event);
         String expectedJson = "{\"type\":\"dnd_updated\",\"user\":\"u\",\"dnd_status\":{\"dnd_enabled\":false,\"snooze_enabled\":false,\"snooze_is_indefinite\":false}}";
         assertThat(generatedJson, is(expectedJson));
+    }
+
+    // https://github.com/slackapi/java-slack-sdk/issues/1719
+    @Test
+    public void deserialize_timestampsLargerThanIntegerMaxValue() {
+        String json = "{\"type\":\"dnd_updated\",\"user\":\"U1234\",\"dnd_status\":{\"dnd_enabled\":true,"
+                + "\"next_dnd_start_ts\":9999999999,\"next_dnd_end_ts\":9999999999,\"snooze_endtime\":9999999999}}";
+        DndUpdatedEvent event = GsonFactory.createSnakeCase().fromJson(json, DndUpdatedEvent.class);
+        assertThat(event.getDndStatus().getNextDndStartTs(), is(9999999999L));
+        assertThat(event.getDndStatus().getNextDndEndTs(), is(9999999999L));
+        assertThat(event.getDndStatus().getSnoozeEndtime(), is(9999999999L));
     }
 
 }

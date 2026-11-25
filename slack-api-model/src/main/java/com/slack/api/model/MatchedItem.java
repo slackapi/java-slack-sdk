@@ -292,4 +292,6 @@ public class MatchedItem {
 
     private List<String> contentsExtracts;
 
+    private Boolean showBadge;
+
 }

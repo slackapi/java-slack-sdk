@@ -50,6 +50,8 @@ public class User {
     private boolean bot;
     @SerializedName("is_connector_bot")
     private boolean connectorBot;
+    @SerializedName("is_seamless_enabled_app_bot")
+    private boolean seamlessEnabledAppBot;
     @SerializedName("is_stranger")
     private boolean stranger;
     @SerializedName("is_app_user")

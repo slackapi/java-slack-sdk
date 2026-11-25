@@ -22,7 +22,7 @@ public class DndTeamInfoResponse implements SlackApiTextResponse {
     @Data
     public static class DndTeamMemberInfo {
         private boolean dndEnabled;
-        private Integer nextDndStartTs;
-        private Integer nextDndEndTs;
+        private Long nextDndStartTs;
+        private Long nextDndEndTs;
     }
 }

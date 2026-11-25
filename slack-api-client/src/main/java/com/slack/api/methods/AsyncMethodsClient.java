@@ -60,10 +60,14 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
+import com.slack.api.methods.request.apps.managed.permissions.AppsManagedPermissionsSetRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
 import com.slack.api.methods.request.apps.manifest.*;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -228,10 +232,14 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.icon.AppsIconSetResponse;
+import com.slack.api.methods.response.apps.managed.permissions.AppsManagedPermissionsSetResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionBulkUpdateResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionRequestAuthResponse;
 import com.slack.api.methods.response.apps.user.connection.AppsUserConnectionUpdateResponse;
 import com.slack.api.methods.response.apps.manifest.*;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchContextResponse;
+import com.slack.api.methods.response.asssistant.search.AssistantSearchInfoResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
@@ -989,6 +997,22 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsEventAuthorizationsListResponse> appsEventAuthorizationsList(RequestConfigurator<AppsEventAuthorizationsListRequest.AppsEventAuthorizationsListRequestBuilder> req);
 
     // ------------------------------
+    // apps.icon
+    // ------------------------------
+
+    CompletableFuture<AppsIconSetResponse> appsIconSet(AppsIconSetRequest req);
+
+    CompletableFuture<AppsIconSetResponse> appsIconSet(RequestConfigurator<AppsIconSetRequest.AppsIconSetRequestBuilder> req);
+
+    // ------------------------------
+    // apps.managed.permissions
+    // ------------------------------
+
+    CompletableFuture<AppsManagedPermissionsSetResponse> appsManagedPermissionsSet(AppsManagedPermissionsSetRequest req);
+
+    CompletableFuture<AppsManagedPermissionsSetResponse> appsManagedPermissionsSet(RequestConfigurator<AppsManagedPermissionsSetRequest.AppsManagedPermissionsSetRequestBuilder> req);
+
+    // ------------------------------
     // apps.manifest
     // ------------------------------
 
@@ -1012,6 +1036,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(AppsManifestValidateRequest req);
 
     CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req);
+
+    // ------------------------------
+    // assistant.search
+    // ------------------------------
+
+    CompletableFuture<AssistantSearchContextResponse> assistantSearchContext(AssistantSearchContextRequest req);
+
+    CompletableFuture<AssistantSearchContextResponse> assistantSearchContext(RequestConfigurator<AssistantSearchContextRequest.AssistantSearchContextRequestBuilder> req);
+
+    CompletableFuture<AssistantSearchInfoResponse> assistantSearchInfo(AssistantSearchInfoRequest req);
+
+    CompletableFuture<AssistantSearchInfoResponse> assistantSearchInfo(RequestConfigurator<AssistantSearchInfoRequest.AssistantSearchInfoRequestBuilder> req);
 
     // ------------------------------
     // assistant.threads

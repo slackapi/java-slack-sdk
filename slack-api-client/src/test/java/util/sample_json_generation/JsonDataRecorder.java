@@ -57,6 +57,8 @@ public class JsonDataRecorder {
             } else if (path.equals("/audit/v1/logs")) {
                 // As generating logs.json is not so easy,
                 // test_with_remote_apis.audit.ApiTest generates the file
+            } else if (path.equals("/api/assistant.search.context") || path.equals("/api/assistant.search.info")) {
+                // test_locally.sample_json_generation.MethodsResponseDumpTest generates these files
             } else {
                 writeMergedJsonData(path, body);
             }
@@ -573,6 +575,39 @@ public class JsonDataRecorder {
 
                 } catch (Exception e) {
                     log.error(e.getMessage(), e);
+                }
+            }
+            if (name != null && name.equals("label") && path.equals("/api/admin.apps.activities.list")) {
+                // The keys are the input's values, so they need masking too
+                JsonObject label = element.getAsJsonObject();
+                List<String> oldKeys = new ArrayList<>(label.keySet());
+                for (String key : oldKeys) {
+                    label.remove(key);
+                }
+                label.add("0000000000", new JsonPrimitive(""));
+                label.add("0000000000_", new JsonPrimitive(""));
+                return;
+            }
+            if (name != null && name.equals("function_inputs") && path.equals("/api/admin.apps.activities.list")) {
+                // The keys are the workflow's input names, so keep one string input and one credential input
+                JsonObject functionInputs = element.getAsJsonObject();
+                List<Map.Entry<String, JsonElement>> inputs = new ArrayList<>(functionInputs.entrySet());
+                JsonElement stringInput = null;
+                JsonElement credentialInput = null;
+                for (Map.Entry<String, JsonElement> input : inputs) {
+                    functionInputs.remove(input.getKey());
+                    JsonElement value = input.getValue().isJsonObject() ? input.getValue().getAsJsonObject().get("value") : null;
+                    if (value != null && value.isJsonObject()) {
+                        credentialInput = credentialInput == null ? input.getValue() : credentialInput;
+                    } else {
+                        stringInput = stringInput == null ? input.getValue() : stringInput;
+                    }
+                }
+                if (stringInput != null) {
+                    functionInputs.add("0000000000", stringInput);
+                }
+                if (credentialInput != null) {
+                    functionInputs.add("0000000000_", credentialInput);
                 }
             }
             if (name != null && name.equals("bookmark")) {

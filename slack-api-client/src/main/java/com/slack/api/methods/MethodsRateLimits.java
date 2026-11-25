@@ -249,9 +249,14 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);
         setRateLimitTier(APPS_UNINSTALL, Tier1);
         setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
+        setRateLimitTier(APPS_ICON_SET, Tier2);
+        setRateLimitTier(APPS_MANAGED_PERMISSIONS_SET, Tier2);
         setRateLimitTier(APPS_USER_CONNECTION_BULK_UPDATE, Tier2);
         setRateLimitTier(APPS_USER_CONNECTION_REQUEST_AUTH, Tier2);
         setRateLimitTier(APPS_USER_CONNECTION_UPDATE, Tier2);
+
+        setRateLimitTier(ASSISTANT_SEARCH_CONTEXT, SpecialTier_assistant_search_context);
+        setRateLimitTier(ASSISTANT_SEARCH_INFO, Tier2);
 
         setRateLimitTier(ASSISTANT_THREADS_SET_STATUS, SpecialTier_assistant_threads_setStatus);
         setRateLimitTier(ASSISTANT_THREADS_SET_SUGGESTED_PROMPTS, Tier3);

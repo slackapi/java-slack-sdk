@@ -61,6 +61,8 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.icon.AppsIconSetRequest;
+import com.slack.api.methods.request.apps.managed.permissions.AppsManagedPermissionsSetRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionBulkUpdateRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionRequestAuthRequest;
 import com.slack.api.methods.request.apps.user.connection.AppsUserConnectionUpdateRequest;
@@ -71,6 +73,8 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequest;
+import com.slack.api.methods.request.assistant.search.AssistantSearchInfoRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
 import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
@@ -1321,6 +1325,27 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static MultipartBody.Builder toMultipartBody(AppsIconSetRequest req) {
+        MultipartBody.Builder form = new MultipartBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        if (req.getFileData() != null) {
+            RequestBody file = RequestBody.create(req.getFileData(), MultipartBody.FORM);
+            form.addFormDataPart("file", "file", file);
+        } else if (req.getFile() != null) {
+            RequestBody file = RequestBody.create(req.getFile(), MultipartBody.FORM);
+            form.addFormDataPart("file", "file", file);
+        }
+        setIfNotNull("url", req.getUrl(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsManagedPermissionsSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("permissions", req.getPermissions(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AppsManifestCreateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         if (req.getManifestAsString() != null) {
@@ -1405,6 +1430,42 @@ public class RequestFormBuilder {
             setIfNotNull("scopes", req.getScopes().stream().collect(joining(",")), form);
         }
         setIfNotNull("user", req.getUser(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AssistantSearchContextRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("query", req.getQuery(), form);
+        setIfNotNull("action_token", req.getActionToken(), form);
+        if (req.getChannelTypes() != null) {
+            setIfNotNull("channel_types", req.getChannelTypes().stream().collect(joining(",")), form);
+        }
+        if (req.getContentTypes() != null) {
+            setIfNotNull("content_types", req.getContentTypes().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("include_bots", req.getIncludeBots(), form);
+        setIfNotNull("include_deleted_users", req.getIncludeDeletedUsers(), form);
+        setIfNotNull("before", req.getBefore(), form);
+        setIfNotNull("after", req.getAfter(), form);
+        setIfNotNull("include_context_messages", req.getIncludeContextMessages(), form);
+        setIfNotNull("context_channel_id", req.getContextChannelId(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        setIfNotNull("include_message_blocks", req.getIncludeMessageBlocks(), form);
+        setIfNotNull("highlight", req.getHighlight(), form);
+        if (req.getTermClauses() != null) {
+            setIfNotNull("term_clauses", GSON.toJson(req.getTermClauses()), form);
+        }
+        setIfNotNull("modifiers", req.getModifiers(), form);
+        setIfNotNull("include_archived_channels", req.getIncludeArchivedChannels(), form);
+        setIfNotNull("disable_semantic_search", req.getDisableSemanticSearch(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AssistantSearchInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
         return form;
     }
 

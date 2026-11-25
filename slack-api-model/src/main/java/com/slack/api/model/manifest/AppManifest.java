@@ -55,6 +55,7 @@ public class AppManifest {
         private Boolean orgDeployEnabled;
         private Boolean socketModeEnabled;
         private Boolean tokenRotationEnabled;
+        private Boolean appLevelTokenRotationEnabled;
         private String hermesAppType;
         private String functionRuntime;
         private Boolean isMcpEnabled;
