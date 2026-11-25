@@ -144,6 +144,15 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsCreateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsInfoRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsListRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
@@ -316,6 +325,15 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsCreateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsDeleteResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsInfoResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsListResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
@@ -3007,6 +3025,96 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) {
         return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsCreateResponse> slackbotSkillSetsCreate(SlackbotSkillSetsCreateRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_CREATE, toMap(req), () -> methods.slackbotSkillSetsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsCreateResponse> slackbotSkillSetsCreate(RequestConfigurator<SlackbotSkillSetsCreateRequest.SlackbotSkillSetsCreateRequestBuilder> req) {
+        return slackbotSkillSetsCreate(req.configure(SlackbotSkillSetsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsDeleteResponse> slackbotSkillSetsDelete(SlackbotSkillSetsDeleteRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_DELETE, toMap(req), () -> methods.slackbotSkillSetsDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsDeleteResponse> slackbotSkillSetsDelete(RequestConfigurator<SlackbotSkillSetsDeleteRequest.SlackbotSkillSetsDeleteRequestBuilder> req) {
+        return slackbotSkillSetsDelete(req.configure(SlackbotSkillSetsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsInfoResponse> slackbotSkillSetsInfo(SlackbotSkillSetsInfoRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_INFO, toMap(req), () -> methods.slackbotSkillSetsInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsInfoResponse> slackbotSkillSetsInfo(RequestConfigurator<SlackbotSkillSetsInfoRequest.SlackbotSkillSetsInfoRequestBuilder> req) {
+        return slackbotSkillSetsInfo(req.configure(SlackbotSkillSetsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsItemsAddResponse> slackbotSkillSetsItemsAdd(SlackbotSkillSetsItemsAddRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_ITEMS_ADD, toMap(req), () -> methods.slackbotSkillSetsItemsAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsItemsAddResponse> slackbotSkillSetsItemsAdd(RequestConfigurator<SlackbotSkillSetsItemsAddRequest.SlackbotSkillSetsItemsAddRequestBuilder> req) {
+        return slackbotSkillSetsItemsAdd(req.configure(SlackbotSkillSetsItemsAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsItemsRemoveResponse> slackbotSkillSetsItemsRemove(SlackbotSkillSetsItemsRemoveRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_ITEMS_REMOVE, toMap(req), () -> methods.slackbotSkillSetsItemsRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsItemsRemoveResponse> slackbotSkillSetsItemsRemove(RequestConfigurator<SlackbotSkillSetsItemsRemoveRequest.SlackbotSkillSetsItemsRemoveRequestBuilder> req) {
+        return slackbotSkillSetsItemsRemove(req.configure(SlackbotSkillSetsItemsRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsLibraryAddResponse> slackbotSkillSetsLibraryAdd(SlackbotSkillSetsLibraryAddRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_LIBRARY_ADD, toMap(req), () -> methods.slackbotSkillSetsLibraryAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsLibraryAddResponse> slackbotSkillSetsLibraryAdd(RequestConfigurator<SlackbotSkillSetsLibraryAddRequest.SlackbotSkillSetsLibraryAddRequestBuilder> req) {
+        return slackbotSkillSetsLibraryAdd(req.configure(SlackbotSkillSetsLibraryAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsLibraryRemoveResponse> slackbotSkillSetsLibraryRemove(SlackbotSkillSetsLibraryRemoveRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_LIBRARY_REMOVE, toMap(req), () -> methods.slackbotSkillSetsLibraryRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsLibraryRemoveResponse> slackbotSkillSetsLibraryRemove(RequestConfigurator<SlackbotSkillSetsLibraryRemoveRequest.SlackbotSkillSetsLibraryRemoveRequestBuilder> req) {
+        return slackbotSkillSetsLibraryRemove(req.configure(SlackbotSkillSetsLibraryRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsListResponse> slackbotSkillSetsList(SlackbotSkillSetsListRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_LIST, toMap(req), () -> methods.slackbotSkillSetsList(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsListResponse> slackbotSkillSetsList(RequestConfigurator<SlackbotSkillSetsListRequest.SlackbotSkillSetsListRequestBuilder> req) {
+        return slackbotSkillSetsList(req.configure(SlackbotSkillSetsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsUpdateResponse> slackbotSkillSetsUpdate(SlackbotSkillSetsUpdateRequest req) {
+        return executor.execute(SLACKBOT_SKILL_SETS_UPDATE, toMap(req), () -> methods.slackbotSkillSetsUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<SlackbotSkillSetsUpdateResponse> slackbotSkillSetsUpdate(RequestConfigurator<SlackbotSkillSetsUpdateRequest.SlackbotSkillSetsUpdateRequestBuilder> req) {
+        return slackbotSkillSetsUpdate(req.configure(SlackbotSkillSetsUpdateRequest.builder()).build());
     }
 
     @Override

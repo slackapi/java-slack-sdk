@@ -156,6 +156,15 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsCreateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsInfoRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsListRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
@@ -337,6 +346,15 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsCreateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsDeleteResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsInfoResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsListResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
@@ -2843,6 +2861,55 @@ public interface MethodsClient {
     SlackListsUpdateResponse slackListsUpdate(SlackListsUpdateRequest req) throws IOException, SlackApiException;
 
     SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
+    // slackbot.skillSets
+    // ------------------------------
+
+    SlackbotSkillSetsCreateResponse slackbotSkillSetsCreate(SlackbotSkillSetsCreateRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsCreateResponse slackbotSkillSetsCreate(RequestConfigurator<SlackbotSkillSetsCreateRequest.SlackbotSkillSetsCreateRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsDeleteResponse slackbotSkillSetsDelete(SlackbotSkillSetsDeleteRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsDeleteResponse slackbotSkillSetsDelete(RequestConfigurator<SlackbotSkillSetsDeleteRequest.SlackbotSkillSetsDeleteRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsInfoResponse slackbotSkillSetsInfo(SlackbotSkillSetsInfoRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsInfoResponse slackbotSkillSetsInfo(RequestConfigurator<SlackbotSkillSetsInfoRequest.SlackbotSkillSetsInfoRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsItemsAddResponse slackbotSkillSetsItemsAdd(SlackbotSkillSetsItemsAddRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsItemsAddResponse slackbotSkillSetsItemsAdd(RequestConfigurator<SlackbotSkillSetsItemsAddRequest.SlackbotSkillSetsItemsAddRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsItemsRemoveResponse slackbotSkillSetsItemsRemove(SlackbotSkillSetsItemsRemoveRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsItemsRemoveResponse slackbotSkillSetsItemsRemove(RequestConfigurator<SlackbotSkillSetsItemsRemoveRequest.SlackbotSkillSetsItemsRemoveRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsLibraryAddResponse slackbotSkillSetsLibraryAdd(SlackbotSkillSetsLibraryAddRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsLibraryAddResponse slackbotSkillSetsLibraryAdd(RequestConfigurator<SlackbotSkillSetsLibraryAddRequest.SlackbotSkillSetsLibraryAddRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsLibraryRemoveResponse slackbotSkillSetsLibraryRemove(SlackbotSkillSetsLibraryRemoveRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsLibraryRemoveResponse slackbotSkillSetsLibraryRemove(RequestConfigurator<SlackbotSkillSetsLibraryRemoveRequest.SlackbotSkillSetsLibraryRemoveRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsListResponse slackbotSkillSetsList(SlackbotSkillSetsListRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsListResponse slackbotSkillSetsList(RequestConfigurator<SlackbotSkillSetsListRequest.SlackbotSkillSetsListRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    SlackbotSkillSetsUpdateResponse slackbotSkillSetsUpdate(SlackbotSkillSetsUpdateRequest req) throws IOException, SlackApiException;
+
+    SlackbotSkillSetsUpdateResponse slackbotSkillSetsUpdate(RequestConfigurator<SlackbotSkillSetsUpdateRequest.SlackbotSkillSetsUpdateRequestBuilder> req)
             throws IOException, SlackApiException;
 
     // ------------------------------

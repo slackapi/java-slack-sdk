@@ -8,6 +8,12 @@ import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsL
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsPublishResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsSetAutoEnabledResponse;
 import com.slack.api.methods.response.admin.slackbot.skills.AdminSlackbotSkillsUnpublishResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsCreateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsInfoResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsListResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsListResponse;
@@ -452,5 +458,280 @@ public class SlackbotTest {
         assertThat(response.getSkill().getMcpServers().get(0).getServerId(), is("Amcp0456EFGH"));
         assertThat(response.getSkill().getMcpServers().get(0).getDisplayName(), is("Google Calendar"));
         assertThat(response.getSkill().getMcpServers().get(0).getIsAvailable(), is(true));
+    }
+
+    @Test
+    public void skillSets() throws Exception {
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsCreate(r -> r
+                .displayName("Sales toolkit")
+                .description("Skills for preparing customer calls and following up on deals.")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsDelete(r -> r
+                .skillSetId("F0789IJKL")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsInfo(r -> r
+                .skillSetId("F0789IJKL")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsItemsAdd(r -> r
+                .skillSetId("F0789IJKL")
+                .skillIds(Arrays.asList("F0123ABCD", "F0456EFGH"))
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsItemsRemove(r -> r
+                .skillSetId("F0789IJKL")
+                .skillIds(Collections.singletonList("F0123ABCD"))
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsLibraryAdd(r -> r
+                .skillSetId("F0789IJKL")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsLibraryRemove(r -> r
+                .skillSetId("F0789IJKL")
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsList(r -> r
+                .filter("editable")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .limit(100)
+        ).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).slackbotSkillSetsUpdate(r -> r
+                .skillSetId("F0789IJKL")
+                .displayName("Sales toolkit")
+                .description("")
+        ).isOk(), is(true));
+    }
+
+    @Test
+    public void skillSets_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsCreate(r -> r
+                .displayName("Sales toolkit")
+                .description("Skills for preparing customer calls and following up on deals.")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsDelete(r -> r
+                .skillSetId("F0789IJKL")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsInfo(r -> r
+                .skillSetId("F0789IJKL")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsItemsAdd(r -> r
+                .skillSetId("F0789IJKL")
+                .skillIds(Arrays.asList("F0123ABCD", "F0456EFGH"))
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsItemsRemove(r -> r
+                .skillSetId("F0789IJKL")
+                .skillIds(Collections.singletonList("F0123ABCD"))
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsLibraryAdd(r -> r
+                .skillSetId("F0789IJKL")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsLibraryRemove(r -> r
+                .skillSetId("F0789IJKL")
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsList(r -> r
+                .filter("editable")
+                .cursor("dGVhbTpDMDYxRkE1UEI=")
+                .limit(100)
+        ).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).slackbotSkillSetsUpdate(r -> r
+                .skillSetId("F0789IJKL")
+                .displayName("Sales toolkit")
+                .description("")
+        ).get().isOk(), is(true));
+    }
+
+    @Test
+    public void slackbotSkillSetsCreateResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skill_set\": {\n" +
+                "    \"id\": \"F0789IJKL\",\n" +
+                "    \"display_name\": \"Sales toolkit\",\n" +
+                "    \"description\": \"Skills for preparing customer calls and following up on deals.\",\n" +
+                "    \"access\": \"owner\",\n" +
+                "    \"is_in_library\": true,\n" +
+                "    \"skill_count\": 0,\n" +
+                "    \"creator_id\": \"U0123ABCD\",\n" +
+                "    \"date_created\": 1790000000,\n" +
+                "    \"date_updated\": 1790000000,\n" +
+                "    \"permalink\": \"https://example.slack.com/docs/T0123ABCD/F0789IJKL\"\n" +
+                "  }\n" +
+                "}\n";
+        SlackbotSkillSetsCreateResponse response = gson.fromJson(json, SlackbotSkillSetsCreateResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkillSet().getId(), is("F0789IJKL"));
+        assertThat(response.getSkillSet().getDisplayName(), is("Sales toolkit"));
+        assertThat(response.getSkillSet().getDescription(), is("Skills for preparing customer calls and following up on deals."));
+        assertThat(response.getSkillSet().getAccess(), is("owner"));
+        assertThat(response.getSkillSet().getIsInLibrary(), is(true));
+        assertThat(response.getSkillSet().getSkillCount(), is(0));
+        assertThat(response.getSkillSet().getCreatorId(), is("U0123ABCD"));
+        assertThat(response.getSkillSet().getDateCreated(), is(1790000000));
+        assertThat(response.getSkillSet().getDateUpdated(), is(1790000000));
+        assertThat(response.getSkillSet().getPermalink(), is("https://example.slack.com/docs/T0123ABCD/F0789IJKL"));
+    }
+
+    @Test
+    public void slackbotSkillSetsInfoResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skill_set\": {\n" +
+                "    \"id\": \"F0789IJKL\",\n" +
+                "    \"display_name\": \"Sales toolkit\",\n" +
+                "    \"description\": null,\n" +
+                "    \"access\": \"write\",\n" +
+                "    \"is_in_library\": false,\n" +
+                "    \"skill_count\": 2,\n" +
+                "    \"creator_id\": \"U0123ABCD\",\n" +
+                "    \"date_created\": 1790000000,\n" +
+                "    \"date_updated\": 1790100000,\n" +
+                "    \"permalink\": \"https://example.slack.com/docs/T0123ABCD/F0789IJKL\"\n" +
+                "  },\n" +
+                "  \"items\": [\n" +
+                "    {\n" +
+                "      \"skill_id\": \"F0123ABCD\",\n" +
+                "      \"skill\": {\n" +
+                "        \"id\": \"F0123ABCD\",\n" +
+                "        \"type\": \"canvas\",\n" +
+                "        \"display_name\": \"Daily priorities\",\n" +
+                "        \"name\": null,\n" +
+                "        \"description\": \"Suggests priorities for the day.\",\n" +
+                "        \"category\": \"productivity\",\n" +
+                "        \"example_prompt\": \"Run {skill} for today\",\n" +
+                "        \"instructions\": null,\n" +
+                "        \"visibility\": \"anyone_can_view\",\n" +
+                "        \"is_official\": false,\n" +
+                "        \"access\": \"read\",\n" +
+                "        \"mcp_servers\": [\n" +
+                "          {\n" +
+                "            \"service_type\": \"app\",\n" +
+                "            \"display_name\": \"Google Calendar\",\n" +
+                "            \"is_available\": true,\n" +
+                "            \"app_id\": \"A0123ABCD\",\n" +
+                "            \"server_id\": \"Amcp0456EFGH\"\n" +
+                "          }\n" +
+                "        ],\n" +
+                "        \"usage_count\": 3,\n" +
+                "        \"library_count\": 1,\n" +
+                "        \"creator_id\": \"U0123ABCD\",\n" +
+                "        \"date_created\": 1794467151,\n" +
+                "        \"date_updated\": 1794467151,\n" +
+                "        \"permalink\": \"https://example.slack.com/skills/F0123ABCD\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"skill_id\": \"F0456EFGH\",\n" +
+                "      \"skill\": null\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}\n";
+        SlackbotSkillSetsInfoResponse response = gson.fromJson(json, SlackbotSkillSetsInfoResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkillSet().getId(), is("F0789IJKL"));
+        assertThat(response.getSkillSet().getDescription(), is(nullValue()));
+        assertThat(response.getSkillSet().getAccess(), is("write"));
+        assertThat(response.getSkillSet().getIsInLibrary(), is(false));
+        assertThat(response.getSkillSet().getSkillCount(), is(2));
+        assertThat(response.getItems().size(), is(2));
+        assertThat(response.getItems().get(0).getSkillId(), is("F0123ABCD"));
+        assertThat(response.getItems().get(0).getSkill().getId(), is("F0123ABCD"));
+        assertThat(response.getItems().get(0).getSkill().getInstructions(), is(nullValue()));
+        assertThat(response.getItems().get(0).getSkill().getAccess(), is("read"));
+        assertThat(response.getItems().get(0).getSkill().getMcpServers().get(0).getAppId(), is("A0123ABCD"));
+        assertThat(response.getItems().get(0).getSkill().getMcpServers().get(0).getIsAvailable(), is(true));
+        assertThat(response.getItems().get(1).getSkillId(), is("F0456EFGH"));
+        assertThat(response.getItems().get(1).getSkill(), is(nullValue()));
+    }
+
+    @Test
+    public void slackbotSkillSetsItemsResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": false,\n" +
+                "  \"error\": \"failed_for_some_skills\",\n" +
+                "  \"failed_skills\": [\n" +
+                "    {\n" +
+                "      \"skill_id\": \"F0456EFGH\",\n" +
+                "      \"error\": \"skill_set_full\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}\n";
+        SlackbotSkillSetsItemsAddResponse addition = gson.fromJson(json, SlackbotSkillSetsItemsAddResponse.class);
+        assertThat(addition.isOk(), is(false));
+        assertThat(addition.getError(), is("failed_for_some_skills"));
+        assertThat(addition.getFailedSkills().get(0).getSkillId(), is("F0456EFGH"));
+        assertThat(addition.getFailedSkills().get(0).getError(), is("skill_set_full"));
+
+        SlackbotSkillSetsItemsRemoveResponse removal = gson.fromJson(json, SlackbotSkillSetsItemsRemoveResponse.class);
+        assertThat(removal.isOk(), is(false));
+        assertThat(removal.getError(), is("failed_for_some_skills"));
+        assertThat(removal.getFailedSkills().get(0).getSkillId(), is("F0456EFGH"));
+        assertThat(removal.getFailedSkills().get(0).getError(), is("skill_set_full"));
+    }
+
+    @Test
+    public void slackbotSkillSetsListResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skill_sets\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F0789IJKL\",\n" +
+                "      \"display_name\": \"Sales toolkit\",\n" +
+                "      \"description\": \"Skills for preparing customer calls and following up on deals.\",\n" +
+                "      \"access\": \"write\",\n" +
+                "      \"is_in_library\": true,\n" +
+                "      \"skill_count\": 2,\n" +
+                "      \"creator_id\": \"U0123ABCD\",\n" +
+                "      \"date_created\": 1790000000,\n" +
+                "      \"date_updated\": null,\n" +
+                "      \"permalink\": \"https://example.slack.com/docs/T0123ABCD/F0789IJKL\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"response_metadata\": {\n" +
+                "    \"next_cursor\": \"dGVhbTpDMDYxRkE1UEI=\"\n" +
+                "  }\n" +
+                "}\n";
+        SlackbotSkillSetsListResponse response = gson.fromJson(json, SlackbotSkillSetsListResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkillSets().get(0).getId(), is("F0789IJKL"));
+        assertThat(response.getSkillSets().get(0).getAccess(), is("write"));
+        assertThat(response.getSkillSets().get(0).getIsInLibrary(), is(true));
+        assertThat(response.getSkillSets().get(0).getSkillCount(), is(2));
+        assertThat(response.getSkillSets().get(0).getDateUpdated(), is(nullValue()));
+        assertThat(response.getResponseMetadata().getNextCursor(), is("dGVhbTpDMDYxRkE1UEI="));
+    }
+
+    @Test
+    public void slackbotSkillSetsUpdateResponse() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+
+        String json = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"skill_set\": {\n" +
+                "    \"id\": \"F0789IJKL\",\n" +
+                "    \"display_name\": \"Sales toolkit\",\n" +
+                "    \"description\": null,\n" +
+                "    \"access\": \"owner\",\n" +
+                "    \"is_in_library\": true,\n" +
+                "    \"skill_count\": 2,\n" +
+                "    \"creator_id\": \"U0123ABCD\",\n" +
+                "    \"date_created\": 1790000000,\n" +
+                "    \"date_updated\": 1790100000,\n" +
+                "    \"permalink\": \"https://example.slack.com/docs/T0123ABCD/F0789IJKL\"\n" +
+                "  }\n" +
+                "}\n";
+        SlackbotSkillSetsUpdateResponse response = gson.fromJson(json, SlackbotSkillSetsUpdateResponse.class);
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getSkillSet().getDisplayName(), is("Sales toolkit"));
+        assertThat(response.getSkillSet().getDescription(), is(nullValue()));
+        assertThat(response.getSkillSet().getDateUpdated(), is(1790100000));
     }
 }

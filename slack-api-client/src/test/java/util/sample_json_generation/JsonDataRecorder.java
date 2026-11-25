@@ -8,11 +8,13 @@ import com.slack.api.methods.response.admin.conversations.AdminConversationsSear
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.agents.conversations.AgentsConversationsGetCanvasResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsInfoResponse;
 import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.admin.*;
 import com.slack.api.model.slackbot.Skill;
+import com.slack.api.model.slackbot.SkillSet;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
@@ -461,8 +463,13 @@ public class JsonDataRecorder {
                     array.add(gson.toJsonTree(initProperties(new AppRequest())));
                 } else if (path.equals("/api/chat.scheduledMessages.list") && name.equals("scheduled_messages")) {
                     array.add(gson.toJsonTree(initProperties(new ChatScheduledMessagesListResponse.ScheduledMessage())));
-                } else if (path.startsWith("/api/slackbot.skills.") && name.equals("mcp_servers")) {
+                } else if ((path.startsWith("/api/slackbot.skills.") || path.equals("/api/slackbot.skillSets.info"))
+                        && name.equals("mcp_servers")) {
                     array.add(gson.toJsonTree(initProperties(new Skill.McpServer())));
+                } else if (path.equals("/api/slackbot.skillSets.info") && name.equals("items")) {
+                    array.add(gson.toJsonTree(initProperties(new SlackbotSkillSetsInfoResponse.Item())));
+                } else if (path.equals("/api/slackbot.skillSets.list") && name.equals("skill_sets")) {
+                    array.add(gson.toJsonTree(initProperties(new SkillSet())));
                 } else if (path.equals("/api/team.profile.get") && name.equals("possible_values")) {
                     array.add("");
                 } else if (name.equals("replies")) {

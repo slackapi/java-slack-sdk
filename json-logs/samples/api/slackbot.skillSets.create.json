@@ -1,0 +1,24 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "warning": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "skill_set": {
+    "access": "",
+    "creator_id": "U00000000",
+    "date_created": 12345,
+    "date_updated": 12345,
+    "description": "",
+    "display_name": "",
+    "id": "F00000000",
+    "is_in_library": false,
+    "permalink": "",
+    "skill_count": 12345
+  }
+}

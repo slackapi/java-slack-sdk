@@ -471,6 +471,16 @@ public class MethodsRateLimits {
         setRateLimitTier(SLACKLISTS_ITEMS_UPDATE, Tier3);
         setRateLimitTier(SLACKLISTS_UPDATE, Tier2);
 
+        setRateLimitTier(SLACKBOT_SKILL_SETS_CREATE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_DELETE, Tier2);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_INFO, Tier3);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_ITEMS_ADD, Tier3);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_ITEMS_REMOVE, Tier3);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_LIBRARY_ADD, Tier3);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_LIBRARY_REMOVE, Tier3);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_LIST, Tier3);
+        setRateLimitTier(SLACKBOT_SKILL_SETS_UPDATE, Tier3);
+
         setRateLimitTier(SLACKBOT_SKILLS_CREATE, Tier2);
         setRateLimitTier(SLACKBOT_SKILLS_DELETE, Tier2);
         setRateLimitTier(SLACKBOT_SKILLS_INFO, Tier3);
