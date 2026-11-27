@@ -9,6 +9,9 @@ import com.slack.api.methods.request.assistant.search.AssistantSearchContextRequ
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsUpdateRequest;
 import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -147,6 +150,39 @@ public class RequestFormBuilderTest {
         assertThat(form.size(), is(1));
         assertThat(form.name(0), is("skill_ids"));
         assertThat(form.value(0), is("F0123ABCD,F0456EFGH"));
+    }
+
+    @Test
+    public void slackbotSkillSetsItemsSkillIds() {
+        FormBody addition = RequestFormBuilder.toForm(SlackbotSkillSetsItemsAddRequest.builder()
+                .skillSetId("F0789IJKL")
+                .skillIds(Arrays.asList("F0123ABCD", "F0456EFGH")).build()).build();
+        assertThat(addition.size(), is(2));
+        assertThat(addition.name(0), is("skill_set_id"));
+        assertThat(addition.value(0), is("F0789IJKL"));
+        assertThat(addition.name(1), is("skill_ids"));
+        assertThat(addition.value(1), is("F0123ABCD,F0456EFGH"));
+
+        FormBody removal = RequestFormBuilder.toForm(SlackbotSkillSetsItemsRemoveRequest.builder()
+                .skillSetId("F0789IJKL")
+                .skillIds(Collections.singletonList("F0123ABCD")).build()).build();
+        assertThat(removal.size(), is(2));
+        assertThat(removal.name(1), is("skill_ids"));
+        assertThat(removal.value(1), is("F0123ABCD"));
+    }
+
+    @Test
+    public void slackbotSkillSetsUpdateDescription() {
+        FormBody omitted = RequestFormBuilder.toForm(SlackbotSkillSetsUpdateRequest.builder()
+                .skillSetId("F0789IJKL").build()).build();
+        assertThat(omitted.size(), is(1));
+        assertThat(omitted.name(0), is("skill_set_id"));
+
+        FormBody cleared = RequestFormBuilder.toForm(SlackbotSkillSetsUpdateRequest.builder()
+                .skillSetId("F0789IJKL").description("").build()).build();
+        assertThat(cleared.size(), is(2));
+        assertThat(cleared.name(1), is("description"));
+        assertThat(cleared.value(1), is(""));
     }
 
     @Test

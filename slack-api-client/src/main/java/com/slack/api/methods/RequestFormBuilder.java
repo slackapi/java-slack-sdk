@@ -153,6 +153,15 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsCreateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsInfoRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsListRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
@@ -3286,6 +3295,71 @@ public class RequestFormBuilder {
             form.add("description_blocks", json);
         }
         setIfNotNull("todo_mode", req.getTodoMode(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_set_id", req.getSkillSetId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_set_id", req.getSkillSetId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsItemsAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_set_id", req.getSkillSetId(), form);
+        if (req.getSkillIds() != null) {
+            setIfNotNull("skill_ids", req.getSkillIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsItemsRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_set_id", req.getSkillSetId(), form);
+        if (req.getSkillIds() != null) {
+            setIfNotNull("skill_ids", req.getSkillIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsLibraryAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_set_id", req.getSkillSetId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsLibraryRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_set_id", req.getSkillSetId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("filter", req.getFilter(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(SlackbotSkillSetsUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("skill_set_id", req.getSkillSetId(), form);
+        setIfNotNull("display_name", req.getDisplayName(), form);
+        setIfNotNull("description", req.getDescription(), form);
         return form;
     }
 

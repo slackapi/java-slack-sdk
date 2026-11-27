@@ -154,6 +154,15 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsCreateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsInfoRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsListRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
@@ -339,6 +348,15 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsCreateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsDeleteResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsInfoResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsListResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
@@ -3685,6 +3703,96 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public SlackListsUpdateResponse slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req) throws IOException, SlackApiException {
         return slackListsUpdate(req.configure(SlackListsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsCreateResponse slackbotSkillSetsCreate(SlackbotSkillSetsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_CREATE, getToken(req), SlackbotSkillSetsCreateResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsCreateResponse slackbotSkillSetsCreate(RequestConfigurator<SlackbotSkillSetsCreateRequest.SlackbotSkillSetsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsCreate(req.configure(SlackbotSkillSetsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsDeleteResponse slackbotSkillSetsDelete(SlackbotSkillSetsDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_DELETE, getToken(req), SlackbotSkillSetsDeleteResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsDeleteResponse slackbotSkillSetsDelete(RequestConfigurator<SlackbotSkillSetsDeleteRequest.SlackbotSkillSetsDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsDelete(req.configure(SlackbotSkillSetsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsInfoResponse slackbotSkillSetsInfo(SlackbotSkillSetsInfoRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_INFO, getToken(req), SlackbotSkillSetsInfoResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsInfoResponse slackbotSkillSetsInfo(RequestConfigurator<SlackbotSkillSetsInfoRequest.SlackbotSkillSetsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsInfo(req.configure(SlackbotSkillSetsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsItemsAddResponse slackbotSkillSetsItemsAdd(SlackbotSkillSetsItemsAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_ITEMS_ADD, getToken(req), SlackbotSkillSetsItemsAddResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsItemsAddResponse slackbotSkillSetsItemsAdd(RequestConfigurator<SlackbotSkillSetsItemsAddRequest.SlackbotSkillSetsItemsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsItemsAdd(req.configure(SlackbotSkillSetsItemsAddRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsItemsRemoveResponse slackbotSkillSetsItemsRemove(SlackbotSkillSetsItemsRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_ITEMS_REMOVE, getToken(req), SlackbotSkillSetsItemsRemoveResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsItemsRemoveResponse slackbotSkillSetsItemsRemove(RequestConfigurator<SlackbotSkillSetsItemsRemoveRequest.SlackbotSkillSetsItemsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsItemsRemove(req.configure(SlackbotSkillSetsItemsRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsLibraryAddResponse slackbotSkillSetsLibraryAdd(SlackbotSkillSetsLibraryAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_LIBRARY_ADD, getToken(req), SlackbotSkillSetsLibraryAddResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsLibraryAddResponse slackbotSkillSetsLibraryAdd(RequestConfigurator<SlackbotSkillSetsLibraryAddRequest.SlackbotSkillSetsLibraryAddRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsLibraryAdd(req.configure(SlackbotSkillSetsLibraryAddRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsLibraryRemoveResponse slackbotSkillSetsLibraryRemove(SlackbotSkillSetsLibraryRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_LIBRARY_REMOVE, getToken(req), SlackbotSkillSetsLibraryRemoveResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsLibraryRemoveResponse slackbotSkillSetsLibraryRemove(RequestConfigurator<SlackbotSkillSetsLibraryRemoveRequest.SlackbotSkillSetsLibraryRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsLibraryRemove(req.configure(SlackbotSkillSetsLibraryRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsListResponse slackbotSkillSetsList(SlackbotSkillSetsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_LIST, getToken(req), SlackbotSkillSetsListResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsListResponse slackbotSkillSetsList(RequestConfigurator<SlackbotSkillSetsListRequest.SlackbotSkillSetsListRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsList(req.configure(SlackbotSkillSetsListRequest.builder()).build());
+    }
+
+    @Override
+    public SlackbotSkillSetsUpdateResponse slackbotSkillSetsUpdate(SlackbotSkillSetsUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.SLACKBOT_SKILL_SETS_UPDATE, getToken(req), SlackbotSkillSetsUpdateResponse.class);
+    }
+
+    @Override
+    public SlackbotSkillSetsUpdateResponse slackbotSkillSetsUpdate(RequestConfigurator<SlackbotSkillSetsUpdateRequest.SlackbotSkillSetsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return slackbotSkillSetsUpdate(req.configure(SlackbotSkillSetsUpdateRequest.builder()).build());
     }
 
     @Override

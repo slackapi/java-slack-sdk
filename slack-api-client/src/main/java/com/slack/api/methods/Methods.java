@@ -738,6 +738,20 @@ public class Methods {
     public static final String SLACKLISTS_UPDATE = "slackLists.update";
 
     // ------------------------------
+    // slackbot.skillSets
+    // ------------------------------
+
+    public static final String SLACKBOT_SKILL_SETS_CREATE = "slackbot.skillSets.create";
+    public static final String SLACKBOT_SKILL_SETS_DELETE = "slackbot.skillSets.delete";
+    public static final String SLACKBOT_SKILL_SETS_INFO = "slackbot.skillSets.info";
+    public static final String SLACKBOT_SKILL_SETS_ITEMS_ADD = "slackbot.skillSets.items.add";
+    public static final String SLACKBOT_SKILL_SETS_ITEMS_REMOVE = "slackbot.skillSets.items.remove";
+    public static final String SLACKBOT_SKILL_SETS_LIBRARY_ADD = "slackbot.skillSets.library.add";
+    public static final String SLACKBOT_SKILL_SETS_LIBRARY_REMOVE = "slackbot.skillSets.library.remove";
+    public static final String SLACKBOT_SKILL_SETS_LIST = "slackbot.skillSets.list";
+    public static final String SLACKBOT_SKILL_SETS_UPDATE = "slackbot.skillSets.update";
+
+    // ------------------------------
     // slackbot.skills
     // ------------------------------
 

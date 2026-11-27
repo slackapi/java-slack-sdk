@@ -140,6 +140,15 @@ import com.slack.api.methods.request.slack_lists.SlackListsItemsInfoRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsListRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsItemsUpdateRequest;
 import com.slack.api.methods.request.slack_lists.SlackListsUpdateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsCreateRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsDeleteRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsInfoRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsListRequest;
+import com.slack.api.methods.request.slackbot.skill_sets.SlackbotSkillSetsUpdateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsCreateRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsDeleteRequest;
 import com.slack.api.methods.request.slackbot.skills.SlackbotSkillsInfoRequest;
@@ -312,6 +321,15 @@ import com.slack.api.methods.response.slack_lists.SlackListsItemsInfoResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsListResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsItemsUpdateResponse;
 import com.slack.api.methods.response.slack_lists.SlackListsUpdateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsCreateResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsDeleteResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsInfoResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.items.SlackbotSkillSetsItemsRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryAddResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.library.SlackbotSkillSetsLibraryRemoveResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsListResponse;
+import com.slack.api.methods.response.slackbot.skill_sets.SlackbotSkillSetsUpdateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsCreateResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsDeleteResponse;
 import com.slack.api.methods.response.slackbot.skills.SlackbotSkillsInfoResponse;
@@ -1682,6 +1700,46 @@ public interface AsyncMethodsClient {
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(SlackListsUpdateRequest req);
 
     CompletableFuture<SlackListsUpdateResponse> slackListsUpdate(RequestConfigurator<SlackListsUpdateRequest.SlackListsUpdateRequestBuilder> req);
+
+    // ------------------------------
+    // slackbot.skillSets
+    // ------------------------------
+
+    CompletableFuture<SlackbotSkillSetsCreateResponse> slackbotSkillSetsCreate(SlackbotSkillSetsCreateRequest req);
+
+    CompletableFuture<SlackbotSkillSetsCreateResponse> slackbotSkillSetsCreate(RequestConfigurator<SlackbotSkillSetsCreateRequest.SlackbotSkillSetsCreateRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsDeleteResponse> slackbotSkillSetsDelete(SlackbotSkillSetsDeleteRequest req);
+
+    CompletableFuture<SlackbotSkillSetsDeleteResponse> slackbotSkillSetsDelete(RequestConfigurator<SlackbotSkillSetsDeleteRequest.SlackbotSkillSetsDeleteRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsInfoResponse> slackbotSkillSetsInfo(SlackbotSkillSetsInfoRequest req);
+
+    CompletableFuture<SlackbotSkillSetsInfoResponse> slackbotSkillSetsInfo(RequestConfigurator<SlackbotSkillSetsInfoRequest.SlackbotSkillSetsInfoRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsItemsAddResponse> slackbotSkillSetsItemsAdd(SlackbotSkillSetsItemsAddRequest req);
+
+    CompletableFuture<SlackbotSkillSetsItemsAddResponse> slackbotSkillSetsItemsAdd(RequestConfigurator<SlackbotSkillSetsItemsAddRequest.SlackbotSkillSetsItemsAddRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsItemsRemoveResponse> slackbotSkillSetsItemsRemove(SlackbotSkillSetsItemsRemoveRequest req);
+
+    CompletableFuture<SlackbotSkillSetsItemsRemoveResponse> slackbotSkillSetsItemsRemove(RequestConfigurator<SlackbotSkillSetsItemsRemoveRequest.SlackbotSkillSetsItemsRemoveRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsLibraryAddResponse> slackbotSkillSetsLibraryAdd(SlackbotSkillSetsLibraryAddRequest req);
+
+    CompletableFuture<SlackbotSkillSetsLibraryAddResponse> slackbotSkillSetsLibraryAdd(RequestConfigurator<SlackbotSkillSetsLibraryAddRequest.SlackbotSkillSetsLibraryAddRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsLibraryRemoveResponse> slackbotSkillSetsLibraryRemove(SlackbotSkillSetsLibraryRemoveRequest req);
+
+    CompletableFuture<SlackbotSkillSetsLibraryRemoveResponse> slackbotSkillSetsLibraryRemove(RequestConfigurator<SlackbotSkillSetsLibraryRemoveRequest.SlackbotSkillSetsLibraryRemoveRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsListResponse> slackbotSkillSetsList(SlackbotSkillSetsListRequest req);
+
+    CompletableFuture<SlackbotSkillSetsListResponse> slackbotSkillSetsList(RequestConfigurator<SlackbotSkillSetsListRequest.SlackbotSkillSetsListRequestBuilder> req);
+
+    CompletableFuture<SlackbotSkillSetsUpdateResponse> slackbotSkillSetsUpdate(SlackbotSkillSetsUpdateRequest req);
+
+    CompletableFuture<SlackbotSkillSetsUpdateResponse> slackbotSkillSetsUpdate(RequestConfigurator<SlackbotSkillSetsUpdateRequest.SlackbotSkillSetsUpdateRequestBuilder> req);
 
     // ------------------------------
     // slackbot.skills
