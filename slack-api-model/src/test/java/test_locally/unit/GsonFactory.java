@@ -45,7 +45,8 @@ public class GsonFactory {
                         new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProperties))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
                         new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties))
-                .registerTypeAdapter(ListRecord.Field.class, new GsonListRecordFieldFactory(failOnUnknownProperties));
+                .registerTypeAdapter(ListRecord.Field.class, new GsonListRecordFieldFactory(failOnUnknownProperties))
+                .registerTypeAdapter(ListRecord.MessageRef.class, new GsonListRecordMessageRefFactory(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
             return builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory()).create();

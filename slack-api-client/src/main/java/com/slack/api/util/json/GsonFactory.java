@@ -92,6 +92,7 @@ public class GsonFactory {
                 .registerTypeAdapter(LogsResponse.DetailsAction.class, new GsonAuditLogsDetailsActionFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps))
                 .registerTypeAdapter(ListView.Grouping.class, new GsonListViewGroupingFactory(failOnUnknownProps))
-                .registerTypeAdapter(ListRecord.Field.class, new GsonListRecordFieldFactory(failOnUnknownProps));
+                .registerTypeAdapter(ListRecord.Field.class, new GsonListRecordFieldFactory(failOnUnknownProps))
+                .registerTypeAdapter(ListRecord.MessageRef.class, new GsonListRecordMessageRefFactory(failOnUnknownProps));
     }
 }
