@@ -7,17 +7,20 @@ import com.slack.api.bolt.jakarta_servlet.SlackAppServlet;
 import com.slack.api.bolt.jakarta_servlet.SlackOAuthAppServlet;
 import com.slack.api.bolt.jakarta_servlet.WebEndpointServlet;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jetty.ee9.servlet.ServletContextHandler;
+import org.eclipse.jetty.ee9.servlet.ServletHolder;
 import org.eclipse.jetty.server.ConnectionFactory;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.HttpConnectionFactory;
+import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ErrorHandler;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,17 +39,69 @@ public class SlackAppServer {
     // This is intentionally mutable to allow developers to register their own one
     private ErrorHandler errorHandler = new ErrorHandler() {
         @Override
+        protected void writeErrorHtml(
+                Request request,
+                Writer writer,
+                Charset charset,
+                int code,
+                String message,
+                Throwable cause) throws IOException {
+            if (writeMinimalError(writer, code)) {
+                return;
+            }
+            super.writeErrorHtml(request, writer, charset, code, message, cause);
+        }
+
+        @Override
+        protected void writeErrorJson(
+                Request request, PrintWriter writer, int code, String message, Throwable cause) {
+            if (writeMinimalError(writer, code)) {
+                return;
+            }
+            super.writeErrorJson(request, writer, code, message, cause);
+        }
+
+        @Override
+        protected void writeErrorPlain(
+                Request request, PrintWriter writer, int code, String message, Throwable cause) {
+            if (writeMinimalError(writer, code)) {
+                return;
+            }
+            super.writeErrorPlain(request, writer, code, message, cause);
+        }
+    };
+
+    private final org.eclipse.jetty.ee9.nested.ErrorHandler servletErrorHandler =
+            new org.eclipse.jetty.ee9.nested.ErrorHandler() {
+        @Override
         protected void writeErrorPage(
                 HttpServletRequest request,
                 Writer writer,
                 int code,
                 String message,
                 boolean showStacks) throws IOException {
-            if (localDebug) {
-                super.writeErrorPage(request, writer, code, message, showStacks);
-            } else {
-                writer.write("{\"status\":\"" + code + "\"}");
+            if (writeMinimalError(writer, code)) {
+                return;
             }
+            super.writeErrorPage(request, writer, code, message, showStacks);
+        }
+
+        @Override
+        protected void writeErrorJson(
+                HttpServletRequest request, PrintWriter writer, int code, String message) {
+            if (writeMinimalError(writer, code)) {
+                return;
+            }
+            super.writeErrorJson(request, writer, code, message);
+        }
+
+        @Override
+        protected void writeErrorPlain(
+                HttpServletRequest request, PrintWriter writer, int code, String message) {
+            if (writeMinimalError(writer, code)) {
+                return;
+            }
+            super.writeErrorPlain(request, writer, code, message);
         }
     };
 
@@ -119,6 +174,7 @@ public class SlackAppServer {
             }
         }
         pathToApp.putAll(addedOnes);
+        handler.setErrorHandler(servletErrorHandler);
         server.setHandler(handler);
         server.setErrorHandler(errorHandler);
     }
@@ -151,6 +207,22 @@ public class SlackAppServer {
     // ----------------------------------------------------
     // internal methods
     // ----------------------------------------------------
+
+    private boolean writeMinimalError(Writer writer, int code) throws IOException {
+        if (localDebug) {
+            return false;
+        }
+        writer.write("{\"status\":\"" + code + "\"}");
+        return true;
+    }
+
+    private boolean writeMinimalError(PrintWriter writer, int code) {
+        if (localDebug) {
+            return false;
+        }
+        writer.write("{\"status\":\"" + code + "\"}");
+        return true;
+    }
 
     private static Map<String, App> toApps(App app, String path) {
         Map<String, App> apps = new HashMap<>();

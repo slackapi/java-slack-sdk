@@ -17,6 +17,11 @@
     <description>A handy way to run Slack Bolt apps on Jakarta EE compatible Jetty HTTP server.</description>
     <url>https://docs.slack.dev/tools/java-slack-sdk</url>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.slack.api</groupId>
@@ -45,27 +50,21 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>${jakarta.servlet-api.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-            <version>${jakarta.jetty.version}</version>
+            <groupId>org.eclipse.jetty.ee9</groupId>
+            <artifactId>jetty-ee9-servlet</artifactId>
+            <version>${jakarta.jetty12.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>${jakarta.jetty.version}</version>
+            <version>${jakarta.jetty12.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-webapp</artifactId>
-            <version>${jakarta.jetty.version}</version>
+            <groupId>org.eclipse.jetty.ee9</groupId>
+            <artifactId>jetty-ee9-webapp</artifactId>
+            <version>${jakarta.jetty12.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
