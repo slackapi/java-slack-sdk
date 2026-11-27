@@ -39,7 +39,6 @@ public class MethodsTest {
                 // Salesforce channel related APIs
                 "admin.conversations.linkObjects",
                 "admin.conversations.unlinkObjects",
-                "admin.conversations.createForObjects",
                 // These next-generation platform related APIs work only on the automation platform.
                 // Thus, we don't have short-term plans to add them to this Java SDK.
                 "apps.auth.external.delete",
