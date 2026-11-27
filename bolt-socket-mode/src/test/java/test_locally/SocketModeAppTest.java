@@ -54,7 +54,9 @@ public class SocketModeAppTest {
         AtomicBoolean commandCalled = new AtomicBoolean(false);
         AtomicBoolean actionCalled = new AtomicBoolean(false);
         AtomicBoolean eventCalled = new AtomicBoolean(false);
+        AtomicBoolean requestObserved = new AtomicBoolean(false);
         app.command("/hi-socket-mode", (req, ctx) -> {
+            assertTrue(requestObserved.get());
             commandCalled.set(true);
             return ctx.ack("Hello!");
         });
@@ -67,6 +69,14 @@ public class SocketModeAppTest {
             return ctx.ack();
         });
         SocketModeApp socketModeApp = new SocketModeApp(VALID_APP_TOKEN, app);
+        app.use((request, response, chain) -> {
+            assertTrue(request.isSocketMode());
+            assertNotNull(request.getSocketModeEnvelopeId());
+            assertNotNull(request.getSocketModeDispatchDelayNanos());
+            assertTrue(request.getSocketModeDispatchDelayNanos() >= 0);
+            requestObserved.set(true);
+            return chain.next(request);
+        });
         socketModeApp.startAsync();
         try {
             Thread.sleep(3_000L);
@@ -110,7 +120,9 @@ public class SocketModeAppTest {
                 .build());
         AtomicBoolean commandCalled = new AtomicBoolean(false);
         AtomicBoolean actionCalled = new AtomicBoolean(false);
+        AtomicBoolean requestObserved = new AtomicBoolean(false);
         app.command("/hi-socket-mode", (req, ctx) -> {
+            assertTrue(requestObserved.get());
             commandCalled.set(true);
             return ctx.ack("Hello!");
         });
@@ -123,6 +135,14 @@ public class SocketModeAppTest {
                 SocketModeClient.Backend.JavaWebSocket,
                 app
         );
+        app.use((request, response, chain) -> {
+            assertTrue(request.isSocketMode());
+            assertNotNull(request.getSocketModeEnvelopeId());
+            assertNotNull(request.getSocketModeDispatchDelayNanos());
+            assertTrue(request.getSocketModeDispatchDelayNanos() >= 0);
+            requestObserved.set(true);
+            return chain.next(request);
+        });
         socketModeApp.startAsync();
         try {
             Thread.sleep(3_000L);
